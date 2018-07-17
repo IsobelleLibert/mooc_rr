@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Analyse du risque de défaillance des joints toriques de la navette Challenger</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Konrad Hinsen, Arnaud Legrand, Christophe Pouzat" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.js"></script>
+<script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+    function rpl(expr,a,b) {
+      var i=0
+      while (i!=-1) {
+         i=expr.indexOf(a,i);
+         if (i>=0) {
+            expr=expr.substring(0,i)+b+expr.substring(i+a.length);
+            i+=b.length;
+         }
+      }
+      return expr
+    }
+
+    function show_org_source(){
+       document.location.href = rpl(document.location.href,".php",".org");
+    }
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Analyse du risque de défaillance des joints toriques de la navette Challenger</h1>
+<p>
+<b>Préambule:</b> Les explications données dans ce document sur le contexte
+de l'étude sont largement reprises de l'excellent livre d'Edward
+R. Tufte intitulé <i>Visual Explanations: Images and Quantities, Evidence
+and Narrative</i>, publié en 1997 par <i>Graphics Press</i> et réédité en 2005,
+ainsi que de l'article de Dalal et al. intitulé <i>Risk Analysis of the
+Space Shuttle: Pre-Challenger Prediction of Failure</i> et publié en 1989
+dans <i>Journal of the American Statistical Association</i>.
+</p>
+
+<div id="outline-container-org95fbd2d" class="outline-2">
+<h2 id="org95fbd2d"><span class="section-number-2">1</span> Contexte</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Dans cette étude, nous vous proposons de revenir sur <a href="https://fr.wikipedia.org/wiki/Accident_de_la_navette_spatiale_Challenger">l'accident de la
+navette spatiale Challenger</a>. Le 28 Janvier 1986, 73 secondes après son
+lancement, la navette Challenger se désintègre (voir Figure <a href="#org7a7557d">1</a>)
+et entraîne avec elle, les sept astronautes à son bord. Cette
+explosion est due à la défaillance des deux joints toriques
+assurant l'étanchéité entre les parties hautes et basses des
+propulseurs (voir Figure <a href="#orge54c304">2</a>). Ces joints ont perdu de leur
+efficacité en raison du froid particulier qui régnait au moment du
+lancement. En effet, la température ce matin là était juste en dessous
+de 0°C alors que l'ensemble des vols précédents avaient été effectués
+à une température d'au moins 7 à 10°C de plus.
+</p>
+
+
+<div id="org7a7557d" class="figure">
+<p><img src="challenger5.jpg" alt="challenger5.jpg" />
+</p>
+<p><span class="figure-number">Figure&nbsp;1&nbsp;: </span>Photos de la catastrophe de Challenger.</p>
+</div>
+
+
+
+<div id="orge54c304" class="figure">
+<p><img src="o-ring.png" alt="o-ring.png" />
+</p>
+<p><span class="figure-number">Figure&nbsp;2&nbsp;: </span>Schéma des propulseurs de la navette challenger. Les joints toriques (un joint principale et un joint secondaire) en caoutchouc de plus de 11 mètres de circonférence assurent l'étanchéité entre la partie haute et la partie basse du propulseur.</p>
+</div>
+
+<p>
+Le plus étonnant est que la cause précise de cet accident avait été
+débattue intensément plusieurs jours auparavant et était encore
+discutée la veille même du décollage, pendant trois heures de
+télé-conférence entre les ingénieurs de la Morton Thiokol
+(constructeur des moteurs) et de la NASA. Si la cause immédiate de
+l'accident (la défaillance des joints toriques) a rapidement été
+identifiée, les raisons plus profondes qui ont conduit à ce désastre
+servent régulièrement de cas d'étude, que ce soit dans des cours de
+management (organisation du travail, décision technique malgré des
+pressions politiques, problèmes de communication), de statistiques
+(évaluation du risque, modélisation, visualisation de données), ou de
+sociologie (symptôme d'un historique, de la bureaucratie et du
+conformisme à des normes organisationnelles). 
+</p>
+
+<p>
+Dans l'étude que nous vous proposons, nous nous intéressons
+principalement à l'aspect statistique mais ce n'est donc qu'une
+facette (extrêmement limitée) du problème et nous vous invitons à lire
+par vous même les documents donnés en référence dans le
+préambule. L'étude qui suit reprend donc une partie des analyses
+effectuées cette nuit là et dont l'objectif était d'évaluer
+l'influence potentielle de la température et de la pression à laquelle
+sont soumis les joints toriques sur leur probabilité de
+dysfonctionnement. Pour cela, nous disposons des résultats des
+expériences réalisées par les ingénieurs de la NASA durant les 6
+années précédant le lancement de la navette Challenger.
+</p>
+
+<p>
+Dans le répertoire <code>module2/exo5/</code> de votre espace <code>gitlab</code>, vous
+trouverez les données d'origine ainsi qu'une analyse pour chacun des
+différents parcours proposés. Cette analyse comporte quatre étapes:
+</p>
+<ol class="org-ol">
+<li>Chargement des données</li>
+<li>Inspection graphique des données</li>
+<li>Estimation de l'influence de la température</li>
+<li>Estimation de la probabilité de dysfonctionnement des joints
+toriques</li>
+</ol>
+
+<p>
+Les deux premières étapes ne supposent que des compétences de base en
+R ou en python. La troisième étape suppose une familiarité avec la
+régression logistique (généralement abordée en L3 ou M1 de stats,
+économétrie, bio-statistique, &#x2026;) et la quatrième étape des bases de
+probabilités (niveau lycée). Nous vous présentons donc dans la
+prochaine section une introduction à la régression logistique qui ne
+s'attarde pas sur les détails du calcul, mais juste sur le sens donné
+aux résultats de cette régression.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1c79137" class="outline-2">
+<h2 id="org1c79137"><span class="section-number-2">2</span> Introduction à la régression logistique</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Imaginons que l'on dispose des données suivantes qui indiquent pour
+une cohorte d'individus s'ils ont déclaré une maladie particulière ou
+pas. Je montre ici l'analyse avec R mais le code python n'est pas forcément
+très éloigné. Les données sont stockées dans une data frame dont voici
+un bref résumé:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-R">summary(df)
+str(df)
+</pre>
+</div>
+
+<pre class="example">
+      Age            Malade     
+ Min.   :22.01   Min.   :0.000  
+ 1st Qu.:35.85   1st Qu.:0.000  
+ Median :50.37   Median :1.000  
+ Mean   :50.83   Mean   :0.515  
+ 3rd Qu.:65.37   3rd Qu.:1.000  
+ Max.   :79.80   Max.   :1.000
+'data.frame':	400 obs. of  2 variables:
+ $ Age   : num  75.1 76.4 38.6 70.2 59.2 ...
+ $ Malade: int  1 1 0 1 1 1 0 0 1 1 ...
+</pre>
+
+<p>
+Voici une représentation graphique des données qui permet de mieux
+percevoir le lien qu'il peut y avoir entre l'âge et le fait de
+contracter cette maladie ou pas:
+</p>
+<div class="org-src-container">
+<pre class="src src-R">ggplot(df,aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) + theme_bw()
+</pre>
+</div>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="fig1.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<p>
+Il apparaît clairement sur ces données que plus l'on est âgé, plus la
+probabilité de développer cette maladie est importante. Mais comment
+estimer cette probabilité à partir uniquement de ces valeurs binaires
+(malade/pas malade)? Pour chaque tranche d'âge (par exemple de 5 ans),
+on pourrait regarder la fréquence de la maladie (le code qui suit est
+un peu compliqué car le calcul de l'intervalle de confiance pour ce
+type de données nécessite un traitement particulier via la fonction
+<code>binconf</code>).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-R">age_range=5
+df_grouped = df <span class="org-ess-XopX">%&gt;%</span> mutate(Age=age_range*(floor(Age/age_range)+.5)) <span class="org-ess-XopX">%&gt;%</span>
+                    group_by(Age) <span class="org-ess-XopX">%&gt;%</span> summarize(Malade=sum(Malade),N=n()) <span class="org-ess-XopX">%&gt;%</span> 
+                    rowwise() <span class="org-ess-XopX">%&gt;%</span> 
+                    do(data.frame(Age=.$Age, binconf(.$Malade, .$N, alpha=0.05))) <span class="org-ess-XopX">%&gt;%</span>
+                    as.data.frame()
+
+ggplot(df_grouped,aes(x=Age)) + geom_point(data=df,aes(y=Malade),alpha=.3,size=3)  +
+    geom_errorbar(data=df_grouped,
+                  aes(x=Age,ymin=Lower, ymax=Upper, y=PointEst), color=<span class="org-string">"darkred"</span>) +
+    geom_point(data=df_grouped, aes(x=Age, y=PointEst), size=3, shape=21, color=<span class="org-string">"darkred"</span>) +
+    theme_bw() 
+</pre>
+</div>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="fig1bis.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<p>
+L'inconvénient de cette approche est que ce calcul est effectué
+indépendemment pour chaque tranches d'âges, que la tranche d'âge est
+arbitraire, et qu'on n'a pas grande idée de la façon dont ça
+évolue. Pour modéliser cette évolution de façon plus continue, on
+pourrait tenter une régression linéaire (le modèle le plus simple
+possible pour rendre compte de l'influence d'un paramètre) et ainsi
+estimer l'effet de l'âge sur la probabilité d'être malade:
+</p>
+<div class="org-src-container">
+<pre class="src src-R">ggplot(df,aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) + 
+    theme_bw() + geom_smooth(method=<span class="org-string">"lm"</span>)
+</pre>
+</div>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="fig2.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<p>
+La ligne bleue est la régression linéaire au sens des moindres carrés
+et la zone grise dans laquelle est la zone de confiance à 95% de cette
+estimation (avec les données dont l'on dispose et cette hypothèse de
+linéarité, la ligne bleue est la plus probable et il y a 95% de chance
+que la vraie ligne soit dans cette zone grise).
+</p>
+
+<p>
+Mais on voit clairement dans cette représentation graphique que cette
+estimation n'a aucun sens. Une probabilité doit être comprise entre 0
+et 1 et avec une régression linéaire on arrivera forcément pour des
+valeurs un peu extrêmes (jeune ou âgé) à des prédictions aberrantes
+(négative ou supérieures à 1). C'est tout simplement dû au fait qu'une
+régression linéaire fait l'hypothèse que \(\textsf{Malade} =
+\alpha.\textsf{Age} + \beta + \epsilon\), où \(\alpha\) et \(\beta\) sont des nombres réels et \(\epsilon\)
+est un bruit (une variable aléatoire de moyenne nulle), et estime \(\alpha\)
+et \(\beta\) à partir des données.
+</p>
+
+<p>
+Cette technique n'a pas de sens pour estimer une probabilité et il
+convient donc d'utiliser ce que l'on appelle une <a href="https://fr.wikipedia.org/wiki/R%C3%A9gression_logistique">régression
+logistique</a>:
+</p>
+<div class="org-src-container">
+<pre class="src src-R">ggplot(df,aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) + 
+    theme_bw() + 
+    geom_smooth(method = <span class="org-string">"glm"</span>, 
+        method.args = list(family = <span class="org-string">"binomial"</span>)) + xlim(20,80)
+</pre>
+</div>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="fig3.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+<p>
+Ici, la bibliothèque <code>ggplot</code> fait tous les calculs de régression
+logistique pour nous et nous montre uniquement le résultat "graphique"
+mais dans l'analyse que nous vous proposerons pour Challenger, nous
+réalisons la régression et la prédiction à la main (en <code>R</code> ou en <code>python</code>
+selon le parcours que vous choisirez) de façon à pouvoir effectuer si
+besoin une inspection plus fine. Comme avant, la courbe bleue indique
+l'estimation de la probabilité d'être malade en fonction de l'âge et
+la zone grise nous donne des indications sur l'incertitude de cette
+estimation, i.e., "sous ces hypothèses et étant donné le peu de
+données qu'on a et leur variabilité, il y a 95% de chances pour que la
+vraie courbe se trouve quelque part (n'importe où) dans la zone
+grise".
+</p>
+
+<p>
+Dans ce modèle, on suppose que \(P[\textsf{Malade}] = \pi(\textsf{Age})\) avec
+\(\displaystyle\pi(x)=\frac{e^{\alpha.x + \beta}}{1+e^{\alpha.x + \beta}}\). Cette
+formule (étrange au premier abord) a la bonne propriété nous donner
+systématiquement une valeur comprise entre 0 et 1 et de bien tendre
+rapidement vers \(0\) quand l'âge tend vers \(-\infty\) et vers \(1\) quand l'âge
+tend vers \(+\infty\) (mais ce n'est pas bien sûr pas la seule motivation). 
+</p>
+
+<p>
+En conclusion, lorsque l'on dispose de données événementielles
+(binaires) et que l'on souhaite estimer l'influence d'un paramètre sur
+la probabilité d'occurrence de l'évènement (maladie, défaillance,
+&#x2026;), le modèle le plus naturel et le plus simple est celui de la
+régression logistique. Notez, que même en se restreignant à une petite
+partie des données (par exemple, uniquement les patients de moins de
+50 ans), il est possible d'obtenir une estimation assez raisonnable,
+même si, comme on pouvait s'y attendre, l'incertitude augmente
+singulièrement.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-R">ggplot(df[df$Age&lt;50,],aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) + 
+    theme_bw() + 
+    geom_smooth(method = <span class="org-string">"glm"</span>, 
+        method.args = list(family = <span class="org-string">"binomial"</span>),fullrange = <span class="org-type">TRUE</span>) + xlim(20,80)
+</pre>
+</div>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="fig4.svg" class="org-svg">
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: Juin 2018</p>
+<p class="author">Auteur: Konrad Hinsen, Arnaud Legrand, Christophe Pouzat</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
