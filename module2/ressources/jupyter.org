@@ -4,18 +4,8 @@
 #+DATE: June, 2018
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
+#+PROPERTY: header-args :eval never-export
 
-* Interacting with gitlab
-#+BEGIN_QUOTE
-This section needs some love.
-#+END_QUOTE
-
-As you may have seen from the videos, we provide two buttons to sync
-with gitlab. Indeed, even if you recover your files when you log back
-into fun, the jupyter runs on a different machine than the gitlab
-server and you need to commit your notebook every time you have made a
-significant step. This is also the only way to really make it public
-and to share your notebook with others.
 * Additional Jupyter resources or tricks
 ** Tips and tricks
 The following [[https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/][webpage]] lists several Jupyter tricks (in particular, it
@@ -64,7 +54,7 @@ Instead of going directly through LaTeX and playing too much with the
 nbconvert exporter, an other option consists in exporting to Markdown
 and playing with [[https://pandoc.org/][pandoc]]. Both approaches work, it's rather a matter of
 taste.
-* Installing jupyter or jupyter hub on your own machine
+* Installing Jupyter on your own machine
 ** Installing jupyter
 Here is what you should install:
 #+begin_src shell :results output :exports both
@@ -120,7 +110,7 @@ Here are two interesting extensions that can improve readability:
   jupyter-nbextension  enable --py hide_code
   jupyter-serverextension enable --py hide_code
   #+end_src
-** Installing jupyterhub
+* Installing JupyterHub                                              :Benoit:
 #+BEGIN_QUOTE
 Benoit may give a few hints on this.
 #+END_QUOTE
