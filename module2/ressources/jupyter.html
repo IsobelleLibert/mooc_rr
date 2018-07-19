@@ -4,31 +4,31 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org877f03b">Interacting with gitlab</a></li>
-<li><a href="#org16a59c6">Additional Jupyter resources or tricks</a>
+<li style="margin-bottom:0;"><a href="#orgc72397d">Interacting with gitlab</a></li>
+<li style="margin-bottom:0;"><a href="#org186a10f">Additional Jupyter resources or tricks</a>
 <ul>
-<li><a href="#org21ed683">Tips and tricks</a></li>
-<li><a href="#org81cf6e7">Running R and Python in the same notebook</a></li>
-<li><a href="#orgff572f3">Exporting a notebook</a></li>
+<li style="margin-bottom:0;"><a href="#org9d17f16">Tips and tricks</a></li>
+<li style="margin-bottom:0;"><a href="#org3c5eb3e">Running R and Python in the same notebook</a></li>
+<li style="margin-bottom:0;"><a href="#org656a59e">Exporting a notebook</a></li>
 </ul>
 </li>
-<li><a href="#org3bb44ad">Installing jupyter or jupyter hub on your own machine</a>
+<li style="margin-bottom:0;"><a href="#org2b24a9c">Installing jupyter or jupyter hub on your own machine</a>
 <ul>
-<li><a href="#org7acfd0d">Installing jupyter</a></li>
-<li><a href="#org4236b75">Using R</a></li>
-<li><a href="#org04ec93e">Exporting your notebooks with latex</a></li>
-<li><a href="#orgd9a7f1c">Interacting with gitlab</a></li>
-<li><a href="#orgad4d4c4">Interesting extensions to improve notebook readability</a></li>
-<li><a href="#orgff424ae">Installing jupyterhub</a></li>
+<li style="margin-bottom:0;"><a href="#orgfe13c9b">Installing jupyter</a></li>
+<li style="margin-bottom:0;"><a href="#orgaeb7a97">Using R</a></li>
+<li style="margin-bottom:0;"><a href="#orgbf7d110">Exporting your notebooks with latex</a></li>
+<li style="margin-bottom:0;"><a href="#orgff388aa">Interacting with gitlab</a></li>
+<li style="margin-bottom:0;"><a href="#org77fb4ca">Interesting extensions to improve notebook readability</a></li>
+<li style="margin-bottom:0;"><a href="#org364ee89">Installing jupyterhub</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org877f03b" class="outline-2">
-<h2 id="org877f03b">Interacting with gitlab</h2>
-<div class="outline-text-2" id="text-org877f03b">
+<div id="outline-container-orgc72397d" class="outline-2">
+<h2 id="orgc72397d">Interacting with gitlab</h2>
+<div class="outline-text-2" id="text-orgc72397d">
 <blockquote>
 <p>
 This section needs some love.
@@ -45,13 +45,13 @@ and to share your notebook with others.
 </p>
 </div>
 </div>
-<div id="outline-container-org16a59c6" class="outline-2">
-<h2 id="org16a59c6">Additional Jupyter resources or tricks</h2>
-<div class="outline-text-2" id="text-org16a59c6">
+<div id="outline-container-org186a10f" class="outline-2">
+<h2 id="org186a10f">Additional Jupyter resources or tricks</h2>
+<div class="outline-text-2" id="text-org186a10f">
 </div>
-<div id="outline-container-org21ed683" class="outline-3">
-<h3 id="org21ed683">Tips and tricks</h3>
-<div class="outline-text-3" id="text-org21ed683">
+<div id="outline-container-org9d17f16" class="outline-3">
+<h3 id="org9d17f16">Tips and tricks</h3>
+<div class="outline-text-3" id="text-org9d17f16">
 <p>
 The following <a href="https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/">webpage</a> lists several Jupyter tricks (in particular, it
 illustrates many <code>Ipython magic</code> commands) that should improve your
@@ -61,9 +61,9 @@ now).
 </p>
 </div>
 </div>
-<div id="outline-container-org81cf6e7" class="outline-3">
-<h3 id="org81cf6e7">Running R and Python in the same notebook</h3>
-<div class="outline-text-3" id="text-org81cf6e7">
+<div id="outline-container-org3c5eb3e" class="outline-3">
+<h3 id="org3c5eb3e">Running R and Python in the same notebook</h3>
+<div class="outline-text-3" id="text-org3c5eb3e">
 <p>
 The best solution to this is to install rpy2. On my machine, I have
 installed the <code>python3-rpy2</code> debian package with <code>apt-get install</code>. An
@@ -78,14 +78,14 @@ with
 Then you'll be able to use both languages in the same notebook by:
 </p>
 <ol class="org-ol">
-<li><p>
+<li style="margin-bottom:0;"><p>
 Loading <code>rpy2</code>: 
 </p>
 <div class="org-src-container">
 <pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-python">%load_ext rpy2.ipython
 </pre>
 </div></li>
-<li><p>
+<li style="margin-bottom:0;"><p>
 Using the <code>%R</code> Ipython magic:
 </p>
 <div class="org-src-container">
@@ -105,9 +105,9 @@ plot((df)
 </ol>
 </div>
 </div>
-<div id="outline-container-orgff572f3" class="outline-3">
-<h3 id="orgff572f3">Exporting a notebook</h3>
-<div class="outline-text-3" id="text-orgff572f3">
+<div id="outline-container-org656a59e" class="outline-3">
+<h3 id="org656a59e">Exporting a notebook</h3>
+<div class="outline-text-3" id="text-org656a59e">
 <p>
 Obviously, you can convert to html or pdf using the using the <code>File &gt;
 Download as &gt; HTML</code> (or <code>PDF</code>) menu option.  This can also be done from
@@ -134,13 +134,13 @@ taste.
 </div>
 </div>
 </div>
-<div id="outline-container-org3bb44ad" class="outline-2">
-<h2 id="org3bb44ad">Installing jupyter or jupyter hub on your own machine</h2>
-<div class="outline-text-2" id="text-org3bb44ad">
+<div id="outline-container-org2b24a9c" class="outline-2">
+<h2 id="org2b24a9c">Installing jupyter or jupyter hub on your own machine</h2>
+<div class="outline-text-2" id="text-org2b24a9c">
 </div>
-<div id="outline-container-org7acfd0d" class="outline-3">
-<h3 id="org7acfd0d">Installing jupyter</h3>
-<div class="outline-text-3" id="text-org7acfd0d">
+<div id="outline-container-orgfe13c9b" class="outline-3">
+<h3 id="orgfe13c9b">Installing jupyter</h3>
+<div class="outline-text-3" id="text-orgfe13c9b">
 <p>
 Here is what you should install:
 </p>
@@ -171,16 +171,16 @@ The ipython notebook can then be run with the following command:
 </div>
 </div>
 </div>
-<div id="outline-container-org4236b75" class="outline-3">
-<h3 id="org4236b75">Using R</h3>
-<div class="outline-text-3" id="text-org4236b75">
+<div id="outline-container-orgaeb7a97" class="outline-3">
+<h3 id="orgaeb7a97">Using R</h3>
+<div class="outline-text-3" id="text-orgaeb7a97">
 <p>
 If you also want to have the R kernel in jupyter, follow <a href="https://github.com/IRkernel/IRkernel#installation">these
 instructions</a>.
 </p>
 
 <p>
-Alternatively, you can install <code>rpy2</code> (see the <a href="#org81cf6e7">Running R and Python in
+Alternatively, you can install <code>rpy2</code> (see the <a href="#org3c5eb3e">Running R and Python in
 the same notebook</a> section).
 </p>
 <div class="org-src-container">
@@ -189,9 +189,9 @@ the same notebook</a> section).
 </div>
 </div>
 </div>
-<div id="outline-container-org04ec93e" class="outline-3">
-<h3 id="org04ec93e">Exporting your notebooks with latex</h3>
-<div class="outline-text-3" id="text-org04ec93e">
+<div id="outline-container-orgbf7d110" class="outline-3">
+<h3 id="orgbf7d110">Exporting your notebooks with latex</h3>
+<div class="outline-text-3" id="text-orgbf7d110">
 <p>
 Here is what I had to install to make sure the notebook export via
 latex works:
@@ -203,9 +203,9 @@ sudo apt-get install texlive-xetex
 </div>
 </div>
 </div>
-<div id="outline-container-orgd9a7f1c" class="outline-3">
-<h3 id="orgd9a7f1c">Interacting with gitlab</h3>
-<div class="outline-text-3" id="text-orgd9a7f1c">
+<div id="outline-container-orgff388aa" class="outline-3">
+<h3 id="orgff388aa">Interacting with gitlab</h3>
+<div class="outline-text-3" id="text-orgff388aa">
 <p>
 Here is our <a href="https://github.com/brospars/nb-git">jupyter extension that allows to git push/pull from the
 notebooks</a>:
@@ -217,14 +217,14 @@ jupyter nbextension enable nb-git
 </div>
 </div>
 </div>
-<div id="outline-container-orgad4d4c4" class="outline-3">
-<h3 id="orgad4d4c4">Interesting extensions to improve notebook readability</h3>
-<div class="outline-text-3" id="text-orgad4d4c4">
+<div id="outline-container-org77fb4ca" class="outline-3">
+<h3 id="org77fb4ca">Interesting extensions to improve notebook readability</h3>
+<div class="outline-text-3" id="text-org77fb4ca">
 <p>
 Here are two interesting extensions that can improve readability:
 </p>
 <ul class="org-ul">
-<li><p>
+<li style="margin-bottom:0;"><p>
 <a href="https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook">Code folding</a>
 </p>
 <div class="org-src-container">
@@ -232,7 +232,7 @@ Here are two interesting extensions that can improve readability:
 <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">jupyter contrib nbextension install --user # not done yet</span>
 </pre>
 </div></li>
-<li><p>
+<li style="margin-bottom:0;"><p>
 <a href="https://github.com/kirbs-/hide_code">Hiding code</a>
 </p>
 <div class="org-src-container">
@@ -245,9 +245,9 @@ jupyter-serverextension enable --py hide_code
 </ul>
 </div>
 </div>
-<div id="outline-container-orgff424ae" class="outline-3">
-<h3 id="orgff424ae">Installing jupyterhub</h3>
-<div class="outline-text-3" id="text-orgff424ae">
+<div id="outline-container-org364ee89" class="outline-3">
+<h3 id="org364ee89">Installing jupyterhub</h3>
+<div class="outline-text-3" id="text-org364ee89">
 <blockquote>
 <p>
 Benoit may give a few hints on this.
