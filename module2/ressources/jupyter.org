@@ -31,11 +31,11 @@ Then you'll be able to use both languages in the same notebook by:
    %R 
    summary(cars)
    #+end_src
-   Python objects can then even be passed to R as follows (assuming df
-   is a pandas dataframe:
+   Python objects can then even be passed to R as follows (assuming =df=
+   is a pandas dataframe):
    #+begin_src python :results output :exports both
    %%R -i df
-   plot((df)
+   plot(df)
    #+end_src
 ** Exporting a notebook
 Obviously, you can convert to html or pdf using the using the =File >
@@ -74,8 +74,7 @@ The ipython notebook can then be run with the following command:
 jupyter-notebook
 #+end_src
 ** Using R
-If you also want to have the R kernel in jupyter, follow [[https://github.com/IRkernel/IRkernel#installation][these
-instructions]].
+If you want to use the R kernel in jupyter, follow [[https://github.com/IRkernel/IRkernel#installation][these instructions]].
 
 Alternatively, you can install =rpy2= (see the [[*Running R and Python in the same notebook][Running R and Python in
 the same notebook]] section).
@@ -83,8 +82,8 @@ the same notebook]] section).
 sudo apt-get python3-rpy2
 #+end_src
 ** Exporting your notebooks with latex
-Here is what I had to install to make sure the notebook export via
-latex works:
+Here is what I had to install on my recent debian machine to make sure
+the notebook export via latex works:
 #+begin_src shell :results output :exports both
 sudo apt-get install wkhtmltopdf
 sudo apt-get install texlive-xetex
