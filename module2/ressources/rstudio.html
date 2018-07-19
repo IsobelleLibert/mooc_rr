@@ -4,40 +4,88 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org68a44ad">Installing Rstudio</a>
+<li style="margin-bottom:0;"><a href="#org6a08c55">Installing Rstudio</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org75fa2dd">Linux (debian, ubuntu)</a>
+<li style="margin-bottom:0;"><a href="#org2204883">Linux (debian, ubuntu)</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orgb3ecfea">Installing R</a></li>
-<li style="margin-bottom:0;"><a href="#orgd6fe18e">Installing rstudio</a></li>
+<li style="margin-bottom:0;"><a href="#org9e7e4df">Installing R</a></li>
+<li style="margin-bottom:0;"><a href="#orge261910">Installing rstudio</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#org337678e">Mac OSX and Windows</a></li>
+<li style="margin-bottom:0;"><a href="#org0f1374d">Mac OSX and Windows</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#org150ee9f">Installing Git</a>
+<li style="margin-bottom:0;"><a href="#orgd743f10">Installing Git</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org79b3b23">Linux (debian, ubuntu)</a></li>
-<li style="margin-bottom:0;"><a href="#org536eda4">Mac OSX and Windows</a></li>
+<li style="margin-bottom:0;"><a href="#org194d7d9">Linux (debian, ubuntu)</a></li>
+<li style="margin-bottom:0;"><a href="#orga033592">Mac OSX and Windows</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#orgbb4bef3">Rstudio and git/github/gitlab</a></li>
-<li style="margin-bottom:0;"><a href="#org81cf7bc">Cheat Sheets</a></li>
+<li style="margin-bottom:0;"><a href="#org3890548">Setting up SSH</a>
+<ul style="margin:0 0;">
+<li style="margin-bottom:0;"><a href="#org8fce29e">Installation</a>
+<ul style="margin:0 0;">
+<li style="margin-bottom:0;"><a href="#org24a337f">Linux (debian, ubuntu)</a></li>
+<li style="margin-bottom:0;"><a href="#orgd8eb69c">Mac OSX</a></li>
+<li style="margin-bottom:0;"><a href="#org02c1827">Windows</a></li>
+</ul>
+</li>
+<li style="margin-bottom:0;"><a href="#orgfaac61e">Setting up SSH on Framagit</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
+<p>
+If you have never used git with Rstudio, <b>we strongly advise that you
+follow the <a href="https://swcarpentry.github.io/git-novice/14-supplemental-rstudio/index.html">step-by-step explanations from Software Carpentry</a></b>. It comes
+with many screenshots and is quite progressive. Alternatively, you
+may want to watch this video:
+</p>
+<iframe width="854" height="480" src="https://www.youtube.com/embed/uHYcDQDbMY8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-<div id="outline-container-org68a44ad" class="outline-2">
-<h2 id="org68a44ad">Installing Rstudio</h2>
-<div class="outline-text-2" id="text-org68a44ad">
+<p>
+The next sections provide information on how to install Rstudio, Git
+(to interact with GitLab), and SSH (to avoid typing your password
+every time you synchronize with GitLab).
+</p>
+
+<p>
+Finally, you need to know that the Rstudio team has created a lot of
+very good material and tutorials. You should definitively look at the
+<a href="https://www.rstudio.com/resources/cheatsheets/">Cheat sheets webpage</a>. In particular you want to have look at the ones
+on:
+</p>
+<ul class="org-ul">
+<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf">The Rstudio IDE</a>,</li>
+<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf">R Markdown</a>,</li>
+<li style="margin-bottom:0;">The <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference guide</a>,</li>
+<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf">Data visualization with ggplot2</a>,</li>
+<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">Data transformation with dplyr</a></li>
+</ul>
+
+<p>
+In case it helps, here are some (sometimes outdated) French versions
+of these documents: 
+</p>
+<ul class="org-ul">
+<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/translations/french/rstudio-IDE-cheatsheet.pdf">L'IDE Rstudio</a></li>
+<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/translations/french/ggplot2-french-cheatsheet.pdf">Visualisation de données avec ggplot2</a></li>
+<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/translations/french/data-wrangling-french.pdf">Transformation de données avec dplyr</a></li>
+<li style="margin-bottom:0;"><a href="https://www.fun-mooc.fr/c4x/UPSUD/42001S02/asset/RMarkdown.pdf">Un court document sur R Markdown</a></li>
+</ul>
+
+<div id="outline-container-org6a08c55" class="outline-2">
+<h2 id="org6a08c55">Installing Rstudio</h2>
+<div class="outline-text-2" id="text-org6a08c55">
 </div>
-<div id="outline-container-org75fa2dd" class="outline-3">
-<h3 id="org75fa2dd">Linux (debian, ubuntu)</h3>
-<div class="outline-text-3" id="text-org75fa2dd">
+<div id="outline-container-org2204883" class="outline-3">
+<h3 id="org2204883">Linux (debian, ubuntu)</h3>
+<div class="outline-text-3" id="text-org2204883">
 <p>
 We provide here only instructions for debian-based distributions. Feel
 free to contribute to this document to provide up-to-date information
-for other distributions (e.g.n redhat, fedora).
+for other distributions (e.g., redhat, fedora).
 </p>
 
 <p>
@@ -55,9 +103,9 @@ for upgrading&#x2026;
 </p>
 </div>
 
-<div id="outline-container-orgb3ecfea" class="outline-4">
-<h4 id="orgb3ecfea">Installing R</h4>
-<div class="outline-text-4" id="text-orgb3ecfea">
+<div id="outline-container-org9e7e4df" class="outline-4">
+<h4 id="org9e7e4df">Installing R</h4>
+<div class="outline-text-4" id="text-org9e7e4df">
 <p>
 Beforehand, you need to install the R language and convenient packages
 by running (as root):
@@ -90,9 +138,9 @@ to run (as root):
 </div>
 </div>
 
-<div id="outline-container-orgd6fe18e" class="outline-4">
-<h4 id="orgd6fe18e">Installing rstudio</h4>
-<div class="outline-text-4" id="text-orgd6fe18e">
+<div id="outline-container-orge261910" class="outline-4">
+<h4 id="orge261910">Installing rstudio</h4>
+<div class="outline-text-4" id="text-orge261910">
 <p>
 Rstudio is unfortunately not packaged within debian so the easiest is
 to download the corresponding debian package on the <a href="https://www.rstudio.com/products/rstudio/download/#download">Rstudio webpage</a>
@@ -110,9 +158,9 @@ sudo apt-get update ; sudo apt-get -f install <span style="font-weight: bold; fo
 </div>
 </div>
 </div>
-<div id="outline-container-org337678e" class="outline-3">
-<h3 id="org337678e">Mac OSX and Windows</h3>
-<div class="outline-text-3" id="text-org337678e">
+<div id="outline-container-org0f1374d" class="outline-3">
+<h3 id="org0f1374d">Mac OSX and Windows</h3>
+<div class="outline-text-3" id="text-org0f1374d">
 <blockquote>
 <p>
 Some instructions on installing R and knitr must be missing. This
@@ -136,17 +184,17 @@ install.packages(<span style="font-style: italic;">"ggplot2"</span>)
 </div>
 </div>
 </div>
-<div id="outline-container-org150ee9f" class="outline-2">
-<h2 id="org150ee9f">Installing Git</h2>
-<div class="outline-text-2" id="text-org150ee9f">
+<div id="outline-container-orgd743f10" class="outline-2">
+<h2 id="orgd743f10">Installing Git</h2>
+<div class="outline-text-2" id="text-orgd743f10">
 </div>
-<div id="outline-container-org79b3b23" class="outline-3">
-<h3 id="org79b3b23">Linux (debian, ubuntu)</h3>
-<div class="outline-text-3" id="text-org79b3b23">
+<div id="outline-container-org194d7d9" class="outline-3">
+<h3 id="org194d7d9">Linux (debian, ubuntu)</h3>
+<div class="outline-text-3" id="text-org194d7d9">
 <p>
 We provide here only instructions for debian-based distributions. Feel
 free to contribute to this document to provide up-to-date information
-for other distributions (e.g.n redhat, fedora).
+for other distributions (e.g., redhat, fedora).
 </p>
 
 <p>
@@ -158,9 +206,9 @@ Run (as root):
 </div>
 </div>
 </div>
-<div id="outline-container-org536eda4" class="outline-3">
-<h3 id="org536eda4">Mac OSX and Windows</h3>
-<div class="outline-text-3" id="text-org536eda4">
+<div id="outline-container-orga033592" class="outline-3">
+<h3 id="orga033592">Mac OSX and Windows</h3>
+<div class="outline-text-3" id="text-orga033592">
 <ul class="org-ul">
 <li style="margin-bottom:0;">Download and install Git from the <a href="https://git-scm.com/downloads">Git website</a>.</li>
 <li style="margin-bottom:0;">Optional Git clients (should not be needed if you work within
@@ -172,7 +220,7 @@ Rstudio):
 </p>
 <blockquote>
 <p>
-<a href="https://github.com/desktop/desktop/issues/852">Apparently</a>, this works with gitlab and https.
+<a href="https://github.com/desktop/desktop/issues/852">Apparently</a>, this works with GitLab and https.
 </p>
 </blockquote></li>
 </ul></li>
@@ -180,55 +228,69 @@ Rstudio):
 </div>
 </div>
 </div>
-<div id="outline-container-orgbb4bef3" class="outline-2">
-<h2 id="orgbb4bef3">Rstudio and git/github/gitlab</h2>
-<div class="outline-text-2" id="text-orgbb4bef3">
-<blockquote>
+<div id="outline-container-org3890548" class="outline-2">
+<h2 id="org3890548">Setting up SSH</h2>
+<div class="outline-text-2" id="text-org3890548">
 <p>
-We may want to redo a screencast in French for this
+There are two ways of synchronizing your local repository with GitLab:
+through HTTPS or through SSH. The first one does not require any
+particular configuration but you will be regularly prompted for your
+GitLab password, which can be quite tedious. To avoid this, the best
+solution is to set install SSH, to create a pair or private/public
+keys, and to upload your SSH public key on GitLab. This section
+provides with information on how to do this.
 </p>
-</blockquote>
-<ul class="org-ul">
-<li style="margin-bottom:0;"><a href="https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-managing-part-2/">This video on using git/githugb/gitlab from Rstudio</a> (starting at time 9:09)</li>
-</ul>
+</div>
+<div id="outline-container-org8fce29e" class="outline-3">
+<h3 id="org8fce29e">Installation</h3>
+<div class="outline-text-3" id="text-org8fce29e">
+</div>
+<div id="outline-container-org24a337f" class="outline-4">
+<h4 id="org24a337f">Linux (debian, ubuntu)</h4>
+<div class="outline-text-4" id="text-org24a337f">
+<p>
+We provide here only instructions for debian-based distributions. Feel
+free to contribute to this document to provide up-to-date information
+for other distributions (e.g., redhat, fedora).
+</p>
 
 <p>
-Alternatively, we can point to:
-<a href="http://www.geo.uzh.ch/microsite/reproducible_research/post/rr-rstudio-git/">http://www.geo.uzh.ch/microsite/reproducible_research/post/rr-rstudio-git/</a>
+Run (as root):
 </p>
-<ul class="org-ul">
-<li style="margin-bottom:0;">Part 1/item 2: Setup Git in RStudio</li>
-<li style="margin-bottom:0;">Part 2 (to adapt to gitlab)</li>
-<li style="margin-bottom:0;">Part 3</li>
-</ul>
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-sh">apt-get update ; apt-get install openssh-client
+</pre>
 </div>
 </div>
-<div id="outline-container-org81cf7bc" class="outline-2">
-<h2 id="org81cf7bc">Cheat Sheets</h2>
-<div class="outline-text-2" id="text-org81cf7bc">
+</div>
+<div id="outline-container-orgd8eb69c" class="outline-4">
+<h4 id="orgd8eb69c">Mac OSX</h4>
+<div class="outline-text-4" id="text-orgd8eb69c">
 <p>
-The Rstudio team has created a lot of good material and tutorials. You
-should definitively look at the <a href="https://www.rstudio.com/resources/cheatsheets/">Cheat sheets webpage</a>. In particular
-you want to have look at the ones on:
+You do not have anything to do as it is installed by default.
 </p>
-<ul class="org-ul">
-<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf">the Rstudio IDE</a>,</li>
-<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf">R Markdown</a>,</li>
-<li style="margin-bottom:0;">the <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference guide</a>,</li>
-<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf">data visualization with ggplot2</a>,</li>
-<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">data transformation with dplyr</a></li>
-</ul>
-
+</div>
+</div>
+<div id="outline-container-org02c1827" class="outline-4">
+<h4 id="org02c1827">Windows</h4>
+<div class="outline-text-4" id="text-org02c1827">
 <p>
-In case it helps, here are some (sometimes outdated) French versions
-of these documents: 
+You should install the <a href="https://www.ssh.com/ssh/putty/windows/">Putty</a> client. Once it is installed, look for
+the section on <a href="https://www.ssh.com/ssh/putty/windows/puttygen">generating an SSH key</a>.
 </p>
-<ul class="org-ul">
-<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/translations/french/rstudio-IDE-cheatsheet.pdf">L'IDE Rstudio</a></li>
-<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/translations/french/ggplot2-french-cheatsheet.pdf">Visualisation de données avec ggplot2</a></li>
-<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/translations/french/data-wrangling-french.pdf">Transformation de données avec dplyr</a></li>
-<li style="margin-bottom:0;"><a href="https://www.fun-mooc.fr/c4x/UPSUD/42001S02/asset/RMarkdown.pdf">Un court document sur R Markdown</a></li>
-</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfaac61e" class="outline-3">
+<h3 id="orgfaac61e">Setting up SSH on Framagit</h3>
+<div class="outline-text-3" id="text-orgfaac61e">
+<p>
+Here are <a href="https://docs.gitlab.com/ee/ssh/">all the official explanations on how to set up your SSH key
+on GitLab</a>. Alternatively, you may also want to have a look at this
+video:
+</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/54mxyLo3Mqk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
 </div>
 </div>
 </div>
