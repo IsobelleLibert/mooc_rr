@@ -1,5 +1,5 @@
 # -*- mode: org -*-
-#+TITLE:     Rstudio
+#+TITLE:     Jupyter
 #+AUTHOR:    Arnaud Legrand
 #+DATE: June, 2018
 #+STARTUP: overview indent
