@@ -106,7 +106,8 @@ notebooks]]:
 jupyter nbextension install https://raw.githubusercontent.com/brospars/nb-git/master/nb-git.js
 jupyter nbextension enable nb-git
 #+end_src
-** Interesting extensions
+** Interesting extensions to improve notebook readability
+Here are two interesting extensions that can improve readability:
 - [[https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook][Code folding]]
   #+begin_src shell :results output :exports both
   pip3 install jupyter_contrib_nbextensions
