@@ -3,18 +3,7 @@
 #+AUTHOR:    Arnaud Legrand
 #+DATE: June, 2018
 #+STARTUP: overview indent
-
-* Table of Contents                                                     :TOC:
- - [[#installing-emacs-org-mode-ess-and-auctex][Installing emacs, org-mode, ess, and auctex.]]
-     - [[#os-specific-installation-procedure][OS-specific installation procedure]]
-     - [[#a-simple-reproducible-research-emacs-configuration-][A simple "/reproducible research/" emacs configuration ]]
- - [[#emacs-tips-and-tricks][Emacs Tips and tricks]]
-     - [[#cheat-sheets][Cheat-sheets]]
-     - [[#video-tutorials][Video tutorials]]
-     - [[#additional-useful-emacs-packages][Additional useful emacs packages]]
-     - [[#other-resources][Other resources]]
- - [[#a-replicable-article][A replicable article]]
-     - [[#a-stub-of-replicable-article][A stub of replicable article]]
+#+OPTIONS: num:nil toc:t
 
 * Installing emacs, org-mode, ess, and auctex.
 ** OS-specific installation procedure

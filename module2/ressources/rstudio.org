@@ -3,16 +3,7 @@
 #+AUTHOR:    Arnaud Legrand
 #+DATE: June, 2018
 #+STARTUP: overview indent
-
-* Table of Contents                                                     :TOC:
- - [[#installing-rstudio][Installing Rstudio]]
-     - [[#linux-debian-ubuntu][Linux (debian, ubuntu)]]
-     - [[#mac-osx-and-windows][Mac OSX and Windows]]
- - [[#installing-git][Installing Git]]
-     - [[#linux-debian-ubuntu][Linux (debian, ubuntu)]]
-     - [[#mac-osx-and-windows][Mac OSX and Windows]]
- - [[#rstudio-and-gitgithubgitlab][Rstudio and git/github/gitlab]]
- - [[#cheat-sheets][Cheat Sheets]]
+#+OPTIONS: num:nil toc:t
 
 * Installing Rstudio
 ** Linux (debian, ubuntu)
@@ -91,7 +82,7 @@ apt-get update ; apt-get install git
 - Optional Git clients (should not be needed if you work within
   Rstudio):
   - [[https://www.sourcetreeapp.com/][SourceTree]]
-  - [[github desktop][GitHub Desktop]] 
+  - [[https://desktop.github.com/][GitHub Desktop]] 
     #+BEGIN_QUOTE
     [[https://github.com/desktop/desktop/issues/852][Apparently]], this works with gitlab and https.
     #+END_QUOTE

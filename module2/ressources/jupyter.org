@@ -3,20 +3,7 @@
 #+AUTHOR:    Arnaud Legrand
 #+DATE: June, 2018
 #+STARTUP: overview indent
-
-* Table of Contents                                                     :TOC:
- - [[#interacting-with-gitlab][Interacting with gitlab]]
- - [[#additional-jupyter-resources-or-tricks][Additional Jupyter resources or tricks]]
-     - [[#tips-and-tricks][Tips and tricks]]
-     - [[#running-r-and-python-in-the-same-notebook][Running R and Python in the same notebook]]
-     - [[#exporting-a-notebook][Exporting a notebook]]
- - [[#installing-jupyter-or-jupyter-hub-on-your-own-machine][Installing jupyter or jupyter hub on your own machine]]
-     - [[#installing-jupyter][Installing jupyter]]
-     - [[#using-r][Using R]]
-     - [[#exporting-your-notebooks-with-latex][Exporting your notebooks with latex]]
-     - [[#interacting-with-gitlab][Interacting with gitlab]]
-     - [[#interesting-extensions][Interesting extensions]]
-     - [[#installing-jupyterhub][Installing jupyterhub]]
+#+OPTIONS: num:nil toc:t
 
 * Interacting with gitlab
 #+BEGIN_QUOTE
