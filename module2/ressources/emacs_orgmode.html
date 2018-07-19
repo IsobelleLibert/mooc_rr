@@ -1,297 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<!-- 2018-07-19 jeu. 14:26 -->
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Emacs/org-mode</title>
-<meta name="generator" content="Org mode" />
-<meta name="author" content="Arnaud Legrand" />
-<style type="text/css">
- <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
-  .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
-  .tag    { background-color: #eee; font-family: monospace;
-            padding: 2px; font-size: 80%; font-weight: normal; }
-  .timestamp { color: #bebebe; }
-  .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
-  .underline { text-decoration: underline; }
-  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
-  p.verse { margin-left: 3%; }
-  pre {
-    border: 1px solid #ccc;
-    box-shadow: 3px 3px 3px #eee;
-    padding: 8pt;
-    font-family: monospace;
-    overflow: auto;
-    margin: 1.2em;
-  }
-  pre.src {
-    position: relative;
-    overflow: visible;
-    padding-top: 1.2em;
-  }
-  pre.src:before {
-    display: none;
-    position: absolute;
-    background-color: white;
-    top: -10px;
-    right: 10px;
-    padding: 3px;
-    border: 1px solid black;
-  }
-  pre.src:hover:before { display: inline;}
-  /* Languages per Org manual */
-  pre.src-asymptote:before { content: 'Asymptote'; }
-  pre.src-awk:before { content: 'Awk'; }
-  pre.src-C:before { content: 'C'; }
-  /* pre.src-C++ doesn't work in CSS */
-  pre.src-clojure:before { content: 'Clojure'; }
-  pre.src-css:before { content: 'CSS'; }
-  pre.src-D:before { content: 'D'; }
-  pre.src-ditaa:before { content: 'ditaa'; }
-  pre.src-dot:before { content: 'Graphviz'; }
-  pre.src-calc:before { content: 'Emacs Calc'; }
-  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-fortran:before { content: 'Fortran'; }
-  pre.src-gnuplot:before { content: 'gnuplot'; }
-  pre.src-haskell:before { content: 'Haskell'; }
-  pre.src-hledger:before { content: 'hledger'; }
-  pre.src-java:before { content: 'Java'; }
-  pre.src-js:before { content: 'Javascript'; }
-  pre.src-latex:before { content: 'LaTeX'; }
-  pre.src-ledger:before { content: 'Ledger'; }
-  pre.src-lisp:before { content: 'Lisp'; }
-  pre.src-lilypond:before { content: 'Lilypond'; }
-  pre.src-lua:before { content: 'Lua'; }
-  pre.src-matlab:before { content: 'MATLAB'; }
-  pre.src-mscgen:before { content: 'Mscgen'; }
-  pre.src-ocaml:before { content: 'Objective Caml'; }
-  pre.src-octave:before { content: 'Octave'; }
-  pre.src-org:before { content: 'Org mode'; }
-  pre.src-oz:before { content: 'OZ'; }
-  pre.src-plantuml:before { content: 'Plantuml'; }
-  pre.src-processing:before { content: 'Processing.js'; }
-  pre.src-python:before { content: 'Python'; }
-  pre.src-R:before { content: 'R'; }
-  pre.src-ruby:before { content: 'Ruby'; }
-  pre.src-sass:before { content: 'Sass'; }
-  pre.src-scheme:before { content: 'Scheme'; }
-  pre.src-screen:before { content: 'Gnu Screen'; }
-  pre.src-sed:before { content: 'Sed'; }
-  pre.src-sh:before { content: 'shell'; }
-  pre.src-sql:before { content: 'SQL'; }
-  pre.src-sqlite:before { content: 'SQLite'; }
-  /* additional languages in org.el's org-babel-load-languages alist */
-  pre.src-forth:before { content: 'Forth'; }
-  pre.src-io:before { content: 'IO'; }
-  pre.src-J:before { content: 'J'; }
-  pre.src-makefile:before { content: 'Makefile'; }
-  pre.src-maxima:before { content: 'Maxima'; }
-  pre.src-perl:before { content: 'Perl'; }
-  pre.src-picolisp:before { content: 'Pico Lisp'; }
-  pre.src-scala:before { content: 'Scala'; }
-  pre.src-shell:before { content: 'Shell Script'; }
-  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
-  /* additional language identifiers per "defun org-babel-execute"
-       in ob-*.el */
-  pre.src-cpp:before  { content: 'C++'; }
-  pre.src-abc:before  { content: 'ABC'; }
-  pre.src-coq:before  { content: 'Coq'; }
-  pre.src-groovy:before  { content: 'Groovy'; }
-  /* additional language identifiers from org-babel-shell-names in
-     ob-shell.el: ob-shell is the only babel language using a lambda to put
-     the execution function name together. */
-  pre.src-bash:before  { content: 'bash'; }
-  pre.src-csh:before  { content: 'csh'; }
-  pre.src-ash:before  { content: 'ash'; }
-  pre.src-dash:before  { content: 'dash'; }
-  pre.src-ksh:before  { content: 'ksh'; }
-  pre.src-mksh:before  { content: 'mksh'; }
-  pre.src-posh:before  { content: 'posh'; }
-  /* Additional Emacs modes also supported by the LaTeX listings package */
-  pre.src-ada:before { content: 'Ada'; }
-  pre.src-asm:before { content: 'Assembler'; }
-  pre.src-caml:before { content: 'Caml'; }
-  pre.src-delphi:before { content: 'Delphi'; }
-  pre.src-html:before { content: 'HTML'; }
-  pre.src-idl:before { content: 'IDL'; }
-  pre.src-mercury:before { content: 'Mercury'; }
-  pre.src-metapost:before { content: 'MetaPost'; }
-  pre.src-modula-2:before { content: 'Modula-2'; }
-  pre.src-pascal:before { content: 'Pascal'; }
-  pre.src-ps:before { content: 'PostScript'; }
-  pre.src-prolog:before { content: 'Prolog'; }
-  pre.src-simula:before { content: 'Simula'; }
-  pre.src-tcl:before { content: 'tcl'; }
-  pre.src-tex:before { content: 'TeX'; }
-  pre.src-plain-tex:before { content: 'Plain TeX'; }
-  pre.src-verilog:before { content: 'Verilog'; }
-  pre.src-vhdl:before { content: 'VHDL'; }
-  pre.src-xml:before { content: 'XML'; }
-  pre.src-nxml:before { content: 'XML'; }
-  /* add a generic configuration mode; LaTeX export needs an additional
-     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
-  pre.src-conf:before { content: 'Configuration File'; }
-
-  table { border-collapse:collapse; }
-  caption.t-above { caption-side: top; }
-  caption.t-bottom { caption-side: bottom; }
-  td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
-  dt { font-weight: bold; }
-  .footpara { display: inline; }
-  .footdef  { margin-bottom: 1em; }
-  .figure { padding: 1em; }
-  .figure p { text-align: center; }
-  .inlinetask {
-    padding: 10px;
-    border: 2px solid gray;
-    margin: 10px;
-    background: #ffffcc;
-  }
-  #org-div-home-and-up
-   { text-align: right; font-size: 70%; white-space: nowrap; }
-  textarea { overflow-x: auto; }
-  .linenr { font-size: smaller }
-  .code-highlighted { background-color: #ffff00; }
-  .org-info-js_info-navigation { border-style: none; }
-  #org-info-js_console-label
-    { font-size: 10px; font-weight: bold; white-space: nowrap; }
-  .org-info-js_search-highlight
-    { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
-  /*]]>*/-->
-</style>
-<script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2018 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
-<!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
-</script>
-</head>
-<body>
 <div id="content">
 <h1 class="title">Emacs/org-mode</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgbd4e425">Installing emacs, org-mode, ess, and auctex.</a>
+<li><a href="#orgf341a7b">Installing emacs, org-mode, ess, and auctex.</a>
 <ul>
-<li><a href="#org324a7d6">OS-specific installation procedure</a>
+<li><a href="#orge4fad90">OS-specific installation procedure</a>
 <ul>
-<li><a href="#orgd8c3f7e">Linux (Debian, Ubuntu)</a></li>
-<li><a href="#org2bb1cef">Mac OS X</a></li>
-<li><a href="#org4b4c660">Windows</a></li>
+<li><a href="#org61bac26">Linux (Debian, Ubuntu)</a></li>
+<li><a href="#org9367150">Mac OS X</a></li>
+<li><a href="#org2b9a625">Windows</a></li>
 </ul>
 </li>
-<li><a href="#orgdc561eb">A simple "<i>reproducible research</i>" emacs configuration</a>
+<li><a href="#orga25e157">A simple "<i>reproducible research</i>" emacs configuration</a>
 <ul>
-<li><a href="#org8d266bd">Step 0: Backup and download our configuration</a></li>
-<li><a href="#orgbe70ad9">Step 1: Prepare your journal</a></li>
-<li><a href="#orgebee67f">Step 2: Set up Emacs configuration</a></li>
-<li><a href="#orgdb9b220">Step 3: Check whether the installation is working or not</a></li>
-<li><a href="#org3f1b5c3">Step 4: Open and play with your journal:</a></li>
+<li><a href="#orgf964c13">Step 0: Backup and download our configuration</a></li>
+<li><a href="#org99a4288">Step 1: Prepare your journal</a></li>
+<li><a href="#org0801dcc">Step 2: Set up Emacs configuration</a></li>
+<li><a href="#org4f721b0">Step 3: Check whether the installation is working or not</a></li>
+<li><a href="#org5cc910a">Step 4: Open and play with your journal:</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgab544bb">Emacs Tips and tricks</a>
+<li><a href="#org13b7d11">Emacs Tips and tricks</a>
 <ul>
-<li><a href="#org7bb7d8c">Cheat-sheets</a>
+<li><a href="#org75b44bc">Cheat-sheets</a>
 <ul>
-<li><a href="#org340d1fe">Emacs</a></li>
-<li><a href="#org3f4a953">Org-mode</a></li>
+<li><a href="#org16eabd7">Emacs</a></li>
+<li><a href="#org6a5995d">Org-mode</a></li>
 </ul>
 </li>
-<li><a href="#orga548b84">Video tutorials</a></li>
-<li><a href="#org5611504">Additional useful emacs packages</a>
+<li><a href="#org0b10e11">Video tutorials</a></li>
+<li><a href="#org8e227cc">Additional useful emacs packages</a>
 <ul>
-<li><a href="#org4a51dc5">Company-mode</a></li>
-<li><a href="#orgba3524f">Magit</a></li>
+<li><a href="#org067ff94">Company-mode</a></li>
+<li><a href="#org78755b6">Magit</a></li>
 </ul>
 </li>
-<li><a href="#org52918cd">Other resources</a></li>
+<li><a href="#org60f3612">Other resources</a></li>
 </ul>
 </li>
-<li><a href="#orgd54946e">A replicable article</a>
+<li><a href="#orgecdf4f9">A replicable article</a>
 <ul>
-<li><a href="#org0b0e8a7">A stub of replicable article</a></li>
+<li><a href="#org7d89d75">A stub of replicable article</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgbd4e425" class="outline-2">
-<h2 id="orgbd4e425">Installing emacs, org-mode, ess, and auctex.</h2>
-<div class="outline-text-2" id="text-orgbd4e425">
+<div id="outline-container-orgf341a7b" class="outline-2">
+<h2 id="orgf341a7b">Installing emacs, org-mode, ess, and auctex.</h2>
+<div class="outline-text-2" id="text-orgf341a7b">
 </div>
-<div id="outline-container-org324a7d6" class="outline-3">
-<h3 id="org324a7d6">OS-specific installation procedure</h3>
-<div class="outline-text-3" id="text-org324a7d6">
+<div id="outline-container-orge4fad90" class="outline-3">
+<h3 id="orge4fad90">OS-specific installation procedure</h3>
+<div class="outline-text-3" id="text-orge4fad90">
 </div>
-<div id="outline-container-orgd8c3f7e" class="outline-4">
-<h4 id="orgd8c3f7e">Linux (Debian, Ubuntu)</h4>
-<div class="outline-text-4" id="text-orgd8c3f7e">
+<div id="outline-container-org61bac26" class="outline-4">
+<h4 id="org61bac26">Linux (Debian, Ubuntu)</h4>
+<div class="outline-text-4" id="text-org61bac26">
 <p>
 We provide here only instructions for debian-based distributions. Feel
 free to contribute to this document to provide up-to-date information
@@ -353,9 +123,9 @@ which is now deprecated.
 </p>
 </div>
 </div>
-<div id="outline-container-org2bb1cef" class="outline-4">
-<h4 id="org2bb1cef">Mac OS X</h4>
-<div class="outline-text-4" id="text-org2bb1cef">
+<div id="outline-container-org9367150" class="outline-4">
+<h4 id="org9367150">Mac OS X</h4>
+<div class="outline-text-4" id="text-org9367150">
 <ul class="org-ul">
 <li><p>
 <b>Option 1</b>: Install the <code>.dmg</code> file from <a href="http://vgoulet.act.ulaval.ca/">Vincent Goulet</a>:
@@ -388,9 +158,9 @@ brew install wget
 </ul>
 </div>
 </div>
-<div id="outline-container-org4b4c660" class="outline-4">
-<h4 id="org4b4c660">Windows</h4>
-<div class="outline-text-4" id="text-org4b4c660">
+<div id="outline-container-org2b9a625" class="outline-4">
+<h4 id="org2b9a625">Windows</h4>
+<div class="outline-text-4" id="text-org2b9a625">
 <p>
 Install the <code>.exe</code> file from <a href="http://vgoulet.act.ulaval.ca/">Vincent Goulet</a>:
 <a href="https://vigou3.github.io/emacs-modified-windows/">https://vigou3.github.io/emacs-modified-windows/</a>. It ships with recent
@@ -404,9 +174,9 @@ versions:
 </div>
 </div>
 </div>
-<div id="outline-container-orgdc561eb" class="outline-3">
-<h3 id="orgdc561eb">A simple "<i>reproducible research</i>" emacs configuration</h3>
-<div class="outline-text-3" id="text-orgdc561eb">
+<div id="outline-container-orga25e157" class="outline-3">
+<h3 id="orga25e157">A simple "<i>reproducible research</i>" emacs configuration</h3>
+<div class="outline-text-3" id="text-orga25e157">
 <p>
 Emacs comes with very basic default configuration and it appears like
 everyone has its own taste. You will for example find <a href="https://www.emacswiki.org/emacs/StarterKits">here</a> several
@@ -419,9 +189,9 @@ adding a few org-mode specific configurations.
 </p>
 </div>
 
-<div id="outline-container-org8d266bd" class="outline-4">
-<h4 id="org8d266bd">Step 0: Backup and download our configuration</h4>
-<div class="outline-text-4" id="text-org8d266bd">
+<div id="outline-container-orgf964c13" class="outline-4">
+<h4 id="orgf964c13">Step 0: Backup and download our configuration</h4>
+<div class="outline-text-4" id="text-orgf964c13">
 <p>
 The procedure we propose will wipe your already existing custom emacs
 configuration if you already have one. <b>You should thus beforehand make
@@ -442,9 +212,9 @@ rr_org/journal.org
 </div>
 </div>
 
-<div id="outline-container-orgbe70ad9" class="outline-4">
-<h4 id="orgbe70ad9">Step 1: Prepare your journal</h4>
-<div class="outline-text-4" id="text-orgbe70ad9">
+<div id="outline-container-org99a4288" class="outline-4">
+<h4 id="org99a4288">Step 1: Prepare your journal</h4>
+<div class="outline-text-4" id="text-org99a4288">
 <p>
 Create an <code>org/</code> directory in the top of your home:
 </p>
@@ -461,9 +231,9 @@ should give a try.
 </p>
 </div>
 </div>
-<div id="outline-container-orgebee67f" class="outline-4">
-<h4 id="orgebee67f">Step 2: Set up Emacs configuration</h4>
-<div class="outline-text-4" id="text-orgebee67f">
+<div id="outline-container-org0801dcc" class="outline-4">
+<h4 id="org0801dcc">Step 2: Set up Emacs configuration</h4>
+<div class="outline-text-4" id="text-org0801dcc">
 <p>
 Copy <code>rr_org/init.el</code> in your <code>~/.emacs.d/</code> directory.
 </p>
@@ -475,9 +245,9 @@ configuration with the following command: <code>emacs -q -l rr_org/init.el</code
 </p>
 </div>
 </div>
-<div id="outline-container-orgdb9b220" class="outline-4">
-<h4 id="orgdb9b220">Step 3: Check whether the installation is working or not</h4>
-<div class="outline-text-4" id="text-orgdb9b220">
+<div id="outline-container-org4f721b0" class="outline-4">
+<h4 id="org4f721b0">Step 3: Check whether the installation is working or not</h4>
+<div class="outline-text-4" id="text-org4f721b0">
 <p>
 Open a new instance of Emacs and open a <code>foo.org</code> file. Copy the
 following lines in this file:
@@ -508,9 +278,9 @@ is demonstrated in the <a href="rr_org/journal.html#MissingReference">first entr
 </p>
 </div>
 </div>
-<div id="outline-container-org3f1b5c3" class="outline-4">
-<h4 id="org3f1b5c3">Step 4: Open and play with your journal:</h4>
-<div class="outline-text-4" id="text-org3f1b5c3">
+<div id="outline-container-org5cc910a" class="outline-4">
+<h4 id="org5cc910a">Step 4: Open and play with your journal:</h4>
+<div class="outline-text-4" id="text-org5cc910a">
 <p>
 In step 1, you were told to create an journal in
 <code>~org/journal.org</code>. First you probably want to make sure this file is
@@ -522,22 +292,22 @@ forums.
 </div>
 </div>
 </div>
-<div id="outline-container-orgab544bb" class="outline-2">
-<h2 id="orgab544bb">Emacs Tips and tricks</h2>
-<div class="outline-text-2" id="text-orgab544bb">
+<div id="outline-container-org13b7d11" class="outline-2">
+<h2 id="org13b7d11">Emacs Tips and tricks</h2>
+<div class="outline-text-2" id="text-org13b7d11">
 </div>
-<div id="outline-container-org7bb7d8c" class="outline-3">
-<h3 id="org7bb7d8c">Cheat-sheets</h3>
-<div class="outline-text-3" id="text-org7bb7d8c">
+<div id="outline-container-org75b44bc" class="outline-3">
+<h3 id="org75b44bc">Cheat-sheets</h3>
+<div class="outline-text-3" id="text-org75b44bc">
 <p>
 Learning emacs and org-mode can be difficult as there is an inordinate
 amount of shortcuts. Many people have thus come up with
 cheat-sheats. Here is a selection in case it helps:
 </p>
 </div>
-<div id="outline-container-org340d1fe" class="outline-4">
-<h4 id="org340d1fe">Emacs</h4>
-<div class="outline-text-4" id="text-org340d1fe">
+<div id="outline-container-org16eabd7" class="outline-4">
+<h4 id="org16eabd7">Emacs</h4>
+<div class="outline-text-4" id="text-org16eabd7">
 <ul class="org-ul">
 <li><a href="org/journal.html#MissingReference">Common and step-by-step emacs shortcuts for our <i>reproducible research</i> configuration</a></li>
 <li><a href="https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf">The official GNU emacs refcard</a></li>
@@ -546,9 +316,9 @@ cheat-sheats. Here is a selection in case it helps:
 </ul>
 </div>
 </div>
-<div id="outline-container-org3f4a953" class="outline-4">
-<h4 id="org3f4a953">Org-mode</h4>
-<div class="outline-text-4" id="text-org3f4a953">
+<div id="outline-container-org6a5995d" class="outline-4">
+<h4 id="org6a5995d">Org-mode</h4>
+<div class="outline-text-4" id="text-org6a5995d">
 <ul class="org-ul">
 <li><a href="org/journal.html#MissingReference">Common and step-by-step org-mode shortcuts for our <i>reproducible research</i> configuration</a></li>
 <li><a href="https://orgmode.org/worg/orgcard.html">The official org-mode refcard</a></li>
@@ -557,22 +327,22 @@ cheat-sheats. Here is a selection in case it helps:
 </div>
 </div>
 </div>
-<div id="outline-container-orga548b84" class="outline-3">
-<h3 id="orga548b84">Video tutorials</h3>
-<div class="outline-text-3" id="text-orga548b84">
+<div id="outline-container-org0b10e11" class="outline-3">
+<h3 id="org0b10e11">Video tutorials</h3>
+<div class="outline-text-3" id="text-org0b10e11">
 <p>
 For those of you who prefer video explanations, here is a <a href="https://www.youtube.com/playlist?list=PL9KxKa8NpFxIcNQa9js7dQQIHc81b0-Xg">Youtube
 channel with many step by step emacs tutorials</a>.
 </p>
 </div>
 </div>
-<div id="outline-container-org5611504" class="outline-3">
-<h3 id="org5611504">Additional useful emacs packages</h3>
-<div class="outline-text-3" id="text-org5611504">
+<div id="outline-container-org8e227cc" class="outline-3">
+<h3 id="org8e227cc">Additional useful emacs packages</h3>
+<div class="outline-text-3" id="text-org8e227cc">
 </div>
-<div id="outline-container-org4a51dc5" class="outline-4">
-<h4 id="org4a51dc5">Company-mode</h4>
-<div class="outline-text-4" id="text-org4a51dc5">
+<div id="outline-container-org067ff94" class="outline-4">
+<h4 id="org067ff94">Company-mode</h4>
+<div class="outline-text-4" id="text-org067ff94">
 <p>
 <a href="http://company-mode.github.io/">Company-mode</a> is a text completion framework for Emacs. It allows to
 have smart completion in emacs for the most common languages. If you
@@ -581,9 +351,9 @@ official webpage: <a href="http://company-mode.github.io/">http://company-mode.g
 </p>
 </div>
 </div>
-<div id="outline-container-orgba3524f" class="outline-4">
-<h4 id="orgba3524f">Magit</h4>
-<div class="outline-text-4" id="text-orgba3524f">
+<div id="outline-container-org78755b6" class="outline-4">
+<h4 id="org78755b6">Magit</h4>
+<div class="outline-text-4" id="text-org78755b6">
 <p>
 <a href="https://magit.vc/">Magit</a> is an emacs interface for Git. It is very powerfull and we use
 it on a daily basis but you should definitely understand what git does
@@ -594,9 +364,9 @@ you should follow the instructions from here:
 </div>
 </div>
 </div>
-<div id="outline-container-org52918cd" class="outline-3">
-<h3 id="org52918cd">Other resources</h3>
-<div class="outline-text-3" id="text-org52918cd">
+<div id="outline-container-org60f3612" class="outline-3">
+<h3 id="org60f3612">Other resources</h3>
+<div class="outline-text-3" id="text-org60f3612">
 <ul class="org-ul">
 <li><a href="https://orgmode.org/orgguide.pdf">The compact Org-mode Guide</a></li>
 <li><a href="https://github.com/dfeich/org-babel-examples">Many examples illustrating the use of different languages in org-mode</a></li>
@@ -604,13 +374,13 @@ you should follow the instructions from here:
 </div>
 </div>
 </div>
-<div id="outline-container-orgd54946e" class="outline-2">
-<h2 id="orgd54946e">A replicable article</h2>
-<div class="outline-text-2" id="text-orgd54946e">
+<div id="outline-container-orgecdf4f9" class="outline-2">
+<h2 id="orgecdf4f9">A replicable article</h2>
+<div class="outline-text-2" id="text-orgecdf4f9">
 </div>
-<div id="outline-container-org0b0e8a7" class="outline-3">
-<h3 id="org0b0e8a7">A stub of replicable article</h3>
-<div class="outline-text-3" id="text-org0b0e8a7">
+<div id="outline-container-org7d89d75" class="outline-3">
+<h3 id="org7d89d75">A stub of replicable article</h3>
+<div class="outline-text-3" id="text-org7d89d75">
 <p>
 Remember, you need a working LaTeX and R environment. If you can't
 open a terminal and run the commands <code>R</code> and <code>pdflatex</code>, you will not be
@@ -667,11 +437,3 @@ chunk of code when exporting.
 </div>
 </div>
 </div>
-<div id="postamble" class="status">
-<p class="date">Date: June, 2018</p>
-<p class="author">Author: Arnaud Legrand</p>
-<p class="date">Created: 2018-07-19 jeu. 14:26</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
-</div>
-</body>
-</html>
