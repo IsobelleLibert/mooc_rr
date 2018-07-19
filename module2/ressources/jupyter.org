@@ -1,0 +1,138 @@
+# -*- mode: org -*-
+#+TITLE:     Rstudio
+#+AUTHOR:    Arnaud Legrand
+#+DATE: June, 2018
+#+STARTUP: overview indent
+
+* Table of Contents                                                     :TOC:
+ - [[#interacting-with-gitlab][Interacting with gitlab]]
+ - [[#additional-jupyter-resources-or-tricks][Additional Jupyter resources or tricks]]
+     - [[#tips-and-tricks][Tips and tricks]]
+     - [[#running-r-and-python-in-the-same-notebook][Running R and Python in the same notebook]]
+     - [[#exporting-a-notebook][Exporting a notebook]]
+ - [[#installing-jupyter-or-jupyter-hub-on-your-own-machine][Installing jupyter or jupyter hub on your own machine]]
+     - [[#installing-jupyter][Installing jupyter]]
+     - [[#using-r][Using R]]
+     - [[#exporting-your-notebooks-with-latex][Exporting your notebooks with latex]]
+     - [[#interacting-with-gitlab][Interacting with gitlab]]
+     - [[#interesting-extensions][Interesting extensions]]
+     - [[#installing-jupyterhub][Installing jupyterhub]]
+
+* Interacting with gitlab
+#+BEGIN_QUOTE
+This section needs some love.
+#+END_QUOTE
+
+As you may have seen from the videos, we provide two buttons to sync
+with gitlab. Indeed, even if you recover your files when you log back
+into fun, the jupyter runs on a different machine than the gitlab
+server and you need to commit your notebook every time you have made a
+significant step. This is also the only way to really make it public
+and to share your notebook with others.
+* Additional Jupyter resources or tricks
+** Tips and tricks
+The following [[https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/][webpage]] lists several Jupyter tricks (in particular, it
+illustrates many =Ipython magic= commands) that should improve your
+efficiency (note that this blog post is about two years old so some of
+the tricks may have been integrated in the default behavior of jupyter
+now).
+** Running R and Python in the same notebook
+The best solution to this is to install rpy2. On my machine, I have
+installed the =python3-rpy2= debian package with =apt-get install=. An
+other alternative consists in going through the python package manager
+with 
+#+begin_src python :results output :exports both
+pip install rpy2
+#+end_src
+Then you'll be able to use both languages in the same notebook by:
+1. Loading =rpy2=: 
+   #+begin_src python :results output :exports both
+   %load_ext rpy2.ipython
+   #+end_src
+2. Using the =%R= Ipython magic:
+   #+begin_src python :results output :exports both
+   %R 
+   summary(cars)
+   #+end_src
+   Python objects can then even be passed to R as follows (assuming df
+   is a pandas dataframe:
+   #+begin_src python :results output :exports both
+   %%R -i df
+   plot((df)
+   #+end_src
+** Exporting a notebook
+Obviously, you can convert to html or pdf using the using the =File >
+Download as > HTML= (or =PDF=) menu option.  This can also be done from
+the command line with the following command:
+
+#+begin_src sh :results output :exports both
+ipython3 nbconvert --to pdf Untitled.ipynb
+#+end_src
+
+If you want to use a specific style, then the nbconvert exporter
+should be customised. This is discussed and demoed [[http://markus-beuckelmann.de/blog/customizing-nbconvert-pdf.html][here]]. We encourage
+you to simply read the [[https://nbconvert.readthedocs.io/en/latest/][doc of nbconvert]]. 
+
+Instead of going directly through LaTeX and playing too much with the
+nbconvert exporter, an other option consists in exporting to Markdown
+and playing with [[https://pandoc.org/][pandoc]]. Both approaches work, it's rather a matter of
+taste.
+* Installing jupyter or jupyter hub on your own machine
+** Installing jupyter
+Here is what you should install:
+#+begin_src shell :results output :exports both
+sudo apt-get install jupyter-notebook python3-pip python3-matplotlib python3-numpy
+#+end_src
+
+On my machine, I got the version 5.4.1:
+#+begin_src shell :results output :exports both
+jupyter-notebook --version
+#+end_src
+
+#+RESULTS:
+: 5.4.1
+
+The ipython notebook can then be run with the following command:
+#+begin_src shell :results output :exports both
+jupyter-notebook
+#+end_src
+** Using R
+If you also want to have the R kernel in jupyter, follow [[https://github.com/IRkernel/IRkernel#installation][these
+instructions]].
+
+Alternatively, you can install =rpy2= (see the [[*Running R and Python in the same notebook][Running R and Python in
+the same notebook]] section).
+#+begin_src shell :results output :exports both
+sudo apt-get python3-rpy2
+#+end_src
+** Exporting your notebooks with latex
+Here is what I had to install to make sure the notebook export via
+latex works:
+#+begin_src shell :results output :exports both
+sudo apt-get install wkhtmltopdf
+sudo apt-get install texlive-xetex
+#+end_src
+** Interacting with gitlab
+Here is our [[https://github.com/brospars/nb-git][jupyter extension that allows to git push/pull from the
+notebooks]]:
+#+begin_src shell :results output :exports both
+jupyter nbextension install https://raw.githubusercontent.com/brospars/nb-git/master/nb-git.js
+jupyter nbextension enable nb-git
+#+end_src
+** Interesting extensions
+- [[https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook][Code folding]]
+  #+begin_src shell :results output :exports both
+  pip3 install jupyter_contrib_nbextensions
+  # jupyter contrib nbextension install --user # not done yet
+  #+end_src
+- [[https://github.com/kirbs-/hide_code][Hiding code]]
+  #+begin_src sh :results output :exports both
+  sudo pip3 install hide_code
+  sudo jupyter-nbextension  install --py hide_code
+  jupyter-nbextension  enable --py hide_code
+  jupyter-serverextension enable --py hide_code
+  #+end_src
+** Installing jupyterhub
+#+BEGIN_QUOTE
+Benoit may give a few hints on this.
+#+END_QUOTE

@@ -1,0 +1,124 @@
+# -*- mode: org -*-
+#+TITLE:     Rstudio
+#+AUTHOR:    Arnaud Legrand
+#+DATE: June, 2018
+#+STARTUP: overview indent
+
+* Table of Contents                                                     :TOC:
+ - [[#installing-rstudio][Installing Rstudio]]
+     - [[#linux-debian-ubuntu][Linux (debian, ubuntu)]]
+     - [[#mac-osx-and-windows][Mac OSX and Windows]]
+ - [[#installing-git][Installing Git]]
+     - [[#linux-debian-ubuntu][Linux (debian, ubuntu)]]
+     - [[#mac-osx-and-windows][Mac OSX and Windows]]
+ - [[#rstudio-and-gitgithubgitlab][Rstudio and git/github/gitlab]]
+ - [[#cheat-sheets][Cheat Sheets]]
+
+* Installing Rstudio
+** Linux (debian, ubuntu)
+We provide here only instructions for debian-based distributions. Feel
+free to contribute to this document to provide up-to-date information
+for other distributions (e.g.n redhat, fedora).
+
+Today, the stable versions of the most common distributions provide
+recent enough versions of emacs and org-mode:
+- Debian (stretch) ships with [[https://packages.debian.org/stretch/r-base][R 3.3.3-1]], [[https://packages.debian.org/stretch/r-cran-knitr][knitr 1.15.1]], and  [[https://packages.debian.org/stretch/r-cran-ggplot2][ggplot 2.2.1]]
+- Ubuntu (bionic 18.04) ships with [[https://packages.ubuntu.com/bionic/r-base][R 3.4.4]], and [[https://packages.ubuntu.com/bionic/r-cran-knitr][knitr 1.17]], and [[https://packages.ubuntu.com/bionic/r-cran-ggplot2][ggplot 2.2.1]]
+- Ubuntu (artful 17.04) ships with [[https://packages.ubuntu.com/artful/r-base][R 3.4.2]], and [[https://packages.ubuntu.com/artful/r-cran-knitr][knitr 1.15]], and [[https://packages.ubuntu.com/artful/r-cran-ggplot2][ggplot 2.2.1]]
+If your distribution is older than this, well, it may be a good time
+for upgrading...
+
+*** Installing R
+Beforehand, you need to install the R language and convenient packages
+by running (as root):
+#+BEGIN_SRC shell
+apt-get update ; sudo apt-get install r-base r-cran-knitr r-cran-ggplot2 
+#+END_SRC
+
+Alternatively, if the installation of =r-cran-gplot2= or =r-cran-knitr=
+fails, you may want to install them locally (through the R packaging
+system) and manually by running the following commands in R (or
+Rstudio):
+#+BEGIN_SRC R
+install.packages("knitr")
+install.packages("ggplot2")
+#+END_SRC
+
+If you plan to export pdf documents with LaTeX, you probably also want
+to run (as root):
+#+begin_src sh :results output :exports both
+apt-get update ; apt-get install texlive-base
+#+end_src
+
+*** Installing rstudio
+Rstudio is unfortunately not packaged within debian so the easiest is
+to download the corresponding debian package on the [[https://www.rstudio.com/products/rstudio/download/#download][Rstudio webpage]]
+and then to install it manually (depending on when you do this, you
+can obviously change the version number). Here is how to install it:
+
+#+BEGIN_SRC shell
+cd /tmp/
+wget https://download1.rstudio.org/rstudio-xenial-1.1.453-amd64.deb
+sudo dpkg -i rstudio-xenial-1.1.453-amd64.deb
+sudo apt-get update ; sudo apt-get -f install # to fix possibly missing dependencies
+#+END_SRC
+** Mac OSX and Windows
+#+BEGIN_QUOTE
+  Some instructions on installing R and knitr must be missing. This
+  should be tested and improved.
+#+END_QUOTE
+Download and install rstudio from the [[https://www.rstudio.com/products/rstudio/download/#download][Rstudio webpage]] by choosing the
+right operating system.
+
+Then open Rstudio and type the following commands in the console to
+install knitr and ggplot2:
+#+BEGIN_SRC R
+install.packages("knitr")
+install.packages("ggplot2")
+#+END_SRC
+* Installing Git
+** Linux (debian, ubuntu)
+We provide here only instructions for debian-based distributions. Feel
+free to contribute to this document to provide up-to-date information
+for other distributions (e.g.n redhat, fedora).
+
+Run (as root):
+#+begin_src sh :results output :exports both
+apt-get update ; apt-get install git
+#+end_src
+** Mac OSX and Windows
+- Download and install Git from the [[https://git-scm.com/downloads][Git website]].
+- Optional Git clients (should not be needed if you work within
+  Rstudio):
+  - [[https://www.sourcetreeapp.com/][SourceTree]]
+  - [[github desktop][GitHub Desktop]] 
+    #+BEGIN_QUOTE
+    [[https://github.com/desktop/desktop/issues/852][Apparently]], this works with gitlab and https.
+    #+END_QUOTE
+* Rstudio and git/github/gitlab
+#+BEGIN_QUOTE
+We may want to redo a screencast in French for this
+#+END_QUOTE
+- [[https://www.rstudio.com/resources/webinars/rstudio-essentials-webinar-series-managing-part-2/][This video on using git/githugb/gitlab from Rstudio]] (starting at time 9:09)
+
+Alternatively, we can point to:
+http://www.geo.uzh.ch/microsite/reproducible_research/post/rr-rstudio-git/
+- Part 1/item 2: Setup Git in RStudio
+- Part 2 (to adapt to gitlab)
+- Part 3
+* Cheat Sheets
+The Rstudio team has created a lot of good material and tutorials. You
+should definitively look at the [[https://www.rstudio.com/resources/cheatsheets/][Cheat sheets webpage]]. In particular
+you want to have look at the ones on:
+- [[https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf][the Rstudio IDE]],
+- [[https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf][R Markdown]],
+- the [[https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf][R Markdown Reference guide]],
+- [[https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf][data visualization with ggplot2]],
+- [[https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf][data transformation with dplyr]]
+
+In case it helps, here are some (sometimes outdated) French versions
+of these documents: 
+- [[https://github.com/rstudio/cheatsheets/raw/master/translations/french/rstudio-IDE-cheatsheet.pdf][L'IDE Rstudio]]
+- [[https://github.com/rstudio/cheatsheets/raw/master/translations/french/ggplot2-french-cheatsheet.pdf][Visualisation de données avec ggplot2]]
+- [[https://github.com/rstudio/cheatsheets/raw/master/translations/french/data-wrangling-french.pdf][Transformation de données avec dplyr]]
+- [[https://www.fun-mooc.fr/c4x/UPSUD/42001S02/asset/RMarkdown.pdf][Un court document sur R Markdown]]
