@@ -144,39 +144,6 @@ In step 1, you were told to create an journal in
 backed up in a revision control system like git. We leave it up to set
 this up but if you have any trouble, feel free to ask on the FUN
 forums.
-* Emacs Tips and tricks
-** Cheat-sheets
-Learning emacs and org-mode can be difficult as there is an inordinate
-amount of shortcuts. Many people have thus come up with
-cheat-sheats. Here is a selection in case it helps:
-*** Emacs
-- [[file:org/journal.org::*Emacs%20shortcuts][Common and step-by-step emacs shortcuts for our /reproducible research/ configuration]]
-- [[https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf][The official GNU emacs refcard]]
-- Two graphical cheat-sheats by Sacha Hua on [[http://sachachua.com/blog/wp-content/uploads/2013/05/How-to-Learn-Emacs-v2-Large.png][how to learn emacs]] and on
-  [[http://sachachua.com/blog/wp-content/uploads/2013/08/20130830-Emacs-Newbie-How-to-Learn-Emacs-Keyboard-Shortcuts.png][how to learn emacs shortcuts]].
-*** Org-mode
-- [[file:org/journal.org::*Org-mode][Common and step-by-step org-mode shortcuts for our /reproducible research/ configuration]]
-- [[https://orgmode.org/worg/orgcard.html][The official org-mode refcard]]
-- [[https://orgmode.org/worg/dev/org-syntax.html][The official description of the org-mode syntax]] and a [[https://gist.github.com/hoeltgman/3825415][relatively concise description of the org-mode syntax]].
-** Video tutorials
-For those of you who prefer video explanations, here is a [[https://www.youtube.com/playlist?list=PL9KxKa8NpFxIcNQa9js7dQQIHc81b0-Xg][Youtube
-channel with many step by step emacs tutorials]].
-** Additional useful emacs packages
-*** Company-mode
-[[http://company-mode.github.io/][Company-mode]] is a text completion framework for Emacs. It allows to
-have smart completion in emacs for the most common languages. If you
-feel this is needed, you should follow the instructions from the
-official webpage: http://company-mode.github.io/
-*** Magit
-[[https://magit.vc/][Magit]] is an emacs interface for Git. It is very powerfull and we use
-it on a daily basis but you should definitely understand what git does
-behind the scene beforehand. If you feel this would be useful for you,
-you should follow the instructions from here:
-https://www.emacswiki.org/emacs/Magit
-** Other resources
-- [[https://orgmode.org/orgguide.pdf][The compact Org-mode Guide]]
-- [[https://github.com/dfeich/org-babel-examples][Many examples illustrating the use of different languages in org-mode]]
-* A replicable article
 ** A stub of replicable article
 Remember, you need a working LaTeX and R environment. If you can't
 open a terminal and run the commands =R= and =pdflatex=, you will not be
@@ -223,3 +190,36 @@ code when exporting, just look for the following line in [[file:replicable_artic
 If you remove the =# = in the beginning of the line, it will not be a
 comment anymore and will indicate org-mode to stop evaluating every
 chunk of code when exporting.
+
+* Emacs Tips and tricks
+** Cheat-sheets
+Learning emacs and org-mode can be difficult as there is an inordinate
+amount of shortcuts. Many people have thus come up with
+cheat-sheats. Here is a selection in case it helps:
+*** Emacs
+- [[file:org/journal.org::*Emacs%20shortcuts][Common and step-by-step emacs shortcuts for our /reproducible research/ configuration]]
+- [[https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf][The official GNU emacs refcard]]
+- Two graphical cheat-sheats by Sacha Hua on [[http://sachachua.com/blog/wp-content/uploads/2013/05/How-to-Learn-Emacs-v2-Large.png][how to learn emacs]] and on
+  [[http://sachachua.com/blog/wp-content/uploads/2013/08/20130830-Emacs-Newbie-How-to-Learn-Emacs-Keyboard-Shortcuts.png][how to learn emacs shortcuts]].
+*** Org-mode
+- [[file:org/journal.org::*Org-mode][Common and step-by-step org-mode shortcuts for our /reproducible research/ configuration]]
+- [[https://orgmode.org/worg/orgcard.html][The official org-mode refcard]]
+- [[https://orgmode.org/worg/dev/org-syntax.html][The official description of the org-mode syntax]] and a [[https://gist.github.com/hoeltgman/3825415][relatively concise description of the org-mode syntax]].
+** Video tutorials
+For those of you who prefer video explanations, here is a [[https://www.youtube.com/playlist?list=PL9KxKa8NpFxIcNQa9js7dQQIHc81b0-Xg][Youtube
+channel with many step by step emacs tutorials]].
+** Additional useful emacs packages
+*** Company-mode
+[[http://company-mode.github.io/][Company-mode]] is a text completion framework for Emacs. It allows to
+have smart completion in emacs for the most common languages. If you
+feel this is needed, you should follow the instructions from the
+official webpage: http://company-mode.github.io/
+*** Magit
+[[https://magit.vc/][Magit]] is an emacs interface for Git. It is very powerfull and we use
+it on a daily basis but you should definitely understand what git does
+behind the scene beforehand. If you feel this would be useful for you,
+you should follow the instructions from here:
+https://www.emacswiki.org/emacs/Magit
+** Other resources
+- [[https://orgmode.org/orgguide.pdf][The compact Org-mode Guide]]
+- [[https://github.com/dfeich/org-babel-examples][Many examples illustrating the use of different languages in org-mode]]
