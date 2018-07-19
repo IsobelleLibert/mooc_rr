@@ -8,8 +8,7 @@
 
 
 Voici un aperçu rapide de la syntaxe Markdown repris d'une
-[[https://guides.github.com/features/mastering-markdown/][présentation de Github]] ainsi que de celles d'[[http://csrgxtu.github.io/2015/03/20/Writing-Mathematic-Fomulars-in-Markdown/][Archer Reilly]] et de [[http://www.statpower.net/Content/310/R%2520Stuff/SampleMarkdown.html][James
-H. Steiger]].
+[[https://guides.github.com/features/mastering-markdown/][présentation de Github]] ainsi que de celles d'[[http://csrgxtu.github.io/2015/03/20/Writing-Mathematic-Fomulars-in-Markdown/][Archer Reilly]].
 * Syntaxe
 ** Headers
 #+BEGIN_EXAMPLE
@@ -68,37 +67,41 @@ H. Steiger]].
  `<addr>` element here instead.
 #+END_EXAMPLE
 * Écrire des Maths
+Il est possible d'écrire des formules en Markdown, soit en mode *inline*
+soit en mode *displayed formulas*. Dans le premier cas, les formules
+sont inclues directement à l'intérieur du paragraphe courant alors
+que dans le second, elles apparaissent centrées et mises en exergue.
 
-Equations can be formatted *inline* or as *displayed formulas*.  In the
-latter case, they are centered and set off from the main text.  In the
-former case, the mathematical material occurs smoothly in the line of
-text.
+Le formatage de la formule est légèrement différent dans les deux cas
+car pour qu'une formule s'affiche joliment sur une seule ligne, il
+faut la "tasser" un peu plus que lorsqu'elle est mise en valeur.
 
-In order to fit neatly in a line, summation expressions (and similar
-constructs) are formatted slightly differently in their inline and
-display versions.
-
-Inline mathematical material is set off by the use of single
-dollar-sign characters. Consequently, if you wish to use a dollar sign
-(for example, to indicate currency), you need to preface it with a
-back-slash.  The following examples, followed by their typeset
-versions, should make this clear
+Pour écrire une formule en mode *inline*, il faut la délimiter par un =$=
+(du coup, pour écrire le symbole dollar, il faut le préfixer par un
+backslash, comme ceci: =\$=) alors que pour écrire en mode *displayed*, il
+faut la délimiter par un =$$=. Un petit exemple valant mieux qu'un long
+discours, voici concrètement comment cela fonctionne:
 
 #+BEGIN_EXAMPLE
-This summation expression $\sum_{i=1}^n X_i$ appears inline.
+Cette expression $\sum_{i=1}^n X_i$ est inlinée.
 #+END_EXAMPLE
 
-This summation expression $\sum_{i=1}^n X_i$ appears inline.
+Cette expression $\sum_{i=1}^n X_i$ est inlinée.
 
 #+BEGIN_EXAMPLE
-This summation expression is in display form.
+Cette expression est mise en valeur:
 
 $$\sum_{i=1}^n X_i$$
 #+END_EXAMPLE
-This summation expression is in display form.
+Cette expression est mise en valeur:
 
 $$\sum_{i=1}^n X_i$$
 
+Nous vous présentons par la suite une sélection de symboles et de
+commandes courantes. En fait, à peu près tout ce qui est classique
+dans le langage LaTeX peut être utilisé pourvu que vous délimitiez
+bien avec un =$=. Pour d'autres exemples plus complets jetez un coup
+d'œil à ces [[http://www.statpower.net/Content/310/R%2520Stuff/SampleMarkdown.html][exemples de James H. Steiger]].
 ** Lettres grecques
  | Symbole | Commande |
  |---------+----------|
@@ -107,4 +110,50 @@ $$\sum_{i=1}^n X_i$$
  | $\gamma$     | =$\gamma$=      |
  | $\Gamma$     | =$\Gamma$=      |
  | $\pi$     | =$\pi$=      |
-**  Operators
+**  Fonctions et opérateurs
+ | Symbole | Commande |
+ |---------+----------|
+ | $\cos$  | =$\cos$=   |
+ | $\sin$  | =$\sin$=   |
+ | $\lim$  | =$\lim$=   |
+ | $\exp$  | =$\exp$=   |
+ | $\to$     | =$\to$=      |
+ | $\in$     | =$\in$=      |
+ | $\forall$     | =$\forall$=      |
+ | $\exists$     | =$\exists$=      |
+ | $\equiv$     | =$\equiv$=      |
+ | $\sim$     | =$\sim$=      |
+ | $\approx$     | =$\approx$=      |
+ | $\times$     | =$\times$=      |
+ | $\le$     | =$\le$=      |
+ | $\ge$     | =$\ge$=      |
+** Exposants et indices
+ | Symbole | Commande  |
+ |---------+-----------|
+ | $k_{n+1}$  | =$k_{n+1}$= |
+ | $n^2$    | =$n^2$=     |
+ | $k_n^2$   | =$k_n^2$=   |
+** Fractions, coefficients binomiaux, racines, ...
+ | Symbole                     | Commande                    |
+ |-----------------------------+-----------------------------|
+ | $\frac{4z^3}{16}$            | =$\frac{4z^3}{16}$=           |
+ | $\frac{n!}{k!(n-k)!}$       | =$\frac{n!}{k!(n-k)!}$=       |
+ | $\binom{n}{k}$              | =$\binom{n}{k}$=              |
+ | $\frac{\frac{x}{1}}{x - y}$ | =$\frac{\frac{x}{1}}{x - y}$= |
+ | $^3/_7$                       | =$^3/_7$=                     |
+ | $\sqrt{k}$                  | =$\sqrt{k}$=                  |
+ | $\sqrt[n]{k}$               | =$\sqrt[n]{k}$=               |
+** Sommes et intégrales
+ | Symbole                         | Commande                             |
+ |---------------------------------+--------------------------------------|
+ | $\sum_{i=1}^{10} t_i$                   | =$\sum_{i=1}^{10} t_i$=                  |
+ | $\int_0^\infty \mathrm{e}^{-x}\,\mathrm{d}x$ | =$\int_0^\infty \mathrm{e}^{-x}\,\mathrm{d}x$= |
+** Déguisements
+ | Symbole               | Commande              |
+ |-----------------------+-----------------------|
+ | $\hat{a}$             | =$\hat{a}$=             |
+ | $\bar{a}$             | =$\bar{a}$=             |
+ | $\dot{a}$             | =$\dot{a}$=             |
+ | $\ddot{a}$            | =$\ddot{a}$=            |
+ | $\overrightarrow{AB}$ | =$\overrightarrow{AB}$= |
+ 
