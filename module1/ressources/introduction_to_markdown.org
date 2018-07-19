@@ -105,7 +105,7 @@ d'œil à ces [[http://www.statpower.net/Content/310/R%2520Stuff/SampleMarkdown.
 ** Lettres grecques
  | Symbole | Commande |
  |---------+----------|
- | $\alpha$     | =$\alpha==      |
+ | $\alpha$     | =$\alpha$=    |
  | $\beta$     | =$\beta$=      |
  | $\gamma$     | =$\gamma$=      |
  | $\Gamma$     | =$\Gamma$=      |
