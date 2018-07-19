@@ -1,0 +1,110 @@
+# -*- mode: org -*-
+#+TITLE:     Introduction à Markdown
+#+AUTHOR:    Arnaud Legrand
+#+DATE: June, 2018
+#+LANG:    fr
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:t
+
+
+Voici un aperçu rapide de la syntaxe Markdown repris d'une
+[[https://guides.github.com/features/mastering-markdown/][présentation de Github]] ainsi que de celles d'[[http://csrgxtu.github.io/2015/03/20/Writing-Mathematic-Fomulars-in-Markdown/][Archer Reilly]] et de [[http://www.statpower.net/Content/310/R%2520Stuff/SampleMarkdown.html][James
+H. Steiger]].
+* Syntaxe
+** Headers
+#+BEGIN_EXAMPLE
+ # This is an <h1> tag
+ ## This is an <h2> tag
+ ###### This is an <h6> tag
+#+END_EXAMPLE
+
+** Emphasis
+#+BEGIN_EXAMPLE
+ *This text will be italic*
+ _This will also be italic_
+
+ **This text will be bold**
+ __This will also be bold__
+
+ _You **can** combine them_
+#+END_EXAMPLE
+
+** Lists
+***  Unordered
+#+BEGIN_EXAMPLE
+ * Item 1
+ * Item 2
+   * Item 2a
+   * Item 2b
+#+END_EXAMPLE
+*** Ordered
+#+BEGIN_EXAMPLE
+  1. Item 1
+  1. Item 2
+  1. Item 3
+     1. Item 3a
+     1. Item 3b
+#+END_EXAMPLE
+** Images
+#+BEGIN_EXAMPLE
+ ![GitHub Logo](/images/logo.png)
+ Format: ![Alt Text](url)
+#+END_EXAMPLE
+** Links
+#+BEGIN_EXAMPLE
+ http://github.com - automatic!
+ [GitHub](http://github.com)
+#+END_EXAMPLE
+** Blockquotes
+#+BEGIN_EXAMPLE
+ As Kanye West said:
+
+ > We're living the future so
+ > the present is our past.
+#+END_EXAMPLE
+** Inline code
+#+BEGIN_EXAMPLE
+ I think you should use an
+ `<addr>` element here instead.
+#+END_EXAMPLE
+* Écrire des Maths
+
+Equations can be formatted *inline* or as *displayed formulas*.  In the
+latter case, they are centered and set off from the main text.  In the
+former case, the mathematical material occurs smoothly in the line of
+text.
+
+In order to fit neatly in a line, summation expressions (and similar
+constructs) are formatted slightly differently in their inline and
+display versions.
+
+Inline mathematical material is set off by the use of single
+dollar-sign characters. Consequently, if you wish to use a dollar sign
+(for example, to indicate currency), you need to preface it with a
+back-slash.  The following examples, followed by their typeset
+versions, should make this clear
+
+#+BEGIN_EXAMPLE
+This summation expression $\sum_{i=1}^n X_i$ appears inline.
+#+END_EXAMPLE
+
+This summation expression $\sum_{i=1}^n X_i$ appears inline.
+
+#+BEGIN_EXAMPLE
+This summation expression is in display form.
+
+$$\sum_{i=1}^n X_i$$
+#+END_EXAMPLE
+This summation expression is in display form.
+
+$$\sum_{i=1}^n X_i$$
+
+** Lettres grecques
+ | Symbole | Commande |
+ |---------+----------|
+ | $\alpha$     | =$\alpha==      |
+ | $\beta$     | =$\beta$=      |
+ | $\gamma$     | =$\gamma$=      |
+ | $\Gamma$     | =$\Gamma$=      |
+ | $\pi$     | =$\pi$=      |
+**  Operators
