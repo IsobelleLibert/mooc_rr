@@ -93,7 +93,7 @@ tar zcf rr_org_archive.tgz $FILE_LIST
 #+end_src
 
 #+RESULTS:
-Then download [[file:rr_org_archive.tgz][this archive]] and uncompress it. It contains the
+Then download [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/rr_org_archive.tgz][this archive]] and uncompress it. It contains the
 following files and we will refer to them in the following:
 
 #+begin_src shell :results output :exports results
@@ -157,7 +157,7 @@ make -C replicable_article/ all replicable_article.tgz
 #+end_src
 
 #+RESULTS:
-Download the following [[file:replicable_article/replicable_article.tgz][archive]] and untar it.
+Download the following [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/replicable_article/replicable_article.tgz][archive]] and untar it.
 
  and simply =make= to generate the
 article. You should then be able to open the [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/replicable_article/article.pdf][resulting article]]. This
