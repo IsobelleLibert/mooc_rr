@@ -146,22 +146,20 @@ this up but if you have any trouble, feel free to ask on the FUN
 forums.
 ** A stub of replicable article
 Remember, you need a working LaTeX and R environment. If you can't
-open a terminal and run the commands =R= and =pdflatex=, you will not be
-able to generate this document. The article downloads the
+open a terminal and run the commands =R=, =pdflatex=, and =python=, you will not be
+able to generate this document. When being compiled, the article downloads the
 corresponding LaTeX packages so you also need to have a working =wget=
-command (alternatively, you can use =curl=). You may still read the
+command (alternatively, it uses =curl=). Once downloaded, you may still read the
 source ([[file:replicable_article/article.org][article.org]]) and understand how it works though.
 
 #+begin_src shell :results output :exports none
-make -C replicable_article/ replicable_article.tgz
+make -C replicable_article/ all replicable_article.tgz
 #+end_src
 
 #+RESULTS:
-: make : on entre dans le répertoire « /home/alegrand/Work/Documents/Enseignements/RR_MOOC/references/module2/replicable_article »
-: tar --xform "s|^|replicable_article/|" -zcf replicable_article.tgz article.org biblio.bib Makefile
-: make : on quitte le répertoire « /home/alegrand/Work/Documents/Enseignements/RR_MOOC/references/module2/replicable_article »
+Download the following [[file:replicable_article/replicable_article.tgz][archive]] and untar it.
 
-Download the [[file:replicable_article/replicable_article.tgz][archive]], untar it and simply make to generate the
+ and simply =make= to generate the
 article. You should then be able to open the [[file:replicable_article/article.pdf][resulting article]]. This
 is summarized in the following command:
 #+begin_src sh :results output :exports both
