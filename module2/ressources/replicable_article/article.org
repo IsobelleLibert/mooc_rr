@@ -97,36 +97,37 @@ echo 'file:measurements.txt'
 
 * Extracting traces from data files				   :noexport:
 
-#+begin_src perl :results output raw :exports both :var input="measurements.txt" output="data.csv"
-use strict;
-open INPUT, $input;
-open OUTPUT, "> $output";
+#+begin_src python  :results output raw :exports both :var input="measurements.txt" output="data.csv"
+import re,sys
 
-my($line);
-my($size);
-my($seq,$par,$libc);
+INPUT = open(input, "r")
+OUTPUT = open(output, "w")
 
-print OUTPUT "Size, Seq, Par, Libc\n" ;
-while($line=<INPUT>) {
-    chomp $line;
-    if($line =~/^Size: ([\d\.]*)$/) {
-        $size = $1;
-        next;
-    } 
-    if($line =~/^Sequential quicksort.*: ([\d\.]*) sec.$/) {
-        $seq=$1; next;
-    } 
-    if($line =~/^Parallel quicksort.*: ([\d\.]*) sec.$/) {
-        $par=$1; next;
-    } 
-    if($line =~/^Built-in quicksort.*: ([\d\.]*) sec.$/) {
-        $libc=$1; 
-        print OUTPUT "$size, $seq, $par, $libc\n";
-        next;
-    }
-}
-print "file:$output"
+OUTPUT.writelines("Size, Seq, Par, Libc\n")
+
+for line in INPUT.readlines():
+    m = re.match('^Size: ([\d\.]*)$',line)
+    if(m):
+        size = m.group(1)
+        continue
+    m = re.match('^Sequential quicksort.*: ([\d\.]*) sec.$',line)
+    if(m):
+        seq = m.group(1)
+        continue
+    m = re.match('^Parallel quicksort.*: ([\d\.]*) sec.$',line)
+    if(m):
+        par = m.group(1)
+        continue
+    m = re.match('^Built-in quicksort.*: ([\d\.]*) sec.$',line)
+    if(m):
+        libc = m.group(1)
+        OUTPUT.writelines(size+", "+seq+", "+par+", "+libc+"\n")
+        
+print "[[file:"+output+"]]"
 #+end_src
+
+#+RESULTS:
+[[file:data.csv]]
 
 * R functions                                                      :noexport:
 Initialization and reading of the data.
@@ -248,7 +249,7 @@ our own experimental testbed with support of our university.
 # Local Variables:
 # eval:   (add-to-list 'load-path ".")
 # eval:   (require 'org-install)
-# eval:   (org-babel-do-load-languages 'org-babel-load-languages '((shell . t) (R . t)  (perl . t) (python . t) ))
+# eval:   (org-babel-do-load-languages 'org-babel-load-languages '((shell . t) (R . t) (python . t) ))
 # eval:   (setq org-confirm-babel-evaluate nil)
 # eval:   (unless (boundp 'org-latex-classes) (setq org-latex-classes nil))
 # eval:   (add-to-list 'org-latex-classes '("IEEEtran"
