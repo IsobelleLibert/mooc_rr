@@ -79,7 +79,7 @@ if which wget; then
   wget --no-check-certificate -O IEEEtran.cls http://mirror.ibcp.fr/pub/CTAN/macros/latex/contrib/IEEEtran/IEEEtran.cls
   wget --no-check-certificate -O IEEEtran.bst http://mirrors.ctan.org/macros/latex/contrib/IEEEtran/bibtex/IEEEtran.bst 
 else 
-  if which curs; then 
+  if which curl; then 
     curl -o IEEEtran.cls http://mirror.ibcp.fr/pub/CTAN/macros/latex/contrib/IEEEtran/IEEEtran.cls
     curl -o IEEEtran.bst http://mirrors.ctan.org/macros/latex/contrib/IEEEtran/bibtex/IEEEtran.bst 
   else
