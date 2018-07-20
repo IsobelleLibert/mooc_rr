@@ -1,4 +1,4 @@
-all: emacs_orgmode.html  jupyter.html  rstudio.html
+all: emacs_orgmode.html  jupyter.html  rstudio.html maintaining_a_journal.html
 
 NLINES=10000000
 
