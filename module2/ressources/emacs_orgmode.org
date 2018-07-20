@@ -4,6 +4,12 @@
 #+DATE: June, 2018
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
+#+PROPERTY: header-args :eval never-export
+
+*Disclaimer:* The two sections _A simple "/reproducible research/"
+emacs configuration_ and _A stub of replicable article_ explain how to
+set up org-mode for this MOOC. *You really should follow them
+carefully or you may have trouble doing the exercices later on*.
 
 * Installing emacs, org-mode, ess, and auctex.
 ** OS-specific installation procedure
@@ -71,7 +77,11 @@ versions:
 - Emacs 26.1
 - Org-mode 9.1.13
 - ESS 17.11
-** A simple "/reproducible research/" emacs configuration 
+** TODO A simple "/reproducible research/" emacs configuration 
+#+BEGIN_QUOTE
+There will be a mini video illustrating these steps at some point
+#+END_QUOTE
+
 Emacs comes with very basic default configuration and it appears like
 everyone has its own taste. You will for example find [[https://www.emacswiki.org/emacs/StarterKits][here]] several
 default Emacs configurations that reflect the preferences of their
@@ -144,7 +154,11 @@ In step 1, you were told to create an journal in
 backed up in a revision control system like git. We leave it up to set
 this up but if you have any trouble, feel free to ask on the FUN
 forums.
-** A stub of replicable article
+** TODO A stub of replicable article
+#+BEGIN_QUOTE
+There will be a mini video illustrating these steps at some point
+#+END_QUOTE
+
 Remember, you need a working LaTeX and R environment. If you can't
 open a terminal and run the commands =R=, =pdflatex=, and =python=, you will not be
 able to generate this document. When being compiled, the article downloads the
