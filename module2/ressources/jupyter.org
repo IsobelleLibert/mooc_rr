@@ -15,11 +15,14 @@ the tricks may have been integrated in the default behavior of jupyter
 now).
 ** Running R and Python in the same notebook
 The best solution to this is to install rpy2. On my machine, I have
-installed the =python3-rpy2= debian package with =apt-get install=. An
-other alternative consists in going through the python package manager
-with 
+installed the =python3-rpy2= debian package with =apt-get install=. E.g.,
+#+begin_src shell :results output :exports both
+sudo apt-get install python3-rpy2 python3-tzlocal
+#+end_src
+An other (not really recommanded) alternative consists in going
+through the python package manager with
 #+begin_src python :results output :exports both
-pip install rpy2
+pip3 install rpy2
 #+end_src
 Then you'll be able to use both languages in the same notebook by:
 1. Loading =rpy2=: 
