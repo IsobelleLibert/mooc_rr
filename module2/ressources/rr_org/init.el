@@ -155,6 +155,8 @@ Entered on %U
      ))
   (setq org-src-preserve-indentation t)
 
+(setq org-babel-python-command "python3")
+
 (add-to-list 'org-structure-template-alist
         '("s" "#+begin_src ?\n\n#+end_src" "<src lang=\"?\">\n\n</src>"))
 
@@ -174,10 +176,10 @@ Entered on %U
         '("p" "#+begin_src python :results output :exports both\n\n#+end_src" "<src lang=\"python\">\n\n</src>"))
 
 (add-to-list 'org-structure-template-alist
-        '("P" "#+begin_src python :results output :session *python* :exports both\n\n#+end_src" "<src lang=\"python\">\n\n</src>"))
+        '("P" "#+begin_src python :results output :session :exports both\n\n#+end_src" "<src lang=\"python\">\n\n</src>"))
 
 (add-to-list 'org-structure-template-alist
-        '("PP" "#+begin_src python :results file :var matplot_lib_filename=(org-babel-temp-file \"figure\" \".png\") :exports both \nimport matplotlib.pyplot as plt\n\nimport numpy\nx=numpy.linspace(-15,15)\nplt.figure(figsize=(10,5))\nplt.plot(x,numpy.cos(x)/x)\nplt.tight_layout()\n\nplt.savefig(matplot_lib_filename)\nreturn(matplot_lib_filename)\n#+end_src" "<src lang=\"python\">\n\n</src>"))
+        '("PP" "#+begin_src python :results output file :session :var matplot_lib_filename=(org-babel-temp-file \"figure\" \".png\") :exports both\nimport matplotlib.pyplot as plt\n\nimport numpy\nx=numpy.linspace(-15,15)\nplt.figure(figsize=(10,5))\nplt.plot(x,numpy.cos(x)/x)\nplt.tight_layout()\n\nplt.savefig(matplot_lib_filename)\nprint(matplot_lib_filename)\n#+end_src" "<src lang=\"python\">\n\n</src>"))
 
 (add-to-list 'org-structure-template-alist
         '("b" "#+begin_src shell :results output :exports both\n\n#+end_src" "<src lang=\"sh\">\n\n</src>"))
