@@ -362,7 +362,7 @@ To use this type <B and then TAB. This comes with a session argument
    }\n#+end_src" "<src lang=\"dot\">\n\n</src>"))
 #+end_src
 ** Evaluating whole subtree:                                          :LUKA:
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle init.el
 (global-set-key (kbd "C-c S-t") 'org-babel-execute-subtree)
 #+end_src
 ** Display images                                                   :ARNAUD:

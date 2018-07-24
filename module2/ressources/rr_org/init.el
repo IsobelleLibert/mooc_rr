@@ -196,6 +196,8 @@ Entered on %U
       A->B
    }\n#+end_src" "<src lang=\"dot\">\n\n</src>"))
 
+(global-set-key (kbd "C-c S-t") 'org-babel-execute-subtree)
+
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images) 
 (add-hook 'org-mode-hook 'org-display-inline-images)
 (add-hook 'org-mode-hook 'org-babel-result-hide-all)
