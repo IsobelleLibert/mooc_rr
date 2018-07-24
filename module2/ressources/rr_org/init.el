@@ -33,23 +33,6 @@
 
 (cua-mode t)
 
-(defun jump-mark ()
-  (interactive)
-  (set-mark-command (point)))
-(defun beginning-of-defun-and-mark ()
-  (interactive)
-  (push-mark (point))
-  (beginning-of-defun))
-(defun end-of-defun-and-mark ()
-  (interactive)
-  (push-mark (point))
-  (end-of-defun))
-
-(global-set-key "\^c\^b" 'beginning-of-defun-and-mark)
-(global-set-key "\^c\^e" 'end-of-defun-and-mark)
-(global-set-key "\^c\^j" 'jump-mark)
-(global-set-key [S-f6] 'jump-mark)		;; jump from mark to mark
-
 (global-set-key "\M-g" 'goto-line)
 
 (global-set-key (kbd "C-+") 'text-scale-increase)

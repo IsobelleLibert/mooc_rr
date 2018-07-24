@@ -88,8 +88,8 @@ my other shortcuts (e.g., the ones for spelling a region).
 #+begin_src emacs-lisp :tangle init.el
 (cua-mode t)
 #+end_src
-** Navigate back in text 					     :ARNAUD:
-#+begin_src emacs-lisp :tangle init.el
+** Navigate back in text                                   :ARNAUD:noexport:
+#+begin_src emacs-lisp
 (defun jump-mark ()
   (interactive)
   (set-mark-command (point)))
