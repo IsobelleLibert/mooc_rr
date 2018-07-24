@@ -11,6 +11,9 @@ emacs configuration_ and _A stub of replicable article_ explain how to
 set up org-mode for this MOOC. *You really should follow them
 carefully or you may have trouble doing the exercices later on*.
 
+The next sections provide information on how to install emacs. Before
+proceeding, make sure you have read the "Git and GitLab" instructions.
+
 * Installing emacs, org-mode, ess, and auctex.
 ** OS-specific installation procedure
 *** Linux (Debian, Ubuntu)

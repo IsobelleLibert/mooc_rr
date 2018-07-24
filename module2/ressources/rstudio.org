@@ -14,16 +14,15 @@ may want to watch this video:
 <iframe width="854" height="480" src="https://www.youtube.com/embed/uHYcDQDbMY8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 #+END_EXPORT
 
-The next sections provide information on how to install Rstudio, Git
-(to interact with GitLab), and SSH (to avoid typing your password
-every time you synchronize with GitLab).
+The next sections provide information on how to install Rstudio. Before
+proceeding, make sure you have read the "Git and GitLab" instructions.
 
 Finally, you need to know that the Rstudio team has created a lot of
 very good material and tutorials. You should definitively look at the
 [[https://www.rstudio.com/resources/cheatsheets/][Cheat sheets webpage]]. In particular you want to have look at the ones
 on:
 - [[https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf][The Rstudio IDE]],
-- [[https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf][R Markdown]],
+- [[https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf][R Markdown]] (here is also a [[https://rmarkdown.rstudio.com/][nice step-by-step presentation of Rmarkdown]]),
 - The [[https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf][R Markdown Reference guide]],
 - [[https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf][Data visualization with ggplot2]],
 - [[https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf][Data transformation with dplyr]]
@@ -97,52 +96,3 @@ install knitr and ggplot2:
 install.packages("knitr")
 install.packages("ggplot2")
 #+END_SRC
-* Installing Git
-** Linux (debian, ubuntu)
-We provide here only instructions for debian-based distributions. Feel
-free to contribute to this document to provide up-to-date information
-for other distributions (e.g., redhat, fedora).
-
-Run (as root):
-#+begin_src sh :results output :exports both
-apt-get update ; apt-get install git
-#+end_src
-** Mac OSX and Windows
-- Download and install Git from the [[https://git-scm.com/downloads][Git website]].
-- Optional Git clients (should not be needed if you work within
-  Rstudio):
-  - [[https://www.sourcetreeapp.com/][SourceTree]]
-  - [[https://desktop.github.com/][GitHub Desktop]] 
-    #+BEGIN_QUOTE
-    [[https://github.com/desktop/desktop/issues/852][Apparently]], this works with GitLab and https.
-    #+END_QUOTE
-* Setting up SSH
-There are two ways of synchronizing your local repository with GitLab:
-through HTTPS or through SSH. The first one does not require any
-particular configuration but you will be regularly prompted for your
-GitLab password, which can be quite tedious. To avoid this, the best
-solution is to set install SSH, to create a pair or private/public
-keys, and to upload your SSH public key on GitLab. This section
-provides with information on how to do this.
-** Installation
-*** Linux (debian, ubuntu)
-We provide here only instructions for debian-based distributions. Feel
-free to contribute to this document to provide up-to-date information
-for other distributions (e.g., redhat, fedora).
-
-Run (as root):
-#+begin_src sh :results output :exports both
-apt-get update ; apt-get install openssh-client
-#+end_src
-*** Mac OSX
-You do not have anything to do as it is installed by default.
-*** Windows
-You should install the [[https://www.ssh.com/ssh/putty/windows/][Putty]] client. Once it is installed, look for
-the section on [[https://www.ssh.com/ssh/putty/windows/puttygen][generating an SSH key]].
-** Setting up SSH on Framagit
-Here are [[https://docs.gitlab.com/ee/ssh/][all the official explanations on how to set up your SSH key
-on GitLab]]. Alternatively, you may also want to have a look at this
-video:
-#+BEGIN_EXPORT html
-<iframe width="560" height="315" src="https://www.youtube.com/embed/54mxyLo3Mqk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-#+END_EXPORT
