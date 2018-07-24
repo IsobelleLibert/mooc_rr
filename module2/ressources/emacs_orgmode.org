@@ -234,7 +234,9 @@ official webpage: http://company-mode.github.io/
 it on a daily basis but you should definitely understand what git does
 behind the scene beforehand. If you feel this would be useful for you,
 you should follow the instructions from here:
-https://www.emacswiki.org/emacs/Magit
+https://www.emacswiki.org/emacs/Magit. If you installed the previous
+"/reproducible research/" emacs configuration, you can easily invoke
+magit by using ~C-x g~.
 ** Other resources
 - [[https://orgmode.org/orgguide.pdf][The compact Org-mode Guide]]
 - [[https://github.com/dfeich/org-babel-examples][Many examples illustrating the use of different languages in org-mode]]

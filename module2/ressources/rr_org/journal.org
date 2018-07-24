@@ -40,6 +40,9 @@ shortcuts. This can be changed from the Options menu.
   - =C-x C-h= get the list of emacs shortcuts
   - =C-c C-h= get the list of emacs shortcuts considering the mode you are
     currently using (e.g., C, Lisp, org, ...)
+  - With the "/reproducible research/" emacs configuration, ~C-x g~ allows
+    you to invoke [[https://magit.vc/][Magit]] (provided you installed it beforehand!) which
+    is a nice git interface for Emacs.
   There are a bunch of cheatsheets also available out there (e.g.,
   [[http://www.shortcutworld.com/en/linux/Emacs_23.2.1.html][this one for emacs]] and [[http://orgmode.org/orgcard.txt][this one for org-mode]] or this [[http://sachachua.com/blog/wp-content/uploads/2013/05/How-to-Learn-Emacs-v2-Large.png][graphical one]]).
 ***** Org-mode

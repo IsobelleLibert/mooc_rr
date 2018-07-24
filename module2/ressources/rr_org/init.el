@@ -78,6 +78,10 @@
 
 (global-set-key [f5] '(lambda () (interactive) (revert-buffer nil t nil)))
 
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
+;; (global-magit-file-mode 1)
+
 (defun auto-fill-mode-on () (TeX-PDF-mode 1))
 (add-hook 'tex-mode-hook 'TeX-PDF-mode-on)
 (add-hook 'latex-mode-hook 'TeX-PDF-mode-on)

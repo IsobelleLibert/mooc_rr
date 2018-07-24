@@ -144,6 +144,14 @@ my other shortcuts (e.g., the ones for spelling a region).
 #+begin_src emacs-lisp :tangle init.el
 (global-set-key [f5] '(lambda () (interactive) (revert-buffer nil t nil)))
 #+end_src
+** Invoke magit (for git)                                              :WEB:
+From http://magit.vc/manual/magit.pdf
+
+#+begin_src emacs-lisp :tangle init.el
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x M-g") 'magit-dispatch-popup)
+;; (global-magit-file-mode 1)
+#+end_src
 * Small fixes for LaTeX:
 ** PDF with LaTeX by default                                        :ARNAUD:
 #+begin_src emacs-lisp :tangle init.el
