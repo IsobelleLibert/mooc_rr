@@ -6,17 +6,19 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-*Disclaimer:* The two sections _A simple "/reproducible research/"
-emacs configuration_ and _A stub of replicable article_ explain how to
-set up org-mode for this MOOC. *You really should follow them
-carefully or you may have trouble doing the exercices later on*.
+*Disclaimer:* The two sections _A simple "/reproducible research/" emacs
+configuration_ and _A stub of replicable article_ explain how to set up
+org-mode for this MOOC. *I have prepared two video tutorials (here and
+here) for each, which you really should follow carefully*. *Otherwise,
+you may have trouble doing the exercises later on*. Likewise, I
+strongly encourage you to watch the "emacs and git" video tutorial.
 
 The next sections provide information on how to install emacs. Before
-proceeding, make sure you have read the "Git and GitLab" instructions.
+proceeding, make sure you have read the "Git and GitLab" instructions
+(tutorial and resources from the 4th sequence of the 2nd module).
 
 * Installing emacs, org-mode, ess, and auctex.
-** OS-specific installation procedure
-*** Linux (Debian, Ubuntu)
+** Linux (Debian, Ubuntu)
 We provide here only instructions for debian-based distributions. Feel
 free to contribute to this document to provide up-to-date information
 for other distributions (e.g.n redhat, fedora).
@@ -53,7 +55,7 @@ emacs -batch --funcall "org-version" 2>&1 | grep version
 The version numbers you get will depend on the distribution you are
 running. _You really want to make sure you do not rely on org-mode 8_,
 which is now deprecated. 
-*** Mac OS X
+** Mac OS X
 - *Option 1*: Install the =.dmg= file from [[http://vgoulet.act.ulaval.ca/][Vincent Goulet]]:
   https://vigou3.github.io/emacs-modified-macos/. It ships with recent
   versions:
@@ -73,17 +75,16 @@ which is now deprecated.
   brew install auctex # The name may be slightly more complicated here
   brew install wget
   #+end_src
-*** Windows
+** Windows
 Install the =.exe= file from [[http://vgoulet.act.ulaval.ca/][Vincent Goulet]]:
 https://vigou3.github.io/emacs-modified-windows/. It ships with recent
 versions:
 - Emacs 26.1
 - Org-mode 9.1.13
 - ESS 17.11
-** TODO A simple "/reproducible research/" emacs configuration 
-#+BEGIN_QUOTE
-There will be a mini video illustrating these steps at some point
-#+END_QUOTE
+* A simple "/reproducible research/" emacs configuration 
+This section is illustrated in a video tutorial (in French). Watching
+it before following the instructions given in this section may help.
 
 Emacs comes with very basic default configuration and it appears like
 everyone has its own taste. You will for example find [[https://www.emacswiki.org/emacs/StarterKits][here]] several
@@ -91,10 +92,10 @@ default Emacs configurations that reflect the preferences of their
 creators. Likewise the configuration of Org-Mode is incredibly
 flexible (see for example [[https://orgmode.org/worg/org-configs/index.html][the org-mode website]] for more
 references). In the context of this MOOC, we propose you a relatively
-minimalistic one that is rather "/reproducible research/" oriented by
+minimalist one that is rather "/reproducible research/" oriented by
 adding a few org-mode specific configurations.
 
-*** Step 0: Backup and download our configuration
+** Step 0: Backup and download our configuration
 The procedure we propose will wipe your already existing custom emacs
 configuration if you already have one. *You should thus beforehand make
 a backup of =~/.emacs= and of =~/.emacs.d/init.el=* (if these file
@@ -117,7 +118,7 @@ tar tzf rr_org_archive.tgz
 : rr_org/init.el
 : rr_org/journal.org
 
-*** Step 1: Prepare your journal
+** Step 1: Prepare your journal
 Create an =org/= directory in the top of your home:
 #+begin_src sh :results output :exports both
 mkdir -p ~/org/
@@ -127,13 +128,13 @@ file will be your laboratory notebook and all the notes you will
 capture with =C-c c= will go automatically go in this file. The first
 entry of this notebook is populated with [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org][many emacs shortcuts]] that you
 should give a try.
-*** Step 2: Set up Emacs configuration
+** Step 2: Set up Emacs configuration
 Copy =rr_org/init.el= in your =~/.emacs.d/= directory.
 
 Alternatively, if you do not want to mess with your already existing
 emacs configuration, you may launch emacs with this specific
 configuration with the following command: =emacs -q -l rr_org/init.el=.
-*** Step 3: Check whether the installation is working or not
+** Step 3: Check whether the installation is working or not
 Open a new instance of Emacs and open a =foo.org= file. Copy the
 following lines in this file:
    : #+begin_src shell :session foo :results output :exports both
@@ -151,16 +152,15 @@ In the video, we already have demonstrated the main features and
 shortcuts of emacs/org-mode that will help you maintain a document and
 benefit from literate programming. The list of features and shortcuts
 is demonstrated in the [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org][first entry of your labbook]].
-*** Step 4: Open and play with your journal:
+** Step 4: Open and play with your journal:
 In step 1, you were told to create an journal in
 =~org/journal.org=. First you probably want to make sure this file is
 backed up in a revision control system like git. We leave it up to set
 this up but if you have any trouble, feel free to ask on the FUN
 forums.
-** TODO A stub of replicable article
-#+BEGIN_QUOTE
-There will be a mini video illustrating these steps at some point
-#+END_QUOTE
+* A stub of replicable article
+This section is illustrated in a video tutorial (in French). Watching
+it before following the instructions given in this section may help.
 
 Remember, you need a working LaTeX and R environment. If you can't
 open a terminal and run the commands =R=, =pdflatex=, and =python=, you will not be
@@ -175,7 +175,7 @@ make -C replicable_article/ all replicable_article.tgz
 
 #+RESULTS:
 
-Download the following [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/replicable_article/replicable_article.tgz][archive]], untar it and simply =make= to generate the
+Download the following [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/replicable_article/replicable_article.tgz][archive]], uncompress it and simply =make= to generate the
 article. You should then be able to open the [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/replicable_article/article.pdf][resulting article]]. This
 is summarized in the following command:
 #+begin_src sh :results output :exports both
@@ -196,7 +196,7 @@ tar zxf replicable.tgz; cd replicable; make ; evince article.pdf
   system-wide. In that case, try to remove the =-q= in the previous
   command line to load your personal emacs configuration.
 
-Finally, when you'll be tired of always reexecuting all the source
+Finally, when you'll be tired of always re-executing all the source
 code when exporting, just look for the following line in [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/replicable_article/article.org][article.org]]:
 #+BEGIN_EXAMPLE
 # #+PROPERTY: header-args :eval never-export
@@ -227,9 +227,12 @@ channel with many step by step emacs tutorials]].
 [[http://company-mode.github.io/][Company-mode]] is a text completion framework for Emacs. It allows to
 have smart completion in emacs for the most common languages. If you
 feel this is needed, you should follow the instructions from the
-official webpage: http://company-mode.github.io/
+official Web page: http://company-mode.github.io/
 *** Magit
-[[https://magit.vc/][Magit]] is an emacs interface for Git. It is very powerfull and we use
+Magit]] is an emacs interface for Git. It is briefly illustrated in a
+video tutorial.
+
+It is very powerful and we use
 it on a daily basis but you should definitely understand what git does
 behind the scene beforehand. If you feel this would be useful for you,
 you should follow the instructions from here:
