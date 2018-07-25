@@ -5,17 +5,16 @@
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
 
-
 If you have never used git with Rstudio, *we strongly advise that you
-follow the [[https://swcarpentry.github.io/git-novice/14-supplemental-rstudio/index.html][step-by-step explanations from Software Carpentry]]*. It comes
-with many screenshots and is quite progressive. Alternatively, you
-may want to watch this video:
-#+BEGIN_EXPORT html
-<iframe width="854" height="480" src="https://www.youtube.com/embed/uHYcDQDbMY8" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-#+END_EXPORT
+follow [[https://youtu.be/mThPqRH9tmA][our tutorial on using git from Rstudio]]* (in
+French). Alternatively, you may want to watch [[https://www.youtube.com/embed/uHYcDQDbMY8][this video]] (in
+English). If you do not like videos, you should have a look at the
+[[https://swcarpentry.github.io/git-novice/14-supplemental-rstudio/index.html][step-by-step explanations from Software Carpentry]]. It comes with many
+screenshots and is quite progressive.
 
-The next sections provide information on how to install Rstudio. Before
-proceeding, make sure you have read the "Git and GitLab" instructions.
+The next sections provide information on how to install
+Rstudio. Before proceeding, make sure you have followed the [[https://youtu.be/LR6gRpmHWx0]["Git and
+GitLab" tutorial]] from the 4th sequence of the 2nd module.
 
 Finally, you need to know that the Rstudio team has created a lot of
 very good material and tutorials. You should definitively look at the
