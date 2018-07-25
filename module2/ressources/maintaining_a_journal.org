@@ -21,9 +21,11 @@ a few ones:
 - Tom Cornebize is currently a PhD student advised by Arnaud Legrand
   and during his MSc, he also heavily [[https://github.com/Ezibenroc/simulating_mpi_applications_at_scale][loged his activity on Github]]. 
 - [[https://github.com/schnorr][Lucas Schnorr]]'s students usually also maintain their journal in a
-  very nice way: [[https://github.com/taisbellini/aiyra/blob/master/LabBook.org][Tais Bellini's BSc.]], [[https://github.com/mittmann/hpc/blob/master/LabBook.org][Arthur Krause’s LabBook]]
+  very nice way: [[https://github.com/taisbellini/aiyra/blob/master/LabBook.org][Tais Bellini's BSc.]], [[https://github.com/mittmann/hpc/blob/master/LabBook.org][Arthur Krause's LabBook]], [[http://www.inf.ufrgs.br/~llnesi/memory_report/MemoryReport.html][Luca
+  Nesi's LabBook]].
 - [[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][Martin Quinson]]'s students also follow such conventions:
-  - Ezequiel Torti Lopez, M2R 2014. [[https://github.com/mquinson/simgrid-simpar/blob/master/report.org][Report]], with both the data provenance and the data analysis included in appendix.
+  - Ezequiel Torti Lopez, M2R 2014. [[https://github.com/mquinson/simgrid-simpar/blob/master/report.org][Report]], with both the data
+    provenance and the data analysis included in the appendix.
   - Betsegaw Lemma, M2R 2017. [[https://github.com/betsegawlemma/internship/blob/master/intern_report.org][LabBook]]
   - Gabriel Corona, engineer on SimGrid, 2015-2016. [[https://github.com/randomstuff/simgrid-journal/blob/master/journal.org][Journal]], [[http://www.gabriel.urdhr.fr/tags/simgrid/][Blog (findings)]].
   - Matthieu Nicolas, engineer on PLM, 2014-2016, [[https://github.com/MatthieuNICOLAS/PLM-reporting/blob/master/activity-report.org][Journal]].
@@ -35,9 +37,9 @@ convenient.
 * How to report efficiently (by Martin Quinson)
 My friend Martin has gathered [[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][an excellent compendium of information
 and references on his webpage to explain his students what he expects
-from them]]. I'll therefore simply paraphrase him here with the most
-important aspects related to reporting but feel free to read the
-original version:
+from them]]. *I'll therefore simply paraphrase him here* with the most
+important aspects related to reporting but feel free to read [[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][the
+original version]]:
 ** Reporting
 I ask you to write a little reporting regularly. Depending on the
 situation, it may be every day, every week or every month. In any
@@ -159,7 +161,7 @@ At any point, you can see all ongoing TODO items with the following
 keystrokes: "C-c / t". More information on TODOs in orgmode's
 [[http://orgmode.org/manual/TODO-basics.html][documentation]]. The important thing here is that most TODO items must
 only be written in the /Journal/ part (so that we know when they
-occured).
+occurred).
 
 *Do not edit past entries of your journal*, unless you have very good
 reasons. If you must, make sure that you don't lose information about
