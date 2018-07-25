@@ -123,7 +123,7 @@ for line in INPUT.readlines():
         libc = m.group(1)
         OUTPUT.writelines(size+", "+seq+", "+par+", "+libc+"\n")
         
-print "[[file:"+output+"]]"
+print("[[file:"+output+"]]")
 #+end_src
 
 #+RESULTS:
@@ -257,8 +257,6 @@ our own experimental testbed with support of our university.
 # eval:   (setq org-alphabetical-lists t)
 # eval:   (setq org-src-fontify-natively t)
 # eval:   (setq ess-ask-for-ess-directory nil)
-# eval:   (setq ispell-local-dictionary "american")
-# eval:   (eval (flyspell-mode t))
 # End:
 
 
