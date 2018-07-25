@@ -174,9 +174,8 @@ make -C replicable_article/ all replicable_article.tgz
 #+end_src
 
 #+RESULTS:
-Download the following [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/replicable_article/replicable_article.tgz][archive]] and untar it.
 
- and simply =make= to generate the
+Download the following [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/replicable_article/replicable_article.tgz][archive]], untar it and simply =make= to generate the
 article. You should then be able to open the [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/replicable_article/article.pdf][resulting article]]. This
 is summarized in the following command:
 #+begin_src sh :results output :exports both
@@ -184,18 +183,18 @@ wget --no-check-certificate -O replicable.tgz https://github.com/alegrand/RR_web
 tar zxf replicable.tgz; cd replicable; make ; evince article.pdf
 #+end_src
 
-If the =make= command fails (especially on Mac), it may be because emacs
-or something else is not correctly installed. In that case, open the
-article directly with the following command:
-#+begin_src sh :results output :exports both
-emacs -q --eval "(setq enable-local-eval t)" --eval "(setq enable-local-variables t)"  article.org
-#+end_src
-and export it to pdf with the following shortcut: =C-c C-e l o=
-
-If it still doesn't work and emacs complains about not finding ESS, it
-may be because you installed ESS in your home instead of
-system-wide. In that case, try to remove the =-q= in the previous
-command line to load your personal emacs configuration.
+*Possible issues*:
+- If the =make= command fails (especially on Mac), it may be because
+  emacs or something else is not correctly installed. In that case,
+  open the article directly with the following command:
+  #+begin_src sh :results output :exports both
+  emacs -q --eval "(setq enable-local-eval t)" --eval "(setq enable-local-variables t)"  article.org
+  #+end_src
+  and export it to pdf with the following shortcut: =C-c C-e l o=
+- If it still doesn't work and emacs complains about not finding ESS,
+  it may be because you installed ESS in your home instead of
+  system-wide. In that case, try to remove the =-q= in the previous
+  command line to load your personal emacs configuration.
 
 Finally, when you'll be tired of always reexecuting all the source
 code when exporting, just look for the following line in [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/replicable_article/article.org][article.org]]:
