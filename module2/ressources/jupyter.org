@@ -91,7 +91,7 @@ the notebook export via latex works:
 sudo apt-get install wkhtmltopdf
 sudo apt-get install texlive-xetex
 #+end_src
-** Interacting with gitlab
+** Interacting with GitLab
 Here is our [[https://github.com/brospars/nb-git][jupyter extension that allows to git push/pull from the
 notebooks]]:
 #+begin_src shell :results output :exports both
