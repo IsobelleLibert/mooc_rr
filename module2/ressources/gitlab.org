@@ -19,9 +19,11 @@ is very convenient but in most cases, you will want to have your own
 local copy of the repository and you will have to synchronize your
 local copy with the remote GitLab one. To propagate your
 modifications, you will obviously have to authenticate yourself on
-GitLab.  This document describes the software you need to have
-installed on your machine and how to handle authentification. Please
-read these instructions carefully.
+GitLab. How to do this is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/f6580ad8e997400faeffe9af4fd37063/2][video tutorial]] (in French).
+
+This document describes the software you need to have
+installed on your machine and how to handle authentication. Please
+read these instructions carefully. 
 
 * Installing Git
 ** Linux (debian, ubuntu)
@@ -52,10 +54,8 @@ never asks me for any password anymore and I don't have to remember
 anything).
 ** Option 1: HTTPS
 *** Configuring your GitLab password
-In this video, I explain how to change your password on our GitLab. 
-#+BEGIN_CENTER
-Youtube Video
-#+END_CENTER
+In this [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/f6580ad8e997400faeffe9af4fd37063/2][video tutorial]] (in French), I explain how to change your
+password on our GitLab.
 *** Making sure git remembers your password
 My GitLab id is =3211ac4f2fb71deaeff9252764c368e7=. Say I've configured
 my password to be =tototutu= (what a weak password...) and I want to
@@ -83,7 +83,7 @@ git config --global credential.helper "cache --timeout=3600" # for one hour at m
 With this setup, you will be prompted for your password but it will be
 cached in memory and they will not be asked again before an hour.
 ** Option 2: SSH
-My prefered (although more technical) solution is to install SSH, to
+My preferred (although more technical) solution is to install SSH, to
 create a pair or private/public keys, and to upload your SSH public
 key on GitLab. This section provides with information on how to do
 this.
@@ -102,7 +102,7 @@ You do not have anything to do as it is installed by default.
 **** Windows
 You should install the [[https://www.ssh.com/ssh/putty/windows/][Putty]] client. Once it is installed, look for
 the section on [[https://www.ssh.com/ssh/putty/windows/puttygen][generating an SSH key]].
-*** Setting up SSH on Framagit
+*** Setting up SSH on GitLab
 Here are [[https://docs.gitlab.com/ee/ssh/][all the official explanations on how to set up your SSH key
 on GitLab]]. Alternatively, you may also want to have a look at this
 video:
