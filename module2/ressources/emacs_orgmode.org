@@ -8,14 +8,13 @@
 
 *Disclaimer:* The two sections _A simple "/reproducible research/" emacs
 configuration_ and _A stub of replicable article_ explain how to set up
-org-mode for this MOOC. *I have prepared two video tutorials (here and
-here) for each, which you really should follow carefully*. *Otherwise,
-you may have trouble doing the exercises later on*. Likewise, I
-strongly encourage you to watch the "emacs and git" video tutorial.
+org-mode for this MOOC. *These sections are illustrated in two out of
+the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3][three video tutorials of this sequence]], and* *which you really
+should follow carefully*. *Otherwise, you may have trouble doing the
+exercises later on*. Likewise, I strongly encourage you to watch the
+[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3]["emacs and git" video tutorial available at the same place]].
 
-The next sections provide information on how to install emacs. Before
-proceeding, make sure you have read the "Git and GitLab" instructions
-(tutorial and resources from the 4th sequence of the 2nd module).
+The next section provides information on how to install emacs.
 
 * Installing emacs, org-mode, ess, and auctex.
 ** Linux (Debian, Ubuntu)
@@ -83,7 +82,7 @@ versions:
 - Org-mode 9.1.13
 - ESS 17.11
 * A simple "/reproducible research/" emacs configuration 
-This section is illustrated in a video tutorial (in French). Watching
+This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3][video tutorial]] (in French). Watching
 it before following the instructions given in this section may help.
 
 Emacs comes with very basic default configuration and it appears like
@@ -159,7 +158,7 @@ backed up in a revision control system like git. We leave it up to set
 this up but if you have any trouble, feel free to ask on the FUN
 forums.
 * A stub of replicable article
-This section is illustrated in a video tutorial (in French). Watching
+This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3][video tutorial]] (in French). Watching
 it before following the instructions given in this section may help.
 
 Remember, you need a working LaTeX and R environment. If you can't
@@ -229,16 +228,15 @@ have smart completion in emacs for the most common languages. If you
 feel this is needed, you should follow the instructions from the
 official Web page: http://company-mode.github.io/
 *** Magit
-Magit]] is an emacs interface for Git. It is briefly illustrated in a
-video tutorial.
+[[https://magit.vc/][Magit]] is an emacs interface for Git. Its usage is briefly illustrated
+in the context of this MOOC in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3][video tutorial]] (in French).
 
-It is very powerful and we use
-it on a daily basis but you should definitely understand what git does
-behind the scene beforehand. If you feel this would be useful for you,
-you should follow the instructions from here:
-https://www.emacswiki.org/emacs/Magit. If you installed the previous
-"/reproducible research/" emacs configuration, you can easily invoke
-magit by using ~C-x g~.
+It is very powerful and we use it on a daily basis but you should
+definitely understand what git does behind the scene beforehand. If
+you feel this would be useful for you, you should follow [[https://magit.vc/screenshots/][this visual
+walk-through]] or [[https://www.emacswiki.org/emacs/Magit][this really short "crash course"]]. If you installed the
+previous "/reproducible research/" emacs configuration, you can easily
+invoke magit by using ~C-x g~.
 ** Other resources
 - [[https://orgmode.org/orgguide.pdf][The compact Org-mode Guide]]
 - [[https://github.com/dfeich/org-babel-examples][Many examples illustrating the use of different languages in org-mode]]
