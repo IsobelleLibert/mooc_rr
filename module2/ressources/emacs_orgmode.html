@@ -4,39 +4,39 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org6cfce99">Installing emacs, org-mode, ess, and auctex.</a>
+<li style="margin-bottom:0;"><a href="#org0fbdfa9">Installing emacs, org-mode, ess, and auctex.</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org8d53875">Linux (Debian, Ubuntu)</a></li>
-<li style="margin-bottom:0;"><a href="#org944c375">Mac OS X</a></li>
-<li style="margin-bottom:0;"><a href="#org64b96e7">Windows</a></li>
+<li style="margin-bottom:0;"><a href="#org4a4ee20">Linux (Debian, Ubuntu)</a></li>
+<li style="margin-bottom:0;"><a href="#org101dae2">Mac OS X</a></li>
+<li style="margin-bottom:0;"><a href="#org048091d">Windows</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#orgf731fcb">A simple "<i>reproducible research</i>" emacs configuration</a>
+<li style="margin-bottom:0;"><a href="#orgccaf2ff">A simple "<i>reproducible research</i>" emacs configuration</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org1212448">Step 0: Backup and download our configuration</a></li>
-<li style="margin-bottom:0;"><a href="#orga58da00">Step 1: Prepare your journal</a></li>
-<li style="margin-bottom:0;"><a href="#org5f660e7">Step 2: Set up Emacs configuration</a></li>
-<li style="margin-bottom:0;"><a href="#orgcfcc2ff">Step 3: Check whether the installation is working or not</a></li>
-<li style="margin-bottom:0;"><a href="#orged2e102">Step 4: Open and play with your journal:</a></li>
+<li style="margin-bottom:0;"><a href="#org59fef98">Step 0: Backup and download our configuration</a></li>
+<li style="margin-bottom:0;"><a href="#org19679a8">Step 1: Prepare your journal</a></li>
+<li style="margin-bottom:0;"><a href="#org3142fb4">Step 2: Set up Emacs configuration</a></li>
+<li style="margin-bottom:0;"><a href="#org9657e1f">Step 3: Check whether the installation is working or not</a></li>
+<li style="margin-bottom:0;"><a href="#org26b639c">Step 4: Open and play with your journal:</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#org2c8a2b3">A stub of replicable article</a></li>
-<li style="margin-bottom:0;"><a href="#org6025dd0">Emacs Tips and tricks</a>
+<li style="margin-bottom:0;"><a href="#orgf2f9128">A stub of replicable article</a></li>
+<li style="margin-bottom:0;"><a href="#orge35ff2f">Emacs Tips and tricks</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org9df9d92">Cheat-sheets</a>
+<li style="margin-bottom:0;"><a href="#orgd3ea437">Cheat-sheets</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org76a8ca9">Emacs</a></li>
-<li style="margin-bottom:0;"><a href="#orgc325c7b">Org-mode</a></li>
+<li style="margin-bottom:0;"><a href="#orgef979b2">Emacs</a></li>
+<li style="margin-bottom:0;"><a href="#orge1bce05">Org-mode</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#org70f6690">Video tutorials</a></li>
-<li style="margin-bottom:0;"><a href="#org365abd5">Additional useful emacs packages</a>
+<li style="margin-bottom:0;"><a href="#org151e7c0">Video tutorials</a></li>
+<li style="margin-bottom:0;"><a href="#org29b5af4">Additional useful emacs packages</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orgd4c07e0">Company-mode</a></li>
-<li style="margin-bottom:0;"><a href="#org49509c0">Magit</a></li>
+<li style="margin-bottom:0;"><a href="#orgb61c58f">Company-mode</a></li>
+<li style="margin-bottom:0;"><a href="#org74978d6">Magit</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#orgd1052e7">Other resources</a></li>
+<li style="margin-bottom:0;"><a href="#org425cf50">Other resources</a></li>
 </ul>
 </li>
 </ul>
@@ -45,24 +45,24 @@
 <p>
 <b>Disclaimer:</b> The two sections <span class="underline">A simple "<i>reproducible research</i>" emacs
 configuration</span> and <span class="underline">A stub of replicable article</span> explain how to set up
-org-mode for this MOOC. <b>These sections are illustrated in two out of
-the <a href="https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3">three video tutorials of this sequence</a>, and</b> <b>which you really
-should follow carefully</b>. <b>Otherwise, you may have trouble doing the
-exercises later on</b>. Likewise, I strongly encourage you to watch the
-<a href="https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3">"emacs and git" video tutorial available at the same place</a>.
+emacs/org-mode for this MOOC. <b>These sections are illustrated in two
+out of the <a href="https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3">three video tutorials of this sequence</a>, and</b> <b>which you
+really should follow carefully</b>. <b>Otherwise, you may have trouble doing
+the exercises later on</b>. Likewise, I strongly encourage you to watch
+the <a href="https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3">"emacs and git" video tutorial available at the same place</a>.
 </p>
 
 <p>
 The next section provides information on how to install emacs.
 </p>
 
-<div id="outline-container-org6cfce99" class="outline-2">
-<h2 id="org6cfce99">Installing emacs, org-mode, ess, and auctex.</h2>
-<div class="outline-text-2" id="text-org6cfce99">
+<div id="outline-container-org0fbdfa9" class="outline-2">
+<h2 id="org0fbdfa9">Installing emacs, org-mode, ess, and auctex.</h2>
+<div class="outline-text-2" id="text-org0fbdfa9">
 </div>
-<div id="outline-container-org8d53875" class="outline-3">
-<h3 id="org8d53875">Linux (Debian, Ubuntu)</h3>
-<div class="outline-text-3" id="text-org8d53875">
+<div id="outline-container-org4a4ee20" class="outline-3">
+<h3 id="org4a4ee20">Linux (Debian, Ubuntu)</h3>
+<div class="outline-text-3" id="text-org4a4ee20">
 <p>
 We provide here only instructions for debian-based distributions. Feel
 free to contribute to this document to provide up-to-date information
@@ -124,9 +124,9 @@ which is now deprecated.
 </p>
 </div>
 </div>
-<div id="outline-container-org944c375" class="outline-3">
-<h3 id="org944c375">Mac OS X</h3>
-<div class="outline-text-3" id="text-org944c375">
+<div id="outline-container-org101dae2" class="outline-3">
+<h3 id="org101dae2">Mac OS X</h3>
+<div class="outline-text-3" id="text-org101dae2">
 <ul class="org-ul">
 <li style="margin-bottom:0;"><p>
 <b>Option 1</b>: Install the <code>.dmg</code> file from <a href="http://vgoulet.act.ulaval.ca/">Vincent Goulet</a>:
@@ -159,9 +159,9 @@ brew install wget
 </ul>
 </div>
 </div>
-<div id="outline-container-org64b96e7" class="outline-3">
-<h3 id="org64b96e7">Windows</h3>
-<div class="outline-text-3" id="text-org64b96e7">
+<div id="outline-container-org048091d" class="outline-3">
+<h3 id="org048091d">Windows</h3>
+<div class="outline-text-3" id="text-org048091d">
 <p>
 Install the <code>.exe</code> file from <a href="http://vgoulet.act.ulaval.ca/">Vincent Goulet</a>:
 <a href="https://vigou3.github.io/emacs-modified-windows/">https://vigou3.github.io/emacs-modified-windows/</a>. It ships with recent
@@ -175,9 +175,9 @@ versions:
 </div>
 </div>
 </div>
-<div id="outline-container-orgf731fcb" class="outline-2">
-<h2 id="orgf731fcb">A simple "<i>reproducible research</i>" emacs configuration</h2>
-<div class="outline-text-2" id="text-orgf731fcb">
+<div id="outline-container-orgccaf2ff" class="outline-2">
+<h2 id="orgccaf2ff">A simple "<i>reproducible research</i>" emacs configuration</h2>
+<div class="outline-text-2" id="text-orgccaf2ff">
 <p>
 This section is illustrated in a <a href="https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3">video tutorial</a> (in French). Watching
 it before following the instructions given in this section may help.
@@ -195,9 +195,9 @@ adding a few org-mode specific configurations.
 </p>
 </div>
 
-<div id="outline-container-org1212448" class="outline-3">
-<h3 id="org1212448">Step 0: Backup and download our configuration</h3>
-<div class="outline-text-3" id="text-org1212448">
+<div id="outline-container-org59fef98" class="outline-3">
+<h3 id="org59fef98">Step 0: Backup and download our configuration</h3>
+<div class="outline-text-3" id="text-org59fef98">
 <p>
 The procedure we propose will wipe your already existing custom emacs
 configuration if you already have one. <b>You should thus beforehand make
@@ -218,9 +218,9 @@ rr_org/journal.org
 </div>
 </div>
 
-<div id="outline-container-orga58da00" class="outline-3">
-<h3 id="orga58da00">Step 1: Prepare your journal</h3>
-<div class="outline-text-3" id="text-orga58da00">
+<div id="outline-container-org19679a8" class="outline-3">
+<h3 id="org19679a8">Step 1: Prepare your journal</h3>
+<div class="outline-text-3" id="text-org19679a8">
 <p>
 Create an <code>org/</code> directory in the top of your home:
 </p>
@@ -237,9 +237,9 @@ should give a try.
 </p>
 </div>
 </div>
-<div id="outline-container-org5f660e7" class="outline-3">
-<h3 id="org5f660e7">Step 2: Set up Emacs configuration</h3>
-<div class="outline-text-3" id="text-org5f660e7">
+<div id="outline-container-org3142fb4" class="outline-3">
+<h3 id="org3142fb4">Step 2: Set up Emacs configuration</h3>
+<div class="outline-text-3" id="text-org3142fb4">
 <p>
 Copy <code>rr_org/init.el</code> in your <code>~/.emacs.d/</code> directory.
 </p>
@@ -251,9 +251,9 @@ configuration with the following command: <code>emacs -q -l rr_org/init.el</code
 </p>
 </div>
 </div>
-<div id="outline-container-orgcfcc2ff" class="outline-3">
-<h3 id="orgcfcc2ff">Step 3: Check whether the installation is working or not</h3>
-<div class="outline-text-3" id="text-orgcfcc2ff">
+<div id="outline-container-org9657e1f" class="outline-3">
+<h3 id="org9657e1f">Step 3: Check whether the installation is working or not</h3>
+<div class="outline-text-3" id="text-org9657e1f">
 <p>
 Open a new instance of Emacs and open a <code>foo.org</code> file. Copy the
 following lines in this file:
@@ -284,9 +284,9 @@ is demonstrated in the <a href="https://app-learninglab.inria.fr/gitlab/learning
 </p>
 </div>
 </div>
-<div id="outline-container-orged2e102" class="outline-3">
-<h3 id="orged2e102">Step 4: Open and play with your journal:</h3>
-<div class="outline-text-3" id="text-orged2e102">
+<div id="outline-container-org26b639c" class="outline-3">
+<h3 id="org26b639c">Step 4: Open and play with your journal:</h3>
+<div class="outline-text-3" id="text-org26b639c">
 <p>
 In step 1, you were told to create an journal in
 <code>~org/journal.org</code>. First you probably want to make sure this file is
@@ -297,9 +297,9 @@ forums.
 </div>
 </div>
 </div>
-<div id="outline-container-org2c8a2b3" class="outline-2">
-<h2 id="org2c8a2b3">A stub of replicable article</h2>
-<div class="outline-text-2" id="text-org2c8a2b3">
+<div id="outline-container-orgf2f9128" class="outline-2">
+<h2 id="orgf2f9128">A stub of replicable article</h2>
+<div class="outline-text-2" id="text-orgf2f9128">
 <p>
 This section is illustrated in a <a href="https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3">video tutorial</a> (in French). Watching
 it before following the instructions given in this section may help.
@@ -362,22 +362,22 @@ chunk of code when exporting.
 </div>
 </div>
 
-<div id="outline-container-org6025dd0" class="outline-2">
-<h2 id="org6025dd0">Emacs Tips and tricks</h2>
-<div class="outline-text-2" id="text-org6025dd0">
+<div id="outline-container-orge35ff2f" class="outline-2">
+<h2 id="orge35ff2f">Emacs Tips and tricks</h2>
+<div class="outline-text-2" id="text-orge35ff2f">
 </div>
-<div id="outline-container-org9df9d92" class="outline-3">
-<h3 id="org9df9d92">Cheat-sheets</h3>
-<div class="outline-text-3" id="text-org9df9d92">
+<div id="outline-container-orgd3ea437" class="outline-3">
+<h3 id="orgd3ea437">Cheat-sheets</h3>
+<div class="outline-text-3" id="text-orgd3ea437">
 <p>
 Learning emacs and org-mode can be difficult as there is an inordinate
 amount of shortcuts. Many people have thus come up with
 cheat-sheats. Here is a selection in case it helps:
 </p>
 </div>
-<div id="outline-container-org76a8ca9" class="outline-4">
-<h4 id="org76a8ca9">Emacs</h4>
-<div class="outline-text-4" id="text-org76a8ca9">
+<div id="outline-container-orgef979b2" class="outline-4">
+<h4 id="orgef979b2">Emacs</h4>
+<div class="outline-text-4" id="text-orgef979b2">
 <ul class="org-ul">
 <li style="margin-bottom:0;"><a href="https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org">Common and step-by-step emacs shortcuts for our <i>reproducible research</i> configuration</a></li>
 <li style="margin-bottom:0;"><a href="https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf">The official GNU emacs refcard</a></li>
@@ -386,9 +386,9 @@ cheat-sheats. Here is a selection in case it helps:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc325c7b" class="outline-4">
-<h4 id="orgc325c7b">Org-mode</h4>
-<div class="outline-text-4" id="text-orgc325c7b">
+<div id="outline-container-orge1bce05" class="outline-4">
+<h4 id="orge1bce05">Org-mode</h4>
+<div class="outline-text-4" id="text-orge1bce05">
 <ul class="org-ul">
 <li style="margin-bottom:0;"><a href="https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org">Common and step-by-step org-mode shortcuts for our <i>reproducible research</i> configuration</a></li>
 <li style="margin-bottom:0;"><a href="https://orgmode.org/worg/orgcard.html">The official org-mode refcard</a></li>
@@ -397,22 +397,22 @@ cheat-sheats. Here is a selection in case it helps:
 </div>
 </div>
 </div>
-<div id="outline-container-org70f6690" class="outline-3">
-<h3 id="org70f6690">Video tutorials</h3>
-<div class="outline-text-3" id="text-org70f6690">
+<div id="outline-container-org151e7c0" class="outline-3">
+<h3 id="org151e7c0">Video tutorials</h3>
+<div class="outline-text-3" id="text-org151e7c0">
 <p>
 For those of you who prefer video explanations, here is a <a href="https://www.youtube.com/playlist?list=PL9KxKa8NpFxIcNQa9js7dQQIHc81b0-Xg">Youtube
 channel with many step by step emacs tutorials</a>.
 </p>
 </div>
 </div>
-<div id="outline-container-org365abd5" class="outline-3">
-<h3 id="org365abd5">Additional useful emacs packages</h3>
-<div class="outline-text-3" id="text-org365abd5">
+<div id="outline-container-org29b5af4" class="outline-3">
+<h3 id="org29b5af4">Additional useful emacs packages</h3>
+<div class="outline-text-3" id="text-org29b5af4">
 </div>
-<div id="outline-container-orgd4c07e0" class="outline-4">
-<h4 id="orgd4c07e0">Company-mode</h4>
-<div class="outline-text-4" id="text-orgd4c07e0">
+<div id="outline-container-orgb61c58f" class="outline-4">
+<h4 id="orgb61c58f">Company-mode</h4>
+<div class="outline-text-4" id="text-orgb61c58f">
 <p>
 <a href="http://company-mode.github.io/">Company-mode</a> is a text completion framework for Emacs. It allows to
 have smart completion in emacs for the most common languages. If you
@@ -421,9 +421,9 @@ official Web page: <a href="http://company-mode.github.io/">http://company-mode.
 </p>
 </div>
 </div>
-<div id="outline-container-org49509c0" class="outline-4">
-<h4 id="org49509c0">Magit</h4>
-<div class="outline-text-4" id="text-org49509c0">
+<div id="outline-container-org74978d6" class="outline-4">
+<h4 id="org74978d6">Magit</h4>
+<div class="outline-text-4" id="text-org74978d6">
 <p>
 <a href="https://magit.vc/">Magit</a> is an emacs interface for Git. Its usage is briefly illustrated
 in the context of this MOOC in a <a href="https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3">video tutorial</a> (in French).
@@ -440,9 +440,9 @@ invoke magit by using <code>C-x g</code>.
 </div>
 </div>
 </div>
-<div id="outline-container-orgd1052e7" class="outline-3">
-<h3 id="orgd1052e7">Other resources</h3>
-<div class="outline-text-3" id="text-orgd1052e7">
+<div id="outline-container-org425cf50" class="outline-3">
+<h3 id="org425cf50">Other resources</h3>
+<div class="outline-text-3" id="text-org425cf50">
 <ul class="org-ul">
 <li style="margin-bottom:0;"><a href="https://orgmode.org/orgguide.pdf">The compact Org-mode Guide</a></li>
 <li style="margin-bottom:0;"><a href="https://github.com/dfeich/org-babel-examples">Many examples illustrating the use of different languages in org-mode</a></li>

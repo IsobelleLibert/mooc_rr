@@ -8,11 +8,11 @@
 
 *Disclaimer:* The two sections _A simple "/reproducible research/" emacs
 configuration_ and _A stub of replicable article_ explain how to set up
-org-mode for this MOOC. *These sections are illustrated in two out of
-the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3][three video tutorials of this sequence]], and* *which you really
-should follow carefully*. *Otherwise, you may have trouble doing the
-exercises later on*. Likewise, I strongly encourage you to watch the
-[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3]["emacs and git" video tutorial available at the same place]].
+emacs/org-mode for this MOOC. *These sections are illustrated in two
+out of the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3][three video tutorials of this sequence]], and* *which you
+really should follow carefully*. *Otherwise, you may have trouble doing
+the exercises later on*. Likewise, I strongly encourage you to watch
+the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3]["emacs and git" video tutorial available at the same place]].
 
 The next section provides information on how to install emacs.
 
