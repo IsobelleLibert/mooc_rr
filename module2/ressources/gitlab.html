@@ -4,24 +4,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orge3f4bc8">Installing Git</a>
+<li style="margin-bottom:0;"><a href="#org3b51ceb">Installing Git</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orgf47f6c9">Linux (debian, ubuntu)</a></li>
-<li style="margin-bottom:0;"><a href="#org6c4b10f">Mac OSX and Windows</a></li>
+<li style="margin-bottom:0;"><a href="#org00b8ed8">Linux (debian, ubuntu)</a></li>
+<li style="margin-bottom:0;"><a href="#org247f959">Mac OSX and Windows</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#orgca31098">Authenticating on GitLab</a>
+<li style="margin-bottom:0;"><a href="#org10e42dd">Authenticating on GitLab</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org69e4843">Option 1: HTTPS</a>
+<li style="margin-bottom:0;"><a href="#orgda58dab">Option 1: HTTPS</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org4c05db5">Configuring your GitLab password</a></li>
-<li style="margin-bottom:0;"><a href="#orgcfbd789">Making sure git remembers your password</a></li>
+<li style="margin-bottom:0;"><a href="#org7f96ff9">Configuring your GitLab password</a></li>
+<li style="margin-bottom:0;"><a href="#org18555d7">Making sure git remembers your password</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#orgaa173db">Option 2: SSH</a>
+<li style="margin-bottom:0;"><a href="#org367edbb">Option 2: SSH</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org880f8ce">Installing SSH</a></li>
-<li style="margin-bottom:0;"><a href="#org4481e63">Setting up SSH on GitLab</a></li>
+<li style="margin-bottom:0;"><a href="#orge10264b">Installing SSH</a></li>
+<li style="margin-bottom:0;"><a href="#orgac5801f">Setting up SSH on GitLab</a></li>
 </ul>
 </li>
 </ul>
@@ -47,7 +47,7 @@ is very convenient but in most cases, you will want to have your own
 local copy of the repository and you will have to synchronize your
 local copy with the remote GitLab one. To propagate your
 modifications, you will obviously have to authenticate yourself on
-GitLab. How to do this is illustrated in a <a href="https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/f6580ad8e997400faeffe9af4fd37063/2">video tutorial</a> (in French).
+GitLab. How to do this is illustrated in a <a href="https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85">video tutorial</a> (in French).
 </p>
 
 <p>
@@ -56,13 +56,13 @@ installed on your machine and how to handle authentication. Please
 read these instructions carefully. 
 </p>
 
-<div id="outline-container-orge3f4bc8" class="outline-2">
-<h2 id="orge3f4bc8">Installing Git</h2>
-<div class="outline-text-2" id="text-orge3f4bc8">
+<div id="outline-container-org3b51ceb" class="outline-2">
+<h2 id="org3b51ceb">Installing Git</h2>
+<div class="outline-text-2" id="text-org3b51ceb">
 </div>
-<div id="outline-container-orgf47f6c9" class="outline-3">
-<h3 id="orgf47f6c9">Linux (debian, ubuntu)</h3>
-<div class="outline-text-3" id="text-orgf47f6c9">
+<div id="outline-container-org00b8ed8" class="outline-3">
+<h3 id="org00b8ed8">Linux (debian, ubuntu)</h3>
+<div class="outline-text-3" id="text-org00b8ed8">
 <p>
 We provide here only instructions for debian-based distributions. Feel
 free to contribute to this document to provide up-to-date information
@@ -78,9 +78,9 @@ Run (as root):
 </div>
 </div>
 </div>
-<div id="outline-container-org6c4b10f" class="outline-3">
-<h3 id="org6c4b10f">Mac OSX and Windows</h3>
-<div class="outline-text-3" id="text-org6c4b10f">
+<div id="outline-container-org247f959" class="outline-3">
+<h3 id="org247f959">Mac OSX and Windows</h3>
+<div class="outline-text-3" id="text-org247f959">
 <ul class="org-ul">
 <li style="margin-bottom:0;">Download and install Git from the <a href="https://git-scm.com/downloads">Git website</a>.</li>
 <li style="margin-bottom:0;">Optional Git clients (should not be needed if you work within
@@ -100,9 +100,9 @@ Rstudio):
 </div>
 </div>
 </div>
-<div id="outline-container-orgca31098" class="outline-2">
-<h2 id="orgca31098">Authenticating on GitLab</h2>
-<div class="outline-text-2" id="text-orgca31098">
+<div id="outline-container-org10e42dd" class="outline-2">
+<h2 id="org10e42dd">Authenticating on GitLab</h2>
+<div class="outline-text-2" id="text-org10e42dd">
 <p>
 There are two ways of authenticating and synchronizing your local
 repository with GitLab: through HTTPS or through SSH. The first one
@@ -113,22 +113,22 @@ never asks me for any password anymore and I don't have to remember
 anything).
 </p>
 </div>
-<div id="outline-container-org69e4843" class="outline-3">
-<h3 id="org69e4843">Option 1: HTTPS</h3>
-<div class="outline-text-3" id="text-org69e4843">
+<div id="outline-container-orgda58dab" class="outline-3">
+<h3 id="orgda58dab">Option 1: HTTPS</h3>
+<div class="outline-text-3" id="text-orgda58dab">
 </div>
-<div id="outline-container-org4c05db5" class="outline-4">
-<h4 id="org4c05db5">Configuring your GitLab password</h4>
-<div class="outline-text-4" id="text-org4c05db5">
+<div id="outline-container-org7f96ff9" class="outline-4">
+<h4 id="org7f96ff9">Configuring your GitLab password</h4>
+<div class="outline-text-4" id="text-org7f96ff9">
 <p>
-In this <a href="https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/f6580ad8e997400faeffe9af4fd37063/2">video tutorial</a> (in French), I explain how to change your
+In this <a href="https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85">video tutorial</a> (in French), I explain how to change your
 password on our GitLab.
 </p>
 </div>
 </div>
-<div id="outline-container-orgcfbd789" class="outline-4">
-<h4 id="orgcfbd789">Making sure git remembers your password</h4>
-<div class="outline-text-4" id="text-orgcfbd789">
+<div id="outline-container-org18555d7" class="outline-4">
+<h4 id="org18555d7">Making sure git remembers your password</h4>
+<div class="outline-text-4" id="text-org18555d7">
 <p>
 My GitLab id is <code>3211ac4f2fb71deaeff9252764c368e7</code>. Say I've configured
 my password to be <code>tototutu</code> (what a weak password&#x2026;) and I want to
@@ -168,9 +168,9 @@ cached in memory and they will not be asked again before an hour.
 </div>
 </div>
 </div>
-<div id="outline-container-orgaa173db" class="outline-3">
-<h3 id="orgaa173db">Option 2: SSH</h3>
-<div class="outline-text-3" id="text-orgaa173db">
+<div id="outline-container-org367edbb" class="outline-3">
+<h3 id="org367edbb">Option 2: SSH</h3>
+<div class="outline-text-3" id="text-org367edbb">
 <p>
 My preferred (although more technical) solution is to install SSH, to
 create a pair or private/public keys, and to upload your SSH public
@@ -178,13 +178,13 @@ key on GitLab. This section provides with information on how to do
 this.
 </p>
 </div>
-<div id="outline-container-org880f8ce" class="outline-4">
-<h4 id="org880f8ce">Installing SSH</h4>
-<div class="outline-text-4" id="text-org880f8ce">
+<div id="outline-container-orge10264b" class="outline-4">
+<h4 id="orge10264b">Installing SSH</h4>
+<div class="outline-text-4" id="text-orge10264b">
 </div>
 <ul class="org-ul">
-<li style="margin-bottom:0;"><a id="orga22af4e"></a>Linux (debian, ubuntu)<br />
-<div class="outline-text-5" id="text-orga22af4e">
+<li style="margin-bottom:0;"><a id="orgabfaf26"></a>Linux (debian, ubuntu)<br />
+<div class="outline-text-5" id="text-orgabfaf26">
 <p>
 We provide here only instructions for debian-based distributions. Feel
 free to contribute to this document to provide up-to-date information
@@ -200,15 +200,15 @@ Run (as root):
 </div>
 </div>
 </li>
-<li style="margin-bottom:0;"><a id="orgdea2c28"></a>Mac OSX<br />
-<div class="outline-text-5" id="text-orgdea2c28">
+<li style="margin-bottom:0;"><a id="org89976c7"></a>Mac OSX<br />
+<div class="outline-text-5" id="text-org89976c7">
 <p>
 You do not have anything to do as it is installed by default.
 </p>
 </div>
 </li>
-<li style="margin-bottom:0;"><a id="org991d2af"></a>Windows<br />
-<div class="outline-text-5" id="text-org991d2af">
+<li style="margin-bottom:0;"><a id="orgb8fc08c"></a>Windows<br />
+<div class="outline-text-5" id="text-orgb8fc08c">
 <p>
 You should install the <a href="https://www.ssh.com/ssh/putty/windows/">Putty</a> client. Once it is installed, look for
 the section on <a href="https://www.ssh.com/ssh/putty/windows/puttygen">generating an SSH key</a>.
@@ -217,9 +217,9 @@ the section on <a href="https://www.ssh.com/ssh/putty/windows/puttygen">generati
 </li>
 </ul>
 </div>
-<div id="outline-container-org4481e63" class="outline-4">
-<h4 id="org4481e63">Setting up SSH on GitLab</h4>
-<div class="outline-text-4" id="text-org4481e63">
+<div id="outline-container-orgac5801f" class="outline-4">
+<h4 id="orgac5801f">Setting up SSH on GitLab</h4>
+<div class="outline-text-4" id="text-orgac5801f">
 <p>
 Here are <a href="https://docs.gitlab.com/ee/ssh/">all the official explanations on how to set up your SSH key
 on GitLab</a>. Alternatively, you may also want to have a look at this
