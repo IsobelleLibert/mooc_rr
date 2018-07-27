@@ -19,7 +19,7 @@ is very convenient but in most cases, you will want to have your own
 local copy of the repository and you will have to synchronize your
 local copy with the remote GitLab one. To propagate your
 modifications, you will obviously have to authenticate yourself on
-GitLab. How to do this is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/f6580ad8e997400faeffe9af4fd37063/2][video tutorial]] (in French).
+GitLab. How to do this is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85][video tutorial]] (in French).
 
 This document describes the software you need to have
 installed on your machine and how to handle authentication. Please
@@ -54,7 +54,7 @@ never asks me for any password anymore and I don't have to remember
 anything).
 ** Option 1: HTTPS
 *** Configuring your GitLab password
-In this [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/f6580ad8e997400faeffe9af4fd37063/2][video tutorial]] (in French), I explain how to change your
+In this [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85][video tutorial]] (in French), I explain how to change your
 password on our GitLab.
 *** Making sure git remembers your password
 My GitLab id is =3211ac4f2fb71deaeff9252764c368e7=. Say I've configured

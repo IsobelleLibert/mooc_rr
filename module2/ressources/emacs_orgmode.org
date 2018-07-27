@@ -8,11 +8,12 @@
 
 *Disclaimer:* The two sections _A simple "/reproducible research/" emacs
 configuration_ and _A stub of replicable article_ explain how to set up
-emacs/org-mode for this MOOC. *These sections are illustrated in two
-out of the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3][three video tutorials of this sequence]], and* *which you
+emacs/org-mode for this MOOC. These are very important sections in the
+context of this MOOC. *These sections are illustrated in two
+out of the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][three video tutorials of this sequence]], and* *which you
 really should follow carefully*. *Otherwise, you may have trouble doing
 the exercises later on*. Likewise, I strongly encourage you to watch
-the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3]["emacs and git" video tutorial available at the same place]].
+the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4]["emacs and git" video tutorial available at the same place]].
 
 The next section provides information on how to install emacs.
 
@@ -82,8 +83,9 @@ versions:
 - Org-mode 9.1.13
 - ESS 17.11
 * A simple "/reproducible research/" emacs configuration 
-This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3][video tutorial]] (in French). Watching
-it before following the instructions given in this section may help.
+This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Mise en place
+Emacs/Orgmode"/ in French). Watching it before following the
+instructions given in this section may help.
 
 Emacs comes with very basic default configuration and it appears like
 everyone has its own taste. You will for example find [[https://www.emacswiki.org/emacs/StarterKits][here]] several
@@ -158,8 +160,9 @@ backed up in a revision control system like git. We leave it up to set
 this up but if you have any trouble, feel free to ask on the FUN
 forums.
 * A stub of replicable article
-This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3][video tutorial]] (in French). Watching
-it before following the instructions given in this section may help.
+This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Écrire un article
+réplicable avec Emacs/Orgmode"/ in French). Watching it before
+following the instructions given in this section may help.
 
 Remember, you need a working LaTeX and R environment. If you can't
 open a terminal and run the commands =R=, =pdflatex=, and =python=, you will not be
@@ -229,7 +232,8 @@ feel this is needed, you should follow the instructions from the
 official Web page: http://company-mode.github.io/
 *** Magit
 [[https://magit.vc/][Magit]] is an emacs interface for Git. Its usage is briefly illustrated
-in the context of this MOOC in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/aefd774dcd2342c6aa769c87e2d0993a/3][video tutorial]] (in French).
+in the context of this MOOC in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Utilisation
+Emacs/git"/ in French).
 
 It is very powerful and we use it on a daily basis but you should
 definitely understand what git does behind the scene beforehand. If

@@ -8,8 +8,8 @@
 This document provides information on how to install Rstudio.
 
 If you have never used git with Rstudio, *we strongly advise that you
-follow [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/d6b5dbe8add046e4bde324ed3fc936fa/3][our tutorial on using git from Rstudio]]* (in French). Before
-proceeding, make sure you also have followed the *[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/f6580ad8e997400faeffe9af4fd37063/2]["git/GitLab
+follow [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/d132a854b0464ad29085cedaded23136][our tutorial on using git from Rstudio]]* (/"Rstudio et Gitlab"/ in French). Before
+proceeding, make sure you also have followed the *[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85]["git/GitLab
 configuration" tutorial]]* (in French). 
 
 Alternatively, you may want to watch [[https://www.youtube.com/embed/uHYcDQDbMY8][this video]] (in English). If you
