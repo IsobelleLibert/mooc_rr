@@ -1,0 +1,194 @@
+# -*- mode: org -*-
+#+TITLE:     
+#+AUTHOR:    Arnaud Legrand
+#+DATE: June, 2018
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:t
+#+PROPERTY: header-args :eval never-export
+
+* Getting information about Python(3) libraries 
+** Getting the list of installed packages and their version
+https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules
+#+begin_src shell :results output :exports both
+pip3 freeze
+#+end_src
+
+#+RESULTS:
+#+begin_example
+asn1crypto==0.24.0
+attrs==17.4.0
+bcrypt==3.1.4
+beautifulsoup4==4.6.0
+bleach==2.1.3
+...
+pandas==0.22.0
+pandocfilters==1.4.2
+paramiko==2.4.0
+patsy==0.5.0
+pexpect==4.2.1
+...
+traitlets==4.3.2
+tzlocal==1.5.1
+urllib3==1.22
+wcwidth==0.1.7
+webencodings==0.5
+#+end_example
+
+#+begin_src shell :results output :exports both
+pip3 show pandas
+echo "            "
+pip3 show statsmodels
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Name: pandas
+Version: 0.22.0
+Summary: Powerful data structures for data analysis, time series,and statistics
+Home-page: http://pandas.pydata.org
+Author: None
+Author-email: None
+License: BSD
+Location: /usr/lib/python3/dist-packages
+Requires: 
+            
+Name: statsmodels
+Version: 0.9.0
+Summary: Statistical computations and models for Python
+Home-page: http://www.statsmodels.org/
+Author: None
+Author-email: None
+License: BSD License
+Location: /home/alegrand/.local/lib/python3.6/site-packages
+Requires: patsy, pandas
+#+end_example
+
+#+begin_src python :results output :exports both
+
+#+end_src
+
+** How to list imported modules?
+Inspiring from [[https://stackoverflow.com/questions/4858100/how-to-list-imported-modules][StackOverflow]], here is a simple function that lists
+loaded package (that have a =__version__= attribute, which is
+unfortunately not completely standard).
+
+#+begin_src python :results output :exports both
+def print_imported_modules():
+    import sys
+    for name,val in sys.modules.items():
+        if(hasattr(val, '__version__')): 
+            print(val.__name__, val.__version__)
+
+print("**** Package list in the beginning ****");
+print_imported_modules()
+print("**** Package list after loading pandas ****");
+import pandas
+print_imported_modules()
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+,**** Package list in the beginning ****
+,**** Package list after loading pandas ****
+pandas 0.22.0
+numpy 1.14.5
+numpy.lib 1.14.5
+numpy.core 1.14.5
+numpy.core.multiarray 3.1
+numpy.core.umath b'0.4.0'
+re 2.2.1
+ctypes 1.1.0
+_ctypes 1.1.0
+logging 0.5.1.2
+argparse 1.1
+zlib 1.0
+numpy.linalg._umath_linalg b'0.1.5'
+decimal 1.70
+decimal 1.70
+pytz 2018.5
+dateutil 2.7.3
+distutils 3.6.5rc1
+platform 1.0.8
+ipaddress 1.0
+six 1.11.0
+json 2.0.9
+csv 1.0
+_csv 1.0
+urllib.request 3.6
+matplotlib 2.1.1
+pyparsing 2.2.0
+cycler 0.10.0
+_libjson 1.33
+#+end_example
+
+** Setting up an environment with pip
+The easiest way to go is as follows:
+#+begin_src shell :results output :exports both
+pip3 freeze > requirements.txt # to obtain the list of packages with their version
+pip3 install -r requirements.txt # to install the previous list of packages, possibly on an other machine
+#+end_src
+
+If you want to have several installed python environments, you may
+want to use [[https://docs.pipenv.org/][Pipenv]]. I doubt it allows to track correctly FORTRAN or C
+dynamic libraries that are wrapped by Python.
+* Getting information about R libraries
+The best way seems to be to rely on the =devtools= package.
+
+#+begin_src R :results output :session *R* :exports both
+sessionInfo()
+devtools::session_info()
+#+end_src
+
+#+RESULTS:
+#+begin_example
+R version 3.5.1 (2018-07-02)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Debian GNU/Linux buster/sid
+
+Matrix products: default
+BLAS: /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.8.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.8.0
+
+locale:
+ [1] LC_CTYPE=fr_FR.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=fr_FR.UTF-8        LC_COLLATE=fr_FR.UTF-8    
+ [5] LC_MONETARY=fr_FR.UTF-8    LC_MESSAGES=fr_FR.UTF-8   
+ [7] LC_PAPER=fr_FR.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=fr_FR.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+[1] compiler_3.5.1
+Session info ------------------------------------------------------------------
+ setting  value                       
+ version  R version 3.5.1 (2018-07-02)
+ system   x86_64, linux-gnu           
+ ui       X11                         
+ language (EN)                        
+ collate  fr_FR.UTF-8                 
+ tz       Europe/Paris                
+ date     2018-08-01                  
+
+Packages ----------------------------------------------------------------------
+ package   * version date       source        
+ base      * 3.5.1   2018-07-02 local         
+ compiler    3.5.1   2018-07-02 local         
+ datasets  * 3.5.1   2018-07-02 local         
+ devtools    1.13.6  2018-06-27 CRAN (R 3.5.1)
+ digest      0.6.15  2018-01-28 CRAN (R 3.5.0)
+ graphics  * 3.5.1   2018-07-02 local         
+ grDevices * 3.5.1   2018-07-02 local         
+ memoise     1.1.0   2017-04-21 CRAN (R 3.5.1)
+ methods   * 3.5.1   2018-07-02 local         
+ stats     * 3.5.1   2018-07-02 local         
+ utils     * 3.5.1   2018-07-02 local         
+ withr       2.1.2   2018-03-15 CRAN (R 3.5.0)
+#+end_example
+
+Some actually advocate that [[https://github.com/ropensci/rrrpkg][writing a reproducible research compendium
+can be done by writing an R package]]. Those of you willing to have a
+clean R dependency management should thus have a look at [[https://rstudio.github.io/packrat/][Packrat]].
