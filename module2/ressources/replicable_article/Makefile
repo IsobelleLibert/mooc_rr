@@ -15,7 +15,7 @@ all: article.pdf
 %.html: %.org
 	emacs -q -batch --eval "(setq enable-local-eval t)" --eval "(setq enable-local-variables t)" $^  --funcall org-html-export-to-html
 
-$(ARCHIVE).tgz: $(ARCHIVE_FILES)
+../$(ARCHIVE).tgz: $(ARCHIVE_FILES)
 	tar --xform "s|^|$(ARCHIVE)/|" -zcf $@ $^
 
 clean:

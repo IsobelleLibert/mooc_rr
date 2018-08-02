@@ -172,16 +172,16 @@ command (alternatively, it uses =curl=). Once downloaded, you may still read the
 source ([[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/replicable_article/article.org][article.org]]) and understand how it works though.
 
 #+begin_src shell :results output :exports none
-make -C replicable_article/ all replicable_article.tgz
+make -C replicable_article/ all ../replicable_article.tgz
 #+end_src
 
 #+RESULTS:
 
-Download the following [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/replicable_article/replicable_article.tgz][archive]], uncompress it and simply =make= to generate the
+Download the following [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/replicable_article.tgz][archive]], uncompress it and simply =make= to generate the
 article. You should then be able to open the [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/replicable_article/article.pdf][resulting article]]. This
 is summarized in the following command:
 #+begin_src sh :results output :exports both
-wget --no-check-certificate -O replicable_article.tgz https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/replicable_article/replicable_article.tgz
+wget --no-check-certificate -O replicable_article.tgz https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/replicable_article.tgz
 tar zxf replicable_article.tgz; cd replicable_article; make ; evince article.pdf
 #+end_src
 
