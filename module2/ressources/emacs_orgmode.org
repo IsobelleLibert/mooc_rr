@@ -181,8 +181,8 @@ Download the following [[https://app-learninglab.inria.fr/gitlab/learning-lab/mo
 article. You should then be able to open the [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/replicable_article/article.pdf][resulting article]]. This
 is summarized in the following command:
 #+begin_src sh :results output :exports both
-wget --no-check-certificate -O replicable.tgz https://github.com/alegrand/RR_webinars/raw/master/1_replicable_article_laboratory_notebook/replicable/replicable.tgz ### Fix the broken URL
-tar zxf replicable.tgz; cd replicable; make ; evince article.pdf
+wget --no-check-certificate -O replicable_article.tgz https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/replicable_article/replicable_article.tgz
+tar zxf replicable_article.tgz; cd replicable_article; make ; evince article.pdf
 #+end_src
 
 *Possible issues*:
