@@ -8,5 +8,5 @@ NLINES=10000000
 	       -e 's/<li>/<li style="margin-bottom:0;">/g' \
 	       -e 's/<ul>/<ul style="margin:0 0;">/g' $@
 	mv $@ $@.bak
-	cat $@.bak | grep -A $(NLINES) -e '<body>' | grep -B $(NLINES) -e '<div id="postamble" class="status">' | grep -v -e '<body>' -e '<div id="postamble" class="status">' > $@
+	html_png_inliner.pl < $@.bak | grep -A $(NLINES) -e '<body>' | grep -B $(NLINES) -e '<div id="postamble" class="status">' | grep -v -e '<body>' -e '<div id="postamble" class="status">' > $@
 	rm $@.bak
