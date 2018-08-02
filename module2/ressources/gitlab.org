@@ -6,6 +6,11 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
+*This document is particularly important if you follow the Rstudio or
+the Org-Mode course.* *If you follow the Jupyter course, it can be
+ignored in a first step* *as we have closely integrated Jupyter and
+GitLab in the context of this MOOC.*
+
 So far, you only used git via the web interface from the GitLab we
 deployed for the MOOC. 
 
@@ -19,11 +24,14 @@ is very convenient but in most cases, you will want to have your own
 local copy of the repository and you will have to synchronize your
 local copy with the remote GitLab one. To propagate your
 modifications, you will obviously have to authenticate yourself on
-GitLab. How to do this is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85][video tutorial]] (in French).
+GitLab. 
 
-This document describes the software you need to have
-installed on your machine and how to handle authentication. Please
-read these instructions carefully. 
+This document describes the software you need to have installed on
+your machine and how to handle authentication.  The "Configuring Git"
+section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85][video tutorial]] (in French).
+
+Please read all these instructions carefully, in particular the one on
+"Configuring your password on GitLab".
 
 * Installing Git
 ** Linux (debian, ubuntu)
@@ -44,49 +52,97 @@ apt-get update ; apt-get install git
     #+BEGIN_QUOTE
     [[https://github.com/desktop/desktop/issues/852][Apparently]], this works with GitLab and https.
     #+END_QUOTE
-* Authenticating on GitLab
-There are two ways of authenticating and synchronizing your local
-repository with GitLab: through HTTPS or through SSH. The first one
-does not require any particular software installation on your machine
-so this is what I recommend for this MOOC. Yet, I also describe the
-second one as it is the one I prefer (once it is well configured, it
-never asks me for any password anymore and I don't have to remember
-anything).
-** Option 1: HTTPS
-*** Configuring your GitLab password
-In this [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85][video tutorial]] (in French), I explain how to change your
-password on our GitLab.
-*** Making sure git remembers your password
-My GitLab id is =3211ac4f2fb71deaeff9252764c368e7=. Say I've configured
-my password to be =tototutu= (what a weak password...) and I want to
-clone my =mooc-rr= repository. If you clone your repos by simply pasting
-the GitLab url (e.g., with the following command line) you will be
+* Configuring Git
+** Telling Git who you are: Name and Email
+1. Open Terminal.
+2. Set a Git username and email:
+   #+begin_src shell :results output :exports both
+   git config --global user.name "Mona Lisa"
+   git config --global user.email "email@example.com"
+   #+end_src
+
+   #+RESULTS:
+
+3. Confirm that you have set the Git username correctly:   
+   #+begin_src shell :results output :exports both
+   git config --global user.name
+   git config --global user.email
+   #+end_src
+
+   #+RESULTS:
+   : Mona Lisa
+   : email@example.com
+** Dealing with proxies
+You may be behind a proxy, in which case you may have trouble cloning
+or fetching from a remote repository or you may get an error like
+=unable to access '...' Couldn't resolve host '...'=.
+
+In such case, consider something like this:
+#+begin_src shell :results output :exports both
+git config --global http.proxy http://proxyUsername:proxyPassword@proxy.server.com:port
+#+end_src
+
+The proxyPassword will be stored unencrypted in your ~.gitconfig~ file,
+which you may not want. In that case, remove it from the URL and you
+will be prompted for it every time it is needed.
+** Configuring your password on GitLab
+1. Access [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/xblock/block-v1:inria+41016+session01bis+type@lti+block@05a0ce425f1741e5bee5049040f70529/handler/preview_handler][GitLab]]. /Note: You have to access Gitlab from the FUN
+   platform otherwise you may get a 405 error/ /when trying to direcly
+   open https://app-learninglab.inria.fr/gitlab/users/sign_in/.
+   #+BEGIN_CENTER
+   file:gitlab_images/erreur405.png  
+   #+END_CENTER
+2. Click on =Sign in:=
+   #+BEGIN_CENTER
+   file:gitlab_images/projects.png
+   #+END_CENTER
+   The long and uggly character sequence, which is here replaced by =xxx=
+   is your GitLab login/id. You'll need to use it when trying to
+   propagate some modifications from your computer to GitLab.
+3. To defind your password, you should go in =settings=:
+   #+BEGIN_CENTER
+   file:gitlab_images/settings.png
+   #+END_CENTER
+4. Then, go to the =profile= tab to define a valid email address:
+   #+BEGIN_CENTER
+   file:gitlab_images/profile.png
+   #+END_CENTER
+   You will then receive a email with a link to open to confirm your
+   email address is correct. Just open it.
+5. Once your email address is validated, it will appear as =verified= and
+   as your =main address= in the =Emails= tab:
+   #+BEGIN_CENTER
+   file:gitlab_images/mail.png
+   #+END_CENTER
+6. You will then finally be able to click on the =I forgot my password=
+   button from the =password= tab:
+   file:gitlab_images/password.png
+
+   You will then receive an email allowing you to reset your GitLab
+   password.
+** Remembering your password locally
+If you clone your repos by simply pasting the GitLab URL, you will be
 prompted for your login and your password every time you want to
-propagate your local modifications.
-#+begin_src shell :results output :exports both
-git clone https://app-learninglab.inria.fr/gitlab/3211ac4f2fb71deaeff9252764c368e7/mooc-rr
-#+end_src
-This can be quite painful, which is why you can also provide them once
-and for all when cloning, as follows:
-#+begin_src shell :results output :exports both
-git clone https://3211ac4f2fb71deaeff9252764c368e7:tototutu@app-learninglab.inria.fr/gitlab/3211ac4f2fb71deaeff9252764c368e7/mooc-rr
-#+end_src
-This is very convenient but there is one drawback to understand. This
-means your password is stored, unencrypted on your hard drive. If
-anyone ever gets an access to your machine, he will gain access rights
-to all your repos, which can be problematic. This is why the really
-good way to do this is to follow [[https://stackoverflow.com/questions/5343068/is-there-a-way-to-skip-password-typing-when-using-https-on-github][these instructions]]:
+propagate your local modifications, which is tedious. This is why you
+should ask git to remember your login and password as follows
 #+begin_src shell :results output :exports both
 git config --global credential.helper cache                  # remember my password
 git config --global credential.helper "cache --timeout=3600" # for one hour at most
 #+end_src
 With this setup, you will be prompted for your password but it will be
-cached in memory and they will not be asked again before an hour.
-** Option 2: SSH
-My preferred (although more technical) solution is to install SSH, to
-create a pair or private/public keys, and to upload your SSH public
-key on GitLab. This section provides with information on how to do
-this.
+cached in memory and they will not be asked again before an hour.  You
+may want to read [[https://stackoverflow.com/questions/5343068/is-there-a-way-to-skip-password-typing-when-using-https-on-github][these instructions]] to better understand how all this
+works.
+** Optional: authenticating through SSH
+There are two ways of authenticating and synchronizing your local
+repository with GitLab: through HTTPS or through SSH. The first one is
+what was just described and does not require any particular software
+installation on your machine so this is what I recommend for this
+MOOC. Yet, I like the second one better (although is may seem a bit
+more technical), which is why I describe it here. It consists in
+installing SSH, creating a pair or private/public keys, and uploading
+your SSH public key on GitLab. This section provides with information
+on how to do this.
 *** Installing SSH
 **** Linux (debian, ubuntu)
 We provide here only instructions for debian-based distributions. Feel
@@ -109,3 +165,4 @@ video:
 #+BEGIN_EXPORT html
 <iframe width="560" height="315" src="https://www.youtube.com/embed/54mxyLo3Mqk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 #+END_EXPORT
+
