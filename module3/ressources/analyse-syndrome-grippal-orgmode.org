@@ -70,7 +70,7 @@ Après avoir téléchargé les données, nous commençons par l'extraction des d
 from urllib.request import urlopen
 
 data = urlopen(data_url).read()
-lines = data.decode('ascii').strip().split('\n')
+lines = data.decode('utf-8').strip().split('\n')
 data_lines = lines[1:]
 table = [line.split(',') for line in data_lines]
 #+END_SRC
