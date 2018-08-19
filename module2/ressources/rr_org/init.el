@@ -1,4 +1,3 @@
-(require 'org-install)
 (require 'org)
 
 (setq inhibit-splash-screen t)

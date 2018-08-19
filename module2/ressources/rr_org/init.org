@@ -21,7 +21,6 @@ document, simply =M-x org-babel-tangle=.
 * Loading files:  
 ** Loading babel: 						     :ARNAUD:
 #+begin_src emacs-lisp :tangle init.el
-(require 'org-install)
 (require 'org)
 #+end_src
 * Emacs aesthetics:
