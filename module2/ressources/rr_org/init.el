@@ -1,3 +1,15 @@
+;; Machine-dependent configuration - adapt as required for your computer!
+
+;; If a full path to the interpreter is used, be careful it if contains spaces
+;; (which seems to be typical for Windows and not rare for macOS). The path
+;; must then be surrounded by backslash-escaped quotation marks, as in
+;; (setq org-babel-python-command "\"C:/Program Files/Python/Python37/python.exe\"")
+(setq org-babel-python-command "python3")
+
+;; For Unix-like systems, this can be normally left commented out. Under Windows,
+;; insert the path to your R interpreter.
+;; (setq inferior-R-program-name "C:/Program Files/R/R-3.5.1/bin/x64/Rterm.exe")
+
 (require 'org)
 
 (setq inhibit-splash-screen t)
@@ -153,8 +165,6 @@ Entered on %U
      (makefile . t)
      ))
   (setq org-src-preserve-indentation t)
-
-(setq org-babel-python-command "python3")
 
 (add-to-list 'org-structure-template-alist
         '("s" "#+begin_src ?\n\n#+end_src" "<src lang=\"?\">\n\n</src>"))
