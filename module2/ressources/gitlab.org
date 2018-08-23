@@ -75,7 +75,7 @@ apt-get update ; apt-get install git
 ** Dealing with proxies
 You may be behind a proxy, in which case you may have trouble cloning
 or fetching from a remote repository or you may get an error like
-=unable to access '...' Couldn't resolve host '...'=.
+=unable to access ... Couldn't resolve host ...=
 
 In such case, consider something like this:
 #+begin_src shell :results output :exports both
