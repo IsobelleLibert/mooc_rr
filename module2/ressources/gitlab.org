@@ -90,33 +90,33 @@ will be prompted for it every time it is needed.
    platform otherwise you may get a 405 error/ /when trying to direcly
    open https://app-learninglab.inria.fr/gitlab/users/sign_in/.
    #+BEGIN_CENTER
-   file:gitlab_images/erreur405.png  
+   [[file:gitlab_images/erreur405.png]]
    #+END_CENTER
 2. Click on =Sign in:=
    #+BEGIN_CENTER
-   file:gitlab_images/projects.png
+   [[file:gitlab_images/projects.png]]
    #+END_CENTER
    The long and uggly character sequence, which is here replaced by =xxx=
    is your GitLab login/id. You'll need to use it when trying to
    propagate some modifications from your computer to GitLab.
 3. To defind your password, you should go in =settings=:
    #+BEGIN_CENTER
-   file:gitlab_images/settings.png
+   [[file:gitlab_images/settings.png]]
    #+END_CENTER
 4. Then, go to the =profile= tab to define a valid email address:
    #+BEGIN_CENTER
-   file:gitlab_images/profile.png
+   [[file:gitlab_images/profile.png]]
    #+END_CENTER
    You will then receive a email with a link to open to confirm your
    email address is correct. Just open it.
 5. Once your email address is validated, it will appear as =verified= and
    as your =main address= in the =Emails= tab:
    #+BEGIN_CENTER
-   file:gitlab_images/mail.png
+   [[file:gitlab_images/mail.png]]
    #+END_CENTER
 6. You will then finally be able to click on the =I forgot my password=
    button from the =password= tab:
-   file:gitlab_images/password.png
+   [[file:gitlab_images/password.png]]
 
    You will then receive an email allowing you to reset your GitLab
    password.
