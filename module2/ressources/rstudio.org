@@ -101,19 +101,19 @@ Open RStudio and do the following steps:
 - Create a new version controled project: =File / New Project / Version
   Control=
   #+BEGIN_CENTER
-  file:rstudio_images/new_project.png
+  [[file:rstudio_images/new_project.png]]
 
-  file:rstudio_images/git.png  
+  [[file:rstudio_images/git.png]]
   #+END_CENTER
 - Get the url from your gitlab repository:
   #+BEGIN_CENTER
-  file:rstudio_images/adresse_depot.png  
+  [[file:rstudio_images/adresse_depot.png]]
   #+END_CENTER
 - Indicate this URL in the "Repository URL" field (/you may want to
   prefix this URL with =xxx@= where =xxx= is/ /your Gitlab id to avoid
   repeatedly giving it later on/). 
   #+BEGIN_CENTER
-  file:rstudio_images/clone.png  
+  [[file:rstudio_images/clone.png]]
   #+END_CENTER
 - If you're behind a proxy, git should be configured
   accordingly. Check the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85]["Dealing with proxies" section]].
@@ -121,7 +121,7 @@ Open RStudio and do the following steps:
   repository.
 - RStudio should restart in a mode related to Git:
   #+BEGIN_CENTER
-  file:rstudio_images/rstudio.png  
+  [[file:rstudio_images/rstudio.png]]
   #+END_CENTER
 - The file manager on the right, allows you to browse the version
   controled repository.
@@ -131,26 +131,26 @@ Open RStudio and do the following steps:
 - Save
 - Go to the Git menu to commit
   #+BEGIN_CENTER
-  file:rstudio_images/commit.png
+  [[file:rstudio_images/commit.png]]
 
-  file:rstudio_images/commit2.png
+  [[file:rstudio_images/commit2.png]]
   #+END_CENTER
 - Select the lines to commit and then click on =commit=
   #+BEGIN_CENTER
-  file:rstudio_images/commit5.png  
+  [[file:rstudio_images/commit5.png]]
   #+END_CENTER
   Your modifications have now been commited on your local
   machine. They haven't been propagated to GitLab yet.
 - Click on =push= to propagate them on GitLab
   #+BEGIN_CENTER
-  file:rstudio_images/push.png
+  [[file:rstudio_images/push.png]]
 
-  file:rstudio_images/push2.png
+  [[file:rstudio_images/push2.png]]
 
-  file:rstudio_images/push3.png
+  [[file:rstudio_images/push3.png]]
   #+END_CENTER
   *NB*: You won't be able to propagate your modifications on GitLab if
   some modifications have been done on GitLab in the meantime. 
-  file:rstudio_images/push4.png
+  [[file:rstudio_images/push4.png]]
 - You should first merge these remote modifications locally. Click on
   =pull= to get these modifications on your machine.
