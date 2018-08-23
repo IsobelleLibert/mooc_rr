@@ -1,13 +1,26 @@
 ;; Machine-dependent configuration - adapt as required for your computer!
 
-;; If a full path to the interpreter is used, be careful it if contains spaces
-;; (which seems to be typical for Windows and not rare for macOS). The path
+;; Executables for Python and R
+
+;; Default setting: Use "python3" under Linux and macOS, but "Python" under Windows.
+;; The default for R is "R" for all platforms (predefined by Emacs).
+(setq org-babel-python-command
+      (if (memq system-type '(windows-nt ms-dos))
+          "Python"
+        "python3"))
+
+;; If the Python and R executables are on your system's search path,
+;; you should not have to modify anything here. If Emacs does not find
+;; Python or R, or if it uses a different version of Python or R than you
+;; expect, you can uncomment these two lines (one for Python, one for R)
+;; and modify them to point to the executables.
+
+;; Python
+;; Be careful if the path to your Python installation contains spaces. The path
 ;; must then be surrounded by backslash-escaped quotation marks, as in
 ;; (setq org-babel-python-command "\"C:/Program Files/Python/Python37/python.exe\"")
-(setq org-babel-python-command "python3")
 
-;; For Unix-like systems, this can be normally left commented out. Under Windows,
-;; insert the path to your R interpreter.
+;; R
 ;; (setq inferior-R-program-name "C:/Program Files/R/R-3.5.1/bin/x64/Rterm.exe")
 
 (require 'org)
