@@ -82,6 +82,43 @@ versions:
 - Emacs 26.1
 - Org-mode 9.1.13
 - ESS 17.11
+*** Directory naming conventions
+In all the following instructions, it is common to refer to your home
+directory through the (UNIX) =~/= notation. On Windows, your home
+directory should be something like =C:\Users\yourname=. Therefore,
+whenever we mention the =~/org/= (resp. the =~/.emacs.d/=) directory this
+means we are referring to =C:\Users\yourname\org= (resp.
+=C:\Users\yourname\.emacs.d\=).
+*** Making R and Python available to the console
+When running a command, windows will look for the command in the
+directories indicated in the =PATH= environment variable. If none of
+these directories contains the command, Windows will stop and indicate
+the command does not exist. To make sure R (, which may be in
+something like =C:/Program Files/R/R-3.5.1/bin/x64/=) and Python (,
+which may be in something like =C:/Program Files/Python/Python37/=) can
+easily be run from emacs, you should thus configure the =PATH= variable
+accordingly.
+
+This requires to go through the "Environment Variable" editor as
+explained [[http://sametmax.com/ajouter-un-chemin-a-la-variable-denvironnement-path-sous-windows/][here]].
+*** Installing and configuring Matplotlib (graphic python library)
+Open an DOS console and type the following command:
+#+begin_src shell :results output :exports both
+python -m pip install -U matplotlib
+#+end_src
+[[file:emacs_orgmode_images/install_matplotlib.png]]
+
+Then you will want to deactivate interactive plots in matplotlib. To
+this end, you first need to know where the matplotlib configuration is
+located. Open a python console the type the following code:
+#+begin_src python :results output :exports both
+import matplotlib
+matplotlib.matplotlib_fname()
+#+end_src
+[[file:emacs_orgmode_images/matplotlib.png]]
+Open the =matplotlibrc= file and add a =#= at the beginning of the line
+starting with =backend=, which amounts to use the default =Agg= value.
+
 * A simple "/reproducible research/" emacs configuration 
 This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Mise en place
 Emacs/Orgmode"/ in French). Watching it before following the
@@ -139,7 +176,7 @@ configuration with the following command: =emacs -q -l rr_org/init.el=.
 Open a new instance of Emacs and open a =foo.org= file. Copy the
 following lines in this file:
    : #+begin_src shell :session foo :results output :exports both
-   : ls -la
+   : ls -la # or dir under windows
    : #+end_src
 
 Put your cursor inside this code block and execute it with the
@@ -156,9 +193,9 @@ is demonstrated in the [[https://app-learninglab.inria.fr/gitlab/learning-lab/mo
 ** Step 4: Open and play with your journal:
 In step 1, you were told to create an journal in
 =~org/journal.org=. First you probably want to make sure this file is
-backed up in a revision control system like git. We leave it up to set
-this up but if you have any trouble, feel free to ask on the FUN
-forums.
+backed up in a revision control system like git. We leave it up to you
+to set this up but if you have any trouble, feel free to ask on the
+FUN forums.
 * A stub of replicable article
 This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Écrire un article
 réplicable avec Emacs/Orgmode"/ in French). Watching it before
