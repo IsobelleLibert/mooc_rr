@@ -8,7 +8,7 @@
 #+LANGUAGE:  en
 #+OPTIONS:   num:nil toc:t \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
-#+OPTIONS:   author:nil email:nil creator:nil timestamp:t
+#+OPTIONS:   email:nil creator:nil timestamp:t
 #+TAGS: noexport(n) deprecated(d)
 #+EXPORT_SELECT_TAGS: export
 #+EXPORT_EXCLUDE_TAGS: noexport
@@ -43,27 +43,6 @@
 \let\oldref=\ref
 \def\ref#1{~\oldref{#1}\xspace}
 \sloppy
-#+END_EXPORT
-
-#+BEGIN_EXPORT latex
-  \title{Org Mode Template for an IEEE Conference Article}
-  %\subtitle{}
-
-  \author{%
-    \IEEEauthorblockN{%
-      John Doe\IEEEauthorrefmark{1}, 
-      John Smith\IEEEauthorrefmark{2},
-      Jane Doe\IEEEauthorrefmark{1},
-    }\smallskip
-%    \\
-    \IEEEauthorblockA{
-      \IEEEauthorrefmark{1}University of Middle-of-Nowhere; \url{firstname.lastname@mon.edu}}
-    \IEEEauthorblockA{
-      \IEEEauthorrefmark{2}Institute of Whatever; \url{firstname.lastname@smith.org}}
-  }
-
-  \maketitle
-
 #+END_EXPORT
 
 #+BEGIN_abstract
