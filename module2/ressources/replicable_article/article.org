@@ -218,7 +218,7 @@ our own experimental testbed with support of our university.
 #+LaTeX: \def\raggedright{}
 #+LaTeX: \bibliographystyle{IEEEtran}
 #+LaTeX: \bibliography{biblio}
-* Emacs Setup 							   :noexport:
+* Emacs Setup                                                      :noexport:
   This document has local variables in its postembule, which should
   allow Org-mode to work seamlessly without any setup. If you're
   uncomfortable using such variables, you can safely ignore them at
@@ -227,14 +227,15 @@ our own experimental testbed with support of our university.
 # Local Variables:
 # eval:   (add-to-list 'load-path ".")
 # eval:   (require 'org-install)
-# eval:   (org-babel-do-load-languages 'org-babel-load-languages '((shell . t) (R . t) (python . t) ))
+# eval:   (org-babel-do-load-languages 'org-babel-load-languages '((R . t) (python . t) ))
+# eval:   (setq org-babel-python-command (if (memq system-type '(windows-nt ms-dos)) "Python" "python3"))
+# eval:   (require 'ess-site)
 # eval:   (setq org-confirm-babel-evaluate nil)
 # eval:   (unless (boundp 'org-latex-classes) (setq org-latex-classes nil))
 # eval:   (add-to-list 'org-latex-classes '("IEEEtran"
-# "\\documentclass[conference, 10pt, compsocconf]{IEEEtran}\n \[NO-DEFAULT-PACKAGES]\n \[EXTRA]\n  \\usepackage{graphicx}\n  \\usepackage{hyperref}"  ("\\section{%s}" . "\\section*{%s}") ("\\subsection{%s}" . "\\subsection*{%s}")                       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")                       ("\\paragraph{%s}" . "\\paragraph*{%s}")                       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+# "\\documentclass[conference, 10pt]{IEEEtran}\n \[NO-DEFAULT-PACKAGES]\n \[EXTRA]\n  \\usepackage{graphicx}\n  \\usepackage{hyperref}"  ("\\section{%s}" . "\\section*{%s}") ("\\subsection{%s}" . "\\subsection*{%s}")                       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")                       ("\\paragraph{%s}" . "\\paragraph*{%s}")                       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 # eval:   (setq org-alphabetical-lists t)
 # eval:   (setq org-src-fontify-natively t)
 # eval:   (setq ess-ask-for-ess-directory nil)
+# eval:   (setq org-latex-pdf-process '("%latex -interaction nonstopmode -output-directory %o %f" "bibtex  %b" "%latex -interaction nonstopmode -output-directory %o %f" "%latex -interaction nonstopmode -output-directory %o %f"))
 # End:
-
-
