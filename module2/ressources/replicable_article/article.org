@@ -52,28 +52,27 @@
   reproducible research technology.
 #+END_abstract
 * Getting the LaTeX packages                                       :noexport:
-#+begin_src shell :results output :exports both
-set -e
-if which wget; then 
-  wget --no-check-certificate -O IEEEtran.cls http://mirror.ibcp.fr/pub/CTAN/macros/latex/contrib/IEEEtran/IEEEtran.cls
-  wget --no-check-certificate -O IEEEtran.bst http://mirrors.ctan.org/macros/latex/contrib/IEEEtran/bibtex/IEEEtran.bst 
-else 
-  if which curl; then 
-    curl -o IEEEtran.cls http://mirror.ibcp.fr/pub/CTAN/macros/latex/contrib/IEEEtran/IEEEtran.cls
-    curl -o IEEEtran.bst http://mirrors.ctan.org/macros/latex/contrib/IEEEtran/bibtex/IEEEtran.bst 
-  else
-    echo "Neither wget nor curl was found!!! Get a real OS!" 1>&2
-    exit 1
-  fi
-fi
+#+begin_src python :session python :results output :exports both
+import urllib.request
+import os.path
+
+def download_urls(url_list):
+    for url,filename in url_list:
+        if(not(os.path.isfile(filename))):
+            urllib.request.urlretrieve(url, filename)
+
+download_urls([("http://mirrors.ctan.org/macros/latex/contrib/IEEEtran/IEEEtran.cls","IEEEtran.cls"),
+               ("http://mirrors.ctan.org/macros/latex/contrib/IEEEtran/bibtex/IEEEtran.bst","IEEEtran.bst")])
 #+end_src
+
+#+RESULTS:
 
 * Getting the data                                                 :noexport:
-#+begin_src shell :results output raw :exports both
-wget --no-check-certificate -O measurements.txt https://raw.githubusercontent.com/alegrand/M2R-ParallelQuicksort/master/data/sama_2014-10-13/measurements_03%3A47.txt
-echo 'file:measurements.txt'
+#+begin_src python :session python :results output :exports both
+download_urls([("https://raw.githubusercontent.com/alegrand/M2R-ParallelQuicksort/master/data/sama_2014-10-13/measurements_03%3A47.txt","measurements.txt")])
 #+end_src
 
+#+RESULTS:
 * Extracting traces from data files				   :noexport:
 
 #+begin_src python  :results output raw :exports both :var input="measurements.txt" output="data.csv"
