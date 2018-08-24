@@ -116,6 +116,7 @@ import matplotlib
 matplotlib.matplotlib_fname()
 #+end_src
 [[file:emacs_orgmode_images/matplotlib.png]]
+
 Open the =matplotlibrc= file and add a =#= at the beginning of the line
 starting with =backend=, which amounts to use the default =Agg= value.
 
