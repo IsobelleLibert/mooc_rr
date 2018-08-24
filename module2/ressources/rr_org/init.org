@@ -23,8 +23,14 @@ document, simply =M-x org-babel-tangle=.
 #+begin_src emacs-lisp :tangle init.el
 ;; Machine-dependent configuration - adapt as required for your computer!
 
-;; Executables for Python and R
+;; There are two kinds of settings that might have to be adapted to the
+;; specific environment of a computer:
+;; 1. Telling Emacs which executables to use for Python and R
+;; 2. Telling Emacs to use a Web proxy
 
+;;
+;; 1. Telling Emacs which executables to use for Python and R
+;;
 ;; Default setting: Use "python3" under Linux and macOS, but "Python" under Windows.
 ;; The default for R is "R" for all platforms (predefined by Emacs).
 (setq org-babel-python-command
@@ -45,6 +51,27 @@ document, simply =M-x org-babel-tangle=.
 
 ;; R
 ;; (setq inferior-R-program-name "C:/Program Files/R/R-3.5.1/bin/x64/Rterm.exe")
+
+;;
+;; 2. Telling Emacs to use a Web proxy
+;;
+;; If your local network imposes the use of a Web proxy, you must uncomment and adapt
+;; the following lines. Emacs does NOT use system-wide proxy settings. In most
+;; cases, only the first two lines (proxy-name and proxy-port) need to be changed,
+;; but sometimes the fifth line (no_proxy) also requires modifications. If you are
+;; unsure what the right settings are, ask your local network administrator for help.
+
+;; (let* ((proxy-name "proxy.mynetwork.org")
+;;        (proxy-port "8080")
+;;        (proxy-name-port (concat proxy-name ":" proxy-port))
+;;        (proxy-url (concat "http://" proxy-name-port "/")))
+;;   (setq url-proxy-services (list (cons "no_proxy" "127.0.0.1")
+;;                                  (cons "http"  proxy-name-port)
+;;                                  (cons "https"  proxy-name-port)))
+;;   (setenv "http_proxy"  proxy-url)
+;;   (setenv "https_proxy" proxy-url)
+;;   (setenv "JVM_OPTS" (concat "-Dhttp.proxyHost=" proxy-name
+;;                              " -Dhttp.proxyPort=" proxy-port)))
 #+end_src
 
 * Loading files:  
