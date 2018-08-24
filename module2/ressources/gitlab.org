@@ -12,11 +12,7 @@ ignored in a first step* *as we have closely integrated Jupyter and
 GitLab in the context of this MOOC.*
 
 So far, you only used git via the web interface from the GitLab we
-deployed for the MOOC. 
-
-#+BEGIN_CENTER
-https://app-learninglab.inria.fr/gitlab/
-#+END_CENTER
+deployed for the MOOC: https://app-learninglab.inria.fr/gitlab/
 
 If you access this link from the FUN platform, you do not have to
 authenticate and you can readily read and modify all your files.  This
@@ -165,4 +161,97 @@ video:
 #+BEGIN_EXPORT html
 <iframe width="560" height="315" src="https://www.youtube.com/embed/54mxyLo3Mqk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 #+END_EXPORT
+* Using Git through the command line to synchronize your local files with Gitlab
+This section describes a generic (through the command line) way to
+synchronize your local files with Gitlab. You will not need this if
+you follow the Jupyter course. If you follow the Rstudio course, all
+these operations can be done through Rstudio and you may want to read
+[[file:rstudio.org][the corresponding instructions]]. If you follow the Org-Mode course, all
+these operations can be done through Magit and you may want to read
+[[file:emacs_orgmode.org][the corresponding instructions]]. 
+
+Here are other ways to learn Git through the command line:
+- The [[http://swcarpentry.github.io/git-novice/][Software Carpentry git tutorial]]
+- The (freely available) Pro Git book ([[https://git-scm.com/book/en/v2][in English]] or [[https://git-scm.com/book/fr/v2][in
+  French]]). Reading the first two chapters is enough to get a good start.
+- [[https://learngitbranching.js.org/][Learn Git Branching]] will allow to interactively learn Git and to 
+  understand with branches.
+
+Now, let's start!
+1. Obtain the repository URL
+   [[file:gitlab_images/adresse_depot.png]]
+2. Cloning the repository
+   #+begin_src shell :results output :exports both
+   cd /the/directory/where/you/want/to/clone/your/repository
+   git clone https://app-learninglab.inria.fr/gitlab/xxx/mooc-rr.git
+   #+end_src
+   Alternatively, you may want to indicate now your login although I
+   rather suggest you follow the /Remembering your password locally/
+   instructions:
+   #+begin_src shell :results output :exports both
+   git clone https://xxx@app-learninglab.inria.fr/gitlab/xxx/mooc-rr.git
+   #+end_src
+   Now a directory =mooc-rr= has been created on your computer.
+3. Inspect the repository
+   #+begin_src shell :results output :exports both
+   cd mooc-rr
+   ls # (Unix)
+   dir # (Windows)
+   #+end_src
+4. Synchronizing to GitLab
+
+   You should indicate which files to track (=git add=) and commit them
+   locally (=git commit=) before they can be transfered (=git push=) to
+   GitLab. The =git status= will indicate you whether files are
+   tracked/modified/committed/...
+
+   Let's assume you just created a `fichier.txt` file on the top of
+   the =mooc-rr= directory.
+
+   #+begin_src shell :results output :exports both
+   git status
+   #+end_src
+
+   [[file:gitlab_images/status1.png]]
+
+   #+begin_src shell :results output :exports both
+   git add fichier.txt
+   git status
+   #+end_src
+
+   [[file:gitlab_images/status2.png]]
+
+   #+begin_src shell :results output :exports both
+   git commit -m "message commit"
+   #+end_src
+
+   [[file:gitlab_images/commit_git.png]]
+
+   #+begin_src shell :results output :exports both
+   git status
+   #+end_src
+
+   [[file:gitlab_images/status3.png]]
+
+   The file can then be transfered to GitLab:
+   #+begin_src shell :results output :exports both
+   git push
+   #+end_src
+
+   At this point, git will as you about your login/password unless
+   you followed the previous /Remembering your password locally/ instructions.
+
+   N.B.: you will not be allowed to propagate your modifications to
+   GitLab if other modifications (e.g., from someone else) have been
+   propagated in between
+
+   [[file:gitlab_images/rejected.png]]
+5. Synchronizing from Gitlab: to avoid the previous problem, you need
+   to fetch the remote GitLab modifications first and apply them
+   locally.
+   #+begin_src shell :results output :exports both
+   git pull
+   #+end_src
+   Only then will you be able to =git push=.
+
 
