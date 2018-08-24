@@ -395,8 +395,13 @@ To use this type <p and then TAB
 *** Bash "sh" code:
 To use this type <b and then TAB
 #+begin_src emacs-lisp :tangle init.el
-(add-to-list 'org-structure-template-alist
-        '("b" "#+begin_src shell :results output :exports both\n\n#+end_src" "<src lang=\"sh\">\n\n</src>"))
+(if (memq system-type '(windows-nt ms-dos))
+    ;; Non-session shell execution does not seem to work under Windows, so we use
+    ;; a named session just like for B.
+    (add-to-list 'org-structure-template-alist
+                 '("b" "#+begin_src shell :session session :results output :exports both\n\n#+end_src" "<src lang=\"sh\">\n\n</src>"))
+  (add-to-list 'org-structure-template-alist
+               '("b" "#+begin_src shell :results output :exports both\n\n#+end_src" "<src lang=\"sh\">\n\n</src>")))
 #+end_src
 
 To use this type <B and then TAB. This comes with a session argument
