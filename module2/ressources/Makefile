@@ -10,3 +10,6 @@ NLINES=10000000
 	mv $@ $@.bak
 	html_png_inliner.pl < $@.bak | grep -A $(NLINES) -e '<body>' | grep -B $(NLINES) -e '<div id="postamble" class="status">' | grep -v -e '<body>' -e '<div id="postamble" class="status">' > $@
 	rm $@.bak
+
+clean:
+	rm -f *~
