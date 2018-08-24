@@ -52,6 +52,11 @@ document, simply =M-x org-babel-tangle=.
 #+begin_src emacs-lisp :tangle init.el
 (require 'org)
 #+end_src
+** Loading ESS (Emacs support for R)
+This seems to be needed on some platforms.
+#+begin_src emacs-lisp :tangle init.el
+(require 'ess-site)
+#+end_src
 * Emacs aesthetics:
 ** Remove splash screen:						:WEB:
 #+begin_src emacs-lisp :tangle init.el

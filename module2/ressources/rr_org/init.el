@@ -25,6 +25,8 @@
 
 (require 'org)
 
+(require 'ess-site)
+
 (setq inhibit-splash-screen t)
 
 (setq frame-title-format
