@@ -13,7 +13,7 @@
 (setq org-babel-python-command
       (if (memq system-type '(windows-nt ms-dos))
           "Python"
-        "python3"))
+        "python3 -q"))
 
 ;; If the Python and R executables are on your system's search path,
 ;; you should not have to modify anything here. If Emacs does not find
@@ -257,3 +257,5 @@ Entered on %U
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images) 
 (add-hook 'org-mode-hook 'org-display-inline-images)
 (add-hook 'org-mode-hook 'org-babel-result-hide-all)
+
+(setq python-shell-completion-native-enable nil)
