@@ -188,7 +188,22 @@ Copy =rr_org/init.el= in your =~/.emacs.d/= directory.
 Alternatively, if you do not want to mess with your already existing
 emacs configuration, you may launch emacs with this specific
 configuration with the following command: =emacs -q -l rr_org/init.el=.
-** Step 3: Check whether the installation is working or not
+** Step 3: Adapt the configuration to your specific needs if required
+There are two situations in which it might be necessary to modify
+=init.el=:
+1. Your network environment forces you to use a proxy for access
+   to Web sites (HTTP(S) protocol).
+2. You have multiple installations of Python or R on your computer,
+   or they are in unusual places and not fully configured.
+   If you can run 
+      - "python3" and "R" under Linux and macOS
+      - "Python" and "R" under Windows
+   in a terminal without getting an error message, then you should
+   not have to do anything.
+
+If you do have to modify =init.el=, check the comments at the
+beginning of the file for instructions.
+** Step 4: Check whether the installation is working or not
 Open a new instance of Emacs and open a =foo.org= file. Copy the
 following lines in this file:
    : #+begin_src shell :session foo :results output :exports both
@@ -206,7 +221,7 @@ In the video, we already have demonstrated the main features and
 shortcuts of emacs/org-mode that will help you maintain a document and
 benefit from literate programming. The list of features and shortcuts
 is demonstrated in the [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org][first entry of your labbook]].
-** Step 4: Open and play with your journal:
+** Step 5: Open and play with your journal:
 In step 1, you were told to create an journal in
 =~org/journal.org=. First you probably want to make sure this file is
 backed up in a revision control system like git. We leave it up to you
