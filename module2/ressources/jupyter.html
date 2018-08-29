@@ -4,31 +4,31 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org8a3ae34">Additional Jupyter resources or tricks</a>
+<li style="margin-bottom:0;"><a href="#org5cd0680">Additional Jupyter resources or tricks</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org15943e2">Tips and tricks</a></li>
-<li style="margin-bottom:0;"><a href="#orgf113d02">Running R and Python in the same notebook</a></li>
-<li style="margin-bottom:0;"><a href="#org2ba4a8a">Exporting a notebook</a></li>
+<li style="margin-bottom:0;"><a href="#org7fc56ab">Tips and tricks</a></li>
+<li style="margin-bottom:0;"><a href="#org85c1748">Running R and Python in the same notebook</a></li>
+<li style="margin-bottom:0;"><a href="#orgc80dcea">Exporting a notebook</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#org97a2d04">Installing Jupyter on your own machine</a>
+<li style="margin-bottom:0;"><a href="#orgfcddd6d">Installing Jupyter on your own machine</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org9e75391">Installing jupyter</a></li>
-<li style="margin-bottom:0;"><a href="#orgf9ac059">Exporting your notebooks with latex</a></li>
-<li style="margin-bottom:0;"><a href="#org01b32de">Interesting extensions to improve notebook readability</a></li>
+<li style="margin-bottom:0;"><a href="#org3eb7e0c">Installing jupyter</a></li>
+<li style="margin-bottom:0;"><a href="#org807e282">Exporting your notebooks with latex</a></li>
+<li style="margin-bottom:0;"><a href="#org0359fd8">Interesting extensions to improve notebook readability</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8a3ae34" class="outline-2">
-<h2 id="org8a3ae34">Additional Jupyter resources or tricks</h2>
-<div class="outline-text-2" id="text-org8a3ae34">
+<div id="outline-container-org5cd0680" class="outline-2">
+<h2 id="org5cd0680">Additional Jupyter resources or tricks</h2>
+<div class="outline-text-2" id="text-org5cd0680">
 </div>
-<div id="outline-container-org15943e2" class="outline-3">
-<h3 id="org15943e2">Tips and tricks</h3>
-<div class="outline-text-3" id="text-org15943e2">
+<div id="outline-container-org7fc56ab" class="outline-3">
+<h3 id="org7fc56ab">Tips and tricks</h3>
+<div class="outline-text-3" id="text-org7fc56ab">
 <p>
 The following <a href="https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/">webpage</a> lists several Jupyter tricks (in particular, it
 illustrates many <code>Ipython magic</code> commands) that should improve your
@@ -38,9 +38,9 @@ now).
 </p>
 </div>
 </div>
-<div id="outline-container-orgf113d02" class="outline-3">
-<h3 id="orgf113d02">Running R and Python in the same notebook</h3>
-<div class="outline-text-3" id="text-orgf113d02">
+<div id="outline-container-org85c1748" class="outline-3">
+<h3 id="org85c1748">Running R and Python in the same notebook</h3>
+<div class="outline-text-3" id="text-org85c1748">
 <p>
 The best solution to this is to install rpy2. On my machine, I have
 installed the <code>python3-rpy2</code> debian package with <code>apt-get install</code>. E.g.,
@@ -88,9 +88,9 @@ plot(df)
 </ol>
 </div>
 </div>
-<div id="outline-container-org2ba4a8a" class="outline-3">
-<h3 id="org2ba4a8a">Exporting a notebook</h3>
-<div class="outline-text-3" id="text-org2ba4a8a">
+<div id="outline-container-orgc80dcea" class="outline-3">
+<h3 id="orgc80dcea">Exporting a notebook</h3>
+<div class="outline-text-3" id="text-orgc80dcea">
 <p>
 Obviously, you can convert to html or pdf using the using the <code>File &gt;
 Download as &gt; HTML</code> (or <code>PDF</code>) menu option.  This can also be done from
@@ -117,20 +117,20 @@ taste.
 </div>
 </div>
 </div>
-<div id="outline-container-org97a2d04" class="outline-2">
-<h2 id="org97a2d04">Installing Jupyter on your own machine</h2>
-<div class="outline-text-2" id="text-org97a2d04">
+<div id="outline-container-orgfcddd6d" class="outline-2">
+<h2 id="orgfcddd6d">Installing Jupyter on your own machine</h2>
+<div class="outline-text-2" id="text-orgfcddd6d">
 </div>
-<div id="outline-container-org9e75391" class="outline-3">
-<h3 id="org9e75391">Installing jupyter</h3>
-<div class="outline-text-3" id="text-org9e75391">
+<div id="outline-container-org3eb7e0c" class="outline-3">
+<h3 id="org3eb7e0c">Installing jupyter</h3>
+<div class="outline-text-3" id="text-org3eb7e0c">
 <p>
 Follow these instructions if you wish to have a similar Jupyter environment on you own machine.
 </p>
 
 <p>
-First, download and install <a href="https://www.anaconda.com/download/">Anaconda latest version</a>. We use Anaconda version <code>4.5.4</code> on our server .<br />
-Anaconda includes Python, the Jupyter Notebook, and other commonly used packages for scientific computing and data science.
+First, download and install <a href="https://conda.io/miniconda.html">Miniconda latest version</a>. We use Miniconda version <code>4.5.4</code> on our server .<br />
+Miniconda is a light version of Anaconda which includes Python, the Jupyter Notebook, and other commonly used packages for scientific computing and data science.
 </p>
 
 <p>
@@ -151,9 +151,9 @@ jupyter notebook
 </div>
 </div>
 
-<div id="outline-container-orgf9ac059" class="outline-3">
-<h3 id="orgf9ac059">Exporting your notebooks with latex</h3>
-<div class="outline-text-3" id="text-orgf9ac059">
+<div id="outline-container-org807e282" class="outline-3">
+<h3 id="org807e282">Exporting your notebooks with latex</h3>
+<div class="outline-text-3" id="text-org807e282">
 <p>
 Here is what I had to install on my recent debian machine to make sure
 the notebook export via latex works:
@@ -166,9 +166,9 @@ sudo apt-get install texlive-xetex
 </div>
 </div>
 
-<div id="outline-container-org01b32de" class="outline-3">
-<h3 id="org01b32de">Interesting extensions to improve notebook readability</h3>
-<div class="outline-text-3" id="text-org01b32de">
+<div id="outline-container-org0359fd8" class="outline-3">
+<h3 id="org0359fd8">Interesting extensions to improve notebook readability</h3>
+<div class="outline-text-3" id="text-org0359fd8">
 <p>
 Here are two interesting extensions that can improve readability:
 </p>
