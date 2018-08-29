@@ -59,31 +59,24 @@ and playing with [[https://pandoc.org/][pandoc]]. Both approaches work, it's rat
 taste.
 * Installing Jupyter on your own machine
 ** Installing jupyter
-Here is what you should install:
+Follow these instructions if you wish to have a similar Jupyter environment on you own machine.
+
+First, download and install [[https://www.anaconda.com/download/][Anaconda latest version]]. We use Anaconda version =4.5.4= on our server .\\
+Anaconda includes Python, the Jupyter Notebook, and other commonly used packages for scientific computing and data science.
+
+Then download the [[https://gist.github.com/brospars/4671d9013f0d99e1c961482dab533c57][mooc_rr environment file]] and create it using conda:
 #+begin_src shell :results output :exports both
-sudo apt-get install jupyter-notebook python3-pip python3-matplotlib python3-numpy
+conda env create -f environment.yml
+
+# Windows activate the environment
+activate mooc_rr
+
+# Linux and MacOS activate the environment
+source activate mooc_rr
+
+jupyter notebook
 #+end_src
 
-On my machine, I got the version 5.4.1:
-#+begin_src shell :results output :exports both
-jupyter-notebook --version
-#+end_src
-
-#+RESULTS:
-: 5.4.1
-
-The ipython notebook can then be run with the following command:
-#+begin_src shell :results output :exports both
-jupyter-notebook
-#+end_src
-** Using R
-If you want to use the R kernel in jupyter, follow [[https://github.com/IRkernel/IRkernel#installation][these instructions]].
-
-Alternatively, you can install =rpy2= (see the [[*Running R and Python in the same notebook][Running R and Python in
-the same notebook]] section).
-#+begin_src shell :results output :exports both
-sudo apt-get python3-rpy2
-#+end_src
 ** Exporting your notebooks with latex
 Here is what I had to install on my recent debian machine to make sure
 the notebook export via latex works:
@@ -91,13 +84,7 @@ the notebook export via latex works:
 sudo apt-get install wkhtmltopdf
 sudo apt-get install texlive-xetex
 #+end_src
-** Interacting with GitLab
-Here is our [[https://github.com/brospars/nb-git][jupyter extension that allows to git push/pull from the
-notebooks]]:
-#+begin_src shell :results output :exports both
-jupyter nbextension install https://raw.githubusercontent.com/brospars/nb-git/master/nb-git.js
-jupyter nbextension enable nb-git
-#+end_src
+
 ** Interesting extensions to improve notebook readability
 Here are two interesting extensions that can improve readability:
 - [[https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook][Code folding]]
@@ -112,7 +99,3 @@ Here are two interesting extensions that can improve readability:
   jupyter-nbextension  enable --py hide_code
   jupyter-serverextension enable --py hide_code
   #+end_src
-* Installing JupyterHub                                              :Benoit:
-#+BEGIN_QUOTE
-Benoit may give a few hints on this.
-#+END_QUOTE
