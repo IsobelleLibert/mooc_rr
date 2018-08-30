@@ -81,41 +81,28 @@ git config --global http.proxy http://proxyUsername:proxyPassword@proxy.server.c
 The proxyPassword will be stored unencrypted in your ~.gitconfig~ file,
 which you may not want. In that case, remove it from the URL and you
 will be prompted for it every time it is needed.
-** Configuring your password on GitLab
-1. Access [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/xblock/block-v1:inria+41016+session01bis+type@lti+block@05a0ce425f1741e5bee5049040f70529/handler/preview_handler][GitLab]]. /Note: You have to access Gitlab from the FUN
+** Changing the default password on GitLab
+
+*Warning (Jupyter users) :* changing your default Gitlab password will prevent you from commiting in Jupyter. You will have to do the extra step of changing your Jupyter =~/.git-credentials=
+
+1. Get your default password using the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85][Gitlab credentials retrieval tool]
+2. Access [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/xblock/block-v1:inria+41016+session01bis+type@lti+block@05a0ce425f1741e5bee5049040f70529/handler/preview_handler][GitLab]]. /Note: You have to access Gitlab from the FUN
    platform otherwise you may get a 405 error/ /when trying to direcly
    open https://app-learninglab.inria.fr/gitlab/users/sign_in/.
    #+BEGIN_CENTER
    [[file:gitlab_images/erreur405.png]]
    #+END_CENTER
-2. Click on =Sign in:=
+3. Click on =Sign in:= or using your default credentials
    #+BEGIN_CENTER
-   [[file:gitlab_images/projects.png]]
+   [[file:gitlab_images/signin.png]]
    #+END_CENTER
    The long and uggly character sequence, which is here replaced by =xxx=
    is your GitLab login/id. You'll need to use it when trying to
    propagate some modifications from your computer to GitLab.
-3. To defind your password, you should go in =settings=:
+4. Go to =Account > Settings > Password= and define your password using your default password :
    #+BEGIN_CENTER
-   [[file:gitlab_images/settings.png]]
-   #+END_CENTER
-4. Then, go to the =profile= tab to define a valid email address:
-   #+BEGIN_CENTER
-   [[file:gitlab_images/profile.png]]
-   #+END_CENTER
-   You will then receive a email with a link to open to confirm your
-   email address is correct. Just open it.
-5. Once your email address is validated, it will appear as =verified= and
-   as your =main address= in the =Emails= tab:
-   #+BEGIN_CENTER
-   [[file:gitlab_images/mail.png]]
-   #+END_CENTER
-6. You will then finally be able to click on the =I forgot my password=
-   button from the =password= tab:
    [[file:gitlab_images/password.png]]
-
-   You will then receive an email allowing you to reset your GitLab
-   password.
+   #+END_CENTER
 ** Remembering your password locally
 If you clone your repos by simply pasting the GitLab URL, you will be
 prompted for your login and your password every time you want to
