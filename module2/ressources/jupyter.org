@@ -61,7 +61,7 @@ taste.
 ** Installing jupyter
 Follow these instructions if you wish to have a similar Jupyter environment on you own machine.
 
-First, download and install [[https://conda.io/miniconda.html][Miniconda latest version]]. We use Miniconda version =4.5.4= on our server .\\
+First, download and install [[https://conda.io/miniconda.html][Miniconda latest version]]. We use Miniconda version =4.5.4= and Python version =3.6= on our server .\\
 Miniconda is a light version of Anaconda which includes Python, the Jupyter Notebook, and other commonly used packages for scientific computing and data science.
 
 Then download the [[https://gist.github.com/brospars/4671d9013f0d99e1c961482dab533c57][mooc_rr environment file]] and create it using conda:
