@@ -22,7 +22,7 @@
 #+LATEX_HEADER: \usepackage{palatino}
 #+LATEX_HEADER: \usepackage{svg}
 #+LATEX_HEADER: \let\epsilon=\varepsilon
-*Préambule:* Les explications données dans ce document sur le contexte
+*Préambule :* Les explications données dans ce document sur le contexte
 de l'étude sont largement reprises de l'excellent livre d'Edward
 R. Tufte intitulé /Visual Explanations: Images and Quantities, Evidence
 and Narrative/, publié en 1997 par /Graphics Press/ et réédité en 2005,
@@ -91,7 +91,7 @@ années précédant le lancement de la navette Challenger.
 
 Dans le répertoire ~module2/exo5/~ de votre espace =gitlab=, vous
 trouverez les données d'origine ainsi qu'une analyse pour chacun des
-différents parcours proposés. Cette analyse comporte quatre étapes:
+différents parcours proposés. Cette analyse comporte quatre étapes :
 1. Chargement des données
 2. Inspection graphique des données
 3. Estimation de l'influence de la température
@@ -99,9 +99,9 @@ différents parcours proposés. Cette analyse comporte quatre étapes:
    toriques
 
 Les deux premières étapes ne supposent que des compétences de base en
-R ou en python. La troisième étape suppose une familiarité avec la
+R ou en Python. La troisième étape suppose une familiarité avec la
 régression logistique (généralement abordée en L3 ou M1 de stats,
-économétrie, bio-statistique, ...) et la quatrième étape des bases de
+économétrie, bio-statistique...) et la quatrième étape des bases de
 probabilités (niveau lycée). Nous vous présentons donc dans la
 prochaine section une introduction à la régression logistique qui ne
 s'attarde pas sur les détails du calcul, mais juste sur le sens donné
@@ -111,9 +111,9 @@ aux résultats de cette régression.
 
 Imaginons que l'on dispose des données suivantes qui indiquent pour
 une cohorte d'individus s'ils ont déclaré une maladie particulière ou
-pas. Je montre ici l'analyse avec R mais le code python n'est pas forcément
+pas. Je montre ici l'analyse avec R mais le code Python n'est pas forcément
 très éloigné. Les données sont stockées dans une data frame dont voici
-un bref résumé:
+un bref résumé :
 
 #+begin_src R :results output :session *R* :exports none
 library(Hmisc) # pour calculer un intervalle de confiance sur des données binomiales
@@ -151,7 +151,7 @@ str(df)
 
 Voici une représentation graphique des données qui permet de mieux
 percevoir le lien qu'il peut y avoir entre l'âge et le fait de
-contracter cette maladie ou pas:
+contracter cette maladie ou pas :
 #+begin_src R :results output graphics :file fig1.svg :exports both :width 4 :height 3 :session *R* 
 ggplot(df,aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) + theme_bw()
 #+end_src
@@ -163,7 +163,7 @@ ggplot(df,aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) + theme_bw()
 Il apparaît clairement sur ces données que plus l'on est âgé, plus la
 probabilité de développer cette maladie est importante. Mais comment
 estimer cette probabilité à partir uniquement de ces valeurs binaires
-(malade/pas malade)? Pour chaque tranche d'âge (par exemple de 5 ans),
+(malade/pas malade) ? Pour chaque tranche d'âge (par exemple de 5 ans),
 on pourrait regarder la fréquence de la maladie (le code qui suit est
 un peu compliqué car le calcul de l'intervalle de confiance pour ce
 type de données nécessite un traitement particulier via la fonction
@@ -194,7 +194,7 @@ arbitraire, et qu'on n'a pas grande idée de la façon dont ça
 évolue. Pour modéliser cette évolution de façon plus continue, on
 pourrait tenter une régression linéaire (le modèle le plus simple
 possible pour rendre compte de l'influence d'un paramètre) et ainsi
-estimer l'effet de l'âge sur la probabilité d'être malade:
+estimer l'effet de l'âge sur la probabilité d'être malade :
 #+begin_src R :results output graphics :file fig2.svg :exports both :width 4 :height 3 :session *R* 
 ggplot(df,aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) + 
     theme_bw() + geom_smooth(method="lm")
@@ -205,8 +205,8 @@ ggplot(df,aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) +
 [[file:fig2.svg]]
 
 La ligne bleue est la régression linéaire au sens des moindres carrés
-et la zone grise dans laquelle est la zone de confiance à 95% de cette
-estimation (avec les données dont l'on dispose et cette hypothèse de
+et la zone grise est la zone de confiance à 95% de cette
+estimation (avec les données dont on dispose et cette hypothèse de
 linéarité, la ligne bleue est la plus probable et il y a 95% de chance
 que la vraie ligne soit dans cette zone grise).
 
@@ -222,7 +222,7 @@ et $\beta$ à partir des données.
 
 Cette technique n'a pas de sens pour estimer une probabilité et il
 convient donc d'utiliser ce que l'on appelle une [[https://fr.wikipedia.org/wiki/R%25C3%25A9gression_logistique][régression
-logistique]]:
+logistique]] :
 #+begin_src R :results output graphics :file fig3.svg :exports both :width 4 :height 3 :session *R* 
 ggplot(df,aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) + 
     theme_bw() + 
@@ -237,7 +237,7 @@ ggplot(df,aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) +
 Ici, la bibliothèque =ggplot= fait tous les calculs de régression
 logistique pour nous et nous montre uniquement le résultat "graphique"
 mais dans l'analyse que nous vous proposerons pour Challenger, nous
-réalisons la régression et la prédiction à la main (en =R= ou en =python=
+réalisons la régression et la prédiction à la main (en =R= ou en =Python=
 selon le parcours que vous choisirez) de façon à pouvoir effectuer si
 besoin une inspection plus fine. Comme avant, la courbe bleue indique
 l'estimation de la probabilité d'être malade en fonction de l'âge et
@@ -249,15 +249,15 @@ grise".
 
 Dans ce modèle, on suppose que $P[\textsf{Malade}] = \pi(\textsf{Age})$ avec
 $\displaystyle\pi(x)=\frac{e^{\alpha.x + \beta}}{1+e^{\alpha.x + \beta}}$. Cette
-formule (étrange au premier abord) a la bonne propriété nous donner
+formule (étrange au premier abord) a la bonne propriété de nous donner
 systématiquement une valeur comprise entre 0 et 1 et de bien tendre
 rapidement vers $0$ quand l'âge tend vers $-\infty$ et vers $1$ quand l'âge
 tend vers $+\infty$ (mais ce n'est pas bien sûr pas la seule motivation). 
 
-En conclusion, lorsque l'on dispose de données événementielles
+En conclusion, lorsque l'on dispose de données évènementielles
 (binaires) et que l'on souhaite estimer l'influence d'un paramètre sur
-la probabilité d'occurrence de l'évènement (maladie, défaillance,
-...), le modèle le plus naturel et le plus simple est celui de la
+la probabilité d'occurrence de l'évènement (maladie, défaillance...), 
+le modèle le plus naturel et le plus simple est celui de la
 régression logistique. Notez, que même en se restreignant à une petite
 partie des données (par exemple, uniquement les patients de moins de
 50 ans), il est possible d'obtenir une estimation assez raisonnable,
