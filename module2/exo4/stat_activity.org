@@ -15,7 +15,7 @@ temps que je passe à faire telle ou telle chose. Ça tombe bien car je
 n'aime pas vraiment suivre précisément et quotidiennement le temps que
 je passe à faire telle ou telle chose. Par contre, comme vous avez pu
 le voir dans une des vidéos de ce module, je note beaucoup
-d'information dans mon journal et j'étiquette (quand j'y pense) ces
+d'informations dans mon journal et j'étiquette (quand j'y pense) ces
 informations. Je me suis dit qu'il pourrait être intéressant de voir
 si l'évolution de l'utilisation de ces étiquettes révélait quelque
 chose sur mes centres d'intérêts professionnels. Je ne compte pas en
@@ -36,7 +36,7 @@ Je vais donc chercher à extraire les lignes comportant trois ~*~ en
 début de ligne et celles commençant par une ~*~ et terminant par des
 mots-clés (des ~:~ suivis éventuellement d'un espace). L'expression
 régulière n'est pas forcément parfaite mais ça me donne une première
-idée de ce que j'aurais besoin de faire en terme de remise en forme.
+idée de ce que j'aurai besoin de faire en terme de remise en forme.
 
 #+begin_src shell :results output :exports both :eval never-export 
 grep -e '^\*\*\* ' -e '^\*.*:.*: *$' ~/org/journal.org | tail -n 20
@@ -67,9 +67,9 @@ grep -e '^\*\*\* ' -e '^\*.*:.*: *$' ~/org/journal.org | tail -n 20
 #+end_example
 
 OK, je suis sur la bonne voie. Je vois qu'il y a pas mal d'entrées
-sans annotations. Tant pis. Il y a aussi souvent plusieurs mots-clés
+sans annotation. Tant pis. Il y a aussi souvent plusieurs mots-clés
 pour une même date et pour pouvoir bien rajouter la date du jour en
-face de chaque mots-clés, je vais essayer un vrai langage plutôt que
+face de chaque mot-clé, je vais essayer un vrai langage plutôt que
 d'essayer de faire ça à coup de commandes shell. Je suis de l'ancienne
 génération donc j'ai plus l'habitude de perl que de python pour ce
 genre de choses. Curieusement, ça s'écrit bien plus facilement (ça m'a
@@ -100,7 +100,7 @@ while(defined($line=<INPUT>)) {
 
 #+RESULTS:
 
-Vérifions à quoi ressemble le résultat:
+Vérifions à quoi ressemble le résultat :
 #+begin_src shell :results output :exports both
 head org_keywords.csv
 echo "..."
@@ -132,12 +132,12 @@ Date,Keyword
 2018-06-26,INRIA
 #+end_example
 
-C'est parfait!
+C'est parfait !
 
 * Statistiques de base
 Je suis bien plus à l'aise avec R qu'avec python. J'utiliserai les
 package du tidyverse dès que le besoin s'en fera sentir. Commençons
-par lire ces données:
+par lire ces données :
 #+begin_src R :results output :session *R* :exports both
 library(lubridate) # à installer via install.package("tidyverse")
 library(dplyr)
@@ -169,7 +169,7 @@ The following objects are masked from ‘package:base’:
     intersect, setdiff, setequal, union
 #+end_example
 
-Alors, à quoi ressemblent ces données:
+Alors, à quoi ressemblent ces données :
 #+begin_src R :results output :session *R* :exports both
 str(df)
 summary(df)
@@ -191,7 +191,7 @@ summary(df)
  (Other)   :537   (Other) :271
 #+end_example
 
-Les types ont l'air correct, 568 entrées, tout va bien.
+Les types ont l'air corrects, 568 entrées, tout va bien.
 #+begin_src R :results output :session *R* :exports both
 df %>% group_by(Keyword, Year) %>% summarize(Count=n()) %>% 
    ungroup() %>% arrange(Keyword,Year) -> df_summarized
@@ -216,7 +216,7 @@ df_summarized
 # ... with 110 more rows
 #+end_example
 
-Commençons par compter combien d'annotation je fais par an.
+Commençons par compter combien d'annotations je fais par an.
 #+begin_src R :results output :session *R* :exports both
 df_summarized_total_year = df_summarized %>% group_by(Year) %>% summarize(Cout=sum(Count))
 df_summarized_total_year
@@ -287,15 +287,15 @@ df_summarized %>% group_by(Keyword) %>% summarize(Count=sum(Count)) %>%  arrange
 36           WP4    77
 #+end_example
 
-OK, par la suite, je me restraindrai probablement ceux qui
+OK, par la suite, je me restraindrai probablement à ceux qui
 apparaissent au moins trois fois.
 
 * Représentations graphiques
 Pour bien faire, il faudrait que je mette une sémantique et une
 hiérarchie sur ces mots-clés mais je manque de temps là. Comme
 j'enlève les mots-clés peu fréquents, je vais quand même aussi
-rajouter le nombre total de mots-clé pour avoir une idée de ce que
-j'ai perdu. Tentons une première représentation graphique:
+rajouter le nombre total de mots-clés pour avoir une idée de ce que
+j'ai perdu. Tentons une première représentation graphique :
 #+begin_src R :results output graphics :file barchart1.png :exports both :width 600 :height 400 :session *R* 
 library(ggplot2)
 df_summarized %>% filter(Count > 3) %>%
@@ -309,7 +309,7 @@ df_summarized %>% filter(Count > 3) %>%
 [[file:barchart1.png]]
 
 Aouch. C'est illisible avec une telle palette de couleurs mais vu
-qu'il y a beaucoup de valeurs différences, difficile d'utiliser une
+qu'il y a beaucoup de valeurs différentes, difficile d'utiliser une
 palette plus discriminante. Je vais quand même essayer rapidement
 histoire de dire... Pour ça, j'utiliserai une palette de couleur
 ("Set1") où les couleurs sont toutes bien différentes mais elle n'a
@@ -339,16 +339,16 @@ l'outil. L'augmentation de la partie ~Seminar~ ne signifie pas grand
 chose car ce n'est que récemment que j'ai commencé à étiqueter
 systématiquement les notes que je prenais quand j'assiste à un
 exposé. Les étiquettes sur ~WP~ ont trait à la terminologie d'un ancien
-projet ANR que j'ai continuer à utiliser (~WP4~ = prédiction de
+projet ANR que j'ai continué à utiliser (~WP4~ = prédiction de
 performance HPC, ~WP7~ = analyse et visualisation, ~WP8~ = plans
-d'expérience et moteurs d'expérimentation, ...). Le fait que ~WP4~
+d'expérience et moteurs d'expérimentation...). Le fait que ~WP4~
 diminue est plutôt le fait que les informations à ce sujet sont
 maintenant plutôt les journaux de mes doctorants qui réalisent
 vraiment les choses que je ne fais que superviser.
 
 Bon, une analyse de ce genre ne serait pas digne de ce nom sans un
 /wordcloud/ (souvent illisible, mais tellement sexy! \smiley). Pour ça, je
-m'inspire librement de ce post:
+m'inspire librement de ce post :
 http://onertipaday.blogspot.com/2011/07/word-cloud-in-r.html
 
 #+begin_src R :results output graphics :file wordcloud.png :exports both :width 600 :height 400 :session *R* 
