@@ -71,7 +71,7 @@ sans annotation. Tant pis. Il y a aussi souvent plusieurs mots-clés
 pour une même date et pour pouvoir bien rajouter la date du jour en
 face de chaque mot-clé, je vais essayer un vrai langage plutôt que
 d'essayer de faire ça à coup de commandes shell. Je suis de l'ancienne
-génération donc j'ai plus l'habitude de perl que de python pour ce
+génération donc j'ai plus l'habitude de Perl que de Python pour ce
 genre de choses. Curieusement, ça s'écrit bien plus facilement (ça m'a
 pris 5 minutes) que ça ne se relit... \smiley
 
@@ -135,7 +135,7 @@ Date,Keyword
 C'est parfait !
 
 * Statistiques de base
-Je suis bien plus à l'aise avec R qu'avec python. J'utiliserai les
+Je suis bien plus à l'aise avec R qu'avec Python. J'utiliserai les
 package du tidyverse dès que le besoin s'en fera sentir. Commençons
 par lire ces données :
 #+begin_src R :results output :session *R* :exports both
