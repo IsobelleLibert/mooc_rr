@@ -85,7 +85,7 @@ will be prompted for it every time it is needed.
 
 *Warning (Jupyter users) :* changing your default Gitlab password will prevent you from commiting in Jupyter. You will have to do the extra step of changing your Jupyter =~/.git-credentials=
 
-1. Get your default password using the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85][Gitlab credentials retrieval tool]
+1. Get your default password using the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85][Gitlab credentials retrieval tool]].
 2. Access [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/xblock/block-v1:inria+41016+session01bis+type@lti+block@05a0ce425f1741e5bee5049040f70529/handler/preview_handler][GitLab]]. /Note: You have to access Gitlab from the FUN
    platform otherwise you may get a 405 error/ /when trying to direcly
    open https://app-learninglab.inria.fr/gitlab/users/sign_in/.
