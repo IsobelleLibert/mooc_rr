@@ -75,7 +75,7 @@ unfortunately not completely standard).
 #+begin_src python :results output :exports both
 def print_imported_modules():
     import sys
-    for name,val in sys.modules.items():
+    for name,val in sorted(sys.modules.items()):
         if(hasattr(val, '__version__')): 
             print(val.__name__, val.__version__)
 
@@ -91,35 +91,35 @@ print_imported_modules()
 #+begin_example
 ,**** Package list in the beginning ****
 ,**** Package list after loading pandas ****
-pandas 0.22.0
+_csv 1.0
+_ctypes 1.1.0
+decimal 1.70
+argparse 1.1
+csv 1.0
+ctypes 1.1.0
+cycler 0.10.0
+dateutil 2.7.3
+decimal 1.70
+distutils 3.6.5rc1
+ipaddress 1.0
+json 2.0.9
+logging 0.5.1.2
+matplotlib 2.1.1
 numpy 1.14.5
-numpy.lib 1.14.5
 numpy.core 1.14.5
 numpy.core.multiarray 3.1
 numpy.core.umath b'0.4.0'
-re 2.2.1
-ctypes 1.1.0
-_ctypes 1.1.0
-logging 0.5.1.2
-argparse 1.1
-zlib 1.0
+numpy.lib 1.14.5
 numpy.linalg._umath_linalg b'0.1.5'
-decimal 1.70
-decimal 1.70
-pytz 2018.5
-dateutil 2.7.3
-distutils 3.6.5rc1
-platform 1.0.8
-ipaddress 1.0
-six 1.11.0
-json 2.0.9
-csv 1.0
-_csv 1.0
-urllib.request 3.6
-matplotlib 2.1.1
-pyparsing 2.2.0
-cycler 0.10.0
+pandas 0.22.0
 _libjson 1.33
+platform 1.0.8
+pyparsing 2.2.0
+pytz 2018.5
+re 2.2.1
+six 1.11.0
+urllib.request 3.6
+zlib 1.0
 #+end_example
 
 ** Setting up an environment with pip
