@@ -1,0 +1,238 @@
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul style="margin:0 0;">
+<li style="margin-bottom:0;"><a href="#orge913d35">Getting information about Python(3) libraries</a>
+<ul style="margin:0 0;">
+<li style="margin-bottom:0;"><a href="#org52e07d0">Getting the list of installed packages and their version</a></li>
+<li style="margin-bottom:0;"><a href="#org8f1294b">How to list imported modules?</a></li>
+<li style="margin-bottom:0;"><a href="#org366ec78">Setting up an environment with pip</a></li>
+</ul>
+</li>
+<li style="margin-bottom:0;"><a href="#org7b419ec">Getting information about R libraries</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge913d35" class="outline-2">
+<h2 id="orge913d35">Getting information about Python(3) libraries</h2>
+<div class="outline-text-2" id="text-orge913d35">
+</div>
+<div id="outline-container-org52e07d0" class="outline-3">
+<h3 id="org52e07d0">Getting the list of installed packages and their version</h3>
+<div class="outline-text-3" id="text-org52e07d0">
+<p>
+<a href="https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules">https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules</a>
+</p>
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">pip3 freeze
+</pre>
+</div>
+
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="example">
+asn1crypto==0.24.0
+attrs==17.4.0
+bcrypt==3.1.4
+beautifulsoup4==4.6.0
+bleach==2.1.3
+...
+pandas==0.22.0
+pandocfilters==1.4.2
+paramiko==2.4.0
+patsy==0.5.0
+pexpect==4.2.1
+...
+traitlets==4.3.2
+tzlocal==1.5.1
+urllib3==1.22
+wcwidth==0.1.7
+webencodings==0.5
+</pre>
+
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">pip3 show pandas
+<span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"            "</span>
+pip3 show statsmodels
+</pre>
+</div>
+
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="example">
+Name: pandas
+Version: 0.22.0
+Summary: Powerful data structures for data analysis, time series,and statistics
+Home-page: http://pandas.pydata.org
+Author: None
+Author-email: None
+License: BSD
+Location: /usr/lib/python3/dist-packages
+Requires: 
+            
+Name: statsmodels
+Version: 0.9.0
+Summary: Statistical computations and models for Python
+Home-page: http://www.statsmodels.org/
+Author: None
+Author-email: None
+License: BSD License
+Location: /home/alegrand/.local/lib/python3.6/site-packages
+Requires: patsy, pandas
+</pre>
+
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-python">
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8f1294b" class="outline-3">
+<h3 id="org8f1294b">How to list imported modules?</h3>
+<div class="outline-text-3" id="text-org8f1294b">
+<p>
+Inspiring from <a href="https://stackoverflow.com/questions/4858100/how-to-list-imported-modules">StackOverflow</a>, here is a simple function that lists
+loaded package (that have a <code>__version__</code> attribute, which is
+unfortunately not completely standard).
+</p>
+
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-python"><span style="font-weight: bold;">def</span> <span style="font-weight: bold;">print_imported_modules</span>():
+    <span style="font-weight: bold;">import</span> sys
+    <span style="font-weight: bold;">for</span> name,val <span style="font-weight: bold;">in</span> <span style="font-weight: bold;">sorted</span>(sys.modules.items()):
+        <span style="font-weight: bold;">if</span>(<span style="font-weight: bold;">hasattr</span>(val, <span style="font-style: italic;">'__version__'</span>)): 
+            <span style="font-weight: bold;">print</span>(val.<span style="font-weight: bold;">__name__</span>, val.__version__)
+
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"**** Package list in the beginning ****"</span>);
+print_imported_modules()
+<span style="font-weight: bold;">print</span>(<span style="font-style: italic;">"**** Package list after loading pandas ****"</span>);
+<span style="font-weight: bold;">import</span> pandas
+print_imported_modules()
+
+</pre>
+</div>
+
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="example">
+**** Package list in the beginning ****
+**** Package list after loading pandas ****
+_csv 1.0
+_ctypes 1.1.0
+decimal 1.70
+argparse 1.1
+csv 1.0
+ctypes 1.1.0
+cycler 0.10.0
+dateutil 2.7.3
+decimal 1.70
+distutils 3.6.5rc1
+ipaddress 1.0
+json 2.0.9
+logging 0.5.1.2
+matplotlib 2.1.1
+numpy 1.14.5
+numpy.core 1.14.5
+numpy.core.multiarray 3.1
+numpy.core.umath b'0.4.0'
+numpy.lib 1.14.5
+numpy.linalg._umath_linalg b'0.1.5'
+pandas 0.22.0
+_libjson 1.33
+platform 1.0.8
+pyparsing 2.2.0
+pytz 2018.5
+re 2.2.1
+six 1.11.0
+urllib.request 3.6
+zlib 1.0
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org366ec78" class="outline-3">
+<h3 id="org366ec78">Setting up an environment with pip</h3>
+<div class="outline-text-3" id="text-org366ec78">
+<p>
+The easiest way to go is as follows:
+</p>
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">pip3 freeze &gt; requirements.txt <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">to obtain the list of packages with their version</span>
+pip3 install -r requirements.txt <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">to install the previous list of packages, possibly on an other machine</span>
+</pre>
+</div>
+
+<p>
+If you want to have several installed python environments, you may
+want to use <a href="https://docs.pipenv.org/">Pipenv</a>. I doubt it allows to track correctly FORTRAN or C
+dynamic libraries that are wrapped by Python.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7b419ec" class="outline-2">
+<h2 id="org7b419ec">Getting information about R libraries</h2>
+<div class="outline-text-2" id="text-org7b419ec">
+<p>
+The best way seems to be to rely on the <code>devtools</code> package.
+</p>
+
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-R">sessionInfo()
+devtools::session_info()
+</pre>
+</div>
+
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="example">
+R version 3.5.1 (2018-07-02)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Debian GNU/Linux buster/sid
+
+Matrix products: default
+BLAS: /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.8.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.8.0
+
+locale:
+ [1] LC_CTYPE=fr_FR.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=fr_FR.UTF-8        LC_COLLATE=fr_FR.UTF-8    
+ [5] LC_MONETARY=fr_FR.UTF-8    LC_MESSAGES=fr_FR.UTF-8   
+ [7] LC_PAPER=fr_FR.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=fr_FR.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+loaded via a namespace (and not attached):
+[1] compiler_3.5.1
+Session info ------------------------------------------------------------------
+ setting  value                       
+ version  R version 3.5.1 (2018-07-02)
+ system   x86_64, linux-gnu           
+ ui       X11                         
+ language (EN)                        
+ collate  fr_FR.UTF-8                 
+ tz       Europe/Paris                
+ date     2018-08-01                  
+
+Packages ----------------------------------------------------------------------
+ package   * version date       source        
+ base      * 3.5.1   2018-07-02 local         
+ compiler    3.5.1   2018-07-02 local         
+ datasets  * 3.5.1   2018-07-02 local         
+ devtools    1.13.6  2018-06-27 CRAN (R 3.5.1)
+ digest      0.6.15  2018-01-28 CRAN (R 3.5.0)
+ graphics  * 3.5.1   2018-07-02 local         
+ grDevices * 3.5.1   2018-07-02 local         
+ memoise     1.1.0   2017-04-21 CRAN (R 3.5.1)
+ methods   * 3.5.1   2018-07-02 local         
+ stats     * 3.5.1   2018-07-02 local         
+ utils     * 3.5.1   2018-07-02 local         
+ withr       2.1.2   2018-03-15 CRAN (R 3.5.0)
+</pre>
+
+<p>
+Some actually advocate that <a href="https://github.com/ropensci/rrrpkg">writing a reproducible research compendium
+can be done by writing an R package</a>. Those of you willing to have a
+clean R dependency management should thus have a look at <a href="https://rstudio.github.io/packrat/">Packrat</a>.
+</p>
+</div>
+</div>
+</div>
