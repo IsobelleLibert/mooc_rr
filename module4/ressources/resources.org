@@ -68,8 +68,19 @@ git push
 #+BEGIN_EXAMPLE
 [master 514fe2c1 ] Completing the section on getting Git information
  1 file changed, 61 insertions(+)
+Counting objects: 25, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (20/20), done.
+Writing objects: 100% (25/25), 7.31 KiB | 499.00 KiB/s, done.
+Total 25 (delta 11), reused 0 (delta 0)
+To ssh://app-learninglab.inria.fr:9418/learning-lab/mooc-rr-ressources.git
+   6359f8c..1f8a567  master -> master
 #+END_EXAMPLE
 
+Obviously, in this case you need to save the notebook before running
+this cell, hence the output of this final command (with the new git
+hash) will not be stored in the cell. This is not really a problem and
+is the price to pay for running git from within the notebook itself.
 * Getting information about Python(3) libraries 
 ** Getting the list of installed packages and their version
 https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules
