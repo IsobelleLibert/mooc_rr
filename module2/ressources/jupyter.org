@@ -11,7 +11,7 @@
 The following [[https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/][webpage]] lists several Jupyter tricks (in particular, it
 illustrates many =Ipython magic= commands) that should improve your
 efficiency (note that this blog post is about two years old so some of
-the tricks may have been integrated in the default behavior of jupyter
+the tricks may have been integrated in the default behavior of Jupyter
 now).
 ** Running R and Python in the same notebook
 The best solution to this is to install rpy2. On my machine, I have
@@ -58,13 +58,16 @@ nbconvert exporter, an other option consists in exporting to Markdown
 and playing with [[https://pandoc.org/][pandoc]]. Both approaches work, it's rather a matter of
 taste.
 * Installing Jupyter on your own machine
-** Installing jupyter
-Follow these instructions if you wish to have a similar Jupyter environment on you own machine.
+** Installing Jupyter
+Follow these instructions if you wish to have a Jupyter environment on
+your own machine similar to the one we set up for this MOOC.
 
-First, download and install [[https://conda.io/miniconda.html][Miniconda latest version]]. We use Miniconda version =4.5.4= and Python version =3.6= on our server .\\
-Miniconda is a light version of Anaconda which includes Python, the Jupyter Notebook, and other commonly used packages for scientific computing and data science.
+First, download and install the [[https://conda.io/miniconda.html][latest version of Miniconda]]. We use
+Miniconda version =4.5.4= and Python version =3.6= on our server.
 
-Then download the [[https://gist.github.com/brospars/4671d9013f0d99e1c961482dab533c57][mooc_rr environment file]] and create it using conda:
+Miniconda is a light version of Anaconda, which includes Python, the Jupyter Notebook, and other commonly used packages for scientific computing and data science.
+
+Then download the [[https://gist.github.com/brospars/4671d9013f0d99e1c961482dab533c57][mooc_rr environment file]] and create the environment using conda:
 #+begin_src shell :results output :exports both
 conda env create -f environment.yml
 
@@ -76,26 +79,56 @@ source activate mooc_rr
 
 jupyter notebook
 #+end_src
-
+** Side note about Jupyter, JupyterLab, JupyterHub, ...
+Note that Jupyter notebooks are only a small part of the picture and
+that Jupyter is now part of a bigger project: [[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]], which allows
+you to mix various components (including notebooks) in your
+browser. In the context of this MOOC, our time frame was too short to
+benefit from JupyterLab which was still under active development but
+this is probably the best option now if you want to benefit from
+cutting-edge Jupyter notebooks.
 ** Exporting your notebooks with latex
-Here is what I had to install on my recent debian machine to make sure
+Here is what we had to install on our recent debian machine to make sure
 the notebook export via latex works:
 #+begin_src shell :results output :exports both
-sudo apt-get install wkhtmltopdf
-sudo apt-get install texlive-xetex
+sudo apt-get install texlive-xetex wkhtmltopdf
 #+end_src
 
-** Interesting extensions to improve notebook readability
-Here are two interesting extensions that can improve readability:
-- [[https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook][Code folding]]
+** Jupyter extensions/plugins
+*** Improving notebook readability
+Here are a few extensions that can ease your life:
+- [[https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook][Code folding]] to improve readability when browsing the notebook.
   #+begin_src shell :results output :exports both
   pip3 install jupyter_contrib_nbextensions
   # jupyter contrib nbextension install --user # not done yet
   #+end_src
-- [[https://github.com/kirbs-/hide_code][Hiding code]]
+- [[https://github.com/kirbs-/hide_code][Hiding code]] to improve readability when exporting.
   #+begin_src sh :results output :exports both
   sudo pip3 install hide_code
   sudo jupyter-nbextension  install --py hide_code
   jupyter-nbextension  enable --py hide_code
   jupyter-serverextension enable --py hide_code
   #+end_src
+*** Interacting with GitLab and GitHub
+To ease your experience, we added some pull/push buttons that allow
+you to commit and sync with GitLab. This development was specific to
+the MOOC but inspired from a previous [[https://github.com/Lab41/sunny-side-up][proof of concept]]. We have
+recently discovered that someone else developed about at the same time
+a [[https://github.com/sat28/githubcommit][rather generic version of this Jupyter plugin]]. Otherwise, remember
+that it is very easy to insert a shell cell in Jupyter in which you
+can easily issue git commands. This is how we work most of the time.
+  
+This being said, you may have noticed that Jupyter keeps a perfect
+track of the sequence in which cells have been run by updating the
+"output index". This is a very good property from the reproducibility
+point of view but depending on your usage, you may find it a bit
+painful when commiting. Some people have thus developped [[https://gist.github.com/pbugnion/ea2797393033b54674af][specific git
+hooks]] to ignore these numbers when comitting Jupyter notebooks. There
+is a long an interesting discussion about various options on
+[[https://stackoverflow.com/questions/18734739/using-ipython-notebooks-under-version-control][StackOverflow]].
+
+Last but not least, remembter that Jupyter notebooks are only a small
+part of the picture and that Jupyter is now part of a bigger project:
+[[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]], which allows you to mix various components (including
+notebooks) in your browser. A specific [[https://github.com/jupyterlab/jupyterlab-git][JupyterLab git plugin]] has been
+developed to offer a nice version control experience.
