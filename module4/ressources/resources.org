@@ -6,6 +6,70 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
+* Getting information about your Git repository
+When taking notes, it may be difficult to remember which version of
+the code or of a file was used. This is what version control is useful
+for. Here are a few useful commands that we typically insert at the
+top of our notebooks in shell cells
+
+#+begin_src shell :results output :exports both
+git log -1
+#+end_src
+
+#+RESULTS:
+: commit 741b0088af5b40588493c23c46d6bab5d0adeb33
+: Author: Arnaud Legrand <arnaud.legrand@imag.fr>
+: Date:   Tue Sep 4 12:45:43 2018 +0200
+: 
+:     Fix a few typos and provide information on jupyter-git plugins.
+
+#+begin_src shell :results output :exports both
+git status
+#+end_src
+
+#+RESULTS:
+#+begin_example
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   resources.org
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	../../module2/ressources/replicable_article/IEEEtran.bst
+	../../module2/ressources/replicable_article/IEEEtran.cls
+	../../module2/ressources/replicable_article/article.bbl
+	../../module2/ressources/replicable_article/article.tex
+	../../module2/ressources/replicable_article/data.csv
+	../../module2/ressources/replicable_article/figure.pdf
+	../../module2/ressources/replicable_article/logo.png
+	.#resources.org
+
+no changes added to commit (use "git add" and/or "git commit -a")
+#+end_example
+
+Then, I often include commands at the end of my notebook indicating
+how to commit the results (adding the new files, committing with a
+clear message and pushing). E.g.,
+
+#+begin_src shell :results output :exports both
+git add resources.org;
+git commit -m "Completing the section on getting Git information"
+git push
+#+end_src
+
+#+RESULTS:
+#+BEGIN_EXAMPLE
+[master 514fe2c1 ] Completing the section on getting Git information
+ 1 file changed, 61 insertions(+)
+#+END_EXAMPLE
+
 * Getting information about Python(3) libraries 
 ** Getting the list of installed packages and their version
 https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules
