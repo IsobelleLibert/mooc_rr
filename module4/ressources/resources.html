@@ -3,25 +3,114 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orge913d35">Getting information about Python(3) libraries</a>
+<li style="margin-bottom:0;"><a href="#org3fa36ea">Getting information about your Git repository</a></li>
+<li style="margin-bottom:0;"><a href="#org6a159b4">Getting information about Python(3) libraries</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org52e07d0">Getting the list of installed packages and their version</a></li>
-<li style="margin-bottom:0;"><a href="#org8f1294b">How to list imported modules?</a></li>
-<li style="margin-bottom:0;"><a href="#org366ec78">Setting up an environment with pip</a></li>
+<li style="margin-bottom:0;"><a href="#orga5f397e">Getting the list of installed packages and their version</a></li>
+<li style="margin-bottom:0;"><a href="#orgc077b2a">How to list imported modules?</a></li>
+<li style="margin-bottom:0;"><a href="#org8cd9f14">Setting up an environment with pip</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#org7b419ec">Getting information about R libraries</a></li>
+<li style="margin-bottom:0;"><a href="#org2582136">Getting information about R libraries</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge913d35" class="outline-2">
-<h2 id="orge913d35">Getting information about Python(3) libraries</h2>
-<div class="outline-text-2" id="text-orge913d35">
+<div id="outline-container-org3fa36ea" class="outline-2">
+<h2 id="org3fa36ea">Getting information about your Git repository</h2>
+<div class="outline-text-2" id="text-org3fa36ea">
+<p>
+When taking notes, it may be difficult to remember which version of
+the code or of a file was used. This is what version control is useful
+for. Here are a few useful commands that we typically insert at the
+top of our notebooks in shell cells
+</p>
+
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">git log -1
+</pre>
 </div>
-<div id="outline-container-org52e07d0" class="outline-3">
-<h3 id="org52e07d0">Getting the list of installed packages and their version</h3>
-<div class="outline-text-3" id="text-org52e07d0">
+
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="example">
+commit 741b0088af5b40588493c23c46d6bab5d0adeb33
+Author: Arnaud Legrand &lt;arnaud.legrand@imag.fr&gt;
+Date:   Tue Sep 4 12:45:43 2018 +0200
+
+    Fix a few typos and provide information on jupyter-git plugins.
+
+</pre>
+
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">git status
+</pre>
+</div>
+
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="example">
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add &lt;file&gt;..." to update what will be committed)
+  (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+
+	modified:   resources.org
+
+Untracked files:
+  (use "git add &lt;file&gt;..." to include in what will be committed)
+
+	../../module2/ressources/replicable_article/IEEEtran.bst
+	../../module2/ressources/replicable_article/IEEEtran.cls
+	../../module2/ressources/replicable_article/article.bbl
+	../../module2/ressources/replicable_article/article.tex
+	../../module2/ressources/replicable_article/data.csv
+	../../module2/ressources/replicable_article/figure.pdf
+	../../module2/ressources/replicable_article/logo.png
+	.#resources.org
+
+no changes added to commit (use "git add" and/or "git commit -a")
+</pre>
+
+<p>
+Then, I often include commands at the end of my notebook indicating
+how to commit the results (adding the new files, committing with a
+clear message and pushing). E.g.,
+</p>
+
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">git add resources.org;
+git commit -m <span style="font-style: italic;">"Completing the section on getting Git information"</span>
+git push
+</pre>
+</div>
+
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="example">
+[master 514fe2c1 ] Completing the section on getting Git information
+ 1 file changed, 61 insertions(+)
+Counting objects: 25, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (20/20), done.
+Writing objects: 100% (25/25), 7.31 KiB | 499.00 KiB/s, done.
+Total 25 (delta 11), reused 0 (delta 0)
+To ssh://app-learninglab.inria.fr:9418/learning-lab/mooc-rr-ressources.git
+   6359f8c..1f8a567  master -&gt; master
+</pre>
+
+<p>
+Obviously, in this case you need to save the notebook before running
+this cell, hence the output of this final command (with the new git
+hash) will not be stored in the cell. This is not really a problem and
+is the price to pay for running git from within the notebook itself.
+</p>
+</div>
+</div>
+<div id="outline-container-org6a159b4" class="outline-2">
+<h2 id="org6a159b4">Getting information about Python(3) libraries</h2>
+<div class="outline-text-2" id="text-org6a159b4">
+</div>
+<div id="outline-container-orga5f397e" class="outline-3">
+<h3 id="orga5f397e">Getting the list of installed packages and their version</h3>
+<div class="outline-text-3" id="text-orga5f397e">
 <p>
 <a href="https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules">https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules</a>
 </p>
@@ -86,9 +175,9 @@ Requires: patsy, pandas
 </div>
 </div>
 
-<div id="outline-container-org8f1294b" class="outline-3">
-<h3 id="org8f1294b">How to list imported modules?</h3>
-<div class="outline-text-3" id="text-org8f1294b">
+<div id="outline-container-orgc077b2a" class="outline-3">
+<h3 id="orgc077b2a">How to list imported modules?</h3>
+<div class="outline-text-3" id="text-orgc077b2a">
 <p>
 Inspiring from <a href="https://stackoverflow.com/questions/4858100/how-to-list-imported-modules">StackOverflow</a>, here is a simple function that lists
 loaded package (that have a <code>__version__</code> attribute, which is
@@ -147,9 +236,9 @@ zlib 1.0
 </div>
 </div>
 
-<div id="outline-container-org366ec78" class="outline-3">
-<h3 id="org366ec78">Setting up an environment with pip</h3>
-<div class="outline-text-3" id="text-org366ec78">
+<div id="outline-container-org8cd9f14" class="outline-3">
+<h3 id="org8cd9f14">Setting up an environment with pip</h3>
+<div class="outline-text-3" id="text-org8cd9f14">
 <p>
 The easiest way to go is as follows:
 </p>
@@ -167,9 +256,9 @@ dynamic libraries that are wrapped by Python.
 </div>
 </div>
 </div>
-<div id="outline-container-org7b419ec" class="outline-2">
-<h2 id="org7b419ec">Getting information about R libraries</h2>
-<div class="outline-text-2" id="text-org7b419ec">
+<div id="outline-container-org2582136" class="outline-2">
+<h2 id="org2582136">Getting information about R libraries</h2>
+<div class="outline-text-2" id="text-org2582136">
 <p>
 The best way seems to be to rely on the <code>devtools</code> package.
 </p>
