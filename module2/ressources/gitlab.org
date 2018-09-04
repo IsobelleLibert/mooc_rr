@@ -81,24 +81,32 @@ git config --global http.proxy http://proxyUsername:proxyPassword@proxy.server.c
 The proxyPassword will be stored unencrypted in your ~.gitconfig~ file,
 which you may not want. In that case, remove it from the URL and you
 will be prompted for it every time it is needed.
-** Changing the default password on GitLab
-
+** Getting and changing the default password on GitLab
 *Warning (Jupyter users) :* changing your default Gitlab password will prevent you from commiting in Jupyter. You will have to do the extra step of changing your Jupyter =~/.git-credentials=
 
-1. Get your default password using the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85][Gitlab credentials retrieval tool]].
-2. Access [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/xblock/block-v1:inria+41016+session01bis+type@lti+block@05a0ce425f1741e5bee5049040f70529/handler/preview_handler][GitLab]]. /Note: You have to access Gitlab from the FUN
-   platform otherwise you may get a 405 error/ /when trying to direcly
-   open https://app-learninglab.inria.fr/gitlab/users/sign_in/.
+1. Get your default password using the [[https://app-learninglab.inria.fr/jupyterhub/services/password][Gitlab credentials retrieval
+   tool]] as described on the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85][corresponding resource]].
+
+   /Note: You have to access this webpage from the FUN platform
+   otherwise you may get a 405 error/ /when trying to direcly open
+   [[https://app-learninglab.inria.fr/jupyterhub/services/password]]./
    #+BEGIN_CENTER
    [[file:gitlab_images/erreur405.png]]
    #+END_CENTER
+2. Access [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/xblock/block-v1:inria+41016+session01bis+type@lti+block@05a0ce425f1741e5bee5049040f70529/handler/preview_handler][GitLab]]. 
+
+   /Note: Again, you have to access Gitlab from the FUN platform
+   otherwise you may get a 405 error/ /when trying to direcly open
+   https://app-learninglab.inria.fr/gitlab/users/sign_in/.
 3. Click on =Sign in:= or using your default credentials
    #+BEGIN_CENTER
    [[file:gitlab_images/signin.png]]
    #+END_CENTER
-   The long and uggly character sequence, which is here replaced by =xxx=
-   is your GitLab login/id. You'll need to use it when trying to
-   propagate some modifications from your computer to GitLab.
+   The long and uggly character sequence, which is here replaced by
+   =xxx= is your GitLab login/id (it is the same as the one you obtained
+   from Gitlab credentials retrieval tool). You'll need to use it when
+   trying to propagate some modifications from your computer to
+   GitLab.
 4. Go to =Account > Settings > Password= and define your password using your default password :
    #+BEGIN_CENTER
    [[file:gitlab_images/password.png]]
