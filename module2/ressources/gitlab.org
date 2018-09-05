@@ -78,14 +78,24 @@ In such case, consider something like this:
 git config --global http.proxy http://proxyUsername:proxyPassword@proxy.server.com:port
 #+end_src
 
-The proxyPassword will be stored unencrypted in your ~.gitconfig~ file,
+The =proxyPassword= will be stored in plain text (unencrypted) in your ~.gitconfig~ file,
 which you may not want. In that case, remove it from the URL and you
 will be prompted for it every time it is needed.
-** Getting and changing the default password on GitLab
-*Warning (Jupyter users) :* changing your default Gitlab password will prevent you from commiting in Jupyter. You will have to do the extra step of changing your Jupyter =~/.git-credentials=
+** Getting your default password on GitLab (and possibly changing it)
+*Warning (Jupyter users) :* changing your default Gitlab password will prevent you from committing in Jupyter. You will have to do the extra step of changing your Jupyter =~/.git-credentials=
 
 1. Get your default password using the [[https://app-learninglab.inria.fr/jupyterhub/services/password][Gitlab credentials retrieval
    tool]] as described on the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85][corresponding resource]].
+   #+BEGIN_CENTER
+   [[file:gitlab_images/password_retrieval.png]]
+   #+END_CENTER
+   The first long and ugly character sequence is your GitLab
+   login/id. It is easy to find once you are logged on gitlab. The
+   second one however is your password and this webpage is the only
+   place where you can find it. We used the FUN authentification
+   mechanism to propagate your credentials so only you can have access
+   to it. You'll need to use this password when trying to propagate
+   some modifications from your computer to GitLab.
 
    /Note: You have to access this webpage from the FUN platform
    otherwise you may get a 405 error/ /when trying to direcly open
@@ -98,21 +108,25 @@ will be prompted for it every time it is needed.
    /Note: Again, you have to access Gitlab from the FUN platform
    otherwise you may get a 405 error/ /when trying to direcly open
    https://app-learninglab.inria.fr/gitlab/users/sign_in/.
-3. Click on =Sign in:= or using your default credentials
+3. Click on the first =Sign in= button (alternatively, you can the
+   login/password you just retrieved and use the second =Sign in=
+   button).
    #+BEGIN_CENTER
    [[file:gitlab_images/signin.png]]
    #+END_CENTER
-   The long and uggly character sequence, which is here replaced by
-   =xxx= is your GitLab login/id (it is the same as the one you obtained
-   from Gitlab credentials retrieval tool). You'll need to use it when
-   trying to propagate some modifications from your computer to
-   GitLab.
-4. Go to =Account > Settings > Password= and define your password using your default password :
+4. If you wish to modify your password, you shoul go to =Account >
+   Settings > Password= and define your password using the default
+   password you just retrieved. Again, if you use the Jupyter
+   notebooks we have deployed for the MOOC, remember that changing
+   your default Gitlab password will prevent you from committing in
+   Jupyter. You will have to do the extra step of changing your
+   Jupyter =~/.git-credentials= through a jupyter console (see next
+   section).
    #+BEGIN_CENTER
    [[file:gitlab_images/password.png]]
    #+END_CENTER
 ** Remembering your password locally
-If you clone your repos by simply pasting the GitLab URL, you will be
+If you clone your repository by simply pasting the GitLab URL, you will be
 prompted for your login and your password every time you want to
 propagate your local modifications, which is tedious. This is why you
 should ask git to remember your login and password as follows
@@ -124,6 +138,15 @@ With this setup, you will be prompted for your password but it will be
 cached in memory and they will not be asked again before an hour.  You
 may want to read [[https://stackoverflow.com/questions/5343068/is-there-a-way-to-skip-password-typing-when-using-https-on-github][these instructions]] to better understand how all this
 works.
+
+If you want your password to be permanently remembered, you should use
+this command
+#+begin_src shell :results output :exports both
+git config credential.helper store
+#+end_src
+Your password will be then stored in a =.git-credentials= file in plain
+text. On a perfectly secured machine, it may be fine... or not... ;)
+Use it at your own risk.
 ** Optional: authenticating through SSH
 There are two ways of authenticating and synchronizing your local
 repository with GitLab: through HTTPS or through SSH. The first one is
@@ -174,7 +197,7 @@ Here are other ways to learn Git through the command line:
 
 Now, let's start!
 1. Obtain the repository URL
-   [[file:gitlab_images/adresse_depot.png]]
+   [[file:rstudio_images/adresse_depot.png]]
 2. Cloning the repository
    #+begin_src shell :results output :exports both
    cd /the/directory/where/you/want/to/clone/your/repository
