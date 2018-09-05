@@ -129,6 +129,32 @@ df$Malade = sapply(df$Age, function(x) rbinom(n=1,size=1,prob=proba(x)))
 #+end_src
 
 #+RESULTS:
+#+begin_example
+Le chargement a nécessité le package : lattice
+Le chargement a nécessité le package : survival
+Le chargement a nécessité le package : Formula
+Le chargement a nécessité le package : ggplot2
+
+Attachement du package : ‘Hmisc’
+
+The following objects are masked from ‘package:base’:
+
+    format.pval, units
+
+Attachement du package : ‘dplyr’
+
+The following objects are masked from ‘package:Hmisc’:
+
+    src, summarize
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+#+end_example
 
 #+begin_src R :results output :session *R* :exports both
 summary(df)
@@ -137,16 +163,16 @@ str(df)
 
 #+RESULTS:
 #+begin_example
-      Age            Malade    
- Min.   :22.01   Min.   :0.00  
- 1st Qu.:37.06   1st Qu.:0.00  
- Median :53.30   Median :1.00  
- Mean   :52.42   Mean   :0.53  
- 3rd Qu.:66.29   3rd Qu.:1.00  
- Max.   :79.36   Max.   :1.00
-'data.frame':	100 obs. of  2 variables:
+      Age            Malade     
+ Min.   :22.01   Min.   :0.000  
+ 1st Qu.:35.85   1st Qu.:0.000  
+ Median :50.37   Median :1.000  
+ Mean   :50.83   Mean   :0.515  
+ 3rd Qu.:65.37   3rd Qu.:1.000  
+ Max.   :79.80   Max.   :1.000
+'data.frame':	400 obs. of  2 variables:
  $ Age   : num  75.1 76.4 38.6 70.2 59.2 ...
- $ Malade: int  1 1 0 1 0 0 1 0 1 1 ...
+ $ Malade: int  1 1 0 1 1 1 0 0 1 1 ...
 #+end_example
 
 Voici une représentation graphique des données qui permet de mieux
