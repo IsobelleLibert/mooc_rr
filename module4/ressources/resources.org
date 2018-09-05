@@ -90,7 +90,9 @@ This topic is discussed on [[https://stackoverflow.com/questions/20180543/how-to
 package installer) within a shell command, it is easy to query the
 version of all installed packages (note that on your system, you may
 have to use either =pip= or =pip3= depending on how it is named and which
-versions of Python are available on your machine.
+versions of Python are available on your machine
+
+Here for example how I get these information on my machine:
 #+begin_src shell :results output :exports both
 pip3 freeze
 #+end_src
@@ -116,14 +118,45 @@ wcwidth==0.1.7
 webencodings==0.5
 #+end_example
 
+In a Jupyter notebook, this can easily be done by using the =%%sh=
+magic. Here is for example what you could do and get on the Jupyter
+notebooks we deployed for the MOOC (note that here, you should simply
+use the =pip= command):
+#+begin_src python :results output :exports both
+%%sh
+pip freeze
+#+end_src
+
+#+results:
+#+begin_example
+alembic==0.9.9
+asn1crypto==0.24.0
+attrs==18.1.0
+Automat==0.0.0
+...
+numpy==1.13.3
+olefile==0.45.1
+packaging==17.1
+pamela==0.3.0
+pandas==0.22.0
+...
+webencodings==0.5
+widgetsnbextension==3.2.1
+xlrd==1.1.0
+zope.interface==4.5.0
+#+end_example
+
+In the rest of this document, I will assume the correct command is =pip=
+and I will not systematically insert the =%%sh= magic.
+
 Once you know which packages are installed, you can easily get
 additional information about a given package and in particular check
 whether it was installed "locally" through pip or whether it is
 installed system-wide. Again, in a shell command:
 #+begin_src shell :results output :exports both
-pip3 show pandas
+pip show pandas
 echo "            "
-pip3 show statsmodels
+pip show statsmodels
 #+end_src
 
 #+RESULTS:
@@ -148,7 +181,6 @@ License: BSD License
 Location: /home/alegrand/.local/lib/python3.6/site-packages
 Requires: patsy, pandas
 #+end_example
-
 ** How to list imported modules?
 Without resorting to pip (that will list all available packages), you
 may want to know which modules are loaded in a Python session as well
@@ -216,8 +248,63 @@ pip3 install -r requirements.txt # to install the previous list of packages, pos
 If you want to have several installed Python environments, you may
 want to use [[https://docs.pipenv.org/][Pipenv]]. I doubt it allows to track correctly FORTRAN or C
 dynamic libraries that are wrapped by Python though.
+** Installing a new package or a specific version
+The Jupyter environment we deployed on our servers for the MOOC is
+based on the version 4.5.4 of Miniconda and Python 3.6. In this
+environment you should simply use the =pip= command (remember on your
+machine, you may have to use =pip3=).
+
+If I query the current version of =statsmodels= in a shell command,
+here is what I will get.
+#+begin_src shell :results output :exports both
+pip show statsmodels
+#+end_src
+
+#+RESULTS:
+#+BEGIN_EXAMPLE
+Name: statsmodels
+Version: 0.8.0
+Summary: Statistical computations and models for Python
+Home-page: http://www.statsmodels.org/
+Author: Skipper Seabold, Josef Perktold
+Author-email: pystatsmodels@googlegroups.com
+License: BSD License
+Location: /opt/conda/lib/python3.6/site-packages
+Requires: scipy, patsy, pandas
+#+END_EXAMPLE
+
+I can then easily upgrade =statsmodels=:
+#+begin_src shell :results output :exports both
+pip install --upgrade statsmodels 
+#+end_src
+
+Then the new version should then be:
+#+begin_src shell :results output :exports both
+pip show statsmodels
+#+end_src
+
+#+RESULTS:
+#+BEGIN_EXAMPLE
+Name: statsmodels
+Version: 0.9.0
+Summary: Statistical computations and models for Python
+Home-page: http://www.statsmodels.org/
+Author: Skipper Seabold, Josef Perktold
+Author-email: pystatsmodels@googlegroups.com
+License: BSD License
+Location: /opt/conda/lib/python3.6/site-packages
+Requires: scipy, patsy, pandas
+#+END_EXAMPLE
+
+It is even possible to install a specific (possibly much older) version, e.g.,:
+#+begin_src shell :results output :exports both
+pip install statsmodels==0.6.1
+#+end_src
 * Getting information about R libraries
-The best way seems to be to rely on the =devtools= package.
+** Getting the list imported modules and their version
+The best way seems to be to rely on the =devtools= package (if this
+package is not installed, you should install it first by running in =R=
+the command =install.packages("devtools")=).
 
 #+begin_src R :results output :session *R* :exports both
 sessionInfo()
@@ -276,7 +363,7 @@ Packages ----------------------------------------------------------------------
 Some actually advocate that [[https://github.com/ropensci/rrrpkg][writing a reproducible research compendium
 can be done by writing an R package]]. Those of you willing to have a
 clean R dependency management should thus have a look at [[https://rstudio.github.io/packrat/][Packrat]].
-
+** Getting the list of installed packages and their version
 Finally, it is good to know that there is a built-in R command
 (=installed.packages=) allowing to retrieve and list the details of all
 packages installed.
@@ -296,3 +383,63 @@ head(installed.packages())
 | Matrix                                                      | /home/alegrand/R/x86_64-pc-linux-gnu-library/3.5 |                                                  1.2-14 | recommended | R (>= 3.2.0)                                             | methods, graphics, grid, stats, utils, lattice                 | nil       | expm, MASS    | MatrixModels, graph, SparseM, sfsmisc | GPL (>= 2)                | file LICENCE  | nil                 | nil    | nil    | nil              |   yes | 3.5.1 |
 | StanHeaders                                                 | /home/alegrand/R/x86_64-pc-linux-gnu-library/3.5 |                                                  2.17.2 | nil         | nil                                                      | nil                                                            | nil       | RcppEigen, BH | nil                                   | BSD_3_clause + file LICENSE | nil           | nil                 | nil    | nil    | yes              | 3.5.1 |       |
 | acepack                                                     | /home/alegrand/R/x86_64-pc-linux-gnu-library/3.5 |                                                   1.4.1 | nil         | nil                                                      | nil                                                            | nil       | testthat      | nil                                   | MIT + file LICENSE        | nil           | nil                 | nil    | nil    | yes              | 3.5.1 |       |
+
+** Installing a new package or a specific version
+This section is mostly a cut and paste from the [[https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages][recent post by Ian
+Pylvainen]] on this topic. It comprises a very clear explanation on how
+to proceed.
+
+*** Installing a pre-compiled version
+If you're on a Debian or a Ubuntu system, it may be difficult to
+access a specific version without breaking your system. So unless you
+are moving to the latest version available in your Linux distribution,
+*we strongly recommend you to build from source*. In this case, you'll
+need to make sure you have the necessary toolchain to build packages
+from source (e.g., gcc, FORTRAN, etc.). On Windows, this may require
+you to install [[https://cran.r-project.org/bin/windows/Rtools/][Rtools]].
+
+If you're on Windows or OS X and looking for a package for an *older
+version of R* (R 2.1 or below), you can check the [[https://cran-archive.r-project.org/bin/][CRAN binary
+archive]]. Once you have the URL, you can install it using a command
+similar to the example below:
+#+begin_src R :results output :session *R* :exports both
+packageurl <- "https://cran-archive.r-project.org/bin/windows/contrib/2.13/BBmisc_1.0-58.zip"
+install.packages(packageurl, repos=NULL, type="binary")
+#+end_src
+*** Using devtools
+The simplest method to install the version you need is to use the
+=install_version()= function of the =devtools= package (obviously, you
+need to install =devtools= first, which can be done by running in =R= the
+command =install.packages("devtools")=). For instance:
+
+#+begin_src R :results output :session *R* :exports both
+require(devtools)
+install_version("ggplot2", version = "0.9.1", repos = "http://cran.us.r-project.org")
+#+end_src
+*** Alternatively, you may want to install an older package from source
+If you devtools fails or if you do not want to depend on it, you can
+install it from source via =install.packages()= directed to the right
+URL. This URL can be obtained by browsing the [[https://cran.r-project.org/src/contrib/Archive][CRAN Package Archive]].
+
+Once you have the URL, you can install it using a command similar to
+the example below:
+#+begin_src R :results output :session *R* :exports both
+packageurl <- "http://cran.r-project.org/src/contrib/Archive/ggplot2/ggplot2_0.9.1.tar.gz"
+install.packages(packageurl, repos=NULL, type="source")
+#+end_src
+
+If you know the URL, you can also install from source via the command
+line outside of R. For instance (in bash):
+#+begin_src shell :results output :exports both
+wget http://cran.r-project.org/src/contrib/Archive/ggplot2/ggplot2_0.9.1.tar.gz
+R CMD INSTALL ggplot2_0.9.1.tar.gz
+#+end_src
+*** Potential issues
+There are a few potential issues that may arise with installing older
+versions of packages: 
+- You may be losing functionality or bug fixes that are only present
+  in the newer versions of the packages.
+- The older package version needed may not be compatible with the
+  version of R you have installed. In this case, you will either need
+  to downgrade R to a compatible version or update your R code to work
+  with a newer version of the package.
