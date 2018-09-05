@@ -3,22 +3,36 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org0832474">Getting information about your Git repository</a></li>
-<li style="margin-bottom:0;"><a href="#org79df74e">Getting information about Python(3) libraries</a>
+<li style="margin-bottom:0;"><a href="#org196e3c8">Getting information about your Git repository</a></li>
+<li style="margin-bottom:0;"><a href="#org00455c0">Getting information about Python(3) libraries</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org6ac23e8">Getting the list of installed packages and their version</a></li>
-<li style="margin-bottom:0;"><a href="#org86b6e7e">How to list imported modules?</a></li>
-<li style="margin-bottom:0;"><a href="#orgf4c774a">Setting up an environment with pip</a></li>
+<li style="margin-bottom:0;"><a href="#org69f771a">Getting the list of installed packages and their version</a></li>
+<li style="margin-bottom:0;"><a href="#org77338a9">How to list imported modules?</a></li>
+<li style="margin-bottom:0;"><a href="#org444b8c3">Setting up an environment with pip</a></li>
+<li style="margin-bottom:0;"><a href="#org8e29bc4">Installing a new package or a specific version</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#org25032d4">Getting information about R libraries</a></li>
+<li style="margin-bottom:0;"><a href="#orga609f56">Getting information about R libraries</a>
+<ul style="margin:0 0;">
+<li style="margin-bottom:0;"><a href="#org3bee8ef">Getting the list imported modules and their version</a></li>
+<li style="margin-bottom:0;"><a href="#org0168695">Getting the list of installed packages and their version</a></li>
+<li style="margin-bottom:0;"><a href="#org4d32e3b">Installing a new package or a specific version</a>
+<ul style="margin:0 0;">
+<li style="margin-bottom:0;"><a href="#org2d34770">Installing a pre-compiled version</a></li>
+<li style="margin-bottom:0;"><a href="#org2bbc85f">Using devtools</a></li>
+<li style="margin-bottom:0;"><a href="#org524938d">Alternatively, you may want to install an older package from source</a></li>
+<li style="margin-bottom:0;"><a href="#orgc001d42">Potential issues</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0832474" class="outline-2">
-<h2 id="org0832474">Getting information about your Git repository</h2>
-<div class="outline-text-2" id="text-org0832474">
+<div id="outline-container-org196e3c8" class="outline-2">
+<h2 id="org196e3c8">Getting information about your Git repository</h2>
+<div class="outline-text-2" id="text-org196e3c8">
 <p>
 When taking notes, it may be difficult to remember which version of
 the code or of a file was used. This is what version control is useful
@@ -109,19 +123,23 @@ is the price to pay for running git from within the notebook itself.
 </p>
 </div>
 </div>
-<div id="outline-container-org79df74e" class="outline-2">
-<h2 id="org79df74e">Getting information about Python(3) libraries</h2>
-<div class="outline-text-2" id="text-org79df74e">
+<div id="outline-container-org00455c0" class="outline-2">
+<h2 id="org00455c0">Getting information about Python(3) libraries</h2>
+<div class="outline-text-2" id="text-org00455c0">
 </div>
-<div id="outline-container-org6ac23e8" class="outline-3">
-<h3 id="org6ac23e8">Getting the list of installed packages and their version</h3>
-<div class="outline-text-3" id="text-org6ac23e8">
+<div id="outline-container-org69f771a" class="outline-3">
+<h3 id="org69f771a">Getting the list of installed packages and their version</h3>
+<div class="outline-text-3" id="text-org69f771a">
 <p>
 This topic is discussed on <a href="https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules">StackOverflow</a>. When using <code>pip</code> (the Python
 package installer) within a shell command, it is easy to query the
 version of all installed packages (note that on your system, you may
 have to use either <code>pip</code> or <code>pip3</code> depending on how it is named and which
-versions of Python are available on your machine.
+versions of Python are available on your machine
+</p>
+
+<p>
+Here for example how I get these information on my machine:
 </p>
 <div class="org-src-container">
 <pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">pip3 freeze
@@ -149,15 +167,50 @@ webencodings==0.5
 </pre>
 
 <p>
+In a Jupyter notebook, this can easily be done by using the <code>%%sh</code>
+magic. Here is for example what you could do and get on the Jupyter
+notebooks we deployed for the MOOC (note that here, you should simply
+use the <code>pip</code> command):
+</p>
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-python">%%sh
+pip freeze
+</pre>
+</div>
+
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="example">
+alembic==0.9.9
+asn1crypto==0.24.0
+attrs==18.1.0
+Automat==0.0.0
+...
+numpy==1.13.3
+olefile==0.45.1
+packaging==17.1
+pamela==0.3.0
+pandas==0.22.0
+...
+webencodings==0.5
+widgetsnbextension==3.2.1
+xlrd==1.1.0
+zope.interface==4.5.0
+</pre>
+
+<p>
+In the rest of this document, I will assume the correct command is <code>pip</code>
+and I will not systematically insert the <code>%%sh</code> magic.
+</p>
+
+<p>
 Once you know which packages are installed, you can easily get
 additional information about a given package and in particular check
 whether it was installed "locally" through pip or whether it is
 installed system-wide. Again, in a shell command:
 </p>
 <div class="org-src-container">
-<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">pip3 show pandas
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">pip show pandas
 <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"            "</span>
-pip3 show statsmodels
+pip show statsmodels
 </pre>
 </div>
 
@@ -184,10 +237,9 @@ Requires: patsy, pandas
 </pre>
 </div>
 </div>
-
-<div id="outline-container-org86b6e7e" class="outline-3">
-<h3 id="org86b6e7e">How to list imported modules?</h3>
-<div class="outline-text-3" id="text-org86b6e7e">
+<div id="outline-container-org77338a9" class="outline-3">
+<h3 id="org77338a9">How to list imported modules?</h3>
+<div class="outline-text-3" id="text-org77338a9">
 <p>
 Without resorting to pip (that will list all available packages), you
 may want to know which modules are loaded in a Python session as well
@@ -248,9 +300,9 @@ zlib 1.0
 </div>
 </div>
 
-<div id="outline-container-orgf4c774a" class="outline-3">
-<h3 id="orgf4c774a">Setting up an environment with pip</h3>
-<div class="outline-text-3" id="text-orgf4c774a">
+<div id="outline-container-org444b8c3" class="outline-3">
+<h3 id="org444b8c3">Setting up an environment with pip</h3>
+<div class="outline-text-3" id="text-org444b8c3">
 <p>
 The easiest way to go is as follows:
 </p>
@@ -267,12 +319,86 @@ dynamic libraries that are wrapped by Python though.
 </p>
 </div>
 </div>
-</div>
-<div id="outline-container-org25032d4" class="outline-2">
-<h2 id="org25032d4">Getting information about R libraries</h2>
-<div class="outline-text-2" id="text-org25032d4">
+<div id="outline-container-org8e29bc4" class="outline-3">
+<h3 id="org8e29bc4">Installing a new package or a specific version</h3>
+<div class="outline-text-3" id="text-org8e29bc4">
 <p>
-The best way seems to be to rely on the <code>devtools</code> package.
+The Jupyter environment we deployed on our servers for the MOOC is
+based on the version 4.5.4 of Miniconda and Python 3.6. In this
+environment you should simply use the <code>pip</code> command (remember on your
+machine, you may have to use <code>pip3</code>).
+</p>
+
+<p>
+If I query the current version of <code>statsmodels</code> in a shell command,
+here is what I will get.
+</p>
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">pip show statsmodels
+</pre>
+</div>
+
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="example">
+Name: statsmodels
+Version: 0.8.0
+Summary: Statistical computations and models for Python
+Home-page: http://www.statsmodels.org/
+Author: Skipper Seabold, Josef Perktold
+Author-email: pystatsmodels@googlegroups.com
+License: BSD License
+Location: /opt/conda/lib/python3.6/site-packages
+Requires: scipy, patsy, pandas
+</pre>
+
+<p>
+I can then easily upgrade <code>statsmodels</code>:
+</p>
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">pip install --upgrade statsmodels 
+</pre>
+</div>
+
+<p>
+Then the new version should then be:
+</p>
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">pip show statsmodels
+</pre>
+</div>
+
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="example">
+Name: statsmodels
+Version: 0.9.0
+Summary: Statistical computations and models for Python
+Home-page: http://www.statsmodels.org/
+Author: Skipper Seabold, Josef Perktold
+Author-email: pystatsmodels@googlegroups.com
+License: BSD License
+Location: /opt/conda/lib/python3.6/site-packages
+Requires: scipy, patsy, pandas
+</pre>
+
+<p>
+It is even possible to install a specific (possibly much older) version, e.g.,:
+</p>
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">pip install <span style="font-weight: bold; font-style: italic;">statsmodels</span>==0.6.1
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orga609f56" class="outline-2">
+<h2 id="orga609f56">Getting information about R libraries</h2>
+<div class="outline-text-2" id="text-orga609f56">
+</div>
+<div id="outline-container-org3bee8ef" class="outline-3">
+<h3 id="org3bee8ef">Getting the list imported modules and their version</h3>
+<div class="outline-text-3" id="text-org3bee8ef">
+<p>
+The best way seems to be to rely on the <code>devtools</code> package (if this
+package is not installed, you should install it first by running in <code>R</code>
+the command <code>install.packages("devtools")</code>).
 </p>
 
 <div class="org-src-container">
@@ -334,7 +460,11 @@ Some actually advocate that <a href="https://github.com/ropensci/rrrpkg">writing
 can be done by writing an R package</a>. Those of you willing to have a
 clean R dependency management should thus have a look at <a href="https://rstudio.github.io/packrat/">Packrat</a>.
 </p>
-
+</div>
+</div>
+<div id="outline-container-org0168695" class="outline-3">
+<h3 id="org0168695">Getting the list of installed packages and their version</h3>
+<div class="outline-text-3" id="text-org0168695">
 <p>
 Finally, it is good to know that there is a built-in R command
 (<code>installed.packages</code>) allowing to retrieve and list the details of all
@@ -586,6 +716,109 @@ packages installed.
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+
+<div id="outline-container-org4d32e3b" class="outline-3">
+<h3 id="org4d32e3b">Installing a new package or a specific version</h3>
+<div class="outline-text-3" id="text-org4d32e3b">
+<p>
+This section is mostly a cut and paste from the <a href="https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages">recent post by Ian
+Pylvainen</a> on this topic. It comprises a very clear explanation on how
+to proceed.
+</p>
+</div>
+
+<div id="outline-container-org2d34770" class="outline-4">
+<h4 id="org2d34770">Installing a pre-compiled version</h4>
+<div class="outline-text-4" id="text-org2d34770">
+<p>
+If you're on a Debian or a Ubuntu system, it may be difficult to
+access a specific version without breaking your system. So unless you
+are moving to the latest version available in your Linux distribution,
+<b>we strongly recommend you to build from source</b>. In this case, you'll
+need to make sure you have the necessary toolchain to build packages
+from source (e.g., gcc, FORTRAN, etc.). On Windows, this may require
+you to install <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a>.
+</p>
+
+<p>
+If you're on Windows or OS X and looking for a package for an <b>older
+version of R</b> (R 2.1 or below), you can check the <a href="https://cran-archive.r-project.org/bin/">CRAN binary
+archive</a>. Once you have the URL, you can install it using a command
+similar to the example below:
+</p>
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-R">packageurl <span style="font-weight: bold; text-decoration: underline;">&lt;-</span> <span style="font-style: italic;">"https://cran-archive.r-project.org/bin/windows/contrib/2.13/BBmisc_1.0-58.zip"</span>
+install.packages(packageurl, repos=<span style="font-weight: bold; text-decoration: underline;">NULL</span>, type=<span style="font-style: italic;">"binary"</span>)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2bbc85f" class="outline-4">
+<h4 id="org2bbc85f">Using devtools</h4>
+<div class="outline-text-4" id="text-org2bbc85f">
+<p>
+The simplest method to install the version you need is to use the
+<code>install_version()</code> function of the <code>devtools</code> package (obviously, you
+need to install <code>devtools</code> first, which can be done by running in <code>R</code> the
+command <code>install.packages("devtools")</code>). For instance:
+</p>
+
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-R"><span style="font-weight: bold; text-decoration: underline;">require</span>(devtools)
+install_version(<span style="font-style: italic;">"ggplot2"</span>, version = <span style="font-style: italic;">"0.9.1"</span>, repos = <span style="font-style: italic;">"http://cran.us.r-project.org"</span>)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org524938d" class="outline-4">
+<h4 id="org524938d">Alternatively, you may want to install an older package from source</h4>
+<div class="outline-text-4" id="text-org524938d">
+<p>
+If you devtools fails or if you do not want to depend on it, you can
+install it from source via <code>install.packages()</code> directed to the right
+URL. This URL can be obtained by browsing the <a href="https://cran.r-project.org/src/contrib/Archive">CRAN Package Archive</a>.
+</p>
+
+<p>
+Once you have the URL, you can install it using a command similar to
+the example below:
+</p>
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-R">packageurl <span style="font-weight: bold; text-decoration: underline;">&lt;-</span> <span style="font-style: italic;">"http://cran.r-project.org/src/contrib/Archive/ggplot2/ggplot2_0.9.1.tar.gz"</span>
+install.packages(packageurl, repos=<span style="font-weight: bold; text-decoration: underline;">NULL</span>, type=<span style="font-style: italic;">"source"</span>)
+</pre>
+</div>
+
+<p>
+If you know the URL, you can also install from source via the command
+line outside of R. For instance (in bash):
+</p>
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">wget http://cran.r-project.org/src/contrib/Archive/ggplot2/ggplot2_0.9.1.tar.gz
+R CMD INSTALL ggplot2_0.9.1.tar.gz
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc001d42" class="outline-4">
+<h4 id="orgc001d42">Potential issues</h4>
+<div class="outline-text-4" id="text-orgc001d42">
+<p>
+There are a few potential issues that may arise with installing older
+versions of packages: 
+</p>
+<ul class="org-ul">
+<li style="margin-bottom:0;">You may be losing functionality or bug fixes that are only present
+in the newer versions of the packages.</li>
+<li style="margin-bottom:0;">The older package version needed may not be compatible with the
+version of R you have installed. In this case, you will either need
+to downgrade R to a compatible version or update your R code to work
+with a newer version of the package.</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
