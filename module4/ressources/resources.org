@@ -24,7 +24,7 @@ git log -1
 :     Fix a few typos and provide information on jupyter-git plugins.
 
 #+begin_src shell :results output :exports both
-git status
+git status -u
 #+end_src
 
 #+RESULTS:
@@ -53,6 +53,9 @@ Untracked files:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 #+end_example
+
+/Note: the -u indicates that git should also display the contents of
+new directories it did not previously know about./
 
 Then, I often include commands at the end of my notebook indicating
 how to commit the results (adding the new files, committing with a
