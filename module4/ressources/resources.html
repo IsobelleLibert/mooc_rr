@@ -3,22 +3,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org3fa36ea">Getting information about your Git repository</a></li>
-<li style="margin-bottom:0;"><a href="#org6a159b4">Getting information about Python(3) libraries</a>
+<li style="margin-bottom:0;"><a href="#orgd17a6bf">Getting information about your Git repository</a></li>
+<li style="margin-bottom:0;"><a href="#org6124137">Getting information about Python(3) libraries</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orga5f397e">Getting the list of installed packages and their version</a></li>
-<li style="margin-bottom:0;"><a href="#orgc077b2a">How to list imported modules?</a></li>
-<li style="margin-bottom:0;"><a href="#org8cd9f14">Setting up an environment with pip</a></li>
+<li style="margin-bottom:0;"><a href="#orge4b14a5">Getting the list of installed packages and their version</a></li>
+<li style="margin-bottom:0;"><a href="#org9a2ced1">How to list imported modules?</a></li>
+<li style="margin-bottom:0;"><a href="#orgf6af58a">Setting up an environment with pip</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#org2582136">Getting information about R libraries</a></li>
+<li style="margin-bottom:0;"><a href="#org2bdd41e">Getting information about R libraries</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3fa36ea" class="outline-2">
-<h2 id="org3fa36ea">Getting information about your Git repository</h2>
-<div class="outline-text-2" id="text-org3fa36ea">
+<div id="outline-container-orgd17a6bf" class="outline-2">
+<h2 id="orgd17a6bf">Getting information about your Git repository</h2>
+<div class="outline-text-2" id="text-orgd17a6bf">
 <p>
 When taking notes, it may be difficult to remember which version of
 the code or of a file was used. This is what version control is useful
@@ -104,15 +104,19 @@ is the price to pay for running git from within the notebook itself.
 </p>
 </div>
 </div>
-<div id="outline-container-org6a159b4" class="outline-2">
-<h2 id="org6a159b4">Getting information about Python(3) libraries</h2>
-<div class="outline-text-2" id="text-org6a159b4">
+<div id="outline-container-org6124137" class="outline-2">
+<h2 id="org6124137">Getting information about Python(3) libraries</h2>
+<div class="outline-text-2" id="text-org6124137">
 </div>
-<div id="outline-container-orga5f397e" class="outline-3">
-<h3 id="orga5f397e">Getting the list of installed packages and their version</h3>
-<div class="outline-text-3" id="text-orga5f397e">
+<div id="outline-container-orge4b14a5" class="outline-3">
+<h3 id="orge4b14a5">Getting the list of installed packages and their version</h3>
+<div class="outline-text-3" id="text-orge4b14a5">
 <p>
-<a href="https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules">https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules</a>
+This topic is discussed on <a href="https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules">StackOverflow</a>. When using <code>pip</code> (the Python
+package installer) within a shell command, it is easy to query the
+version of all installed packages (note that on your system, you may
+have to use either <code>pip</code> or <code>pip3</code> depending on how it is named and which
+versions of Python are available on your machine.
 </p>
 <div class="org-src-container">
 <pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">pip3 freeze
@@ -139,6 +143,12 @@ wcwidth==0.1.7
 webencodings==0.5
 </pre>
 
+<p>
+Once you know which packages are installed, you can easily get
+additional information about a given package and in particular check
+whether it was installed "locally" through pip or whether it is
+installed system-wide. Again, in a shell command:
+</p>
 <div class="org-src-container">
 <pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">pip3 show pandas
 <span style="font-weight: bold;">echo</span> <span style="font-style: italic;">"            "</span>
@@ -167,21 +177,18 @@ License: BSD License
 Location: /home/alegrand/.local/lib/python3.6/site-packages
 Requires: patsy, pandas
 </pre>
-
-<div class="org-src-container">
-<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-python">
-</pre>
-</div>
 </div>
 </div>
 
-<div id="outline-container-orgc077b2a" class="outline-3">
-<h3 id="orgc077b2a">How to list imported modules?</h3>
-<div class="outline-text-3" id="text-orgc077b2a">
+<div id="outline-container-org9a2ced1" class="outline-3">
+<h3 id="org9a2ced1">How to list imported modules?</h3>
+<div class="outline-text-3" id="text-org9a2ced1">
 <p>
-Inspiring from <a href="https://stackoverflow.com/questions/4858100/how-to-list-imported-modules">StackOverflow</a>, here is a simple function that lists
-loaded package (that have a <code>__version__</code> attribute, which is
-unfortunately not completely standard).
+Without resorting to pip (that will list all available packages), you
+may want to know which modules are loaded in a Python session as well
+as their version.  Inspiring from <a href="https://stackoverflow.com/questions/4858100/how-to-list-imported-modules">StackOverflow</a>, here is a simple
+function that lists loaded package (that have a <code>__version__</code> attribute,
+which is unfortunately not completely standard).
 </p>
 
 <div class="org-src-container">
@@ -236,9 +243,9 @@ zlib 1.0
 </div>
 </div>
 
-<div id="outline-container-org8cd9f14" class="outline-3">
-<h3 id="org8cd9f14">Setting up an environment with pip</h3>
-<div class="outline-text-3" id="text-org8cd9f14">
+<div id="outline-container-orgf6af58a" class="outline-3">
+<h3 id="orgf6af58a">Setting up an environment with pip</h3>
+<div class="outline-text-3" id="text-orgf6af58a">
 <p>
 The easiest way to go is as follows:
 </p>
@@ -249,16 +256,16 @@ pip3 install -r requirements.txt <span style="font-weight: bold; font-style: ita
 </div>
 
 <p>
-If you want to have several installed python environments, you may
+If you want to have several installed Python environments, you may
 want to use <a href="https://docs.pipenv.org/">Pipenv</a>. I doubt it allows to track correctly FORTRAN or C
-dynamic libraries that are wrapped by Python.
+dynamic libraries that are wrapped by Python though.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org2582136" class="outline-2">
-<h2 id="org2582136">Getting information about R libraries</h2>
-<div class="outline-text-2" id="text-org2582136">
+<div id="outline-container-org2bdd41e" class="outline-2">
+<h2 id="org2bdd41e">Getting information about R libraries</h2>
+<div class="outline-text-2" id="text-org2bdd41e">
 <p>
 The best way seems to be to rely on the <code>devtools</code> package.
 </p>
@@ -322,6 +329,258 @@ Some actually advocate that <a href="https://github.com/ropensci/rrrpkg">writing
 can be done by writing an R package</a>. Those of you willing to have a
 clean R dependency management should thus have a look at <a href="https://rstudio.github.io/packrat/">Packrat</a>.
 </p>
+
+<p>
+Finally, it is good to know that there is a built-in R command
+(<code>installed.packages</code>) allowing to retrieve and list the details of all
+packages installed.
+</p>
+<div class="org-src-container">
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-R">head(installed.packages())
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Package</th>
+<th scope="col" class="org-left">LibPath</th>
+<th scope="col" class="org-right">Version</th>
+<th scope="col" class="org-left">Priority</th>
+<th scope="col" class="org-left">Depends</th>
+<th scope="col" class="org-left">Imports</th>
+<th scope="col" class="org-left">LinkingTo</th>
+<th scope="col" class="org-left">Suggests</th>
+<th scope="col" class="org-left">Enhances</th>
+<th scope="col" class="org-left">License</th>
+<th scope="col" class="org-left">License<sub>is</sub><sub>FOSS</sub></th>
+<th scope="col" class="org-left">License<sub>restricts</sub><sub>use</sub></th>
+<th scope="col" class="org-left">OS<sub>type</sub></th>
+<th scope="col" class="org-left">MD5sum</th>
+<th scope="col" class="org-left">NeedsCompilation</th>
+<th scope="col" class="org-left">Built</th>
+<th scope="col" class="org-right">&#xa0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">BH</td>
+<td class="org-left">/home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5</td>
+<td class="org-right">1.66.0-1</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">BSL-1.0</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">no</td>
+<td class="org-left">3.5.1</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Formula</td>
+<td class="org-left">/home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5</td>
+<td class="org-right">1.2-3</td>
+<td class="org-left">nil</td>
+<td class="org-left">R (&gt;= 2.0.0), stats</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">GPL-2</td>
+<td class="org-left">GPL-3</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">no</td>
+<td class="org-right">3.5.1</td>
+</tr>
+
+<tr>
+<td class="org-left">Hmisc</td>
+<td class="org-left">/home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5</td>
+<td class="org-right">4.1-1</td>
+<td class="org-left">nil</td>
+<td class="org-left">lattice, survival (&gt;= 2.40-1), Formula, ggplot2 (&gt;= 2.2)</td>
+<td class="org-left">methods, latticeExtra, cluster, rpart, nnet, acepack, foreign,</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">gtable, grid, gridExtra, data.table, htmlTable (&gt;= 1.11.0),</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">viridis, htmltools, base64enc</td>
+<td class="org-left">nil</td>
+<td class="org-right">chron, rms, mice, tables, knitr, ff, ffbase, plotly (&gt;=</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">4.5.6)</td>
+<td class="org-left">nil</td>
+<td class="org-right">GPL (&gt;= 2)</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">yes</td>
+<td class="org-left">3.5.1</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Matrix</td>
+<td class="org-left">/home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5</td>
+<td class="org-right">1.2-14</td>
+<td class="org-left">recommended</td>
+<td class="org-left">R (&gt;= 3.2.0)</td>
+<td class="org-left">methods, graphics, grid, stats, utils, lattice</td>
+<td class="org-left">nil</td>
+<td class="org-left">expm, MASS</td>
+<td class="org-left">MatrixModels, graph, SparseM, sfsmisc</td>
+<td class="org-left">GPL (&gt;= 2)</td>
+<td class="org-left">file LICENCE</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">yes</td>
+<td class="org-right">3.5.1</td>
+</tr>
+
+<tr>
+<td class="org-left">StanHeaders</td>
+<td class="org-left">/home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5</td>
+<td class="org-right">2.17.2</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">RcppEigen, BH</td>
+<td class="org-left">nil</td>
+<td class="org-left">BSD<sub>3</sub><sub>clause</sub> + file LICENSE</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">yes</td>
+<td class="org-left">3.5.1</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">acepack</td>
+<td class="org-left">/home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5</td>
+<td class="org-right">1.4.1</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">testthat</td>
+<td class="org-left">nil</td>
+<td class="org-left">MIT + file LICENSE</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">nil</td>
+<td class="org-left">yes</td>
+<td class="org-left">3.5.1</td>
+<td class="org-right">&#xa0;</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
