@@ -3,23 +3,30 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 <head>
+<!-- 2018-09-05 mer. 07:41 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Analyse des mots-clés de mon journal</title>
-<!-- 2018-06-29 Fri 11:21 -->
-<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta  name="generator" content="Org-mode" />
-<meta  name="author" content="Laurence Farhi" />
+<meta name="generator" content="Org mode" />
+<meta name="author" content="Arnaud Legrand" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
   .todo   { font-family: monospace; color: red; }
-  .done   { color: green; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -46,27 +53,111 @@
     border: 1px solid black;
   }
   pre.src:hover:before { display: inline;}
-  pre.src-sh:before    { content: 'sh'; }
-  pre.src-bash:before  { content: 'sh'; }
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
   pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
-  pre.src-R:before     { content: 'R'; }
-  pre.src-perl:before  { content: 'Perl'; }
-  pre.src-java:before  { content: 'Java'; }
-  pre.src-sql:before   { content: 'SQL'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
 
   table { border-collapse:collapse; }
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.right  { text-align: center;  }
-  th.left   { text-align: center;   }
-  th.center { text-align: center; }
-  td.right  { text-align: right;  }
-  td.left   { text-align: left;   }
-  td.center { text-align: center; }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara:nth-child(2) { display: inline; }
-  .footpara { display: block; }
+  .footpara { display: inline; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -86,6 +177,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
 <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
@@ -99,7 +191,7 @@
 @licstart  The following is the entire license notice for the
 JavaScript code in this tag.
 
-Copyright (C) 2012-2013 Free Software Foundation, Inc.
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
 
 The JavaScript code in this tag is free software: you can
 redistribute it and/or modify it under the terms of the GNU
@@ -140,6 +232,23 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/javascript">
+    function rpl(expr,a,b) {
+      var i=0
+      while (i!=-1) {
+         i=expr.indexOf(a,i);
+         if (i>=0) {
+            expr=expr.substring(0,i)+b+expr.substring(i+a.length);
+            i+=b.length;
+         }
+      }
+      return expr
+    }
+
+    function show_org_source(){
+       document.location.href = rpl(document.location.href,".php",".org");
+    }
+</script>
 </head>
 <body>
 <div id="content">
@@ -148,9 +257,9 @@ for the JavaScript code in this tag.
 <h2>Table des matières</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. Mise en forme des données</a></li>
-<li><a href="#sec-2">2. Statistiques de base</a></li>
-<li><a href="#sec-3">3. Représentations graphiques</a></li>
+<li><a href="#orge93496f">1. Mise en forme des données</a></li>
+<li><a href="#org91643e3">2. Statistiques de base</a></li>
+<li><a href="#org1db0ff8">3. Représentations graphiques</a></li>
 </ul>
 </div>
 </div>
@@ -160,7 +269,7 @@ temps que je passe à faire telle ou telle chose. Ça tombe bien car je
 n'aime pas vraiment suivre précisément et quotidiennement le temps que
 je passe à faire telle ou telle chose. Par contre, comme vous avez pu
 le voir dans une des vidéos de ce module, je note beaucoup
-d'information dans mon journal et j'étiquette (quand j'y pense) ces
+d'informations dans mon journal et j'étiquette (quand j'y pense) ces
 informations. Je me suis dit qu'il pourrait être intéressant de voir
 si l'évolution de l'utilisation de ces étiquettes révélait quelque
 chose sur mes centres d'intérêts professionnels. Je ne compte pas en
@@ -170,8 +279,8 @@ sémantique a évolué au fil des années mais bon, on va bien voir ce
 qu'on y trouve.
 </p>
 
-<div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Mise en forme des données</h2>
+<div id="outline-container-orge93496f" class="outline-2">
+<h2 id="orge93496f"><span class="section-number-2">1</span> Mise en forme des données</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Mon journal est stocké dans <code>/home/alegrand/org/journal.org</code>. Les
@@ -187,12 +296,11 @@ Je vais donc chercher à extraire les lignes comportant trois <code>*</code> en
 début de ligne et celles commençant par une <code>*</code> et terminant par des
 mots-clés (des <code>:</code> suivis éventuellement d'un espace). L'expression
 régulière n'est pas forcément parfaite mais ça me donne une première
-idée de ce que j'aurais besoin de faire en terme de remise en forme.
+idée de ce que j'aurai besoin de faire en terme de remise en forme.
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-shell">grep -e '^\*\*\* ' -e '^\*.*:.*: *$' ~/org/journal.org | tail -n 20
+<pre class="src src-shell">grep -e <span class="org-string">'^\*\*\* '</span> -e <span class="org-string">'^\*.*:.*: *$'</span> ~/org/journal.org | tail -n 20
 </pre>
 </div>
 
@@ -221,47 +329,45 @@ idée de ce que j'aurais besoin de faire en terme de remise en forme.
 
 <p>
 OK, je suis sur la bonne voie. Je vois qu'il y a pas mal d'entrées
-sans annotations. Tant pis. Il y a aussi souvent plusieurs mots-clés
+sans annotation. Tant pis. Il y a aussi souvent plusieurs mots-clés
 pour une même date et pour pouvoir bien rajouter la date du jour en
-face de chaque mots-clés, je vais essayer un vrai langage plutôt que
+face de chaque mot-clé, je vais essayer un vrai langage plutôt que
 d'essayer de faire ça à coup de commandes shell. Je suis de l'ancienne
-génération donc j'ai plus l'habitude de perl que de python pour ce
+génération donc j'ai plus l'habitude de Perl que de Python pour ce
 genre de choses. Curieusement, ça s'écrit bien plus facilement (ça m'a
 pris 5 minutes) que ça ne se relit&#x2026; &#9786;
 </p>
 
 <div class="org-src-container">
+<pre class="src src-perl">open INPUT, <span class="org-string">"/home/alegrand/org/journal.org"</span> or <span class="org-keyword">die</span> $<span class="org-variable-name">_</span>;
+open OUTPUT, <span class="org-string">"&gt; ./org_keywords.csv"</span> or <span class="org-keyword">die</span>;
+$<span class="org-variable-name">date</span>=<span class="org-string">""</span>;
+print OUTPUT <span class="org-string">"Date,Keyword\n"</span>;
+%<span class="org-underline"><span class="org-variable-name">skip</span></span> = <span class="org-type">my</span> %<span class="org-underline"><span class="org-variable-name">params</span></span> = map { $<span class="org-variable-name">_</span> =&gt; 1 } (<span class="org-string">""</span>, <span class="org-string">"ATTACH"</span>, <span class="org-string">"Alvin"</span>, <span class="org-string">"Fred"</span>, <span class="org-string">"Mt"</span>, <span class="org-string">"Henri"</span>, <span class="org-string">"HenriRaf"</span>);
 
-<pre class="src src-perl">open INPUT, "/home/alegrand/org/journal.org" or die $_;
-open OUTPUT, "&gt; ./org_keywords.csv" or die;
-$date="";
-print OUTPUT "Date,Keyword\n";
-%skip = my %params = map { $_ =&gt; 1 } ("", "ATTACH", "Alvin", "Fred", "Mt", "Henri", "HenriRaf");
-
-while(defined($line=&lt;INPUT&gt;)) {
-    chomp($line);
-    if($line =~ '^\*\*\* (20[\d\-]*)') {
-	$date=$1;
+<span class="org-keyword">while</span>(defined($<span class="org-variable-name">line</span>=&lt;<span class="org-constant">INPUT</span>&gt;)) {
+    chomp($<span class="org-variable-name">line</span>);
+    <span class="org-keyword">if</span>($<span class="org-variable-name">line</span> =~ <span class="org-string">'^\*\*\* (20[\d\-]*)'</span>) {
+        $<span class="org-variable-name">date</span>=$<span class="org-variable-name">1</span>;
     }
-    if($line =~ '^\*.*(:\w*:)\s*$') {
-	@kw=split(/:/,$1);
-	if($date eq "") { next;}
-	foreach $k (@kw) {
-	    if(exists($skip{$k})) { next;}
-	    print OUTPUT "$date,$k\n";
-	}
+    <span class="org-keyword">if</span>($<span class="org-variable-name">line</span> =~ <span class="org-string">'^\*.*(:\w*:)\s*$'</span>) {
+        @<span class="org-underline"><span class="org-variable-name">kw</span></span>=split(<span class="org-string">/:/</span>,$<span class="org-variable-name">1</span>);
+        <span class="org-keyword">if</span>($<span class="org-variable-name">date</span> eq <span class="org-string">""</span>) { <span class="org-keyword">next</span>;}
+        <span class="org-keyword">foreach</span> $<span class="org-variable-name">k</span> (@<span class="org-underline"><span class="org-variable-name">kw</span></span>) {
+            <span class="org-keyword">if</span>(exists($<span class="org-variable-name">skip</span>{$<span class="org-variable-name">k</span>})) { <span class="org-keyword">next</span>;}
+            print OUTPUT <span class="org-string">"$date,$k\n"</span>;
+        }
     }
 }
 </pre>
 </div>
 
 <p>
-Vérifions à quoi ressemble le résultat:
+Vérifions à quoi ressemble le résultat :
 </p>
 <div class="org-src-container">
-
 <pre class="src src-shell">head org_keywords.csv
-echo "..."
+<span class="org-builtin">echo</span> <span class="org-string">"..."</span>
 tail org_keywords.csv
 </pre>
 </div>
@@ -291,29 +397,29 @@ Date,Keyword
 </pre>
 
 <p>
-C'est parfait!
+C'est parfait !
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> Statistiques de base</h2>
+<div id="outline-container-org91643e3" class="outline-2">
+<h2 id="org91643e3"><span class="section-number-2">2</span> Statistiques de base</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-Je suis bien plus à l'aise avec R qu'avec python. J'utiliserai les
+Je suis bien plus à l'aise avec R qu'avec Python. J'utiliserai les
 package du tidyverse dès que le besoin s'en fera sentir. Commençons
-par lire ces données:
+par lire ces données :
 </p>
 <div class="org-src-container">
-
-<pre class="src src-R">library(lubridate) # à installer via install.package("tidyverse")
-library(dplyr)
-df=read.csv("./org_keywords.csv",header=T)
+<pre class="src src-R"><span class="org-constant">library</span>(lubridate) <span class="org-comment-delimiter"># </span><span class="org-comment">&#224; installer via install.package("tidyverse")</span>
+<span class="org-constant">library</span>(dplyr)
+df=read.csv(<span class="org-string">"./org_keywords.csv"</span>,header=T)
 df$Year=year(date(df$Date))
 </pre>
 </div>
 
 <pre class="example">
+
 Attachement du package : ‘lubridate’
 
 The following object is masked from ‘package:base’:
@@ -336,10 +442,9 @@ The following objects are masked from ‘package:base’:
 </pre>
 
 <p>
-Alors, à quoi ressemblent ces données:
+Alors, à quoi ressemblent ces données :
 </p>
 <div class="org-src-container">
-
 <pre class="src src-R">str(df)
 summary(df)
 </pre>
@@ -361,12 +466,11 @@ summary(df)
 </pre>
 
 <p>
-Les types ont l'air correct, 568 entrées, tout va bien.
+Les types ont l'air corrects, 568 entrées, tout va bien.
 </p>
 <div class="org-src-container">
-
-<pre class="src src-R">df %&gt;% group_by(Keyword, Year) %&gt;% summarize(Count=n()) %&gt;% 
-   ungroup() %&gt;% arrange(Keyword,Year) -&gt; df_summarized
+<pre class="src src-R">df <span class="org-ess-XopX">%&gt;%</span> group_by(Keyword, Year) <span class="org-ess-XopX">%&gt;%</span> summarize(Count=n()) <span class="org-ess-XopX">%&gt;%</span> 
+   ungroup() <span class="org-ess-XopX">%&gt;%</span> arrange(Keyword,Year) <span class="org-constant">-&gt;</span> df_summarized
 df_summarized
 </pre>
 </div>
@@ -389,11 +493,10 @@ df_summarized
 </pre>
 
 <p>
-Commençons par compter combien d'annotation je fais par an.
+Commençons par compter combien d'annotations je fais par an.
 </p>
 <div class="org-src-container">
-
-<pre class="src src-R">df_summarized_total_year = df_summarized %&gt;% group_by(Year) %&gt;% summarize(Cout=sum(Count))
+<pre class="src src-R">df_summarized_total_year = df_summarized <span class="org-ess-XopX">%&gt;%</span> group_by(Year) <span class="org-ess-XopX">%&gt;%</span> summarize(Cout=sum(Count))
 df_summarized_total_year
 </pre>
 </div>
@@ -422,8 +525,7 @@ L'annotation étant libre, certains mots-clés sont peut-être très peu
 présents. Regardons ça.
 </p>
 <div class="org-src-container">
-
-<pre class="src src-R">df_summarized %&gt;% group_by(Keyword) %&gt;% summarize(Count=sum(Count)) %&gt;%  arrange(Count) %&gt;% as.data.frame()
+<pre class="src src-R">df_summarized <span class="org-ess-XopX">%&gt;%</span> group_by(Keyword) <span class="org-ess-XopX">%&gt;%</span> summarize(Count=sum(Count)) <span class="org-ess-XopX">%&gt;%</span>  arrange(Count) <span class="org-ess-XopX">%&gt;%</span> as.data.frame()
 </pre>
 </div>
 
@@ -468,29 +570,28 @@ présents. Regardons ça.
 </pre>
 
 <p>
-OK, par la suite, je me restraindrai probablement ceux qui
+OK, par la suite, je me restraindrai probablement à ceux qui
 apparaissent au moins trois fois.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> Représentations graphiques</h2>
+<div id="outline-container-org1db0ff8" class="outline-2">
+<h2 id="org1db0ff8"><span class="section-number-2">3</span> Représentations graphiques</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Pour bien faire, il faudrait que je mette une sémantique et une
 hiérarchie sur ces mots-clés mais je manque de temps là. Comme
 j'enlève les mots-clés peu fréquents, je vais quand même aussi
-rajouter le nombre total de mots-clé pour avoir une idée de ce que
-j'ai perdu. Tentons une première représentation graphique:
+rajouter le nombre total de mots-clés pour avoir une idée de ce que
+j'ai perdu. Tentons une première représentation graphique :
 </p>
 <div class="org-src-container">
-
-<pre class="src src-R">library(ggplot2)
-df_summarized %&gt;% filter(Count &gt; 3) %&gt;%
+<pre class="src src-R"><span class="org-constant">library</span>(ggplot2)
+df_summarized <span class="org-ess-XopX">%&gt;%</span> filter(Count &gt; 3) <span class="org-ess-XopX">%&gt;%</span>
     ggplot(aes(x=Year, y=Count)) + 
-    geom_bar(aes(fill=Keyword),stat="identity") + 
-    geom_point(data=df_summarized %&gt;% group_by(Year) %&gt;% summarize(Count=sum(Count))) +
+    geom_bar(aes(fill=Keyword),stat=<span class="org-string">"identity"</span>) + 
+    geom_point(data=df_summarized <span class="org-ess-XopX">%&gt;%</span> group_by(Year) <span class="org-ess-XopX">%&gt;%</span> summarize(Count=sum(Count))) +
     theme_bw()
 </pre>
 </div>
@@ -503,7 +604,7 @@ df_summarized %&gt;% filter(Count &gt; 3) %&gt;%
 
 <p>
 Aouch. C'est illisible avec une telle palette de couleurs mais vu
-qu'il y a beaucoup de valeurs différences, difficile d'utiliser une
+qu'il y a beaucoup de valeurs différentes, difficile d'utiliser une
 palette plus discriminante. Je vais quand même essayer rapidement
 histoire de dire&#x2026; Pour ça, j'utiliserai une palette de couleur
 ("Set1") où les couleurs sont toutes bien différentes mais elle n'a
@@ -512,17 +613,16 @@ mots-clés les plus fréquents.
 </p>
 
 <div class="org-src-container">
+<pre class="src src-R"><span class="org-constant">library</span>(ggplot2)
+frequent_keywords = df_summarized <span class="org-ess-XopX">%&gt;%</span> group_by(Keyword) <span class="org-ess-XopX">%&gt;%</span> 
+    summarize(Count=sum(Count)) <span class="org-ess-XopX">%&gt;%</span>  arrange(Count) <span class="org-ess-XopX">%&gt;%</span> 
+    as.data.frame() <span class="org-ess-XopX">%&gt;%</span> tail(n=9)
 
-<pre class="src src-R">library(ggplot2)
-frequent_keywords = df_summarized %&gt;% group_by(Keyword) %&gt;% 
-    summarize(Count=sum(Count)) %&gt;%  arrange(Count) %&gt;% 
-    as.data.frame() %&gt;% tail(n=9)
-
-df_summarized %&gt;% filter(Keyword %in% frequent_keywords$Keyword) %&gt;%
+df_summarized <span class="org-ess-XopX">%&gt;%</span> filter(Keyword <span class="org-ess-XopX">%in%</span> frequent_keywords$Keyword) <span class="org-ess-XopX">%&gt;%</span>
     ggplot(aes(x=Year, y=Count)) + 
-    geom_bar(aes(fill=Keyword),stat="identity") + 
-    geom_point(data=df_summarized %&gt;% group_by(Year) %&gt;% summarize(Count=sum(Count))) +
-    theme_bw() + scale_fill_brewer(palette="Set1")
+    geom_bar(aes(fill=Keyword),stat=<span class="org-string">"identity"</span>) + 
+    geom_point(data=df_summarized <span class="org-ess-XopX">%&gt;%</span> group_by(Year) <span class="org-ess-XopX">%&gt;%</span> summarize(Count=sum(Count))) +
+    theme_bw() + scale_fill_brewer(palette=<span class="org-string">"Set1"</span>)
 </pre>
 </div>
 
@@ -540,9 +640,9 @@ l'outil. L'augmentation de la partie <code>Seminar</code> ne signifie pas grand
 chose car ce n'est que récemment que j'ai commencé à étiqueter
 systématiquement les notes que je prenais quand j'assiste à un
 exposé. Les étiquettes sur <code>WP</code> ont trait à la terminologie d'un ancien
-projet ANR que j'ai continuer à utiliser (<code>WP4</code> = prédiction de
+projet ANR que j'ai continué à utiliser (<code>WP4</code> = prédiction de
 performance HPC, <code>WP7</code> = analyse et visualisation, <code>WP8</code> = plans
-d'expérience et moteurs d'expérimentation, &#x2026;). Le fait que <code>WP4</code>
+d'expérience et moteurs d'expérimentation&#x2026;). Le fait que <code>WP4</code>
 diminue est plutôt le fait que les informations à ce sujet sont
 maintenant plutôt les journaux de mes doctorants qui réalisent
 vraiment les choses que je ne fais que superviser.
@@ -551,18 +651,17 @@ vraiment les choses que je ne fais que superviser.
 <p>
 Bon, une analyse de ce genre ne serait pas digne de ce nom sans un
 <i>wordcloud</i> (souvent illisible, mais tellement sexy! &#9786;). Pour ça, je
-m'inspire librement de ce post:
+m'inspire librement de ce post :
 <a href="http://onertipaday.blogspot.com/2011/07/word-cloud-in-r.html">http://onertipaday.blogspot.com/2011/07/word-cloud-in-r.html</a>
 </p>
 
 <div class="org-src-container">
-
-<pre class="src src-R">library(wordcloud) # à installer via install.package("wordcloud")
-library(RColorBrewer)
-pal2 &lt;- brewer.pal(8,"Dark2")
-df_summarized %&gt;% group_by(Keyword) %&gt;% summarize(Count=sum(Count)) -&gt; df_summarized_keyword
+<pre class="src src-R"><span class="org-constant">library</span>(wordcloud) <span class="org-comment-delimiter"># </span><span class="org-comment">&#224; installer via install.package("wordcloud")</span>
+<span class="org-constant">library</span>(RColorBrewer)
+pal2 <span class="org-constant">&lt;-</span> brewer.pal(8,<span class="org-string">"Dark2"</span>)
+df_summarized <span class="org-ess-XopX">%&gt;%</span> group_by(Keyword) <span class="org-ess-XopX">%&gt;%</span> summarize(Count=sum(Count)) <span class="org-constant">-&gt;</span> df_summarized_keyword
 wordcloud(df_summarized_keyword$Keyword, df_summarized_keyword$Count,
-     random.order=FALSE, rot.per=.15, colors=pal2, vfont=c("sans serif","plain"))
+     random.order=<span class="org-type">FALSE</span>, rot.per=.15, colors=pal2, vfont=c(<span class="org-string">"sans serif"</span>,<span class="org-string">"plain"</span>))
 </pre>
 </div>
 
@@ -580,9 +679,8 @@ particulièrement quand il y a si peu de mots différents.
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="author">Auteur: Laurence Farhi</p>
-<p class="date">Created: 2018-06-29 Fri 11:21</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="author">Auteur: Arnaud Legrand</p>
+<p class="date">Created: 2018-09-05 mer. 07:41</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
