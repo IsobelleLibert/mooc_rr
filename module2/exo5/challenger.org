@@ -172,7 +172,7 @@ type de données nécessite un traitement particulier via la fonction
 #+begin_src R :results output graphics :file fig1bis.svg :exports both :width 4 :height 3 :session *R* 
 age_range=5
 df_grouped = df %>% mutate(Age=age_range*(floor(Age/age_range)+.5)) %>%
-                    group_by(Age) %>% summarize(Malade=sum(Malade),N=n()) %>% 
+                    group_by(Age) %>% summarise(Malade=sum(Malade),N=n()) %>% 
                     rowwise() %>% 
                     do(data.frame(Age=.$Age, binconf(.$Malade, .$N, alpha=0.05))) %>%
                     as.data.frame()
