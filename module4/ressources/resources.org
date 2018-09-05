@@ -83,7 +83,11 @@ hash) will not be stored in the cell. This is not really a problem and
 is the price to pay for running git from within the notebook itself.
 * Getting information about Python(3) libraries 
 ** Getting the list of installed packages and their version
-https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules
+This topic is discussed on [[https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules][StackOverflow]]. When using =pip= (the Python
+package installer) within a shell command, it is easy to query the
+version of all installed packages (note that on your system, you may
+have to use either =pip= or =pip3= depending on how it is named and which
+versions of Python are available on your machine.
 #+begin_src shell :results output :exports both
 pip3 freeze
 #+end_src
@@ -109,6 +113,10 @@ wcwidth==0.1.7
 webencodings==0.5
 #+end_example
 
+Once you know which packages are installed, you can easily get
+additional information about a given package and in particular check
+whether it was installed "locally" through pip or whether it is
+installed system-wide. Again, in a shell command:
 #+begin_src shell :results output :exports both
 pip3 show pandas
 echo "            "
@@ -138,14 +146,12 @@ Location: /home/alegrand/.local/lib/python3.6/site-packages
 Requires: patsy, pandas
 #+end_example
 
-#+begin_src python :results output :exports both
-
-#+end_src
-
 ** How to list imported modules?
-Inspiring from [[https://stackoverflow.com/questions/4858100/how-to-list-imported-modules][StackOverflow]], here is a simple function that lists
-loaded package (that have a =__version__= attribute, which is
-unfortunately not completely standard).
+Without resorting to pip (that will list all available packages), you
+may want to know which modules are loaded in a Python session as well
+as their version.  Inspiring from [[https://stackoverflow.com/questions/4858100/how-to-list-imported-modules][StackOverflow]], here is a simple
+function that lists loaded package (that have a =__version__= attribute,
+which is unfortunately not completely standard).
 
 #+begin_src python :results output :exports both
 def print_imported_modules():
@@ -204,9 +210,9 @@ pip3 freeze > requirements.txt # to obtain the list of packages with their versi
 pip3 install -r requirements.txt # to install the previous list of packages, possibly on an other machine
 #+end_src
 
-If you want to have several installed python environments, you may
+If you want to have several installed Python environments, you may
 want to use [[https://docs.pipenv.org/][Pipenv]]. I doubt it allows to track correctly FORTRAN or C
-dynamic libraries that are wrapped by Python.
+dynamic libraries that are wrapped by Python though.
 * Getting information about R libraries
 The best way seems to be to rely on the =devtools= package.
 
@@ -267,3 +273,23 @@ Packages ----------------------------------------------------------------------
 Some actually advocate that [[https://github.com/ropensci/rrrpkg][writing a reproducible research compendium
 can be done by writing an R package]]. Those of you willing to have a
 clean R dependency management should thus have a look at [[https://rstudio.github.io/packrat/][Packrat]].
+
+Finally, it is good to know that there is a built-in R command
+(=installed.packages=) allowing to retrieve and list the details of all
+packages installed.
+#+begin_src R :results table :session *R* :exports both :colnames yes
+head(installed.packages())
+#+end_src
+
+#+RESULTS:
+| Package                                                     | LibPath                                         |                                                 Version | Priority    | Depends                                                  | Imports                                                        | LinkingTo | Suggests      | Enhances                              | License                   | License_is_FOSS | License_restricts_use | OS_type | MD5sum | NeedsCompilation | Built |       |
+|-------------------------------------------------------------+-------------------------------------------------+---------------------------------------------------------+-------------+----------------------------------------------------------+----------------------------------------------------------------+-----------+---------------+---------------------------------------+---------------------------+---------------+---------------------+--------+--------+------------------+-------+-------|
+| BH                                                          | /home/alegrand/R/x86_64-pc-linux-gnu-library/3.5 |                                                1.66.0-1 | nil         | nil                                                      | nil                                                            | nil       | nil           | nil                                   | BSL-1.0                   | nil           | nil                 | nil    | nil    | no               | 3.5.1 |       |
+| Formula                                                     | /home/alegrand/R/x86_64-pc-linux-gnu-library/3.5 |                                                   1.2-3 | nil         | R (>= 2.0.0), stats                                      | nil                                                            | nil       | nil           | nil                                   | GPL-2                     | GPL-3         | nil                 | nil    | nil    | nil              |    no | 3.5.1 |
+| Hmisc                                                       | /home/alegrand/R/x86_64-pc-linux-gnu-library/3.5 |                                                   4.1-1 | nil         | lattice, survival (>= 2.40-1), Formula, ggplot2 (>= 2.2) | methods, latticeExtra, cluster, rpart, nnet, acepack, foreign, |           |               |                                       |                           |               |                     |        |        |                  |       |       |
+| gtable, grid, gridExtra, data.table, htmlTable (>= 1.11.0), |                                                 |                                                         |             |                                                          |                                                                |           |               |                                       |                           |               |                     |        |        |                  |       |       |
+| viridis, htmltools, base64enc                               | nil                                             | chron, rms, mice, tables, knitr, ff, ffbase, plotly (>= |             |                                                          |                                                                |           |               |                                       |                           |               |                     |        |        |                  |       |       |
+| 4.5.6)                                                      | nil                                             |                                              GPL (>= 2) | nil         | nil                                                      | nil                                                            | nil       | yes           | 3.5.1                                 |                           |               |                     |        |        |                  |       |       |
+| Matrix                                                      | /home/alegrand/R/x86_64-pc-linux-gnu-library/3.5 |                                                  1.2-14 | recommended | R (>= 3.2.0)                                             | methods, graphics, grid, stats, utils, lattice                 | nil       | expm, MASS    | MatrixModels, graph, SparseM, sfsmisc | GPL (>= 2)                | file LICENCE  | nil                 | nil    | nil    | nil              |   yes | 3.5.1 |
+| StanHeaders                                                 | /home/alegrand/R/x86_64-pc-linux-gnu-library/3.5 |                                                  2.17.2 | nil         | nil                                                      | nil                                                            | nil       | RcppEigen, BH | nil                                   | BSD_3_clause + file LICENSE | nil           | nil                 | nil    | nil    | yes              | 3.5.1 |       |
+| acepack                                                     | /home/alegrand/R/x86_64-pc-linux-gnu-library/3.5 |                                                   1.4.1 | nil         | nil                                                      | nil                                                            | nil       | testthat      | nil                                   | MIT + file LICENSE        | nil           | nil                 | nil    | nil    | yes              | 3.5.1 |       |
