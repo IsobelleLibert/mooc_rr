@@ -3,22 +3,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orgd17a6bf">Getting information about your Git repository</a></li>
-<li style="margin-bottom:0;"><a href="#org6124137">Getting information about Python(3) libraries</a>
+<li style="margin-bottom:0;"><a href="#org0832474">Getting information about your Git repository</a></li>
+<li style="margin-bottom:0;"><a href="#org79df74e">Getting information about Python(3) libraries</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orge4b14a5">Getting the list of installed packages and their version</a></li>
-<li style="margin-bottom:0;"><a href="#org9a2ced1">How to list imported modules?</a></li>
-<li style="margin-bottom:0;"><a href="#orgf6af58a">Setting up an environment with pip</a></li>
+<li style="margin-bottom:0;"><a href="#org6ac23e8">Getting the list of installed packages and their version</a></li>
+<li style="margin-bottom:0;"><a href="#org86b6e7e">How to list imported modules?</a></li>
+<li style="margin-bottom:0;"><a href="#orgf4c774a">Setting up an environment with pip</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#org2bdd41e">Getting information about R libraries</a></li>
+<li style="margin-bottom:0;"><a href="#org25032d4">Getting information about R libraries</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd17a6bf" class="outline-2">
-<h2 id="orgd17a6bf">Getting information about your Git repository</h2>
-<div class="outline-text-2" id="text-orgd17a6bf">
+<div id="outline-container-org0832474" class="outline-2">
+<h2 id="org0832474">Getting information about your Git repository</h2>
+<div class="outline-text-2" id="text-org0832474">
 <p>
 When taking notes, it may be difficult to remember which version of
 the code or of a file was used. This is what version control is useful
@@ -41,7 +41,7 @@ Date:   Tue Sep 4 12:45:43 2018 +0200
 </pre>
 
 <div class="org-src-container">
-<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">git status
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-shell">git status -u
 </pre>
 </div>
 
@@ -70,6 +70,11 @@ Untracked files:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 </pre>
+
+<p>
+<i>Note: the -u indicates that git should also display the contents of
+new directories it did not previously know about.</i>
+</p>
 
 <p>
 Then, I often include commands at the end of my notebook indicating
@@ -104,13 +109,13 @@ is the price to pay for running git from within the notebook itself.
 </p>
 </div>
 </div>
-<div id="outline-container-org6124137" class="outline-2">
-<h2 id="org6124137">Getting information about Python(3) libraries</h2>
-<div class="outline-text-2" id="text-org6124137">
+<div id="outline-container-org79df74e" class="outline-2">
+<h2 id="org79df74e">Getting information about Python(3) libraries</h2>
+<div class="outline-text-2" id="text-org79df74e">
 </div>
-<div id="outline-container-orge4b14a5" class="outline-3">
-<h3 id="orge4b14a5">Getting the list of installed packages and their version</h3>
-<div class="outline-text-3" id="text-orge4b14a5">
+<div id="outline-container-org6ac23e8" class="outline-3">
+<h3 id="org6ac23e8">Getting the list of installed packages and their version</h3>
+<div class="outline-text-3" id="text-org6ac23e8">
 <p>
 This topic is discussed on <a href="https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules">StackOverflow</a>. When using <code>pip</code> (the Python
 package installer) within a shell command, it is easy to query the
@@ -180,9 +185,9 @@ Requires: patsy, pandas
 </div>
 </div>
 
-<div id="outline-container-org9a2ced1" class="outline-3">
-<h3 id="org9a2ced1">How to list imported modules?</h3>
-<div class="outline-text-3" id="text-org9a2ced1">
+<div id="outline-container-org86b6e7e" class="outline-3">
+<h3 id="org86b6e7e">How to list imported modules?</h3>
+<div class="outline-text-3" id="text-org86b6e7e">
 <p>
 Without resorting to pip (that will list all available packages), you
 may want to know which modules are loaded in a Python session as well
@@ -243,9 +248,9 @@ zlib 1.0
 </div>
 </div>
 
-<div id="outline-container-orgf6af58a" class="outline-3">
-<h3 id="orgf6af58a">Setting up an environment with pip</h3>
-<div class="outline-text-3" id="text-orgf6af58a">
+<div id="outline-container-orgf4c774a" class="outline-3">
+<h3 id="orgf4c774a">Setting up an environment with pip</h3>
+<div class="outline-text-3" id="text-orgf4c774a">
 <p>
 The easiest way to go is as follows:
 </p>
@@ -263,9 +268,9 @@ dynamic libraries that are wrapped by Python though.
 </div>
 </div>
 </div>
-<div id="outline-container-org2bdd41e" class="outline-2">
-<h2 id="org2bdd41e">Getting information about R libraries</h2>
-<div class="outline-text-2" id="text-org2bdd41e">
+<div id="outline-container-org25032d4" class="outline-2">
+<h2 id="org25032d4">Getting information about R libraries</h2>
+<div class="outline-text-2" id="text-org25032d4">
 <p>
 The best way seems to be to rely on the <code>devtools</code> package.
 </p>
