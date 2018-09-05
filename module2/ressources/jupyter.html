@@ -4,22 +4,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orgeace9b7">Additional Jupyter resources or tricks</a>
+<li style="margin-bottom:0;"><a href="#org974f69e">Additional Jupyter resources or tricks</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org8c18a42">Tips and tricks</a></li>
-<li style="margin-bottom:0;"><a href="#orgdc83801">Running R and Python in the same notebook</a></li>
-<li style="margin-bottom:0;"><a href="#org8a508ca">Exporting a notebook</a></li>
+<li style="margin-bottom:0;"><a href="#orgff5515e">Tips and tricks</a></li>
+<li style="margin-bottom:0;"><a href="#orgc5ef309">Running R and Python in the same notebook</a></li>
+<li style="margin-bottom:0;"><a href="#orgb6f8685">Exporting a notebook</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#orgd693a15">Installing Jupyter on your own machine</a>
+<li style="margin-bottom:0;"><a href="#orge73aaac">Installing Jupyter on your own machine</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orgb0a5241">Installing Jupyter</a></li>
-<li style="margin-bottom:0;"><a href="#org6c5cc92">Side note about Jupyter, JupyterLab, JupyterHub, &#x2026;</a></li>
-<li style="margin-bottom:0;"><a href="#orgb1c52f4">Exporting your notebooks with latex</a></li>
-<li style="margin-bottom:0;"><a href="#org06844c1">Jupyter extensions/plugins</a>
+<li style="margin-bottom:0;"><a href="#orgc837a03">Installing Jupyter</a></li>
+<li style="margin-bottom:0;"><a href="#orgbafde52">Side note about Jupyter, JupyterLab, JupyterHub, &#x2026;</a></li>
+<li style="margin-bottom:0;"><a href="#orga906562">Exporting your notebooks with latex</a></li>
+<li style="margin-bottom:0;"><a href="#org11225f1">Jupyter extensions/plugins</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org0bf2e9c">Improving notebook readability</a></li>
-<li style="margin-bottom:0;"><a href="#org1b381cf">Interacting with GitLab and GitHub</a></li>
+<li style="margin-bottom:0;"><a href="#orgd0bb8e3">Improving notebook readability</a></li>
+<li style="margin-bottom:0;"><a href="#orgfb9dba8">Interacting with GitLab and GitHub</a></li>
 </ul>
 </li>
 </ul>
@@ -28,13 +28,13 @@
 </div>
 </div>
 
-<div id="outline-container-orgeace9b7" class="outline-2">
-<h2 id="orgeace9b7">Additional Jupyter resources or tricks</h2>
-<div class="outline-text-2" id="text-orgeace9b7">
+<div id="outline-container-org974f69e" class="outline-2">
+<h2 id="org974f69e">Additional Jupyter resources or tricks</h2>
+<div class="outline-text-2" id="text-org974f69e">
 </div>
-<div id="outline-container-org8c18a42" class="outline-3">
-<h3 id="org8c18a42">Tips and tricks</h3>
-<div class="outline-text-3" id="text-org8c18a42">
+<div id="outline-container-orgff5515e" class="outline-3">
+<h3 id="orgff5515e">Tips and tricks</h3>
+<div class="outline-text-3" id="text-orgff5515e">
 <p>
 The following <a href="https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/">webpage</a> lists several Jupyter tricks (in particular, it
 illustrates many <code>Ipython magic</code> commands) that should improve your
@@ -44,9 +44,9 @@ now).
 </p>
 </div>
 </div>
-<div id="outline-container-orgdc83801" class="outline-3">
-<h3 id="orgdc83801">Running R and Python in the same notebook</h3>
-<div class="outline-text-3" id="text-orgdc83801">
+<div id="outline-container-orgc5ef309" class="outline-3">
+<h3 id="orgc5ef309">Running R and Python in the same notebook</h3>
+<div class="outline-text-3" id="text-orgc5ef309">
 <p>
 The best solution to this is to install rpy2. On my machine, I have
 installed the <code>python3-rpy2</code> debian package with <code>apt-get install</code>. E.g.,
@@ -56,8 +56,8 @@ installed the <code>python3-rpy2</code> debian package with <code>apt-get instal
 </pre>
 </div>
 <p>
-An other (not really recommanded) alternative consists in going
-through the python package manager with
+An other (not really recommended if the first one is available)
+alternative consists in going through the python package manager with
 </p>
 <div class="org-src-container">
 <pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-python">pip3 install rpy2
@@ -78,7 +78,7 @@ Loading <code>rpy2</code>:
 Using the <code>%R</code> Ipython magic:
 </p>
 <div class="org-src-container">
-<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-python">%R 
+<pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-python">%%R 
 summary(cars)
 </pre>
 </div>
@@ -92,11 +92,16 @@ plot(df)
 </pre>
 </div></li>
 </ol>
+<p>
+Note that this <code>%%R</code> notation allows you to use R for the whole cell but
+an other possibility is to use <code>%R</code> to have a single line of R within a
+python cell.
+</p>
 </div>
 </div>
-<div id="outline-container-org8a508ca" class="outline-3">
-<h3 id="org8a508ca">Exporting a notebook</h3>
-<div class="outline-text-3" id="text-org8a508ca">
+<div id="outline-container-orgb6f8685" class="outline-3">
+<h3 id="orgb6f8685">Exporting a notebook</h3>
+<div class="outline-text-3" id="text-orgb6f8685">
 <p>
 Obviously, you can convert to html or pdf using the using the <code>File &gt;
 Download as &gt; HTML</code> (or <code>PDF</code>) menu option.  This can also be done from
@@ -109,27 +114,27 @@ the command line with the following command:
 </div>
 
 <p>
-If you want to use a specific style, then the nbconvert exporter
-should be customised. This is discussed and demoed <a href="http://markus-beuckelmann.de/blog/customizing-nbconvert-pdf.html">here</a>. We encourage
+If you want to use a specific style, then the <code>nbconvert</code> exporter
+should be customized. This is discussed and demoed <a href="http://markus-beuckelmann.de/blog/customizing-nbconvert-pdf.html">here</a>. We encourage
 you to simply read the <a href="https://nbconvert.readthedocs.io/en/latest/">doc of nbconvert</a>. 
 </p>
 
 <p>
 Instead of going directly through LaTeX and playing too much with the
-nbconvert exporter, an other option consists in exporting to Markdown
+<code>nbconvert</code> exporter, an other option consists in exporting to Markdown
 and playing with <a href="https://pandoc.org/">pandoc</a>. Both approaches work, it's rather a matter of
 taste.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd693a15" class="outline-2">
-<h2 id="orgd693a15">Installing Jupyter on your own machine</h2>
-<div class="outline-text-2" id="text-orgd693a15">
+<div id="outline-container-orge73aaac" class="outline-2">
+<h2 id="orge73aaac">Installing Jupyter on your own machine</h2>
+<div class="outline-text-2" id="text-orge73aaac">
 </div>
-<div id="outline-container-orgb0a5241" class="outline-3">
-<h3 id="orgb0a5241">Installing Jupyter</h3>
-<div class="outline-text-3" id="text-orgb0a5241">
+<div id="outline-container-orgc837a03" class="outline-3">
+<h3 id="orgc837a03">Installing Jupyter</h3>
+<div class="outline-text-3" id="text-orgc837a03">
 <p>
 Follow these instructions if you wish to have a Jupyter environment on
 your own machine similar to the one we set up for this MOOC.
@@ -161,9 +166,9 @@ jupyter notebook
 </div>
 </div>
 </div>
-<div id="outline-container-org6c5cc92" class="outline-3">
-<h3 id="org6c5cc92">Side note about Jupyter, JupyterLab, JupyterHub, &#x2026;</h3>
-<div class="outline-text-3" id="text-org6c5cc92">
+<div id="outline-container-orgbafde52" class="outline-3">
+<h3 id="orgbafde52">Side note about Jupyter, JupyterLab, JupyterHub, &#x2026;</h3>
+<div class="outline-text-3" id="text-orgbafde52">
 <p>
 Note that Jupyter notebooks are only a small part of the picture and
 that Jupyter is now part of a bigger project: <a href="https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906">JupyterLab</a>, which allows
@@ -175,9 +180,9 @@ cutting-edge Jupyter notebooks.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb1c52f4" class="outline-3">
-<h3 id="orgb1c52f4">Exporting your notebooks with latex</h3>
-<div class="outline-text-3" id="text-orgb1c52f4">
+<div id="outline-container-orga906562" class="outline-3">
+<h3 id="orga906562">Exporting your notebooks with latex</h3>
+<div class="outline-text-3" id="text-orga906562">
 <p>
 Here is what we had to install on our recent debian machine to make sure
 the notebook export via latex works:
@@ -189,13 +194,13 @@ the notebook export via latex works:
 </div>
 </div>
 
-<div id="outline-container-org06844c1" class="outline-3">
-<h3 id="org06844c1">Jupyter extensions/plugins</h3>
-<div class="outline-text-3" id="text-org06844c1">
+<div id="outline-container-org11225f1" class="outline-3">
+<h3 id="org11225f1">Jupyter extensions/plugins</h3>
+<div class="outline-text-3" id="text-org11225f1">
 </div>
-<div id="outline-container-org0bf2e9c" class="outline-4">
-<h4 id="org0bf2e9c">Improving notebook readability</h4>
-<div class="outline-text-4" id="text-org0bf2e9c">
+<div id="outline-container-orgd0bb8e3" class="outline-4">
+<h4 id="orgd0bb8e3">Improving notebook readability</h4>
+<div class="outline-text-4" id="text-orgd0bb8e3">
 <p>
 Here are a few extensions that can ease your life:
 </p>
@@ -221,9 +226,9 @@ jupyter-serverextension enable --py hide_code
 </ul>
 </div>
 </div>
-<div id="outline-container-org1b381cf" class="outline-4">
-<h4 id="org1b381cf">Interacting with GitLab and GitHub</h4>
-<div class="outline-text-4" id="text-org1b381cf">
+<div id="outline-container-orgfb9dba8" class="outline-4">
+<h4 id="orgfb9dba8">Interacting with GitLab and GitHub</h4>
+<div class="outline-text-4" id="text-orgfb9dba8">
 <p>
 To ease your experience, we added some pull/push buttons that allow
 you to commit and sync with GitLab. This development was specific to
@@ -239,14 +244,14 @@ This being said, you may have noticed that Jupyter keeps a perfect
 track of the sequence in which cells have been run by updating the
 "output index". This is a very good property from the reproducibility
 point of view but depending on your usage, you may find it a bit
-painful when commiting. Some people have thus developped <a href="https://gist.github.com/pbugnion/ea2797393033b54674af">specific git
-hooks</a> to ignore these numbers when comitting Jupyter notebooks. There
+painful when committing. Some people have thus developed <a href="https://gist.github.com/pbugnion/ea2797393033b54674af">specific git
+hooks</a> to ignore these numbers when committing Jupyter notebooks. There
 is a long an interesting discussion about various options on
 <a href="https://stackoverflow.com/questions/18734739/using-ipython-notebooks-under-version-control">StackOverflow</a>.
 </p>
 
 <p>
-Last but not least, remembter that Jupyter notebooks are only a small
+Last but not least, remember that Jupyter notebooks are only a small
 part of the picture and that Jupyter is now part of a bigger project:
 <a href="https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906">JupyterLab</a>, which allows you to mix various components (including
 notebooks) in your browser. A specific <a href="https://github.com/jupyterlab/jupyterlab-git">JupyterLab git plugin</a> has been
