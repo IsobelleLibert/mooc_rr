@@ -19,8 +19,8 @@ installed the =python3-rpy2= debian package with =apt-get install=. E.g.,
 #+begin_src shell :results output :exports both
 sudo apt-get install python3-rpy2 python3-tzlocal
 #+end_src
-An other (not really recommanded) alternative consists in going
-through the python package manager with
+An other (not really recommended if the first one is available)
+alternative consists in going through the python package manager with
 #+begin_src python :results output :exports both
 pip3 install rpy2
 #+end_src
@@ -31,7 +31,7 @@ Then you'll be able to use both languages in the same notebook by:
    #+end_src
 2. Using the =%R= Ipython magic:
    #+begin_src python :results output :exports both
-   %R 
+   %%R 
    summary(cars)
    #+end_src
    Python objects can then even be passed to R as follows (assuming =df=
@@ -40,6 +40,9 @@ Then you'll be able to use both languages in the same notebook by:
    %%R -i df
    plot(df)
    #+end_src
+Note that this =%%R= notation allows you to use R for the whole cell but
+an other possibility is to use =%R= to have a single line of R within a
+python cell.
 ** Exporting a notebook
 Obviously, you can convert to html or pdf using the using the =File >
 Download as > HTML= (or =PDF=) menu option.  This can also be done from
@@ -49,12 +52,12 @@ the command line with the following command:
 ipython3 nbconvert --to pdf Untitled.ipynb
 #+end_src
 
-If you want to use a specific style, then the nbconvert exporter
-should be customised. This is discussed and demoed [[http://markus-beuckelmann.de/blog/customizing-nbconvert-pdf.html][here]]. We encourage
+If you want to use a specific style, then the =nbconvert= exporter
+should be customized. This is discussed and demoed [[http://markus-beuckelmann.de/blog/customizing-nbconvert-pdf.html][here]]. We encourage
 you to simply read the [[https://nbconvert.readthedocs.io/en/latest/][doc of nbconvert]]. 
 
 Instead of going directly through LaTeX and playing too much with the
-nbconvert exporter, an other option consists in exporting to Markdown
+=nbconvert= exporter, an other option consists in exporting to Markdown
 and playing with [[https://pandoc.org/][pandoc]]. Both approaches work, it's rather a matter of
 taste.
 * Installing Jupyter on your own machine
@@ -122,12 +125,12 @@ This being said, you may have noticed that Jupyter keeps a perfect
 track of the sequence in which cells have been run by updating the
 "output index". This is a very good property from the reproducibility
 point of view but depending on your usage, you may find it a bit
-painful when commiting. Some people have thus developped [[https://gist.github.com/pbugnion/ea2797393033b54674af][specific git
-hooks]] to ignore these numbers when comitting Jupyter notebooks. There
+painful when committing. Some people have thus developed [[https://gist.github.com/pbugnion/ea2797393033b54674af][specific git
+hooks]] to ignore these numbers when committing Jupyter notebooks. There
 is a long an interesting discussion about various options on
 [[https://stackoverflow.com/questions/18734739/using-ipython-notebooks-under-version-control][StackOverflow]].
 
-Last but not least, remembter that Jupyter notebooks are only a small
+Last but not least, remember that Jupyter notebooks are only a small
 part of the picture and that Jupyter is now part of a bigger project:
 [[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]], which allows you to mix various components (including
 notebooks) in your browser. A specific [[https://github.com/jupyterlab/jupyterlab-git][JupyterLab git plugin]] has been
