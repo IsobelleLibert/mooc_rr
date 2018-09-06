@@ -114,8 +114,8 @@ will be prompted for it every time it is needed.
    #+BEGIN_CENTER
    [[file:gitlab_images/signin.png]]
    #+END_CENTER
-4. If you wish to modify your password, you shoul go to =Account >
-   Settings > Password= and define your password using the default
+4. If you wish to modify your password, you shoul go to =Account > Settings > Password= 
+   and define your password using the default
    password you just retrieved. Again, if you use the Jupyter
    notebooks we have deployed for the MOOC, remember that changing
    your default Gitlab password will prevent you from committing in
