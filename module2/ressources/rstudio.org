@@ -86,20 +86,18 @@ sudo apt-get update ; sudo apt-get -f install # to fix possibly missing dependen
   Some instructions on installing R and knitr must be missing. This
   should be tested and improved.
 #+END_QUOTE
-Download and install rstudio from the [[https://www.rstudio.com/products/rstudio/download/#download][Rstudio webpage]] by choosing the
-right operating system.
-
-Then open Rstudio and type the following commands in the console to
-install knitr and ggplot2:
+- Download and install R from the [[https://cran.r-project.org/][CRAN webpage]] by choosing the right operating system.
+- Download and install Rstudio from the [[https://www.rstudio.com/products/rstudio/download/#download][Rstudio webpage]] by choosing the right operating system.
+- Download and install MiKTeX from the [[https://miktex.org/download][MiKTeX webpage]] by choosing the right operating system. You will be prompted to install some specific packages when exporting to pdf.
+- Open Rstudio and type the following commands in the console to install =knitr= and =ggplot2=:
 #+BEGIN_SRC R
-install.packages("knitr")
-install.packages("ggplot2")
+install.packages("knitr", dep=TRUE)
+install.packages("ggplot2", dep=TRUE)
 #+END_SRC
 * Using Git from Rstudio
 ** Cloning a repository
 Open RStudio and do the following steps:
-- Create a new version controled project: =File / New Project / Version
-  Control=
+- Create a new version controled project: =File / New Project / Version Control=
   #+BEGIN_CENTER
   [[file:rstudio_images/new_project.png]]
 
