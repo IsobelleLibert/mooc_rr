@@ -44,8 +44,7 @@ Note that this =%%R= notation allows you to use R for the whole cell but
 an other possibility is to use =%R= to have a single line of R within a
 python cell.
 ** Exporting a notebook
-Obviously, you can convert to html or pdf using the using the =File >
-Download as > HTML= (or =PDF=) menu option.  This can also be done from
+Obviously, you can convert to html or pdf using the using the =File > Download as > HTML= (or =PDF=) menu option.  This can also be done from
 the command line with the following command:
 
 #+begin_src sh :results output :exports both
