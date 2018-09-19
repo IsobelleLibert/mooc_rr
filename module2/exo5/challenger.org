@@ -247,7 +247,7 @@ est un bruit (une variable aléatoire de moyenne nulle), et estime $\alpha$
 et $\beta$ à partir des données.
 
 Cette technique n'a pas de sens pour estimer une probabilité et il
-convient donc d'utiliser ce que l'on appelle une [[https://fr.wikipedia.org/wiki/R%25C3%25A9gression_logistique][régression
+convient donc d'utiliser ce que l'on appelle une [[https://fr.wikipedia.org/wiki/R%C3%A9gression_logistique][régression
 logistique]] :
 #+begin_src R :results output graphics :file fig3.svg :exports both :width 4 :height 3 :session *R* 
 ggplot(df,aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) + 
