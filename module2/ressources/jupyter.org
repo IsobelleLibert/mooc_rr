@@ -43,6 +43,20 @@ Then you'll be able to use both languages in the same notebook by:
 Note that this =%%R= notation allows you to use R for the whole cell but
 an other possibility is to use =%R= to have a single line of R within a
 python cell.
+
+*** Windows
+Download =rpy2= [[https://www.lfd.uci.edu/~gohlke/pythonlibs/#rpy2][binary file]] by choosing the right operating system.
+
+Open a DOS console and type the following command:
+#+begin_src shell :results output :exports both
+python -m pip install rpy2‑2.9.4‑cp37‑cp37m‑win_amd64.whl # adapt filename
+#+end_src
+
+Install also =tzlocal=:
+#+begin_src shell :results output :exports both
+python -m pip install tzlocal
+#+end_src
+
 ** Exporting a notebook
 Obviously, you can convert to html or pdf using the using the =File > Download as > HTML= (or =PDF=) menu option.  This can also be done from
 the command line with the following command:
@@ -81,7 +95,7 @@ source activate mooc_rr
 
 jupyter notebook
 #+end_src
-** Side note about Jupyter, JupyterLab, JupyterHub, ...
+** Side note about Jupyter, JupyterLab, JupyterHub...
 Note that Jupyter notebooks are only a small part of the picture and
 that Jupyter is now part of a bigger project: [[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]], which allows
 you to mix various components (including notebooks) in your
@@ -95,6 +109,11 @@ the notebook export via latex works:
 #+begin_src shell :results output :exports both
 sudo apt-get install texlive-xetex wkhtmltopdf
 #+end_src
+
+*** Windows
+Download and install MiKTeX from the [[https://miktex.org/download][MiKTeX webpage]] 
+by choosing the right operating system. You will be prompted to install some specific 
+packages when exporting to pdf.
 
 ** Jupyter extensions/plugins
 *** Improving notebook readability
