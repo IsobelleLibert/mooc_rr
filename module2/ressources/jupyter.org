@@ -6,25 +6,14 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-* Additional Jupyter resources or tricks
-** Tips and tricks
+* 1. Tips and tricks
 The following [[https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/][webpage]] lists several Jupyter tricks (in particular, it
 illustrates many =Ipython magic= commands) that should improve your
 efficiency (note that this blog post is about two years old so some of
 the tricks may have been integrated in the default behavior of Jupyter
 now).
 ** Running R and Python in the same notebook
-The best solution to this is to install rpy2. On my machine, I have
-installed the =python3-rpy2= debian package with =apt-get install=. E.g.,
-#+begin_src shell :results output :exports both
-sudo apt-get install python3-rpy2 python3-tzlocal
-#+end_src
-An other (not really recommended if the first one is available)
-alternative consists in going through the python package manager with
-#+begin_src python :results output :exports both
-pip3 install rpy2
-#+end_src
-Then you'll be able to use both languages in the same notebook by:
+=rpy2= package allows to use both languages in the same notebook by:
 1. Loading =rpy2=: 
    #+begin_src python :results output :exports both
    %load_ext rpy2.ipython
@@ -44,7 +33,18 @@ Note that this =%%R= notation allows you to use R for the whole cell but
 an other possibility is to use =%R= to have a single line of R within a
 python cell.
 
-*** Windows
+* 2. Installing and configuring Jupyter on your machine
+** 2.1 Installing =rpy2= on an existing install of Jupyter
+#+begin_src shell :results output :exports both
+sudo apt-get install python3-rpy2 python3-tzlocal
+#+end_src
+An other (not really recommended if the first one is available)
+alternative consists in going through the python package manager with
+#+begin_src python :results output :exports both
+pip3 install rpy2
+#+end_src
+
+**** /Windows/
 Download =rpy2= [[https://www.lfd.uci.edu/~gohlke/pythonlibs/#rpy2][binary file]] by choosing the right operating system.
 
 Open a DOS console and type the following command:
@@ -57,24 +57,7 @@ Install also =tzlocal=:
 python -m pip install tzlocal
 #+end_src
 
-** Exporting a notebook
-Obviously, you can convert to html or pdf using the using the =File > Download as > HTML= (or =PDF=) menu option.  This can also be done from
-the command line with the following command:
-
-#+begin_src sh :results output :exports both
-ipython3 nbconvert --to pdf Untitled.ipynb
-#+end_src
-
-If you want to use a specific style, then the =nbconvert= exporter
-should be customized. This is discussed and demoed [[http://markus-beuckelmann.de/blog/customizing-nbconvert-pdf.html][here]]. We encourage
-you to simply read the [[https://nbconvert.readthedocs.io/en/latest/][doc of nbconvert]]. 
-
-Instead of going directly through LaTeX and playing too much with the
-=nbconvert= exporter, an other option consists in exporting to Markdown
-and playing with [[https://pandoc.org/][pandoc]]. Both approaches work, it's rather a matter of
-taste.
-* Installing Jupyter on your own machine
-** Installing Jupyter
+** 2.2 New install of Jupyter
 Follow these instructions if you wish to have a Jupyter environment on
 your own machine similar to the one we set up for this MOOC.
 
@@ -95,7 +78,38 @@ source activate mooc_rr
 
 jupyter notebook
 #+end_src
-** Side note about Jupyter, JupyterLab, JupyterHub...
+
+** 2.3 Additional tips
+
+*** Exporting a notebook
+Here is what we had to install on our recent debian machine to make sure
+the notebook export via latex works:
+#+begin_src shell :results output :exports both
+sudo apt-get install texlive-xetex wkhtmltopdf
+#+end_src
+
+Obviously, you can convert to html or pdf using the using the =File > Download as > HTML= (or =PDF=) menu option.  This can also be done from
+the command line with the following command:
+
+#+begin_src sh :results output :exports both
+ipython3 nbconvert --to pdf Untitled.ipynb
+#+end_src
+
+If you want to use a specific style, then the =nbconvert= exporter
+should be customized. This is discussed and demoed [[http://markus-beuckelmann.de/blog/customizing-nbconvert-pdf.html][here]]. We encourage
+you to simply read the [[https://nbconvert.readthedocs.io/en/latest/][doc of nbconvert]]. 
+
+Instead of going directly through LaTeX and playing too much with the
+=nbconvert= exporter, an other option consists in exporting to Markdown
+and playing with [[https://pandoc.org/][pandoc]]. Both approaches work, it's rather a matter of
+taste.
+
+**** /Windows/
+Download and install MiKTeX from the [[https://miktex.org/download][MiKTeX webpage]] 
+by choosing the right operating system. You will be prompted to install some specific 
+packages when exporting to pdf.
+
+*** Side note about Jupyter, JupyterLab, JupyterHub...
 Note that Jupyter notebooks are only a small part of the picture and
 that Jupyter is now part of a bigger project: [[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]], which allows
 you to mix various components (including notebooks) in your
@@ -103,19 +117,7 @@ browser. In the context of this MOOC, our time frame was too short to
 benefit from JupyterLab which was still under active development but
 this is probably the best option now if you want to benefit from
 cutting-edge Jupyter notebooks.
-** Exporting your notebooks with latex
-Here is what we had to install on our recent debian machine to make sure
-the notebook export via latex works:
-#+begin_src shell :results output :exports both
-sudo apt-get install texlive-xetex wkhtmltopdf
-#+end_src
 
-*** Windows
-Download and install MiKTeX from the [[https://miktex.org/download][MiKTeX webpage]] 
-by choosing the right operating system. You will be prompted to install some specific 
-packages when exporting to pdf.
-
-** Jupyter extensions/plugins
 *** Improving notebook readability
 Here are a few extensions that can ease your life:
 - [[https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook][Code folding]] to improve readability when browsing the notebook.
@@ -130,6 +132,7 @@ Here are a few extensions that can ease your life:
   jupyter-nbextension  enable --py hide_code
   jupyter-serverextension enable --py hide_code
   #+end_src
+  
 *** Interacting with GitLab and GitHub
 To ease your experience, we added some pull/push buttons that allow
 you to commit and sync with GitLab. This development was specific to
