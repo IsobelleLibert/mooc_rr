@@ -56,7 +56,7 @@ The version numbers you get will depend on the distribution you are
 running. _You really want to make sure you do not rely on org-mode 8_,
 which is now deprecated. 
 ** macOS
-*Note:* macOS comes with a prehistoric command-line-only version of Emacs located at /usr/bin/emacs. It's best to forget about it.
+*Note:* macOS comes with a prehistoric command-line-only version of Emacs located at =/usr/bin/emacs=. It's best to forget about it.
 
 - *Option 1*: Install the =.dmg= file from [[http://vgoulet.act.ulaval.ca/][Vincent Goulet]]:
   https://vigou3.github.io/emacs-modified-macos/. It ships with recent
