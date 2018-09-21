@@ -4,84 +4,44 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org4cb4b16">Installing Rstudio</a>
+<li style="margin-bottom:0;"><a href="#org04cfe56">Installing RStudio</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orgdbedec7">Linux (debian, ubuntu)</a>
+<li style="margin-bottom:0;"><a href="#org9d22fe6">Linux (debian, ubuntu)</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org333ce54">Installing R</a></li>
-<li style="margin-bottom:0;"><a href="#orge1d36b8">Installing rstudio</a></li>
+<li style="margin-bottom:0;"><a href="#org353c66d">Installing R</a></li>
+<li style="margin-bottom:0;"><a href="#orga0a31f1">Installing RStudio</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#org91c1015">Mac OSX and Windows</a></li>
+<li style="margin-bottom:0;"><a href="#org7bc3813">Mac OSX and Windows</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#orgc0d9286">Using Git from Rstudio</a>
+<li style="margin-bottom:0;"><a href="#org0eece52">RStudio documentation</a></li>
+<li style="margin-bottom:0;"><a href="#orgf1348bc">Using Git from RStudio</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org1cab696">Cloning a repository</a></li>
-<li style="margin-bottom:0;"><a href="#org1707e53">Modifying a file</a></li>
+<li style="margin-bottom:0;"><a href="#org2aec51e">Cloning a repository</a></li>
+<li style="margin-bottom:0;"><a href="#orga7c1559">Modifying a file</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<p>
-This document provides information on how to install Rstudio.
-</p>
 
-<p>
-If you have never used git with Rstudio, <b>we strongly advise that you
-follow <a href="https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/d132a854b0464ad29085cedaded23136">our tutorial on using git from Rstudio</a></b> (<i>"Rstudio et Gitlab"</i> in French). Before
-proceeding, make sure you also have followed the <b><a href="https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85">"git/GitLab
-configuration" tutorial</a></b> (in French). 
-</p>
-
-<p>
-Alternatively, you may want to watch <a href="https://www.youtube.com/embed/uHYcDQDbMY8">this video</a> (in English). If you
-do not like videos, you should have a look at the <a href="https://swcarpentry.github.io/git-novice/14-supplemental-rstudio/index.html">step-by-step
-explanations from Software Carpentry</a>. It comes with many screenshots
-and is quite progressive.
-</p>
-
-<p>
-Last, you should know that the Rstudio team has created a lot of very
-good material and tutorials. You should definitively look at the <a href="https://www.rstudio.com/resources/cheatsheets/">Cheat
-sheets webpage</a>. In particular you may want to have look at the
-following ones:
-</p>
-<ul class="org-ul">
-<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf">The Rstudio IDE</a>,</li>
-<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf">R Markdown</a> (here is also a <a href="https://rmarkdown.rstudio.com/">nice step-by-step presentation of Rmarkdown</a>),</li>
-<li style="margin-bottom:0;">The <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference guide</a>,</li>
-<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf">Data visualization with ggplot2</a>,</li>
-<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">Data transformation with dplyr</a></li>
-</ul>
-<p>
-In case it helps, here are some (sometimes outdated) French versions
-of these documents: 
-</p>
-<ul class="org-ul">
-<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/translations/french/rstudio-IDE-cheatsheet.pdf">L'IDE Rstudio</a></li>
-<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/translations/french/ggplot2-french-cheatsheet.pdf">Visualisation de données avec ggplot2</a></li>
-<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/translations/french/data-wrangling-french.pdf">Transformation de données avec dplyr</a></li>
-<li style="margin-bottom:0;"><a href="https://www.fun-mooc.fr/c4x/UPSUD/42001S02/asset/RMarkdown.pdf">Un court document sur R Markdown</a></li>
-</ul>
-
-<div id="outline-container-org4cb4b16" class="outline-2">
-<h2 id="org4cb4b16">Installing Rstudio</h2>
-<div class="outline-text-2" id="text-org4cb4b16">
+<div id="outline-container-org04cfe56" class="outline-2">
+<h2 id="org04cfe56">Installing RStudio</h2>
+<div class="outline-text-2" id="text-org04cfe56">
 </div>
-<div id="outline-container-orgdbedec7" class="outline-3">
-<h3 id="orgdbedec7">Linux (debian, ubuntu)</h3>
-<div class="outline-text-3" id="text-orgdbedec7">
+<div id="outline-container-org9d22fe6" class="outline-3">
+<h3 id="org9d22fe6">Linux (debian, ubuntu)</h3>
+<div class="outline-text-3" id="text-org9d22fe6">
 <p>
-We provide here only instructions for debian-based distributions. Feel
+We provide here only instructions for Debian-based distributions. Feel
 free to contribute to this document to provide up-to-date information
-for other distributions (e.g., redhat, fedora).
+for other distributions (e.g., RedHat, Fedora).
 </p>
 
 <p>
 Today, the stable versions of the most common distributions provide
-recent enough versions of emacs and org-mode:
+recent enough versions of R:
 </p>
 <ul class="org-ul">
 <li style="margin-bottom:0;">Debian (stretch) ships with <a href="https://packages.debian.org/stretch/r-base">R 3.3.3-1</a>, <a href="https://packages.debian.org/stretch/r-cran-knitr">knitr 1.15.1</a>, and  <a href="https://packages.debian.org/stretch/r-cran-ggplot2">ggplot 2.2.1</a></li>
@@ -94,11 +54,11 @@ for upgrading&#x2026;
 </p>
 </div>
 
-<div id="outline-container-org333ce54" class="outline-4">
-<h4 id="org333ce54">Installing R</h4>
-<div class="outline-text-4" id="text-org333ce54">
+<div id="outline-container-org353c66d" class="outline-4">
+<h4 id="org353c66d">Installing R</h4>
+<div class="outline-text-4" id="text-org353c66d">
 <p>
-Beforehand, you need to install the R language and convenient packages
+First, you need to install the R language and convenient packages
 by running (as root):
 </p>
 <div class="org-src-container">
@@ -110,7 +70,7 @@ by running (as root):
 Alternatively, if the installation of <code>r-cran-gplot2</code> or <code>r-cran-knitr</code>
 fails, you may want to install them locally (through the R packaging
 system) and manually by running the following commands in R (or
-Rstudio):
+RStudio):
 </p>
 <div class="org-src-container">
 <pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-R">install.packages(<span style="font-style: italic;">"knitr"</span>)
@@ -129,14 +89,13 @@ to run (as root):
 </div>
 </div>
 
-<div id="outline-container-orge1d36b8" class="outline-4">
-<h4 id="orge1d36b8">Installing rstudio</h4>
-<div class="outline-text-4" id="text-orge1d36b8">
+<div id="outline-container-orga0a31f1" class="outline-4">
+<h4 id="orga0a31f1">Installing RStudio</h4>
+<div class="outline-text-4" id="text-orga0a31f1">
 <p>
-Rstudio is unfortunately not packaged within debian so the easiest is
-to download the corresponding debian package on the <a href="https://www.rstudio.com/products/rstudio/download/#download">Rstudio webpage</a>
-and then to install it manually (depending on when you do this, you
-can obviously change the version number). Here is how to install it:
+RStudio is unfortunately not packaged within Debian so the easiest is
+to download the corresponding Debian package on the <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio webpage</a>
+and then to install it manually (you may have to adjust the version number in the following example). Here is how to install it:
 </p>
 
 <div class="org-src-container">
@@ -149,9 +108,9 @@ sudo apt-get update ; sudo apt-get -f install <span style="font-weight: bold; fo
 </div>
 </div>
 </div>
-<div id="outline-container-org91c1015" class="outline-3">
-<h3 id="org91c1015">Mac OSX and Windows</h3>
-<div class="outline-text-3" id="text-org91c1015">
+<div id="outline-container-org7bc3813" class="outline-3">
+<h3 id="org7bc3813">Mac OSX and Windows</h3>
+<div class="outline-text-3" id="text-org7bc3813">
 <blockquote>
 <p>
 Some instructions on installing R and knitr must be missing. This
@@ -160,9 +119,9 @@ should be tested and improved.
 </blockquote>
 <ul class="org-ul">
 <li style="margin-bottom:0;">Download and install R from the <a href="https://cran.r-project.org/">CRAN webpage</a> by choosing the right operating system.</li>
-<li style="margin-bottom:0;">Download and install Rstudio from the <a href="https://www.rstudio.com/products/rstudio/download/#download">Rstudio webpage</a> by choosing the right operating system.</li>
+<li style="margin-bottom:0;">Download and install RStudio from the <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio webpage</a> by choosing the right operating system.</li>
 <li style="margin-bottom:0;">Download and install MiKTeX from the <a href="https://miktex.org/download">MiKTeX webpage</a> by choosing the right operating system. You will be prompted to install some specific packages when exporting to pdf.</li>
-<li style="margin-bottom:0;">Open Rstudio and type the following commands in the console to install <code>knitr</code> and <code>ggplot2</code>:</li>
+<li style="margin-bottom:0;">Open RStudio and type the following commands in the console to install <code>knitr</code> and <code>ggplot2</code>:</li>
 </ul>
 <div class="org-src-container">
 <pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-R">install.packages(<span style="font-style: italic;">"knitr"</span>, dep=<span style="font-weight: bold; text-decoration: underline;">TRUE</span>)
@@ -172,13 +131,56 @@ install.packages(<span style="font-style: italic;">"ggplot2"</span>, dep=<span s
 </div>
 </div>
 </div>
-<div id="outline-container-orgc0d9286" class="outline-2">
-<h2 id="orgc0d9286">Using Git from Rstudio</h2>
-<div class="outline-text-2" id="text-orgc0d9286">
+<div id="outline-container-org0eece52" class="outline-2">
+<h2 id="org0eece52">RStudio documentation</h2>
+<div class="outline-text-2" id="text-org0eece52">
+<p>
+The RStudio team has created a lot of very good material and
+tutorials. You should definitively look at the <a href="https://www.rstudio.com/resources/cheatsheets/">Cheat sheets
+webpage</a>. In particular you may want to have look at the following
+ones:
+</p>
+<ul class="org-ul">
+<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf">The RStudio IDE</a>,</li>
+<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf">R Markdown</a> (here is also a <a href="https://rmarkdown.rstudio.com/">nice step-by-step presentation of Rmarkdown</a>),</li>
+<li style="margin-bottom:0;">The <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R Markdown Reference guide</a>,</li>
+<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf">Data visualization with ggplot2</a>,</li>
+<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf">Data transformation with dplyr</a></li>
+</ul>
+<p>
+In case it helps, here are some (sometimes outdated) French versions
+of these documents: 
+</p>
+<ul class="org-ul">
+<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/translations/french/rstudio-IDE-cheatsheet.pdf">L'IDE RStudio</a></li>
+<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/translations/french/ggplot2-french-cheatsheet.pdf">Visualisation de données avec ggplot2</a></li>
+<li style="margin-bottom:0;"><a href="https://github.com/rstudio/cheatsheets/raw/master/translations/french/data-wrangling-french.pdf">Transformation de données avec dplyr</a></li>
+<li style="margin-bottom:0;"><a href="https://www.fun-mooc.fr/c4x/UPSUD/42001S02/asset/RMarkdown.pdf">Un court document sur R Markdown</a></li>
+</ul>
 </div>
-<div id="outline-container-org1cab696" class="outline-3">
-<h3 id="org1cab696">Cloning a repository</h3>
-<div class="outline-text-3" id="text-org1cab696">
+</div>
+
+<div id="outline-container-orgf1348bc" class="outline-2">
+<h2 id="orgf1348bc">Using Git from RStudio</h2>
+<div class="outline-text-2" id="text-orgf1348bc">
+<p>
+If you have never used git with RStudio, <b>we strongly advise that you
+follow <a href="https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/d132a854b0464ad29085cedaded23136">our tutorial on using git from RStudio</a></b> (<i>"RStudio et Gitlab"</i>
+in French). Before proceeding, make sure you also have followed the
+<b><a href="https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85">"git/GitLab configuration" tutorial</a></b> (in French).
+</p>
+
+<p>
+Alternatively, you may want to watch <a href="https://www.youtube.com/embed/uHYcDQDbMY8">this video</a> (in English). If you
+do not like videos, you should have a look at the <a href="https://swcarpentry.github.io/git-novice/14-supplemental-rstudio/index.html">step-by-step
+explanations from Software Carpentry</a>. It comes with many screenshots
+and is quite progressive.
+</p>
+</div>
+
+<div id="outline-container-org2aec51e" class="outline-3">
+<h3 id="org2aec51e">Cloning a repository</h3>
+<div class="outline-text-3" id="text-org2aec51e">
 <p>
 Open RStudio and do the following steps:
 </p>
@@ -198,7 +200,7 @@ Create a new version controled project: <code>File / New Project / Version Contr
 </div>
 </div></li>
 <li style="margin-bottom:0;"><p>
-Get the url from your gitlab repository:
+Get the URL from your GitLab repository:
 </p>
 <div class="org-center">
 
@@ -235,9 +237,9 @@ controled repository.</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1707e53" class="outline-3">
-<h3 id="org1707e53">Modifying a file</h3>
-<div class="outline-text-3" id="text-org1707e53">
+<div id="outline-container-orga7c1559" class="outline-3">
+<h3 id="orga7c1559">Modifying a file</h3>
+<div class="outline-text-3" id="text-orga7c1559">
 <ul class="org-ul">
 <li style="margin-bottom:0;">Open <code>Module2/exo1/toy_document.Rmd</code> and perform a simple
 modification.</li>

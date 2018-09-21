@@ -4,28 +4,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orga30368c">1. Jupyter Tips and tricks</a>
+<li style="margin-bottom:0;"><a href="#org0b4fddb">1. Jupyter tips and tricks</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orgd2ffcbf">Running R and Python in the same notebook</a></li>
-<li style="margin-bottom:0;"><a href="#org814998b">Other languages</a></li>
+<li style="margin-bottom:0;"><a href="#orgfa26619">Running R and Python in the same notebook</a></li>
+<li style="margin-bottom:0;"><a href="#org6905b1c">Other languages</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#org745ca35">2. Installing and configuring Jupyter on your computer</a>
+<li style="margin-bottom:0;"><a href="#org71d8232">2. Installing and configuring Jupyter on your computer</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org82ca2e6">2.1 Installing Jupyter</a></li>
-<li style="margin-bottom:0;"><a href="#orgb5f2e75">2.2 Making sure Jupyter allows you to use R</a>
+<li style="margin-bottom:0;"><a href="#org080a19d">2.1 Installing Jupyter</a></li>
+<li style="margin-bottom:0;"><a href="#org74a2cde">2.2 Making sure Jupyter allows you to use R</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orgac7ff27">• Installing IRKernel (R package)</a></li>
-<li style="margin-bottom:0;"><a href="#orge8f65a7">• Installing rpy2 (Python package)</a></li>
+<li style="margin-bottom:0;"><a href="#orgb3f32d9">• Installing IRKernel (R package)</a></li>
+<li style="margin-bottom:0;"><a href="#org4157978">• Installing rpy2 (Python package)</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#org2730350">2.3 Additional tips</a>
+<li style="margin-bottom:0;"><a href="#org3c0a58e">2.3 Additional tips</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org3e523fe">• Exporting a notebook</a></li>
-<li style="margin-bottom:0;"><a href="#orgb47da83">• Side note about Jupyter, JupyterLab, JupyterHub&#x2026;</a></li>
-<li style="margin-bottom:0;"><a href="#org76b25cc">• Improving notebook readability</a></li>
-<li style="margin-bottom:0;"><a href="#org913ba64">• Interacting with GitLab and GitHub</a></li>
-<li style="margin-bottom:0;"><a href="#orgb3e3b0d">• Using other languages (e.g., SAS, Matlab, Mathematica, etc.)</a></li>
+<li style="margin-bottom:0;"><a href="#org847c6d1">• Exporting a notebook</a></li>
+<li style="margin-bottom:0;"><a href="#org581d99c">• Improving notebook readability</a></li>
+<li style="margin-bottom:0;"><a href="#org3ec1745">• Interacting with GitLab and GitHub</a></li>
 </ul>
 </li>
 </ul>
@@ -34,20 +32,20 @@
 </div>
 </div>
 
-<div id="outline-container-orga30368c" class="outline-2">
-<h2 id="orga30368c">1. Jupyter Tips and tricks</h2>
-<div class="outline-text-2" id="text-orga30368c">
+<div id="outline-container-org0b4fddb" class="outline-2">
+<h2 id="org0b4fddb">1. Jupyter tips and tricks</h2>
+<div class="outline-text-2" id="text-org0b4fddb">
 <p>
 The following <a href="https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/">webpage</a> lists several Jupyter tricks (in particular, it
-illustrates many <code>Ipython magic</code> commands) that should improve your
+illustrates many <code>IPython magic</code> commands) that should improve your
 efficiency (note that this blog post is about two years old so some of
 the tricks may have been integrated in the default behavior of Jupyter
 now).
 </p>
 </div>
-<div id="outline-container-orgd2ffcbf" class="outline-3">
-<h3 id="orgd2ffcbf">Running R and Python in the same notebook</h3>
-<div class="outline-text-3" id="text-orgd2ffcbf">
+<div id="outline-container-orgfa26619" class="outline-3">
+<h3 id="orgfa26619">Running R and Python in the same notebook</h3>
+<div class="outline-text-3" id="text-orgfa26619">
 <p>
 <code>rpy2</code> package allows to use both languages in the same notebook by:
 </p>
@@ -84,32 +82,44 @@ python cell.
 </p>
 </div>
 </div>
-<div id="outline-container-org814998b" class="outline-3">
-<h3 id="org814998b">Other languages</h3>
-<div class="outline-text-3" id="text-org814998b">
+<div id="outline-container-org6905b1c" class="outline-3">
+<h3 id="org6905b1c">Other languages</h3>
+<div class="outline-text-3" id="text-org6905b1c">
 <p>
-For any reason, you may be unsatisfied with the use of R or of
-Python. Many other languages are available:
+Jupyter is not limited to Pytyhon and R. Many other languages are available:
 <a href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels">https://github.com/jupyter/jupyter/wiki/Jupyter-kernels</a>, including
-non-free languages like SAS, Mathematica, Matlab&#x2026;
+non-free languages like SAS, Mathematica, Matlab&#x2026; Note that the maturity of these kernels differs widely.
 </p>
 
 <p>
 None of these other languages have been deployed in the context of our
-MOOC but you may want to read the next sections to know more about how
-to set up your own Jupyter notebooks on your computer and benefit from these
-extensions.
+MOOC but you may want to read the next sections to learn how
+to set up your own Jupyter on your computer and benefit from these extensions.
+</p>
+
+<p>
+Since the question was asked several times, if you really need to stay
+with SAS, you should know that SAS can be used within Jupyter using
+either the <a href="https://sassoftware.github.io/sas_kernel/">Python SASKernel</a> or the <a href="https://sassoftware.github.io/saspy/">Python SASPy</a> package (step by step
+explanations about this are given <a href="https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md">here</a>). 
+</p>
+
+<p>
+Since proprietary software such as SAS cannot easily be inspected, we discourage its use as it hinders reproducibility by
+essence. But perfection does not exist anyway and using Jupyter
+literate programming approach allied with systematic control version
+and environment control will certainly help anyway.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org745ca35" class="outline-2">
-<h2 id="org745ca35">2. Installing and configuring Jupyter on your computer</h2>
-<div class="outline-text-2" id="text-org745ca35">
+
+<div id="outline-container-org71d8232" class="outline-2">
+<h2 id="org71d8232">2. Installing and configuring Jupyter on your computer</h2>
+<div class="outline-text-2" id="text-org71d8232">
 <p>
-In this Section, we provide information on how to set up on your own
-computer a Jupyter environment similar to the one deployed for this
-MOOC.
+In this section, we explain how to set up a Jupyter environment on
+your own computer similar to the one deployed for this MOOC.
 </p>
 
 <p>
@@ -117,15 +127,13 @@ Note that Jupyter notebooks are only a small part of the picture and
 that Jupyter is now part of a bigger project: <a href="https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906">JupyterLab</a>, which allows
 you to mix various components (including notebooks) in your
 browser. In the context of this MOOC, our time frame was too short to
-benefit from JupyterLab which was still under active development but
-this is probably the best option now if you want to benefit from
-cutting-edge Jupyter notebooks.
+benefit from JupyterLab which was still under active development. You may, however, prefer JupyterLab when doing an installation on your own computer.
 </p>
 </div>
 
-<div id="outline-container-org82ca2e6" class="outline-3">
-<h3 id="org82ca2e6">2.1 Installing Jupyter</h3>
-<div class="outline-text-3" id="text-org82ca2e6">
+<div id="outline-container-org080a19d" class="outline-3">
+<h3 id="org080a19d">2.1 Installing Jupyter</h3>
+<div class="outline-text-3" id="text-org080a19d">
 <p>
 Follow these instructions if you wish to have a Jupyter environment on
 your own computer similar to the one we set up for this MOOC.
@@ -158,18 +166,18 @@ jupyter notebook
 </div>
 </div>
 </div>
-<div id="outline-container-orgb5f2e75" class="outline-3">
-<h3 id="orgb5f2e75">2.2 Making sure Jupyter allows you to use R</h3>
-<div class="outline-text-3" id="text-orgb5f2e75">
+<div id="outline-container-org74a2cde" class="outline-3">
+<h3 id="org74a2cde">2.2 Making sure Jupyter allows you to use R</h3>
+<div class="outline-text-3" id="text-org74a2cde">
 <p>
-The previous environment should ship with R but if you proceeded
-otherwise and only have python available in Jupyter, you may want to
-read the following section.
+The environment described in the last section should include R, but if
+you proceeded otherwise and only have Python available in Jupyter, you
+may want to read the following section.
 </p>
 </div>
-<div id="outline-container-orgac7ff27" class="outline-4">
-<h4 id="orgac7ff27">• Installing <a href="https://github.com/IRkernel/IRkernel">IRKernel</a> (R package)</h4>
-<div class="outline-text-4" id="text-orgac7ff27">
+<div id="outline-container-orgb3f32d9" class="outline-4">
+<h4 id="orgb3f32d9">• Installing <a href="https://github.com/IRkernel/IRkernel">IRKernel</a> (R package)</h4>
+<div class="outline-text-4" id="text-orgb3f32d9">
 <p>
 Do the following in R console:
 </p>
@@ -205,9 +213,9 @@ IRkernel::installspec()  <span style="font-weight: bold; font-style: italic;"># 
 </div>
 </div>
 
-<div id="outline-container-orge8f65a7" class="outline-4">
-<h4 id="orge8f65a7">• Installing rpy2 (Python package)</h4>
-<div class="outline-text-4" id="text-orge8f65a7">
+<div id="outline-container-org4157978" class="outline-4">
+<h4 id="org4157978">• Installing rpy2 (Python package)</h4>
+<div class="outline-text-4" id="text-org4157978">
 <p>
 On Linux, the rpy2 package is available in standard distributions
 </p>
@@ -216,8 +224,8 @@ On Linux, the rpy2 package is available in standard distributions
 </pre>
 </div>
 <p>
-An other (not really recommended if the first one is available)
-alternative consists in going through the python package manager with
+An alternative (not really recommended if the first one is available)
+consists in going through the python package manager with
 </p>
 <div class="org-src-container">
 <pre style="padding-left: 30px; background-color: #f6f8fa;" class="src src-python">pip3 install rpy2
@@ -229,7 +237,7 @@ alternative consists in going through the python package manager with
 </p>
 
 <p>
-Download <code>rpy2</code> <a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#rpy2">binary file</a> by choosing the right operating system.
+Download the <code>rpy2</code> <a href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#rpy2">binary file</a> by choosing the right operating system.
 </p>
 
 <p>
@@ -250,15 +258,15 @@ Install also <code>tzlocal</code>:
 </div>
 </div>
 </div>
-<div id="outline-container-org2730350" class="outline-3">
-<h3 id="org2730350">2.3 Additional tips</h3>
-<div class="outline-text-3" id="text-org2730350">
+<div id="outline-container-org3c0a58e" class="outline-3">
+<h3 id="org3c0a58e">2.3 Additional tips</h3>
+<div class="outline-text-3" id="text-org3c0a58e">
 </div>
-<div id="outline-container-org3e523fe" class="outline-4">
-<h4 id="org3e523fe">• Exporting a notebook</h4>
-<div class="outline-text-4" id="text-org3e523fe">
+<div id="outline-container-org847c6d1" class="outline-4">
+<h4 id="org847c6d1">• Exporting a notebook</h4>
+<div class="outline-text-4" id="text-org847c6d1">
 <p>
-Here is what we had to install on our recent debian computer to make sure
+Here is what we had to install on a recent Debian computer to make sure
 the notebook export via LaTeX works:
 </p>
 <div class="org-src-container">
@@ -294,19 +302,16 @@ taste.
 </p>
 
 <p>
-Download and install MiKTeX from the <a href="https://miktex.org/download">MiKTeX webpage</a> 
-by choosing the right operating system. You will be prompted to install some specific 
+Download and install MiKTeX from the <a href="https://miktex.org/download">MiKTeX webpage</a> by choosing the
+right operating system. You will be prompted to install some specific
 packages when exporting to pdf.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb47da83" class="outline-4">
-<h4 id="orgb47da83">• Side note about Jupyter, JupyterLab, JupyterHub&#x2026;</h4>
-</div>
-<div id="outline-container-org76b25cc" class="outline-4">
-<h4 id="org76b25cc">• Improving notebook readability</h4>
-<div class="outline-text-4" id="text-org76b25cc">
+<div id="outline-container-org581d99c" class="outline-4">
+<h4 id="org581d99c">• Improving notebook readability</h4>
+<div class="outline-text-4" id="text-org581d99c">
 <p>
 Here are a few extensions that can ease your life:
 </p>
@@ -333,11 +338,11 @@ jupyter-serverextension enable --py hide_code
 </div>
 </div>
 
-<div id="outline-container-org913ba64" class="outline-4">
-<h4 id="org913ba64">• Interacting with GitLab and GitHub</h4>
-<div class="outline-text-4" id="text-org913ba64">
+<div id="outline-container-org3ec1745" class="outline-4">
+<h4 id="org3ec1745">• Interacting with GitLab and GitHub</h4>
+<div class="outline-text-4" id="text-org3ec1745">
 <p>
-To ease your experience, we added some pull/push buttons that allow
+To ease your experience, we added pull/push buttons that allow
 you to commit and sync with GitLab. This development was specific to
 the MOOC but inspired from a previous <a href="https://github.com/Lab41/sunny-side-up">proof of concept</a>. We have
 recently discovered that someone else developed about at the same time
@@ -358,38 +363,7 @@ is a long an interesting discussion about various options on
 </p>
 
 <p>
-Last but not least, remember that Jupyter notebooks are only a small
-part of the picture and that Jupyter is now part of a bigger project:
-<a href="https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906">JupyterLab</a>, which allows you to mix various components (including
-notebooks) in your browser. A specific <a href="https://github.com/jupyterlab/jupyterlab-git">JupyterLab git plugin</a> has been
-developed to offer a nice version control experience.
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgb3e3b0d" class="outline-4">
-<h4 id="orgb3e3b0d">• Using other languages (e.g., SAS, Matlab, Mathematica, etc.)</h4>
-<div class="outline-text-4" id="text-orgb3e3b0d">
-<p>
-For any reason, you may be unsatisfied with the use of R or of
-Python. Many other languages are available:
-<a href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels">https://github.com/jupyter/jupyter/wiki/Jupyter-kernels</a>, including
-non-free languages like SAS, Mathematica, Matlab&#x2026;
-</p>
-
-<p>
-Since the question was asked several times, if you really need to stay
-with SAS, you should know that SAS can be used within Jupyter using
-either the <a href="https://sassoftware.github.io/sas_kernel/">Python SASKernel</a> or the <a href="https://sassoftware.github.io/saspy/">Python SASPy</a> package (step by step
-explanations about this are given <a href="https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md">here</a>). 
-</p>
-
-<p>
-Since such software cannot easily be opened for inspection not widely
-used, we discourage this approach as it hinders reproducibility by
-essence. But perfection does not exist anyway and using Jupyter
-literate programming approach allied with systematic control version
-and environment control will certainly help anyway.
+For those who use <a href="https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906">JupyterLab</a> rather than the plain Jupyter, a specific <a href="https://github.com/jupyterlab/jupyterlab-git">JupyterLab git plugin</a> has been developed to offer a nice version control experience.
 </p>
 </div>
 </div>
