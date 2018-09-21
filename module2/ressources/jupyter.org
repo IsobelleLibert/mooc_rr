@@ -34,7 +34,31 @@ an other possibility is to use =%R= to have a single line of R within a
 python cell.
 
 * 2. Installing and configuring Jupyter on your machine
-** 2.1 Installing =rpy2= on an existing install of Jupyter
+** 2.1 Existing install of Jupyter
+*** • Installing [[https://github.com/IRkernel/IRkernel][IRKernel]] (R package)
+Do the following in R console:
+
+Install =devtools= package:
+
+#+begin_src R :results output :session *R* :exports both
+install.packages('devtools',dep=TRUE)
+#+end_src
+
+Define proxy if needed:
+
+#+begin_src R :results output :session *R* :exports both
+library(httr)
+set_config(use_proxy(url="proxy", port=80, username="username", password="password")) 
+#+end_src
+
+Install =IRkernel= package:
+
+#+begin_src R :results output :session *R* :exports both
+devtools::install_github('IRkernel/IRkernel')
+IRkernel::installspec()  # to register the kernel in the current R installation
+#+end_src
+
+*** • Installing rpy2 (Python package)
 #+begin_src shell :results output :exports both
 sudo apt-get install python3-rpy2 python3-tzlocal
 #+end_src
@@ -44,7 +68,8 @@ alternative consists in going through the python package manager with
 pip3 install rpy2
 #+end_src
 
-**** /Windows/
+*Windows*
+
 Download =rpy2= [[https://www.lfd.uci.edu/~gohlke/pythonlibs/#rpy2][binary file]] by choosing the right operating system.
 
 Open a DOS console and type the following command:
@@ -81,7 +106,7 @@ jupyter notebook
 
 ** 2.3 Additional tips
 
-*** Exporting a notebook
+*** • Exporting a notebook
 Here is what we had to install on our recent debian machine to make sure
 the notebook export via latex works:
 #+begin_src shell :results output :exports both
@@ -104,12 +129,13 @@ Instead of going directly through LaTeX and playing too much with the
 and playing with [[https://pandoc.org/][pandoc]]. Both approaches work, it's rather a matter of
 taste.
 
-**** /Windows/
+*Windows*
+
 Download and install MiKTeX from the [[https://miktex.org/download][MiKTeX webpage]] 
 by choosing the right operating system. You will be prompted to install some specific 
 packages when exporting to pdf.
 
-*** Side note about Jupyter, JupyterLab, JupyterHub...
+*** • Side note about Jupyter, JupyterLab, JupyterHub...
 Note that Jupyter notebooks are only a small part of the picture and
 that Jupyter is now part of a bigger project: [[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]], which allows
 you to mix various components (including notebooks) in your
@@ -118,7 +144,7 @@ benefit from JupyterLab which was still under active development but
 this is probably the best option now if you want to benefit from
 cutting-edge Jupyter notebooks.
 
-*** Improving notebook readability
+*** • Improving notebook readability
 Here are a few extensions that can ease your life:
 - [[https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook][Code folding]] to improve readability when browsing the notebook.
   #+begin_src shell :results output :exports both
@@ -133,7 +159,7 @@ Here are a few extensions that can ease your life:
   jupyter-serverextension enable --py hide_code
   #+end_src
   
-*** Interacting with GitLab and GitHub
+*** • Interacting with GitLab and GitHub
 To ease your experience, we added some pull/push buttons that allow
 you to commit and sync with GitLab. This development was specific to
 the MOOC but inspired from a previous [[https://github.com/Lab41/sunny-side-up][proof of concept]]. We have
@@ -156,11 +182,12 @@ part of the picture and that Jupyter is now part of a bigger project:
 [[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]], which allows you to mix various components (including
 notebooks) in your browser. A specific [[https://github.com/jupyterlab/jupyterlab-git][JupyterLab git plugin]] has been
 developed to offer a nice version control experience.
-*** Using other languages (e.g., SAS, Matlab, Mathematica, etc.)
+
+*** • Using other languages (e.g., SAS, Matlab, Mathematica, etc.)
 For any reason, you may be unsatisfied with the use of R or of
 Python. Many other languages are available:
-https://github.com/jupyter/jupyter/wiki/Jupyter-kernels, including
-non-free languages like SAS, Mathematica, Matlab, ...
+[[https://github.com/jupyter/jupyter/wiki/Jupyter-kernels][https://github.com/jupyter/jupyter/wiki/Jupyter-kernels]], including
+non-free languages like SAS, Mathematica, Matlab...
 
 Since the question was asked several times, if you really need to stay
 with SAS, you should know that SAS can be used within Jupyter using
