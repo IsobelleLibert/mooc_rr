@@ -105,7 +105,6 @@ jupyter notebook
 #+end_src
 
 ** 2.3 Additional tips
-
 *** • Exporting a notebook
 Here is what we had to install on our recent debian machine to make sure
 the notebook export via latex works:
