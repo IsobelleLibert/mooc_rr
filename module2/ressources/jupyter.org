@@ -156,3 +156,20 @@ part of the picture and that Jupyter is now part of a bigger project:
 [[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]], which allows you to mix various components (including
 notebooks) in your browser. A specific [[https://github.com/jupyterlab/jupyterlab-git][JupyterLab git plugin]] has been
 developed to offer a nice version control experience.
+*** Using other languages (e.g., SAS, Matlab, Mathematica, etc.)
+For any reason, you may be unsatisfied with the use of R or of
+Python. Many other languages are available:
+https://github.com/jupyter/jupyter/wiki/Jupyter-kernels, including
+non-free languages like SAS, Mathematica, Matlab, ...
+
+Since the question was asked several times, if you really need to stay
+with SAS, you should know that SAS can be used within Jupyter using
+either the [[https://sassoftware.github.io/sas_kernel/][Python SASKernel]] or the [[https://sassoftware.github.io/saspy/][Python SASPy]] package (step by step
+explanations about this are given [[https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md][here]]). 
+
+Since such software cannot easily be opened for inspection not widely
+used, we discourage this approach as it hinders reproducibility by
+essence. But perfection does not exist anyway and using Jupyter
+literate programming approach allied with systematic control version
+and environment control will certainly help anyway.
+
