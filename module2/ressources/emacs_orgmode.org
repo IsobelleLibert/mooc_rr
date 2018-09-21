@@ -19,7 +19,7 @@ The next section provides information on how to install emacs.
 
 * Installing emacs, org-mode, ess, and auctex.
 ** Linux (Debian, Ubuntu)
-We provide here only instructions for debian-based distributions. Feel
+We provide here only instructions for Debian-based distributions. Feel
 free to contribute to this document to provide up-to-date information
 for other distributions (e.g.n redhat, fedora).
 
@@ -97,28 +97,21 @@ versions:
 - Emacs 26.1
 - Org-mode 9.1.13
 - ESS 17.11
-To have code pretty printing when exporting to html, it appears like
-you should install the =htmlize= package, which is done by opening emacs
-and typing the following command:
-#+BEGIN_EXAMPLE
-M-x package-install RET htmlize RET    # where M-x means pressing the "Esc" key then the "x" key
-#+END_EXAMPLE
 
 *** Directory naming conventions
-In all the following instructions, it is common to refer to your home
+In the following instructions, we refer to your home
 directory through the (UNIX) =~/= notation. On Windows, your home
 directory should be something like =C:\Users\yourname=. Therefore,
 whenever we mention the =~/org/= (resp. the =~/.emacs.d/=) directory this
 means we are referring to =C:\Users\yourname\org= (resp.
 =C:\Users\yourname\.emacs.d\=).
 *** Making R and Python available to the console
-When running a command, windows will look for the command in the
+When running a command, Windows will look for the command in the
 directories indicated in the =PATH= environment variable. If none of
 these directories contains the command, Windows will stop and indicate
-the command does not exist. To make sure R (, which may be in
-something like =C:/Program Files/R/R-3.5.1/bin/x64/=) and Python (,
-which may be in something like =C:/Program Files/Python/Python37/=) can
-easily be run from emacs, you should thus configure the =PATH= variable
+the command does not exist. To make sure R (which may be in
+something like =C:/Program Files/R/R-3.5.1/bin/x64/=) and Python (which may be in something like =C:/Program Files/Python/Python37/=) can
+easily be run from Emacs, you should thus configure the =PATH= variable
 accordingly.
 
 This requires to go through the "Environment Variable" editor as
@@ -142,6 +135,14 @@ matplotlib.matplotlib_fname()
 Open the =matplotlibrc= file and add a =#= at the beginning of the line
 starting with =backend=, which amounts to use the default =Agg= value.
 
+** All platforms: pretty code in HTML export
+To have code pretty printing when exporting to HTML, you should
+install the =htmlize= package, which is done by opening emacs and
+typing the following command:
+#+BEGIN_EXAMPLE
+M-x package-install RET htmlize RET    # where M-x means pressing the "Esc" key then the "x" key
+#+END_EXAMPLE
+
 * A simple "/reproducible research/" emacs configuration 
 This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Mise en place
 Emacs/Orgmode"/ in French). Watching it before following the
@@ -157,10 +158,10 @@ minimalist one that is rather "/reproducible research/" oriented by
 adding a few org-mode specific configurations.
 
 ** Step 0: Backup and download our configuration
-The procedure we propose will wipe your already existing custom emacs
-configuration if you already have one. *You should thus beforehand make
-a backup of =~/.emacs= and of =~/.emacs.d/init.el=* (if these file
-exists).
+The procedure we propose will wipe your already existing custom Emacs
+configuration if you have one. *You should thus beforehand make
+a backup of =~/.emacs= and of =~/.emacs.d/init.el=* (if these files
+exist).
 
 #+begin_src shell :results output :exports none
 export FILE_LIST="rr_org/init.el rr_org/journal.org"
@@ -187,7 +188,7 @@ mkdir -p ~/org/
 Then copy =rr_org/journal.org= file in your =~/org/= directory. This
 file will be your laboratory notebook and all the notes you will
 capture with =C-c c= will go automatically go in this file. The first
-entry of this notebook is populated with [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org][many emacs shortcuts]] that you
+entry of this notebook is populated with [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org][many Emacs shortcuts]] that you
 should give a try.
 ** Step 2: Set up Emacs configuration
 Copy =rr_org/init.el= in your =~/.emacs.d/= directory.
@@ -231,10 +232,10 @@ is demonstrated in the [[https://app-learninglab.inria.fr/gitlab/learning-lab/mo
 ** Step 5: Open and play with your journal:
 In step 1, you were told to create an journal in
 =~org/journal.org=. First you probably want to make sure this file is
-backed up in a revision control system like git. We leave it up to you
+stored in a version control system like git. We leave it up to you
 to set this up but if you have any trouble, feel free to ask on the
 FUN forums.
-* A stub of replicable article
+* A stub of a replicable article
 This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Écrire un article
 réplicable avec Emacs/Orgmode"/ in French). Watching it before
 following the instructions given in this section may help.
@@ -262,7 +263,7 @@ tar zxf replicable_article.tgz; cd replicable_article; make ; evince article.pdf
 
 *Possible issues*:
 - If the =make= command fails (especially on Mac), it may be because
-  emacs or something else is not correctly installed. In that case,
+  Emacs or something else is not correctly installed. In that case,
   open the article directly with the following command:
   #+begin_src sh :results output :exports both
   emacs -q --eval "(setq enable-local-eval t)" --eval "(setq enable-local-variables t)"  article.org
@@ -282,16 +283,16 @@ If you remove the =# = in the beginning of the line, it will not be a
 comment anymore and will indicate org-mode to stop evaluating every
 chunk of code when exporting.
 
-* Emacs Tips and tricks
+* Emacs tips and tricks
 ** Cheat-sheets
-Learning emacs and org-mode can be difficult as there is an inordinate
+Learning Emacs and Org-Mode can be difficult as there is an inordinate
 amount of shortcuts. Many people have thus come up with
 cheat-sheats. Here is a selection in case it helps:
 *** Emacs
-- [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org][Common and step-by-step emacs shortcuts for our /reproducible research/ configuration]]
+- [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org][Common and step-by-step Emacs shortcuts for our /reproducible research/ configuration]]
 - [[https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf][The official GNU emacs refcard]]
-- Two graphical cheat-sheats by Sacha Hua on [[http://sachachua.com/blog/wp-content/uploads/2013/05/How-to-Learn-Emacs-v2-Large.png][how to learn emacs]] and on
-  [[http://sachachua.com/blog/wp-content/uploads/2013/08/20130830-Emacs-Newbie-How-to-Learn-Emacs-Keyboard-Shortcuts.png][how to learn emacs shortcuts]].
+- Two graphical cheat-sheats by Sacha Chua on [[http://sachachua.com/blog/wp-content/uploads/2013/05/How-to-Learn-Emacs-v2-Large.png][how to learn Emacs]] and on
+  [[http://sachachua.com/blog/wp-content/uploads/2013/08/20130830-Emacs-Newbie-How-to-Learn-Emacs-Keyboard-Shortcuts.png][how to learn Emacs shortcuts]].
 *** Org-mode
 - [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org][Common and step-by-step org-mode shortcuts for our /reproducible research/ configuration]]
 - [[https://orgmode.org/worg/orgcard.html][The official org-mode refcard]]
@@ -306,12 +307,12 @@ have smart completion in emacs for the most common languages. If you
 feel this is needed, you should follow the instructions from the
 official Web page: http://company-mode.github.io/
 *** Magit
-[[https://magit.vc/][Magit]] is an emacs interface for Git. Its usage is briefly illustrated
+[[https://magit.vc/][Magit]] is an Emacs interface for Git. Its usage is briefly illustrated
 in the context of this MOOC in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Utilisation
 Emacs/git"/ in French).
 
 It is very powerful and we use it on a daily basis but you should
-definitely understand what git does behind the scene beforehand. If
+definitely understand what git does behind the scenes beforehand. If
 you feel this would be useful for you, you should follow [[https://magit.vc/screenshots/][this visual
 walk-through]] or [[https://www.emacswiki.org/emacs/Magit][this really short "crash course"]]. If you installed the
 previous "/reproducible research/" emacs configuration, you can easily
