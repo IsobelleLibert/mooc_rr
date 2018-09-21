@@ -6,9 +6,9 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-* 1. Jupyter Tips and tricks
+* 1. Jupyter tips and tricks
 The following [[https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/][webpage]] lists several Jupyter tricks (in particular, it
-illustrates many =Ipython magic= commands) that should improve your
+illustrates many =IPython magic= commands) that should improve your
 efficiency (note that this blog post is about two years old so some of
 the tricks may have been integrated in the default behavior of Jupyter
 now).
@@ -33,27 +33,33 @@ Note that this =%%R= notation indicates that R should be used for the whole cell
 an other possibility is to use =%R= to have a single line of R within a
 python cell.
 ** Other languages
-For any reason, you may be unsatisfied with the use of R or of
-Python. Many other languages are available:
+Jupyter is not limited to Pytyhon and R. Many other languages are available:
 [[https://github.com/jupyter/jupyter/wiki/Jupyter-kernels][https://github.com/jupyter/jupyter/wiki/Jupyter-kernels]], including
-non-free languages like SAS, Mathematica, Matlab...
+non-free languages like SAS, Mathematica, Matlab... Note that the maturity of these kernels differs widely.
 
 None of these other languages have been deployed in the context of our
-MOOC but you may want to read the next sections to know more about how
-to set up your own Jupyter notebooks on your computer and benefit from these
-extensions.
+MOOC but you may want to read the next sections to learn how
+to set up your own Jupyter on your computer and benefit from these extensions.
+
+Since the question was asked several times, if you really need to stay
+with SAS, you should know that SAS can be used within Jupyter using
+either the [[https://sassoftware.github.io/sas_kernel/][Python SASKernel]] or the [[https://sassoftware.github.io/saspy/][Python SASPy]] package (step by step
+explanations about this are given [[https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md][here]]). 
+
+Since proprietary software such as SAS cannot easily be inspected, we discourage its use as it hinders reproducibility by
+essence. But perfection does not exist anyway and using Jupyter
+literate programming approach allied with systematic control version
+and environment control will certainly help anyway.
+
 * 2. Installing and configuring Jupyter on your computer
-In this Section, we provide information on how to set up on your own
-computer a Jupyter environment similar to the one deployed for this
-MOOC.
+In this section, we explain how to set up a Jupyter environment on
+your own computer similar to the one deployed for this MOOC.
 
 Note that Jupyter notebooks are only a small part of the picture and
 that Jupyter is now part of a bigger project: [[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]], which allows
 you to mix various components (including notebooks) in your
 browser. In the context of this MOOC, our time frame was too short to
-benefit from JupyterLab which was still under active development but
-this is probably the best option now if you want to benefit from
-cutting-edge Jupyter notebooks.
+benefit from JupyterLab which was still under active development. You may, however, prefer JupyterLab when doing an installation on your own computer.
 
 ** 2.1 Installing Jupyter
 Follow these instructions if you wish to have a Jupyter environment on
@@ -78,9 +84,9 @@ source activate mooc_rr
 jupyter notebook
 #+end_src
 ** 2.2 Making sure Jupyter allows you to use R
-The previous environment should ship with R but if you proceeded
-otherwise and only have python available in Jupyter, you may want to
-read the following section.
+The environment described in the last section should include R, but if
+you proceeded otherwise and only have Python available in Jupyter, you
+may want to read the following section.
 *** • Installing [[https://github.com/IRkernel/IRkernel][IRKernel]] (R package)
 Do the following in R console:
 
@@ -109,15 +115,15 @@ On Linux, the rpy2 package is available in standard distributions
 #+begin_src shell :results output :exports both
 sudo apt-get install python3-rpy2 python3-tzlocal
 #+end_src
-An other (not really recommended if the first one is available)
-alternative consists in going through the python package manager with
+An alternative (not really recommended if the first one is available)
+consists in going through the python package manager with
 #+begin_src python :results output :exports both
 pip3 install rpy2
 #+end_src
 
 *Windows*
 
-Download =rpy2= [[https://www.lfd.uci.edu/~gohlke/pythonlibs/#rpy2][binary file]] by choosing the right operating system.
+Download the =rpy2= [[https://www.lfd.uci.edu/~gohlke/pythonlibs/#rpy2][binary file]] by choosing the right operating system.
 
 Open a DOS console and type the following command:
 #+begin_src shell :results output :exports both
@@ -130,7 +136,7 @@ python -m pip install tzlocal
 #+end_src
 ** 2.3 Additional tips
 *** • Exporting a notebook
-Here is what we had to install on our recent debian computer to make sure
+Here is what we had to install on a recent Debian computer to make sure
 the notebook export via LaTeX works:
 #+begin_src shell :results output :exports both
 sudo apt-get install texlive-xetex wkhtmltopdf
@@ -154,11 +160,10 @@ taste.
 
 *Windows*
 
-Download and install MiKTeX from the [[https://miktex.org/download][MiKTeX webpage]] 
-by choosing the right operating system. You will be prompted to install some specific 
+Download and install MiKTeX from the [[https://miktex.org/download][MiKTeX webpage]] by choosing the
+right operating system. You will be prompted to install some specific
 packages when exporting to pdf.
 
-*** • Side note about Jupyter, JupyterLab, JupyterHub...
 *** • Improving notebook readability
 Here are a few extensions that can ease your life:
 - [[https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook][Code folding]] to improve readability when browsing the notebook.
@@ -175,14 +180,14 @@ Here are a few extensions that can ease your life:
   #+end_src
   
 *** • Interacting with GitLab and GitHub
-To ease your experience, we added some pull/push buttons that allow
+To ease your experience, we added pull/push buttons that allow
 you to commit and sync with GitLab. This development was specific to
 the MOOC but inspired from a previous [[https://github.com/Lab41/sunny-side-up][proof of concept]]. We have
 recently discovered that someone else developed about at the same time
 a [[https://github.com/sat28/githubcommit][rather generic version of this Jupyter plugin]]. Otherwise, remember
 that it is very easy to insert a shell cell in Jupyter in which you
 can easily issue git commands. This is how we work most of the time.
-  
+
 This being said, you may have noticed that Jupyter keeps a perfect
 track of the sequence in which cells have been run by updating the
 "output index". This is a very good property from the reproducibility
@@ -192,26 +197,5 @@ hooks]] to ignore these numbers when committing Jupyter notebooks. There
 is a long an interesting discussion about various options on
 [[https://stackoverflow.com/questions/18734739/using-ipython-notebooks-under-version-control][StackOverflow]].
 
-Last but not least, remember that Jupyter notebooks are only a small
-part of the picture and that Jupyter is now part of a bigger project:
-[[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]], which allows you to mix various components (including
-notebooks) in your browser. A specific [[https://github.com/jupyterlab/jupyterlab-git][JupyterLab git plugin]] has been
-developed to offer a nice version control experience.
-
-*** • Using other languages (e.g., SAS, Matlab, Mathematica, etc.)
-For any reason, you may be unsatisfied with the use of R or of
-Python. Many other languages are available:
-[[https://github.com/jupyter/jupyter/wiki/Jupyter-kernels][https://github.com/jupyter/jupyter/wiki/Jupyter-kernels]], including
-non-free languages like SAS, Mathematica, Matlab...
-
-Since the question was asked several times, if you really need to stay
-with SAS, you should know that SAS can be used within Jupyter using
-either the [[https://sassoftware.github.io/sas_kernel/][Python SASKernel]] or the [[https://sassoftware.github.io/saspy/][Python SASPy]] package (step by step
-explanations about this are given [[https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md][here]]). 
-
-Since such software cannot easily be opened for inspection not widely
-used, we discourage this approach as it hinders reproducibility by
-essence. But perfection does not exist anyway and using Jupyter
-literate programming approach allied with systematic control version
-and environment control will certainly help anyway.
+For those who use [[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]] rather than the plain Jupyter, a specific [[https://github.com/jupyterlab/jupyterlab-git][JupyterLab git plugin]] has been developed to offer a nice version control experience.
 
