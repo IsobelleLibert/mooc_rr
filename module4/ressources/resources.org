@@ -16,12 +16,12 @@ very stable language with a [[https://en.wikipedia.org/wiki/C_(programming_langu
 committee]] (even though some compilers may not respect this norm).
 
 On the other end of the spectrum, [[https://en.wikipedia.org/wiki/Python_(programming_language)][Python]] had a much more organic
-development based on a readability philosophy and has evolved with
-time. Furthermore, python is commonly used as a wrapping language
-(e.g., to easily use C or FORTRAN libraries) and has its own packaging
-system to make everyone's life easier. All these design choices tend
-to make reproducibility often a bit painful with python, even though
-the community is slowly taking this into account.
+development based on a readability philosophy and valuing continuous
+improvement over backwards-compatibility. Furthermore, Python is
+commonly used as a wrapping language (e.g., to easily use C or FORTRAN
+libraries) and has its own packaging system. All these design choices
+tend to make reproducibility often a bit painful with Python, even
+though the community is slowly taking this into account. The transition from Python 2 to the not fully backwards compatible Python 3 has been a particularly painful process, not least because the two languages are so similar that is it not always easy to figure out if a given script or module is written in Python 2 or Python 3. It isn't even rare to see Python scripts that work under both Python 2 and Python 3, but produce different results due to the change in the behavior of integer division.
 
 [[https://en.wikipedia.org/wiki/R_(programming_language)][R]], in comparison is much closer (in terms of developer community) to
 languages like [[https://en.wikipedia.org/wiki/SAS_(software)][SAS]], which is heavily used in the pharmaceutical
@@ -30,24 +30,24 @@ solid/stable. R is obviously not immune to evolutions that break old
 versions and hinder reproducibility/backward compatibility. Here is a
 relatively recent [[http://members.cbio.mines-paristech.fr/~thocking/HOCKING-reproducible-research-with-R.html][true story about this]] and some colleagues who worked
 on the [[https://www.fun-mooc.fr/courses/UPSUD/42001S06/session06/about][statistics introductory course with R on FUN]] reported us
-several issues with functions from a few functions (=plotmeans= from
-=gplots=, =survfit= from =survival=, or =hclust=) whose default
-parameters had changed over the years. It is thus probably a good
-practice to explicitly indicate in your code default values (, which
-can be cumbersome) and to restrict your dependencies as much as
-possible.
+several issues with a few functions (=plotmeans= from =gplots=,
+=survfit= from =survival=, or =hclust=) whose default parameters had
+changed over the years. It is thus probably good practice to give
+explicit values for all parameters (which can be cumbersome) instead
+of relying on default values, and to restrict your dependencies as much
+as possible.
 
 This being said, the R development community is generally quite
-careful about stability. We (the authors of this MOOC) think open
-source (, which allows to inspect how computation is done and to
-identify both mistakes and sources of non reproducibility) is more
-important than the rock solid stability of SAS, which is a proprietary
+careful about stability. We (the authors of this MOOC) believe that open
+source (which allows to inspect how computation is done and to
+identify both mistakes and sources of non-reproducibility) is more
+important than the rock solid stability of SAS, which is proprietary
 software. Yet, if you really need to stay with SAS (similar solutions
 probably exist for other languages as well), you should know that SAS
 can be used within Jupyter using either the [[https://sassoftware.github.io/sas_kernel/][Python SASKernel]] or the
 [[https://sassoftware.github.io/saspy/][Python SASPy]] package (step by step explanations about this are given
 [[https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md][here]]). Using such literate programming approach allied with systematic
-control version and environment control will help anyway.
+version and environment control will always help.
 ** Controlling your software environment
 As we mentioned in the video sequences, there are several solutions to
 control your environment:
@@ -55,8 +55,8 @@ control your environment:
 - The more demanding (encourage cleanliness) where you start with a
   clean environment and install only what's strictly necessary (and document it):
   - The very well known [[https://www.docker.io/][Docker]]
-  - [[https://singularity.lbl.gov/][Singularity]] or [[https://spack.io/][Spack]], which are more targeted toward high
-    performance computing users that have specific needs
+  - [[https://singularity.lbl.gov/][Singularity]] or [[https://spack.io/][Spack]], which are more targeted toward the specific
+    needs of high performance computing users
   - [[https://www.gnu.org/software/guix/][Guix]], [[https://nixos.org/][Nix]] that are very clean (perfect?) solutions to this
     dependency hell and which we recommend
 
@@ -77,9 +77,9 @@ have never seen [[https://github.com/alegrand/RR_webinars/blob/master/5_archivin
 project]], this is a must see. https://www.softwareheritage.org/
 
 For regular data, we highly recommend using https://www.zenodo.org/
-whenever data is not sensitive.
+whenever the data is not sensitive.
 ** Workflows
-In the video sequences, we mentioned workflows (original domain in parenthesis):
+In the video sequences, we mentioned workflow managers (original application domain in parenthesis):
 - [[https://galaxyproject.org/][Galaxy]] (genomics), [[https://kepler-project.org/][Kepler]] (ecology), [[https://taverna.apache.org/][Taverna]] (bio-informatics), [[https://pegasus.isi.edu/][Pegasus]]
   (astronomy), [[http://cknowledge.org/][Collective Knowledge]] (compiling optimization) ,
   [[https://www.vistrails.org][VisTrails]] (image processing)
@@ -92,8 +92,8 @@ Bio-informatics: Current Status, Solutions and Research Opportunities
 (by Sarah Cohen Boulakia, Yvan Le Bras and Jérôme Chopard).]]
 
 ** Numerical and statistical issues
-These topics could only be mentioned in our MOOC but could by no way
-be properly covered. We only suggest here a few interesting talks
+We have mentioned these topics in our MOOC but we could by no way
+cover them properly. We only suggest here a few interesting talks
 about this.
 - [[https://github.com/alegrand/RR_webinars/blob/master/10_statistics_and_replication_in_HCI/index.org][In this talk, Pierre Dragicevic provides a nice illustration of the
   consequences of statistical uncertainty and of how some concepts
@@ -105,7 +105,7 @@ about this.
 You may want to have a look at the following two webinars:
 - [[https://github.com/alegrand/RR_webinars/blob/master/8_artifact_evaluation/index.org][Enabling open and reproducible research at computer systems’
   conferences (by Grigori Fursin)]]. In particular, this talk discusses
-  /artifact evaluation/ that are becoming more and more popular.
+  /artifact evaluation/ that is becoming more and more popular.
 - [[https://github.com/alegrand/RR_webinars/blob/master/7_publications/index.org][Publication Modes Favoring Reproducible Research (by Konrad Hinsen
   and Nicolas Rougier)]]. In this talk, the motivation for the [[http://rescience.github.io/][ReScience
   journal]] initiative are presented.
@@ -114,9 +114,9 @@ You may want to have a look at the following two webinars:
   particular HARKing (Hypothesizing After the Results are Known),
   p-hacking, etc.
 ** Experimentation
-Experimentation was not covered in this MOOC whereas it is an
+Experimentation was not covered in this MOOC, although it is an
 essential part of science. The main reason is that practices and
-constraints can vary so wildly from a domain to an other that it could
+constraints can vary so wildly from one domain to another that it could
 not be properly covered in a first edition. We would be happy to
 gather references you consider as interesting in your domain so do not
 hesitate to provide us with such references by using the forum and we
@@ -176,7 +176,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 /Note: the -u indicates that git should also display the contents of
 new directories it did not previously know about./
 
-Then, I often include commands at the end of my notebook indicating
+Then, we often include commands at the end of our notebook indicating
 how to commit the results (adding the new files, committing with a
 clear message and pushing). E.g.,
 
@@ -211,7 +211,7 @@ version of all installed packages (note that on your system, you may
 have to use either =pip= or =pip3= depending on how it is named and which
 versions of Python are available on your machine
 
-Here for example how I get these information on my machine:
+Here is for example how I get this information on my machine:
 #+begin_src shell :results output :exports both
 pip3 freeze
 #+end_src
@@ -303,16 +303,18 @@ Requires: patsy, pandas
 *** How to list imported modules?
 Without resorting to pip (that will list all available packages), you
 may want to know which modules are loaded in a Python session as well
-as their version.  Inspiring from [[https://stackoverflow.com/questions/4858100/how-to-list-imported-modules][StackOverflow]], here is a simple
+as their version. Inspired by [[https://stackoverflow.com/questions/4858100/how-to-list-imported-modules][StackOverflow]], here is a simple
 function that lists loaded package (that have a =__version__= attribute,
 which is unfortunately not completely standard).
 
 #+begin_src python :results output :exports both
 def print_imported_modules():
     import sys
-    for name,val in sorted(sys.modules.items()):
+    for name, val in sorted(sys.modules.items()):
         if(hasattr(val, '__version__')): 
             print(val.__name__, val.__version__)
+        else
+            print(val.__name__, "(unknown version)")
 
 print("**** Package list in the beginning ****");
 print_imported_modules()
@@ -357,7 +359,7 @@ urllib.request 3.6
 zlib 1.0
 #+end_example
 
-*** Setting up an environment with pip
+*** Saving and restoring an environment with pip
 The easiest way to go is as follows:
 #+begin_src shell :results output :exports both
 pip3 freeze > requirements.txt # to obtain the list of packages with their version
@@ -480,7 +482,7 @@ Packages ----------------------------------------------------------------------
 #+end_example
 
 Some actually advocate that [[https://github.com/ropensci/rrrpkg][writing a reproducible research compendium
-can be done by writing an R package]]. Those of you willing to have a
+is best done by writing an R package]]. Those of you willing to have a
 clean R dependency management should thus have a look at [[https://rstudio.github.io/packrat/][Packrat]].
 *** Getting the list of installed packages and their version
 Finally, it is good to know that there is a built-in R command
@@ -505,7 +507,7 @@ head(installed.packages())
 
 *** Installing a new package or a specific version
 This section is mostly a cut and paste from the [[https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages][recent post by Ian
-Pylvainen]] on this topic. It comprises a very clear explanation on how
+Pylvainen]] on this topic. It comprises a very clear explanation of how
 to proceed.
 
 **** Installing a pre-compiled version
@@ -535,9 +537,10 @@ command =install.packages("devtools")=). For instance:
 require(devtools)
 install_version("ggplot2", version = "0.9.1", repos = "http://cran.us.r-project.org")
 #+end_src
-**** Alternatively, you may want to install an older package from source
-If you devtools fails or if you do not want to depend on it, you can
-install it from source via =install.packages()= directed to the right
+**** Installing from source code
+Alternatively, you may want to install an older package from source If
+devtools fails or if you do not want to depend on it, you can install
+it from source via =install.packages()= directed using the right
 URL. This URL can be obtained by browsing the [[https://cran.r-project.org/src/contrib/Archive][CRAN Package Archive]].
 
 Once you have the URL, you can install it using a command similar to
