@@ -97,6 +97,13 @@ versions:
 - Emacs 26.1
 - Org-mode 9.1.13
 - ESS 17.11
+To have code pretty printing when exporting to html, it appears like
+you should install the =htmlize= package, which is done by opening emacs
+and typing the following command:
+#+BEGIN_EXAMPLE
+M-x package-install RET htmlize RET    # where M-x means pressing the "Esc" key then the "x" key
+#+END_EXAMPLE
+
 *** Directory naming conventions
 In all the following instructions, it is common to refer to your home
 directory through the (UNIX) =~/= notation. On Windows, your home
