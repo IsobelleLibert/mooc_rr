@@ -82,7 +82,10 @@ The =proxyPassword= will be stored in plain text (unencrypted) in your ~.gitconf
 which you may not want. In that case, remove it from the URL and you
 will be prompted for it every time it is needed.
 ** Getting your default password on GitLab (and possibly changing it)
-*Warning (Jupyter users) :* changing your default Gitlab password will prevent you from committing in Jupyter. You will have to do the extra step of changing your Jupyter =~/.git-credentials=
+*Warning (Jupyter users) :* changing your default Gitlab password will
+prevent you from committing in Jupyter. You will have to do the extra
+step of changing your =~/.git-credentials= in the Jupyter environment
+(possibly several times).
 
 1. Get your default password using the [[https://app-learninglab.inria.fr/jupyterhub/services/password][Gitlab credentials retrieval
    tool]] as described on the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85][corresponding resource]].
@@ -114,13 +117,13 @@ will be prompted for it every time it is needed.
    #+BEGIN_CENTER
    [[file:gitlab_images/signin.png]]
    #+END_CENTER
-4. If you wish to modify your password, you shoul go to =Account > Settings > Password= 
+4. If you wish to modify your password, you should go to =Account > Settings > Password= 
    and define your password using the default
    password you just retrieved. Again, if you use the Jupyter
    notebooks we have deployed for the MOOC, remember that changing
    your default Gitlab password will prevent you from committing in
    Jupyter. You will have to do the extra step of changing your
-   Jupyter =~/.git-credentials= through a jupyter console (see next
+   Jupyter =~/.git-credentials= through a Jupyter console (see next
    section).
    #+BEGIN_CENTER
    [[file:gitlab_images/password.png]]
