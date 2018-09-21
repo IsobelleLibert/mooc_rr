@@ -6,9 +6,9 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-*This document is particularly important if you follow the Rstudio or
-the Org-Mode course.* *If you follow the Jupyter course, it can be
-ignored in a first step* *as we have closely integrated Jupyter and
+*This document is particularly important if you follow the RStudio or
+the Org-Mode path.* *If you follow the Jupyter path, it can be
+ignored at first* *as we have closely integrated Jupyter and
 GitLab in the context of this MOOC.*
 
 So far, you only used git via the web interface from the GitLab we
@@ -30,10 +30,10 @@ Please read all these instructions carefully, in particular the one on
 "Configuring your password on GitLab".
 
 * Installing Git
-** Linux (debian, ubuntu)
-We provide here only instructions for debian-based distributions. Feel
+** Linux (Debian, Ubuntu)
+We provide here only instructions for Debian-based distributions. Feel
 free to contribute to this document to provide up-to-date information
-for other distributions (e.g., redhat, fedora).
+for other distributions (e.g., RedHat, Fedora).
 
 Run (as root):
 #+begin_src sh :results output :exports both
@@ -42,7 +42,7 @@ apt-get update ; apt-get install git
 ** Mac OSX and Windows
 - Download and install Git from the [[https://git-scm.com/downloads][Git website]].
 - Optional Git clients (should not be needed if you work within
-  Rstudio):
+  RStudio):
   - [[https://www.sourcetreeapp.com/][SourceTree]]
   - [[https://desktop.github.com/][GitHub Desktop]] 
     #+BEGIN_QUOTE
@@ -50,7 +50,7 @@ apt-get update ; apt-get install git
     #+END_QUOTE
 * Configuring Git
 ** Telling Git who you are: Name and Email
-1. Open Terminal.
+1. Open terminal.
 2. Set a Git username and email:
    #+begin_src shell :results output :exports both
    git config --global user.name "Mona Lisa"
@@ -158,16 +158,16 @@ installing SSH, creating a pair or private/public keys, and uploading
 your SSH public key on GitLab. This section provides with information
 on how to do this.
 *** Installing SSH
-**** Linux (debian, ubuntu)
+**** Linux (Debian, Ubuntu)
 We provide here only instructions for debian-based distributions. Feel
 free to contribute to this document to provide up-to-date information
-for other distributions (e.g., redhat, fedora).
+for other distributions (e.g., RedHat, Fedora).
 
 Run (as root):
 #+begin_src sh :results output :exports both
 apt-get update ; apt-get install openssh-client
 #+end_src
-**** Mac OSX
+**** macOS
 You do not have anything to do as it is installed by default.
 **** Windows
 You should install the [[https://www.ssh.com/ssh/putty/windows/][Putty]] client. Once it is installed, look for
@@ -182,9 +182,9 @@ video:
 * Using Git through the command line to synchronize your local files with Gitlab
 This section describes a generic (through the command line) way to
 synchronize your local files with Gitlab. You will not need this if
-you follow the Jupyter course. If you follow the Rstudio course, all
-these operations can be done through Rstudio and you may want to read
-[[file:rstudio.org][the corresponding instructions]]. If you follow the Org-Mode course, all
+you follow the Jupyter path. If you follow the RStudio path, all
+these operations can be done through RStudio and you may want to read
+[[file:rstudio.org][the corresponding instructions]]. If you follow the Org-Mode path, all
 these operations can be done through Magit and you may want to read
 [[file:emacs_orgmode.org][the corresponding instructions]]. 
 
