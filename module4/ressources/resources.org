@@ -313,7 +313,7 @@ def print_imported_modules():
     for name, val in sorted(sys.modules.items()):
         if(hasattr(val, '__version__')): 
             print(val.__name__, val.__version__)
-        else
+        else:
             print(val.__name__, "(unknown version)")
 
 print("**** Package list in the beginning ****");
@@ -321,7 +321,6 @@ print_imported_modules()
 print("**** Package list after loading pandas ****");
 import pandas
 print_imported_modules()
-
 #+end_src
 
 #+RESULTS:
