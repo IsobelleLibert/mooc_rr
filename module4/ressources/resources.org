@@ -204,6 +204,16 @@ this cell, hence the output of this final command (with the new git
 hash) will not be stored in the cell. This is not really a problem and
 is the price to pay for running git from within the notebook itself.
 ** Getting information about Python(3) libraries 
+*** Getting information about your system
+This topic is discussed on [[https://stackoverflow.com/questions/3103178/how-to-get-the-system-info-with-python][StackOverflow]]. 
+#+begin_src python :results output :exports both
+import platform
+print(platform.uname())
+#+end_src
+
+#+RESULTS:
+: uname_result(system='Linux', node='icarus', release='4.15.0-2-amd64', version='#1 SMP Debian 4.15.11-1 (2018-03-20)', machine='x86_64', processor='')
+
 *** Getting the list of installed packages and their version
 This topic is discussed on [[https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules][StackOverflow]]. When using =pip= (the Python
 package installer) within a shell command, it is easy to query the
