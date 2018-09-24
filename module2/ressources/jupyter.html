@@ -4,26 +4,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org0b4fddb">1. Jupyter tips and tricks</a>
+<li style="margin-bottom:0;"><a href="#orgd37ebcc">1. Jupyter tips and tricks</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orgfa26619">Running R and Python in the same notebook</a></li>
-<li style="margin-bottom:0;"><a href="#org6905b1c">Other languages</a></li>
+<li style="margin-bottom:0;"><a href="#orge426487">Creating or importing a notebook</a></li>
+<li style="margin-bottom:0;"><a href="#org6607533">Running R and Python in the same notebook</a></li>
+<li style="margin-bottom:0;"><a href="#orgd909163">Other languages</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#org71d8232">2. Installing and configuring Jupyter on your computer</a>
+<li style="margin-bottom:0;"><a href="#org9176019">2. Installing and configuring Jupyter on your computer</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org080a19d">2.1 Installing Jupyter</a></li>
-<li style="margin-bottom:0;"><a href="#org74a2cde">2.2 Making sure Jupyter allows you to use R</a>
+<li style="margin-bottom:0;"><a href="#org51b3378">2.1 Installing Jupyter</a></li>
+<li style="margin-bottom:0;"><a href="#orgc0d2a71">2.2 Making sure Jupyter allows you to use R</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orgb3f32d9">• Installing IRKernel (R package)</a></li>
-<li style="margin-bottom:0;"><a href="#org4157978">• Installing rpy2 (Python package)</a></li>
+<li style="margin-bottom:0;"><a href="#org608c96e">• Installing IRKernel (R package)</a></li>
+<li style="margin-bottom:0;"><a href="#org076acd5">• Installing rpy2 (Python package)</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#org3c0a58e">2.3 Additional tips</a>
+<li style="margin-bottom:0;"><a href="#org524a8ac">2.3 Additional tips</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org847c6d1">• Exporting a notebook</a></li>
-<li style="margin-bottom:0;"><a href="#org581d99c">• Improving notebook readability</a></li>
-<li style="margin-bottom:0;"><a href="#org3ec1745">• Interacting with GitLab and GitHub</a></li>
+<li style="margin-bottom:0;"><a href="#org814c076">• Exporting a notebook</a></li>
+<li style="margin-bottom:0;"><a href="#orga5ae744">• Improving notebook readability</a></li>
+<li style="margin-bottom:0;"><a href="#orgab0846a">• Interacting with GitLab and GitHub</a></li>
 </ul>
 </li>
 </ul>
@@ -32,9 +33,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0b4fddb" class="outline-2">
-<h2 id="org0b4fddb">1. Jupyter tips and tricks</h2>
-<div class="outline-text-2" id="text-org0b4fddb">
+<div id="outline-container-orgd37ebcc" class="outline-2">
+<h2 id="orgd37ebcc">1. Jupyter tips and tricks</h2>
+<div class="outline-text-2" id="text-orgd37ebcc">
 <p>
 The following <a href="https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/">webpage</a> lists several Jupyter tricks (in particular, it
 illustrates many <code>IPython magic</code> commands) that should improve your
@@ -43,9 +44,57 @@ the tricks may have been integrated in the default behavior of Jupyter
 now).
 </p>
 </div>
-<div id="outline-container-orgfa26619" class="outline-3">
-<h3 id="orgfa26619">Running R and Python in the same notebook</h3>
-<div class="outline-text-3" id="text-orgfa26619">
+<div id="outline-container-orge426487" class="outline-3">
+<h3 id="orge426487">Creating or importing a notebook</h3>
+<div class="outline-text-3" id="text-orge426487">
+<p>
+Using the Jupyter environment we deployed for this MOOC will allow to
+easily access any file from your default GitLab project. There are
+situations however where you may want to play with other notebooks.
+</p>
+<dl class="org-dl">
+<dt>Adding a brand new notebook in a given directory</dt><dd>Simply follow
+the following steps:
+<ol class="org-ol">
+<li style="margin-bottom:0;">From the menu: <code>File -&gt; Open</code>. You're now in the Jupyter file manager.</li>
+<li style="margin-bottom:0;">Navigate to the directory where you want your notebook to be created.</li>
+<li style="margin-bottom:0;">Then from the top right button: <code>New -&gt; Notebook: Python 3</code>.</li>
+<li style="margin-bottom:0;"><p>
+Give your notebook a name from the menu: <code>File -&gt; Rename</code>.
+</p>
+
+<p>
+N.B.: If you create a file by doing <code>File -&gt; New Notebook -&gt;
+     Python 3</code>, the new notebook will be created in the current
+directory. Moving it afterward is possible but a bit cumbersome
+(you'll have to go through the Jupyter file manager by following
+the menu <code>File -&gt; Open</code>, then select it, <code>Shut</code> it <code>down</code>, and <code>Move</code>
+and/or <code>Rename</code>).
+</p></li>
+</ol></dd>
+<dt>Importing an already existing notebook</dt><dd>If your notebook is
+already in your GitLab project, then simply synchronize by using
+the <code>Git pull</code> button and use the <code>File -&gt; Open</code> menu. Otherwise,
+imagine, you want to import the <a href="https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb">following notebook</a> from someone
+else's repository to re-execute it.
+<ol class="org-ol">
+<li style="margin-bottom:0;">Download the file on your computer. E.g., for this <a href="https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb">GitLab hosted
+notebook</a>, click on <code>Open raw</code> (a small <code>&lt;/&gt;</code> within a document icon)
+and save (<code>Ctrl-S</code> on most browsers) the content (a long Json text
+file).</li>
+<li style="margin-bottom:0;">Open the Jupyter file manager from the menu <code>File -&gt; Open</code> and
+navigate to the directory where you want to upload your notebook.</li>
+<li style="margin-bottom:0;">Then from the top right button, <code>Upload</code> the previously downloaded
+notebook and confirm the upload.</li>
+<li style="margin-bottom:0;">Open the freshly uploaded notebook through the Jupyter file
+manager.</li>
+</ol></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org6607533" class="outline-3">
+<h3 id="org6607533">Running R and Python in the same notebook</h3>
+<div class="outline-text-3" id="text-org6607533">
 <p>
 <code>rpy2</code> package allows to use both languages in the same notebook by:
 </p>
@@ -82,9 +131,9 @@ python cell.
 </p>
 </div>
 </div>
-<div id="outline-container-org6905b1c" class="outline-3">
-<h3 id="org6905b1c">Other languages</h3>
-<div class="outline-text-3" id="text-org6905b1c">
+<div id="outline-container-orgd909163" class="outline-3">
+<h3 id="orgd909163">Other languages</h3>
+<div class="outline-text-3" id="text-orgd909163">
 <p>
 Jupyter is not limited to Pytyhon and R. Many other languages are available:
 <a href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels">https://github.com/jupyter/jupyter/wiki/Jupyter-kernels</a>, including
@@ -114,9 +163,9 @@ and environment control will certainly help anyway.
 </div>
 </div>
 
-<div id="outline-container-org71d8232" class="outline-2">
-<h2 id="org71d8232">2. Installing and configuring Jupyter on your computer</h2>
-<div class="outline-text-2" id="text-org71d8232">
+<div id="outline-container-org9176019" class="outline-2">
+<h2 id="org9176019">2. Installing and configuring Jupyter on your computer</h2>
+<div class="outline-text-2" id="text-org9176019">
 <p>
 In this section, we explain how to set up a Jupyter environment on
 your own computer similar to the one deployed for this MOOC.
@@ -131,9 +180,9 @@ benefit from JupyterLab which was still under active development. You may, howev
 </p>
 </div>
 
-<div id="outline-container-org080a19d" class="outline-3">
-<h3 id="org080a19d">2.1 Installing Jupyter</h3>
-<div class="outline-text-3" id="text-org080a19d">
+<div id="outline-container-org51b3378" class="outline-3">
+<h3 id="org51b3378">2.1 Installing Jupyter</h3>
+<div class="outline-text-3" id="text-org51b3378">
 <p>
 Follow these instructions if you wish to have a Jupyter environment on
 your own computer similar to the one we set up for this MOOC.
@@ -166,18 +215,18 @@ jupyter notebook
 </div>
 </div>
 </div>
-<div id="outline-container-org74a2cde" class="outline-3">
-<h3 id="org74a2cde">2.2 Making sure Jupyter allows you to use R</h3>
-<div class="outline-text-3" id="text-org74a2cde">
+<div id="outline-container-orgc0d2a71" class="outline-3">
+<h3 id="orgc0d2a71">2.2 Making sure Jupyter allows you to use R</h3>
+<div class="outline-text-3" id="text-orgc0d2a71">
 <p>
 The environment described in the last section should include R, but if
 you proceeded otherwise and only have Python available in Jupyter, you
 may want to read the following section.
 </p>
 </div>
-<div id="outline-container-orgb3f32d9" class="outline-4">
-<h4 id="orgb3f32d9">• Installing <a href="https://github.com/IRkernel/IRkernel">IRKernel</a> (R package)</h4>
-<div class="outline-text-4" id="text-orgb3f32d9">
+<div id="outline-container-org608c96e" class="outline-4">
+<h4 id="org608c96e">• Installing <a href="https://github.com/IRkernel/IRkernel">IRKernel</a> (R package)</h4>
+<div class="outline-text-4" id="text-org608c96e">
 <p>
 Do the following in R console:
 </p>
@@ -213,9 +262,9 @@ IRkernel::installspec()  <span style="font-weight: bold; font-style: italic;"># 
 </div>
 </div>
 
-<div id="outline-container-org4157978" class="outline-4">
-<h4 id="org4157978">• Installing rpy2 (Python package)</h4>
-<div class="outline-text-4" id="text-org4157978">
+<div id="outline-container-org076acd5" class="outline-4">
+<h4 id="org076acd5">• Installing rpy2 (Python package)</h4>
+<div class="outline-text-4" id="text-org076acd5">
 <p>
 On Linux, the rpy2 package is available in standard distributions
 </p>
@@ -258,13 +307,13 @@ Install also <code>tzlocal</code>:
 </div>
 </div>
 </div>
-<div id="outline-container-org3c0a58e" class="outline-3">
-<h3 id="org3c0a58e">2.3 Additional tips</h3>
-<div class="outline-text-3" id="text-org3c0a58e">
+<div id="outline-container-org524a8ac" class="outline-3">
+<h3 id="org524a8ac">2.3 Additional tips</h3>
+<div class="outline-text-3" id="text-org524a8ac">
 </div>
-<div id="outline-container-org847c6d1" class="outline-4">
-<h4 id="org847c6d1">• Exporting a notebook</h4>
-<div class="outline-text-4" id="text-org847c6d1">
+<div id="outline-container-org814c076" class="outline-4">
+<h4 id="org814c076">• Exporting a notebook</h4>
+<div class="outline-text-4" id="text-org814c076">
 <p>
 Here is what we had to install on a recent Debian computer to make sure
 the notebook export via LaTeX works:
@@ -309,9 +358,9 @@ packages when exporting to pdf.
 </div>
 </div>
 
-<div id="outline-container-org581d99c" class="outline-4">
-<h4 id="org581d99c">• Improving notebook readability</h4>
-<div class="outline-text-4" id="text-org581d99c">
+<div id="outline-container-orga5ae744" class="outline-4">
+<h4 id="orga5ae744">• Improving notebook readability</h4>
+<div class="outline-text-4" id="text-orga5ae744">
 <p>
 Here are a few extensions that can ease your life:
 </p>
@@ -338,9 +387,9 @@ jupyter-serverextension enable --py hide_code
 </div>
 </div>
 
-<div id="outline-container-org3ec1745" class="outline-4">
-<h4 id="org3ec1745">• Interacting with GitLab and GitHub</h4>
-<div class="outline-text-4" id="text-org3ec1745">
+<div id="outline-container-orgab0846a" class="outline-4">
+<h4 id="orgab0846a">• Interacting with GitLab and GitHub</h4>
+<div class="outline-text-4" id="text-orgab0846a">
 <p>
 To ease your experience, we added pull/push buttons that allow
 you to commit and sync with GitLab. This development was specific to
