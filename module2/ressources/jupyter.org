@@ -12,6 +12,38 @@ illustrates many =IPython magic= commands) that should improve your
 efficiency (note that this blog post is about two years old so some of
 the tricks may have been integrated in the default behavior of Jupyter
 now).
+** Creating or importing a notebook
+Using the Jupyter environment we deployed for this MOOC will allow to
+easily access any file from your default GitLab project. There are
+situations however where you may want to play with other notebooks.
+- Adding a brand new notebook in a given directory :: Simply follow
+     the following steps:
+  1. From the menu: =File -> Open=. You're now in the Jupyter file manager.
+  2. Navigate to the directory where you want your notebook to be created.
+  3. Then from the top right button: =New -> Notebook: Python 3=.
+  4. Give your notebook a name from the menu: =File -> Rename=.
+
+     N.B.: If you create a file by doing ~File -> New Notebook ->
+     Python 3~, the new notebook will be created in the current
+     directory. Moving it afterward is possible but a bit cumbersome
+     (you'll have to go through the Jupyter file manager by following
+     the menu =File -> Open=, then select it, =Shut= it =down=, and =Move=
+     and/or =Rename=).
+- Importing an already existing notebook :: If your notebook is
+     already in your GitLab project, then simply synchronize by using
+     the =Git pull= button and use the =File -> Open= menu. Otherwise,
+     imagine, you want to import the [[https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][following notebook]] from someone
+     else's repository to re-execute it.
+  1. Download the file on your computer. E.g., for this [[https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][GitLab hosted
+     notebook]], click on =Open raw= (a small =</>= within a document icon)
+     and save (=Ctrl-S= on most browsers) the content (a long Json text
+     file).
+  2. Open the Jupyter file manager from the menu =File -> Open= and
+     navigate to the directory where you want to upload your notebook.
+  3. Then from the top right button, =Upload= the previously downloaded
+     notebook and confirm the upload.
+  4. Open the freshly uploaded notebook through the Jupyter file
+     manager.
 ** Running R and Python in the same notebook
 =rpy2= package allows to use both languages in the same notebook by:
 1. Loading =rpy2=: 
