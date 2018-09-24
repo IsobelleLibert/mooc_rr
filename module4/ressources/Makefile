@@ -1,4 +1,4 @@
-all: resources.html
+all: resources.html exo1.html exo2.html exo3.html
 
 NLINES=10000000
 
