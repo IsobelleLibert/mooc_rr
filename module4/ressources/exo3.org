@@ -6,8 +6,8 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-* Exercice 3: Répliquer un papier de Rescience
-Rescience (http://rescience.github.io/) est un journal de sciences
+* Exercice 3 : Répliquer un papier de Rescience
+Rescience ([[http://rescience.github.io/][http://rescience.github.io/]]) est un journal de sciences
 computationnelles entièrement ouvert dont l'objectif est d'encourager
 la réplication de travaux déjà publiés en s'assurant que l'ensemble du
 code et des données soit disponible. Pour chacun des articles publiés
