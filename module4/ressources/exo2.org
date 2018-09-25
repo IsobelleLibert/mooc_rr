@@ -6,22 +6,22 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-* Exercice 2: L'importance de l'environnement
+* Exercice 2 : L'importance de l'environnement
 Dans cet exercice, nous vous proposons de reprendre l'exercice
 précédent mais en mettant à jour l'environnement de calcul. En effet,
 nous avons rencontré des surprises en préparant ce MOOC puisqu'il nous
 est arrivé d'avoir des résultats différents entre nos machines et
-l'environnement jupyter que nous avions mis en place pour le MOOC.  Ça
-sera peut-être également votre cas!
+l'environnement Jupyter que nous avions mis en place pour le MOOC. Ça
+sera peut-être également votre cas !
 
-1. Pour ceux qui ont suivi le parcours jupyter, recréer
+1. Pour ceux qui ont suivi le parcours Jupyter, recréer
    l'environnement du MOOC sur votre propre machine en suivant les
-   instructions données
+   instructions données 
    [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/4ab5bb42ca1e45c8b0f349751b96d405][dans les ressources de la section 4A du module 2]].
-2. Vérifier si vous obtenez bien les même résultats que ceux
+2. Vérifier si vous obtenez bien les mêmes résultats que ceux
    attendus.
 3. Mettre à jour (vers le haut ou vers la bas) cet environnement et
-   vérifier si vous obtenez les mêmes résultats
+   vérifier si vous obtenez les mêmes résultats.
 
 Comme précédemment, vous mettrez à jour le [[https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/results.md][tableau]] et vous discuterez
-sur le forum des succès et des échec que vous aurez rencontrés.
+sur le forum des succès et des échecs que vous aurez rencontrés.
