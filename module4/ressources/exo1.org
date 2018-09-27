@@ -24,8 +24,7 @@ refaire une partie de l'analyse des données de Challenger, comme l'ont
 fait Siddhartha Dallal et ses co-auteurs il y a presque 30 ans dans
 leur article /Risk Analysis of the Space Shuttle: Pre-Challenger
 Prediction of Failure/ et publié dans le /Journal of the American
-Statistical Association/ (Vol. 84, No. 408, Déc., 1989) mais dans
-dans un autre langage de votre choix (Python, R, Julia, SAS...). 
+Statistical Association/ (Vol. 84, No. 408, Déc., 1989) mais dans un autre langage de votre choix (Python, R, Julia, SAS...). 
 
 Nous savons d'expérience que si les estimations de pente et
 d'intercept sont généralement les mêmes, on peut avoir des différences
