@@ -14,14 +14,14 @@ est arrivé d'avoir des résultats différents entre nos machines et
 l'environnement Jupyter que nous avions mis en place pour le MOOC. Ça
 sera peut-être également votre cas !
 
-1. Pour ceux qui ont suivi le parcours Jupyter, recréer
+1. Pour ceux qui ont suivi le parcours Jupyter, recréez
    l'environnement du MOOC sur votre propre machine en suivant les
    instructions données 
    [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/4ab5bb42ca1e45c8b0f349751b96d405][dans les ressources de la section 4A du module 2]].
-2. Vérifier si vous obtenez bien les mêmes résultats que ceux
+2. Vérifiez si vous obtenez bien les mêmes résultats que ceux
    attendus.
-3. Mettre à jour (vers le haut ou vers la bas) cet environnement et
-   vérifier si vous obtenez les mêmes résultats.
+3. Mettez à jour (vers le haut ou vers la bas) cet environnement et
+   vérifiez si vous obtenez les mêmes résultats.
 
 Comme précédemment, vous mettrez à jour le [[https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/results.md][tableau]] et vous discuterez
 sur le forum des succès et des échecs que vous aurez rencontrés.
