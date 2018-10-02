@@ -1,4 +1,4 @@
-#+TITLE: Analysis of the risk of failure of the toric joints of the space shuttle Challenger
+#+TITLE: Analysis of the risk of failure of the O-rings of the space shuttle Challenger
 #+AUTHOR: Konrad Hinsen, Arnaud Legrand, Christophe Pouzat
 #+DATE: Juin 2018
 #+LANGUAGE: en
@@ -22,7 +22,7 @@
 #+LATEX_HEADER: \usepackage{svg}
 #+LATEX_HEADER: \let\epsilon=\varepsilon
 
-*Forword:* The explanations given in this document about the context
+*Foreword:* The explanations given in this document about the context
 of the study have been taken from the excellent book /Visual
 Explanations: Images and Quantities, Evidence and Narrative/ by Edward
 R. Tufte, published in 1997 by /Graphics Press/ and re-edited in 2005,
@@ -56,11 +56,11 @@ file:o-ring.png
 # https://i0.wp.com/www.kylehailey.com/wp-content/uploads/2014/01/Screen-Shot-2013-12-30-at-12.05.04-PM-1024x679.png?zoom=2&resize=594%2C393
 
 What is most astonishing is that the precise cause of the accident had
-been intensely debated several days before and ws still under
+been intensely debated several days before and was still under
 discussion the day before the launch, during a three-hour
 teleconference involving engineers from Morton Thiokol (the supplier
 of the engines) and from NASA. Whereas the immediate cause of the
-accident, the failure of the O-ringe, was quickly identified, the
+accident, the failure of the O-ring, was quickly identified, the
 underlying causes of the disaster have regularly served as a case
 study, be it in management training (work organisation, decision
 taking in spite of political pressure, communication problems),
@@ -69,7 +69,7 @@ sociology (history, bureaucracy, conforming to organisational norms).
 
 In the study that we propose, we are mainly concerned with the
 statistical aspect, which however is only one piece of the puzzle. We
-invite you to read the documentes cited in the foreword for more
+invite you to read the documents cited in the foreword for more
 information. The following study takes up a part of the analyses that
 were done that night with the goal of evaluating the potential impact
 of temperature and air pressure on the probability of O-ring
@@ -77,7 +77,7 @@ malfunction. The starting point is experimental results obtained by
 NASA engineers over the six years preceding the Challenger launch.
 
 In the directory ~module2/exo5/~ of your GitLab workspace, you will
-find the original data as welas an analysis for each of the paths we
+find the original data as well as an analysis for each of the paths we
 offer. This analysis consists of four steps:
 
 1. Loading the data
@@ -99,7 +99,7 @@ will present the analysis in R but Python code would look quite
 similar. The data are stored in a data frame that is summarized as:
 
 #+begin_src R :results output :session *R* :exports none
-library(Hmisc) # pour calculer un intervalle de confiance sur des données binomiales
+library(Hmisc) # to compute a confidence interval on binomial data
 library(ggplot2)
 library(dplyr)
 set.seed(42)
@@ -198,7 +198,7 @@ greater than 1) for somewhat extreme age values (young or old).  The
 reason is simply that a linear regression implies the hypothesis
 $\textsf{Ill} = \alpha.\textsf{Age} + \beta + \epsilon$, where
 $\alpha$ and $\beta$ are real numbers and $\epsilon$ is a noise (a
-random variable of mean zero), wihh $\alpha$ and $\beta$ estimated
+random variable of mean zero), with $\alpha$ and $\beta$ estimated
 from the data. This doesn't make sense for estimating a probability,
 and therefore [[https://en.wikipedia.org/wiki/Logistic_regression][logistic regression]] is a better choice:
 
@@ -225,7 +225,7 @@ true curve to lie somewhere in the grey zone.
 
 In this model, the assumption is $P[\textsf{Ill}] = \pi(\textsf{Age})$
 with $\displaystyle\pi(x)=\frac{e^{\alpha.x + \beta}}{1+e^{\alpha.x +
-\beta}}$. This at first look strange formule has the nice property of
+\beta}}$. This at first look strange formulae has the nice property of
 always yielding a value between zero and one, and to approach 0 and 1
 rapidly as the age tends to $-\infty$ or $+\infty$, but this is not
 the only motivation for this choice.
@@ -234,7 +234,7 @@ In summary, when we have event-like data (binary) and we wish to
 estimate the influence of a parameter on the probability of the event
 occurring (illness, failure, ...), the most natural and simple model
 is logistic regression. Note that even if we restrain ourselves to a
-small part of the dta, e.g. only patients less than 50 years old, it
+small part of the data, e.g., only patients less than 50 years old, it
 is possible to get a reasonable estimate, even though, as is to be
 expected, the uncertainty grows rapidly.
 
