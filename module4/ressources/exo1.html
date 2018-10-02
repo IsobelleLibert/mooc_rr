@@ -3,58 +3,56 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org2e2b81c">Exercice 1: Ré-exécuter n'est pas répliquer&#x2026;</a></li>
+<li style="margin-bottom:0;"><a href="#org8ebadd7">Exercice 1 : Ré-exécuter n'est pas répliquer&#x2026;</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2e2b81c" class="outline-2">
-<h2 id="org2e2b81c">Exercice 1: Ré-exécuter n'est pas répliquer&#x2026;</h2>
-<div class="outline-text-2" id="text-org2e2b81c">
+<div id="outline-container-org8ebadd7" class="outline-2">
+<h2 id="org8ebadd7">Exercice 1 : Ré-exécuter n'est pas répliquer&#x2026;</h2>
+<div class="outline-text-2" id="text-org8ebadd7">
 <p>
 Même si la terminologie peut varier d'un auteur ou d'une communauté à
 l'autre, il est important de comprendre que l'on peut distinguer
-différent niveau de "réplication" selon que l'on s'est contenté de
+différents niveaux de "réplication" selon que l'on s'est contenté de
 vérifier que l'on pouvait ré-exécuter le code et obtenir exactement les
 mêmes résultats ou bien que l'on arrivait à reproduire des résultats
 similaires en suivant une approche similaire (éventuellement avec un
-autre langage, une autre méthode de calcul, etc.). À Ce sujet, vous
+autre langage, une autre méthode de calcul, etc.). À ce sujet, vous
 pourrez vouloir par exemple lire <a href="https://arxiv.org/abs/1708.08205">https://arxiv.org/abs/1708.08205</a>.
 </p>
 
 <p>
-Le diable se cache souvent dans des endroits auxquels on ne penserait
-jamais et nous sommes nous-mêmes allés de surprise en surprise en
+Le diable se cache souvent dans des endroits auxquels on n'aurait jamais 
+pensé et nous sommes nous-mêmes allés de surprise en surprise en
 préparant ce MOOC, notamment avec l'exercice du module 2 sur
 Challenger. C'est pourquoi nous vous proposons dans cet exercice, de
 refaire une partie de l'analyse des données de Challenger, comme l'ont
 fait Siddhartha Dallal et ses co-auteurs il y a presque 30 ans dans
 leur article <i>Risk Analysis of the Space Shuttle: Pre-Challenger
 Prediction of Failure</i> et publié dans le <i>Journal of the American
-Statistical Association</i> (Vol. 84, No. 408, Déc., 1989), mais dans
-dans un autre langage de votre choix (Python, R, Julia, SAS,
-&#x2026;). 
+Statistical Association</i> (Vol. 84, No. 408, Déc., 1989) mais dans un autre langage de votre choix (Python, R, Julia, SAS&#x2026;). 
 </p>
 
 <p>
 Nous savons d'expérience que si les estimations de pente et
 d'intercept sont généralement les mêmes, on peut avoir des différences
-lorsque l'on regarde un peu plus dans les détails les estimateurs de
-variance et le R<sup>2</sup>. Il peut également y avoir des surprises dans le
+lorsque l'on regarde les estimateurs de variance et le R<sup>2</sup> un peu plus 
+dans les détails. Il peut également y avoir des surprises dans le
 graphique final selon les versions de bibliothèques utilisées.
 </p>
 
 <p>
 L'ensemble des calculs à effectuer est décrit ici avec les
-indications sur comment contribuer:
+indications sur comment contribuer :
 <a href="https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/">https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/</a>
 </p>
 
 <p>
-Vous y trouverez notre réplication des calculs de Dallal et al. (en
-R), une mise en œuvre en python et une en R (très similaires à ce que
+Vous y trouverez notre réplication des calculs de Dallal <i>et al.</i> (en
+R), une mise en œuvre en Python et une en R (très similaires à ce que
 vous avez pu utiliser dans le module 2). Cet exercice peut donc se
-faire à deux niveaux:
+faire à deux niveaux :
 </p>
 <ol class="org-ol">
 <li style="margin-bottom:0;">un niveau facile pour ceux qui repartiront du code dans le langage
@@ -67,17 +65,17 @@ Jupyter du MOOC, n'hésitez pas à consulter <a href="https://www.fun-mooc.fr/co
 section 4A du module 2</a> qui expliquent comment y importer un
 notebook.</li>
 <li style="margin-bottom:0;">un niveau plus difficile pour ceux qui souhaiteront le réécrire
-complètement (éventuellement dans un autre langage que R ou python,
+complètement (éventuellement dans un autre langage que R ou Python,
 l'expérience peut être d'autant plus intéressante que nous n'avons
 pas testé ces variations). Là, si les fonctions de calcul d'une
-régression logistique ne sont pas présente, il y a par contre
+régression logistique ne sont pas présentes, il y a par contre
 intérêt à en savoir un minimum pour pouvoir les
 implémenter. L'exercice en est d'autant plus instructif.</li>
 </ol>
 
 <p>
 Vous pourrez alors discuter sur le forum des succès et des échecs que
-vous avez pu rencontrer. Pour cela:
+vous aurez pu rencontrer. Pour cela :
 </p>
 <ul class="org-ul">
 <li style="margin-bottom:0;"><b>Vous publierez auparavant dans votre dépôt les différents notebooks</b>
@@ -87,7 +85,7 @@ bibliothèques installées.</li>
 <li style="margin-bottom:0;">Vous indiquerez votre résultat (que ça soit un succès ou échec à
 obtenir les mêmes résultats) en <b>remplissant ce <a href="https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/results.md">tableau</a></b> (vous avez
 les droits d'édition donc il vous suffit d'éditer les fichiers via
-l'interface GitLab). Vous vérifierez les valeurs obtenues pour
+l'interface GitLab). Vous vérifierez les valeurs obtenues pour :
 <ol class="org-ol">
 <li style="margin-bottom:0;">les coefficients de la pente et de l'intercept</li>
 <li style="margin-bottom:0;">les estimations d'erreur de ces coefficients</li>
@@ -96,7 +94,7 @@ l'interface GitLab). Vous vérifierez les valeurs obtenues pour
 <li style="margin-bottom:0;">la zone de confiance</li>
 </ol></li>
 <li style="margin-bottom:0;"><p>
-Pour chacun vous indiquerez si le résultat est:
+Pour chacun vous indiquerez si le résultat est :
 </p>
 <ul class="org-ul">
 <li style="margin-bottom:0;">identique</li>
@@ -105,16 +103,16 @@ Pour chacun vous indiquerez si le résultat est:
 <li style="margin-bottom:0;">non fonctionnel (pas de résultat obtenu)</li>
 </ul>
 <p>
-Vous indiquerez également dans ce tableau:
+Vous indiquerez également dans ce tableau :
 </p>
 <ul class="org-ul">
-<li style="margin-bottom:0;">Un lien vers votre espace gitlab contenant les différents notebooks</li>
-<li style="margin-bottom:0;">Le nom du système d'exploitation utilisé</li>
-<li style="margin-bottom:0;">Le langage utilisé et son numéro de version</li>
-<li style="margin-bottom:0;">Les numéros des principales bibliothèques utilisées
+<li style="margin-bottom:0;">un lien vers votre espace gitlab contenant les différents notebooks</li>
+<li style="margin-bottom:0;">le nom du système d'exploitation utilisé</li>
+<li style="margin-bottom:0;">le langage utilisé et son numéro de version</li>
+<li style="margin-bottom:0;">les numéros des principales bibliothèques utilisées
 <ul class="org-ul">
-<li style="margin-bottom:0;">Python: numpy, pandas, matplotlib, statsmodels, &#x2026;</li>
-<li style="margin-bottom:0;">R: BLAS, ggplot, dplyr si chargées</li>
+<li style="margin-bottom:0;">Python : numpy, pandas, matplotlib, statsmodels&#x2026;</li>
+<li style="margin-bottom:0;">R : BLAS, ggplot, dplyr si chargées</li>
 </ul></li>
 </ul></li>
 </ul>
