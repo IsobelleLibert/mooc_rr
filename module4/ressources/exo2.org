@@ -6,13 +6,13 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-* Exercice 2 : L'importance de l'environnement
+* Exercice 2 : L'importance de l'environnement
 Dans cet exercice, nous vous proposons de reprendre l'exercice
 précédent mais en mettant à jour l'environnement de calcul. En effet,
 nous avons rencontré des surprises en préparant ce MOOC puisqu'il nous
 est arrivé d'avoir des résultats différents entre nos machines et
 l'environnement Jupyter que nous avions mis en place pour le MOOC. Ça
-sera peut-être également votre cas !
+sera peut-être également votre cas !
 
 1. Pour ceux qui ont suivi le parcours Jupyter, recréez
    l'environnement du MOOC sur votre propre machine en suivant les
