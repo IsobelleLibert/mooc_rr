@@ -6,12 +6,12 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-* Exercice 3 : Répliquer un papier de Rescience
-Rescience ([[http://rescience.github.io/][http://rescience.github.io/]]) est un journal de sciences
+* Exercice 3 : Répliquer un papier de ReScience
+ReScience ([[http://rescience.github.io/][http://rescience.github.io/]]) est un journal de sciences
 computationnelles entièrement ouvert dont l'objectif est d'encourager
 la réplication de travaux déjà publiés en s'assurant que l'ensemble du
 code et des données soit disponible. Pour chacun des articles publiés
-dans Rescience, nous avons la garantie qu'au moins trois chercheurs
+dans ReScience, nous avons la garantie qu'au moins two chercheurs
 indépendants ont réussi à suivre les indications, à ré-exécuter le
 code et à ré-obtenir les mêmes résultats que ceux décrits par les
 auteurs. Cela ne veut pas dire que cela soit parfaitement automatique
@@ -22,3 +22,19 @@ Nous vous proposons donc de choisir l'un de ces articles (celui avec
 lequel vous avez le plus d'affinité) et d'essayer de réexécuter les
 codes et les calculs décrits dans l'article. N'hésitez pas à indiquer
 vos difficultés éventuelles sur le forum où nous répondrons à vos questions.
+
+* Replicate a paper from ReScience
+ReScience ([[http://rescience.github.io/][http://rescience.github.io/]]) is a scientific journal for
+computational science that is completely open and has the goal of
+encouraging the replication of already published work while providing
+a complete set of code and data. For each article published in
+ReScience, we know that at least two independent researchers (the
+reviewers) have been able to follow the instructions, re-execute the
+code, and obtain the same results as those described by the
+authors. This doesn't mean that the process is fully automatic, and
+therefore it is of interest to see how they have proceeded.
+
+We ask you to choose one of the articles (the one that you like most)
+and to try to re-execute the code as described in the article. Don't
+hesitate to indicate any difficulties you might encounter in the
+forum, where we will reply to your questions...
