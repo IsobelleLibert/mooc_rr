@@ -1,36 +1,29 @@
 <div id="content">
+<h1 class="title">Tracking environment information</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org0d4a0e8">Additional references</a>
+<li style="margin-bottom:0;"><a href="#org54d219c">Getting information about your Git repository</a></li>
+<li style="margin-bottom:0;"><a href="#orgd1774c3">Getting information about Python(3) libraries</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#orgc4f6c50">"Thoughts" on language/software stability</a></li>
-<li style="margin-bottom:0;"><a href="#orgabfd56a">Controlling your software environment</a></li>
-<li style="margin-bottom:0;"><a href="#orgf56170d">Preservation/Archiving</a></li>
-<li style="margin-bottom:0;"><a href="#org476ea90">Workflows</a></li>
-<li style="margin-bottom:0;"><a href="#orgdacce8f">Numerical and statistical issues</a></li>
-<li style="margin-bottom:0;"><a href="#org91673e7">Publication practices</a></li>
-<li style="margin-bottom:0;"><a href="#org9f7c676">Experimentation</a></li>
+<li style="margin-bottom:0;"><a href="#org7283a87">Getting information about your system</a></li>
+<li style="margin-bottom:0;"><a href="#orgfa4dc3a">Getting the list of installed packages and their version</a></li>
+<li style="margin-bottom:0;"><a href="#org31cde5f">How to list imported modules?</a></li>
+<li style="margin-bottom:0;"><a href="#orgcea179c">Saving and restoring an environment with pip</a></li>
+<li style="margin-bottom:0;"><a href="#org849fdbb">Installing a new package or a specific version</a></li>
 </ul>
 </li>
-<li style="margin-bottom:0;"><a href="#orgbef6611">Tracking environment information</a>
+<li style="margin-bottom:0;"><a href="#org4f45b1e">Getting information about R libraries</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org9ef50b0">Getting information about your Git repository</a></li>
-<li style="margin-bottom:0;"><a href="#orgc1cd356">Getting information about Python(3) libraries</a>
+<li style="margin-bottom:0;"><a href="#orgc583ee9">Getting the list imported modules and their version</a></li>
+<li style="margin-bottom:0;"><a href="#orgdffc6a5">Getting the list of installed packages and their version</a></li>
+<li style="margin-bottom:0;"><a href="#orgb52d0ce">Installing a new package or a specific version</a>
 <ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org6a455a3">Getting information about your system</a></li>
-<li style="margin-bottom:0;"><a href="#org96c1188">Getting the list of installed packages and their version</a></li>
-<li style="margin-bottom:0;"><a href="#org46d5140">How to list imported modules?</a></li>
-<li style="margin-bottom:0;"><a href="#org1127887">Saving and restoring an environment with pip</a></li>
-<li style="margin-bottom:0;"><a href="#org4522704">Installing a new package or a specific version</a></li>
-</ul>
-</li>
-<li style="margin-bottom:0;"><a href="#orgd73af89">Getting information about R libraries</a>
-<ul style="margin:0 0;">
-<li style="margin-bottom:0;"><a href="#org549563f">Getting the list imported modules and their version</a></li>
-<li style="margin-bottom:0;"><a href="#orgafe4f90">Getting the list of installed packages and their version</a></li>
-<li style="margin-bottom:0;"><a href="#org9e3380b">Installing a new package or a specific version</a></li>
+<li style="margin-bottom:0;"><a href="#orgaf558a0">Installing a pre-compiled version</a></li>
+<li style="margin-bottom:0;"><a href="#org7d8a9f0">Using devtools</a></li>
+<li style="margin-bottom:0;"><a href="#org4509fba">Installing from source code</a></li>
+<li style="margin-bottom:0;"><a href="#org9d64d25">Potential issues</a></li>
 </ul>
 </li>
 </ul>
@@ -39,205 +32,9 @@
 </div>
 </div>
 
-<div id="outline-container-org0d4a0e8" class="outline-2">
-<h2 id="org0d4a0e8">Additional references</h2>
-<div class="outline-text-2" id="text-org0d4a0e8">
-</div>
-<div id="outline-container-orgc4f6c50" class="outline-3">
-<h3 id="orgc4f6c50">"Thoughts" on language/software stability</h3>
-<div class="outline-text-3" id="text-orgc4f6c50">
-<p>
-As we explained, the programming language used in an analysis has a
-clear influence on the reproducibility of your analysis. It is not a
-characteristic of the language itself but rather a consequence of the
-development philosophy of the underlying community. For example C is a
-very stable language with a <a href="https://en.wikipedia.org/wiki/C_(programming_language)#ANSI_C_and_ISO_C">very clear specification designed by a
-committee</a> (even though some compilers may not respect this norm).
-</p>
-
-<p>
-On the other end of the spectrum, <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a> had a much more organic
-development based on a readability philosophy and valuing continuous
-improvement over backwards-compatibility. Furthermore, Python is
-commonly used as a wrapping language (e.g., to easily use C or FORTRAN
-libraries) and has its own packaging system. All these design choices
-tend to make reproducibility often a bit painful with Python, even
-though the community is slowly taking this into account. The transition from Python 2 to the not fully backwards compatible Python 3 has been a particularly painful process, not least because the two languages are so similar that is it not always easy to figure out if a given script or module is written in Python 2 or Python 3. It isn't even rare to see Python scripts that work under both Python 2 and Python 3, but produce different results due to the change in the behavior of integer division.
-</p>
-
-<p>
-<a href="https://en.wikipedia.org/wiki/R_(programming_language)">R</a>, in comparison is much closer (in terms of developer community) to
-languages like <a href="https://en.wikipedia.org/wiki/SAS_(software)">SAS</a>, which is heavily used in the pharmaceutical
-industry where statistical procedures need to be standardized and rock
-solid/stable. R is obviously not immune to evolutions that break old
-versions and hinder reproducibility/backward compatibility. Here is a
-relatively recent <a href="http://members.cbio.mines-paristech.fr/~thocking/HOCKING-reproducible-research-with-R.html">true story about this</a> and some colleagues who worked
-on the <a href="https://www.fun-mooc.fr/courses/UPSUD/42001S06/session06/about">statistics introductory course with R on FUN</a> reported us
-several issues with a few functions (<code>plotmeans</code> from <code>gplots</code>,
-<code>survfit</code> from <code>survival</code>, or <code>hclust</code>) whose default parameters had
-changed over the years. It is thus probably good practice to give
-explicit values for all parameters (which can be cumbersome) instead
-of relying on default values, and to restrict your dependencies as much
-as possible.
-</p>
-
-<p>
-This being said, the R development community is generally quite
-careful about stability. We (the authors of this MOOC) believe that open
-source (which allows to inspect how computation is done and to
-identify both mistakes and sources of non-reproducibility) is more
-important than the rock solid stability of SAS, which is proprietary
-software. Yet, if you really need to stay with SAS (similar solutions
-probably exist for other languages as well), you should know that SAS
-can be used within Jupyter using either the <a href="https://sassoftware.github.io/sas_kernel/">Python SASKernel</a> or the
-<a href="https://sassoftware.github.io/saspy/">Python SASPy</a> package (step by step explanations about this are given
-<a href="https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md">here</a>). Using such literate programming approach allied with systematic
-version and environment control will always help.
-</p>
-</div>
-</div>
-<div id="outline-container-orgabfd56a" class="outline-3">
-<h3 id="orgabfd56a">Controlling your software environment</h3>
-<div class="outline-text-3" id="text-orgabfd56a">
-<p>
-As we mentioned in the video sequences, there are several solutions to
-control your environment:
-</p>
-<ul class="org-ul">
-<li style="margin-bottom:0;">The easy (preserve the mess) ones: <a href="http://www.pgbovine.net/cde.html">CDE</a> or <a href="https://vida-nyu.github.io/reprozip/">ReproZip</a></li>
-<li style="margin-bottom:0;">The more demanding (encourage cleanliness) where you start with a
-clean environment and install only what's strictly necessary (and document it):
-<ul class="org-ul">
-<li style="margin-bottom:0;">The very well known <a href="https://www.docker.io/">Docker</a></li>
-<li style="margin-bottom:0;"><a href="https://singularity.lbl.gov/">Singularity</a> or <a href="https://spack.io/">Spack</a>, which are more targeted toward the specific
-needs of high performance computing users</li>
-<li style="margin-bottom:0;"><a href="https://www.gnu.org/software/guix/">Guix</a>, <a href="https://nixos.org/">Nix</a> that are very clean (perfect?) solutions to this
-dependency hell and which we recommend</li>
-</ul></li>
-</ul>
-
-<p>
-It may be hard to understand the difference between these different
-approaches and decide which one is better in your context.
-</p>
-
-<p>
-Here is a webinar where some of these tools are demoed in a
-reproducible research context: <a href="https://github.com/alegrand/RR_webinars/blob/master/2_controling_your_environment/index.org">Controling your environment (by Michael
-Mercier and Cristian Ruiz)</a>
-</p>
-
-<p>
-You may also want to have a look at <a href="http://falsifiable.us/">the Popper conventions</a> (<a href="https://github.com/alegrand/RR_webinars/blob/master/11_popper/index.org">webinar by
-Ivo Gimenez through google hangout</a>) or at the <a href="https://github.com/alegrand/RR_webinars/blob/master/7_publications/index.org">presentation of Konrad
-Hinsen on Active Papers</a> (<a href="http://www.activepapers.org/">http://www.activepapers.org/</a>).
-</p>
-</div>
-</div>
-<div id="outline-container-orgf56170d" class="outline-3">
-<h3 id="orgf56170d">Preservation/Archiving</h3>
-<div class="outline-text-3" id="text-orgf56170d">
-<p>
-Ensuring software is properly archived, i.e, is safely stored so that
-it can be accessed in a perennial way, can be quite tricky. If you
-have never seen <a href="https://github.com/alegrand/RR_webinars/blob/master/5_archiving_software_and_data/index.org">Roberto Di Cosmo presenting the Software Heritage
-project</a>, this is a must see. <a href="https://www.softwareheritage.org/">https://www.softwareheritage.org/</a>
-</p>
-
-<p>
-For regular data, we highly recommend using <a href="https://www.zenodo.org/">https://www.zenodo.org/</a>
-whenever the data is not sensitive.
-</p>
-</div>
-</div>
-<div id="outline-container-org476ea90" class="outline-3">
-<h3 id="org476ea90">Workflows</h3>
-<div class="outline-text-3" id="text-org476ea90">
-<p>
-In the video sequences, we mentioned workflow managers (original application domain in parenthesis):
-</p>
-<ul class="org-ul">
-<li style="margin-bottom:0;"><a href="https://galaxyproject.org/">Galaxy</a> (genomics), <a href="https://kepler-project.org/">Kepler</a> (ecology), <a href="https://taverna.apache.org/">Taverna</a> (bio-informatics), <a href="https://pegasus.isi.edu/">Pegasus</a>
-(astronomy), <a href="http://cknowledge.org/">Collective Knowledge</a> (compiling optimization) ,
-<a href="https://www.vistrails.org">VisTrails</a> (image processing)</li>
-<li style="margin-bottom:0;">Light-weight: <a href="http://dask.pydata.org/">dask</a> (python), <a href="https://ropensci.github.io/drake/">drake</a> (R), <a href="http://swift-lang.org/">swift</a> (molecular biology),
-<a href="https://snakemake.readthedocs.io/">snakemake</a> (like <code>make</code> but more expressive and in <code>python</code>) &#x2026;</li>
-<li style="margin-bottom:0;">Hybrids: <a href="https://vatlab.github.io/sos-docs/">SOS-notebook</a>, &#x2026;</li>
-</ul>
-
-<p>
-You may want to have a look at this webinar: <a href="https://github.com/alegrand/RR_webinars/blob/master/6_reproducibility_bioinformatics/index.org">Reproducible Science in
-Bio-informatics: Current Status, Solutions and Research Opportunities
-(by Sarah Cohen Boulakia, Yvan Le Bras and Jérôme Chopard).</a>
-</p>
-</div>
-</div>
-
-<div id="outline-container-orgdacce8f" class="outline-3">
-<h3 id="orgdacce8f">Numerical and statistical issues</h3>
-<div class="outline-text-3" id="text-orgdacce8f">
-<p>
-We have mentioned these topics in our MOOC but we could by no way
-cover them properly. We only suggest here a few interesting talks
-about this.
-</p>
-<ul class="org-ul">
-<li style="margin-bottom:0;"><a href="https://github.com/alegrand/RR_webinars/blob/master/10_statistics_and_replication_in_HCI/index.org">In this talk, Pierre Dragicevic provides a nice illustration of the
-consequences of statistical uncertainty and of how some concepts
-(e.G. p-values) are commonly badly understood.</a></li>
-<li style="margin-bottom:0;"><a href="https://github.com/alegrand/RR_webinars/blob/master/3_numerical_reproducibility/index.org">Nathalie Revol, Philippe Langlois and Stef Graillat present the main
-challenges encountered when trying to achieve numerical
-reproducibility and present recent research work on this topic.</a></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org91673e7" class="outline-3">
-<h3 id="org91673e7">Publication practices</h3>
-<div class="outline-text-3" id="text-org91673e7">
-<p>
-You may want to have a look at the following two webinars:
-</p>
-<ul class="org-ul">
-<li style="margin-bottom:0;"><a href="https://github.com/alegrand/RR_webinars/blob/master/8_artifact_evaluation/index.org">Enabling open and reproducible research at computer systems’
-conferences (by Grigori Fursin)</a>. In particular, this talk discusses
-<i>artifact evaluation</i> that is becoming more and more popular.</li>
-<li style="margin-bottom:0;"><a href="https://github.com/alegrand/RR_webinars/blob/master/7_publications/index.org">Publication Modes Favoring Reproducible Research (by Konrad Hinsen
-and Nicolas Rougier)</a>. In this talk, the motivation for the <a href="http://rescience.github.io/">ReScience
-journal</a> initiative are presented.</li>
-<li style="margin-bottom:0;"><a href="https://www.youtube.com/watch?v=HuJ2G8rXHMs">Simine Vazire - When Should We be Skeptical of Scientific Claims?</a>,
-which is discussing publication practices in social sciences and in
-particular HARKing (Hypothesizing After the Results are Known),
-p-hacking, etc.</li>
-</ul>
-</div>
-</div>
-<div id="outline-container-org9f7c676" class="outline-3">
-<h3 id="org9f7c676">Experimentation</h3>
-<div class="outline-text-3" id="text-org9f7c676">
-<p>
-Experimentation was not covered in this MOOC, although it is an
-essential part of science. The main reason is that practices and
-constraints can vary so wildly from one domain to another that it could
-not be properly covered in a first edition. We would be happy to
-gather references you consider as interesting in your domain so do not
-hesitate to provide us with such references by using the forum and we
-will update this page.
-</p>
-
-<ul class="org-ul">
-<li style="margin-bottom:0;"><a href="https://github.com/alegrand/RR_webinars/blob/master/9_experimental_testbeds/index.org">A recent talk by Lucas Nussbaum on Experimental Testbeds in Computer
-Science</a>.</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="outline-container-orgbef6611" class="outline-2">
-<h2 id="orgbef6611">Tracking environment information</h2>
-<div class="outline-text-2" id="text-orgbef6611">
-</div>
-<div id="outline-container-org9ef50b0" class="outline-3">
-<h3 id="org9ef50b0">Getting information about your Git repository</h3>
-<div class="outline-text-3" id="text-org9ef50b0">
+<div id="outline-container-org54d219c" class="outline-2">
+<h2 id="org54d219c">Getting information about your Git repository</h2>
+<div class="outline-text-2" id="text-org54d219c">
 <p>
 When taking notes, it may be difficult to remember which version of
 the code or of a file was used. This is what version control is useful
@@ -328,13 +125,13 @@ is the price to pay for running git from within the notebook itself.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc1cd356" class="outline-3">
-<h3 id="orgc1cd356">Getting information about Python(3) libraries</h3>
-<div class="outline-text-3" id="text-orgc1cd356">
+<div id="outline-container-orgd1774c3" class="outline-2">
+<h2 id="orgd1774c3">Getting information about Python(3) libraries</h2>
+<div class="outline-text-2" id="text-orgd1774c3">
 </div>
-<div id="outline-container-org6a455a3" class="outline-4">
-<h4 id="org6a455a3">Getting information about your system</h4>
-<div class="outline-text-4" id="text-org6a455a3">
+<div id="outline-container-org7283a87" class="outline-3">
+<h3 id="org7283a87">Getting information about your system</h3>
+<div class="outline-text-3" id="text-org7283a87">
 <p>
 This topic is discussed on <a href="https://stackoverflow.com/questions/3103178/how-to-get-the-system-info-with-python">StackOverflow</a>. 
 </p>
@@ -351,9 +148,9 @@ uname_result(system='Linux', node='icarus', release='4.15.0-2-amd64', version='#
 </div>
 </div>
 
-<div id="outline-container-org96c1188" class="outline-4">
-<h4 id="org96c1188">Getting the list of installed packages and their version</h4>
-<div class="outline-text-4" id="text-org96c1188">
+<div id="outline-container-orgfa4dc3a" class="outline-3">
+<h3 id="orgfa4dc3a">Getting the list of installed packages and their version</h3>
+<div class="outline-text-3" id="text-orgfa4dc3a">
 <p>
 This topic is discussed on <a href="https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules">StackOverflow</a>. When using <code>pip</code> (the Python
 package installer) within a shell command, it is easy to query the
@@ -461,9 +258,9 @@ Requires: patsy, pandas
 </pre>
 </div>
 </div>
-<div id="outline-container-org46d5140" class="outline-4">
-<h4 id="org46d5140">How to list imported modules?</h4>
-<div class="outline-text-4" id="text-org46d5140">
+<div id="outline-container-org31cde5f" class="outline-3">
+<h3 id="org31cde5f">How to list imported modules?</h3>
+<div class="outline-text-3" id="text-org31cde5f">
 <p>
 Without resorting to pip (that will list all available packages), you
 may want to know which modules are loaded in a Python session as well
@@ -525,9 +322,9 @@ zlib 1.0
 </div>
 </div>
 
-<div id="outline-container-org1127887" class="outline-4">
-<h4 id="org1127887">Saving and restoring an environment with pip</h4>
-<div class="outline-text-4" id="text-org1127887">
+<div id="outline-container-orgcea179c" class="outline-3">
+<h3 id="orgcea179c">Saving and restoring an environment with pip</h3>
+<div class="outline-text-3" id="text-orgcea179c">
 <p>
 The easiest way to go is as follows:
 </p>
@@ -544,9 +341,9 @@ dynamic libraries that are wrapped by Python though.
 </p>
 </div>
 </div>
-<div id="outline-container-org4522704" class="outline-4">
-<h4 id="org4522704">Installing a new package or a specific version</h4>
-<div class="outline-text-4" id="text-org4522704">
+<div id="outline-container-org849fdbb" class="outline-3">
+<h3 id="org849fdbb">Installing a new package or a specific version</h3>
+<div class="outline-text-3" id="text-org849fdbb">
 <p>
 The Jupyter environment we deployed on our servers for the MOOC is
 based on the version 4.5.4 of Miniconda and Python 3.6. In this
@@ -613,13 +410,13 @@ It is even possible to install a specific (possibly much older) version, e.g.,:
 </div>
 </div>
 </div>
-<div id="outline-container-orgd73af89" class="outline-3">
-<h3 id="orgd73af89">Getting information about R libraries</h3>
-<div class="outline-text-3" id="text-orgd73af89">
+<div id="outline-container-org4f45b1e" class="outline-2">
+<h2 id="org4f45b1e">Getting information about R libraries</h2>
+<div class="outline-text-2" id="text-org4f45b1e">
 </div>
-<div id="outline-container-org549563f" class="outline-4">
-<h4 id="org549563f">Getting the list imported modules and their version</h4>
-<div class="outline-text-4" id="text-org549563f">
+<div id="outline-container-orgc583ee9" class="outline-3">
+<h3 id="orgc583ee9">Getting the list imported modules and their version</h3>
+<div class="outline-text-3" id="text-orgc583ee9">
 <p>
 The best way seems to be to rely on the <code>devtools</code> package (if this
 package is not installed, you should install it first by running in <code>R</code>
@@ -687,9 +484,9 @@ clean R dependency management should thus have a look at <a href="https://rstudi
 </p>
 </div>
 </div>
-<div id="outline-container-orgafe4f90" class="outline-4">
-<h4 id="orgafe4f90">Getting the list of installed packages and their version</h4>
-<div class="outline-text-4" id="text-orgafe4f90">
+<div id="outline-container-orgdffc6a5" class="outline-3">
+<h3 id="orgdffc6a5">Getting the list of installed packages and their version</h3>
+<div class="outline-text-3" id="text-orgdffc6a5">
 <p>
 Finally, it is good to know that there is a built-in R command
 (<code>installed.packages</code>) allowing to retrieve and list the details of all
@@ -944,9 +741,9 @@ packages installed.
 </div>
 </div>
 
-<div id="outline-container-org9e3380b" class="outline-4">
-<h4 id="org9e3380b">Installing a new package or a specific version</h4>
-<div class="outline-text-4" id="text-org9e3380b">
+<div id="outline-container-orgb52d0ce" class="outline-3">
+<h3 id="orgb52d0ce">Installing a new package or a specific version</h3>
+<div class="outline-text-3" id="text-orgb52d0ce">
 <p>
 This section is mostly a cut and paste from the <a href="https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages">recent post by Ian
 Pylvainen</a> on this topic. It comprises a very clear explanation of how
@@ -954,9 +751,9 @@ to proceed.
 </p>
 </div>
 
-<ul class="org-ul">
-<li style="margin-bottom:0;"><a id="org1d1770e"></a>Installing a pre-compiled version<br />
-<div class="outline-text-5" id="text-org1d1770e">
+<div id="outline-container-orgaf558a0" class="outline-4">
+<h4 id="orgaf558a0">Installing a pre-compiled version</h4>
+<div class="outline-text-4" id="text-orgaf558a0">
 <p>
 If you're on a Debian or a Ubuntu system, it may be difficult to
 access a specific version without breaking your system. So unless you
@@ -979,9 +776,10 @@ install.packages(packageurl, repos=<span style="font-weight: bold; text-decorati
 </pre>
 </div>
 </div>
-</li>
-<li style="margin-bottom:0;"><a id="org9183e3e"></a>Using devtools<br />
-<div class="outline-text-5" id="text-org9183e3e">
+</div>
+<div id="outline-container-org7d8a9f0" class="outline-4">
+<h4 id="org7d8a9f0">Using devtools</h4>
+<div class="outline-text-4" id="text-org7d8a9f0">
 <p>
 The simplest method to install the version you need is to use the
 <code>install_version()</code> function of the <code>devtools</code> package (obviously, you
@@ -995,9 +793,10 @@ install_version(<span style="font-style: italic;">"ggplot2"</span>, version = <s
 </pre>
 </div>
 </div>
-</li>
-<li style="margin-bottom:0;"><a id="orgd8742a1"></a>Installing from source code<br />
-<div class="outline-text-5" id="text-orgd8742a1">
+</div>
+<div id="outline-container-org4509fba" class="outline-4">
+<h4 id="org4509fba">Installing from source code</h4>
+<div class="outline-text-4" id="text-org4509fba">
 <p>
 Alternatively, you may want to install an older package from source If
 devtools fails or if you do not want to depend on it, you can install
@@ -1025,9 +824,10 @@ R CMD INSTALL ggplot2_0.9.1.tar.gz
 </pre>
 </div>
 </div>
-</li>
-<li style="margin-bottom:0;"><a id="orga4f8c7a"></a>Potential issues<br />
-<div class="outline-text-5" id="text-orga4f8c7a">
+</div>
+<div id="outline-container-org9d64d25" class="outline-4">
+<h4 id="org9d64d25">Potential issues</h4>
+<div class="outline-text-4" id="text-org9d64d25">
 <p>
 There are a few potential issues that may arise with installing older
 versions of packages: 
@@ -1041,8 +841,6 @@ to downgrade R to a compatible version or update your R code to work
 with a newer version of the package.</li>
 </ul>
 </div>
-</li>
-</ul>
 </div>
 </div>
 </div>
