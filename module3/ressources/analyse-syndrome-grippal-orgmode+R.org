@@ -39,11 +39,11 @@ options(width=150)
 
 * Préparation des données
 
-Les données de l'incidence du syndrome grippal sont disponibles du site Web du [[http://www.sentiweb.fr/][Réseau Sentinelles]]. Nous les récupérons en format CSV dont chaque ligne correspond à une semaine de la période demandée. Les dates de départ et de fin sont codées dans l'URL: "wstart=198501" pour semaine 1 de l'année 1985 et "wend=201730" pour semaine 30 de l'année 2017. L'URL complet est:
+Les données de l'incidence du syndrome grippal sont disponibles du site Web du [[http://www.sentiweb.fr/][Réseau Sentinelles]]. Nous les récupérons sous forme d'un fichier en format CSV dont chaque ligne correspond à une semaine de la période demandée. Nous téléchargeons toujours le jeu de données complet, qui commence en 1984 et se termine avec une semaine récente. L'URL est:
 #+NAME: data-url
-http://websenti.u707.jussieu.fr/sentiweb/api/data/rest/getIncidenceFlat?indicator=3&wstart=198501&wend=201730&geo=PAY1&$format=csv
+http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
 
-Voici l'explication des colonnes donnée sur le site d'origine:
+Voici l'explication des colonnes donnée sur [[https://ns.sentiweb.fr/incidence/csv-schema-v1.json][le site d'origine:]]
 
 | Nom de colonne | Libellé de colonne                                                                                                                |
 |----------------+-----------------------------------------------------------------------------------------------------------------------------------|
@@ -59,11 +59,13 @@ Voici l'explication des colonnes donnée sur le site d'origine:
 | ~geo_name~   | Libellé de la zone géographique (ce libellé peut être modifié sans préavis)                                                       |
 
 ** Téléchargement
-Après avoir téléchargé les données, nous commençons par l'extraction des données qui nous intéressent. D'abord nous découpons le contenu du fichier en lignes, dont nous jetons la première qui ne contient qu'un commentaire. Les autres lignes sont découpées en colonnes.
+La première ligne du fichier CSV est un commentaire, que nous ignorons en précisant `skip=1`.
 
 #+BEGIN_SRC R :session :results silent :var url=data-url
 data = read.csv(trimws(url), skip=1)
 #+END_SRC
+
+Après avoir téléchargé les données, nous commençons par l'extraction des données qui nous intéressent. D'abord nous découpons le contenu du fichier en lignes, dont nous jetons la première qui ne contient qu'un commentaire. Les autres lignes sont découpées en colonnes.
 
 #+BEGIN_SRC R :results output
 head(data)
@@ -83,22 +85,12 @@ class(data$week)
 class(data$inc)
 #+END_SRC
 
-Les semaines ont été lues comme entiers, il va falloir les interpréter correctement. L'approche la plus facile est de relire les données en expliquant à R que le "-" indique une valeur manquante:
-#+BEGIN_SRC R :session :results output :var url=data-url
-data = read.csv(trimws(url), skip=1, na.strings="-")
-head(data)
-#+END_SRC
-
-Maintenant les deux colonnes `week` et `inc` sont de classe `integer`:
-#+BEGIN_SRC R :session :results output :var url=data-url
-class(data$week)
-class(data$inc)
-#+END_SRC
+Ce sont des entiers, tout va bien !
 
 ** Conversions
 Pour faciliter les traitements suivants, nous remplaçons les numéros de semaine ISO par les dates qui correspondent aux lundis. D'abord, une petite fonction qui fait le travail:
 #+BEGIN_SRC R :results silent
-converti_week = function(w) {
+convert_week = function(w) {
 	ws = paste(w)
 	iso = paste0(substring(ws,1,4), "-W", substring(ws,5,6))
 	as.Date(parse_iso_8601(iso))
@@ -107,7 +99,7 @@ converti_week = function(w) {
 
 Nous appliquons cette fonction à tous les points, créant une nouvelle colonne `date` dans notre jeu de données:
 #+BEGIN_SRC R :results output
-data$date = as.Date(sapply(data$week, convert_week))
+data$date = as.Date(convert_week(data$week))
 #+END_SRC
 
 Vérifions qu'elle est de classe `Date`:
@@ -152,9 +144,9 @@ pic_annuel = function(annee) {
       }
 #+END_SRC
 
-Nous devons aussi faire attention aux premières et dernières années de notre jeux de données. Les données commencent en janvier 1985, ce qui ne permet pas de quantifier complètement le pic attribué à cette année. Nous le supprimons donc de notre analyse. Par contre, les données se terminent en été 2017, peu avant le 1er août, ce qui nous permet d'inclure cette année dans l'analyse.
+Nous devons aussi faire attention aux premières et dernières années de notre jeux de données. Les données commencent en octobre 1984, ce qui ne permet pas de quantifier complètement le pic attribué à l'année 1985. Nous le supprimons donc de notre analyse. Par contre, pour une exécution en octobre 2018, les données se terminent après le 1er août 2018, ce qui nous permet d'inclure cette année.
 #+BEGIN_SRC R :results silent
-annees <- 1986:2017
+annees <- 1986:2018
 #+END_SRC
 
 Nous créons un nouveau jeu de données pour l'incidence annuelle, en applicant la fonction `pic_annuel` à chaque année:

@@ -54,11 +54,11 @@ Nous n'utilisons que des fonctionnalités de base du langage R, une version ant�
 
 * Préparation des données
 
-Les données de l'incidence du syndrome grippal sont disponibles du site Web du [[http://www.sentiweb.fr/][Réseau Sentinelles]]. Nous les récupérons en format CSV dont chaque ligne correspond à une semaine de la période demandée. Les dates de départ et de fin sont codées dans l'URL: "wstart=198501" pour semaine 1 de l'année 1985 et "wend=201730" pour semaine 30 de l'année 2017. L'URL complet est:
+Les données de l'incidence du syndrome grippal sont disponibles du site Web du [[http://www.sentiweb.fr/][Réseau Sentinelles]]. Nous les récupérons sous forme d'un fichier en format CSV dont chaque ligne correspond à une semaine de la période demandée. Nous téléchargeons toujours le jeu de données complet, qui commence en 1984 et se termine avec une semaine récente. L'URL est:
 #+NAME: data-url
-http://websenti.u707.jussieu.fr/sentiweb/api/data/rest/getIncidenceFlat?indicator=3&wstart=198501&wend=201730&geo=PAY1&$format=csv
+http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
 
-Voici l'explication des colonnes donnée sur le site d'origine:
+Voici l'explication des colonnes donnée sur [[https://ns.sentiweb.fr/incidence/csv-schema-v1.json][le site d'origine:]]
 
 | Nom de colonne | Libellé de colonne                                                                                                                |
 |----------------+-----------------------------------------------------------------------------------------------------------------------------------|
@@ -89,22 +89,29 @@ Pour éviter de télécharger les données plusieurs fois, nous les gardons dans
     (setq buffer-read-only t)))
 #+END_SRC
 
-La prochaine étape est l'extraction des données qui nous intéressent. D'abord nous découpons le contenu du fichier en lignes, dont nous jetons la première qui ne contient qu'un commentaire. Les autres lignes sont découpées en colonnes, dont nous ne gardons que la première (~"week"~) et la troisième (~"inc"~). Nous insérons ~hline~ comme deuxième élément de notre tableau pour indiquer à org-mode la séparation entre l'en-tête (les noms des colonnes) et les données.
+La prochaine étape est l'extraction des données qui nous intéressent. D'abord nous découpons le contenu du fichier en lignes, dont nous jetons la première qui ne contient qu'un commentaire. Les autres lignes sont découpées en colonnes. Pour détecter les données manquantes, nous vérifions si une ligne contient au moins un champ vide. Nous affichons les lignes concernées, et traitons seulement les autres par la suite. Nous n'en gardons que la première (~"week"~) et la troisième (~"inc"~) colonne. Nous insérons ~hline~ comme deuxième élément de notre tableau pour indiquer à org-mode la séparation entre l'en-tête (les noms des colonnes) et les données.
 
-#+NAME: raw-data
+#+NAME: data
 #+BEGIN_SRC emacs-lisp :results silent :var name=data-buffer-name
 (require 'cl)
 (require 'dash)
+(defun missing-data? (row)
+  (--any (string= it "") row))
 (with-current-buffer name
   (let* ((lines (split-string (buffer-string) "\n" t))
          (table (rest lines))
          (columns (--map (split-string it ",") table)))
+    (setq missing-data-lines (-filter 'missing-data? columns))
     (-insert-at 1 'hline
-                (-select-columns '(0 2) columns))))
+                (-select-columns '(0 2) (-remove 'missing-data? columns)))))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+missing-data-lines
 #+END_SRC
 
 Regardons les premières et les dernières lignes:
-#+BEGIN_SRC emacs-lisp :results value :var data=raw-data :colnames yes
+#+BEGIN_SRC emacs-lisp :results value :var data=data :colnames yes
 (-concat (-take 5 data)
          '(hline)
          (-take-last 5 data))
@@ -113,7 +120,7 @@ Regardons les premières et les dernières lignes:
 ** Vérification
 Il est toujours prudent de vérifier si les données semblent crédibles. Nous savons que les semaines sont données par six chiffres (quatre pour l'année et deux pour la semaine), dont les deux premiers sont ou "19" ou "20", et que les incidences sont des nombres entiers positifs.
 
-#+BEGIN_SRC emacs-lisp :results output :var data=raw-data :colnames yes
+#+BEGIN_SRC emacs-lisp :results output :var data=data :colnames yes
 (defun check-week (week)
   (unless (string-match-p (rx (or "19" "20") (repeat 4 digit))  week)
     (princ (format "Invalid week value: %s\n" week))))
@@ -128,23 +135,16 @@ Il est toujours prudent de vérifier si les données semblent crédibles. Nous s
       data)
 #+END_SRC
 
-La vérification a mis en évidence un point manquant dans le jeu de données. Nous l'éliminons, ce qui n'a pas d'impact fort sur notre analyse qui est assez simple.
-
-#+NAME: valid-data
-#+BEGIN_SRC emacs-lisp :results silent :var data=raw-data :colnames yes
-(-remove (lambda (week+inc)
-           (equal "-" (second week+inc)))
-         data)
-#+END_SRC
+Rien à signaler !
 
 ** Conversions
 Pour faciliter les traitements suivants, nous remplaçons les numéros de semaine ISO par les dates qui correspondent aux lundis. A cette occasion, nous trions aussi les données par la date, et nous transformons les incidences en nombres entiers. Nous utilisons le langage Python 3 parce qu'il est un des rares à proposer la conversion de semaines ISO en dates dans sa biblithèque standard.
 
-#+BEGIN_SRC python :results silent :var data=valid-data
+#+BEGIN_SRC python :results silent :var input_data=data
 import datetime
 data = [(datetime.datetime.strptime(year_and_week + ":1" , '%G%V:%u').date(),
          int(inc))
-        for year_and_week, inc in data]
+        for year_and_week, inc in input_data]
 data.sort(key = lambda record: record[0])
 #+END_SRC
 
@@ -204,9 +204,9 @@ pic_annuel = function(annee) {
       }
 #+END_SRC
 
-Nous devons aussi faire attention aux premières et dernières années de notre jeux de données. Les données commencent en janvier 1985, ce qui ne permet pas de quantifier complètement le pic attribué à cette année. Nous le supprimons donc de notre analyse. Par contre, les données se terminent en été 2017, peu avant le 1er août, ce qui nous permet d'inclure cette année dans l'analyse.
+Nous devons aussi faire attention aux premières et dernières années de notre jeux de données. Les données commencent en octobre 1984, ce qui ne permet pas de quantifier complètement le pic attribué à l'année 1985. Nous le supprimons donc de notre analyse. Par contre, les données se terminent après le 1er août 2018 (pour une exécution après cette date bien sûr), ce qui nous permet d'inclure cette année dans l'analyse.
 #+BEGIN_SRC R :results silent
-annees <- 1986:2017
+annees <- 1986:2018
 #+END_SRC
 
 #+BEGIN_SRC R :results value

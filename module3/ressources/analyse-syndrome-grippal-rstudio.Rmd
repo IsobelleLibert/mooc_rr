@@ -21,12 +21,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Préparation des données
 
-Les données de l'incidence du syndrome grippal sont disponibles du site Web du [Réseau Sentinelles](http://www.sentiweb.fr/). Nous les récupérons en format CSV dont chaque ligne correspond à une semaine de la période demandée. Les dates de départ et de fin sont codées dans l'URL: "wstart=198501" pour semaine 1 de l'année 1985 et "wend=201730" pour semaine 30 de l'année 2017. L'URL complet est:
+Les données de l'incidence du syndrome grippal sont disponibles du site Web du [Réseau Sentinelles](http://www.sentiweb.fr/). Nous les récupérons sous forme d'un fichier en format CSV dont chaque ligne correspond à une semaine de la période demandée. Nous téléchargeons toujours le jeu de données complet, qui commence en 1984 et se termine avec une semaine récente. L'URL est:
 ```{r}
-data_url = "http://websenti.u707.jussieu.fr/sentiweb/api/data/rest/getIncidenceFlat?indicator=3&wstart=198501&wend=201730&geo=PAY1&$format=csv"
+data_url = "http://www.sentiweb.fr/datasets/incidence-PAY-3.csv"
 ```
 
-Voici l'explication des colonnes donnée sur le site d'origine:
+Voici l'explication des colonnes donnée sur le [sur le site d'origine](https://ns.sentiweb.fr/incidence/csv-schema-v1.json):
 
 | Nom de colonne | Libellé de colonne                                                                                                                |
 |----------------+-----------------------------------------------------------------------------------------------------------------------------------|
@@ -41,6 +41,7 @@ Voici l'explication des colonnes donnée sur le site d'origine:
 | `geo_insee`  | Code de la zone géographique concernée (Code INSEE) http://www.insee.fr/fr/methodes/nomenclatures/cog/                            |
 | `geo_name`   | Libellé de la zone géographique (ce libellé peut être modifié sans préavis)                                                       |
 
+La première ligne du fichier CSV est un commentaire, que nous ignorons en précisant `skip=1`.
 ### Téléchargement
 ```{r}
 data = read.csv(data_url, skip=1)
@@ -63,18 +64,7 @@ Les deux colonnes qui nous intéressent sont `week` et `inc`. Vérifions leurs c
 class(data$week)
 class(data$inc)
 ```
-
-La colonne `inc` est de classe `factor` à cause du point manquant dont la valeur de `inc` est `'-'`. Pour faciliter le traîtement ultérieur, nous relisons les données en demandant à `R` de traiter cette valeur comme `na`:
-```{r}
-data = read.csv(data_url, skip=1, na.strings="-")
-head(data)
-```
-
-Maintenant les deux colonnes `week` et `inc` sont de classe `integer`:
-```{r}
-class(data$week)
-class(data$inc)
-```
+Ce sont des entiers, tout va bien !
 
 ### Conversion des numéros de semaine
 
@@ -96,7 +86,7 @@ convert_week = function(w) {
 
 Nous appliquons cette fonction à tous les points, créant une nouvelle colonne `date` dans notre jeu de données:
 ```{r}
-data$date = as.Date(sapply(data$week, convert_week))
+data$date = as.Date(convert_week(data$week))
 ```
 
 Vérifions qu'elle est de classe `Date`:
@@ -141,9 +131,9 @@ pic_annuel = function(annee) {
       }
 ```
 
-Nous devons aussi faire attention aux premières et dernières années de notre jeux de données. Les données commencent en janvier 1985, ce qui ne permet pas de quantifier complètement le pic attribué à cette année. Nous l'enlevons donc de notre analyse. Par contre, les données se terminent en été 2017, peu avant le 1er août, ce qui nous permet d'inclure cette année.
+Nous devons aussi faire attention aux premières et dernières années de notre jeux de données. Les données commencent en octobre 1984, ce qui ne permet pas de quantifier complètement le pic attribué à 1985. Nous l'enlevons donc de notre analyse. Par contre, pour une exécution en octobre 2018, les données se terminent après le 1er août 2018, ce qui nous permet d'inclure cette année.
 ```{r}
-annees = 1986:2017
+annees = 1986:2018
 ```
 
 Nous créons un nouveau jeu de données pour l'incidence annuelle, en applicant la fonction `pic_annuel` à chaque année:
