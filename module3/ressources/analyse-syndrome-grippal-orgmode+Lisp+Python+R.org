@@ -89,9 +89,7 @@ Pour éviter de télécharger les données plusieurs fois, nous les gardons dans
     (setq buffer-read-only t)))
 #+END_SRC
 
-La prochaine étape est l'extraction des données qui nous intéressent. D'abord nous découpons le contenu du fichier en lignes, dont nous jetons la première qui ne contient qu'un commentaire. Les autres lignes sont découpées en colonnes. Pour détecter les données manquantes, nous vérifions si une ligne contient au moins un champ vide. Nous affichons les lignes concernées, et traitons seulement les autres par la suite. Nous n'en gardons que la première (~"week"~) et la troisième (~"inc"~) colonne. Nous insérons ~hline~ comme deuxième élément de notre tableau pour indiquer à org-mode la séparation entre l'en-tête (les noms des colonnes) et les données.
-
-#+NAME: data
+La prochaine étape est l'extraction des données qui nous intéressent. D'abord nous découpons le contenu du fichier en lignes, dont nous jetons la première qui ne contient qu'un commentaire. Les autres lignes sont découpées en colonnes. Pour détecter les données manquantes, nous vérifions si une ligne contient au moins un champ vide. A la fin de ce bloc, deux variables contiennent les données manquantes et les donées valables.
 #+BEGIN_SRC emacs-lisp :results silent :var name=data-buffer-name
 (require 'cl)
 (require 'dash)
@@ -100,14 +98,22 @@ La prochaine étape est l'extraction des données qui nous intéressent. D'abord
 (with-current-buffer name
   (let* ((lines (split-string (buffer-string) "\n" t))
          (table (rest lines))
-         (columns (--map (split-string it ",") table)))
-    (setq missing-data-lines (-filter 'missing-data? columns))
-    (-insert-at 1 'hline
-                (-select-columns '(0 2) (-remove 'missing-data? columns)))))
+         (columns (--map (split-string it ",") table))
+         (missing/valid (-separate 'missing-data? columns)))
+    (setq missing-data-lines (first missing/valid))
+    (setq valid-data-lines (second missing/valid))))
 #+END_SRC
 
+Regardons les données manquantes...
 #+BEGIN_SRC emacs-lisp
 missing-data-lines
+#+END_SRC
+
+Nous ne gardons que la première (~"week"~) et la troisième (~"inc"~) colonne des données valables. Nous insérons ~hline~ comme deuxième élément de notre tableau pour indiquer à org-mode la séparation entre l'en-tête (les noms des colonnes) et les données.
+#+NAME: data
+#+BEGIN_SRC emacs-lisp :results silent
+(-insert-at 1 'hline
+            (-select-columns '(0 2) valid-data-lines))
 #+END_SRC
 
 Regardons les premières et les dernières lignes:
