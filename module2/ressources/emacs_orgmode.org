@@ -59,7 +59,7 @@ which is now deprecated.
 *Note:* macOS comes with a prehistoric command-line-only version of Emacs located at =/usr/bin/emacs=. It's best to forget about it.
 
 - *Option 1*: Install the =.dmg= file from [[http://vgoulet.act.ulaval.ca/][Vincent Goulet]]:
-  https://vigou3.github.io/emacs-modified-macos/. It ships with recent
+  https://vigou3.gitlab.io/emacs-modified-macos/. It ships with recent
   versions:
   - Emacs 26.1
   - Org-mode 9.1.13
@@ -92,7 +92,7 @@ which is now deprecated.
   in order to make Emacs accessible directly from =/Applications=.
 ** Windows
 Install the =.exe= file from [[http://vgoulet.act.ulaval.ca/][Vincent Goulet]]:
-https://vigou3.github.io/emacs-modified-windows/. It ships with recent
+https://vigou3.gitlab.io/emacs-modified-windows/. It ships with recent
 versions:
 - Emacs 26.1
 - Org-mode 9.1.13
