@@ -1,0 +1,2634 @@
+# -*- coding: utf-8 -*-
+# -*- org-confirm-babel-evaluate: nil -*-
+# -*- mode: org -*-
+#+TITLE:
+#+LANGUAGE:  en
+#+OPTIONS: H:5 author:nil email:nil creator:nil timestamp:nil skip:nil toc:nil ^:nil
+#+TAGS: ARNAUD(a) CHRISTIAN(c) TOM(T)
+#+TAGS: noexport(n) DEPRECATED(d) ignore(i)
+#+TAGS: EXPERIMENT(e) LU(l) EP(e)
+#+STARTUP: overview indent inlineimages logdrawer hidestars
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+SEQ_TODO: TODO(t!) STARTED(s!) WAITING(w@) | DONE(d!) CANCELLED(c@) DEFERRED(@) FLAWED(f@)
+#+LATEX_CLASS: IEEEtran
+#+LATEX_CLASS_OPTIONS: [nofonttune]
+#+PROPERTY: header-args :eval never-export
+
+* LaTeX Preamble                                                     :ignore:
+#+LATEX_HEADER: \usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: %\usepackage{fixltx2e}
+#+LATEX_HEADER: \usepackage{ifthen,figlatex}
+#+LATEX_HEADER: \usepackage{longtable}
+#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: \usepackage{wrapfig}
+#+LATEX_HEADER: \usepackage{subfigure}
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{color,soul}
+#+LATEX_HEADER: \usepackage[export]{adjustbox}
+#+LATEX_HEADER: \usepackage{xspace}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb}
+#+LATEX_HEADER: \usepackage[american]{babel}
+#+LATEX_HEADER: \usepackage{relsize}
+#+LATEX_HEADER: \AtBeginDocument{
+#+LATEX_HEADER:   \definecolor{pdfurlcolor}{rgb}{0,0,0.6}
+#+LATEX_HEADER:   \definecolor{pdfcitecolor}{rgb}{0,0.6,0}
+#+LATEX_HEADER:   \definecolor{pdflinkcolor}{rgb}{0.6,0,0}
+#+LATEX_HEADER:   \definecolor{light}{gray}{.85}
+#+LATEX_HEADER:   \definecolor{vlight}{gray}{.95}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: %\usepackage[paper=letterpaper,margin=1.61in]{geometry}
+#+LATEX_HEADER: \usepackage{url} \urlstyle{sf}
+#+LATEX_HEADER: \usepackage[normalem]{ulem}
+#+LATEX_HEADER: \usepackage{todonotes}
+#+LATEX_HEADER: \usepackage{fancyvrb}
+#+LATEX_HEADER: \usepackage[colorlinks=true,citecolor=pdfcitecolor,urlcolor=pdfurlcolor,linkcolor=pdflinkcolor,pdfborder={0 0 0}]{hyperref}
+#+LATEX_HEADER: \usepackage{color,colortbl}
+#+LATEX_HEADER: \definecolor{gray98}{rgb}{0.98,0.98,0.98}
+#+LATEX_HEADER: \definecolor{gray20}{rgb}{0.20,0.20,0.20}
+#+LATEX_HEADER: \definecolor{gray25}{rgb}{0.25,0.25,0.25}
+#+LATEX_HEADER: \definecolor{gray16}{rgb}{0.161,0.161,0.161}
+#+LATEX_HEADER: \definecolor{gray60}{rgb}{0.6,0.6,0.6}
+#+LATEX_HEADER: \definecolor{gray30}{rgb}{0.3,0.3,0.3}
+#+LATEX_HEADER: \definecolor{bgray}{RGB}{248, 248, 248}
+#+LATEX_HEADER: \definecolor{amgreen}{RGB}{77, 175, 74}
+#+LATEX_HEADER: \definecolor{amblu}{RGB}{55, 126, 184}
+#+LATEX_HEADER: \definecolor{amred}{RGB}{228,26,28}
+#+LATEX_HEADER: \definecolor{amdove}{RGB}{102,102,122}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage[procnames]{listings}
+#+LATEX_HEADER: \lstset{ %
+#+LATEX_HEADER:  backgroundcolor=\color{gray98},    % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+#+LATEX_HEADER:  basicstyle=\tt\scriptsize,        % the size of the fonts that are used for the code
+#+LATEX_HEADER:  breakatwhitespace=false,          % sets if automatic breaks should only happen at whitespace
+#+LATEX_HEADER:  breaklines=true,                  % sets automatic line breaking
+#+LATEX_HEADER:  showlines=true,                   % sets automatic line breaking
+#+LATEX_HEADER:  captionpos=b,                     % sets the caption-position to bottom
+#+LATEX_HEADER:  commentstyle=\color{gray30},      % comment style
+#+LATEX_HEADER:  extendedchars=true,               % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+#+LATEX_HEADER:  frame=single,                     % adds a frame around the code
+#+LATEX_HEADER:  keepspaces=true,                  % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+#+LATEX_HEADER:  keywordstyle=\color{amblu},       % keyword style
+#+LATEX_HEADER:  procnamestyle=\color{amred},      % procedures style
+#+LATEX_HEADER:  language=[95]fortran,             % the language of the code
+#+LATEX_HEADER:  numbers=left,                     % where to put the line-numbers; possible values are (none, left, right)
+#+LATEX_HEADER:  numbersep=5pt,                    % how far the line-numbers are from the code
+#+LATEX_HEADER:  numberstyle=\tiny\color{gray20},  % the style that is used for the line-numbers
+#+LATEX_HEADER:  rulecolor=\color{gray20},         % if not set, the frame-color may be changed on line-breaks within not-black text (\eg comments (green here))
+#+LATEX_HEADER:  showspaces=false,                 % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+#+LATEX_HEADER:  showstringspaces=false,           % underline spaces within strings only
+#+LATEX_HEADER:  showtabs=false,                   % show tabs within strings adding particular underscores
+#+LATEX_HEADER:  stepnumber=2,                     % the step between two line-numbers. If it's 1, each line will be numbered
+#+LATEX_HEADER:  stringstyle=\color{amdove},       % string literal style
+#+LATEX_HEADER:  tabsize=2,                        % sets default tabsize to 2 spaces
+#+LATEX_HEADER:  % title=\lstname,                    % show the filename of files included with \lstinputlisting; also try caption instead of title
+#+LATEX_HEADER:  procnamekeys={call}
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \definecolor{colorfuncall}{rgb}{0.6,0,0}
+#+LATEX_HEADER: \newcommand{\prettysmall}{\fontsize{6}{8}\selectfont}
+#+LATEX_HEADER: \let\oldtexttt=\texttt
+#+LATEX_HEADER: \renewcommand\texttt[1]{\oldtexttt{\smaller[1]{#1}}}
+# #+LATEX_HEADER: \usepackage[round-precision=3,round-mode=figures,scientific-notation=true]{siunitx}
+#+LATEX_HEADER: \usepackage[binary-units]{siunitx}
+#+LATEX_HEADER: \DeclareSIUnit\flop{Flop}
+#+LATEX_HEADER: \DeclareSIUnit\flops{\flop\per\second}
+#+LATEX_HEADER:\usepackage{tikz}
+#+LATEX_HEADER:\usetikzlibrary{arrows,shapes,positioning,shadows,trees,calc}
+#+LATEX_HEADER:\usepackage{pgfplots}
+#+LATEX_HEADER:\pgfplotsset{compat=1.13}
+
+#+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \setlist[itemize,1]{leftmargin=\dimexpr 26pt-.2in}
+#+LATEX_HEADER: \usepackage[mode=buildnew]{standalone}
+#+LATEX_HEADER: \usepackage[ruled,vlined,english]{algorithm2e}
+#+LATEX_HEADER: \DontPrintSemicolon
+
+#+LaTeX: \newcommand\myemph[1]{\color{colorfuncall}\textbf{#1}}%
+
+#+LaTeX: \newcommand\labspace[1][-0cm]{\vspace{#1}}
+#+LaTeX: \renewcommand\O{\ensuremath{\mathcal{O}}\xspace}%
+
+#+BEGIN_EXPORT latex
+\makeatletter
+\newcommand{\removelatexerror}{\let\@latex@error\@gobble}
+\makeatother
+#+END_EXPORT
+
+* LaTeX IEEE title and authors                                       :ignore:
+#+BEGIN_EXPORT latex
+\let\oldcite=\cite
+\renewcommand\cite[2][]{~\ifthenelse{\equal{#1}{}}{\oldcite{#2}}{\oldcite[#1]{#2}}\xspace}
+\let\oldref=\ref
+\def\ref#1{~\oldref{#1}\xspace}
+\def\eqref#1{~(\oldref{#1})\xspace}
+\def\ie{i.e.,\xspace}
+\def\eg{e.g.,\xspace}
+\def\etal{~\textit{et al.\xspace}}
+\newcommand{\AL}[2][inline]{\todo[caption={},color=green!50,#1]{\small\sf\textbf{AL:} #2}}
+\newcommand{\TC}[2][inline]{\todo[caption={},color=blue!50,#1]{\small\sf\textbf{TOM:} #2}}
+\newcommand{\CH}[2][inline]{\todo[color=red!30,#1]{\small\sf \textbf{CH:} #2}}
+%\newcommand{\AL}[2][inline]{}
+%\newcommand{\TC}[2][inline]{}
+%\newcommand{\CH}[2][inline]{}
+
+%% Omit the copyright space.
+%\makeatletter
+%\def\@copyrightspace{}
+%\makeatother
+
+%\def\IEEEauthorblockN#1{\gdef\IEEEauthorrefmark##1{\ensuremath{{}^{\textsf{##1}}}}#1}
+%\newlength{\blockA}
+%\setlength{\blockA}{.35\linewidth}
+%\def\IEEEauthorblockA#1{
+%  \scalebox{.9}{\begin{minipage}{\blockA}\normalsize\sf
+%    \def\IEEEauthorrefmark##1{##1: }
+%    #1
+%  \end{minipage}}
+%}
+% \def\IEEEauthorrefmark#1{#1: }
+
+\title{Emulating High Performance Linpack on a Commodity Server at the Scale of a Supercomputer}
+%\title{Simulating the Energy Consumption of MPI~Applications}
+% Predicting the Performance and the Power Consumption of MPI Applications With SimGrid
+  %\titlerunning{Power-aware simulation for large-scale systems with SimGrid}
+  %
+
+  \author{
+    \begin{minipage}{.55\linewidth}\centering
+      \IEEEauthorblockN{Tom Cornebize, Franz C. Heinrich, Arnaud Legrand}\\
+      \IEEEauthorblockA{Univ. Grenoble Alpes, CNRS, Inria, Grenoble INP, LIG\\ 38000 Grenoble, France\\
+        firstname.lastname@inria.fr}
+    \end{minipage}
+    \begin{minipage}{.35\linewidth}\centering
+      \IEEEauthorblockN{Jérôme Vienne}\\
+      \IEEEauthorblockA{Texas Advanced Computing Center\\Austin, Texas, USA\\
+        viennej@tacc.utexas.edu}
+    \end{minipage}
+
+  }
+
+
+  \maketitle              % typeset the title of the contribution
+#+END_EXPORT
+* Abstract                                                           :ignore:
+#+LaTeX: \begin{abstract}
+The Linpack benchmark, in particular the High-Performance Linpack
+(HPL) implementation, has emerged as the de-facto standard benchmark
+to rank supercomputers in the TOP500. With a power consumption of
+several MW per hour on a TOP500 machine, test-running HPL on the whole
+machine for hours is extremely expensive. With core-counts beyond the
+100,000 cores threshold being common and sometimes even ranging into
+the millions, an optimization of HPL parameters (problem size, grid
+arrangement, granularity, collective operation algorithms, etc.)
+specifically suited to the network topology and performance is
+essential. Such optimization can be particularly time consuming and
+can hardly be done through simple mathematical performance models. In
+this article, we explain how we both extended the SimGrid's SMPI
+simulator and slightly modified HPL to allow a fast emulation of HPL
+on a single commodity computer at the scale of a supercomputer. More
+precisely, we take as a motivating use case the large-scale run
+performed on the Stampede cluster at TACC in 2013, when it got ranked
+6th in the TOP500. While this qualification run required the
+dedication of 6,006 computing nodes of the supercomputer and more than
+120\nbsp{}TB of RAM for more than 2\nbsp{}hours, we manage to simulate a similar
+configuration on a commodity computer with 19\nbsp{}GB of RAM in about
+62\nbsp{}hours. Allied to a careful modeling of Stampede, this simulation
+allows us to evaluate the performance that would have been obtained
+using the freely available version of HPL. Such performance reveals much
+lower than what was reported and which was obtained using a
+closed-source version specifically designed by the Intel
+engineers. Our simulation allows us to hint where the main algorithmic
+improvements must have been done in HPL. 
+#+LaTeX: \end{abstract}
+
+
+#+BEGIN_EXPORT latex
+% this is need to trim the number of authors and et al. for more than 3 authors
+\bstctlcite{IEEEexample:BSTcontrol}
+#+END_EXPORT
+* Introduction
+
+The world's largest and fastest machines are ranked twice a year in the so-called
+TOP500 list. Among the benchmarks that are often used to evaluate
+those machines, the Linpack benchmark, in particular the High-Performance Linpack (HPL)
+implementation, has emerged as the de-facto standard benchmark, although
+other benchmarks such as HPCG and HPGMG have recently been proposed to
+become the new standard. Today, machines with 100,000\nbsp{}cores 
+and more are common and several machines beyond the 1,000,000\nbsp{}cores mark
+are already in production. This high density of computation units requires diligent optimization of application
+parameters, such as problem size, process organization or choice of algorithm, as these
+have an impact on load distribution and network utilization.
+Furthermore, to yield best benchmark results,
+runtimes (such as OpenMPI) and supporting libraries (such as BLAS) need to be fine-tuned and adapted to the
+underlying platform. 
+
+Alas, it takes typically several hours to run HPL on the list's number one system.
+This duration, combined with the power consumption that often reaches several MW
+for TOP500 machines, makes it financially infeasible to test-run HPL on the whole
+machine just to tweak parameters. 
+Yet, performance results of an already deployed, current-generation machine typically also
+play a role in the funding process for future machines. Results near
+the optimal performance for the current machine are hence considered critical for
+HPC centers and vendors. These entities would benefit from being able to
+tune parameters without actually running the benchmark for hours.
+# This estimation can be done either via (mathematical) performance models (e.g., by
+# estimating performance of specific functions) or by a simulation based approach.
+# While performance models neglect the
+# oftentimes serious impact of the network (\eg due to congestion, shared bandwidth,
+# ...), this is not in general true for the simulation approach.
+
+# \CH{Furthermore, simulations can be used to validate/check that the execution went well (operated near the peak performance) but can also help to find the right parameters for the application, runtime and network.}
+
+In this article, we explain how to predict the performance of HPL
+through simulation with the SimGrid/SMPI simulator. We detail how we obtained
+faithful models for several functions (\eg =DGEMM= and =DTRSM=) and how we managed
+to reduce the memory consumption from more than a hundred terabytes to several
+gigabytes, allowing us to emulate HPL on a commonly available server node.
+We evaluate the effectiveness of our solution by
+simulating a scenario similar to the run conducted on the Stampede
+cluster (TACC) in 2013 for the TOP500 . 
+
+This article is organized as follows:
+Section\ref{sec:con} presents the main characteristics of the HPL
+application and provides detail on the run that was conducted at TACC
+in 2013.  Section\ref{sec:relwork} discusses existing related work and
+explains why emulation (or /online simulation/) is the only relevant
+approach when studying an application as complex as HPL. In
+Section\ref{sec:smpi}, we briefly present the simulator we used for
+this work, SimGrid/SMPI, followed by an
+extensive discussion in Section\ref{sec:em} about the
+optimizations on all levels (\ie simulator, application, system) that
+were necessary to make a large-scale run tractable. The scalability of
+our approach is evaluated in Section\ref{sec:scalabilityevol}. The
+modeling of the Stampede platform and the comparison of our simulation
+with the 2013 execution is detailed in
+Section\ref{sec:science}. Lastly, Section\ref{sec:cl} concludes this
+article by summarizing our contributions.
+
+* Context
+#+LaTeX: \label{sec:con}
+
+# The HPLinpack benchmark consists of a set of rules: A set of linear
+# equations, $Ax = b$, needs to be solved and it requires furthermore that the input matrix can be of
+# arbitrary dimension =n= and that O(n³) + O(n²) operations be used
+# (hence, Strassen's matrix multiplication is prohibited).
+
+** High-Performance Linpack
+\label{sec:hpl}
+#+BEGIN_EXPORT latex
+\begin{figure}
+  \newcommand{\mykwfn}[1]{{\bf\textsf{#1}}}%
+  \SetAlFnt{\sf}%
+  \SetKwSty{mykwfn}%
+  \SetKw{KwStep}{step}%
+  \centering
+  \begin{minipage}[m]{0.4\linewidth}
+    % \vspace{0.3cm} % ugly, could not align the drawing with the algorithm with minipages or tabular...
+    \begin{tikzpicture}[scale=0.23]
+      \draw (0, 0) -- (0, 12) -- (12, 12) -- (12, 0) -- cycle;
+      \foreach \i in {2}{
+        \draw [fill=lightgray] (\i, 0) -- (\i, 12-\i) -- (12, 12-\i) -- (12, 0) -- cycle;
+        \draw [fill=gray] (\i, 12-\i) -- (\i, 12-\i-1) -- (\i+1, 12-\i-1) -- (\i+1, 12-\i) -- cycle;
+        \draw[very thick, -latex] (\i,12-\i) -- (\i+2,12-\i-2);
+        \draw[<->] (\i, 12-\i+0.5) -- (\i+1, 12-\i+0.5) node [pos=0.5, yshift=+0.15cm] {\scalebox{.8}{\texttt{NB}}};
+      }
+      \foreach \i in {3}{
+        \draw [fill=white] (\i, 0) -- (\i, 12-\i) -- (12, 12-\i) -- (12, 0) -- cycle;
+        \draw (\i,12-\i) -- (\i,0);
+        \draw[very thick, -latex] (\i,12-\i) -- (\i+2,12-\i-2);
+      }
+      \draw[dashed] (0, 12) -- (12, 0);
+      \node(L) at (2, 2) {\ensuremath{\boldsymbol{L}}};
+      \node(U) at (10, 10) {\ensuremath{\boldsymbol{U}}};
+      \node(A) at (8, 4) {\ensuremath{\boldsymbol{A}}};
+      \draw[<->] (0, -0.5) -- (12, -0.5) node [pos=0.5, yshift=-0.3cm] {$N$};
+
+    \end{tikzpicture}
+  \end{minipage}%
+  \begin{minipage}[m]{0.6\linewidth}
+    \removelatexerror
+    \begin{algorithm}[H]
+      allocate and initialize $A$\;
+      \For{$k=N$ \KwTo $0$ \KwStep \texttt{NB}}{
+        allocate the panel\;
+        factor the panel\;
+        broadcast the panel\;
+        update the sub-matrix;
+      }
+    \end{algorithm}
+    \vspace{1em}
+  \end{minipage}
+  
+  \caption{Overview of High Performance Linpack}\vspace{-1em}
+  \label{fig:hpl_overview}
+\end{figure}
+#+END_EXPORT
+
+For this work, we use the freely-available reference-implementation of
+the High-Performance Linpack benchmark\cite{HPL}, HPL, which is 
+used to benchmark systems for the TOP500\cite{top500} list. HPL
+requires MPI to be available and implements
+a LU decomposition, \ie a factorization of a square matrix $A$ as the
+product of a lower triangular matrix $L$ and an upper triangular
+matrix $U$. HPL checks the correctness of this factorization by
+solving a linear system $A\cdot{}x=b$, but only the factorization step is
+benchmarked.  The factorization is based on a right-looking variant of
+the LU factorization with row partial pivoting and allows multiple
+look-ahead depths. The working principle of the factorization is depicted in
+Figure\ref{fig:hpl_overview} and consists of a series of panel
+factorizations followed by an update of the trailing sub-matrix.
+HPL uses a two-dimensional block-cyclic data distribution of $A$ and implements several custom
+collective communication algorithms to efficiently overlap communication
+with computation.
+The main parameters of HPL are listed subsequently:
+- $N$ is the order of the square matrix $A$.
+- =NB= is the ``blocking factor'', \ie the granularity at
+  which HPL operates when panels are distributed or worked on.
+- $P$ and $Q$ denote the number of process rows and the
+  number of process columns, respectively.
+- =RFACT= determines the panel factorization algorithm. Possible values are Crout, left- or right-looking.
+- =SWAP= specifies the swapping algorithm used while pivoting. Two
+  algorithms are available: one based on /binary exchange/ (along a virtual tree topology) and the other one based on
+  a /spread-and-roll/ (with a higher number of parallel communications). HPL
+  also provides a panel-size threshold triggering a switch from one variant to the other.
+- =BCAST= sets the algorithm used to broadcast the
+  panel of columns to the other process columns. Legacy versions of
+  the MPI standard only supported non-blocking point-to-point communications but did
+  not support non-blocking collective communications, which is why HPL
+  ships with in total 6 self-implemented variants to efficiently
+  overlap the time spent waiting for an incoming panel with updates to
+  the trailing matrix: =ring=, =ring-modified=, =2-ring=, =2-ring-modified=,
+  =long=, and =long-modified=. The =modified= versions guarantee that
+  the process right after the root (\ie the process that will become the root
+  in the next iteration) receives data first and does not participate
+  further in the broadcast. This process can thereby start working on the
+  panel as soon as possible. The =ring= and =2-ring= versions correspond
+  to the name-giving two virtual topologies while the =long= version
+  is a /spread and roll/ algorithm where messages are chopped into $Q$
+  pieces. This generally leads to better bandwidth exploitation. The =ring= and
+  =2-ring= variants rely on =MPI_Iprobe=, meaning they
+  return control if no message has been fully received yet and hence
+  facilitate partial overlapping of communication with computations. In HPL 2.2 and 2.1, this capability
+  has been deactivated for the =long= and =long-modified= algorithms. A comment in the source code states that some
+  machines apparently get stuck when there are too many ongoing messages.
+- =DEPTH= controls how many iterations of the outer loop can overlap with each other.
+
+#+BEGIN_EXPORT latex
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=.95\linewidth,page=1]{./figures/stampede.pdf}                                                                                                                               
+  \caption{The fat-tree network topology of Stampede.}
+  \label{fig:fat_tree_topology}
+  \labspace
+\end{figure}
+#+END_EXPORT
+
+The sequential complexity of this factorization is 
+$\mathrm{flop}(N) = \frac{2}{3}N^3 + 2N^2 + \O(N)$ where $N$ is the
+order of the matrix to factorize. The time complexity can be
+approximated by
+$$T(N) \approx \frac{\left(\frac{2}{3}N^3 + 2N^2\right)}{P\cdot{}Q\cdot{}w} + \Theta((P+Q)\cdot{}N^2),$$ where
+$w$ is the flop rate of a single node and 
+the second term corresponds to the communication overhead which is
+influenced by the network capacity and by the previously listed parameters (=RFACT=, =SWAP=, =BCAST=,
+=DEPTH=, \ldots). 
+After each run, HPL reports the overall flop
+rate $\mathrm{flop}(N)/T(N)$ (expressed in \si{\giga\flops}) for
+the given configuration. See Figure\ref{fig:hpl_output} for a (shortened)
+example output.
+
+A large-scale execution of HPL on a real machine in order to submit to the TOP500
+can therefore be quite time consuming as all the BLAS kernels, the MPI runtime, and HPL's numerous parameters
+need to be tuned carefully in order to reach optimal performance.
+** A Typical Run on a Supercomputer
+\label{sec:stampede}
+In June 2013, the Stampede supercomputer at TACC was ranked 6th in the
+TOP500 by achieving \SI{5168.1}{\tera\flops} and was still ranked 20th in
+June 2017. In 2017, this machine got upgraded and renamed Stampede2. The Stampede platform
+consisted of 6400 Sandy Bridge nodes, each with two 8-core Xeon E5-2680 and one
+Intel Xeon Phi KNC MIC coprocessor. The nodes were interconnected
+through a \SI{56}{\giga\bit\per\second} FDR InfiniBand 2-level Clos
+fat-tree topology built on Mellanox switches. As can be seen in 
+Figure\ref{fig:fat_tree_topology}, the 6400 nodes are
+divided into groups of 20, with each group being connected to one of the 320 36-port switches (\SI{4}{\tera\bit\per\second}
+capacity), which are themselves connected to 8 648-port
+``core\nbsp{}switches'' (each with a capacity of \SI{73}{\tera\bit\per\second}). 
+The peak performance of the 2 Xeon CPUs per node was approximately \SI{346}{\giga\flops},
+while the peak performance of the KNC co-processor was about
+\SI{1}{\tera\flops}. The theoretical peak performance of the
+platform was therefore \SI{8614}{\tera\flops}. However, in the TOP500, Stampede
+was ranked with \SI{5168}{\tera\flops}. According to the log submitted
+to the TOP500 (see Figure\ref{fig:hpl_output}) that was provided to us,
+this execution took roughly two hours and used $77\times78 = 6,006$
+processes. The matrix of order $N = 3,875,000$ occupied approximately
+\SI{120}{\tera\byte} of memory, \ie \SI{20}{\giga\byte} per node.
+One MPI process per node was used and each node's
+computational resources (the 16 CPU-cores and the Xeon Phi) must have 
+been controlled by OpenMP and/or Intel's MKL.
+
+#+BEGIN_EXPORT latex
+\begin{figure}%[!htb]
+  \centering
+  \scalebox{.73}{\begin{minipage}[b]{.68\textwidth}
+  \lstset{frame=bt,language=html,numbers=none,escapechar=£}\lstinputlisting{fullrun_hpl.txt}
+  \end{minipage}}
+  \null\vspace{-2em}\caption{HPL output submitted in June 2013 for the ranking of Stampede in the TOP500.}\vspace{-1em}
+  \label{fig:hpl_output}
+\end{figure}
+#+END_EXPORT
+
+*** Hidden information about the Stampede execution              :noexport:
+#+BEGIN_SRC C :exports none :tangle fullrun_hpl.txt
+================================================================================
+HPLinpack 2.1  --  High-Performance Linpack benchmark  --   October 26, 2012
+Written by A. Petitet and R. Clint Whaley,  Innovative Computing Laboratory, UTK
+Modified by Piotr Luszczek, Innovative Computing Laboratory, UTK
+Modified by Julien Langou, University of Colorado Denver
+================================================================================
+
+The following parameter values will be used:
+
+£\myemph{N}£        : £\myemph{3875000}£
+£\myemph{NB}£       :   £\myemph{1024}£
+PMAP     : Column-major process mapping
+£\myemph{P}£        :      £\myemph{77}£
+£\myemph{Q}£        :      £\myemph{78}£
+PFACT    :   Right 
+NBMIN    :       4 
+NDIV     :       2 
+RFACT    :   Crout 
+BCAST    :  BlongM 
+DEPTH    :       0 
+SWAP     : Binary-exchange
+L1       : no-transposed form
+U        : no-transposed form
+EQUIL    : no
+ALIGN    :    8 double precision words
+
+--------------------------------------------------------------------------------
+
+
+[...]
+
+
+Peak Performance = 5172687.23 GFlops /   861.25 GFlops per node
+================================================================================
+T/V                N    NB     P     Q               Time                 Gflops
+--------------------------------------------------------------------------------
+WC05C2R4     3875000  1024    77    78            7505.72            £\myemph{5.16811e+06}£
+HPL_pdgesv() start time Sun Jun  2 13:04:59 2013
+
+HPL_pdgesv() end time   Sun Jun  2 15:10:04 2013
+
+--------------------------------------------------------------------------------
+||Ax-b||_oo/(eps*(||A||_oo*||x||_oo+||b||_oo)*N)=        0.0007822 ...... PASSED
+#+END_SRC
+
+** Performance Evaluation Challenges
+:LOGBOOK:
+- State "TODO"       from              [2017-11-15 mer. 16:26]
+:END:
+#+LaTeX: \label{sec:con:diff}
+
+The performance achieved by Stampede, \SI{5168}{\tera\flops}, needs to
+be compared to the peak performance of the 6,006 nodes, \ie
+\SI{8084}{\tera\flops}. This difference may be attributed to the node
+usage (\eg the MKL), to the MPI library, to the network topology that
+may be unable to deal with the very intensive communication workload, to
+load imbalance among nodes because some node happens to be slower for some
+reason (defect, system noise, \ldots), to the algorithmic structure of
+HPL, etc. All these factors make it difficult to know precisely what
+performance to expect
+without running the application at scale.
+
+It is clear that due to the level of complexity of both HPL and
+the underlying hardware, simple performance models (analytic expressions based
+on $N, P, Q$ and estimations of platform characteristics as presented in
+Section\ref{sec:hpl}) may be able to provide trends but can by no means
+predict the performance for each configuration (\ie consider the
+exact effect of HPL's 6 different broadcast algorithms on network
+contention). Additionally, these expressions do not allow
+engineers to improve the performance through actively identifying performance bottlenecks.
+For complex optimizations such as partially non-blocking
+collective communication algorithms intertwined with computations,
+very faithful modeling of both the application and the platform is
+required. Given the scale of this scenario
+(3,785\nbsp{}steps on 6,006 nodes in two hours), detailed
+simulations quickly become intractable without significant effort.
+* Related Work
+#+LaTeX: \label{sec:relwork}
+
+Performance prediction of MPI application through simulation has been
+widely studied over the last decades, with today's literature distinguishing mainly
+between two approaches: offline and online simulation.
+
+With the most common approach, /offline simulation/, a time-independent
+trace of the application is first obtained on a real platform. This
+trace comprises sequences of MPI optimizations and CPU bursts and can
+be given as an input to a simulator that implements performance models
+for the CPUs and the network to derive timings. Researchers
+interested in finding out how their application reacts to changes to
+the underlying platform can replay the trace on commodity hardware at
+will with different platform models.
+Most HPC simulators available today, notably BigSim\cite{bigsim_04},
+Dimemas\cite{dimemas} and CODES\cite{CODES}, rely on this approach.
+
+The main limitation of this approach comes from the trace
+acquisition requirement.
+Additionally, tracing an application provides only information about
+its behavior at the time of the run. Even light modifications 
+(\eg to communication patterns) may make the trace inaccurate. For
+simple applications (\eg =stencil=) it is sometimes
+possible to extrapolate behavior from small-scale
+traces\cite{scalaextrap,pmac_lspp13} but the execution is
+non-deterministic whenever the application relies on
+non-blocking communication patterns, which is unfortunately the
+case for HPL.
+
+The second approach discussed in literature is /online simulation/.
+Here, the application is executed (emulated) on top of a simulator
+that is responsible for determining when each process
+is run. This approach allows researchers
+to study directly the behavior of MPI applications but only a few
+recent simulators such as SST Macro\cite{sstmacro},
+SimGrid/SMPI\cite{simgrid} 
+and the closed-source extreme-scale simulator xSim\cite{xsim} support
+it. To the best of our knowledge, only SST Macro and
+SimGrid/SMPI are not only mature enough to faithfully emulate 
+HPL but also free software. For our work, we relied on SimGrid as we 
+have an excellent knowledge of its internals although the developments we
+propose would a priori also be possible with SST Macro. Emulation of
+HPL comes with at least two challenges:
+- Firstly, the time-complexity of the
+  algorithm is $\Theta(N^3)$. Furthermore, 
+  $\Theta(N^2)$ communications are performed, with $N$ being very
+  large. The execution on the Stampede cluster took roughly two hours
+  on 6,006\nbsp{}compute nodes. Using only a single node, a naive
+  emulation of HPL at the scale of the Stampede run would take about
+  500\nbsp{}days if perfect scaling is reached. Although the emulation could
+  be done in parallel, we want to use as little computing resources as possible.
+- Secondly, the tremendous memory consumption and consequent high
+  number of RAM accesses for read/write operations need to be dealt with.
+
+# Real execution:
+# - Matrix of order 3,875,000
+# - Using 6,006 MPI processes
+# - About 2 hours
+# Requirement for the emulation of Stampede's execution:
+# - $\ge 3, 875, 000 2 \times 8$ bytes \approx 120 terabytes of memory
+# - $\ge 6, 006 \times 2$ hours \approx 500 days (very optimistic)
+  
+* SimGrid/SMPI in a nutshell
+#+LATEX: \label{sec:smpi}
+
+SimGrid\cite{simgrid} is a flexible and open-source simulation
+framework that was originally designed in 2000 to study scheduling
+heuristics tailored to heterogeneous grid computing
+environments. Since then, SimGrid has also been used to study
+peer-to-peer systems with up to two million
+peers\cite{simgrid_simix2_12} just as cloud and HPC infrastructures.
+To this end, SMPI, a simulator based on SimGrid, has been
+developed and used to faithfully simulate unmodified MPI applications
+written in C/C++ or FORTRAN\cite{smpi}.
+A main development goal for SimGrid has been to provide validated
+performance models particularly for scenarios leveraging the network. 
+Such a validation normally consists of comparing simulation
+predictions with results from real experiments to confirm or debunk network and application models.
+In\cite{heinrich:hal-01523608}, we have for instance validated
+SimGrid's energy module by accurately and consistently predicting within a few
+percent the performance and the energy consumption of HPL and some
+other benchmarks on small-scale clusters (up to $12\times12$ cores
+in\cite{heinrich:hal-01523608} and up to $128\times1$ cores
+in\cite{smpi}).
+
+In this article, we aim to validate our approach through much larger experiments.
+This scale, however, comes at the cost of a much less controlled
+scenario for real-life experiments since the Stampede run of HPL was done
+in 2013 and we only have very limited information about the
+setup (\eg software versions).
+
+** MPI Communication Modeling
+The complex network optimizations done in real MPI implementations
+need to be considered when predicting performance of MPI applications.
+For instance, message size not only influences the network's latency
+and bandwidth factors but also the protocol used, such as ``eager'' or
+``rendez-vous'', as they are selected
+based on the message size, with each protocol having its own
+synchronization semantics.
+To deal with this, SMPI relies on a generalization of the LogGPS
+model\cite{smpi} and supports specifying synchronization and performance modes. This model
+needs to be instantiated once per platform through a carefully controlled series of messages
+(=MPI_Send= and =MPI_Recv=) between two nodes and through a set of
+piece-wise linear regressions.
+#+LABEL: \CH{This last sentence may be too long.}
+
+Modeling network topologies and contention is also difficult.  SMPI
+relies on SimGrid's communication models where each ongoing
+communication is represented as a whole (as opposed to single packets)
+by a /flow/. Assuming steady-state, contention between active
+communications can be modeled as a bandwidth sharing problem that
+accounts for non-trivial phenomena (\eg RTT-unfairness of TCP,
+cross-traffic interference or network
+heterogeneity\cite{Velho_TOMACS13}). Communications that start or end
+trigger re-computation of the bandwidth sharing if needed.  In this
+model, the time to simulate a message passing through the network is
+independent of its size, which is advantageous for large-scale
+applications frequently sending large messages.  SimGrid does not
+model transient phenomena incurred by the network protocol but
+accounts for network topology and heterogeneity.
+
+Finally, collective operations are also challenging, particularly since
+these operations often play a key factor to an application's performance. Consequently, performance optimization
+of these operations has been studied intensively. As a result, MPI
+implementations now commonly have several alternatives for each
+collective operation and select one at runtime, depending on message size and communicator
+geometry. SMPI implements collective
+communication algorithms and the selection logic from several MPI implementations (\eg
+Open MPI, MPICH), which helps to ensure that
+simulations are as close as possible to real
+executions. 
+Although SMPI supports these facilities, they are not required in the
+case of HPL as it ships with its own implementation of collective
+operations.
+    #+BEGIN_EXPORT latex
+    \tikzset{draw half paths/.style 2 args={%
+      % From https://tex.stackexchange.com/a/292108/71579
+      decoration={show path construction,
+        lineto code={
+          \draw [#1] (\tikzinputsegmentfirst) --
+             ($(\tikzinputsegmentfirst)!0.5!(\tikzinputsegmentlast)$);
+          \draw [#2] ($(\tikzinputsegmentfirst)!0.5!(\tikzinputsegmentlast)$)
+            -- (\tikzinputsegmentlast);
+        }
+      }, decorate
+    }}
+    \begin{figure}[b]%[htbp]
+      \centering
+      \begin{tikzpicture}[yscale=0.7, scale=0.7]
+        \pgfmathtruncatemacro{\size}{4}
+        \pgfmathtruncatemacro{\width}{2}
+        \pgfmathtruncatemacro{\sizem}{\size-1}
+        \pgfmathtruncatemacro{\smallbasex}{4}
+        \pgfmathtruncatemacro{\smallbasey}{\size/2}
+        \pgfmathtruncatemacro{\smallstopx}{\smallbasex+\width}
+        \pgfmathtruncatemacro{\smallstopy}{\smallbasey+1}
+        \foreach \i in {0,\sizem}{
+	    \pgfmathtruncatemacro{\j}{\i+1}
+	    \draw (0, \i) -- (0, \j);
+	    \draw (\width, \i) -- (\width, \j);
+	    \draw[dotted] (0, \i) -- (\width, \i);
+	    \draw[dotted] (0, \j) -- (\width, \j);
+	}
+	\draw[dashed] (0, 1) -- (0, \sizem);
+	\draw[dashed] (\width, 1) -- (\width, \sizem);
+	\draw (0, 0)     -- (\width, 0);
+	\draw (0, \size) -- (\width, \size);
+        \draw (\smallbasex,\smallbasey) -- (\smallstopx,\smallbasey) -- (\smallstopx,\smallstopy) -- (\smallbasex,\smallstopy) -- cycle;
+        \foreach \i in {0,\sizem}{
+	    \pgfmathtruncatemacro{\j}{\i+1}
+	    \draw[dotted] (\width, \i) -- (\smallbasex, \smallbasey);
+	    \draw[dotted] (\width, \j) -- (\smallbasex, \smallstopy);
+	    \pgfmathsetmacro{\xleft}{\width}
+	    \pgfmathsetmacro{\xright}{\smallbasex}%{\width/2.0+\smallbasex/2.0}
+	    \pgfmathsetmacro{\yleft}{\i + 0.5}
+	    \pgfmathsetmacro{\yright}{\smallbasey + 0.5}
+	    \path [draw half paths={solid, -latex}{draw=none}]  (\xleft, \yleft) -- (\xright, \yright);
+	}
+	\draw[decorate,line width=1pt,decoration={brace,raise=0.2cm}] (0, 0) -- (0, \size) node [pos=0.5, xshift=-1cm] {virtual};
+	\draw[decorate,line width=1pt,decoration={brace,mirror,raise=0.2cm}] (\smallstopx, \smallbasey) -- (\smallstopx, \smallstopy) node [pos=0.5, xshift=1.2cm] {physical};
+      \end{tikzpicture}
+      \caption{\label{fig:global_shared_malloc}SMPI shared malloc mechanism: large area of virtual memory are cyclically mapped onto the same physical pages.}\vspace{-1em}
+    \end{figure}
+    #+END_EXPORT
+** Application Behavior Modeling
+#+LATEX: \label{sec:appmodeling}
+In Section\ref{sec:relwork} we explained that SMPI relies on the /online/ simulation approach.
+Since SimGrid is a sequential simulator, SMPI maps every MPI process of the application onto a
+lightweight simulation thread. These threads are then run one at a
+time, \ie in mutual exclusion.
+Every time a thread enters an MPI call, 
+SMPI takes control and the time that was spent
+computing (isolated from the other threads) since the previous
+MPI call can be injected into the simulator as a virtual delay. 
+
+Mapping MPI processes to threads of a single
+process effectively folds them into the same address space.
+Consequently, global variables in the MPI application are shared
+between threads unless these variables are /privatized/ and the
+simulated MPI ranks thus isolated from each other. Several
+technical solutions are possible to handle this issue\cite{smpi}. The
+default strategy in SMPI consists of making a copy of the =data=
+segment (containing all global variables) per MPI rank at startup and,
+when context switching to another rank, to remap the =data= segment via =mmap= to the private copy of that rank.
+SMPI also implements another mechanism relying on the =dlopen=
+function that saves calls to =mmap= when context switching.
+
+This causes online simulation to be expensive in terms of both simulation time and memory
+since the whole parallel application is executed on a single node.
+To deal with this, SMPI provides two simple annotation mechanisms:
+- *Kernel sampling*: Control flow is in many cases
+     independent of the computation results. This allows
+     computation-intensive kernels (\eg BLAS kernels for HPL) 
+     to be skipped during the simulation. For this purpose, SMPI
+     supports annotation of regular kernels through several macros
+     such as =SMPI_SAMPLE_LOCAL= and =SMPI_SAMPLE_GLOBAL=. The regularity allows SMPI to execute these
+     kernels a few times, estimate their cost and skip the kernel in
+     the future by deriving its cost from these samples, hence cutting
+     simulation time significantly. Skipping kernels renders the
+     content of some variables invalid but in simulation, only the
+     behavior of the application and not the correctness of computation
+     results are of concern.
+- *Memory folding*: SMPI provides the =SMPI_SHARED_MALLOC= (=SMPI_SHARED_FREE=) macro to
+     replace calls to =malloc= (=free=). They indicate that some data structures can safely be
+     shared between processes and that the data they contain is not
+     critical for the execution (\eg an input matrix) and that it may
+     even be overwritten. 
+     =SMPI_SHARED_MALLOC= works as follows (see Figure\ref{fig:global_shared_malloc}) : a single block of physical memory (of default size \SI{1}{\mega\byte}) for the whole
+     execution is allocated and shared by all MPI processes.
+     A range of virtual addresses corresponding to a specified size is reserved and cyclically mapped onto the previously obtained
+     physical address.
+     This mechanism allows applications to obtain a nearly constant memory
+     footprint, regardless of the size of the actual allocations.
+
+    # At the first call to =SMPI_SHARED_MALLOC=, a temporary file is created. The file descriptor is a global variable,
+    # accessible by all the MPI processes, since they are implemented by POSIX threads.
+
+    # At every call to =SMPI_SHARED_MALLOC=, a first call to =mmap= is done with the required size and the flag =MAP_ANONYMOUS=
+    # (thus without any file descriptor). The effect of this call is to reserve the whole interval of virtual
+    # addresses. Then, for each sub-interval, a new call to =mmap= is done with the temporary file. The address of the
+    # sub-interval itself is passed with the flag =MAP_FIXED=, which forces the mapping to keep the same virtual address.
+    # As a result, each of these sub-intervals of virtual addresses are mapped onto a same interval of physical
+    # addresses. We therefore have a block of virtual addresses of arbitrary size backed by a constant amount of physical
+    # memory. Since there are almost no computations left, this is harmless with respect to the simulation. Note that such
+    # allocations cannot be fully removed as many parts of the code
+    # still access it from time to time.
+
+* Improving SMPI Emulation Mechanisms and Preparing HPL
+#+LaTeX: \label{sec:em}
+
+We now present our changes to SimGrid and HPL that were
+required for a scalable and faithful simulation. We provide
+only a brief evaluation of our modifications and refer the 
+reader interested in details to\cite{cornebize:hal-01544827} and our laboratory 
+#+LaTeX: notebook\footnote{See \texttt{journal.org} at \url{https://github.com/Ezibenroc/simulating_mpi_applications_at_scale/}}.
+For our experiments in this section, we used a single core from nodes
+of the Nova cluster provided by the Grid'5000 testbed\cite{grid5000} with
+\SI{32}{\giga\byte} RAM, two 8-core Intel Xeon E5-2620 v4
+CPUs processors with \SI{2.1}{\GHz} and Debian Stretch (kernel 4.9). 
+
+** Kernel modeling
+       As explained in Section\ref{sec:con:diff}, faithful prediction
+       of HPL necessitates emulation, \ie to execute the code.
+       HPL relies heavily on BLAS kernels such as =dgemm= (for matrix-matrix multiplication) or =dtrsm= (for solving
+       an equation of the form $Ax=b$). An analysis of an HPL
+       simulation with $64$ processes and a very small matrix of order
+       $30,000$ showed that roughly \SI{96}{\percent} of
+       the time is spent in these two very regular kernels.
+       For larger matrices, these kernels will consume
+       an even bigger percentage of the computation time. Since these
+       kernels do not influence the control flow, simulation time can
+       be reduced by substituting =dgemm= and =dtrsm= function calls 
+       with a performance model for the respective kernel. 
+       Figure\ref{fig:macro_simple} shows an example of this
+       macro-based mechanism that allows us to keep HPL code modifications to an absolute
+       minimum. The =(1.029e-11)= value represents the inverse of the
+       flop rate for this computation kernel and was obtained
+       through calibration. The estimated time for the real
+       kernel is calculated based on the parameters and eventually
+       passed on to =smpi_execute_benched= that advances the clock of the executing
+       rank by this estimate by entering a sleep state.
+       The effect on simulation time for a small scenario is depicted in Figure\ref{fig:kernel_sampling}. 
+       On the one hand, this modification speeds up the simulation by
+       orders of magnitude, especially when the matrix order
+       grows. On the other hand, this kernel model leads to an
+       optimistic estimation of the floprate. This may 
+       be caused by inaccuracies in our model as well as by the fact
+       that the initial emulation is generally more sensitive to pre-emptions,
+       \eg by the operating system, and therefore more likely to be
+       pessimistic compared to a real execution.
+       # #+LATEX: \CH{Re-work this. I don't like that we talk about inaccuracies in our model. Shouldn't the pre-emptions be modeled alread? We did rely on measurements! "Absence of performance variability when kernel models are used."}
+       # #+LATEX: \TC{I don't get the explanation about the inaccuracies. I think OS preemptions is one of the smallest factors here, especially since in real executions they will certainly fix this issue (e.g. with chrt --fifo 99) whereas in the calibration I did not take care of that.}
+
+#+BEGIN_EXPORT latex
+\begin{figure}%[!htb]
+%  \null\vspace{-1cm}
+  \centering
+  \subfigure[Non-intrusive macro replacement.\label{fig:macro_simple}]{
+    \begin{minipage}[b]{\linewidth}
+      \lstset{frame=bt,language=C,numbers=none,escapechar=|}\lstinputlisting{HPL_dgemm_macro_simple.c}
+    \end{minipage}}
+  \subfigure[Gain in term of simulation time.\label{fig:kernel_sampling}]{
+    \begin{minipage}[b]{\linewidth} 
+      \includegraphics[width=\linewidth,page=2]{figures/validation_kernel_modeling.pdf}
+    \end{minipage}}
+  \caption{Replacing the calls to computationally expensive functions by a model allows to significantly reduce simulation time.}\vspace{-1em}
+\end{figure}
+#+END_EXPORT
+
+*** Hidden section with estimation of the quality/speed of the simulation :noexport:
+Inspire from the entry of [[file:~/Work/Journals/tom_cornebize/m2_internship_journal/journal.org::*2017-11-15%20Wednesday][Tom's journal]] ([[https://github.com/Ezibenroc/m2_internship_journal/tree/master/journal.org][Github version]]) "2017-11-15 Wednesday":
+Regenerating the validation plot for smpi_execute".
+
+#+begin_src R :results output :session *R* :exports both
+library(ggplot2)
+library(gridExtra)
+library(grid)
+old <- read.csv("/home/alegrand/Work/SimGrid/tom/m2_internship_journal/validation/result_size_L0.csv")
+new <- read.csv("/home/alegrand/Work/SimGrid/tom/m2_internship_journal/validation/result_size_L1.csv")
+old$kernel_sampling = FALSE
+new$kernel_sampling =  TRUE
+results = rbind(old, new)
+generic_do_plot <- function(plot, fixed_shape=TRUE) {
+#   For xrange, see https://stackoverflow.com/questions/7705345/how-can-i-extract-plot-axes-ranges-for-a-ggplot2-object
+#   old version for xrange (broken)
+#   xrange = ggplot_build(plot)$panel$ranges[[1]]$x.range
+#   new version for xrange (may break in the next ggplot update...)
+    xrange = ggplot_build(plot)$layout$panel_ranges[[1]]$x.range
+    xwidth = xrange[2] - xrange[1]
+    if(fixed_shape) {
+        point = stat_summary(fun.y = mean, geom="point", shape=21)
+    }
+    else {
+        point = stat_summary(fun.y = mean, geom="point")
+    }
+    return(plot +
+        stat_summary(fun.data = mean_se, geom = "errorbar", width=xwidth/20)+
+        stat_summary(fun.y = mean, geom="line")+
+        point+
+        theme_bw()+ scale_color_brewer(palette="Set1") + 
+        expand_limits(x=0, y=0))
+}
+
+# From https://stackoverflow.com/a/38420690/4110059
+grid_arrange_shared_legend <- function(..., nrow = 1, ncol = length(list(...)), position = c("bottom", "top", "right")) {
+
+  plots <- list(...)
+  position <- match.arg(position)
+  g <- ggplotGrob(plots[[1]] + theme(legend.position = position))$grobs
+  legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
+  lheight <- sum(legend$height)
+  lwidth <- sum(legend$width)
+  gl <- lapply(plots, function(x) x + theme(legend.position = "none"))
+  gl <- c(gl, nrow = nrow, ncol = ncol)
+
+  combined <- switch(position,
+                     "bottom" = arrangeGrob(do.call(arrangeGrob, gl),
+                                            legend,
+                                            ncol = 1,
+                                            heights = unit.c(unit(1, "npc") - lheight, lheight)),
+                     "top" = arrangeGrob(legend, do.call(arrangeGrob,gl),
+                                            ncol = 1,
+                                            heights = unit.c(lheight, unit(1, "npc") - lheight)),
+                     "right" = arrangeGrob(do.call(arrangeGrob, gl),
+                                           legend,
+                                           ncol = 2,
+                                           widths = unit.c(unit(1, "npc") - lwidth, lwidth)))
+  grid.newpage()
+  grid.draw(combined)
+
+}
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :file figures/validation_kernel_modeling.pdf :results value graphics :results output :session *R* :exports both :width 6.2 :height 3.5
+plot1 = generic_do_plot(ggplot(results, aes(x=size, y=Gflops, color=kernel_sampling, linetype=kernel_sampling))) +
+    labs(colour="Kernel modeling") +
+    labs(linetype="Kernel modeling") +
+    xlab('Matrix order') +
+    ylab('Performance [Gflop/s]') +
+    ggtitle("Performance estimation\n(P=Q=8, i.e., 64 MPI process)")
+plot2 = generic_do_plot(ggplot(results, aes(x=size, y=simulation_time, color=kernel_sampling, linetype=kernel_sampling))) +
+    labs(colour="Kernel modeling") +
+    labs(linetype="Kernel modeling") +
+    xlab('Matrix order') +
+    ylab('Time [seconds]') +
+    ggtitle("Simulation time\n(P=Q=8, i.e., 64 MPI process)")
+
+grid_arrange_shared_legend(plot2, plot1, ncol=2, position="top")
+#+end_src
+
+#+RESULTS:
+[[file:figures/validation_kernel_modeling.pdf]]
+
+
+
+*** Hidden section with macro code                               :noexport:
+#+BEGIN_SRC C :exports none :tangle HPL_dtrsm_macro_real.c
+#define |\color{colorfuncall}HPL\_dtrsm|(layout, Side, Uplo, TransA, Diag, M, N, alpha, A, lda, B, ldb) ({ \
+    double expected_time;                                                           \
+    double coefficient, intercept;                                                  \
+    if((M) > 512 && (N) > 512) {                                                    \
+        coefficient = (double)SMPI_DTRSM_PHI_COEFFICIENT;                           \
+        intercept = (double)SMPI_DTRSM_PHI_INTERCEPT;                               \
+    } else {                                                                        \
+        coefficient = (double)SMPI_DTRSM_CPU_COEFFICIENT;                           \
+        intercept = (double)SMPI_DTRSM_CPU_INTERCEPT;                               \
+    }                                                                               \
+    if((Side) == HplLeft) {                                                         \
+        expected_time = coefficient*((double)(M))*((double)(M))*((double)(N));      \
+    } else {                                                                        \
+        expected_time = coefficient*((double)(M))*((double)(N))*((double)(N));      \
+    }                                                                               \
+    expected_time += intercept                                                      \
+    if(expected_time > 0)                                                           \
+        |\color{colorfuncall}smpi\_execute\_benched|(expected_time);                                        \
+})
+#+END_SRC
+
+#+BEGIN_SRC C :exports none :tangle HPL_dtrsm_macro_simple_old.c
+#define |\color{colorfuncall}HPL\_dtrsm|(layout, Side, Uplo, TransA, Diag, M, N, alpha, A, lda, B, ldb) ({      \
+    double expected_time = (9.882e-12)*((double)M)*((double)M)*((double)N) + 4.329e-02;   \
+    if(expected_time > 0)                                                                 \
+        |\color{colorfuncall}smpi\_execute\_benched|(expected_time);                      \
+})
+#+END_SRC
+
+#+BEGIN_SRC C :exports none :tangle HPL_dtrsm_macro_simple.c
+#define |\color{colorfuncall}HPL\_dtrsm|(layout, Side, Uplo, TransA, Diag,      \ 
+        M, N, alpha, A, lda, B, ldb) ({                  \
+    double expected_time = (9.882e-12)*((double)M)*      \
+                   ((double)M)*((double)N) + 4.329e-02;  \
+    if(expected_time > 0)                                \
+        |\color{colorfuncall}smpi\_execute\_benched|(expected_time);             \
+})
+#+END_SRC
+
+#+BEGIN_SRC C :exports none :tangle HPL_dgemm_macro_simple.c
+#define |\color{colorfuncall}HPL\_dgemm|(layout, TransA, TransB,                \
+        M, N, K, alpha, A, lda, B, ldb, beta, C, ldc) ({ \
+    double expected_time = (1.029e-11)*((double)M)*      \
+                   ((double)N)*((double)K) + 1.981e-12;  \
+    if(expected_time > 0)                                \
+        |\color{colorfuncall}smpi\_execute\_benched|(expected_time);             \
+})
+#+END_SRC
+
+#+BEGIN_EXPORT latex
+\CH{Found this in Tom's logbook. Check if this is the final version. Also, we can apparently just call \texttt{make SMPI\_OPTS=-DSMPI\_OPTIMIZATION} (what about \texttt{arch=SMPI}?). See his logbook}
+#+END_EXPORT
+** Adjusting the behavior of HPL
+#+LaTeX: \label{sec:hplchanges}
+
+HPL uses pseudo-randomly generated
+matrices that need to be setup every time HPL is executed. The time
+spent on this just as the validation of the computed result is
+not considered in the reported \si{\giga\flops} performance. 
+We skip all the
+computations since we replaced them by a kernel model and therefore, 
+result validation is meaningless. Since both 
+phases do not have an impact on the reported performance, we can safely
+skip them.
+
+In addition to the main computation kernels =dgemm= and =dtrsm=, 
+we identified seven other BLAS functions through
+profiling as computationally expensive enough to justify a specific
+handling: =dgemv=, =dswap=, =daxpy=,
+=dscal=, =dtrsv=, =dger= and =idamax=. Similarly, a significant amount of time was
+spent in fifteen functions implemented in HPL: 
+=HPL_dlaswp*N=, =HPL_dlaswp*T=, =HPL_dlacpy= and =HPL_dlatcpy=.
+# =HPL_dlaswp00N=, =HPL_dlaswp01N=, =HPL_dlaswp01T=, =HPL_dlaswp02N=, =HPL_dlaswp03N=,
+# =HPL_dlaswp03T=, =HPL_dlaswp04N=, =HPL_dlaswp04T=, =HPL_dlaswp05N=, =HPL_dlaswp05T=,
+# =HPL_dlaswp06N=, =HPL_dlaswp06T=, =HPL_dlaswp10N=, =HPL_dlacpy= and =HPL_dlatcpy=.
+
+All of these functions are called during the
+LU factorization and hence impact the performance measured by HPL; however, because of
+the removal of the =dgemm= and =dtrsm= computations, they all operate on
+bogus data and hence also produce bogus data. We also determined
+through experiments that their impact on the performance prediction is
+minimal and hence modeled them for the sake of simplicity as being instantaneous.
+
+Note that HPL
+implements an LU factorization with partial pivoting and a special
+treatment of the =idamax= function that returns the index of the first
+element equaling the maximum absolute value. Although we ignored the
+cost of this function as well, we set its return value to an arbitrary
+value to make the simulation fully deterministic.
+We confirmed that this modification is harmless in terms of performance prediction while it
+speeds up the simulation by an additional factor of $\approx3$ to $4$
+on small ($N=30,000$) and even more on large scenarios.
+** Memory folding
+As explained in Section\ref{sec:smpi}, when emulating an application
+with SMPI, all MPI processes are run within the same simulation process on a single
+node. The memory consumption of the simulation can therefore quickly reach
+several \si{\tera\byte} of RAM. 
+
+Yet, as we no longer operate on real data, storing the whole
+input matrix $A$ is needless. However, since only a minimal portion of the code was
+modified, some functions may still read or write some parts of the matrix.
+It is thus not possible to simply remove the memory allocations of
+large data structures altogether. Instead, SMPI's =SHARED_MALLOC= mechanism can be used
+to share unimportant data structures between all ranks, minimizing the memory footprint.
+
+#+BEGIN_EXPORT latex
+\tikzstyle{switch}=[draw, circle, minimum width=1cm, minimum height = 1cm]
+\tikzstyle{compute}=[draw, rectangle, minimum width=0.5cm, minimum height = 0.5cm, node distance=0.5cm]
+\tikzstyle{base}=[ellipse, minimum width=2cm, minimum height = 0.5cm, node distance = 0.5cm]
+\tikzstyle{bigswitch}=[base, draw]
+\begin{figure}%[htbp]
+  \centering
+  {\begin{minipage}{1.0\linewidth}
+  \subfigure[Structure of the panel in HPL.\label{fig:panel_structure}]{\small
+    \begin{minipage}[b]{\linewidth}\centering
+      \begin{tikzpicture}[yscale=.6,scale=0.8]
+        \draw [fill=gray] (3, 2) -- (6, 2) -- (6, 3) -- (3, 3) -- cycle;
+        \draw (0, 2) -- (9, 2) -- (9, 3) -- (0, 3) -- cycle;
+        \draw[dashed] (3, 2) -- (3, 3);
+        \draw[dashed] (6, 2) -- (6, 3);
+        \node(1) at (1.5, 2.5) {matrix parts};
+        \node(2) at (4.5, 2.5) {indices};
+        \node(3) at (7.5, 2.5) {matrix parts};
+        \draw[decorate,line width=1pt,decoration={brace,raise=0.2cm}] (0, 3) -- (3, 3) node [pos=0.5, yshift=0.5cm] {can be shared};
+        \draw[decorate,line width=1pt,decoration={brace,raise=0.2cm}] (6, 3) -- (9, 3) node [pos=0.5, yshift=0.5cm] {can be shared};
+        \draw[decorate,line width=1pt,decoration={brace,raise=0.2cm, mirror}] (3, 2) -- (6, 2) node [pos=0.5, yshift=-0.5cm] {must not be shared};
+      \end{tikzpicture}
+    \end{minipage}}
+  \subfigure[Reusing panel allocation from an iteration to another.\label{fig:panel_reuse}]{\small
+    \begin{minipage}[b]{\linewidth}\centering
+      \begin{tikzpicture}[yscale=.6]
+        \draw [fill=gray] (2, 1) -- (4, 1) -- (4, 1.5) -- (2, 1.5) --cycle;
+        \draw (0, 1) -- (6, 1) -- (6, 1.5) -- (0, 1.5) -- cycle;
+        \draw[dashed] (2, 1) -- (2, 1.5);
+        \draw[dashed] (4, 1) -- (4, 1.5);
+
+        \draw [fill=gray] (2, 0) -- (3, 0) -- (3, .5) -- (2, .5) --cycle;
+        \draw (1, 0) -- (4, 0) -- (4, .5) -- (1, .5) -- cycle;
+        \draw[dashed] (2, 0) -- (2, .5);
+        \draw[dashed] (3, 0) -- (3, .5);
+
+        \draw[-latex] (2, 1) -- (2, .5);
+        \draw[decorate,line width=1pt,decoration={brace,raise=0.2cm}] (0, 1.5) -- (6, 1.5) node [pos=0.5, yshift=0.5cm] {initial buffer};
+        \draw[decorate,line width=1pt,decoration={brace,raise=0.2cm, mirror}] (1, 0) -- (4, 0) node [pos=0.5, yshift=-0.5cm] {current buffer};
+      \end{tikzpicture}
+    \end{minipage}
+  }    
+  \end{minipage}}
+  \caption{Panel structure and allocation strategy when simulating.\label{fig:panel}}\vspace{-1em}
+\end{figure}
+#+END_EXPORT
+
+The largest two allocated data structures in HPL are the input matrix =A=
+(with a size of typically several \si{\giga\byte} per process) and the =panel= which contains
+information about the sub-matrix currently being factorized. This sub-matrix 
+typically occupies a few hundred \si{\mega\byte} per process.
+Although using the default =SHARED_MALLOC= mechanism works flawlessly
+for =A=, a more careful strategy needs to be used for the
+=panel=. Indeed, the =panel= is an intricate data structure with both \texttt{int}s
+(accounting for matrix indices, error codes, MPI tags, and pivoting information)
+and \texttt{double}s (corresponding to a copy of a sub-matrix of =A=). To
+optimize data transfers, HPL flattens this structure into a single
+allocation of \texttt{double}s (see
+Figure\ref{fig:panel_structure}). Using a fully shared memory
+allocation for the =panel= therefore leads to index corruption that results in
+classic invalid memory accesses as well as communication
+deadlocks, as processes may not send to or receive from the correct
+process. Since \texttt{int}s and \texttt{double}s are stored in
+non-contiguous parts of this flat allocation, it is therefore
+essential to have a mechanism that preserves the process-specific
+content. We have thus introduced the macro
+=SMPI_PARTIAL_SHARED_MALLOC= that works as follows: 
+~mem = SMPI_PARTIAL_SHARED_MALLOC(500, {27,42 , 100,200}, 2)~.
+In this example, 500 bytes are allocated in =mem= with the elements
+=mem[27]=, ..., =mem[41]= and =mem[100]=, ..., =mem[199]= being shared between
+processes (they are therefore generally completely corrupted) while all other
+elements remain private. To apply this to HPL's =panel= data\-structure
+and partially share it between processes, we only had to modify a few lines. 
+
+Designating memory explicitly as private, shared or partially shared
+helps with both memory management and overall performance. 
+As SMPI is internally aware of the memory's
+visibility, it can avoid calling =memcopy= when large messages
+containing shared segments are sent from one MPI rank to another.
+For fully private or partially shared segments, SMPI
+identifies and copies only those parts that are process-dependent
+(private) into the corresponding buffers on the receiver side.
+
+HPL simulation times were considerably improved in our experiments because
+the =panel= as the most frequently transferred datastructure 
+is partially shared with only a small part being private.
+The additional error introduced by this technique was negligible (below \SI{1}{\percent}) while the
+memory consumption was lowered significantly: for a matrix of order $40,000$ and $64$ MPI processes, the memory consumption
+decreased from about \SI{13.5}{\giga\byte} to less than \SI{40}{\mega\byte}.
+** Panel reuse
+HPL \texttt{malloc}s/\texttt{free}s panels in each
+iteration, with the size of the panel strictly decreasing from
+iteration to iteration. As we explained above, the partial sharing of panels requires
+many calls to =mmap= and introduces an overhead that makes these repeated
+allocations / frees become a bottleneck. Since
+the very first allocation can fit all subsequent panels, we modified
+HPL to allocate only the first panel and reuse it for subsequent
+iterations (see Figure\ref{fig:panel_reuse}).
+
+We consider this optimization harmless with respect to simulation
+accuracy as the maximum additional error that we observed was always less than \SI{1}{\percent}. Simulation
+time is reduced significantly, albeit the reached speed-up is less impressive than for previous
+optimizations: For a very small matrix of order $40,000$ and $64$ MPI processes,
+the simulation time decreases by four seconds, from \SI{20.5}{\sec} to
+\SI{16.5}{\sec}. Responsible for this is a reduction of system time,
+namely from \SI{5.9}{\sec} to \SI{1.7}{\sec}. The number of page faults decreased from $2$ million to
+$0.2$ million, confirming the devastating effect these allocations/deallocations would have at scale.
+** MPI process representation (mmap vs. dlopen)
+We already explained in Section\ref{sec:appmodeling} that SMPI
+supports two mechanisms to keep local static and global variables
+private to each rank, even though they run in the same process. In
+this section, we discuss the impact of the choice.
+
+- *mmap* When =mmap= is used, SMPI copies the =data= segment on startup for
+  each rank into the heap. When control is transferred from one rank
+  to another, the =data= segment is =mmap='ed to the location of the other
+  rank's copy on the heap. All ranks have hence the same addresses in
+  the virtual address space at their disposition although =mmap= ensures
+  they point to different physical addresses. This also means
+  inevitably that caches must be flushed to ensure that no data of one
+  rank leaks into the other rank, making =mmap= a rather expensive
+  operation.
+
+# \TOM{Can you tell me how often these operations were executed, as
+# you've already done in your journal on 2017-04-11 ("Looking at the
+# syscalls")?}
+- *dlopen* With =dlopen=, copies of the global variables are still made
+  but they are stored inside the =data= segment as opposed to the
+  heap. When switching from one rank to another, the starting virtual
+  address for the storage is readjusted rather than the target of the
+  addresses.  This means that each rank has distinct addresses for
+  global variables. The main advantage of this approach is that caches
+  do not need to be flushed as is the case for the =mmap= approach,
+  because data consistency can always be guaranteed.
+\noindent
+*Impact of choice of mmap/dlopen*
+The choice of =mmap= or =dlopen= influences the simulation time indirectly
+through its impact on system/user time and page faults, \eg for a
+matrix of order $80,000$ and $32$ MPI processes, the number
+of minor page faults drops from \num{4412047} (with =mmap=) to
+\num{6880} (with =dlopen=). This results in a reduction of system time from 
+\SI{10.64}{\sec} (out of \SI{51.47}{\sec} in total) to
+\SI{2.12}{\sec}. Obviously, the larger the matrix and the number of
+processes, the larger the number of context switch during the
+simulation, and thus the higher the gain.
+
+# See Tom's journal (Performance evaluation of the privatization
+# mechanism: =dlopen= vs =mmap= ) ; there are some graphs that we might be
+# able to use, such as in
+# https://github.com/Ezibenroc/m2_internship_journal/blob/master/simgrid_privatization/
+
+** Huge pages    
+For larger matrix orders (\ie $N$ larger than a few hundred thousand), the performance of the simulation quickly
+deteriorates as the memory consumption rises rapidly.
+
+We explained already how we fold the memory in order to reduce the /physical/
+memory usage. The /virtual/ memory, on the other hand, is still
+allocated for every process since the allocation calls are still executed.
+Without a reduction of allocated virtual addresses, the page table
+rapidly becomes too large to fit in a single node. More
+precisely, the size of the page table containing pages of size \SI{4}{\kibi\byte} can be computed as:
+
+    #+LATEX: \[ PT_{size}(N) = \frac{N^2 \cdot \texttt{sizeof(double)}}{4,096} \cdot \texttt{sizeof(pointer)} \]
+
+This means that the addresses in the page table for a matrix of order $N=4,000,000$
+consume $PT_{size}(4,000,000) = \num{2.5e11}$ bytes, \ie
+\SI{250}{\giga\byte} on a system where double-precision floating-point numbers
+and addresses take 8 bytes. Thankfully, the x86-64 architecture supports several page
+sizes, known as ``huge pages'' in Linux. Typically, these pages are
+around \SI{2}{\mebi\byte} (instead of \SI{4}{\kibi\byte}), although other sizes
+(\SIrange{2}{256}{\mebi\byte}) are possible as well. 
+Changing the page size requires administrator (root) privileges as the
+Linux kernel support for /hugepages/ needs to be activated and a
+=hugetlbfs= file system must be mounted. After at least one huge
+page has been allocated, the path of the allocated file system can then be
+passed on to SimGrid.
+Setting the page size to \SI{2}{\mebi\byte} reduces drastically the page table size.
+For example, for a matrix of order $N=4,000,000$, it shrinks from \SI{250}{\giga\byte}
+to \SI{0.488}{\giga\byte}.
+
+# Unfortunately, changing the page size requires administrator (root) privileges as the
+# Linux kernel support for /hugepages/ needs to be activated and a
+# =hugetlbfs= file system must be mounted. After at least one huge
+# page was allocated, the path of the allocated file system can then be
+# passed on to SimGrid that will then pass the flag =MAP_HUGETLB=
+# to =mmap= in =SMPI_SHARED_MALLOC= and replace the file given to =mmap= by
+# a file opened in the =hugetlbfs= file system.
+# #+LATEX: \CH{I think this is too detailed. Who cares if we pass MAP\_HUGETLB?}
+* Scalability Evaluation
+#+LaTeX: \label{sec:scalabilityevol}
+
+#+BEGIN_EXPORT latex
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth,page=2]{./figures/scalability_plot_size.pdf}
+%  \includegraphics[width=\linewidth,page=2]{./figures/scalability_plot_nbproc.pdf}
+  \caption{Time complexity and memory consumption are linear in the number of processes but remain mildly quadratic with matrix rank.}\vspace{-1em}
+  \label{fig:hpl_scalability}
+  \labspace
+\end{figure}
+#+END_EXPORT
+
+#+BEGIN_EXPORT latex
+\begin{figure*}%[!htb]
+  \centering
+  % \begin{minipage}[b]{.27\textwidth}
+  %   \includegraphics[width=\linewidth,page=2]{./figures/stampede_knc_model.pdf}
+  %   \vspace{-2em}
+  %   \caption{Automatic offloading on the KNC depends on matrix dimensions.}
+  %   \vspace{-1em}
+  %   \label{fig:hpl_mkl}
+  % \end{minipage}~~~
+  \begin{minipage}[b]{.7\textwidth}\centering
+    \scalebox{.88}{\begin{tabular}{l|r|r|r|r}
+    & \multicolumn{2}{c|}{CPU (\texttt{CPU})} & \multicolumn{2}{c}{KNC (\texttt{PHI}) }\\
+    & Coefficient $[\si{\sec\per\flop}]$& Intercept $[\sec]$ & Coefficient $[\si{\sec\per\flop}]$& Intercept $[\sec]$ \\
+    \hline
+    \texttt{DGEMM} & \num{1.029e-11} & \num{2.737e-02} & \num{1.981e-12} & \num{6.316e-01} \\
+    \texttt{DTRSM} & \num{9.882e-12} & \num{4.329e-02} & \num{1.954e-12} & \num{5.222e-01}
+    \end{tabular}}\medskip\\
+    \lstset{frame=bt,language=C,numbers=none,escapechar=|}\lstinputlisting{HPL_dtrsm_macro_real.c}
+    \caption{Modeling automatic offloading on KNC in MKL BLAS kernels.}
+    \vspace{-1em}
+    \label{fig:macro_real}
+  \end{minipage}~~~\begin{minipage}[b]{.27\textwidth}
+  \centering
+  \includegraphics[width=\linewidth,page=1]{./figures/stampede_calibration_send.png}
+  \caption{Modeling communication time on stampede. Each color is manually adjusted and 
+       corresponds to a different synchronization mode 
+      (eager, rendez-vous,...). }\vspace{-1em}
+  \label{fig:stampede_calibration}
+  \labspace
+  \end{minipage}
+\end{figure*}
+#+END_EXPORT
+
+# SMPI_DGEMM_COEFFICIENT=1.029e-11 SMPI_DGEMM_INTERCEPT=2.737e-02 SMPI_DGEMM_PHI_COEFFICIENT=1.981e-12 SMPI_DGEMM_PHI_INTERCEPT=6.316e-01 \
+# SMPI_DTRSM_COEFFICIENT=9.882e-12 SMPI_DTRSM_INTERCEPT=4.329e-02 SMPI_DTRSM_PHI_COEFFICIENT=1.954e-12 SMPI_DTRSM_PHI_INTERCEPT=5.222e-01"
+
+In Section\ref{sec:em} we explained the problems we encountered when trying
+to run a large-scale simulation on a single node and how we solved them. 
+For the most part, we identified and eliminated bottlenecks one after
+another while simultaneously making sure that the accuracy of our performance prediction was
+not impacted. Certainly, the main goal was to reduce the
+complexity from $\O(N^3) + \O(N^2\cdot{}P\cdot{}Q)$ to something more reasonable.
+The $\O(N^3)$ was removed through skipping most computations. 
+Ideally, since there are $N/NB$ iterations (steps), 
+the complexity of simulating one step should be decreased to something independent of
+$N$. SimGrid's fluid models, used to simulate communications, do not
+depend on $N$. Therefore, the time to simulate a step of HPL should mostly depend on $P$ and
+$Q$. Yet, some memory operations on the panel that are related to pivoting
+are intertwined in HPL with collective communications, meaning that it
+is impossible to completely get rid of the $\O(N)$ complexity without
+modifying HPL more profoundly.
+
+Although our goal was to model and simulate HPL on the Stampede
+platform, we decided to conduct a first evaluation on a
+similar, albeit non-existing, platform comprising 4,096 8-core nodes
+interconnected through a $\langle2;16,32;1,16;1,1\rangle$ fat-tree topology
+built on ideal network links with a bandwidth of
+\SI{50}{\giga\byte\per\sec} and a latency of \SI{5}{\micro\sec}. We ran
+simulations with $512$; $1,024$; $2,048$ or $4,096$ MPI processes and
+with matrices of orders \num{5e5}, \num{1e6}, \num{2e6} or \num{4e6}.
+The impact of the matrix order on total makespan and memory is illustrated in Figure\ref{fig:hpl_scalability}. 
+With all previously described
+optimizations enabled, the simulation with the largest matrix took close to $47$ hours and consumed
+\SI{16}{\giga\byte} of memory whereas the smallest one took $20$ minutes and \SI{282}{\mega\byte} of memory.
+One can also see that, when the matrix order ($N$) is increased, memory consumption and
+simulation time both grow slightly quadratic as the amount of matrix
+elements is $N^{2}$ and the number of steps of the algorithm also linearly.
+
+Moreover, all the simulations spend less than \SI{10}{\percent} of their execution time in kernel
+mode, which means the number of system calls is reasonably low.
+** Hidden section                                                 :noexport:
+Got data and code from the "2017-06-05 Monday: Plots for scalability
+test" section of Tom's journal:
+
+#+begin_src R :results output :session *R* :exports both
+library(ggplot2)
+library(ggrepel)
+library(reshape2)
+library(gridExtra)
+results = rbind(
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_500000_512.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_500000_1024.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_500000_2048.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_500000_4096.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_1000000_512.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_1000000_1024.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_1000000_2048.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_1000000_4096.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_2000000_512.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_2000000_1024.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_2000000_2048.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_2000000_4096.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_4000000_512.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_4000000_1024.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_4000000_2048.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/scalability/result_4000000_4096.csv')
+)
+results$simulation_time = results$simulation_time/3600
+results$memory_size = results$memory_size * 1e-9
+number_verb <- function(n) {
+    return(format(n,big.mark=",",scientific=FALSE))
+}
+results$size_verb = factor(unlist(lapply(results$size, number_verb)), levels = c('500,000','1,000,000','2,000,000','4,000,000'))
+results$nb_proc_verb = factor(unlist(lapply(results$nb_proc, number_verb)), levels = c('512', '1,024', '2,048', '4,096'))
+results
+#+end_src
+
+#+RESULTS:
+#+begin_example
+             topology nb_roots nb_proc    size  full_time        time Gflops
+1  2;16,32;1,16;1,1;8       16     512  500000    91246.1    91246.02  913.3
+2  2;16,32;1,16;1,1;8       16    1024  500000    46990.1    46990.02 1773.0
+3  2;16,32;1,16;1,1;8       16    2048  500000    24795.5    24795.50 3361.0
+4  2;16,32;1,16;1,1;8       16    4096  500000    13561.0    13561.01 6145.0
+5    2;16,32;1,16;1,1       16     512 1000000   716521.0   716521.00  930.4
+6    2;16,32;1,16;1,1       16    1024 1000000   363201.0   363201.04 1836.0
+7    2;16,32;1,16;1,1       16    2048 1000000   186496.0   186495.70 3575.0
+8  2;16,32;1,16;1,1;8       16    4096 1000000    97836.6    97836.54 6814.0
+9    2;16,32;1,16;1,1       16     512 2000000  5685080.0  5685077.72  938.1
+10   2;16,32;1,16;1,1       16    1024 2000000  2861010.0  2861012.55 1864.0
+11   2;16,32;1,16;1,1       16    2048 2000000  1448900.0  1448899.09 3681.0
+12 2;16,32;1,16;1,1;8       16    4096 2000000   742691.0   742690.59 7181.0
+13 2;16,32;1,16;1,1;8       16     512 4000000 45305100.0 45305083.56  941.8
+14 2;16,32;1,16;1,1;8       16    1024 4000000 22723800.0 22723820.45 1878.0
+15 2;16,32;1,16;1,1;8       16    2048 4000000 11432900.0 11432938.62 3732.0
+16 2;16,32;1,16;1,1;8       16    4096 4000000  5787160.0  5787164.09 7373.0
+   simulation_time application_time user_time system_time major_page_fault
+1        0.3311083          204.992   1098.25       93.12                0
+2        0.6895222          441.897   2296.51      184.70                0
+3        1.4144361          872.425   4741.26      349.79                0
+4        3.1448889         1947.320  10640.63      679.53                0
+5        0.7319722          500.970   2367.19      259.91                0
+6        1.6771917         1036.960   5515.36      515.05                0
+7        3.4421944         2092.950  11389.36      995.39                0
+8        7.2368056         4362.660  24082.38     1966.10                0
+9        1.9263500         1169.660   6193.80      683.73                0
+10       4.2217500         2551.100  13714.01     1430.93                0
+11       8.9621111         5236.560  29357.92     2844.89                0
+12      18.0156389        10643.600  59444.40     5402.24                0
+13       4.8156944         3030.400  15090.31     1945.23                0
+14      10.6613611         6435.870  34249.71     3827.36                0
+15      23.2042222        13080.500  75523.95     7684.52                0
+16      47.1275000        26745.400 154314.76    15085.08                0
+   minor_page_fault cpu_utilization        uss         rss page_table_size
+1            960072            0.99  155148288  2055086080        10604000
+2           1054062            0.99  369696768  4383203328        21240000
+3           1282294            0.99 1012477952  9367576576        42912000
+4           1852119            0.99 3103875072 15318568960        87740000
+5           1916208            0.99  153665536  2317279232        10600000
+6           2002989            0.99  369676288  4837175296        21252000
+7           2154982            0.99 1010696192  7774138368        42908000
+8           2768705            0.99 3103895552 16934834176        87748000
+9           3801905            0.99  150765568  2758770688        10604000
+10          3872820            0.99  365555712  5273034752        21220000
+11          4038099            0.99 1009606656  7415914496        42884000
+12          4704339            0.99 3102445568 19464646656        87748000
+13          7663911            0.98  151576576  2056916992        10604000
+14          7725625            0.99  369872896  4120702976        21212000
+15          7917525            0.99 1012191232  9221050368        42880000
+16          8550745            0.99 3113381888 20408209408        87808000
+   memory_size size_verb nb_proc_verb
+1    0.2825585   500,000          512
+2    0.4299489   500,000        1,024
+3    0.9628262   500,000        2,048
+4    2.8140421   500,000        4,096
+5    0.8944435 1,000,000          512
+6    1.0553098 1,000,000        1,024
+7    1.5811707 1,000,000        2,048
+8    3.4254070 1,000,000        4,096
+9    3.3384202 2,000,000          512
+10   3.4971116 2,000,000        1,024
+11   4.0274084 2,000,000        2,048
+12   5.9101348 2,000,000        4,096
+13  13.0790605 4,000,000          512
+14  13.2755579 4,000,000        1,024
+15  13.8251837 4,000,000        2,048
+16  15.7636690 4,000,000        4,096
+#+end_example
+
+#+begin_src R :results output :session *R* :exports both
+  library(ggplot2)
+  library(gridExtra)
+  library(grid)
+
+  generic_do_plot <- function(plot, fixed_shape=TRUE) {
+  #   For xrange, see https://stackoverflow.com/questions/7705345/how-can-i-extract-plot-axes-ranges-for-a-ggplot2-object
+  #   old version for xrange (broken)
+  #   xrange = ggplot_build(plot)$panel$ranges[[1]]$x.range
+  #   new version for xrange (may break in the next ggplot update...)
+      xrange = ggplot_build(plot)$layout$panel_ranges[[1]]$x.range
+      xwidth = xrange[2] - xrange[1]
+      if(fixed_shape) {
+          point = stat_summary(fun.y = mean, geom="point", shape=21)
+      }
+      else {
+          point = stat_summary(fun.y = mean, geom="point")
+      }
+      return(plot +
+          stat_summary(fun.data = mean_se, geom = "errorbar", width=xwidth/20)+
+          stat_summary(fun.y = mean, geom="line")+
+          point+
+          theme_bw()+
+          expand_limits(x=0, y=0))
+  }
+  do_plot <- function(df, x, y, color, color_title, fixed_val, other_fixed_val=-1) {
+      if(y == "simulation_time") {
+          y_title = "Simulation time (seconds)"
+          title = "Simulation time"
+      }
+      else if(y == "memory_size") {
+          y_title = "Memory consumption (bytes)"
+          title = "Memory consumption"
+      }
+      else {
+          stopifnot(y == "Gflops")
+          y_title = "Performance estimation (Gflops)"
+          title = "Performance estimation"
+      }
+      if(x == "size") {
+          fixed_arg = "nb_proc"
+          x_title = "Matrix size"
+          title = paste(title, "for different matrix sizes\nUsing", fixed_val, "MPI processes")
+      }
+      else {
+          stopifnot(x == "nb_proc")
+          fixed_arg = "size"
+          x_title = "Number of processes"
+          title = paste(title, "for different number of processes\nUsing a matrix size of", format(fixed_val,big.mark=",",scientific=FALSE))
+      }
+      sub_df = df[df[fixed_arg] == fixed_val,]
+      p = generic_do_plot(ggplot(sub_df, aes_string(x=x, y=y, linetype=color, color=color, group=color))) +
+          ggtitle(title)+
+          xlab(x_title)+
+          ylab(y_title)+
+          labs(colour=color_title)+
+          labs(linetype=color_title)
+      if(other_fixed_val != -1) {
+          rect <- data.frame(xmin=-Inf, xmax=Inf, ymin=-Inf, ymax=Inf)
+          my_xmin = other_fixed_val * 0.9
+          my_xmax = other_fixed_val * 1.1
+          my_ymax = max(sub_df[sub_df[x] == other_fixed_val,][y])
+          y_delta = my_ymax * 0.1
+          my_ymax = my_ymax + y_delta
+          my_ymin = min(sub_df[sub_df[x] == other_fixed_val,][y]) - y_delta
+          p = p + geom_rect(data=rect, aes(xmin=my_xmin, xmax=my_xmax, ymin=my_ymin, ymax=my_ymax),color="grey20", alpha=0.1, inherit.aes=FALSE)
+      }
+      return(p)
+  }
+
+  # From https://stackoverflow.com/a/38420690/4110059
+  grid_arrange_shared_legend <- function(..., nrow = 1, ncol = length(list(...)), position = c("bottom", "right")) {
+
+    plots <- list(...)
+    position <- match.arg(position)
+    g <- ggplotGrob(plots[[1]] + theme(legend.position = position))$grobs
+    legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
+    lheight <- sum(legend$height)
+    lwidth <- sum(legend$width)
+    gl <- lapply(plots, function(x) x + theme(legend.position = "none"))
+    gl <- c(gl, nrow = nrow, ncol = ncol)
+
+    combined <- switch(position,
+                       "bottom" = arrangeGrob(do.call(arrangeGrob, gl),
+                                              legend,
+                                              ncol = 1,
+                                              heights = unit.c(unit(1, "npc") - lheight, lheight)),
+                       "right" = arrangeGrob(do.call(arrangeGrob, gl),
+                                             legend,
+                                             ncol = 2,
+                                             widths = unit.c(unit(1, "npc") - lwidth, lwidth)))
+    grid.newpage()
+    grid.draw(combined)
+
+  }
+
+  do_multiple_plot <- function(df, x1, x2, y, color, color_title, fixed_x1, fixed_x2) {
+      my_ymax = max(df[y])
+      return(
+          grid_arrange_shared_legend(
+              do_plot(df, x1, y, color, color_title, fixed_x1, fixed_x2) + expand_limits(x=0, y=my_ymax),
+              do_plot(df, x2, y, color, color_title, fixed_x2, fixed_x1) + expand_limits(x=0, y=my_ymax),
+              nrow=1, ncol=2
+          ))
+  }
+
+  do_four_plot <- function(df, x1, x2, y1, y2, color, color_title, fixed_x1, fixed_x2) {
+      my_y1max = max(df[y1])
+      my_y2max = max(df[y2])
+      return(
+          grid_arrange_shared_legend(
+              do_plot(df, x1, y1, color, color_title, fixed_x1, fixed_x2) + expand_limits(x=0, y=my_y1max),
+              do_plot(df, x2, y1, color, color_title, fixed_x2, fixed_x1) + expand_limits(x=0, y=my_y1max),
+              do_plot(df, x1, y2, color, color_title, fixed_x1, fixed_x2) + expand_limits(x=0, y=my_y2max),
+              do_plot(df, x2, y2, color, color_title, fixed_x2, fixed_x1) + expand_limits(x=0, y=my_y2max),
+              nrow=2, ncol=2
+          ))
+  }
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :file figures/scalability_2.pdf :results value graphics :results output :session *R* :exports both :width 4 :height 2.5
+nbproc_time = generic_do_plot(ggplot(results, aes(x=nb_proc, y=simulation_time, color=size_verb))) +
+    xlab("Number of processes") +
+    ylab("Simulation time (hours)") +
+    labs(colour="Matrix size")+
+    ggtitle("Simulation time for different number of processes")+
+    theme(legend.position = "none")+
+    geom_text_repel(
+        data = subset(results, nb_proc == max(nb_proc)),
+        aes(label = size_verb),
+        nudge_x = 45,
+        segment.color = NA,
+        show.legend = FALSE
+      )
+nbproc_time
+#+end_src
+
+#+RESULTS:
+[[file:figures/scalability_2.pdf]]
+
+#+begin_src R :file figures/scalability_4.pdf :results value graphics :results output :session *R* :exports both :width 4 :height 2.5
+nbproc_mem = generic_do_plot(ggplot(results, aes(x=nb_proc, y=memory_size, color=size_verb))) +
+    xlab("Number of processes") +
+    ylab("Memory consumption (gigabytes)") +
+    labs(colour="Matrix size")+
+    ggtitle("Memory consumption for different number of processes")+
+    theme(legend.position = "none")+
+    geom_text_repel(
+        data = subset(results, nb_proc == max(nb_proc)),
+        aes(label = size_verb),
+        nudge_x = 45,
+        segment.color = NA,
+        show.legend = FALSE
+    )
+nbproc_mem
+#+end_src
+
+#+RESULTS:
+[[file:figures/scalability_4.pdf]]
+
+
+#+begin_src R :file figures/scalability_1.pdf :results value graphics :results output :session *R* :exports both :width 4 :height 2.5
+size_time = generic_do_plot(ggplot(results, aes(x=size, y=simulation_time, color=nb_proc_verb))) +
+    xlab("Matrix rank") +
+    ylab("Simulation time (hours)") +
+    labs(colour="Number of processes")+ scale_color_brewer(palette="Set1")+
+#    ggtitle("Simulation time for different matrix sizes")+
+    theme(legend.position = "none")+
+    geom_text_repel(
+        data = subset(results, size == max(size)),
+        aes(label = nb_proc_verb),
+        nudge_x = 45,
+        segment.color = NA,
+        show.legend = FALSE
+      )
+size_time
+#+end_src
+
+#+RESULTS:
+[[file:figures/scalability_1.pdf]]
+
+#+begin_src R :file figures/scalability_3.pdf :results value graphics :results output :session *R* :exports both :width 4 :height 2.5
+size_mem = generic_do_plot(ggplot(results, aes(x=size, y=memory_size, color=nb_proc_verb))) +
+    xlab("Matrix rank") +
+    ylab("Memory consumption (gigabytes)") +
+    labs(colour="Number of processes")+
+#    ggtitle("Memory consumption for different matrix sizes")+
+    theme(legend.position = "none")+scale_color_brewer(palette="Set1")+
+    geom_text_repel(
+        data = subset(results, size == max(size)),
+        aes(label = nb_proc_verb),
+        nudge_x = 45,
+        segment.color = NA,
+        show.legend = FALSE
+      )
+size_mem
+#+end_src
+
+#+RESULTS:
+[[file:figures/scalability_3.pdf]]
+
+#+begin_src R :file figures/scalability_plot_size.pdf :results value graphics :results output :session *R* :exports both :width 7 :height 4
+grid_arrange_shared_legend(size_time, size_mem, nrow=1, ncol=2)
+#+end_src
+
+#+RESULTS:
+[[file:figures/scalability_plot_size.pdf]]
+
+#+begin_src R :file figures/scalability_plot_nbproc.pdf :results value graphics :results output :session *R* :exports both :width 8 :height 3.5
+grid_arrange_shared_legend(nbproc_time, nbproc_mem, nrow=1, ncol=2)
+#+end_src
+
+#+RESULTS:
+[[file:figures/scalability_plot_nbproc.pdf]]
+
+
+#+begin_src R :results output :session *R* :exports both
+fit_sim = lm(data=results, simulation_time ~ nb_proc*(size+I(size^2)))
+summary(fit_sim)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+Call:
+lm(formula = simulation_time ~ nb_proc * (size + I(size^2)), 
+    data = results)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.192256 -0.050079 -0.004809  0.045721  0.231054 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)    
+(Intercept)       -1.522e-01  1.866e-01  -0.815   0.4339    
+nb_proc           -1.162e-04  7.907e-05  -1.469   0.1725    
+size               6.919e-08  2.214e-07   0.313   0.7610    
+I(size^2)         -8.691e-14  4.689e-14  -1.853   0.0935 .  
+nb_proc:size       1.608e-09  9.379e-11  17.142 9.64e-09 ***
+nb_proc:I(size^2)  3.450e-16  1.987e-17  17.366 8.49e-09 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.1343 on 10 degrees of freedom
+Multiple R-squared:  0.9999,	Adjusted R-squared:  0.9999 
+F-statistic: 2.46e+04 on 5 and 10 DF,  p-value: < 2.2e-16
+#+end_example
+
+#+begin_src R :results output :session *R* :exports both
+grid.lines = 26
+x.pred <- seq(min(results$nb_proc), max(results$nb_proc), length.out = grid.lines)
+y.pred <- seq(min(results$size), max(results$size), length.out = grid.lines)
+xy <- expand.grid( nb_proc = x.pred, size = y.pred)
+z.pred <- matrix(predict(fit_sim, newdata = xy), 
+                 nrow = grid.lines, ncol = grid.lines)
+# fitted points for droplines to surface
+fitpoints <- predict(fit_sim)
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output graphics :file (org-babel-temp-file "figure" ".png") :exports both :width 600 :height 400 :session *R* 
+library("plot3D")
+scatter3D(
+   results$nb_proc, results$size, results$simulation_time, ticktype = "detailed", phi = 20, theta = -50, bty ="g",
+    pch = 20, cex = 2, type="l", r=10,
+    surf = list(x = x.pred, y = y.pred, z = z.pred,  
+    facets = NA, fit = fitpoints),colvar=NULL)
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/babel-23284Iao/figure23284S2p.png]]
+
+#+begin_src R :results output graphics :file (org-babel-temp-file "figure" ".png") :exports both :width 600 :height 400 :session *R* 
+library("plot3D")
+scatter3D(results$nb_proc, results$size, results$simulation_time, ticktype = "detailed", phi = 0, theta = -50, bty ="g",
+           surf = list(x = unique(results$nb_proc), y = unique(results$size), z =  matrix(results$simulation_time, nrow=length(unique(results$nb_proc))),  facets = NA))
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/babel-23284Iao/figure23284QCE.png]]
+
+
+
+#+begin_src R :results output :session *R* :exports both
+fit_sim = lm(data=results,  memory_size ~ (nb_proc + I(nb_proc^2)) + I(size^2))
+summary(fit_sim)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+Call:
+lm(formula = memory_size ~ (nb_proc + I(nb_proc^2)) + I(size^2), 
+    data = results)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.046408 -0.005840  0.001738  0.011710  0.058452 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -3.785e-02  2.247e-02  -1.685   0.1179    
+nb_proc       1.264e-04  2.519e-05   5.019   0.0003 ***
+I(nb_proc^2)  1.288e-07  5.211e-09  24.712 1.17e-11 ***
+I(size^2)     8.166e-13  1.063e-15 767.967  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.02691 on 12 degrees of freedom
+Multiple R-squared:      1,	Adjusted R-squared:      1 
+F-statistic: 2.043e+05 on 3 and 12 DF,  p-value: < 2.2e-16
+#+end_example
+
+#+begin_src R :results output :session *R* :exports both
+grid.lines = 26
+x.pred <- seq(min(results$nb_proc), max(results$nb_proc), length.out = grid.lines)
+y.pred <- seq(min(results$size), max(results$size), length.out = grid.lines)
+xy <- expand.grid( nb_proc = x.pred, size = y.pred)
+z.pred <- matrix(predict(fit_sim, newdata = xy), 
+                 nrow = grid.lines, ncol = grid.lines)
+# fitted points for droplines to surface
+fitpoints <- predict(fit_sim)
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output graphics :file (org-babel-temp-file "figure" ".png") :exports both :width 600 :height 400 :session *R* 
+library("plot3D")
+scatter3D(
+   results$nb_proc, results$size, results$memory_size, ticktype = "detailed", phi = -10, theta = -50, bty ="g",
+    pch = 18, cex = 2, 
+    surf = list(x = x.pred, y = y.pred, z = z.pred,  
+    facets = NA, fit = fitpoints),colvar=NULL)
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/babel-23284Iao/figure23284e_o.png]]
+
+* Modeling Stampede and Simulating HPL
+#+LaTeX: \label{sec:science}
+
+** Modeling Stampede
+*** Computations
+Each node of the Stampede cluster comprises two 8-core Intel Xeon
+E5-2680 8C \SI{2.7}{\GHz} CPUs and one 61-core Intel Xeon Phi SE10P
+(KNC) \SI{1.1}{\GHz} accelerator that is roughly three times more
+powerful than the two CPUs and can be used in two ways:
+either as a classical accelerator, \ie for offloading expensive
+computations from the CPU, or by compiling
+binaries specifically for and executing them directly on the Xeon Phi.
+While the accelerator's \SI{8}{\gibi\byte} of RAM are rather
+small, the main advantage of the second approach is that data does not
+need to be transferred back and forth between the node's CPUs and the
+accelerator via the x16 PCIe bus.
+
+The HPL output submitted to the TOP500 (Figure\ref{fig:hpl_output})
+does not indicate how the KNC was used. However, because of the values assigned
+to $P$ and $Q$, we are certain that only a single MPI process per node
+was run. For this reason, it is likely that the KNC used as an accelerator. 
+With Intel's Math Kernel Library (MKL), this is effortless as the MKL comes with
+support for automatic offloading *for* selected BLAS functions. 
+Unfortunately, we do not know which MKL version was used in 2013 and therefore decided to
+use the default version used on Stampede in the beginning of 2017, \ie
+version 11.1.1. The MKL documentation states
+that, depending on the matrix geometry, the computation will run on
+either all the cores of the CPU or exclusively on the KNC.  In the case of
+=DGEMM=, the computation of $A=\alpha\cdot{}A+\beta\cdot{}B\times{}C$ with $A, B, C$ of
+dimensions $M\times{}K$, $K\times{}N$ and $M\times{}N$, respectively, is offloaded onto the KNC whenever $M$
+and $N$ are both larger than $1280$ while $K$ is simultaneously larger
+than $256$. Similarly, offloading for =DTRSM= is used when both $M$ and $N$
+are larger than $512$, which results in a
+better throughput but incurs a higher latency. The complexity for =DGEMM= is always of the order
+of $M\cdot{}N\cdot{}K$ ($M\cdot{}N^2$ for =DTRSM=) but the model that describes the time it
+takes to run =DGEMM= (=DTRSM=) is very different for small and large
+matrices. The table in Figure\ref{fig:macro_real} indicates the
+parameters of the linear regression for the four scenarios (=DGEMM=
+or =DTRSM= and CPU or Phi). The measured performance was close to the
+peak performance: \eg for =DGEMM= on the Phi reached
+$2/\num{1.981e-12} = \SI{1.009}{\tera\flops}$. Since the granularity
+used in HPL (see Figure\ref{fig:hpl_output}) is 1024, all calls (except
+for maybe the very last iteration) are offloaded to the KNC. 
+In any case, this behavior can easily be accounted for by replacing the
+macro in Figure\ref{fig:macro_simple} by the one in Figure\ref{fig:macro_real}.
+
+# The accelerators are essential to the performance of the cluster,
+# delivering \SI{7}{\peta\flops} of sustainable performance whereas
+# the CPUs are only capable of delivering \SI{2}{\peta\flops}. On
+# matrices of the size used for this work, however, CPUs are barely
+# used.
+
+# See CH's journal from [2017-10-03 Tue] to see how the version was determined
+**** R figures                                                  :noexport:
+#+begin_src R :results output :session *R* :exports both
+  library(gridExtra)
+  library(ggplot2)
+  dgemm <- read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/stampede/offloading_dgemm.csv')
+  dgemm$m = as.double(dgemm$m)
+  dtrsm <- read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/stampede/offloading_dtrsm.csv')
+  dtrsm$m = as.double(dtrsm$m)
+
+  dgemm_new = dgemm[dgemm$automatic_offload == 'True',]
+  dtrsm_new = dtrsm[dtrsm$automatic_offload == 'True',]
+  dgemm_new$offload = (dgemm_new$m > 1280 & dgemm_new$n > 1280 & dgemm_new$k > 256)
+  dtrsm_new$offload = (dtrsm_new$m > 512 & dtrsm_new$n > 512)
+
+  dgemm_new$flops = dgemm_new$m * dgemm_new$n * dgemm_new$k;
+  dtrsm_new$flops = dtrsm_new$m * dtrsm_new$n^2;
+
+  dgemm_new$type = "dgemm";
+  dtrsm_new$type = "dtrsm";
+
+  df = dtrsm_new
+  df$k = NA;
+  df$lead_C = NA;
+  df = rbind(df,dgemm_new)
+  head(df)
+  tail(df)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+       time    m    n lead_A lead_B automatic_offloading offload        flops
+1  0.029975 7251  261   7251   7251                 True   FALSE    493945371
+4  2.227428  578 4619   4619   4619                 True    TRUE  12331723058
+5  0.042097 4424  420   4424   4424                 True   FALSE    780393600
+8  0.018786 3115  305   3115   3115                 True   FALSE    289772875
+10 2.931274  650 5466   5466   5466                 True    TRUE  19420151400
+12 3.240624 5606 6490   6490   6490                 True    TRUE 236125280600
+    type  k lead_C
+1  dtrsm NA     NA
+4  dtrsm NA     NA
+5  dtrsm NA     NA
+8  dtrsm NA     NA
+10 dtrsm NA     NA
+12 dtrsm NA     NA
+         time    m    n lead_A lead_B automatic_offloading offload        flops
+89   0.083594  244 5757   5757   5757                 True   FALSE    847038924
+91   4.932572 5527 6493   6493   6493                 True    TRUE 189518248891
+931  2.943795 1425 6127   6127   6127                 True    TRUE  33954761775
+96   0.262358   62 6621   6621   6621                 True   FALSE   2151851484
+981  2.749753 4991 2256   4991   4991                 True    TRUE  17002140960
+1001 2.383139 1421 1348   1646   1646                 True    TRUE   3152926168
+      type    k lead_C
+89   dgemm  603   5757
+91   dgemm 5281   6493
+931  dgemm 3889   6127
+96   dgemm 5242   6621
+981  dgemm 1510   4991
+1001 dgemm 1646   1646
+#+end_example
+
+#+begin_src R :results output :session *R* :exports both
+get_legend<-function(myggplot){
+  tmp <- ggplot_gtable(ggplot_build(myggplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)
+}
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output graphics :file figures/stampede_knc_model.pdf :exports both :width 3.5 :height 5.3 :session *R* 
+  labels = rbind(
+      data.frame(x = 2E11, y=3.5, label="Offloading on the KNC", offload = T),
+      data.frame(x = 1.1E11, y=1, label="Computation on the CPU", offload = F));
+  
+  p1 = ggplot(dgemm_new, aes_string(x='m*n*k', y='time', color='offload')) +
+      geom_point() + geom_smooth(method="lm",fullrange=T) + theme(legend.position="top") + 
+      geom_text(data = labels, aes(x=x, y=y, color=offload, label=label)) + ylim(0,1.1*max(dgemm_new$time)) +
+      ggtitle('Duration of DGEMM') + theme_bw() +
+      xlab("M.N.K [Flop]") + ylab("Duration [s]") + scale_color_brewer(palette="Set1")
+
+  p1_legend = get_legend(p1);
+  p1 = p1 + theme(legend.position="none")
+  labels = rbind(
+      data.frame(x = 3E11, y=2.8, label="Offloading on the KNC", offload = T),
+      data.frame(x = 1.6E11, y=.6, label="Computation on the CPU", offload = F));
+  p2 = ggplot(dtrsm_new, aes_string(x='m*n*n', y='time', color='offload')) +
+      geom_point()+ geom_smooth(method="lm",fullrange=T) +  ylim(0,1.1*max(dtrsm_new$time)) +
+      geom_text(data = labels, aes(x=x, y=y, color=offload, label=label)) +
+      ggtitle('Duration of DTRSM') + theme_bw() +
+      xlab("M.N² [Flop]") + ylab("Duration [s]") + scale_color_brewer(palette="Set1")
+  p2 = p2 + theme(legend.position="none")
+
+   lay <- rbind(c(1), c(2));
+   grid.arrange(p1,p2, layout_matrix = lay,widths=c(1), heights=c(2,2));
+#+end_src
+
+#+RESULTS:
+[[file:figures/stampede_knc_model.pdf]]
+
+#+begin_src sh :results output :exports both
+pdfcrop figures/stampede_knc_model.pdf figures/stampede_knc_model.pdf
+#+end_src
+
+#+begin_src R :results output graphics :file (org-babel-temp-file "figure" ".png") :exports both :width 600 :height 400 :session *R* 
+  ggplot(df, aes(x=flops, y=time, color=offload)) +
+      geom_point() + geom_smooth(method="lm") + 
+      facet_wrap(~type)
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/babel-1674kfe/figure1674sWN.png]]
+
+*** Communications
+# #+BEGIN_EXPORT latex
+# \begin{figure}[t]
+#   \centering
+#   \includegraphics[width=\linewidth,page=1]{./figures/stampede_calibration_send.png}
+#   \caption{Modeling communication time on stampede. Each color corresponds to a
+#       manually adjusted breakpoint corresponding to a synchronization mode 
+#       (eager, rendez-vous,...). }\vspace{-1em}
+#   \label{fig:stampede_calibration}
+#   \labspace
+# \end{figure}
+# #+END_EXPORT
+
+We unfortunately do not know for sure which version of Intel MPI was used in
+2013, so we decided to use the default one on Stampede
+in May 2017, \ie version 3.1.4. As explained in 
+Section\ref{sec:smpi}, SMPI's communication model is a hybrid model
+between the LogP family and a fluid model. For each message, the send mode
+(\eg fully asynchronous, detached or eager) is determined solely by the
+message size. It is hence possible to model the resulting performance
+of communication operations through a piece-wise linear model, as depicted in
+Figure\ref{fig:stampede_calibration}. For a thorough discussion of
+the calibration techniques used to obtain this model,
+see\cite{smpi}. As illustrated, the results for
+=MPI_Send= are quite stable and piece-wise regular, but the behavior of
+=MPI_Recv= is surprising: for small messages with a size of less than \SI{17420}{\byte}
+(represented by purple, blue and red dots), one can observe two modes,
+namely ``slow'' and ``fast'' communications. ``Slow''
+operations take twice longer and are much more common than the 
+``fast'' ones. We observed this behavior in several experiments even though both MPI
+processes that were used in the calibration were connected through 
+the same local switch. When observed, this ``perturbation'' was present throughout the execution of that
+calibration. 
+Having taken into consideration that small messages are scarce in HPL, we eventually decided to
+ignore this phenomenon and opted to use the more favorable scenario (fast
+communications) for small messages. We believe that the impact of
+our choice on the simulation accuracy is minimal as primarily large,
+bulk messages are sent that make use of the /rendez-vous/ mode (depicted in dark green).
+
+Furthermore, we configured SMPI to use Stampede's network topology,
+\ie Mellanox FDR InfiniBand technology with \SI{56}{\giga\bit\per\second}, setup in
+a fat-tree topology (see Figure\ref{fig:fat_tree_topology}). We
+assumed the routing was done through D-mod-K\cite{dmodk} as it is
+commonly used on this topology.
+**** Stampede network calibration figures                       :noexport:
+This figure is generated in [[file:~/Work/SimGrid/platform-calibration/data/stampede_17_06_01-17:14/calibration/analysis.org][the platform calibration repository]]. Data
+should be read from there. Final adjustments (in the "Combined plot
+section") were done here:
+
+#+begin_src R :results output :session *R* :exports both
+library(gridExtra)
+get_legend<-function(myggplot){
+  tmp <- ggplot_gtable(ggplot_build(myggplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)
+}
+
+p1 = eth$p_send + theme(legend.position="top", legend.background = element_rect(fill = "white", colour = NA)) + guides(colour = guide_legend(override.aes = list(alpha = 1)))
+#     + annotate("text",x=1E2,y=2.3E-6, label="40GB IB model",color="black")
+
+
+p2 = eth$p_recv + theme(legend.position="top", legend.background = element_rect(fill = "white", colour = NA)) 
+#     + annotate("text",x=1E2,y=2.3E-6, label="40GB IB model",color="black")
+
+p1_legend = get_legend(p1);
+p1 = p1 + theme(legend.position="none")
+p2 = p2 + theme(legend.position="none")
+
+# lay <- rbind(c(1,1),
+#              c(2,3));
+# p = grid.arrange(p1_legend,p1,p2, layout_matrix = lay,widths=c(2,2), heights=c(1.3,4));
+# ggsave(filename="/tmp/taurus_send_recv.pdf",plot=p,width = 6, height = 4)
+
+lay <- rbind(c(1,2));
+p = grid.arrange(p1,p2, layout_matrix = lay,widths=c(2,2), heights=c(4));
+ggsave(filename="/tmp/stampede_send_recv_eth.pdf",plot=p,width = 6, height = 3)
+#+end_src
+
+#+RESULTS:
+: Warning message:
+: Transformation introduced infinite values in continuous x-axis
+: Warning messages:
+: 1: Transformation introduced infinite values in continuous x-axis 
+: 2: Transformation introduced infinite values in continuous x-axis
+
+#+begin_src R :results output :session *R* :exports both
+ggsave(filename="/tmp/stampede_send_recv_eth.png",plot=p,width = 6, height = 3)
+#+end_src
+
+#+RESULTS:
+
+#+begin_src sh :results output :exports both
+cp /tmp/stampede_send_recv_eth.png ./figures/stampede_calibration_send.png
+#+end_src
+
+#+RESULTS:
+*** Summary of modeling uncertainties
+For the compiler, Intel MPI and MKL, we were unable to determine
+which version was used in 2013, but decided to go for rather optimistic
+choices. The models for the MKL and for Intel MPI are close to the peak
+performance. It is plausible that the compiler managed to optimize
+computations in HPL. While it is true that most of these computations
+are executed in our simulations, they are not accounted for. This
+allows us to obtain fully deterministic simulations without harming the
+outcome of the simulation as these parts only represent a tiny fraction of
+the total execution time of HPL. A few HPL compilation flags (\eg
+=HPL_NO_MPI_DATATYPE= and =HPL_COPY_L= that control whether MPI datatypes
+should be used and how, respectively) could not be deduced from
+HPL's original output on Stampede but we believe their impact to be
+minimal. Finally, the HPL output reports the use of HPL v2.1 but the
+main difference between v2.1 and v2.2 is the option to
+continuously report factorization progress. We hence decided to apply
+our modifications to the later version of HPL.
+
+With all these modifications in place, we expected the prediction of
+our simulations to be optimistic yet close to results obtained by a real life execution.
+# - iMPI version ???
+# - HPL compilation ? Possible modifications s.a. using openMP to have thread taking care of MPI communications and progressions.
+** Simulating HPL
+*** Performance Prediction
+Figure\ref{fig:stampede_prediction} compares two simulation scenarios
+with the original result from 2013. The solid red line represents the HPL
+performance prediction as obtained with SMPI with the Stampede model
+that we described in the previous section. Although we expected SMPI to be
+optimistic, the prediction was surprisingly much lower than the TOP500 result.
+We verified that no part of HPL was left unmodeled and decided to
+investigate whether a flaw in our network model that would result in
+too much congestion could explain the performance. 
+Alas, even a congestion-free network model 
+(represented by the dashed blue line in Figure\ref{fig:stampede_prediction}) only
+results in minor improvements. In our experiments to model =DGEMM= and =DTRSM=,
+either the CPU or the KNC seemed to be used at one time and a specifically
+optimized version of the MKL may have been used in 2013. 
+Removing the offloading latency and modeling each node as a
+single \SI{1.2}{\tera\flops} node does not sufficiently explain the
+divide between our results and reality.
+
+#+BEGIN_EXPORT latex
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth,page=1]{./figures/stampede_simgrid.pdf}
+  \caption{Performance prediction of HPL on Stampede using SimGrid.}\vspace{-1em}
+  \label{fig:stampede_prediction}
+  \labspace
+\end{figure}
+#+END_EXPORT
+
+**** HPL prediction                                             :noexport:
+
+Starting from Tom's journal, entry "2017-09-27 Wednesday : Complete experiments with the crosstraffic desabled"
+#+begin_src R :results output :session *R* :exports both
+library(ggplot2)
+# files <- dir('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/stampede/simulation/8', pattern = '\\.csv', full.names = TRUE)
+# tables <- lapply(files, read.csv)
+# results = do.call(rbind, tables)
+
+classical = rbind(read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/stampede/simulation/8/result_1000000.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/stampede/simulation/8/result_2000000.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/stampede/simulation/8/result_3875000.csv'))
+classical$mode = 'classical'
+
+highbw = rbind(read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/stampede/simulation/8/result_highbw_1000000.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/stampede/simulation/8/result_highbw_2000000.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/stampede/simulation/8/result_highbw_3875000.csv'))
+highbw$mode = 'highbw'
+
+fatpipe = rbind(read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/stampede/simulation/8/result_fatpipe_1000000.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/stampede/simulation/8/result_fatpipe_2000000.csv'),
+    read.csv('/home/alegrand/Work/SimGrid/tom/m2_internship_journal/stampede/simulation/8/result_fatpipe_3875000.csv'))
+fatpipe$mode = 'fatpipe'
+
+results = rbind(classical, highbw, fatpipe)
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results output graphics :file figures/stampede_simgrid.pdf :exports both :width 5 :height 3.5 :session *R* 
+res_lab = results[results$mode != 'highbw' & results$size > 3E6,];
+res_lab$x=res_lab$size;
+res_lab$y=res_lab$Gflops;
+res_lab$xl=res_lab$x*.9;
+res_lab$yl=res_lab$y*.9;
+
+
+res_lab$xl=res_lab$x*.8;
+res_lab$yl=res_lab$y*.9;
+
+res_lab[res_lab$mode=='classical',]$xl=3.4e6
+res_lab[res_lab$mode=='classical',]$yl=2.5e6
+res_lab[res_lab$mode=='fatpipe',]$xl=2.e6
+res_lab[res_lab$mode=='fatpipe',]$yl=4.1e6
+
+res_lab$label = NA;
+res_lab[res_lab$mode=='fatpipe',]$label = "Simulation\n (No Contention)";
+res_lab[res_lab$mode=='classical',]$label = "Simulation\n (Fat Tree)";
+
+ggplot(results[results$mode != 'highbw',], aes(x=size, y=Gflops, color=mode, linetype=mode)) + 
+    # Inner labels
+    geom_segment(data=res_lab, 
+                 aes(x=xl, xend=x, y=yl, yend=y), linetype="solid",
+                 color="black") +
+    geom_label(data=res_lab, 
+               aes(label = factor(label), x=xl, y=yl, fill=mode),
+               colour =  "white", fontface = "bold") +
+    # SMPI lines
+    geom_point() + geom_line() +  
+    # Top500 perf
+    geom_hline(yintercept=5.16811e+06) + 
+    annotate("text",x=3875000, 1E2,y=5.4e+06, hjust="right",
+        label="Top 500 performance",color="black") + 
+    annotate("text",x=3875000, 1E2,y=4.96e+06, hjust="right",
+        label="(5.168 TeraFlop/s)",color="black") + 
+    annotate("point",x=3875000, 1E2,y=5.16811e+06,color="black") + 
+    # Cosmetics
+    guides(fill=FALSE, color=FALSE, linetype=FALSE) + ylab("GFlop/s") + xlab("Matrix rank") +
+    theme_bw() +  scale_color_brewer(palette="Set1") +  scale_fill_brewer(palette="Set1")+ 
+    theme(legend.position="top") +
+    ggtitle('Performance of HPL')
+#+end_src
+
+#+RESULTS:
+[[file:figures/stampede_simgrid.pdf]]
+
+
+#+begin_src R :results output graphics :file (org-babel-temp-file "figure" ".png") :exports both :width 600 :height 400 :session *R* 
+ggplot(results, aes(x=size, y=simulation_time, color=mode, linetype=mode)) + geom_point() + geom_line() + ggtitle('Simulation time')
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/babel-23284Iao/figure232842Rn.png]]
+
+*** Performance Gap Investigation
+# The simulation time to get the full-scale trace was:
+# - 420 seconds for two iterations (250 seconds spent in HPL),
+# - 609 seconds for five iterations (265 seconds spent in HPL).
+In this section, we explain our investigation and give possible reasons for
+the aforementioned mismatch (apparent in Figure\ref{fig:stampede_prediction}). With SMPI, it is simple to trace
+the first iterations of HPL to get an idea of what could be
+improved (the trace for the first five iterations can be obtained in
+about 609 seconds on a commodity computer and is compressed about
+\SI{175}{\mega\byte} large). Figure\ref{fig:hpl_gantt} illustrates the
+very synchronous and iterative nature of the first iterations: One can identify first a factorization of the panel, then a broadcast to all the
+nodes, and finally an update of trailing matrix.
+More than one fifth of each iteration is spent communicating (although the first
+iterations are the ones with the lowest communication to computation ratio),
+which prevents HPL from reaching the Top500 performance. 
+Overlapping of these heavy communication phases with computation would improve
+performance significantly. The fact that this is
+almost not happening can be explained by the look-ahead ~DEPTH~
+parameter that was supposedly set to =0= (see
+Figure\ref{fig:hpl_output}). This is quite surprising as even
+the tuning section of the HPL documentation indicates that a depth of
+1 is supposed to yield the best results, even though a large problem size could
+be needed to see some performance gain. We discussed this
+surprising behavior with the Stampede-team and were informed that the
+run in 2013 was executed with an HPL binary provided by Intel
+and probably specifically modified for Stampede. We
+believe that some configuration values have been hardcoded to enforce an overlap of
+iterations with others. Indeed, the shortened part (marked ``[...]'') in
+Figure\ref{fig:hpl_output} provides information about the progress of
+HPL throughout iterations and statistics for the panel-owning process
+about the time spent in the most important parts. 
+According to these statistics, the total time
+spent in the =Update= section was \SI{9390}{\sec} whereas the total
+execution time was \SI{7505}{\sec}, which is impossible unless iterations have overlapped.
+
+The broadcast and swapping algorithms use very heavy
+communication patterns. This is not at all surprising since for a matrix of
+this order, several hundred megabytes need to be broadcast. 
+Although the output states that the =blongM= algorithm was
+used it could be the case that another algorithm had been used.
+We tried the other of the 6 broadcast algorithms HPL comes with but
+did not achieve significantly better overall performance. 
+An analysis of the symbols in the Intel binary
+revealed that another broadcast algorithm named
+=HPL_bcast_bpush= was available. Unlike the others, this new algorithm relies on non-blocking sends,
+which could contribute to the performance obtained in 2013.
+Likewise, the swapping algorithm that was used (~SWAP=Binary-exchange~) involves communications that are rather long and
+organized in trees, which is surprising as the ~spread-roll~ algorithm
+is recommended for large matrices.
+
+#+BEGIN_EXPORT latex
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth,page=1]{./figures/fullscale_unzoomed.png}
+  \caption{Gantt chart of the first two iterations of HPL. Communication states are in 
+      red while computations are in cyan. Each communication between two process
+      is represented with a white arrow, which results in very cluttered white areas.}\vspace{-1em}
+  \label{fig:hpl_gantt}
+  \labspace
+\end{figure}
+#+END_EXPORT
+
+We do not aim to reverse engineer the Intel HPL code. We can, however,
+already draw two conclusions from our simple analysis: 1) it is apparent that many optimizations have been done on
+the communication side and 2) it is very likely that the reported
+parameters are not the ones used in the real execution, probably because 
+these values were hardcoded and the configuration output file was not updated accordingly.
+*** Gantt charts                                                 :noexport:
+#+begin_src sh :results output :exports both
+cp /home/alegrand/Work/SimGrid/tom/m2_internship_journal/stampede/communications/fullscale_unzoomed.png figures/
+#+end_src
+
+#+RESULTS:
+
+* Conclusions
+#+LaTeX: \label{sec:cl}
+
+Studying HPC applications at scale can be very time- and
+resource-consuming. Simulation is often an effective approach in this
+context and SMPI has previously been successfully validated in several small-scale
+studies with standard HPC applications\cite{smpi,heinrich:hal-01523608}.  In this
+article, we proposed and evaluated extensions to the SimGrid/SMPI
+framework that allowed us to emulate HPL at the scale of a
+supercomputer. Our application of choice, HPL, is particularly challenging in terms of simulation
+as it implements its own set of non-blocking collective operations
+that rely on =MPI_Iprobe= in order to facilitate overlapping with computations.
+
+More specifically, we tried to reproduce the execution of HPL on the
+Stampede supercomputer conducted in $2013$ for the TOP500, which
+involved a \SI{120}{\tera\byte} matrix and took two hours on 6,006\nbsp{}nodes.  
+Our emulation of a similar configuration ran on a single machine for
+about $62$ hours and required less than \SI{19}{\giga\byte} of RAM. This emulation
+employed several non-trivial operating-system level optimizations
+(memory mapping, dynamic library loading, huge pages) that have since been
+integrated into the last version of SimGrid/SMPI.
+
+The downside of scaling this high is a less well-controlled scenario.
+The reference run of HPL on Stampede was done several years ago and we only
+have very limited information about the setup (\eg software versions
+and configuration), but a reservation and re-execution on the whole
+machine was impossible for us. We nevertheless modeled Stampede carefully, which
+allowed us to predict the performance that would
+have been obtained using an unmodified, freely available version of HPL.
+Unfortunately, despite all our efforts, the predicted performance
+was much lower than what was reported in 2013. We determined that this
+discrepancy comes from the fact that a modified, closed-source version of HPL
+supplied by Intel was used in 2013.
+We believe that some of the HPL configuration parameters were
+hardcoded and therefore misreported in the output. A quick analysis of the optimized
+HPL binary confirmed that algorithmic differences were likely to be the
+reason for the performance differences.
+
+We conclude that a large-scale (in)validation is unfortunately not
+possible due to the modified source code being unavailable to us.
+We claim that the modifications we made are
+minor and are applicable to that optimized version. In fact, while HPL
+comprises 16K lines of ANSI C over 149 files, our modifications only
+changed 14 files with 286 line insertions and 18 deletions.
+
+We believe being capable of precisely predicting an application's
+performance on a given platform will become
+invaluable in the future to aid compute centers with the decision of
+whether a new machine (and what technology) will work best for a given
+application or if an upgrade of the current machine should be
+considered. As a future work, we intend to conduct similar studies
+with other HPC benchmarks (\eg HPCG or HPGMG) and with other top500
+machines. From our experience, we believe that a faithful and public
+reporting of the experimental conditions (compiler options, library
+versions, HPL output, etc.) is invaluable and allows researchers
+to better understand of these platforms actually behave.
+
+# This goal will be subject to a more thorough investigation
+# in the very near future.
+
+# As we saw in Section\ref{sec:hplchanges}, two BLAS functions (=dgemm=
+# and =dtrsm=) were the dominating factor with regards to the runtime although other BLAS
+# functions were called as well. For this study, we neglected the other
+# functions but with a fully automatic calibration procedure for any
+# BLAS function results could effortlessly become more precise as the
+# application could just be linked against a BLAS-replacement
+# library. 
+# #+LaTeX: \CH{Problem here: HPL uses \texttt{HPL\_dtrsm()} wrappers.}
+
+# #+LaTeX: \CH{I like the idea of pointing out again that our simulation takes much longer (48 hours instead of 2?) but that we use 1/6000 of the ressources}
+
+* Acknowledgements
+
+Experiments presented in this paper were carried out using the Grid'5000 testbed, supported by a scientific interest group hosted by Inria and including CNRS, RENATER and several Universities as well as other organizations (see https://www.grid5000.fr).
+We warmly thank our TACC colleagues for their support in this study and
+providing us with as much information as they could.
+** References                                                       :ignore:
+
+# See next section to understand how refs.bib file is created.
+
+#+LATEX: \bibliographystyle{IEEEtran}
+#+LATEX: \bibliography{refs}
+
+* Bib file is here                                                 :noexport:
+
+Tangle this file with C-c C-v t
+
+#+begin_src bib :tangle refs.bib
+@IEEEtranBSTCTL{IEEEexample:BSTcontrol,
+   CTLuse_article_number = "yes",
+   CTLuse_paper = "yes",
+   CTLuse_url = "yes",
+   CTLuse_forced_etal = "yes",
+   CTLmax_names_forced_etal = "6",
+   CTLnames_show_etal = "3",
+   CTLuse_alt_spacing = "yes",
+   CTLalt_stretch_factor = "4",
+   CTLdash_repeated_names = "yes",
+   CTLname_format_string = "{f. ~}{vv ~}{ll}{, jj}",
+   CTLname_latex_cmd = "",
+   CTLname_url_prefix = "[Online]. Available:"
+}
+
+@mastersthesis{cornebize:hal-01544827,
+  TITLE = {{Capacity Planning of Supercomputers: Simulating MPI Applications at Scale}},
+  AUTHOR = {Cornebize, Tom},
+  URL = {https://hal.inria.fr/hal-01544827},
+  SCHOOL = {{Grenoble INP ; Universit{\'e} Grenoble - Alpes}},
+  YEAR = {2017},
+  MONTH = Jun,
+  KEYWORDS = {Simulation ;  MPI runtime and applications ;  Performance prediction and extrapolation ;  High Performance LINPACK},
+  PDF = {https://hal.inria.fr/hal-01544827/file/report.pdf},
+  HAL_ID = {hal-01544827},
+  HAL_VERSION = {v1},
+}
+
+@incollection{grid5000,
+   title = {Adding Virtualization Capabilities to the {Grid'5000} Testbed},
+   author = {Balouek, Daniel and Carpen-Amarie, Alexandra and Charrier, Ghislain and Desprez, Fr{\'e}d{\'e}ric and Jeannot, Emmanuel and Jeanvoine, Emmanuel and L{\`e}bre, Adrien and Margery, David and Niclausse, Nicolas and Nussbaum, Lucas and Richard, Olivier and P{\'e}rez, Christian and Quesnel, Flavien and Rohr, Cyril and Sarzyniec, Luc},
+   booktitle = {Cloud Computing and Services Science},
+   publisher = {Springer International Publishing},
+   OPTpages = {3-20},
+   volume = {367},
+   editor = {Ivanov, IvanI. and Sinderen, Marten and Leymann, Frank and Shan, Tony },
+   series = {Communications in Computer and Information Science },
+   isbn = {978-3-319-04518-4 },
+   doi = {10.1007/978-3-319-04519-1\_1 },
+   year = {2013},
+}
+
+%%% Online simulation of MPI applications
+@article{xsim,
+  author        = "Christian Engelmann",
+  title         = {{Scaling To A Million Cores And Beyond: {Using} Light-Weight
+                   Simulation to Understand The Challenges Ahead On The Road To
+                   Exascale}},
+  journal       = "FGCS",
+  volume        = 30,
+  pages         = "59--65",
+  month         = jan,
+  year          = 2014,
+  publisher     = "Elsevier"}
+
+@Article{sstmacro,
+  author = {Curtis L. Janssen and Helgi Adalsteinsson and Scott Cranford and Joseph P. Kenny and Ali Pinar and David A. Evensky and Jackson Mayo},
+  journal = {International Journal of Parallel and Distributed Systems},
+  title = {A Simulator for Large-scale Parallel Architectures},
+  volume = {1},
+  number = {2},
+  pages = {57--73},
+  year = {2010},
+  note = "\url{http://dx.doi.org/10.4018/jdst.2010040104}",
+  doi = {10.4018/jdst.2010040104}
+}
+
+@article{SST,
+  author    = {Rodrigues, Arun and Hemmert, Karl and Barrett, Brian
+                  and Kersey, Chad and Oldfield, Ron and Weston, Marlo
+                  and Riesen, Rolf and Cook, Jeanine and Rosenfeld,
+                  Paul and CooperBalls, Elliot and Jacob, Bruce },
+  title     = {{The Structural Simulation Toolkit}},
+  journal   = {{SIGMETRICS} Performance Evaluation Review},
+  volume    = 38,
+  number    = 4,
+  pages     = {37--42},
+  year      = 2011
+}
+
+@article{dickens_tpds96,
+  title={{Parallelized Direct Execution Simulation of Message-Passing
+                  Parallel Programs}},
+  author={Dickens, Phillip and Heidelberger, Philip and Nicol, David},
+  journal={IEEE Transactions on Parallel and Distributed Systems},
+  volume=7,
+  number=10,
+  year=1996,
+  pages={1090--1105}
+}
+
+@ARTICLE{bagrodia_ijhpca01,
+  author={Bagrodia, Rajive and Deelman, Ewa and Phan, Thomas},
+  title={{Parallel Simulation of Large-Scale Parallel Applications}},
+  journal={International Journal of High Performance Computing and
+                  Applications},
+  volume=15,
+  number=1,
+  year=2001,
+  pages={3--12}
+}
+
+%%% Offline simulation of MPI applications
+@INPROCEEDINGS{loggopsim_10,
+  title={{LogGOPSim - Simulating Large-Scale Applications in 
+          the LogGOPS Model}},
+  author={Hoefler, Torsten and Siebert, Christian and Lumsdaine, Andrew},
+  month=Jun,
+  year={2010},
+  pages = {597--604},
+  booktitle={Proc. of the LSAP Workshop},
+}
+
+@inproceedings{hoefler-goal,
+  author={T. Hoefler and C. Siebert and A. Lumsdaine},
+  title={{Group Operation Assembly Language - A Flexible Way to Express Collective Communication}},
+  year={2009},
+  booktitle={Proc. of the 38th ICPP}
+}
+
+@inproceedings{bigsim_04,
+  author={Zheng, Gengbin and Kakulapati, Gunavardhan and Kale,
+                  Laxmikant},
+  title={{BigSim: A Parallel Simulator for Performance Prediction of
+                  Extremely Large Parallel Machines}},
+  year=2004,
+  booktitle={Proc. of the 18th IPDPS},
+}
+
+@inproceedings{dimemas,
+	title = {{Dimemas: Predicting MPI Applications Behaviour in Grid Environments}},
+	year = {2003},
+	month = jun,
+	booktitle = {Proc. of the Workshop on Grid Applications and
+                  Programming Tools},
+	author = {Rosa M. Badia and Jes{\'u}s Labarta and Judit Gim{\'e}nez and Francesc Escal{\'e}}
+}
+
+@article {CODES,
+ title = {Enabling Parallel Simulation of Large-Scale {HPC} Network Systems},
+ journal = {IEEE Transactions on Parallel and Distributed Systems},
+ year = {2016},
+ author = {Mubarak, M. and C. D. Carothers and Robert B. Ross and Philip H. Carns}
+}
+
+@article{ROSS_SC12,
+author = {Misbah Mubarak and Christopher D. Carothers and Robert Ross and Philip Carns},
+title = {{Modeling a Million-Node Dragonfly Network Using Massively Parallel Discrete-Event Simulation}},
+journal ={SC Companion},
+year = {2012},
+pages = {366-376},
+}
+
+%%% Self citations on previous work
+@Article{simgrid,
+  title = {{Versatile, Scalable, and Accurate Simulation of Distributed Applications and Platforms}},
+  author = {Casanova, Henri and Giersch, Arnaud and Legrand, Arnaud and Quinson, Martin and Suter, Fr{\'e}d{\'e}ric},
+  publisher = {Elsevier},
+  pages = {2899-2917},
+  journal = {Journal of Parallel and Distributed Computing},
+  volume = {74},
+  number = {10},
+  year = {2014}
+}
+
+@InProceedings{simetierre,
+  author = {Bobelin, Laurent and Legrand, Arnaud and 
+                  M{\'a}rquez, David Alejandro Gonz{\'a}lez and Navarro,
+                  Pierre and Quinson, Martin and Suter,
+                  Fr{\'e}d{\'e}ric and Thiery, Christophe},
+  title = 	 {{Scalable Multi-Purpose Network Representation for
+                  Large Scale Distributed System Simulation}},
+  booktitle = {Proc. of the 12th IEEE/ACM International
+                  Symposium on Cluster, Cloud and Grid Computing},
+  year = 	 2012,
+  pages = {220--227},
+  address = 	 {Ottawa, Canada}
+}
+
+@InProceedings {simgrid_simix2_12,
+  author = {Martin Quinson and Cristian Rosa and Christophe Thi{\'e}ry},
+  title = {Parallel Simulation of Peer-to-Peer Systems},
+  booktitle = {{P}roc. of the 12th {IEEE/ACM} {I}ntl. {S}ymposium on {C}luster, Cloud and Grid {C}omputing},
+  year = {2012},
+  address = {Ottawa, Canada}   
+} 
+
+@InProceedings {DCLV_LSAP_10,
+  title = {{Fast and Scalable Simulation of Volunteer Computing Systems
+                  Using SimGrid}},
+  booktitle = {Proc. of the Workshop on Large-Scale System and Application
+                  Performance},
+  year = {2010},
+  month = Jun,
+  address = {Chicago, IL},
+  author = {Donassolo, Bruno and Casanova, Henri and Legrand, Arnaud
+                  and Velho, Pedro},
+  category = {core}
+} 
+
+@InProceedings{SMPI_IPDPS,
+  author	= {Clauss, Pierre-Nicolas and Stillwell, Mark and Genaud,
+		  St\'ephane and Suter, Fr\'ed\'eric and Casanova, Henri and
+		  Quinson, Martin},
+  title	= {{Single Node On-Line Simulation of MPI Applications with
+		  SMPI}},
+  booktitle= {Proc. of the 25th IEEE Intl. Parallel and
+		  Distributed Processing Symposium},
+  year	= 2011,
+  address	= {Anchorage, AK}
+}
+
+
+@Article{Velho_TOMACS13,
+  author = {Velho, Pedro and Schnorr, Lucas and Casanova, Henri and Legrand, Arnaud},
+  title = 	 {{On the Validity of Flow-level {TCP} Network Models for Grid and Cloud Simulations}},
+  journal = 	 {ACM Transactions on Modeling and Computer Simulation},
+  year = 	 {2013},
+ PUBLISHER = {ACM}, 
+  VOLUME = 23, 
+  NUMBER = 4,
+  pages = 23, 
+  MONTH = Oct
+}
+
+@article{smpi,
+  TITLE = {Simulating {MPI} applications: the {SMPI} approach},
+  AUTHOR = {Degomme, Augustin and Legrand, Arnaud and Markomanolis, Georges and Quinson, Martin and Stillwell, Mark S and Suter, Frédéric},
+  JOURNAL = {{IEEE Transactions on Parallel and Distributed Systems}},
+  PUBLISHER = {{Institute of Electrical and Electronics Engineers}},
+  volume =       "28",
+  number =       "8",
+  pages =        "2387--2400",
+  PAGES = {14},
+  YEAR = {2017},
+  MONTH = Feb,
+  DOI = {10.1109/TPDS.2017.2669305},
+  KEYWORDS = {Simulation ; MPI runtime and applications ; Performance prediction and extrapolation},
+  PDF = {https://hal.inria.fr/hal-01415484/file/smpi_article.pdf},
+  HAL_ID = {hal-01415484},
+  HAL_VERSION = {v2},
+  category =     "core",
+}
+
+@InProceedings{heinrich:hal-01523608,
+  title =        "{Predicting the Energy Consumption of {MPI} Applications
+                 at Scale Using a Single Node}",
+  author =       "Franz C. Heinrich and Tom Cornebize and Augustin
+                 Degomme and Arnaud Legrand and Alexandra Carpen-Amarie
+                 and Sascha Hunold and Anne-Cécile Orgerie and Martin
+                 Quinson",
+  URL =          "https://hal.inria.fr/hal-01523608",
+  booktitle =    "Proc. of the 19th IEEE Cluster Conference",
+  year =         "2017",
+  keywords =     "simulation ; HPC ; energy ; platform modeling",
+  pdf =          "https://hal.inria.fr/hal-01523608/file/predicting-energy-consumption-at-scale.pdf",
+  hal_id =       "hal-01523608",
+  category =     "core",
+}
+
+% Trace extrapolation
+@InProceedings{scalaextrap,
+  author = 	 {Xing Wu and Frank Mueller},
+  title = 	 {{S}cala{E}xtrap: Trace-Based Communication Extrapolation
+                  for {SPMD} Programs},
+  booktitle = {Proc. of the 16th ACM Symp. on Principles and
+               Practice of Parallel Programming},
+  year = 	 {2011},
+  pages = {113--122},
+}
+
+@InProceedings{pmac_lspp13,
+  author = 	 {Laura Carrington and Michael Laurenzano and Ananta Tiwari},
+  title = 	 {Inferring Large-scale Computation Behavior via Trace Extrapolation},
+  booktitle = {Proc. of the Workshop on Large-Scale Parallel Processing},
+  year = 	 {2013},
+}
+
+@Misc{hpl,
+  author = 	 {Antoine Petitet and Clint Whaley and Jack Dongarra and Andy Cleary and Piotr Luszczek},
+  title = 	 {{HPL} - A Portable Implementation of the {High-Performance Linpack} Benchmark for Distributed-Memory Computers},
+  howpublished = {\url{http://www.netlib.org/benchmark/hpl}},
+  month = 	 {February},
+  year = 	 {2016},
+  note = 	 {Version 2.2}
+}
+
+@book{top500,
+ author = {Meuer, Hans Werner and Strohmaier, Erich and Dongarra, Jack and Simon, Horst D.},
+ title = {The {TOP500}: History, Trends, and Future Directions in {High Performance Computing}},
+ year = {2014},
+ isbn = {143981595X, 9781439815953},
+ edition = {1st},
+ publisher = {Chapman \& Hall/CRC},
+} 
+
+@techreport{dmodk,
+  author = 	 {Eitan Zahavi},
+  title = 	 {{D-Mod-K} Routing Providing Non-Blocking Traffic for Shift Permutations on Real Life Fat Trees},
+  institution = {Technion Israel Institute of Technology},
+  year = 	 {2010},
+}
+#+end_src
+
+* Emacs Setup 							   :noexport:
+# Local Variables:
+# eval:    (require 'org-install)
+# eval:    (org-babel-do-load-languages 'org-babel-load-languages '( (shell . t) (R . t) (perl . t) (ditaa . t) ))
+# eval:    (setq org-confirm-babel-evaluate nil)
+# eval:    (unless (boundp 'org-latex-classes) (setq org-latex-classes nil))
+# eval:    (add-to-list 'org-latex-classes '("IEEEtran"
+# "\\documentclass[conference, 10pt]{IEEEtran}\n \[NO-DEFAULT-PACKAGES]\n \[EXTRA]\n  \\usepackage{graphicx}\n  \\usepackage{hyperref}"  ("\\section{%s}" . "\\section*{%s}") ("\\subsection{%s}" . "\\subsection*{%s}")                       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")                       ("\\paragraph{%s}" . "\\paragraph*{%s}")                       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+# eval:    (add-to-list 'org-latex-classes '("llncs" "\\documentclass{llncs2e/llncs}\n \[NO-DEFAULT-PACKAGES]\n \[EXTRA]\n"  ("\\section{%s}" . "\\section*{%s}") ("\\subsection{%s}" . "\\subsection*{%s}")                       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")                       ("\\paragraph{%s}" . "\\paragraph*{%s}")                       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+# eval:    (add-to-list 'org-latex-classes '("acm-proc-article-sp" "\\documentclass{acm_proc_article-sp}\n \[NO-DEFAULT-PACKAGES]\n \[EXTRA]\n"  ("\\section{%s}" . "\\section*{%s}") ("\\subsection{%s}" . "\\subsection*{%s}")                       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")                       ("\\paragraph{%s}" . "\\paragraph*{%s}")                       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+# eval:    (add-to-list 'org-latex-classes '("sig-alternate" "\\documentclass{sig-alternate}\n \[NO-DEFAULT-PACKAGES]\n \[EXTRA]\n"  ("\\section{%s}" . "\\section*{%s}") ("\\subsection{%s}" . "\\subsection*{%s}")                       ("\\subsubsection{%s}" . "\\subsubsection*{%s}")                       ("\\paragraph{%s}" . "\\paragraph*{%s}")                       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+# eval:    (setq org-alphabetical-lists t)
+# eval:    (setq org-src-fontify-natively t)
+# eval:   (setq ispell-local-dictionary "american")
+# eval:   (eval (flyspell-mode t))
+# eval:   (setq org-todo-keyword-faces '(("FLAWED" . (:foreground "RED" :weight bold))))
+# eval:   (custom-set-variables '(org-babel-shell-names (quote ("sh" "bash" "csh" "ash" "dash" "ksh" "mksh" "posh" "zsh"))))
+# eval:   (add-to-list 'load-path ".")
+# eval:   (require 'ox-extra)
+# eval:   (setq org-latex-tables-centered nil)
+# eval:   (ox-extras-activate '(ignore-headlines))
+# End:
