@@ -27,7 +27,11 @@ you an idea of how it can be organized:
    paths and uncleaned dependencies but writing it from the labbook was
    super easy as we just had to cut and paste the parts we
    needed. What may be interesting is the organization and the org
-   tricks to export to the right LaTeX style.
+   tricks to export to the right LaTeX style. As you may notice, in
+   the end of the document, there is a commented section with emacs
+   commands that are automatically executed when opening the file. It
+   is an effective way to depend less on the =.emacs/init.el= which is
+   generally customized by everyone.
 4. [[file:labbook_several.org][labbook_several.org]]: this is a labbook for a specific project shared
    by several persons. As a consequence it starts with information
    about installation, common scripts, has section with notes about all
@@ -35,7 +39,7 @@ you an idea of how it can be organized:
    other one about analysis. Entries could have been labeled by who
    wrote them but there were only a few of us and this information was
    available in git so we did not bother. In such labbook, it is common
-   to find annotations indicating that such experiment was :FLAWED: as
+   to find annotations indicating that such experiment was =:FLAWED:= as
    it had some issues.
 5. [[file:technical_report.org][technical_report.org]]: this is a short technical document I wrote
    after a colleague sent me a PDF describing an experiment he was
