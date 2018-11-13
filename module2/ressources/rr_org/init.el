@@ -50,6 +50,9 @@
 ;;   (setenv "JVM_OPTS" (concat "-Dhttp.proxyHost=" proxy-name
 ;;                              " -Dhttp.proxyPort=" proxy-port)))
 
+(add-to-list 'package-archives
+		 '("melpa-stable" . "http://stable.melpa.org/packages/"))
+
 (require 'org)
 
 (require 'ess-site)

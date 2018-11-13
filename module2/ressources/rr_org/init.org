@@ -74,6 +74,12 @@ document, simply =M-x org-babel-tangle=.
 ;;                              " -Dhttp.proxyPort=" proxy-port)))
 #+end_src
 
+* Package sources
+** Use melpa-stable
+#+BEGIN_SRC emacs-lisp :tangle init.el
+(add-to-list 'package-archives
+		 '("melpa-stable" . "http://stable.melpa.org/packages/"))
+#+END_SRC
 * Loading files:  
 ** Loading babel: 						     :ARNAUD:
 #+begin_src emacs-lisp :tangle init.el
