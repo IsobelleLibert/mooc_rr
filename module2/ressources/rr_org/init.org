@@ -77,6 +77,7 @@ document, simply =M-x org-babel-tangle=.
 * Package sources
 ** Use melpa-stable
 #+BEGIN_SRC emacs-lisp :tangle init.el
+(package-initialize)
 (add-to-list 'package-archives
 		 '("melpa-stable" . "http://stable.melpa.org/packages/"))
 #+END_SRC
