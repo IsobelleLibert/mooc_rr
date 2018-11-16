@@ -1,0 +1,2136 @@
+# -*- coding: utf-8 -*-
+#+TITLE:       Blog
+#+AUTHOR:      Arnaud Legrand
+#+HTML_HEAD: <link rel="stylesheet" title="Standard" href="http://orgmode.org/worg/style/worg.css" type="text/css" />
+#+STARTUP: overview indent inlineimages logdrawer
+#+LANGUAGE:    en
+#+TAGS: Seminar(s)
+#+TAGS: SG(s) WP1(1) WP2(2) WP3(3) WP4(4) WP5(5) WP6(6) WP7(7) WP8(8) WP0(0) Argonne(A)
+#+TAGS: POLARIS(P) LIG(L) INRIA (I) HOME(H) Europe(E) 
+#+TAGS: twitter(t)
+#+TAGS: Workload(w) BOINC(b) Blog noexport(n) Stats(S)
+#+TAGS: BULL(B)
+#+TAGS: autotuning(a)
+#+TAGS: Epistemology(E) Vulgarization(V) Teaching(T) 
+#+TAGS: R(R) Python(p) OrgMode(O) HACSPECIS(h)
+#+PROPERTY: header-args :eval never-export
+#+EXPORT_SELECT_TAGS: Blog
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:nil skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+LATEX_HEADER: %\usepackage{palatino,a4wide,eurosym,graphicx}\usepackage[francais]{babel}
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+EPRESENT_FRAME_LEVEL: 2
+#+COLUMNS: %25ITEM %TODO %3PRIORITY %TAGS
+#+SEQ_TODO: TODO(t!) STARTED(s!) WAITING(w!) APPT(a!) | DONE(d!) CANCELLED(c!) DEFERRED(f!) DELEGATED(D!)
+
+
+* 2011
+** 2011-02 février
+*** 2011-02-08 mardi							  :R:
+**** Pour apprendre:
+     - Pour les débutants:
+       http://wiki.stdout.org/rcookbook/
+       http://www.r-bloggers.com/
+       http://rstudio.org/ but emacs is just great too once ess is installed
+     - Indispensables:
+       + http://had.co.nz/ggplot2/
+       + http://plyr.had.co.nz/ et la démonstration par l'exemple
+	 http://plyr.had.co.nz/09-user/
+     - Une intro pas trop mal faite:
+       - http://bioconnector.github.io/workshops/lessons/intro-r-lifesci/01-intro-r/
+       - Encore plus interactif: http://swirlstats.com/
+     - Plus avancé:
+       http://cran.r-project.org/doc/contrib/Paradis-rdebuts_fr.pdf
+     - Pour ceux qui veulent aller plus loin et coder
+       http://zoonek2.free.fr/UNIX/48_R/all.html
+     - Bien plus avancé pour les fans de sémantique et de ruses de
+       fou par Hadlay Wickam:
+       http://adv-r.had.co.nz/Computing-on-the-language.html
+     - Un [[http://ww2.coastal.edu/kingw/statistics/R-tutorials/dataframes.html][excellent tutorial on data frames]] (=attach=, =with=, =rownames=,
+       =dimnames=, notions of scope...)
+**** R 101							       :Blog:
+[[file:public_html/blog/2012/09/12/R101.org][Moved to the blog]]
+[[file:~/Work/SimGrid/infra-songs/slides/140422-compas-R101/R101.org][Compas tutorial]]
+**** R tricks
+***** Reshaping
+http://www.statmethods.net/management/reshape.html
+#+begin_src R :results output :session :exports both
+# example of melt function
+library(reshape)
+mdata <- melt(mydata, id=c("id","time")) 
+#+end_src
+***** somme d'éléments avec fenêtre glissante
+#+begin_src R
+filter(x, rep(1,4))
+#+end_src
+***** sorting a data frame
+#+BEGIN_SRC R
+ dd[with(dd, order(-z, b)), ]
+#+END_SRC
+***** Capture output 
+#+begin_src R
+sink("myfile.txt", append=TRUE, split=TRUE)
+#+end_src
+When redirecting output, use the cat() function to annotate the
+output.
+***** Batch processing
+#+begin_src sh
+R CMD BATCH [options] my_script.R [outfile]
+#+end_src
+***** Convenient commands
+      - describe
+      - structure
+      - ddply
+      - cbind/rbind
+***** Labels and Factors
+      http://stackoverflow.com/questions/12075037/ggplot-legends-change-labels-order-and-title
+#+begin_src R
+dtt$model <- factor(dtt$model, levels=c("mb", "ma", "mc"), labels=c("MBB", "MAA", "MCC"))
+#+end_src
+      here is another way of reordering factors: 
+#+begin_src R
+dtt$model <- relevel(dtt$model, ref="MBB"). 
+#+end_src
+This puts the factor given by ref at the beginning.
+***** "parallel" Prefix 
+#+BEGIN_SRC 
+cumsum
+#+END_SRC
+***** knitr preembule
+check out "Tools for making a paper" in R-bloggers:
+#+BEGIN_SRC 
+<<set-options, echo=FALSE, cache=FALSE>>=
+opts_knit$set(stop_on_error=2L)
+@
+<<loadpackages,echo=FALSE>>=
+suppressMessages(require(memisc))
+@
+#+END_SRC
+***** Annotate in facet_wrap/facet_grid
+http://www.ansci.wisc.edu/morota/R/ggplot2/ggplot2.html
+***** Interactive plotting
+     http://rstudio.org/docs/advanced/manipulate
+     [[file:~/Work/SimGrid/infra-songs/WP4/R/Sweep3D_analysis/analyze.Rnw]]
+#+begin_src R
+GC <- function(df,start,end) {
+  ggplot(
+      df[(df$Start>=start & df$Start<=end)|(df$End>=start &
+      df$End<=end)|
+         (df$Start<=start & df$End>=end) ,],
+         aes(xmin=Start,xmax=End, ymin=ResourceId, ymax=ResourceId+1,
+             fill=Value))+
+         theme_bw()+geom_rect()+coord_cartesian(xlim = c(start, end)) 
+}
+GC(df_tau,1.1,1.2)
+animate(GC(df_tau, start, end),start=slider...)
+#+end_src
+***** scoping issue with ggplot: mixing external variables with column names
+      There is a magical function designed for this: here()
+#+BEGIN_EXAMPLE
+ddply(df_native, c("ResourceId"), here(transform), 
+      Chunk = compute_chunk(Start,End,Duration,min_time_pure))
+#+END_EXAMPLE
+      Here, min_time_pure is an external variable, not a column name.
+***** speeding things up with parallel plyR
+#+BEGIN_SRC R
+  library(doMP)
+  library(plyr)
+  perf_win <- ddply(df_win,c("host_id"), summarize,
+         astro_avg=sum(et_avg*astro_win), 
+         astro_var=sum(et_var*astro_win), 
+         seti_avg=sum(et_avg*seti_win), 
+         seti_var=sum(et_var*seti_win),
+         .parallel=TRUE, .progress = "text")
+#+END_SRC
+
+***** dessin de graphe avec courbes de bezier
+      https://gist.github.com/dsparks/4331058
+***** Side effect in local functions
+http://my.safaribooksonline.com/book/programming/r/9781449377502/9dot-functions/id3440389
+***** Non-standard evaluation
+http://adv-r.had.co.nz/Computing-on-the-language.html
+***** Arrays of functions in for loops
+http://stackoverflow.com/questions/26064649/enclosing-variables-within-for-loop
+**** R weblinks/statistiques r-cran					:WP8:
+ http://en.wikibooks.org/wiki/R_Programming/Graphics
+
+ http://freecode.com/articles/creating-charts-and-graphs-with-gnu-r
+
+ http://www.statmethods.net/graphs/density.html
+
+ http://addictedtor.free.fr/graphiques/RGraphGallery.php?graph=78
+ (scatterplot + histogram)
+
+ http://cran.r-project.org/doc/contrib/Ricci-distributions-en.pdf
+ (comparaison et fitting de distributions)
+
+ http://www.sr.bham.ac.uk/~ajrs/R/r-gallery.html
+ http://www.som.yale.edu/faculty/pks4/files/teaching/handouts/r2_tstat_explained.pdf
+ about t-values
+
+ http://www.statmethods.net/stats/anova.html
+
+ http://www.stat.wisc.edu/courses/st850-lindstro/handouts/blocking.pdf
+ (blocking dans un anova en R)
+  
+ http://www-rocq.inria.fr/axis/modulad/archives/numero-34/Goupy-34/goupy-34.pdf
+ (tutorial on DOE in French)
+
+ file:/home/alegrand/Work/Documents/Enseignements/M2R_Mesures_Analyse_Eval_Perf_06/Intro_Statistics/doesimp2excerpt--chap3.pdf
+ file:/home/alegrand/Work/Documents/Enseignements/M2R_Mesures_Analyse_Eval_Perf_06/Intro_Statistics/doeprimer.pdf 
+ DOE
+
+ http://cran.r-project.org/doc/contrib/Faraway-PRA.pdf
+ (gros bouquin de R sur l'ANOVA)
+ http://pages.cs.wisc.edu/~cyffka/R_regression-and-anova.pdf
+
+ https://marvelig.liglab.fr/doku.php/thematiques/methodologie/accueil
+ Documents de Nadine Mandran + pointeurs vers cours de stat
+
+ http://pbil.univ-lyon1.fr/R/pdf/bsa.pdf
+ http://grasland.script.univ-paris-diderot.fr/go303/ch5/doc_ch5.htm
+ Document sur l'analyse de données spatialisées
+
+ http://nsaunders.wordpress.com/2010/08/20/a-brief-introduction-to-apply-in-r/
+ Utilisation de Apply
+
+ http://zoonek2.free.fr/UNIX/48_R/all.html
+ Un utilisateur de R qui a noté tout un tas de choses utiles et
+ d'exemples, nottamment de programmation.
+
+ http://sharpstatistics.co.uk/r/ggplot/
+ http://rug.mnhn.fr/semin-r/PDF/INED-SFdS-MNHN_Sueur_280411.pdf
+ Tutorial ggplot2
+
+ https://catalyst.uw.edu/workspace/tbranch/24589/155528
+ Cours sur la visu en R à la Tufte
+
+***** Linear regression and heteroscedasticity                   :ATTACH:
+:PROPERTIES:
+:Attachments: ModeleLineaireRegrDegerine.pdf Regression101R.pdf GLSHeteroskedasticity.pdf week2_ht.pdf
+:ID:       b3ced951-cda8-40ce-b281-cc71b55f1da9
+:END:
+- http://ljk.imag.fr/membres/Anatoli.Iouditski/cours/MLDESS.pdf (see
+  attachment) cours en français sur la régression linéaire, vision
+  proba.
+- http://smat.epfl.ch/courses/Regression/Slides/week2_ht.pdf slides
+  sur la régression linéaire et le lien avec maximum likelihood
+- http://www.r-tutor.com/elementary-statistics/simple-linear-regression/confidence-interval-linear-regression
+  #+begin_src R :results output :session :exports both
+  predict(eruption.lm, newdata, interval="confidence") 
+  #+end_src
+- http://www.princeton.edu/~otorres/Regression101R.pdf (std error et
+  confidence interval on parameters estimates + heteroscedasticity)
+- http://www.econ.uiuc.edu/~wsosa/econ471/GLSHeteroskedasticity.pdf 
+  Comment gérer l'hétéroscedastisité.
+***** Time series                                                :ATTACH:
+:PROPERTIES:
+:Attachments: SCBio.pdf
+:ID:       40d5498d-e8b3-4c73-8722-7d0056667c15
+:END:
+http://ljk.imag.fr/membres/Serge.Degerine/Enseignement/SCBio.pdf
+
+**** Quantile Regression and Bootstrap                      :Stats:ATTACH:
+:PROPERTIES:
+:Attachments: mcgill-r.pdf st-m-app-bootstrap.pdf stnews70.pdf
+:ID:       8e3038dc-fa3e-4a7d-a4b1-216513e4359f
+:END:
+http://freakonometrics.hypotheses.org/date/2012/04 (open data and
+ecological falacies (Simpson's paradox)).
+
+http://freakonometrics.hypotheses.org/2396
+(Talk-on-quantiles-at-the-R-Montreal-group)
+
+http://www.cscu.cornell.edu/news/statnews/stnews70.pdf
+**** Reproducible research 						:WP8:
+Andrew Davison tutorial, which is full of interesting references:
+http://rrcns.readthedocs.org/en/latest/index.html
+***** org-mode
+Une autre approche, uniquement en org.
+http://orgmode.org/worg/org-contrib/babel/how-to-use-Org-Babel-for-R.html
+***** R/Sweave/knitr
+http://users.stat.umn.edu/~geyer//Sweave/
+Sweave, exemple minimaux, emacs.
+
+http://www.bepress.com/cgi/viewcontent.cgi?article=1001&context=bioconductor
+Un article sur reproducible research et sweave
+
+http://cran.r-project.org/web/packages/pgfSweave/vignettes/pgfSweave.pdf
+Pgfsweave, un paquet latex qui améliore le look et la vitesse de
+sweave. Le paquet est mort ceci dit et mes premiers essais n'étaient
+pas concluants car tout convertir en pgf, c'est un peu bourrin.
+
+http://yihui.name/knitr/
+knitr, le dernier, bien à la mode, stable et très prometteur
+
+     
+http://www.stat.uiowa.edu/~rlenth/StatWeave/OLD/SRC-talk.pdf
+StatWeave. Permet aussi de mettre du Maple.
+***** Ipython notebook
+https://osf.io/h9gsd/
+sympa, facile à mettre en place
+***** ActivePapers
+- http://www.activepapers.org/
+- https://bitbucket.org/khinsen/active_papers_py/wiki/Tutorial
+***** Elsevier approach
+http://www.elsevier.com/physical-sciences/computer-science/executable-papers
+https://collage.elsevier.com/manual/
+http://is.ieis.tue.nl/staff/pvgorp/research/?page=SCP11
+***** Research Gate
+https://www.researchgate.net/publicliterature.OpenReviewInfo.html
+***** Conference or general discussions
+http://reproducibleresearch.net/index.php/Main_Page
+http://wiki.stodden.net/Main_Page
+
+
+- [[http://www.eecg.toronto.edu/~enright/wddd/][Workshop on Duplicating, Deconstructing and Debunking (WDDD)]] ([[http://cag.engr.uconn.edu/isca2014/workshop_tutorial.html][2014
+  edition]])
+- http://evaluate2010.inf.usi.ch
+- [[http://www.stodden.net/AMP2011/][Reproducible Research: Tools and Strategies for Scientific Computing]]
+- [[http://wssspe.researchcomputing.org.uk/][Working towards Sustainable Software for Science: Practice and
+  Experiences]]
+- [[http://hunoldscience.net/conf/reppar14/pc.html][REPPAR'14: 1st International Workshop on Reproducibility in Parallel
+  Computing]]
+- [[https://www.xsede.org/web/reproducibility][Reproducibility@XSEDE: An XSEDE14 Workshop]]
+- [[http://www.occamportal.org/reproduce][Reproduce/HPCA 2014]]
+- [[http://www.ctuning.org/cm/wiki/index.php?title%3DEvents:TRUST2014][TRUST 2014]]
+- http://vee2014.cs.technion.ac.il/docs/VEE14-present602.pdf
+
+  http://www-958.ibm.com/software/data/cognos/manyeyes/visualizations
+  http://www.myexperiment.org/
+  http://wiki.galaxyproject.org/
+  http://www.runmycode.org/CompanionSite/
+
+  http://evaluate.inf.usi.ch/
+
+  github ?
+  workflow ?
+  vistrails ?
+  sumatra
+  vcr
+***** Politics
+http://michaelnielsen.org/blog/how-you-can-help-the-federal-research-public-access-act-frpaa-become-law/7
+
+http://en.wikipedia.org/wiki/Federal_Research_Public_Access_Act
+
+http://michaelnielsen.org/blog/on-elsevier/
+
+**** General discussions about scientific practice                   :WP8:
+http://michaelnielsen.org/blog/three-myths-about-scientific-peer-review*/
+http://michaelnielsen.org/blog/some-garbage-in-gold-out/
+http://www.ploscompbiol.org/article/info%3Adoi%2F10.1371%2Fjournal.pcbi.1003285
+**** Coursera
+- https://www.coursera.org/course/compdata
+- https://class.coursera.org/exdata-002/lecture
+- https://class.coursera.org/repdata-002
+**** ggplot2 cool examples
+http://felixfan.github.io/rstudy/2014/02/28/ggplot2-cheatsheet/
+http://blog.revolutionanalytics.com/graphics/
+http://grrrraphics.blogspot.com.br/2012/05/ever-wanted-to-see-at-glance.html 
+http://www.ancienteco.com/2012/03/basic-introduction-to-ggplot2.html
+http://sape.inf.usi.ch/quick-reference/ggplot2
+http://www.r-bloggers.com/overplotting-solution-for-black-and-white-graphics/
+http://stats.stackexchange.com/questions/12029/is-it-possible-to-create-parallel-sets-plot-using-r
+http://novyden.blogspot.fr/2013/09/how-to-expand-color-palette-with-ggplot.html
+https://gastonsanchez.wordpress.com/2012/08/27/scatterplot-matrices-with-ggplot/
+**** Visualisations
+http://www.visual-literacy.org/periodic_table/periodic_table.html
+**** Design of Experiments (DoE)
+- Montgommery book
+- http://www.cs.wayne.edu/~hzhang/courses/7290/Lectures/4%20-%20Introduction%20to%20Experimental%20Design.pdf
+- http://www.obgyn.cam.ac.uk/cam-only/statsbook/stexdes.html#3g
+- http://mescal.imag.fr/membres/arnaud.legrand/teaching/2011/EP_czitrom.pdf
+- http://www.basic.northwestern.edu/statguidefiles/oneway_anova_ass_viol.html
+- http://techdigest.jhuapl.edu/TD/td2703/telford.pdf
+*** 2011-02-15 mardi
+**** Réunion CIGRI
+***** Présents
+      - Olivier Richard, Mcf UJF/MESCAL, gestions de ressources,
+        initiateur de OAR et Cigri, G5K
+      - Bruno Bzeznik, Ingénieur CIMENT (admin, gestion clusters) et
+        MESCAL (dev OAR, outils pour CIMENT).
+      - Chislain Charrier, Ingénieur INRIA G5K à Rennes depuis quelques
+        mois. Mission: s'occuper des campagnes d'expérimentations.
+      - Philippe Leprouster, Ingénieur CDD UJF MESCAL pour bosser sur
+        l'optimisation d'OAR
+      - Bernard Boutherin, responsable info au LPSC, noeud Tier3 de la
+        grille EGI (600 coeurs de calcul, 700 To de stoquage,
+        précurseur autour du free-cooling, installation à moins de 60
+        kW depuis 2008).
+      - Catherine Biscarat, IR CNRS qui va s'occuper de la liaison
+        CIGRI/LPSC.
+      - Pierre Neyron, IR CNRS MESCAL/MOAIS, responsable de digitalis.
+***** Point de Bruno sur l'état actuel de Cigri
+      Site web: https://ciment-grid.ujf-grenoble.fr
+      Logiciel principalement déployé dans CIMENT. Exploite
+      actuellement 3000 cores sur une vingtaine de machines.
+      R2D2 et fostino sont les plus grosses et gérées par un seul
+      serveur OAR.
+      
+      Resources très faiblement utilisées (en général un ou deux
+      utilisateurs à un instant donnée). Besoin d'accompagner les
+      utilisateurs qui n'ont pas forcément conscience que CIGRI est
+      adapté à leurs besoins. Les utilisateur qui utilisent CIGRI
+      actuellement sont de gros consommateurs de ressources.
+      
+      Collaboration CIGRI/LPSC initiée par un projet autour du
+      stoquage. Bruno a du coup équipé CIGRI de noeuds de stoquage et
+      a déployé Irods.
+***** Plus d'infos sur : http://wiki-oar.imag.fr/index.php/CiGri-ng
+      
+Entered on [2011-02-15 mar. 09:41]
+  
+  [[file:~/Liste.org]]
+* 2012 
+** 2013-02 février
+**** 2013-02-11 lundi
+***** Reproducible research links                                     :WP8:R:
+      http://wiki.stodden.net/ICERM_Reproducibility_in_Computational_and_Experimental_Mathematics:_Readings_and_References
+      http://www.rpubs.com/
+      An interesting article with a dissenting opinion on reproducible research:
+      http://cogprints.org/8675/
+
+ Entered on [2013-02-11 lun. 09:52]
+***** Audio StarPU                                                      :WP4:
+      Lionel, Samuel, Paul, Luka, Brice.
+****** Séquentialisation des comms
+       - Idées: faire des mesures automatiques
+       - Deux implems' (Sam & Paul), pas équivalentes, l'une modélisant
+         plus les communications synchrone et l'autre les
+         asynchrones. À creuser. 
+****** Petites macros pour mesurer/injecter le temps
+       - Temps injecté dans la version initiale de Sam = temps moyen
+         observé par StarPU .
+       - Une fois les problème de communication réglés (virer le
+         slow-start, séquentialiser ce qui doit l'être), les dernières
+         différences viennent de la variabilité vraie vie / simu
+         (surtout sur CPU).
+       - Objectif: insérer variabilité. C'est le même problème que pour
+         SMPI. Dans la version actuelle, on regarde le temps pris lors
+         de la simulation et on le réinjecte, d'où une très mauvaise portabili
+       - Idée: identifier les blocs, capturer les temps et utiliser en
+         simu un tirage à partir du profil capturé. C'est assez
+         "nouveau" car FSuter capturait une trace de niveau MPI donc
+         sans info sur quel bloc de code => pas d'information sur la
+         source de la variabilité.
+       - On commence par une approche basique: à la compilation, on
+         identifie un bloc par FILE,LINE, avec éventuellement une
+         extension via une annotation manuelle (c'est le cas pour
+         StarPU qui lance les calculs toujours au même endroit).
+       - Niveau workflow, première exécution pour avoir les timings,
+         puis R, puis réinsertion ds SG.
+       - La capture est pas compliquée et comme il y a le même besoin
+         pour SMPI, on factorise pour éviter les divergences. Ce code
+         est donc dans SG. Paul et Luka ont fait ça la semaine dernière
+         et Paul l'a utilisé dans *PU, reste à tester pour confirmer
+       - Luka essaie maintenant de mettre ça ds SMPI, c'est plus
+         difficile de savoir où mettre les benchmarks. L'ideal serait
+         de regarder dans la pile, c'est un peu compliqué donc on reste
+         sur notre approche simple pour l'instant et on raffinera plus
+         tard si c'est vraiment nécessaire. L'avantage escompté, c'est
+         sur les plates-formes Mt Blanc par exemples, on peut exécuter
+         une fois et utiliser ensuite les timings pour faire des tests
+         de scalabilité sur une vraie machine de brute qui va vite.
+****** Objectifs des uns et des autres
+       - Lionel & Paul à Bdx: objectif = proposer des modèles, support
+       - Sam: objectif = bricoler DES ordonnanceurs, lancer vite sur
+         différentes et évaluer l'impact de tailles de blocs ou de la
+         taille d'une fenêtre glissante. C'est donc clairement un outil
+         de développement pour tester des choses et il faut donc que
+         l'outil soit un minimum stable. Rien de grave mais il faut
+         bien en être conscient en terme de développement. Il sera
+         important de propager les informations du genre "attention on
+         a corrigé un truc, ça risque d'invalider les expériences
+         précédentes".
+       - Arnaud rappelle que d'un point de vue développement, c'est
+         comme pour SMPI, il faut être conscient qu'il y a trois types
+         de tâches toutes aussi importantes les unes que les autres
+         (i.e., quand on en néglige une on s'en mord toujours les
+         doigts à un moment ou à un autre):
+         + Exploration: le plus fun, de petites expériences pour voir
+           si ça marche. Pour moi, la démarche de Sam et ses
+           expériences faites rentrent dans cette catégorie.
+	 + Ingénierie: écriture de code, petites fonctions
+           techniques. Dans le contexte de starPU, typiquement, il
+           s'agit du travail initial de Sam mais aussi du codage de la
+           séquentialisation des communications ou bien des macros de
+           capture de traces.
+	 + Consolidation: moins drôle, mais il faut le faire pour
+           vérifier que tout le monde peut fairer ses mesures,
+           réutiliser, et qu'on puisse avancer en toute
+           confiance. Souvent, sur une nouvelle machine, de nouveaux
+           phénomènes apparaissent et ce n'est qu'avec des outils
+           d'exploration systématique et automatiques qu'on s'en sort.
+
+       Il faut donc mettre en place dès le début des outils de capture
+       d'information et d'analyse.
+****** Roadmap
+       - Séquentialisation / Parallélisation: Paul à Bordeaux s'en
+         occupe. Il met en place le code qui crache une matrice
+         d'interférences et met en place dans StarPU/SG le code qui
+         l'exploite.
+       - Infrastructure de mesure / collecte de traces: Luka et Arnaud à
+         Grenoble s'en occupent. Réflexion sur un workflow qui va bien
+         pour garder de bonnes traces et pouvoir facilement tester de
+         nouvelles machines.
+       - Paul vient le 14 Mars à Grenoble et on en profitera pour faire
+         le point.
+****** Divers
+******* Campagne d'expériences pour valider le modèle / invalider les précédents. Comment faire ?
+	Il est difficile (impossible ?) de dire qu'un modèle est
+	valide. Il est plus raisonnable de montrer à quel point on a
+	essayer de l'invalider, ce qui permet à chacun d'évaluer à quel
+	point il fait confiance aux capacités d'extrapolation et
+	d'explication du modèle.
+
+	On peut donc montrer l'impact des améliorations successives du
+	modèle, soit sur le temps final soit sur des choses plus fines
+	de la trace. Il faut tester sur des cas de plus en plus
+	complexes, d'où la nécessité d'avoir une méthode un peu
+	automatique pour comparer des résultats. À titre d'illustration
+	voici le genre de choses que Martin a raconté à l'éval d'Héméra.
+
+	http://mescal.imag.fr/membres/arnaud.legrand/uss_simgrid/130211-HEMERA-eval.pdf
+      
+	+ Mesure 0: makespan. C'est ce qui nous intéresse mais c'est
+          généralement très pauvre et on peut arriver par hasard à de
+          bons résultats ou avoir de mauvais résultats juste parce
+          qu'un paramètre a été mal mesuré. Même si c'est uniquement,
+          cette mesure là qui nous intéresse au final, il est
+          indispensable de comparer pour des mesures plus fines car
+          c'est ce qui permet de mettre une certaine confiance dans les
+          capacités d'extrapolation de l'outil.
+	+ Mesure 1: comparaison visuelle de gantt chartt, peut être
+          joli, facile et instructif avec R, mais difficilement
+          quantifiable.
+	+ Mesure 2: Regarder les distributions de temps passés dans
+          différents états. On peut faire ça en partie pour StarPU mais
+          uniquement pour les temps de calcul, pas pour les temps de
+          communication. En effet, on a peu de maîtrises sur les temps
+          de comms, on ne sait pas vraiment à quel moment la
+          communication s'est terminée ni quand elle a commencé.
+	+ Mesure 3: Comparer les schedules... C'est difficile car déjà
+          quand c'est stable, une métrique n'est pas évidente à définir
+          mais quand en plus c'est variable d'une fois sur
+          l'autre... Idéalement, il faudrait comparer plutôt la
+          distribution des schedules plutôt que les schedules
+          individuels... C'est difficile mais passionnant. Ce qui est
+          super, c'est qu'on a l'outil qui permet de générer les
+          traces.
+******* Problème de main() entre *PU et SG
+	Passer systématiquement par le XML a résolu le problème de
+	l'initialisation et du lancement de simgrid. Ça reste gênant
+	parce qu'il faut recompiler l'appli Sam. aimerait pouvoir
+	changer l'appli en changeant le LD_LIBRARY_PATH, avec 2
+	versions de libstarpu.so => Mais alors comment passer les
+	arguments à SG ? 
+
+	C'est l'appli qui donne argc,argv dans l'appel à *pu_init
+	L'appli risque de pas aimer les options de SG.
+
+	*pu passe par des variables d'environnements pour éviter ces soucis
+
+	Vision d'arnaud : --platform=toto.xml mangé par *pu, reste des
+	args mangés par SG Comment faire pour mettre les stats de temps
+	d'exécution adaptés au fichier XML Ptetre qu'on peut identifier
+	les GPUs par modèle plutôt que par numéro de GPU Possibilité de
+	vérifier les hostname (STARPU_HOSTNAME)
+******* Comment faire pour que ça marche pour exécuter en local.
+	On peut pondre le .xml, tout classer par hostname. Tout est dans
+	.starpu/sampling, pour les différents hostnames et codelets, les
+	traces de perfs.
+
+	Du coup ce serait *pu qui génèrerait automatiquement le .xml ?
+	ça coûte pas cher. Mais les valeurs qu'on met dedans, comment
+	on les obtient ?
+	+ BP/latence du bus sont mesuréesde toutes façons au départ
+	+ Pour la matrice d'interférence de Paul, il faudrait aussi la
+          mettre dans le XML.
+	Du coup, il serait peut-être plus naturel que ce soit le script
+	de Paul qui ponde le .XML qui s'occupe de l'étalonnage
+
+ Entered on [2013-02-11 lun. 09:53]
+** 2013-05 mai
+*** 2013-05-21 mardi
+**** BIS Workshop
+
+#+BEGIN_SRC sh :results output raw :exports both
+for i in gnome gnome-desktop-environment ifupdown iproute iproute-dev isc-dhcp-client libatm1 network-manager network-manager-gnome  ; do
+   dir=`apt-cache showsrc $i | grep Directory | sed 's/.*: //'`
+   version=`apt-cache showsrc $i | grep ^Version | sed 's/.*: *//g'`
+   echo "wget http://http.us.debian.org/debian/$dir/$i""_$version"_amd64.deb
+done
+#+END_SRC
+     
+Entered on [2013-05-21 mar. 08:46]
+**** Discussions avec Anne-Cécile à propos des timeouts TCP MPI		:WP4:
+     I have some related news. I had the chance to chat with
+     Anne-Cecile and talked her about our timeout problem. After
+     digging a little, she was able to point me to related work:
+     - Understanding TCP Incast Throughput Collapse in Datacenter
+       Networks
+     - Safe and Effective Fine-grained TCP Retransmissions for
+       Datacenter Communication
+     - On the properties of an adaptive TCP minimum rto
+     - http://www.hjp.at/doc/rfc/rfc2988.txt
+
+     So the problem has a name (incast) and is linked to the following
+     TCP parameter:
+     | OS      | TCP RTOmin  |
+     |---------+-------------|
+     | Linux   | 200ms       |
+     | BSD     | 200ms       |
+     | Solaris | 400ms       |
+
+     I haven't read the articles so I don't know the details. All I
+     can say so far is I don't know how to change this parameter
+     without recompiling the kernel...
+
+     #+BEGIN_SRC sh :results output raw :exports both
+     cd /usr/src/linux-headers-3.2.0-4-common
+     cg 'define *TCP_RTO_MIN' '*'
+     cg 'define *HZ' '*'
+     #+END_SRC
+
+     Basically, this value is good enough for wide area where RTT is
+     large but in our SAN setting, it's rather bad. Looking further,
+     http://comments.gmane.org/gmane.linux.network/162986, I learnt
+     that although this parameter cannot be modified through sysctl,
+     it could be overriden per route with iproute.
+
+
+     #+BEGIN_SRC sh :results output text :exports both
+     for i in ip ip-address ipcontroller iplogger ip-netns iproxy iptables-save ipython ip6tables ip-addrlabel ipcrm ip-maddress ip-ntable ip-rule iptables-xml ipython2.6 ip6tables-apply ipc ipcs ip-monitor ipptool iptables ip-tunnel ipython2.7 ip6tables-restore ipcluster ipengine ip-mroute ipptoolfile iptables-apply ipv6 ip6tables-save ipcmk ip-link ip-neighbour ip-route iptables-restore ip-xfrm ; do 
+       man -T --troff-device=ascii $i | grep -i rto
+     done
+     #+END_SRC
+
+     #+RESULTS:
+
+Entered on [2013-05-21 mar. 12:37]
+**** Play with R xkcd							  :R:
+     #+begin_src R :results output :session :exports both
+     # install.packages('xkcd') # did not work so I made it manually
+     library(extrafont)
+     download.file("http://simonsoftware.se/other/xkcd.ttf", dest="xkcd.ttf")
+     system("mkdir ~/.fonts")
+     system("cp xkcd.tff -t ~/.fonts")
+     font_import()
+     loadfonts()
+     #+END_SRC
+     
+     #+BEGIN_SRC R :results graphics :file /tmp/plot.png  :exports results :width 600 :height 200 :session
+     library(xkcd)
+     theme_xkcd <- theme(
+       panel.background = element_rect(fill="white"), 
+       axis.ticks = element_line(colour=NA),
+       panel.grid = element_line(colour="white"),
+       axis.text.y = element_text(colour=NA), 
+       axis.text.x = element_text(colour="black"),
+       text = element_text(size=16, family="xkcd")
+     )
+     ggplot(data.frame(x=c(0, 10)), aes(x)) + theme_xkcd +
+       stat_function(fun=sin,position="jitter", color="red", size=2) + 
+       stat_function(fun=cos,position="jitter", color="white", size=3) + 
+       stat_function(fun=cos,position="jitter", color="blue", size=2) + 
+       geom_text(family="xkcd", x=4, y=0.7, label="A SIN AND COS CURVE")+
+       xkcdaxis(c(0, 10),c(-1,1))
+     #+END_SRC
+
+     #+RESULTS:
+     [[file:/tmp/plot.png]]
+
+Entered on [2013-05-21 mar. 15:49]
+* 2015
+** 2015-01 janvier
+*** 2015-01-07 mercredi
+**** Helping Martin with R                                    :Teaching:R:
+
+#+tblname: daily
+|       Date | exos_java | traces_java | exos_python | traces_python | exos_scala | traces_scala |
+|------------+-----------+-------------+-------------+---------------+------------+--------------|
+|   2014.9.2 |         6 |           1 |           0 |             0 |          0 |            0 |
+|   2014.9.3 |         5 |           1 |           0 |             0 |          0 |            0 |
+|   2014.9.4 |         8 |           2 |           0 |             0 |          0 |            0 |
+|   2014.9.8 |         7 |           4 |           0 |             0 |       1290 |           86 |
+|   2014.9.9 |         0 |           0 |           3 |             1 |       1615 |           86 |
+|  2014.9.10 |         0 |           0 |           1 |             1 |        163 |           16 |
+|  2014.9.11 |         3 |           2 |           0 |             0 |        999 |           63 |
+|  2014.9.12 |        67 |           4 |           2 |             2 |       1149 |           67 |
+|  2014.9.13 |        20 |           3 |           1 |             1 |        132 |           14 |
+|  2014.9.14 |         7 |           1 |           0 |             0 |        170 |           12 |
+|  2014.9.15 |         9 |           2 |           0 |             0 |       1112 |           73 |
+|  2014.9.16 |        16 |           2 |           0 |             0 |        768 |           60 |
+|  2014.9.17 |        36 |           3 |           0 |             0 |        274 |           40 |
+|  2014.9.18 |         1 |           1 |          22 |             2 |         20 |            2 |
+|  2014.9.19 |         1 |           1 |          18 |             2 |         10 |            2 |
+|  2014.9.20 |         0 |           0 |          12 |             1 |         61 |            6 |
+|  2014.9.21 |         0 |           0 |           6 |             2 |         36 |            6 |
+|  2014.9.22 |         3 |           2 |          11 |             2 |        420 |           50 |
+|  2014.9.23 |         1 |           1 |           0 |             0 |        218 |           31 |
+|  2014.9.24 |         0 |           0 |          12 |             2 |         39 |            4 |
+|  2014.9.25 |         0 |           0 |           1 |             1 |        220 |           30 |
+|  2014.9.26 |         0 |           0 |          19 |             2 |         28 |            5 |
+|  2014.9.27 |         0 |           0 |          10 |             1 |         17 |            4 |
+|  2014.9.28 |         0 |           0 |          12 |             2 |         37 |            6 |
+|  2014.9.29 |        26 |           3 |           8 |             1 |        509 |           81 |
+|  2014.9.30 |         9 |           2 |          16 |             2 |        243 |           36 |
+|  2014.10.1 |         1 |           1 |          26 |            14 |         99 |           16 |
+|  2014.10.2 |         1 |           1 |           1 |             1 |        325 |           38 |
+|  2014.10.3 |        26 |          15 |          52 |            16 |         22 |            4 |
+|  2014.10.4 |        25 |           1 |           4 |             3 |         36 |            9 |
+|  2014.10.5 |        10 |           1 |           2 |             1 |         49 |            9 |
+|  2014.10.6 |         5 |           2 |          39 |            22 |        192 |           37 |
+|  2014.10.7 |        24 |           4 |          17 |             7 |        143 |           25 |
+|  2014.10.8 |        50 |           3 |           0 |             0 |         77 |           14 |
+|  2014.10.9 |        24 |           2 |          11 |             3 |         48 |            9 |
+| 2014.10.10 |        35 |           4 |           7 |             2 |          0 |            0 |
+| 2014.10.11 |         0 |           0 |           9 |             3 |          3 |            1 |
+| 2014.10.12 |        20 |           6 |           7 |             3 |         10 |            1 |
+| 2014.10.13 |        32 |           4 |          18 |             4 |          0 |            0 |
+| 2014.10.14 |        44 |           1 |          41 |             3 |          8 |            1 |
+| 2014.10.15 |         5 |           3 |          64 |            10 |          6 |            2 |
+| 2014.10.16 |        27 |           2 |          24 |             5 |          1 |            1 |
+| 2014.10.17 |        43 |           3 |          14 |             4 |          0 |            0 |
+| 2014.10.18 |        84 |           2 |          57 |             8 |          0 |            0 |
+| 2014.10.19 |        10 |           2 |          86 |            11 |          0 |            0 |
+| 2014.10.20 |         0 |           0 |          94 |            11 |          0 |            0 |
+| 2014.10.21 |        15 |           1 |          67 |             8 |         10 |            2 |
+| 2014.10.22 |        20 |           5 |          76 |            15 |          1 |            1 |
+| 2014.10.23 |        33 |           3 |          12 |             5 |          0 |            0 |
+| 2014.10.24 |        29 |           2 |          58 |            11 |          1 |            1 |
+| 2014.10.25 |        33 |           8 |          38 |             8 |          1 |            1 |
+| 2014.10.26 |        13 |           6 |          39 |             8 |         34 |            3 |
+| 2014.10.27 |        13 |           4 |          49 |            12 |         15 |            1 |
+| 2014.10.28 |         4 |           2 |          44 |             8 |          3 |            1 |
+| 2014.10.29 |         0 |           0 |          28 |             9 |         13 |            2 |
+| 2014.10.30 |         4 |           3 |          49 |             8 |          0 |            0 |
+| 2014.10.31 |         3 |           2 |          58 |            14 |          7 |            1 |
+|  2014.11.1 |         0 |           0 |          71 |             9 |          7 |            2 |
+|  2014.11.2 |        23 |           2 |          57 |             6 |          0 |            0 |
+|  2014.11.3 |        10 |           1 |          18 |             5 |          0 |            0 |
+|  2014.11.4 |        19 |           1 |          49 |            10 |          3 |            1 |
+|  2014.11.5 |        29 |           2 |          28 |             9 |          0 |            0 |
+|  2014.11.6 |        86 |           3 |         142 |            19 |          0 |            0 |
+|  2014.11.7 |        38 |           2 |           4 |             2 |          0 |            0 |
+|  2014.11.8 |         0 |           0 |          18 |             4 |          6 |            1 |
+|  2014.11.9 |        25 |           2 |          39 |            10 |          0 |            0 |
+| 2014.11.10 |        16 |           1 |          17 |             3 |          0 |            0 |
+| 2014.11.11 |         0 |           0 |          70 |            16 |          1 |            1 |
+| 2014.11.12 |         0 |           0 |           4 |             3 |          0 |            0 |
+| 2014.11.13 |         0 |           0 |         168 |            20 |          1 |            1 |
+| 2014.11.14 |         0 |           0 |          18 |             2 |          0 |            0 |
+| 2014.11.15 |         0 |           0 |           5 |             2 |          8 |            1 |
+| 2014.11.16 |        16 |           2 |          16 |             4 |          4 |            1 |
+| 2014.11.17 |         0 |           0 |           8 |             3 |          0 |            0 |
+| 2014.11.18 |         4 |           1 |           7 |             3 |          0 |            0 |
+| 2014.11.19 |        17 |           2 |           4 |             1 |          0 |            0 |
+| 2014.11.20 |         0 |           0 |         102 |            13 |          0 |            0 |
+| 2014.11.21 |         7 |           1 |          31 |             3 |          1 |            1 |
+| 2014.11.22 |         1 |           1 |          17 |             4 |          0 |            0 |
+| 2014.11.23 |         4 |           1 |          25 |             6 |          0 |            0 |
+| 2014.11.24 |         0 |           0 |           2 |             1 |          3 |            1 |
+| 2014.11.25 |         4 |           1 |           0 |             0 |          7 |            2 |
+| 2014.11.26 |         0 |           0 |           4 |             1 |          0 |            0 |
+| 2014.11.27 |         0 |           0 |           1 |             1 |          6 |            1 |
+| 2014.11.28 |         0 |           0 |           6 |             3 |          1 |            1 |
+| 2014.11.29 |         1 |           1 |          29 |             4 |         13 |            3 |
+| 2014.11.30 |         3 |           1 |          57 |            10 |         15 |            2 |
+|  2014.12.1 |         8 |           1 |          15 |             4 |          7 |            3 |
+|  2014.12.2 |         8 |           3 |          17 |             5 |          0 |            0 |
+|  2014.12.3 |         3 |           1 |           6 |             2 |          0 |            0 |
+|  2014.12.4 |         4 |           3 |           1 |             1 |          1 |            1 |
+|  2014.12.5 |         0 |           0 |          17 |             2 |          5 |            2 |
+|  2014.12.6 |         0 |           0 |           6 |             2 |          3 |            1 |
+|  2014.12.7 |         0 |           0 |           7 |             3 |          0 |            0 |
+|  2014.12.8 |        11 |           3 |           0 |             0 |          0 |            0 |
+|  2014.12.9 |         7 |           1 |           0 |             0 |          0 |            0 |
+| 2014.12.10 |        27 |           2 |           0 |             0 |          0 |            0 |
+| 2014.12.11 |         0 |           0 |           0 |             0 |          1 |            1 |
+| 2014.12.13 |        17 |           3 |           0 |             0 |          0 |            0 |
+| 2014.12.14 |         3 |           1 |          10 |             1 |          0 |            0 |
+| 2014.12.15 |        25 |           3 |           1 |             1 |          9 |            2 |
+| 2014.12.16 |        34 |           3 |          10 |             4 |          0 |            0 |
+| 2014.12.17 |        11 |           2 |           3 |             2 |          1 |            1 |
+| 2014.12.18 |         3 |           1 |           8 |             1 |          0 |            0 |
+| 2014.12.19 |         7 |           1 |           1 |             1 |          9 |            1 |
+| 2014.12.20 |        96 |           3 |          11 |             4 |          0 |            0 |
+| 2014.12.21 |         1 |           1 |          17 |             4 |         12 |            3 |
+| 2014.12.23 |         0 |           0 |          21 |             5 |          1 |            1 |
+| 2014.12.24 |         5 |           1 |          11 |             4 |          0 |            0 |
+| 2014.12.25 |        14 |           2 |           8 |             2 |          0 |            0 |
+| 2014.12.26 |         0 |           0 |          13 |             4 |          0 |            0 |
+| 2014.12.27 |         0 |           0 |           9 |             3 |          0 |            0 |
+| 2014.12.28 |         0 |           0 |          24 |             4 |          0 |            0 |
+| 2014.12.29 |         0 |           0 |          21 |             7 |          0 |            0 |
+| 2014.12.30 |         0 |           0 |          34 |             6 |          0 |            0 |
+| 2014.12.31 |         1 |           1 |          47 |             5 |          0 |            0 |
+|   2015.1.1 |         0 |           0 |          33 |             4 |          0 |            0 |
+|   2015.1.2 |         0 |           0 |          29 |             7 |          0 |            0 |
+|   2015.1.3 |         0 |           0 |          25 |             4 |         12 |            1 |
+|   2015.1.4 |         0 |           0 |          14 |             5 |          0 |            0 |
+|   2015.1.5 |        12 |           2 |           0 |             0 |          0 |            0 |
+
+
+#+tblname: idle_periods_mt
+|      Start |        End |
+|------------+------------|
+|   2014.9.2 |  2014.9.20 |
+| 2014.12.18 | 2014.12.31 |
+
+
+#+begin_src R :exports both :results output graphics :var daily=daily :var idle=idle_periods_mt :file /tmp/daily.png :width 600 :height 600
+  library(reshape2)
+  library(ggplot2)
+  require(gridExtra)
+
+  daily$Date <- as.Date(daily$Date, "%Y.%m.%d")
+
+  data_long <- melt(daily, id.vars=c("Date"))
+
+  idle$Start <- as.Date(idle$Start, "%Y.%m.%d")
+  idle$End <- as.Date(idle$End, "%Y.%m.%d")
+
+  ymax1=200
+
+  p1 <- ggplot() + 
+        geom_area(data=data_long[data_long$variable %in% c("exos_scala","exos_python","exos_java"),], 
+               aes(x=Date, y=value, color=variable,fill=variable)) +
+        ggtitle("Daily activity (exercises)") +
+        geom_rect(data=idle,aes(xmin=Start, xmax=End, ymin=0, ymax=ymax1),alpha=.1,fill="red",color="blue") +
+        theme(legend.justification=c(1,0), legend.position=c(1,.6)) + 
+        coord_cartesian(ylim = c(0,ymax1)) +
+        ylab("Exercises (#)")
+
+  ymax2 = 40
+
+  p2 <- ggplot() +
+        geom_area(data=data_long[data_long$variable %in% c("traces_scala","traces_python","traces_java"),], 
+               aes(x=Date, y=value, color=variable,fill=variable)) +
+        ggtitle("Daily activity (users)") + 
+        geom_rect(data=idle,aes(xmin=Start, xmax=End, ymin=0, ymax=ymax2),alpha=.1,fill="red",color="blue") +
+        theme(legend.justification=c(1,0), legend.position=c(1,.6)) + 
+        coord_cartesian(ylim = c(0,ymax2)) + ### zoom with ggplot
+        ylab("Active Traces (#)")
+  grid.arrange(p1, p2)
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/daily.png]]
+
+Entered on [2015-01-07 mer. 16:27]
+  
+  [[file:/tmp/plm-iticse.org::*Data%20Analysis][Data Analysis]]
+** 2015-07 juillet
+*** 2015-07-31 vendredi
+**** LOESS                                                   :WP8:Stats:R:
+An involved  lecture:
+   http://web.as.uky.edu/statistics/users/pbreheny/621/F10/notes/11-4.pdf
+
+A few R examples illustrating the influence of bandwidth:
+- http://research.stowers-institute.org/efg/R/Statistics/loess.htm
+- http://www.duclert.org/Aide-memoire-R/Statistiques/Local-polynomial-fitting.php
+
+Entered on [2015-07-31 ven. 09:35]
+**** Harald Servat's Phd defense
+Comments:
+- I really enjoyed the very *clear presentation* of the document, of the
+  related work, etc.
+- I particularly enjoyed the fact that *hypothesis are clearly stated*,
+  which I think is the sign of a true *scientific approach* in term of
+  methodology. I also think that moving to *continous approximations* as
+  you tried by using Kriging or segmented linear regressions is an
+  excellent idea.
+- Last, *thanks for giving me the opportunity* to think more carefully
+  about the mathematical foundations of such tools and how they could
+  make sense or not. It actually raised a lots of questions. 
+
+Questions:
+- You did not hesitate to use of *elaborate statistical tools*. Such
+  tools rely on probabilistic model and on of the interesting feature
+  is that they allow two things:
+  - Hypothesis testing
+  - Confidence interval calculation
+  Do you think it would be worth building on such features
+- You demonstrated that your clustering methodology could be applied
+  to many use cases. Can tell me if you can think about situations
+  where it would not apply.
+- 11: segmented linear regression seems more meaningful than krigging
+  here. Is it really the case ? Kriging does an interpolation and
+  maybe the nuggeting is unable to smooth things enough. But maybe the
+  different phases detected by segmented regression are not that
+  meaningful either ?
+- Reuse of previous analysis to capture better traces with a lower
+  overhead ?
+
+
+- 15: multi-dimensionnal segmented linear regression ?
+- 28: you are annoyed because time is a random variable too. There is
+  uncertainty on it, which is why the classical technique (krigging or
+  segmented regression) do not apply
+- Machine learning for pointing out to situations where correlation
+  make sense or not.
+- 39: shouldn't the compiler have been able to do such kind of
+  optimization ?
+- 49: L1-cache based sampling allowed to detect when MPI was receiving
+  a message
+
+
+Entered on [2015-07-31 ven. 10:58]
+** 2015-12 décembre
+*** 2015-12-22 mardi
+**** Programmation avec Clément: hexagone magique           :Teaching:Python:
+***** Génération de permutations toute simple
+#+begin_src python :results output :exports both
+N = 5
+A = range(1,N)
+
+def generate(tab,i):
+    if i>=len(tab):
+        print(tab)
+    else:
+        for j in range(i,len(tab)):
+            tab[i],tab[j] = tab[j],tab[i]
+            generate(tab,i+1)
+            tab[i],tab[j] = tab[j],tab[i]
+
+generate(A,0)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+[1, 2, 3, 4]
+[1, 2, 4, 3]
+[1, 3, 2, 4]
+[1, 3, 4, 2]
+[1, 4, 3, 2]
+[1, 4, 2, 3]
+[2, 1, 3, 4]
+[2, 1, 4, 3]
+[2, 3, 1, 4]
+[2, 3, 4, 1]
+[2, 4, 3, 1]
+[2, 4, 1, 3]
+[3, 2, 1, 4]
+[3, 2, 4, 1]
+[3, 1, 2, 4]
+[3, 1, 4, 2]
+[3, 4, 1, 2]
+[3, 4, 2, 1]
+[4, 2, 3, 1]
+[4, 2, 1, 3]
+[4, 3, 2, 1]
+[4, 3, 1, 2]
+[4, 1, 3, 2]
+[4, 1, 2, 3]
+#+end_example
+
+***** Exploration comme un bourrin
+On représente l'hexagone par un tableau numéroté comme ceci:
+#+BEGIN_EXAMPLE
+    0  1  2
+  3  4   5  6
+7   8  9  10  11
+ 12  13 14  15
+   17 18  19
+#+END_EXAMPLE
+
+#+begin_src python :results output :exports both :tangle /tmp/test_bourrin.py
+def check(tab):
+    start = 0
+    for r in [3,4,5,4]: 
+       if sum(tab[start:(start+r)])!=38:
+           return False
+       start = start + r
+    for t in [[2,6,11],[1,5,10,15],[0,4,9,14,18],[3,8,13,17]]:
+        if sum([tab[i] for i in t])!=38:
+            return False
+    for t in [[7,3,0],[1,4,8,12],[2,5,9,13,16],[6,10,14,17]]:
+        if sum([tab[i] for i in t])!=38:
+            return False
+    return True
+
+def generate(tab,i):
+    if i>=len(tab):
+        if check(tab):
+            print(tab)
+    else:
+        for j in range(i,len(tab)):
+            tab[i],tab[j] = tab[j],tab[i]
+            generate(tab,i+1)
+            tab[i],tab[j] = tab[j],tab[i]
+
+generate([3, 17, 18, 19, 7, 1, 11, 16, 2, 5, 6, 9, 12, 4, 8, 14, 10, 13, 15],0)
+#+end_src
+
+Bon, sauf que ça va être monstrueusement long en fait. Sur ma machine:
+#+begin_src sh :results output :exports both
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 
+#+end_src
+
+#+RESULTS:
+: 3300000
+
+Donc, dans l'hypothèse, ultra optimiste où je serais capable de
+vérifier une permutation par cycle d'horloge, il me faudrait:
+#+begin_src R :results output :session :exports both
+factorial(19)/3300000/24/3600/365
+#+end_src
+
+#+RESULTS:
+: [1] 1168.891
+
+Plus de 1000 ans. Bon, la loi de Moore finira par nous aider mais pas
+des masses. :)
+
+***** Génération de permutation avec coupe au plus tôt
+De façon à éliminer les branches au plus tôt, on représente l'hexagone
+par un tableau numéroté comme ceci:
+#+BEGIN_EXAMPLE
+    0  1  2
+ 11  12 13  3
+10  17 19 14  4
+  9  16 15  5
+    8  7  6
+#+END_EXAMPLE
+
+Et on remarque qu'on n'a de choix de branchement que pour 0, 1, 3, 5,
+7, 9, et 12. Tous les autres sont induits par les précédents.
+
+#+begin_src python :results output :exports both :tangle /tmp/test_rapide.py
+def assign(tab, i, x):
+    if x in tab[i:len(tab)]:
+         for j in range(i,len(tab)):
+             if(tab[j]==x):
+                 tab[i],tab[j] = tab[j],tab[i]
+                 generate(tab,i+1)
+                 tab[i],tab[j] = tab[j],tab[i]
+                 return
+
+def generate(tab,i):
+    # print(i)
+    if i>=len(tab):
+        print(tab)
+    else:
+        if i in [0,1,3,5,7,9,12]:
+            for j in range(i,len(tab)):
+                tab[i],tab[j] = tab[j],tab[i]
+                generate(tab,i+1)
+                tab[i],tab[j] = tab[j],tab[i]
+        elif i in [2,4,6,8,10]:
+            x = 38 - (tab[i-1]+tab[i-2])
+            assign(tab,i,x)
+        elif i==11:
+            x = 38 - (tab[i-1]+tab[0])
+            assign(tab,i,x)
+        elif i==13:
+            x = 38 - (tab[11]+tab[12]+tab[3])
+            assign(tab,i,x)
+        elif i==14:
+            x = 38 - (tab[1]+tab[13]+tab[5])
+            assign(tab,i,x)
+        elif i==15:
+            x = 38 - (tab[3]+tab[14]+tab[7])
+            assign(tab,i,x)
+        elif i==16:
+            x = 38 - (tab[5]+tab[15]+tab[9])
+            assign(tab,i,x)
+        elif i==17:
+            x = 38 - (tab[7]+tab[16]+tab[11])
+            if x+tab[9]+tab[12]+tab[1]!=38:
+                return
+            assign(tab,i,x)
+        elif i==18:
+            if tab[10]+tab[17]+tab[18]+tab[14]+tab[4]==38 and \
+               tab[0]+tab[12]+tab[18]+tab[15]+tab[6]==38  and \
+               tab[2]+tab[13]+tab[18]+tab[16]+tab[8]==38:
+                generate(tab,i+1)
+
+generate(range(1,20),0)
+#+end_src
+
+
+Et maintenant, combien de temps pour avoir la solution ?
+#+begin_src sh :results output :exports both
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor 
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq
+time python /tmp/test_rapide.py 2>&1 
+#+end_src
+
+#+RESULTS:
+#+begin_example
+performance
+3300000
+[3, 17, 18, 11, 9, 14, 15, 13, 10, 12, 16, 19, 7, 1, 6, 8, 4, 2, 5]
+[3, 19, 16, 12, 10, 13, 15, 14, 9, 11, 18, 17, 7, 2, 4, 8, 6, 1, 5]
+[9, 11, 18, 17, 3, 19, 16, 12, 10, 13, 15, 14, 6, 1, 7, 2, 4, 8, 5]
+[9, 14, 15, 13, 10, 12, 16, 19, 3, 17, 18, 11, 6, 8, 4, 2, 7, 1, 5]
+[10, 12, 16, 19, 3, 17, 18, 11, 9, 14, 15, 13, 4, 2, 7, 1, 6, 8, 5]
+[10, 13, 15, 14, 9, 11, 18, 17, 3, 19, 16, 12, 4, 8, 6, 1, 7, 2, 5]
+[15, 13, 10, 12, 16, 19, 3, 17, 18, 11, 9, 14, 8, 4, 2, 7, 1, 6, 5]
+[15, 14, 9, 11, 18, 17, 3, 19, 16, 12, 10, 13, 8, 6, 1, 7, 2, 4, 5]
+[16, 12, 10, 13, 15, 14, 9, 11, 18, 17, 3, 19, 2, 4, 8, 6, 1, 7, 5]
+[16, 19, 3, 17, 18, 11, 9, 14, 15, 13, 10, 12, 2, 7, 1, 6, 8, 4, 5]
+[18, 11, 9, 14, 15, 13, 10, 12, 16, 19, 3, 17, 1, 6, 8, 4, 2, 7, 5]
+[18, 17, 3, 19, 16, 12, 10, 13, 15, 14, 9, 11, 1, 7, 2, 4, 8, 6, 5]
+1.25user 0.00system 0:01.26elapsed 99%CPU (0avgtext+0avgdata 6668maxresident)k
+0inputs+0outputs (0major+873minor)pagefaults 0swaps
+#+end_example
+
+***** Solution par d'autres personnes
+Finalement, un peu de google nous donne ça:
+
+http://codegolf.stackexchange.com/questions/6304/code-solution-for-the-magic-hexagon
+
+La solution en C++ est fondamentalement la même mais sans utilisation
+de récursion, i.e. en inlinant les 9 boucles et avec une macro pour
+aléger l'écriture. Elle trouve les mêmes solutions que nous mais 60
+fois plus vite:
+
+#+begin_src cpp :results output :exports both  :tangle /tmp/test_cpp.cpp
+#include <stdio.h>
+#define LOOP(V) for(int V=1;V<20;V++){if(m&1<<V){m&=~(1<<V);
+#define ENDLOOP(V) m|=1<<V;}}
+#define SET(V,e) int V=e;if(m&1<<V){m&=~(1<<V);
+#define UNSET(V) m|=1<<V;}
+int main() {
+  int m=1048574;
+  LOOP(A);
+  LOOP(B);
+  SET(C,38-A-B);
+  LOOP(D);
+  SET(H,38-A-D);
+  LOOP(G);
+  SET(L,38-C-G);
+  LOOP(E);
+  SET(F,38-D-E-G);
+  LOOP(I);
+  SET(M,38-B-E-I);
+  SET(Q,38-H-M);
+  LOOP(J);
+  SET(N,38-C-F-J-Q);
+  SET(R,38-D-I-N);
+  SET(S,38-Q-R);
+  SET(P,38-L-S);
+  SET(K,38-B-F-P);
+  SET(O,38-M-N-P);
+  printf("%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d\n",A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S);
+  UNSET(O);
+  UNSET(K);
+  UNSET(P);
+  UNSET(S);
+  UNSET(R);
+  UNSET(N);
+  ENDLOOP(J);
+  UNSET(Q);
+  UNSET(M);
+  ENDLOOP(I);
+  UNSET(F);
+  ENDLOOP(E);
+  UNSET(L);
+  ENDLOOP(G);
+  UNSET(H);
+  ENDLOOP(D);
+  UNSET(C);
+  ENDLOOP(B);
+  ENDLOOP(A);
+}
+#+end_src
+
+#+begin_src sh :results output :exports both
+gcc -O3 /tmp/test_cpp.cpp -o test_cpp
+time /tmp/test_cpp 2>&1
+#+end_src
+
+#+RESULTS:
+#+begin_example
+3 17 18 19 7 1 11 16 2 5 6 9 12 4 8 14 10 13 15
+3 19 16 17 7 2 12 18 1 5 4 10 11 6 8 13 9 14 15
+9 11 18 14 6 1 17 15 8 5 7 3 13 4 2 19 10 12 16
+9 14 15 11 6 8 13 18 1 5 4 10 17 7 2 12 3 19 16
+10 12 16 13 4 2 19 15 8 5 7 3 14 6 1 17 9 11 18
+10 13 15 12 4 8 14 16 2 5 6 9 19 7 1 11 3 17 18
+15 13 10 14 8 4 12 9 6 5 2 16 11 1 7 19 18 17 3
+15 14 9 13 8 6 11 10 4 5 1 18 12 2 7 17 16 19 3
+16 12 10 19 2 4 13 3 7 5 8 15 17 1 6 14 18 11 9
+16 19 3 12 2 7 17 10 4 5 1 18 13 8 6 11 15 14 9
+18 11 9 17 1 6 14 3 7 5 8 15 19 2 4 13 16 12 10
+18 17 3 11 1 7 19 9 6 5 2 16 14 8 4 12 15 13 10
+0.02user 0.00system 0:00.02elapsed 100%CPU (0avgtext+0avgdata 1284maxresident)k
+0inputs+0outputs (0major+64minor)pagefaults 0swaps
+#+end_example
+
+Entered on [2015-12-22 mar. 17:59]
+*** 2015-12-23 mercredi
+**** Parrot                                                         :HOME:
+Appel le 23/12/15 vers 17:35. No de dossier: 516 440
+* 2016
+** 2016-02 février
+*** 2016-02-17 mercredi
+**** Programmation pendu avec Rémi                :Teaching:Python:ATTACH:
+:PROPERTIES:
+:Attachments: lst.txt
+:ID:       0032c718-137f-464c-ab82-5cd3b378a222
+:END:
+***** Code
+#+begin_src python :results output :exports both :tangle /tmp/pendu.py
+from random import *
+from sys import stdin
+
+def valide(mot):
+    for l in mot:
+        ok = 0
+        for lp in ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","-"]:
+            if(l==lp): ok=1
+        if(ok==0): return 0
+    return 1
+
+def lit_dictionnaire(nom_fichier):
+    f = open(nom_fichier, 'r')
+    L = []
+    for line in f:
+        mot = line.rstrip()
+        if(valide(mot)):
+            L.append(mot)
+
+    # print "Il y a " + str(len(L)) + " mots dans mon dictionnaire."
+    # print "Le premier est '" + L[0] + "'."
+    # print "Le dixieme est '" + L[9] + "'."
+    return L
+
+def choisit_mot(dico):
+    return dico[int(len(dico)*random())]
+ 
+def trouve(lettre,lettres_autorisees):
+    for l in lettres_autorisees:
+        if(lettre==l):
+            return 1
+    return 0
+
+def enleve(l,L):
+    for i in range(0,len(L)):
+        if(l==L[i]):
+            return(L[:i]+L[(i+1):])
+                   
+def lit_lettre(lettres_autorisees):
+    print(lettres_autorisees)
+    input = stdin.readline().rstrip()
+    while (len(input)!=1 or (trouve(input,lettres_autorisees)!=1) ):
+        print trouve(input,lettres_autorisees)
+        print "Imbecile! Donne moi UNE lettre et qui soit autorisee!"
+        input = stdin.readline().rstrip()
+    return input
+
+def remplace(mot_joueur, l, mot):
+    # print ">>> ("+mot_joueur+","+l+","+mot+")"
+    a_trouve = 0
+    for i in range(0,len(mot)):
+        if(mot[i] == l):
+            # print "Youpi!!! j'ai trouve: "+mot[i]
+            # print "    "+mot_joueur
+            mot_joueur = mot_joueur[:i] + l + mot_joueur[(i+1):]
+            a_trouve = 1
+            # print "    "+mot_joueur
+    return (mot_joueur,a_trouve)
+
+
+def motif_ok(mot,motif):
+    if(len(mot)!=len(motif)):
+        return 0
+    for i in range(0,len(motif)):
+        if(motif[i]!="#"):
+            if(mot[i]!=motif[i]):
+                return 0;
+    return 1
+
+def lettres_exclues_ok(mot,lettres_exclues):
+    for l in mot:
+        for le in lettres_exclues:
+            if l==le:
+                return 0
+    return 1
+
+def filtre(dictionnaire,motif,lettres_exclues):
+    nouveau_dico = []
+    for mot in dictionnaire:
+        if(motif_ok(mot,motif) and lettres_exclues_ok(mot, lettres_exclues)):
+            nouveau_dico.append(mot)
+    return nouveau_dico
+
+def conseille_stupide(mots_possibles, lettres_possibles):
+    return lettres_possibles[0]
+
+def lettre_dans_mot(l,mot):
+    for lm in mot:
+       if(lm==l):
+           return 1
+    return 0
+    
+def conseille(mots_possibles, lettres_possibles):
+    nombre_mots = len(mots_possibles)
+
+    if nombre_mots==1:
+        for l in lettres_possibles:
+            if(lettre_dans_mot(l,mots_possibles[0])):
+                return l
+    def compte(l,mots_possibles):
+        num = 0
+        for mot in mots_possibles:
+            if lettre_dans_mot(l,mot)==1:
+                num=num+1
+        return num
+
+    nombre_mots_avec_la_bonne_lettre = []
+    score = []
+    for l in lettres_possibles:
+        num = compte(l,mots_possibles)
+        nombre_mots_avec_la_bonne_lettre.append(num)
+        score.append(abs(num-nombre_mots/2.0))
+
+    score_min = score[0]+.1
+    i_min = 0
+    for i in range(0,len(lettres_possibles)):
+        if(score[i]<score_min):
+            score_min = score[i]
+            i_min = i
+            ### Brisons les cas d'egalite qui nous empecheraient de progresser
+            if(score_min==(nombre_mots/2.0)):
+                if(lettre_dans_mot(lettres_possibles[i_min],mots_possibles[0])==0):
+                    score_min +=.1
+                   
+    # print mots_possibles
+    # print lettres_possibles
+    # print nombre_mots
+    # print nombre_mots_avec_la_bonne_lettre
+    # print score
+    # print i_min
+    return lettres_possibles[i_min]
+
+
+def conseille_freq(mots_possibles, lettres_possibles):
+    nombre_mots = len(mots_possibles)
+
+    if nombre_mots==1:
+        for l in lettres_possibles:
+            if(lettre_dans_mot(l,mots_possibles[0])):
+                return l
+    
+    def frequence(l,mots_possibles):
+        num = 0
+        for mot in mots_possibles:
+            for lm in mot:
+                if(lm==l):
+                    num += 1;
+        return num
+    
+    frequence_lettre = []
+    for l in lettres_possibles:
+        frequence_lettre.append(frequence(l,mots_possibles))
+
+    freq_max = 0
+    i_max = -1
+    for i in range(0,len(lettres_possibles)):
+        if(frequence_lettre[i]>freq_max):
+            freq_max = frequence_lettre[i]
+            i_max = i
+    # print lettres_possibles
+    # print nombre_mots
+    # print nombre_mots_avec_la_bonne_lettre
+    # print score
+    # print i_min
+    return lettres_possibles[i_max]
+
+def jeu(dictionnaire,mot,mode):
+    mot_joueur = "#" * len(mot)
+    for i in range(0,len(mot)):
+       if mot[i]=="-": mot_joueur = mot_joueur[:i] + "-" + mot_joueur[(i+1):]
+    
+    lettres_autorisees = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    lettres_exclues = []
+    max_erreur=18
+    erreur=0
+    mots_possibles=dictionnaire
+
+    # print mot
+    
+    while(mot_joueur != mot):
+        if mode=="interactif": print mot_joueur + " | Nombre d'erreurs autorisees restant : " + str(max_erreur-erreur)
+        mots_possibles = filtre(mots_possibles,mot_joueur,lettres_exclues)
+        if mode=="interactif":  print "Il reste " + str(len(mots_possibles)) + " mot(s)"
+        if mode=="interactif": lettre_conseillee = conseille(mots_possibles,lettres_autorisees)
+        if mode=="frequence": lettre_conseillee = conseille_freq(mots_possibles,lettres_autorisees)
+        if mode=="dichotomie": lettre_conseillee = conseille(mots_possibles,lettres_autorisees)
+
+        if mode=="interactif": print "  Conseil: " + lettre_conseillee
+        if mode=="interactif": lettre = lit_lettre(lettres_autorisees)
+        else: lettre=lettre_conseillee
+        (mot_joueur,a_trouve) = remplace(mot_joueur, lettre, mot)
+        lettres_autorisees = enleve(lettre,lettres_autorisees)
+        if(a_trouve==0):
+            erreur += 1
+            lettres_exclues.append(lettre)
+        if(erreur==max_erreur):
+            if mode=="interactif": print "Tu as perdu!!!!"
+            if mode=="interactif": print "C'etait : " + mot
+            return erreur
+    if mode=="interactif": print mot_joueur + " | Nombre d'erreurs autorisees restant : " + str(max_erreur-erreur)
+    if mode=="interactif": print "Bravo!!!!"
+    return erreur
+
+
+def main():
+    mon_dico = lit_dictionnaire("/home/alegrand/Hacking/boggle/Words.txt");
+    while(1):
+        mot = choisit_mot(mon_dico);
+        jeu(mon_dico,mot,"interactif")
+
+def main2():
+    mon_dico = lit_dictionnaire("/home/alegrand/Hacking/boggle/Words.txt");
+    while(1):
+        mot = choisit_mot(mon_dico);
+        freq = jeu(mon_dico,mot,"frequence")
+        dicho = jeu(mon_dico,mot,"dichotomie")
+        print mot + " , " + str(freq) + " , " + str(dicho)
+
+main2()
+### Quelques constructions equivalentes
+
+# i=0
+# while(i<10):
+#     print i
+#     i=i+1
+#
+# for i in range(0,10):
+#     print i
+
+# for i in range(0,len(liste)):
+#     print liste[i]
+#
+# for mot in liste:
+#     print mot
+    
+#+end_src
+
+J'exécute et j'arrête au boût de 3 minutes
+#+begin_src sh :results output :exports both
+python pendu.py > lst.txt
+#+end_src
+
+#+begin_src R :results output graphics :file (org-babel-temp-file "figure" ".png") :exports both :width 400 :height 400 :session
+library(ggplot2)
+df=read.csv("data/00/32c718-137f-464c-ab82-5cd3b378a222/lst.txt",strip.white=T,header=F)
+names(df)=c("mot","freq","dicho")
+ggplot(data=df,aes(x=freq,y=dicho)) + geom_point(alpha=.3)
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/babel-9398SP8/figure9398caH.png]]
+
+
+#+begin_src R :results output graphics :file (org-babel-temp-file "figure" ".png") :exports both :width 400 :height 400 :session
+ggplot(data=df,aes(x=freq-dicho)) + geom_histogram()
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/babel-9398SP8/figure9398QDg.png]]
+
+
+#+begin_src R :results output :session :exports both
+summary(df)
+#+end_src
+
+#+RESULTS:
+:          mot           freq           dicho       
+:  bionique  :  2   Min.   :0.000   Min.   : 0.000  
+:  crevassait:  2   1st Qu.:0.000   1st Qu.: 1.000  
+:  pin       :  2   Median :1.000   Median : 3.000  
+:  primevere :  2   Mean   :1.296   Mean   : 3.087  
+:  terrien   :  2   3rd Qu.:2.000   3rd Qu.: 4.000  
+:  abattement:  1   Max.   :8.000   Max.   :11.000  
+:  (Other)   :836
+
+#+begin_src R :results output :session :exports both
+X=df$freq-df$dicho
+summary(X)
+mean(X)
+err = sd(X)/sqrt(length(X))
+mean(X) - 2*err
+mean(X) + 2*err
+#+end_src
+
+#+RESULTS:
+:    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+: -10.000  -3.000  -1.000  -1.791   0.000   7.000
+: [1] 2.304793
+: [1] 0.07919362
+***** Links
+http://web.stanford.edu/class/cs106l/handouts/assignment-2-evil-hangman.pdf
+http://www.sharkfeeder.com/hangman/
+http://blog.wolfram.com/2010/08/13/25-best-hangman-words/
+Entered on [2016-02-17 mer. 10:14]
+*** 2016-02-25 jeudi
+**** Hacking screenkey                                            :Python:
+#+begin_src sh :session foo :results output :exports both 
+diff -u  /usr/share/pyshared/Screenkey/listenkdb.py_old  /usr/share/pyshared/Screenkey/listenkdb.py 
+#+end_src
+
+#+RESULTS:
+#+begin_example
+--- /usr/share/pyshared/Screenkey/listenkdb.py_old	2016-03-07 09:40:13.271193249 +0100
++++ /usr/share/pyshared/Screenkey/listenkdb.py	2016-03-07 09:42:41.216862924 +0100
+@@ -230,7 +230,14 @@
+                     mod = mod + "Alt+"
+                 if self.cmd_keys['super']:
+                     mod = mod + "Super+"
+-
++                
++                if self.cmd_keys['shift']:
++                    if (len(key_shift)==1) and not(ord(key_normal) in range(97,123)) and not(ord(key_shift) in range(33,126)):
++                        mod = mod + "Shift+"
+65000):
++                        mod = mod + "Shift+"
+print "---------"
+print key, key_shift, keysym
+                 if self.cmd_keys['shift']:
+                     key = key_shift
+                 if self.cmd_keys['capslock'] \
+#+end_example
+
+Entered on [2016-02-25 jeu. 11:19]
+  
+** 2016-07 juillet
+*** 2016-07-19 mardi
+**** [[http://rmarkdown.rstudio.com/flexdashboard/][flexdashboard: Easy interactive dashboards for R]] :WP7:WP8:R:twitter:
+
+Entered on [2016-07-19 mar. 09:04]
+**** Steps toward reproducible research (Karl Broman)         :WP8:twitter:R:
+- https://github.com/kbroman/Talk_ReproRes (slides)
+  - Why
+    - I'm sorry but I think you haven't used the right data.
+    - The results in Table 1 don’t seem to correspond to those in
+      Figure 2.
+    - In what order do I run these scripts?
+    - Where did we get this data file?
+    - Why did I omit those samples?
+    - How did I make that figure?
+  - Important points
+    - Organize your data & code
+      #+BEGIN_QUOTE
+      Your closest collaborator is you six months ago,
+      but you don’t reply to emails.
+      (paraphrasing Mark Holder)
+      #+END_QUOTE
+    - Everything with a script
+      If you do something once, you’ll do it 1000 times.
+    - Automate the process as much as you can 
+      In addition to automating a complex process, it also documents
+      the process, including the dependencies among data files and
+      scripts.
+    - Turn scripts into reproducible reports
+    - Use version control (git/GitHub)
+    #+BEGIN_QUOTE
+    The most important tool is the mindset,
+    when starting, that the end product
+    will be reproducible.
+           – Keith Baggerly
+    #+END_QUOTE
+  
+- [[http://kbroman.org/steps2rr/][initial steps toward reproducible research]] (lecture)
+- https://github.com/kbroman/Tools4RR (Materials for a one-credit
+  course on reproducible research)
+
+Entered on [2016-07-19 mar. 09:06]
+**** [[http://michaellevy.name/blog/teaching-r-to-200-students-in-a-week/][Teaching R to 200 students in a week • Michael Levy]] :Teaching:R:
+Link from Michael Blum
+- Motivation precedes detail: “Here’s what you’re going to learn to do this week”
+- Live coding: shows that I make mistakes, builds in flexibility, forces to slow down
+- Live code piped to their browsers (dropbox? pad? floobits?)
+- In-class exercises instead of lectures
+- Stickies and good assistants
+- Daily feedback: Each day, I asked the students to fill out a quick
+  survey: How well do you understand what was taught today, what’s
+  working for you, and what could use a change?
+- Advanced exercises for experts.
+
+Entered on [2016-07-19 mar. 09:36]
+   CEDEX 9
+* 2017
+** 2017-01 janvier
+*** 2017-01-09 lundi
+**** Ridge regression                                            :Stats:R:
+http://web.as.uky.edu/statistics/users/pbreheny/764-F11/notes/9-1.pdf
+
+Ridge regression penalizes the size of the regression coefficients,
+which is convenient in the presence of multicollinearity 
+
+- http://www.few.vu.nl/~wvanwie/Courses/HighdimensionalDataAnalysis/WNvanWieringen_HDDA_Lecture4_RidgeRegression_20162017.pdf
+- https://arxiv.org/pdf/1509.09169.pdf
+
+Entered on[2017-01-09 lun. 22:10]
+  
+*** 2017-01-19 jeudi
+**** Groupe de lecture: [[file:public_html/readings/Jackson_Networks.pdf][Social and Economic Networks]] (session 1) :POLARIS:
+***** Chapter 1: Introduction
+- Example from the Medici graph
+- degree can be seen as a measure of the influence of the node but a
+  probably more interesting notion is the betweenness which indicates
+  the probability the path a pair of peole have to go through you to
+  communicate:
+
+  b(k) = 1/((n-1)(n-2)/2)  \sum_{i\neq j} (number of shortest paths from i to j going through
+  k)/(number ofr shortest paths from i to j)
+***** Chapter 2: Basic notions
+- notion of adjacency matrix with convenient properties. 
+- deg(i) = \sum_j g_{i,j}
+- #triangles = tr(g^3)/6
+- Clustering: "how close are you from a clique"
+  - local notion of connectivity
+  - Cl_i(G) = (#of pairs j,k connected to i s.t. j and k are also
+             connected )/(d(i).(d(i)-1)/2)
+           = \sum_{j,k s.t. i\ne j\ne k} g_{i,j} g_{j,k} g_{k,i}  / \sum_{j,k s.t. i\ne j\ne k} g_{i,j} g_{i,k} 
+           \approx (sum ith diag element of g^3) / (sum ith diag element of g^2)
+  - Cl(G) = 1/N \sum_i Cl_i(G) is then the /average clustering/ of the graph
+    if you average over nodes. If one consider a "star" of small
+    "cliques", all the nodes but the one in the center will have a
+    local clique of 1 (hence the average clustering tends to 1)
+    whereas it is far of being a clique itself.
+  - You could average over triples directly and get the /overall
+    clustering/ by considering directly:
+        \sum_{i\ne j\ne k} g_{i,j} g_{j,k} g_{k,i}  / \sum_{i\ne j\ne k} g_{i,j} g_{i,k}
+    This may be a better notion as the overall clustering would go to
+    0... But we could totally have the reverse...
+- Centrality:
+  - degree centrality is the average degree
+  - betweeness centrality is what we saw earlier
+  - Eigen centrality. Relates to a notion of prestige P:
+
+      P_i (g) = \sum_{j\ne i} g_{i,j} P_j(g)/\delta_g(j) 
+
+    Hence P = \bar{g}.P with \bar{g} being the normalized graph (that
+    could be different if the graph is undirected or if one does not
+    consider \delta to be the degree d). Note that the Degree satisfies
+    such equation, hence you recove the degree centrality notion.
+  - In general, one may consider the larger eigenvalue of \bar{g} and
+    the Perron Frobenius tells that all components of the
+    corresponding eigenvector are positive. One may thus normalize by
+    the sum of the elements of the eigenvector P.
+- Another notion is distance or decay centrality:
+  - \sum_j 1/d(i,j
+- We don't really know whether there is a link between
+  Eigen-centrality and Betweenness centrality.
+**** MOOC, Jean-Marc Hasenfratz                  :Vulgarization:Teaching:WP8:
+Discussions sur l'opportunité de faire un MOOC Recherche reproductible
+sur FUN. On fait le tour des choses existantes:
+- Il y a des choses en stats, sur R
+  https://www.fun-mooc.fr/cours/#filter/subject/mathematiques-et-statistiques?page=1&rpp=50
+  mais rien sur les aspects recherche reproductible ou la
+  programmation littérale en tant que tel.
+- Sur coursera, il y a
+  https://www.coursera.org/specializations/jhu-data-science. Il me
+  semble que les 5 premiers (intro/techno, R basis, data cleaning,
+  EDA, litterate programming) valent le coup mais c'est trop long.
+- Lorena Barba's tutorial on RR ?
+  https://barbagroup.github.io/essential_skills_RRC/
+- Si on reste sur l'idée que le "cahier de laboratoire" c'est la base,
+  il faut décider de quelle techno on pousse: knitr, jupyter ou
+  org-mode. D'où une discussion prévue avec Konrad et Christophe, ce
+  qui permettrait en plus de donnée une dimension pluri-disciplinaire
+  intéressante.
+
+Entered on [2017-01-19 jeu. 14:29]
+
+** 2017-12 décembre
+*** 2017-12-07 jeudi
+**** Refs Recherche reproductible intéressantes                      :WP8:
+[[https://www.jove.com/blog/2017/10/27/reproducibility-librarian-yes-that-should-be-your-next-job/][Reproducible research librarian]]
+
+- [[http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0038234][The Effects of FreeSurfer Version, Workstation Type, and Macintosh
+  Operating System Version on Anatomical Volume and Cortical Thickness
+  Measurements]]:
+  - No differences were detected between repeated single runs nor
+    between single runs and parallel runs on the same workstation and
+    for the same FreeSurfer and OS version. For the same OS version,
+    all Mac workstations produced identical results. However,
+    differences were revealed between:
+    - Mac and HP workstations
+    - FreeSurfer versions v4.3.1, v4.5.0, and v5.0.0
+    - OSX 10.5.8 and OSX 10.6.4/5
+  - Focus sur l'importance des erreurs mais pas sur leur origine car
+    tout est très closed-source.
+- [[https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1044-7][Gene name errors are widespread in the scientific literature]]
+- [[https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0850-7][Five selfish reasons to work reproducibly]]: style sympa
+- Jupyter extension with Reprozip: https://www.youtube.com/watch?v=Y8YmGVYHhS8
+- [[https://github.com/pantsbuild/pex][Pex]]: un environnement permettant de transformer un script python en
+  un exécutable autonome (packing interne des libs).
+- [[http://o2r.info/][O2R]]: hyper préliminaire, aucun intérêt.
+
+Entered on [2017-12-07 jeu. 11:09]
+  
+  [[file:~/org/journal.org::*Autotuning%20context:][Autotuning context:]]
+**** [[file:~/Archives/Cours/maths/R/Verzani-SimpleR.pdf][simpleR – Using R for Introductory StatisticsR]]              :Stats:R:
+
+Un document que je n'avais pas pris le temps de lire mais qui est pas
+mal fichu du tout. Points intéressants sur R:
+
+- Trouver des outliers en interagissant avec les plots:
+  =identify(BUSH,BUCHANAN,n=2)=.
+- Using rlm or lqs for resistant regression. rlm minimise la somme
+  d'une fraction des résidus et pas de l'intégralité.
+- pas mal d'exemples/exos sur le test (paired, avec même variance ou
+  pas, Cox-Wilkinson, chi2, etc.)
+
+Entered on [2017-12-07 jeu. 12:28]
+  
+  [[file:~/org/journal.org::*Refs%20Recherche%20reproductible%20int%C3%A9ressantes][Refs Recherche reproductible intéressantes]]
+* 2018
+** 2018-10 octobre
+*** 2018-10-02 mardi
+**** Learning emacs lisp
+https://www.gnu.org/software/emacs/manual/html_mono/elisp.html
+
+file:///home/alegrand/tmp/Programming%20in%20Emacs%20Lisp%20-%20https:_www.gnu.org_software_emacs_manual_html_mono_eintr.html
+
+Also eval some emacs lisp using M-:
+***** Evaluation
+#+begin_src emacs-lisp
+(+ 2 2)
+#+end_src
+
+#+RESULTS:
+: 4
+
+#+begin_src emacs-lisp
+'(this is a quoted list) ;; a list
+#+end_src
+
+#+begin_src emacs-lisp :
+(this is a quoted list)  ;; won't work as it will call "this" with args "is" "a" "quoted" "list"
+#+end_src
+***** Setting variables
+#+begin_src emacs-lisp
+(setq toto 2)
+toto
+#+end_src
+
+#+RESULTS:
+: 2
+
+
+#+begin_src emacs-lisp
+(setq toto 2)
+(set 'toto' 2)
+toto
+#+end_src
+
+#+RESULTS:
+: 2
+
+#+begin_src emacs-lisp
+(setq counter 0)                ; Let's call this the initializer.
+(setq counter (+ counter 1))    ; This is the incrementer.
+counter                         ; This is the counter.
+#+end_src
+
+#+RESULTS:
+: 1
+
+#+begin_src emacs-lisp
+(let ((var1 2)
+      (var2 3))
+  (+ var1 var2))
+#+end_src
+
+#+RESULTS:
+: 5
+
+#+begin_src emacs-lisp
+ (let ((zebra "stripes")
+           (tiger "fierce"))
+       (message "One kind of animal has %s and another is %s."
+                zebra tiger))
+#+end_src
+
+#+RESULTS:
+: One kind of animal has stripes and another is fierce.
+
+***** Defining and calling function
+#+begin_src emacs-lisp
+(defun tutu() 2)
+(defun tutu() '(2))
+(tutu)
+#+end_src
+
+#+RESULTS:
+| 2 |
+
+#+begin_src emacs-lisp
+(functionp 'tutu)
+#+end_src
+
+#+RESULTS:
+: t
+
+***** Testing
+#+begin_src emacs-lisp
+(if (functionp 'tutu) (message "this is a function"))
+#+end_src
+
+#+RESULTS:
+: this is a function
+
+#+begin_src emacs-lisp
+(defun type-of-animal (characteristic)
+  "Print message in echo area depending on CHARACTERISTIC.
+     If the CHARACTERISTIC is the string \"fierce\",
+     then warn of a tiger."
+  (if (equal characteristic "fierce")
+      (message "It is a tiger!")))
+(type-of-animal "fierce")
+;; (type-of-animal "striped")
+#+end_src
+
+#+RESULTS:
+: It is a tiger!
+
+#+begin_src emacs-lisp
+(if (> 4 5)                               ; if-part
+    (message "4 falsely greater than 5!") ; then-part
+  (message "4 is not greater than 5!"))   ; else-part
+#+end_src
+
+#+RESULTS:
+: 4 is not greater than 5!
+
+***** Useful functions
+#+begin_src emacs-lisp
+;; describe-function
+;; describe-key
+;; list-matching-lines
+;; delete-window
+;; point-to-register
+;; eval-expression
+;; car, cdr, cons
+#+end_src
+***** Playing with babel templates (1)
+#+begin_src emacs-lisp
+;; (add-to-list 'org-structure-template-alist
+;;         '("Y" "#+begin_src R\n?\n#+end_src"))
+;; (add-to-list 'org-structure-template-alist
+;;         '("Y" '(tutu)))
+(setq tata "2")
+(add-to-list 'org-structure-template-alist
+        '("Y" tata))
+#+end_src
+
+#+RESULTS:
+| Y | tata           |
+| Y | toto           |
+| Y | (quote (tutu)) |
+| Y | (tutu)         |
+| Y | tutu           |
+| Y | #+begin_src R   |
+
+#+begin_src emacs-lisp
+(setq a (assoc "Y" org-structure-template-alist))
+a
+#+end_src
+
+#+RESULTS:
+| Y | tata |
+
+Unfortunately, when expending, the code checks whether the right value
+is a string (through th stringp function).
+
+[[file:~/Work/org-mode/lisp/org.el::(defun%20org-try-structure-completion%20()][This is where org-structure-template-alist is used in org-mode 9.0.5's code]].
+
+#+begin_src emacs-lisp
+(defun org-try-structure-completion ()
+  "Try to complete a structure template before point.
+This looks for strings like \"<e\" on an otherwise empty line and
+expands them."
+  (let ((l (buffer-substring (point-at-bol) (point)))
+	a)
+    (when (and (looking-at "[ \t]*$")
+	       (string-match "^[ \t]*<\\([a-zA-Z]+\\)$" l)
+	       (setq a (assoc (match-string 1 l) org-structure-template-alist)))
+      (org-complete-expand-structure-template (+ -1 (point-at-bol)
+						 (match-beginning 1)) a)
+      t)))
+
+(defun org-complete-expand-structure-template (start cell)
+  "Expand a structure template."
+  (let ((rpl (nth 1 cell))
+	(ind ""))
+    (delete-region start (point))
+    (when (string-match "\\`[ \t]*#\\+" rpl)
+      (cond
+       ((bolp))
+       ((not (string-match "\\S-" (buffer-substring (point-at-bol) (point))))
+	(setq ind (buffer-substring (point-at-bol) (point))))
+       (t (newline))))
+    (setq start (point))
+    (when (string-match "%file" rpl)
+      (setq rpl (replace-match
+		 (concat
+		  "\""
+		  (save-match-data
+		    (abbreviate-file-name (read-file-name "Include file: ")))
+		  "\"")
+		 t t rpl)))
+    (setq rpl (mapconcat 'identity (split-string rpl "\n")
+			 (concat "\n" ind)))
+    (insert rpl)
+    (when (re-search-backward "\\?" start t) (delete-char 1))))
+#+end_src
+
+
+
+#+begin_src emacs-lisp
+(defun org-try-structure-completion ()
+  "Try to complete a structure template before point.
+This looks for strings like \"<e\" on an otherwise empty line and
+expands them."
+  (let ((l (buffer-substring (point-at-bol) (point)))
+	a)
+    (when (and (looking-at "[ \t]*$")
+	       (string-match "^[ \t]*<\\([a-zA-Z]+\\)$" l)
+	       (setq a (assoc (match-string 1 l) org-structure-template-alist)))
+      (org-complete-expand-structure-template (+ -1 (point-at-bol)
+						 (match-beginning 1)) a)
+      t)))
+
+(defun org-complete-expand-structure-template (start cell)
+  "Expand a structure template."
+  (let ((rpl (nth 1 cell))
+	(ind ""))
+;;; TODO: Here I could check whether rpl is a function and if so, evaluate it
+    (delete-region start (point))
+    (when (string-match "\\`[ \t]*#\\+" rpl)
+      (cond
+       ((bolp))
+       ((not (string-match "\\S-" (buffer-substring (point-at-bol) (point))))
+	(setq ind (buffer-substring (point-at-bol) (point))))
+       (t (newline))))
+    (setq start (point))
+    (when (string-match "%file" rpl)
+      (setq rpl (replace-match
+		 (concat
+		  "\""
+		  (save-match-data
+		    (abbreviate-file-name (read-file-name "Include file: ")))
+		  "\"")
+		 t t rpl)))
+    (setq rpl (mapconcat 'identity (split-string rpl "\n")
+			 (concat "\n" ind)))
+    (insert rpl)
+    (when (re-search-backward "\\?" start t) (delete-char 1))))
+#+end_src
+***** Playing with babel templates (2)
+#+begin_src emacs-lisp
+(defun myfun() (concat "figure-" (buffer-name) "-line" (what-line) ".png"))
+(add-to-list 'org-structure-template-alist
+        '("Y" "#+begin_src R :results output graphics :file (myfun) :exports both :width 600 :height 400 :session *R*\n?\n#+end_src"))
+#+end_src
+
+#+RESULTS:
+| Y | #+begin_src R :results output graphics :file (myfun) :exports both :width 600 :height 400 :session *R* |
+#+begin_src R :results output graphics :file (myfun) :exports both :width 600 :height 400 :session *R*
+plot(cars)
+#+end_src
+
+#+RESULTS:
+[[file:figure-journal.org-lineLine 76657.png]]
+
+Entered on [2018-10-02 mar. 06:17]
+*** 2018-10-24 mercredi
+**** Logistic regression and confidence intervals                :Stats:R:
+https://stackoverflow.com/questions/14423325/confidence-intervals-for-predictions-from-logistic-regression
+
+https://stackoverflow.com/questions/32464641/confidence-intervals-for-logistic-fit-in-seaborn
+
+Entered on [2018-10-24 mer. 10:55]
+  
+  [[file:~/org/info.org.gpg::*Contact][Contact]]
+** 2018-11 novembre
+*** 2018-11-06 mardi
+**** The importance of stupidity in scientific research          :twitter:
+[[http://jcs.biologists.org/content/121/11/1771][The importance of stupidity in scientific research | Journal of Cell Science]]
+
+For almost all of us, one of the reasons that we liked science in high
+school and college is that we were good at it. That can't be the only
+reason – fascination with understanding the physical world and an
+emotional need to discover new things has to enter into it too. But
+high-school and college science means taking courses, and doing well
+in courses means getting the right answers on tests. If you know those
+answers, you do well and get to feel smart.
+
+A Ph.D., in which you have to do a research project, is a whole
+different thing. For me, it was a daunting task. How could I possibly
+frame the questions that would lead to significant discoveries; design
+and interpret an experiment so that the conclusions were absolutely
+convincing; foresee difficulties and see ways around them, or, failing
+that, solve them when they occurred? 
+
+[..]
+
+I was a third-year graduate student and I figured that Taube knew
+about 1000 times more than I did (conservative estimate). If he didn't
+have the answer, nobody did.
+
+That's when it hit me: nobody did. That's why it was a research
+problem. And being my research problem, it was up to me to solve. 
+
+
+Entered on [2018-11-06 mar. 13:21]
+  
+**** Blog de David Monniaux : malhonnêteté scientifique en informatique :WP8:Emistemology:twitter:
+[[http://david.monniaux.free.fr/dotclear/index.php/post/2018/11/01/De-la-malhonn%25C3%25AAtet%25C3%25A9-scientifique-en-informatique][De la malhonnêteté scientifique en informatique - La vie est mal
+configurée]]
+
+Entered on [2018-11-06 mar. 13:33]
+
+**** The Inspection Paradox is Everywhere                  :twitter:Stats:
+[[http://allendowney.blogspot.com/2015/08/the-inspection-paradox-is-everywhere.html][Probably Overthinking It: The Inspection Paradox is Everywhere]]
+
+- My favorite example (true in many European countries): most families have a single child, but most kids have siblings.
+- Another very obvious one is the speed of cars you pass on the
+  highway. You always feel people are driving either much faster or
+  much slower than you and you can't tell how many cars drive at the
+  same speed as you.
+
+Now moved here: https://www.allendowney.com/blog/
+
+Entered on [2018-11-06 mar. 13:35]
+**** Efficient tuning of online systems using Bayesian optimization (Facebook) :WP8:twitter:Stats:
+[[https://research.fb.com/efficient-tuning-of-online-systems-using-bayesian-optimization/][Efficient tuning of online systems using Bayesian optimization – Facebook Research]]
+
+- Bayesian optimization for A/B testing, mix of bandit, and
+  gaussian process/kriging/DoE.
+
+Entered on [2018-11-06 mar. 13:46]
+
+**** Re-Thinking Reproducibility as a Criterion for Research Quality :WP8:Emistemology:twitter:
+[[http://philsci-archive.pitt.edu/14352/][Re-Thinking Reproducibility as a Criterion for Research Quality -
+Philsci-Archive]]
+
+Discussion sur la notion de reproducibilité, sa faisabilité, sa
+portée, son intérêt, selon les différents domaines. La transparence
+est plus importante que la reproductibilité "pure" qui ne doit pas
+être normative.
+
+Rien de particulièrement nouveau mais c'est bien écrit et
+pas dogmatique. Ça change...  http://philsci-archive.pitt.edu/14352/
+
+Entered on [2018-11-06 mar. 13:49]
+
+**** How should novelty be valued in science?   :WP8:Emistemology:twitter:
+  [[https://elifesciences.org/articles/28699][Point of View: How should novelty be valued in science? | eLife]]
+
+Pladoyer après une claque d'un reviewer qui trouvait que les travaux
+n'étaient pas assez novateurs.
+
+Scientists are under increasing pressure to do "novel" research. Here
+I explore whether there are risks to overemphasizing novelty when
+deciding what constitutes good science. I review studies from the
+philosophy of science to help understand how important an explicit
+emphasis on novelty might be for scientific progress. I also review
+studies from the sociology of science to anticipate how emphasizing
+novelty might impact the structure and function of the scientific
+community. I conclude that placing too much value on novelty could
+have counterproductive effects on both the rate of progress in science
+and the organization of the scientific community. I finish by
+recommending that our current emphasis on novelty be replaced by a
+renewed emphasis on predictive power as a characteristic of good
+science.
+
+Entered on [2018-11-06 mar. 14:04]
+
+**** How statistics are twisted to obscure public understanding :twitter:Stats:Teaching:
+[[https://aeon.co/ideas/how-statistics-are-twisted-to-obscure-public-understanding][How statistics are twisted to obscure public understanding | Aeon Ideas]]
+
+
+Statistics are often used to support points that aren’t true, but
+we tend to attack only the data that conflict with some preexisting
+notion of our own. The numbers themselves – unless purposefully
+falsified – cannot lie, but they can be used to misrepresent the
+public statements and ranking systems we take seriously. Statistical
+data do not allow for lies so much as semantic manipulation: numbers
+drive the misuse of words. When you are told a fact, you must question
+how the terms within the fact are defined, and how the data have been
+generated. When you read a statistic, of any kind, be sure to ask how
+– and more importantly, why – the statistic was generated, whom it
+benefits, and whether it can be trusted.
+
+Entered on [2018-11-06 mar. 14:08]
+
+**** What it was like to be peer reviewed in the 1860s    :Emistemology:twitter:
+  [[https://physicstoday.scitation.org/do/10.1063/PT.5.9098/full/][What it was like to be peer reviewed in the 1860s]]
+
+Rather than relying on anonymous referee reports to improve their
+papers, authors engaged in extensive personal exchanges with their
+reviewers. Such a collegial approach gradually lost favor but recently
+has undergone something of a resurgence.
+
+Those recent developments demonstrate that although peer review is a
+core component of scientific publishing, its form can change and has
+changed to adapt to the ever-evolving needs of the scientific
+community.
+
+For a complete history of peer review in the sciences, see “In
+referees we trust?” (Physics Today, February 2017, page 44).
+
+Entered on [2018-11-06 mar. 14:12]
+
+**** Statistique & Machine Learning: de Statisticien à Data Scientist :twitter:Stats:Teaching:
+  [[http://wikistat.fr/][wikistat.fr]]
+
+Statistique niveau L, M1, M2:
+- description, inférence, ACP, régression linéaire, logistique,
+  loglinéaire, ...
+
+Un peu sec mais à explorer.
+
+Entered on [2018-11-06 mar. 14:17]
+
+**** American Scientist: The Science of Scientific Writing       :twitter:
+Article sur la réécriture/clarification de paragraphes.
+
+  [[https://www.americanscientist.org/blog/the-long-view/the-science-of-scientific-writing][The Science of Scientific Writing | American Scientist]]
+
+Entered on [2018-11-06 mar. 14:22]
+  
+**** Open peer review: A randomised controlled trial         :WP8:twitter:
+        https://doi.org/10.1192/bjp.176.1.47
+        Published online: 02 January 2018
+***** Background
+Most scientific journals practise anonymous peer review. There is no
+evidence, however, that this is any better than an open system.
+***** Aims
+
+To evaluate the feasibility of an open peer review system.
+***** Method
+Reviewers for the British Journal of Psychiatry were asked whether
+they would agree to have their name revealed to the authors whose
+papers they review; 408 manuscripts assigned to reviewers who agreed
+were randomised to signed or unsigned groups. We measured review
+quality, tone, recommendation for publication and time taken to
+complete each review.  Results
+
+A total of 245 reviewers (76%) agreed to sign. Signed reviews were of
+higher quality, were more courteous and took longer to complete than
+unsigned reviews. Reviewers who signed were more likely to recommend
+publication.
+***** Conclusions
+This study supports the feasibility of an open peer review system and
+identifies such a system's potential drawbacks.
+
+Entered on [2018-11-06 mar. 14:25]
+
+  [[https://www.cambridge.org/core/journals/the-british-journal-of-psychiatry/article/open-peer-review-a-randomised-controlled-trial/1F81447FC67B3BAFDCCCCE82B6C7A187][Open peer review: A randomised controlled trial | The British Journal of Psychiatry | Cambridge Core]]
+**** 30 best practices for software development and testing      :twitter:
+  [[https://opensource.com/article/17/5/30-best-practices-software-development-and-testing][30 best practices for software development and testing |
+Opensource.com]]
+
+Entered on [2018-11-06 mar. 14:30]
