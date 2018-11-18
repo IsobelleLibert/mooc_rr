@@ -50,4 +50,13 @@ you an idea of how it can be organized:
    org-mode made it very easy to generate both HTML and PDF and to
    explicitly explain how the measurements were done.
 
+Here are a few links to other kind of examples:
+- Slides: all my slides for a series of lectures is available here:
+  https://github.com/alegrand/SMPE. Here is a [[https://raw.githubusercontent.com/alegrand/SMPE/master/lectures/lecture_central_limit_theorem.org][typical source]] and the
+  [[https://raw.githubusercontent.com/alegrand/SMPE/master/lectures/lecture_central_limit_theorem.pdf][resulting PDF]]
+- Lucas Schnorr, a colleague, maintains:
+  - a set of templates for various computer science
+    journals/conferences: [[https://github.com/schnorr/ieeeorg][IEEE]], [[https://github.com/schnorr/wileyorg][Wiley]], [[https://github.com/schnorr/acmorg][ACM]], [[https://github.com/schnorr/llncsorg][LNCS]]
+  - his lecture on programming languages for undergrads:
+    https://github.com/schnorr/mlp/tree/master/conteudo
 
