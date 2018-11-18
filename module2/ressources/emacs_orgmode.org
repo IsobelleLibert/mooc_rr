@@ -159,9 +159,8 @@ adding a few org-mode specific configurations.
 
 ** Step 0: Backup and download our configuration
 The procedure we propose will wipe your already existing custom Emacs
-configuration if you have one. *You should thus beforehand make
-a backup of =~/.emacs= and of =~/.emacs.d/init.el=* (if these files
-exist).
+configuration if you have one. *You should thus beforehand make a
+backup* of =~/.emacs= and of =~/.emacs.d/init.el= (if these files exist).
 
 #+begin_src shell :results output :exports none
 export FILE_LIST="rr_org/init.el rr_org/journal.org"
@@ -169,6 +168,7 @@ tar zcf rr_org_archive.tgz $FILE_LIST
 #+end_src
 
 #+RESULTS:
+
 Then download [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/rr_org_archive.tgz][this archive]] and uncompress it. It contains the
 following files and we will refer to them in the following:
 
@@ -180,6 +180,7 @@ tar tzf rr_org_archive.tgz
 : rr_org/init.el
 : rr_org/journal.org
 
+Alternatively, [[file:rr_org/][the files you are looking for are available here]].
 ** Step 1: Prepare your journal
 Create an =org/= directory in the top of your home:
 #+begin_src sh :results output :exports both
