@@ -1,4 +1,4 @@
-﻿# -*- mode: org -*-
+# -*- mode: org -*-
 #+TITLE:     Informations sur l'environnement
 #+AUTHOR:    Arnaud Legrand
 #+DATE: June, 2018
@@ -199,7 +199,7 @@ Requires: patsy, pandas
 Vous pouvez vouloir savoir quels packages sont chargés dans une session
 Python ainsi que leur version sans recourir à pip (qui listera tous
 les packages disponibles). Inspiré par [[https://stackoverflow.com/questions/4858100/how-to-list-imported-modules][StackOverflow]], voici une fonction 
-simple qui liste les packages chargés (ayant un attribut = __ version __ =,
+simple qui liste les packages chargés (ayant un attribut =__ version __=,
 qui n’est malheureusement pas tout à fait standard).
 #+begin_src python :results output :exports both
 def print_imported_modules():
