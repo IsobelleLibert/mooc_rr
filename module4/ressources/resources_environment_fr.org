@@ -7,7 +7,7 @@
 #+PROPERTY: header-args :eval never-export
 
 * Table des matières
-- [[Obtenir-des-informations-sur-votre-dépôt-Git][Obtenir des informations sur votre dépôt Git]]
+- [[Obtenir-des-informations-sur-votre-depot-Git][Obtenir des informations sur votre dépôt Git]]
 
 * Obtenir des informations sur votre dépôt Git
 Lorsqu'on prend des notes, il peut être difficile de se rappeler
