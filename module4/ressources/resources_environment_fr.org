@@ -8,8 +8,8 @@
 
 * Table des matières
 - [[#Obtenir-des-informations-sur-votre-depot-Git][Obtenir des informations sur votre dépôt Git]]
-- [[#Obtenir-des-informations-sur-les-librairies-Python-3][Obtenir des informations sur les librairies Python 3]]
-- [[#Obtenir-des-informations-sur-les packages-R][Obtenir des informations sur les packages R]]
+- [[#Obtenir des informations sur les librairies Python 3][Obtenir des informations sur les librairies Python 3]]
+- [[#Obtenir des informations sur les packages R][Obtenir des informations sur les packages R]]
 
 * Obtenir des informations sur votre dépôt Git
 Lorsqu'on prend des notes, il peut être difficile de se rappeler
