@@ -7,9 +7,9 @@
 #+PROPERTY: header-args :eval never-export
 
 * Table des matières
-- [[#Obtenir-des-informations-sur-votre-depot-Git][Obtenir des informations sur votre dépôt Git]]
-- [[#Obtenir des informations sur les librairies Python 3][Obtenir des informations sur les librairies Python 3]]
-- [[#Obtenir des informations sur les packages R][Obtenir des informations sur les packages R]]
+- Obtenir-des-informations-sur-votre-depot-Git
+- Obtenir des informations sur les librairies Python 3
+- Obtenir des informations sur les packages R
 
 * Obtenir des informations sur votre dépôt Git
 Lorsqu'on prend des notes, il peut être difficile de se rappeler
@@ -204,7 +204,7 @@ Requires: patsy, pandas
 Vous pouvez vouloir savoir quels packages sont chargés dans une session
 Python ainsi que leur version sans recourir à pip (qui listera tous
 les packages disponibles). Inspiré par [[https://stackoverflow.com/questions/4858100/how-to-list-imported-modules][StackOverflow]], voici une fonction 
-simple qui liste les packages chargés (ayant un attribut =__ version __=,
+simple qui liste les packages chargés (ayant un attribut =__version__=,
 qui n’est malheureusement pas tout à fait standard).
 #+begin_src python :results output :exports both
 def print_imported_modules():
