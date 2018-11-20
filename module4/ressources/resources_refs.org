@@ -41,12 +41,11 @@ careful about stability. We (the authors of this MOOC) believe that open
 source (which allows to inspect how computation is done and to
 identify both mistakes and sources of non-reproducibility) is more
 important than the rock solid stability of SAS, which is proprietary
-software. Yet, if you really need to stay with SAS (similar solutions
-probably exist for other languages as well), you should know that SAS
-can be used within Jupyter using either the [[https://sassoftware.github.io/sas_kernel/][Python SASKernel]] or the
-[[https://sassoftware.github.io/saspy/][Python SASPy]] package (step by step explanations about this are given
-[[https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md][here]]). Using such literate programming approach allied with systematic
-version and environment control will always help.
+software. Yet, if you really need to stay with SAS, you should know that SAS
+can be used within Jupyter using the [[https://sassoftware.github.io/saspy/][Python SASPy]] and the
+[[https://sassoftware.github.io/sas_kernel/][Python SASKernel]] packages (step by step explanations about this are given
+[[https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md#53-le-package-python-saspy-permet-dex%C3%A9cuter-du-code-sas-dans-un-notebook-python][here]]). Using such literate programming approach allied with systematic
+version and environment control will always help. Similar solutions exist for many languages ([[https://github.com/jupyter/jupyter/wiki/Jupyter-kernels][list of Jupyter kernels]]).
 * Controlling your software environment
 As we mentioned in the video sequences, there are several solutions to
 control your environment:
@@ -80,11 +79,11 @@ whenever the data is not sensitive.
 * Workflows
 In the video sequences, we mentioned workflow managers (original application domain in parenthesis):
 - [[https://galaxyproject.org/][Galaxy]] (genomics), [[https://kepler-project.org/][Kepler]] (ecology), [[https://taverna.apache.org/][Taverna]] (bio-informatics), [[https://pegasus.isi.edu/][Pegasus]]
-  (astronomy), [[http://cknowledge.org/][Collective Knowledge]] (compiling optimization) ,
+  (astronomy), [[http://cknowledge.org/][Collective Knowledge]] (compiling optimization),
   [[https://www.vistrails.org][VisTrails]] (image processing)
 - Light-weight: [[http://dask.pydata.org/][dask]] (python), [[https://ropensci.github.io/drake/][drake]] (R), [[http://swift-lang.org/][swift]] (molecular biology),
-  [[https://snakemake.readthedocs.io/][snakemake]] (like =make= but more expressive and in =python=) ...
-- Hybrids: [[https://vatlab.github.io/sos-docs/][SOS-notebook]], ...
+  [[https://snakemake.readthedocs.io/][snakemake]] (like =make= but more expressive and in =python=)...
+- Hybrids: [[https://vatlab.github.io/sos-docs/][SOS-notebook]]...
 
 You may want to have a look at this webinar: [[https://github.com/alegrand/RR_webinars/blob/master/6_reproducibility_bioinformatics/index.org][Reproducible Science in
 Bio-informatics: Current Status, Solutions and Research Opportunities
