@@ -187,9 +187,9 @@ This section describes a generic (through the command line) way to
 synchronize your local files with Gitlab. You will not need this if
 you follow the Jupyter path. If you follow the RStudio path, all
 these operations can be done through RStudio and you may want to read
-[[file:rstudio.org][the corresponding instructions]]. If you follow the Org-Mode path, all
+[[/jump_to_id/1a4f58a1efed437c93a9f5c5f15df428][the corresponding instructions]]. If you follow the Org-Mode path, all
 these operations can be done through Magit and you may want to read
-[[file:emacs_orgmode.org][the corresponding instructions]]. 
+[[/jump_to_id/508299f7373449a3939faa5b11462bc4][the corresponding instructions]]. 
 
 Here are other ways to learn Git through the command line:
 - The [[http://swcarpentry.github.io/git-novice/][Software Carpentry git tutorial]]
