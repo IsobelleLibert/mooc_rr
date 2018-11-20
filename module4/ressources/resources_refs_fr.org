@@ -93,10 +93,10 @@ S'assurer que le logiciel est correctement archivé, c'est-à-dire qu'il
 est stocké de manière sécurisée afin de pouvoir y accéder de manière
 pérenne, peut être assez délicat. Si vous n'avez jamais vu la
 [[https://github.com/alegrand/RR_webinars/blob/master/5_archiving_software_and_data/index.org][présentation du projet Software Heritage par Roberto Di Cosmo]], c'est à
-voir absolument. https://www.softwareheritage.org/
+voir absolument. [[https://www.softwareheritage.org/][https://www.softwareheritage.org/]]
 
 Pour les données, nous vous recommandons vivement d’utiliser
-https://www.zenodo.org/ lorsque les données ne sont pas sensibles. 
+[[https://www.zenodo.org/][https://www.zenodo.org/]] lorsque les données ne sont pas sensibles. 
 
 * Workflows
 Dans les séquences vidéo, nous avons mentionné les gestionnaires de
