@@ -1,0 +1,316 @@
+# -*- mode: org -*-
+#+TITLE:     Git et GitLab
+#+AUTHOR:    Arnaud Legrand
+#+DATE: June, 2018
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:t
+#+PROPERTY: header-args :eval never-export
+
+*Ce document est particulièrement important si vous suivez le parcours
+RStudio ou Org-Mode. Vous pouvez l’ignorer dans un premier temps si* 
+*vous suivez le parcours Jupyter car nous avons étroitement intégré
+Jupyter et GitLab dans le contexte de ce MOOC.*
+
+Jusqu'à présent, vous avez utilisé Git uniquement via l'interface web
+du GitLab que nous avons déployée pour le MOOC : 
+[[https://app-learninglab.inria.fr/gitlab/][https://app-learninglab.inria.fr/gitlab/]]
+
+Si vous accédez à ce lien depuis la plate-forme FUN, vous n'avez pas à
+vous authentifier et vous pouvez facilement lire et modifier tous vos
+fichiers. C'est très pratique, mais dans la plupart des cas, vous
+voudrez avoir votre propre copie locale du référentiel et vous devrez
+synchroniser votre copie locale avec celle de GitLab. Vous devrez
+évidemment vous authentifier sur GitLab pour propager vos modifications.
+
+Ce document décrit le logiciel que vous devez installer sur votre
+ordinateur et comment gérer l'authentification. La section
+"Configuration de Git" est illustrée dans un [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85][tutoriel vidéo]] (en
+français). 
+
+Veuillez lire attentivement toutes ces instructions, en particulier
+celle sur la "Configuration de votre mot de passe sur GitLab".
+
+* Installer Git
+** Linux (Debian, Ubuntu)
+Nous ne fournissons ici que des instructions pour les distributions
+basées sur Debian. N'hésitez pas à contribuer à ce document en
+fournissant des informations à jour sur les autres distributions
+(RedHat, Fedora, par exemple). 
+
+Run (as root) :
+#+begin_src sh :results output :exports both
+apt-get update ; apt-get install git
+#+end_src
+** Mac OSX et Windows
+- Télécharger et installer Git depuis le [[https://git-scm.com/downloads][site Git]].
+- Clients Git optionnels (ne devraient pas être nécessaires si vous
+  travaillez dans RStudio) : 
+  - [[https://www.sourcetreeapp.com/][SourceTree]]
+  - [[https://desktop.github.com/][GitHub Desktop]] 
+    #+BEGIN_QUOTE
+    Semble fonctionner avec GitLab et https (voir [[https://github.com/desktop/desktop/issues/852][discussion]]). 
+    #+END_QUOTE
+* Configurer Git
+** Dire à Git qui vous êtes : nom et email
+1. Ouvrir un terminal.
+2. Définir un nom d'utilisateur et un email dans Git :
+   #+begin_src shell :results output :exports both
+   git config --global user.name "Mona Lisa"
+   git config --global user.email "email@example.com"
+   #+end_src
+
+   #+RESULTS:
+
+3. Confirmer que vous avez correctement défini le nom d'utilisateur et
+   l'email Git : 
+   #+begin_src shell :results output :exports both
+   git config --global user.name
+   git config --global user.email
+   #+end_src
+
+   #+RESULTS:
+   : Mona Lisa
+   : email@example.com
+** Gérer les proxy
+Vous êtes peut-être derrière un proxy, auquel cas vous pouvez avoir
+des problèmes de clonage ou d’extraction à partir d’un dépôt distant,
+ou une erreur telle que :  
+=unable to access... Couldn't resolve host...=
+
+Dans ce cas, envisagez quelque chose comme ceci :
+#+begin_src shell :results output :exports both
+git config --global http.proxy http://proxyUsername:proxyPassword@proxy.server.com:port
+#+end_src
+
+Le =proxyPassword= sera stocké en texte brut (non crypté) dans votre
+fichier ~.gitconfig~, ce que vous ne souhaitez peut-être pas. Dans ce
+cas, supprimez-le de l'URL et vous serez invité à le saisir chaque fois
+que vous en aurez besoin. 
+** Récupérer votre mot de passe par défaut sur GitLab (et le changer éventuellement)
+*Avertissement (utilisateurs Jupyter) :* changer votre mot de passe
+Gitlab par défaut vous empêchera de commiter les notebooks Jupyter que
+nous avons déployés pour le MOOC. Vous devrez effectuer l’étape
+supplémentaire de modification de votre =~/.git-credentials= dans
+l’environnement Jupyter (éventuellement plusieurs fois).  
+
+1. Récupérer votre mot de passe par défaut en utilisant l'outil [[https://app-learninglab.inria.fr/jupyterhub/services/password][Gitlab
+   credentials retrieval]] comme décrit dans la [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85][ressource correspondante]]. 
+   #+BEGIN_CENTER
+   [[file:gitlab_images/password_retrieval.png]]
+   #+END_CENTER
+   La première séquence de caractères longue et laide est votre
+   identifiant GitLab qu'il est facile de trouver une fois que vous
+   êtes connecté à Gitlab. Cependant la seconde séquence de caractères
+   est votre mot de passe et cette page Web est le seul endroit où
+   vous pouvez le trouver. Nous avons utilisé le mécanisme
+   d'authentification FUN pour propager vos informations
+   d'identification de sorte que seulement vous puissiez y
+   accéder. Vous devrez utiliser ce mot de passe lorsque vous
+   essaierez de propager des modifications de votre ordinateur vers
+   GitLab. 
+
+   /Note : Vous devez accéder à cette page Web à partir de la/
+   /plate-forme FUN, sinon vous risquez d'obtenir une erreur 405 en/ 
+   /essayant d'accéder directement à
+   [[https://app-learninglab.inria.fr/jupyterhub/services/password]]./ 
+   #+BEGIN_CENTER
+   [[file:gitlab_images/erreur405.png]]
+   #+END_CENTER
+2. Accéder à [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/xblock/block-v1:inria+41016+session01bis+type@lti+block@05a0ce425f1741e5bee5049040f70529/handler/preview_handler][GitLab]]. 
+
+   /Note : Vous devez à nouveau accéder à Gitlab à partir de la plate-forme/
+   /FUN, sinon vous risquez d'obtenir une erreur 405 en essayant
+   d'accéder directement à/ 
+   https://app-learninglab.inria.fr/gitlab/users/sign_in/.
+3. Cliquez sur le premier bouton =Sign in=. Vous pouvez également
+   utiliser l'identifiant/mot de passe que vous venez de récupérer et
+   utiliser le second bouton =Sign in=. Le second bouton permet de plus
+   de se connecter sans passer par la plateforme FUN une fois que vous
+   connaissez votre identifiant/mot de passe.
+   #+BEGIN_CENTER
+   [[file:gitlab_images/signin.png]]
+   #+END_CENTER
+4. Si vous souhaitez modifier votre mot de passe, accédez à =Account >
+   Settings > Password= et définissez votre mot de passe à l'aide du mot
+   de passe par défaut que vous venez de récupérer. Encore une fois, si
+   vous utilisez les notebooks Jupyter que nous avons déployés pour le
+   MOOC, n’oubliez pas que changer votre mot de passe Gitlab par défaut
+   vous empêchera de les commiter. Vous devrez effectuer l’étape
+   supplémentaire consistant à changer votre =~/.git-credentials=
+   Jupyter via une console Jupyter (voir section suivante). 
+
+   #+BEGIN_CENTER
+   [[file:gitlab_images/password.png]]
+   #+END_CENTER
+** Enregistrer votre mot de passe localement
+Si vous clonez votre dépôt en collant simplement l'URL de
+GitLab, vous serez invité à saisir votre identifiant et votre mot de
+passe chaque fois que vous souhaitez propager vos modifications
+locales, ce qui est fastidieux. C’est pourquoi vous pouvez demander à
+Git de se rappeler de votre identifiant et votre mot de passe comme
+suit :
+
+#+begin_src shell :results output :exports both
+git config --global credential.helper cache                  # remember my password
+git config --global credential.helper "cache --timeout=3600" # for one hour at most
+#+end_src
+Avec cette configuration, vous serez invité à saisir votre mot de
+passe, mais celui-ci sera mis en cache et ne sera plus demandé pendant
+une heure. Vous voudrez peut-être lire [[https://stackoverflow.com/questions/5343068/is-there-a-way-to-skip-password-typing-when-using-https-on-github][ces instructions]] pour mieux
+comprendre comment tout cela fonctionne. 
+
+Si vous souhaitez que votre mot de passe soit mémorisé en permanence,
+vous devez utiliser cette commande :
+#+begin_src shell :results output :exports both
+git config credential.helper store
+#+end_src
+Votre mot de passe sera alors stocké dans un fichier =.git-credentials=
+en texte brut (non-crypté). Sur une machine parfaitement sécurisée,
+cela peut être très bien... ou pas... ;) Utilisez cette possibilité à
+vos risques et périls. 
+** Optionnel : authentification par SSH
+Il existe deux manières d'authentifier et de synchroniser votre
+dépôt local avec GitLab : via HTTPS ou via SSH. Le premier est ce
+qui vient d'être décrit et ne nécessite aucune installation de
+logiciel particulier sur votre machine, c'est donc ce que je
+recommande pour ce MOOC. Pourtant, je préfère le second (bien que
+cela puisse paraître un peu plus technique), c'est pourquoi je le
+décris ici. Cela consiste à installer SSH, à créer une paire de clés
+ou des clés privée/publique et à télécharger votre clé publique SSH
+sur GitLab. Cette section fournit des informations sur la procédure à
+suivre. 
+
+*** Installer SSH
+**** Linux (Debian, Ubuntu)
+Nous ne fournissons ici que des instructions pour les distributions
+basées sur Debian. N'hésitez pas à contribuer à ce document en
+fournissant des informations à jour sur les autres distributions
+(RedHat, Fedora, par exemple). 
+
+Run (as root) :
+#+begin_src sh :results output :exports both
+apt-get update ; apt-get install openssh-client
+#+end_src
+**** macOS
+C'est installé par défaut donc vous n'avez rien à faire.
+**** Windows
+Vous devez installer le client [[https://www.ssh.com/ssh/putty/windows/][Putty]]. Une fois l’installation
+terminée, suivez la section [[https://www.ssh.com/ssh/putty/windows/puttygen][PuTTYgen - Key Generator for PuTTY on
+Windows]]. 
+*** Configurer SSH sur GitLab
+Vous trouverez [[https://docs.gitlab.com/ee/ssh/][ici]] les explications officielles sur la configuration
+de votre clé SSH sur GitLab. Vous pouvez aussi regarder cette vidéo :
+#+BEGIN_EXPORT html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/54mxyLo3Mqk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+#+END_EXPORT
+* Utiliser Git par lignes de commandes pour synchroniser vos fichiers locaux avec Gitlab
+Cette section décrit un moyen générique (par lignes de commandes) de
+synchroniser vos fichiers locaux avec Gitlab. Vous n'en aurez pas
+besoin si vous suivez le parcours Jupyter. Si vous suivez le parcours
+RStudio, toutes ces opérations peuvent être effectuées via RStudio et
+vous voudrez peut-être lire [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/1a4f58a1efed437c93a9f5c5f15df428][les instructions correspondantes]]. Si vous
+suivez le chemin Org-Mode, toutes ces opérations peuvent être
+effectuées via Magit et vous voudrez peut-être lire
+[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/508299f7373449a3939faa5b11462bc4][les instructions correspondantes]].
+
+
+Voici d'autres moyens d'apprendre Git par lignes de commandes :
+- Le [[http://swcarpentry.github.io/git-novice/][Software Carpentry git tutorial]]
+- Le livre Pro Git (gratuit) en [[https://git-scm.com/book/en/v2][englais]] ou en [[https://git-scm.com/book/fr/v2][français]]. Les deux
+  premiers chapitres suffisent pour bien commencer. 
+- Le site [[https://learngitbranching.js.org/][Apprenez Git Branching]] permet d'apprendre Git
+  interactivement et de comprendre les branches. 
+
+Maintenant, commençons !
+1. Récupérer l'URL du dépôt
+   #+BEGIN_CENTER
+      [[file:rstudio_images/adresse_depot.png]]
+   #+END_CENTER
+2. Cloner le dépôt
+   #+begin_src shell :results output :exports both
+   cd /the/directory/where/you/want/to/clone/your/repository
+   git clone https://app-learninglab.inria.fr/gitlab/xxx/mooc-rr.git
+   #+end_src
+   Alternativement, vous pouvez vouloir indiquer votre identifiant
+   maintenant, bien que je vous suggère plutôt de suivre les
+   instructions de la partie /Enregistrer votre mot de passe localement/. 
+   #+begin_src shell :results output :exports both
+   git clone https://xxx@app-learninglab.inria.fr/gitlab/xxx/mooc-rr.git
+   #+end_src
+   Maintenant un répertoire =mooc-rr= a été créé sur votre ordinateur.
+3. Inspecter le répertoire correspondant au dépôt
+   #+begin_src shell :results output :exports both
+   cd mooc-rr
+   ls # (Unix)
+   dir # (Windows)
+   #+end_src
+4. Synchroniser avec GitLab
+
+   Vous devez indiquer les fichiers à suivre (=git add=) et les valider
+   localement (=git commit=) avant de pouvoir les transférer (=git push=)
+   à GitLab. Le =git status= vous indiquera si les fichiers sont
+   suivis/modifiés/commités/...
+
+   Supposons que vous venez de créer un fichier =fichier.txt= à la
+   racine du répertoire =mooc-rr=. 
+
+   #+begin_src shell :results output :exports both
+   git status
+   #+end_src
+
+   #+BEGIN_CENTER
+   [[file:gitlab_images/status1.png]]
+   #+END_CENTER
+
+   #+begin_src shell :results output :exports both
+   git add fichier.txt
+   git status
+   #+end_src
+
+   #+BEGIN_CENTER
+   [[file:gitlab_images/status2.png]]
+   #+END_CENTER
+
+   #+begin_src shell :results output :exports both
+   git commit -m "message commit"
+   #+end_src
+
+   #+BEGIN_CENTER
+   [[file:gitlab_images/commit_git.png]]
+   #+END_CENTER
+
+   #+begin_src shell :results output :exports both
+   git status
+   #+end_src
+
+   #+BEGIN_CENTER
+   [[file:gitlab_images/status3.png]]
+   #+END_CENTER
+
+   Le fichier peut ensuite être transféré vers GitLab :
+   #+begin_src shell :results output :exports both
+   git push
+   #+end_src
+
+   À ce stade, Git vous demandera votre identifiant/mot de passe,
+   sauf si vous avez suivi les instructions de la partie /Enregistrer
+   votre mot de passe localement/. 
+
+   NB : vous ne serez pas autorisé à propager vos modifications dans
+   GitLab si d'autres modifications ont été propagées entre temps (par
+   exemple par quelqu'un d'autre). 
+
+   #+BEGIN_CENTER
+   [[file:gitlab_images/rejected.png]]
+   #+END_CENTER
+
+5. Synchronisation à partir de Gitlab : pour éviter le problème
+   précédent, vous devez d’abord récupérer les modifications distantes
+   de GitLab et les appliquer localement.
+
+   #+begin_src shell :results output :exports both
+   git pull
+   #+end_src
+   Alors seulement pourrez-vous exécuter le =git push=.
+
+
