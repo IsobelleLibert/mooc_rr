@@ -200,7 +200,9 @@ Here are other ways to learn Git through the command line:
 
 Now, let's start!
 1. Obtain the repository URL
+   #+BEGIN_CENTER
    [[file:rstudio_images/adresse_depot.png]]
+   #+END_CENTER
 2. Cloning the repository
    #+begin_src shell :results output :exports both
    cd /the/directory/where/you/want/to/clone/your/repository
@@ -226,47 +228,57 @@ Now, let's start!
    GitLab. The =git status= will indicate you whether files are
    tracked/modified/committed/...
 
-   Let's assume you just created a `fichier.txt` file on the top of
+   Let's assume you just created a =fichier.txt= file on the top of
    the =mooc-rr= directory.
 
    #+begin_src shell :results output :exports both
    git status
    #+end_src
 
+   #+BEGIN_CENTER
    [[file:gitlab_images/status1.png]]
-
+   #+END_CENTER
+   
    #+begin_src shell :results output :exports both
    git add fichier.txt
    git status
    #+end_src
 
+   #+BEGIN_CENTER
    [[file:gitlab_images/status2.png]]
-
+   #+END_CENTER
+   
    #+begin_src shell :results output :exports both
    git commit -m "message commit"
    #+end_src
 
+   #+BEGIN_CENTER
    [[file:gitlab_images/commit_git.png]]
-
+   #+END_CENTER
+   
    #+begin_src shell :results output :exports both
    git status
    #+end_src
 
+   #+BEGIN_CENTER
    [[file:gitlab_images/status3.png]]
-
+   #+END_CENTER
+   
    The file can then be transfered to GitLab:
    #+begin_src shell :results output :exports both
    git push
    #+end_src
 
-   At this point, git will as you about your login/password unless
+   At this point, git will ask you about your login/password unless
    you followed the previous /Remembering your password locally/ instructions.
 
    N.B.: you will not be allowed to propagate your modifications to
    GitLab if other modifications (e.g., from someone else) have been
    propagated in between
 
+   #+BEGIN_CENTER
    [[file:gitlab_images/rejected.png]]
+   #+END_CENTER
 5. Synchronizing from Gitlab: to avoid the previous problem, you need
    to fetch the remote GitLab modifications first and apply them
    locally.
