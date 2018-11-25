@@ -80,27 +80,14 @@ jupyter notebook
 
 Jupyper permet par défaut d'exécuter du code Python. Des packages permettent d'exécuter d'autres langages.
 
-## 5.1 Le package R [IRKernel](https://github.com/IRkernel/IRkernel) permet d'exécuter du code R dans un notebook R
+## 5.1 Le package R [IRKernel](https://cran.r-project.org/web/packages/IRkernel/IRkernel.pdf) permet d'exécuter du code R dans un notebook R
 
 - Lancer R ou RStudio
 
-- Installer le package devtools
+- Installer le package `IRkernel`
 
 ```
-install.packages('devtools',dep=TRUE)
-```
-
-- Définir le proxy le cas échéant
-
-```
-library(httr)
-set_config(use_proxy(url="proxy", port=80, username="username", password="password")) 
-```
-
-- Installer IRkernel
-
-```
-devtools::install_github('IRkernel/IRkernel')
+install.packages('IRkernel',dep=TRUE)
 IRkernel::installspec()  # to register the kernel in the current R installation
 ```
 
@@ -114,7 +101,7 @@ On remarque l'icône du logiciel R en haut à droite.
 
 - [Exemple de notebook R](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/notebooks_jupyter/notebook_R/notebook_R.ipynb)
 
-- Lien utile : http://r.789695.n4.nabble.com/Problem-with-IRkernel-Installation-Solved-Instructions-on-how-to-Solve-it-td4727912.html
+- Lien utile : https://irkernel.github.io/installation/
 
 ---
 
