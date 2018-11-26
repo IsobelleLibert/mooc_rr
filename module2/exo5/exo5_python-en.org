@@ -15,24 +15,24 @@
 # #+PROPERTY: header-args  :session  :exports both
 
 On January 27, 1986, the day before the takeoff of the shuttle /Challenger/, had
-held a three-hour teleconference between the
-Morton Thiokol (manufacturer of one of the engines) and NASA. The
+a three-hour teleconference was held between 
+Morton Thiokol (the manufacturer of one of the engines) and NASA. The
 discussion focused on the consequences of the
 temperature at take-off of 31°F (just below
-0°C) on the success of the flight and in particular on the performance of the
-O-rings used in motors. Indeed, no test
+0°C) for the success of the flight and in particular on the performance of the
+O-rings used in the engines. Indeed, no test
 had been performed at this temperature.
 
-The following study therefore takes up some of the analyses carried out in this study
-night and whose objective was to assess the potential influence of
-the temperature and pressure to which the seals are subjected
-O-rings on their probability of malfunction. To do this, we
-have the results of the experiments carried out by the engineers
-of NASA during the 6 years preceding the launch of the shuttle
+The following study takes up some of the analyses carried out that
+night with the objective of assessing the potential influence of
+the temperature and pressure to which the O-rings are subjected
+on their probability of malfunction. Our starting point is 
+the results of the experiments carried out by NASA engineers
+during the six years preceding the launch of the shuttle
 Challenger.
 
-* Data loading
-So we start by loading this data:
+* Loading the data
+We start by loading this data:
 #+begin_src python :results value :session *python* :exports both
 import numpy as np
 import pandas as pd
@@ -68,16 +68,15 @@ data
 22    1/12/86      6           58       200            1
 #+end_example
 
-The data set shows us the date of the test, the number of joints
+The data set shows us the date of each test, the number of O-rings
 (there are 6 on the main launcher), the
 temperature (in Fahrenheit) and pressure (in psi), and finally the
-number of identified dysfunctions.
+number of identified malfunctions.
 
-* Graphical data inspection
-Flights where no incidents are found that do not provide any information
-on the influence of temperature or pressure on the
-dysfunctions, we focus on experiences where in the
-at least one seal was defective.
+* Graphical inspection
+Flights without incidents do not provide any information
+on the influence of temperature or pressure on malfunction.
+We thus focus on the experiments in which at least one O-ring was defective.
 
 #+begin_src python :results value :session *python* :exports both
 data = data[data.Malfunction>0]
@@ -94,7 +93,7 @@ data
 : 20  10/30/85      6           75       200            2
 : 22   1/12/86      6           58       200            1
 
-All right, we have a high temperature variability but
+We have a high temperature variability but
 the pressure is almost always 200, which should
 simplify the analysis.
 
@@ -114,17 +113,16 @@ print(matplot_lib_filename)
 #+RESULTS:
 [[file:freq_temp_python.png]]
 
-At first sight, it's not obvious but good, let's try it anyway
-to estimate the impact of temperature $t$ on the probability of
-malfunctions of a seal.
+At first glance, the dependence does not look very important, but let's try to
+estimate the impact of temperature $t$ on the probability of O-ring malfunction.
 
 * Estimation of the temperature influence
 
-Suppose that each of the 6 toroidal seals is damaged with the same
-probability and independently of the others and that this probability does not
-depends only on the temperature. If we note $p(t)$ this probability, the
-number of joints $D$ malfunctioning when the flight is performed at
-temperature $t$ follows a binomial law of parameter $n=6$ and
+Suppose that each of the six O-rings is damaged with the same
+probability and independently of the others and that this probability
+depends only on the temperature. If $p(t)$ is this probability, the
+number $D$ of malfunctioning O-rings during a flight at
+temperature $t$ follows a binomial law with parameters $n=6$ and
 $p=p(t)$. To link $p(t)$ to $t$, we will therefore perform a
 logistic regression.
 
@@ -166,9 +164,9 @@ and the standard error of this estimator is 0.122, in other words we
 cannot distinguish any particular impact and we must take our
 estimates with caution.
 
-* Estimation of the probability of malfunctioning O-rings
-The expected temperature on take-off day is 31°F. Let's try to
-estimate the probability of malfunctioning O-rings at
+* Estimation of the probability of O-ring malfunction
+The expected temperature on the take-off day is 31°F. Let's try to
+estimate the probability of O-ring malfunction at
 this temperature from the model we just built:
 
 #+begin_src python :results output file :var matplot_lib_filename="proba_estimate_python.png" :exports both :session *python* 
@@ -190,9 +188,7 @@ print(matplot_lib_filename)
 As expected from the initial data, the
 temperature has no significant impact on the probability of failure of the
 O-rings. It will be about 0.2, as in the tests
-where we had a failure of at least one joint. Let's get back to the subject
-to the set of initial data to estimate the probability of
-failure of a seal:
+where we had a failure of at least one joint. Let's get back to the initial dataset to estimate the probability of failure:
 
 #+begin_src python :results output :session *python* :exports both
 data = pd.read_csv("shuttle.csv")
@@ -202,21 +198,20 @@ print(np.sum(data.Malfunction)/np.sum(data.Count))
 #+RESULTS:
 : 0.06521739130434782
 
-This probability is therefore about $p=0.065$, knowing that there is
-a primary seal a secondary seal on each of the three parts of the
-launcher, the probability of failure of the two joints of a launcher
-is $p^2 \approx 0.00425$. The probability of failure of one of the
-so the thrower is $1-(1-p^2)^3 \approximately 1.2%$.  It would really be
-no luck.... Everything is under control, so the takeoff can have
+This probability is thus about $p=0.065$. Knowing that there is
+a primary and a secondary O-ring on each of the three parts of the
+launcher, the probability of failure of both joints of a launcher
+is $p^2 \approx 0.00425$. The probability of failure of any one of the
+launchers is $1-(1-p^2)^3 \approximately 1.2%$.  That would really be
+bad luck.... Everything is under control, so the takeoff can happen
 tomorrow as planned.
 
-Only the next day, the Challenger shuttle will explode and take away
-with her seven crew members. Public opinion is
-affected and in the subsequent investigation, the reliability of the
-O-rings will be directly implicated. Beyond the problems
-of internal communication at NASA, which have a lot to do with this
-fiasco, the previous analysis includes (at least) a small
-problem.... Can you find it? You are free to modify this
-analysis and to look at this dataset from all angles in order to
-to explain what's wrong.
+But the next day, the Challenger shuttle exploded and took away
+with her the seven crew members. The public was shocked and in
+the subsequent investigation, the reliability of the
+O-rings was questioned. Beyond the internal communication problems
+of NASA, which have a lot to do with this fiasco, the previous analysis
+includes (at least) a small problem.... Can you find it?
+You are free to modify this analysis and to look at this dataset
+from all angles in order to to explain what's wrong.
 
