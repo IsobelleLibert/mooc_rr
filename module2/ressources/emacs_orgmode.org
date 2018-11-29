@@ -6,8 +6,8 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-*Disclaimer:* The two sections _A simple "/reproducible research/" emacs
-configuration_ and _A stub of replicable article_ explain how to set up
+*Disclaimer:* The two sections /A simple "reproducible research" emacs configuration/ 
+and /A stub of replicable article/ explain how to set up
 emacs/org-mode for this MOOC. These are very important sections in the
 context of this MOOC. *These sections are illustrated in two
 out of the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][three video tutorials of this sequence]], and* *which you
@@ -59,7 +59,7 @@ which is now deprecated.
 *Note:* macOS comes with a prehistoric command-line-only version of Emacs located at =/usr/bin/emacs=. It's best to forget about it.
 
 - *Option 1*: Install the =.dmg= file from [[http://vgoulet.act.ulaval.ca/][Vincent Goulet]]:
-  https://vigou3.gitlab.io/emacs-modified-macos/. It ships with recent
+  [[https://vigou3.gitlab.io/emacs-modified-macos/][https://vigou3.gitlab.io/emacs-modified-macos/]]. It ships with recent
   versions:
   - Emacs 26.1
   - Org-mode 9.1.13
@@ -92,7 +92,7 @@ which is now deprecated.
   in order to make Emacs accessible directly from =/Applications=.
 ** Windows
 Install the =.exe= file from [[http://vgoulet.act.ulaval.ca/][Vincent Goulet]]:
-https://vigou3.gitlab.io/emacs-modified-windows/. It ships with recent
+[[https://vigou3.gitlab.io/emacs-modified-windows/][https://vigou3.gitlab.io/emacs-modified-windows/]]. It ships with recent
 versions:
 - Emacs 26.1
 - Org-mode 9.1.13
@@ -133,7 +133,7 @@ matplotlib.matplotlib_fname()
 [[file:emacs_orgmode_images/matplotlib.png]]
 
 Open the =matplotlibrc= file and modify the line starting with =backend=
-to make it =backend : Agg=/
+to make it =backend : Agg=.
 
 ** All platforms: pretty code in HTML export
 To have code pretty printing when exporting to HTML, you should
@@ -306,11 +306,11 @@ channel with many step by step emacs tutorials]].
 [[http://company-mode.github.io/][Company-mode]] is a text completion framework for Emacs. It allows to
 have smart completion in emacs for the most common languages. If you
 feel this is needed, you should follow the instructions from the
-official Web page: http://company-mode.github.io/
+official Web page: [[http://company-mode.github.io/][http://company-mode.github.io/]]
 *** Magit
 [[https://magit.vc/][Magit]] is an Emacs interface for Git. Its usage is briefly illustrated
-in the context of this MOOC in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Utilisation
-Emacs/git"/ in French).
+in the context of this MOOC in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] 
+("/Utilisation Emacs/git/" in French).
 
 It is very powerful and we use it on a daily basis but you should
 definitely understand what git does behind the scenes beforehand. If
