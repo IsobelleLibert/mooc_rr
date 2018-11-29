@@ -132,8 +132,8 @@ matplotlib.matplotlib_fname()
 #+end_src
 [[file:emacs_orgmode_images/matplotlib.png]]
 
-Open the =matplotlibrc= file and add a =#= at the beginning of the line
-starting with =backend=, which amounts to use the default =Agg= value.
+Open the =matplotlibrc= file and modify the line starting with =backend=
+to make it =backend : Agg=/
 
 ** All platforms: pretty code in HTML export
 To have code pretty printing when exporting to HTML, you should
