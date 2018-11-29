@@ -144,6 +144,14 @@ Remarque : Il peut être pratique de remplacer `(org-babel-temp-file \"figure\" 
 
 ![python4](documents/tuto_emacs_windows/images/python4.png)
 
+- Si cette commande échoue, essayer de mettre la librairie `numpy` à jour
+
+Exécuter le code suivant dans une invite de commande dos
+
+```
+python -m pip install -U numpy
+```
+
 ---
 
 ## 2.4 Écrire dans le journal
