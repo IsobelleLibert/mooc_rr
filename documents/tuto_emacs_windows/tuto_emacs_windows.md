@@ -3,10 +3,10 @@
   2. [Ajouter les chemins de R et Python dans dans la variable PATH de Windows](#12-ajouter-les-chemins-de-r-et-python-dans-dans-la-variable-path-de-windows)
   3. [Installer et configurer matplotlib (librairie graphique Python)](#13-installer-et-configurer-matplotlib-librairie-graphique-python)
 2. [Utilisation d'Emacs](#2-utilisation-demacs)
-  1. [Exécuter des commandes dos](#21-ex%C3%A9cuter-des-commandes-dos)
-  2. [Exécuter du code R](#22-ex%C3%A9cuter-du-code-r)
-  3. [Exécuter du code Python](#23-ex%C3%A9cuter-du-code-python)
-  4. [Écrire dans le journal](#24-%C3%89crire-dans-le-journal)
+  1. [Exécuter des commandes dos](#21-exécuter-des-commandes-dos)
+  2. [Exécuter du code R](#22-exécuter-du-code-r)
+  3. [Exécuter du code Python](#23-exé9cuter-du-code-python)
+  4. [Écrire dans le journal](#24-écrire-dans-le-journal)
 
 # 1 Installation et configuration des différents outils
 
