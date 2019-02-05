@@ -1,14 +1,14 @@
-1. [Installation et configuration des différents outils](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_emacs_windows/tuto_emacs_windows.md#1-installation-et-configuration-des-diff%C3%A9rents-outils)
-  1. [Installer et configurer Emacs](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_emacs_windows/tuto_emacs_windows.md#11-installer-et-configurer-emacs)
-  2. [Ajouter les chemins de R et Python dans dans la variable PATH de Windows](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_emacs_windows/tuto_emacs_windows.md#12-ajouter-les-chemins-de-r-et-python-dans-dans-la-variable-path-de-windows)
-  3. [Installer et configurer matplotlib (librairie graphique Python)](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_emacs_windows/tuto_emacs_windows.md#13-installer-et-configurer-matplotlib-librairie-graphique-python)
-2. [Utilisation d'Emacs](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_emacs_windows/tuto_emacs_windows.md#2-utilisation-demacs)
-  1. [Exécuter des commandes dos](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_emacs_windows/tuto_emacs_windows.md#21-ex%C3%A9cuter-des-commandes-dos)
-  2. [Exécuter du code R](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_emacs_windows/tuto_emacs_windows.md#22-ex%C3%A9cuter-du-code-r)
-  3. [Exécuter du code Python](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_emacs_windows/tuto_emacs_windows.md#23-ex%C3%A9cuter-du-code-python)
-  4. [Écrire dans le journal](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_emacs_windows/tuto_emacs_windows.md#24-%C3%89crire-dans-le-journal)
+1. [Installation et configuration des différents outils](#1-installation-et-configuration-des-diff%C3%A9rents-outils)
+  1. [Installer et configurer Emacs](#11-installer-et-configurer-emacs)
+  2. [Ajouter les chemins de R et Python dans dans la variable PATH de Windows](#12-ajouter-les-chemins-de-r-et-python-dans-dans-la-variable-path-de-windows)
+  3. [Installer et configurer matplotlib (librairie graphique Python)](#13-installer-et-configurer-matplotlib-librairie-graphique-python)
+2. [Utilisation d'Emacs](#2-utilisation-demacs)
+  1. [Exécuter des commandes dos](#21-ex%C3%A9cuter-des-commandes-dos)
+  2. [Exécuter du code R](#22-ex%C3%A9cuter-du-code-r)
+  3. [Exécuter du code Python](#23-ex%C3%A9cuter-du-code-python)
+  4. [Écrire dans le journal](#24-%C3%89crire-dans-le-journal)
 
-# **1 Installation et configuration des différents outils**
+# 1 Installation et configuration des différents outils
 
 ## 1.1 Installer et configurer Emacs
 
@@ -90,7 +90,7 @@ Vous serez amené à installer différents packages lors du premier export pdf.
 ---
 ---
 
-# **2 Utilisation d'Emacs**
+# 2 Utilisation d'Emacs
 
 ## 2.1 Exécuter des commandes dos
 
