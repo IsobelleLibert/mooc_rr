@@ -5,7 +5,7 @@
 2. [Utilisation d'Emacs](#2-utilisation-demacs)
   1. [Exécuter des commandes dos](#21-exécuter-des-commandes-dos)
   2. [Exécuter du code R](#22-exécuter-du-code-r)
-  3. [Exécuter du code Python](#23-exé9cuter-du-code-python)
+  3. [Exécuter du code Python](#23-exécuter-du-code-python)
   4. [Écrire dans le journal](#24-écrire-dans-le-journal)
 
 # 1 Installation et configuration des différents outils
