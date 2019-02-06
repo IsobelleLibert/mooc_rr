@@ -25,4 +25,4 @@ C028AL_slides_module1-fr-gz.pdf: diapos_module1.pdf
 
 %.tex: %.org
 	emacs -batch $^  --funcall org-beamer-export-to-latex
-	sed -i -e 's|includegraphics\(.*\)../assets/img/|includegraphics\1../assets/img/thumbnail/|' -e 's/\.png}/.jpg}/i' -e 's/\.JPG}/.jpg}/i' $@
+#	sed -i -e 's|includegraphics\(.*\)../assets/img/|includegraphics\1../assets/img/thumbnail/|' -e 's/\.png}/.jpg}/i' -e 's/\.JPG}/.jpg}/i' $@
