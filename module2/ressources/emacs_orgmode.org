@@ -17,6 +17,26 @@ the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to
 
 The next section provides information on how to install emacs.
 
+* Table of Contents                                                     :TOC:
+ - [[#installing-emacs-org-mode-ess-and-auctex][Installing emacs, org-mode, ess, and auctex.]]
+     - [[#linux-debian-ubuntu][Linux (Debian, Ubuntu)]]
+     - [[#macos][macOS]]
+     - [[#windows][Windows]]
+     - [[#all-platforms-pretty-code-in-html-export][All platforms: pretty code in HTML export]]
+ - [[#a-simple-reproducible-research-emacs-configuration-][A simple "/reproducible research/" emacs configuration ]]
+     - [[#step-0-backup-and-download-our-configuration][Step 0: Backup and download our configuration]]
+     - [[#step-1-prepare-your-journal][Step 1: Prepare your journal]]
+     - [[#step-2-set-up-emacs-configuration][Step 2: Set up Emacs configuration]]
+     - [[#step-3-adapt-the-configuration-to-your-specific-needs-if-required][Step 3: Adapt the configuration to your specific needs if required]]
+     - [[#step-4-check-whether-the-installation-is-working-or-not][Step 4: Check whether the installation is working or not]]
+     - [[#step-5-open-and-play-with-your-journal][Step 5: Open and play with your journal:]]
+ - [[#a-stub-of-a-replicable-article][A stub of a replicable article]]
+ - [[#emacs-tips-and-tricks][Emacs tips and tricks]]
+     - [[#cheat-sheets][Cheat-sheets]]
+     - [[#video-tutorials][Video tutorials]]
+     - [[#additional-useful-emacs-packages][Additional useful emacs packages]]
+     - [[#other-resources][Other resources]]
+
 * Installing emacs, org-mode, ess, and auctex.
 ** Linux (Debian, Ubuntu)
 We provide here only instructions for Debian-based distributions. Feel
