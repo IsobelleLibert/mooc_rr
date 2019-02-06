@@ -108,26 +108,20 @@
     http://phdcomics.com/comics/archive/phd051017s.gif
 ** Graphe syndrome grippal:
   #+begin_src shell :results output raw :exports both
-  debtree python3-matplotlib > python3-matplotlib.dot
+  debtree python3-matplotlib > img/python3-matplotlib.dot
   sed -i -e 's/rankdir=LR/rankdir=RL/g' \
          -e 's/node \[shape=box\]/node [shape=box, color=black, fillcolor=gray, fontcolor=black, style=filled]/g' \
        python3-matplotlib.dot
-  dot -Tpng python3-matplotlib.dot > python3-matplotlib.png
-  echo file:python3-matplotlib.png
+  dot -Tpng img/python3-matplotlib.dot > img/python3-matplotlib.png
+  echo file:img/python3-matplotlib.png
   #+end_src
 
   #+RESULTS:
-  file:python3-matplotlib.png
-
-  #+begin_src shell :results output :exports both
-  mv python3-matplotlib.png ../assets/img/
-  #+end_src
-
-  #+RESULTS:
+  file:img/python3-matplotlib.png
 
 * M4-S0: Vers une étude reproductible : la réalité du terrain
 ** L'enfer de la Recherche Reproductible
-file:../assets/img/phd_sisyphe.png
+file:img/phd_sisyphe.png
 
 *** Notes 
 :PROPERTIES:
@@ -286,9 +280,9 @@ Rechercher des formats binaires pour :
 Git(hub/lab/...) : pas bien adapté au stockage de données
 #+BEGIN_CENTER
 #+ATTR_LATEX: :height 1cm :center nil
-file:../assets/img/Zenodo-logo.jpg
+file:img/Zenodo-logo.jpg
 #+ATTR_LATEX: :height 1cm :center nil
-file:../assets/img/Figshare-logo.png
+file:img/Figshare-logo.png
 #+END_CENTER
 
 ** Conclusions
@@ -306,16 +300,16 @@ file:../assets/img/Figshare-logo.png
 4. Conclusion
 ** Passage à l'échelle 
 #+ATTR_LATEX: :width \linewidth
-file:../assets/img/il-marche-mon-programme.jpg
+file:img/il-marche-mon-programme.jpg
 ** Des codes complexes...
 
-#+LaTeX: \includegraphics<+>[height=6cm]{../assets/img/nb1.png}%
-#+LaTeX: \includegraphics<+>[height=6cm]{../assets/img/nb2.png}%
-#+LaTeX: \includegraphics<+>[height=6cm]{../assets/img/nb3.png}%
-#+LaTeX: \includegraphics<+>[height=6cm]{../assets/img/nb4.png}%
-#+LaTeX: \includegraphics<+>[height=6cm]{../assets/img/grippal_orgmode1.png}%
-#+LaTeX: \includegraphics<+>[height=6cm]{../assets/img/grippal_orgmode2.png}%
-#+LaTeX: \includegraphics<+>[height=6cm]{../assets/img/nb5.png}%
+#+LaTeX: \includegraphics<+>[height=6cm]{img/nb1.png}%
+#+LaTeX: \includegraphics<+>[height=6cm]{img/nb2.png}%
+#+LaTeX: \includegraphics<+>[height=6cm]{img/nb3.png}%
+#+LaTeX: \includegraphics<+>[height=6cm]{img/nb4.png}%
+#+LaTeX: \includegraphics<+>[height=6cm]{img/grippal_orgmode1.png}%
+#+LaTeX: \includegraphics<+>[height=6cm]{img/grippal_orgmode2.png}%
+#+LaTeX: \includegraphics<+>[height=6cm]{img/nb5.png}%
 - Un vrai plat de spaghettis
   - Pas de vision d'ensemble
   - Interaction entre plusieurs langages = danger
@@ -330,9 +324,9 @@ file:../assets/img/il-marche-mon-programme.jpg
 ** ... et difficiles à orchestrer
 #+LaTeX: \only<1>{\begin{overlayarea}{1.5\linewidth}{7cm}
 #+ATTR_LATEX: :height 7cm :center nil
-file:../assets/img/SbmlParameterisation.png
+file:img/SbmlParameterisation.png
 #+ATTR_LATEX: :height 7cm :center nil
-file:../assets/img/SbmlModelling.png
+file:img/SbmlModelling.png
 #+LaTeX: \end{overlayarea}}\pause
 
 Le *Workflow* :
@@ -462,7 +456,7 @@ python3-cycler (>= 0.10.0), python3:any (>= 3.3.2-2~), libc6 (>=
 1.6.2-1), libstdc++6 (>= 5.2), zlib1g (>= 1:1.1.4)
 #+END_EXAMPLE
 
-#+LaTeX: \only<2>{\vspace{-3.5cm}\includegraphics<2>[width=\linewidth]{../assets/img/python3-matplotlib.png}}\vspace{10cm}
+#+LaTeX: \only<2>{\vspace{-3.5cm}\includegraphics<2>[width=\linewidth]{img/python3-matplotlib.png}}\vspace{10cm}
 
 *** Notes 
 :PROPERTIES:
@@ -694,7 +688,7 @@ SHA256: 8f5d3509d4f5451468c6de44fc8dfe391c3df4120079adc01ab5f13ff4194f5a
 
 #+END_EXAMPLE
 ** L'épreuve du temps
-file:../assets/img/soviet_space_shuttle.jpg
+file:img/soviet_space_shuttle.jpg
 ** Compatibilité ascendante
 \small
 - Python et tout son écosystème à évolution hyper rapide
@@ -712,9 +706,9 @@ python3 -c "print(10/3)"
 #+LaTeX: }
 \pause
 #+ATTR_LATEX: :height 3.2cm :center nil
-file:../assets/img/plot_1.5.3.png
+file:img/plot_1.5.3.png
 #+ATTR_LATEX: :height 3.2cm :center nil
-file:../assets/img/plot_2.1.1.png
+file:img/plot_2.1.1.png
 
 \pause
 - Cortical Thickness Measurements (PLOS ONE,
@@ -760,7 +754,7 @@ file:../assets/img/plot_2.1.1.png
 
   Popper: [[http://falsifiable.us/][http://falsifiable.us/]] 
   #+ATTR_LATEX: :height 1.5cm :center nil
-  file:../assets/img/popper_logo_just_jug.png
+  file:img/popper_logo_just_jug.png
 
 *Autre possibilité* :
 - Se restreindre à ce qui est maîtrisable (C par exemple)
@@ -806,9 +800,9 @@ file:../assets/img/plot_2.1.1.png
 - Github/Gitlab/... : stables, ouverts, \dots pérennes ?
   - +Google Code+, +Gitorious+, +Code Spaces+
     #+ATTR_LATEX: :height 1.3cm :center nil
-    file:../assets/img/swh-logo.png
+    file:img/swh-logo.png
     #+ATTR_LATEX: :height 1.3cm :center nil
-    file:../assets/img/LogoHAL.PNG
+    file:img/LogoHAL.png
 
 *Gestion des environnements*
   - Pérénité de l'accès à dockerhub, nix repository, code ocean... ?
@@ -822,9 +816,9 @@ file:../assets/img/plot_2.1.1.png
 :BEAMER_ENV: note
 :END:
 - Dans les exercices, faites y bien attention.
-    # file:../assets/img/ArXiv-web.png"  height=60 />
-    # file:../assets/img/Zenodo-logo.jpg"  height=60 />
-    # file:../assets/img/Figshare-logo.png"  height=60 />
+    # file:img/ArXiv-web.png"  height=60 />
+    # file:img/Zenodo-logo.jpg"  height=60 />
+    # file:img/Figshare-logo.png"  height=60 />
 * M4-S3: L'enfer du calcul
 ** Vers une étude reproductible : la réalité du terrain           :noexport:
 1. L'enfer des données
@@ -844,7 +838,7 @@ file:../assets/img/plot_2.1.1.png
 
 ** L'arithmétique à virgule flottante
 
-file:../assets/img/polynome1.svg
+file:img/polynome1.svg
 #+begin_src python :results output :exports both
 def polynome(x):
     return x**9 - 9.*x**8 + 36.*x**7 - 84.*x**6 + 126.*x**5 \
@@ -860,7 +854,7 @@ def polynome(x):
 
 ** L'arithmétique à virgule flottante
 
-file:../assets/img/polynome2.svg
+file:img/polynome2.svg
 #+begin_src python :results output :exports both
 def horner(x):
     return x*(x*(x*(x*(x*(x*(x*(x*(x - 9.) + 36.) - 84.) + 126.) \
@@ -878,7 +872,7 @@ def horner(x):
 
 ** L'arithmétique à virgule flottante
 
-file:../assets/img/polynome3.svg
+file:img/polynome3.svg
 #+begin_src python :results output :exports both
 def simple(x):
     return (x-1.)**9
@@ -895,7 +889,7 @@ def simple(x):
 
 ** L'arithmétique à virgule flottante
 
-file:../assets/img/polynome3-4.svg
+file:img/polynome3-4.svg
 
 *** Notes 
 :PROPERTIES:
@@ -905,7 +899,7 @@ file:../assets/img/polynome3-4.svg
 
 ** L'arithmétique à virgule flottante
 
-file:../assets/img/polynome4.svg
+file:img/polynome4.svg
 
 *** Notes 
 :PROPERTIES:
@@ -1009,7 +1003,7 @@ Pour un calcul reproductible, il y a deux approches:
 
 ** Calcul parallèle: exemple
 
-file:../assets/img/gouttedo1.png
+file:img/gouttedo1.png
 
 Source: Thèse de Rafife Nheili, Université de Perpignan, 2016
 
@@ -1026,7 +1020,7 @@ Source: Thèse de Rafife Nheili, Université de Perpignan, 2016
   
 ** Calcul parallèle: exemple
 
-file:../assets/img/gouttedo2.png
+file:img/gouttedo2.png
 
 Source: Thèse de Rafife Nheili, Université de Perpignan, 2016
 
@@ -1081,10 +1075,10 @@ Source: Thèse de Rafife Nheili, Université de Perpignan, 2016
 ** Générateur de nombres pseudo-aléatoires
 
 #+LaTeX: \vspace{1cm}
-#+LaTeX: \only<+>{\includesvg[scale=.45]{../assets/img/nombres-aleatoires-1.svg}}
-#+LaTeX: \only<+>{\includesvg[scale=.45]{../assets/img/nombres-aleatoires-2.svg}}
-#+LaTeX: \only<+>{\includesvg[scale=.45]{../assets/img/nombres-aleatoires-3.svg}}
-#+LaTeX: \only<+>{\includesvg[scale=.45]{../assets/img/nombres-aleatoires-4.svg}}
+#+LaTeX: \only<+>{\includesvg[scale=.45]{img/nombres-aleatoires-1.svg}}
+#+LaTeX: \only<+>{\includesvg[scale=.45]{img/nombres-aleatoires-2.svg}}
+#+LaTeX: \only<+>{\includesvg[scale=.45]{img/nombres-aleatoires-3.svg}}
+#+LaTeX: \only<+>{\includesvg[scale=.45]{img/nombres-aleatoires-4.svg}}
 #+LaTeX: \vspace{10cm}
 *** Notes 
 :PROPERTIES:
