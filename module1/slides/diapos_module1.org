@@ -98,7 +98,7 @@ que nous allons illustrer ici par quelques exemples.
    :CUSTOM_ID: lérudit-qui-annote-son-livre-manuscrit
    :END:
 
-[[../assets/img/ManuscritAnnoteEtCoupe.png]]
+[[file:img/ManuscritAnnoteEtCoupe.png]]
 
 Manuscrit d'œuvres d'Aristoteles (XIVe siècle).
 
@@ -118,7 +118,7 @@ considérable pour l'histoire des sciences.
    :CUSTOM_ID: galilée-qui-observe-les-lunes-de-jupiter
    :END:
 
-[[../assets/img/GalileoManuscriptCoupe.png]]
+[[file:img/GalileoManuscriptCoupe.png]]
 
 #+BEGIN_COMMENT
 Le 7 janvier 1610, Galilée fait une découverte capitale : il remarque
@@ -132,7 +132,7 @@ aujourd'hui appelés lunes galiléennes.
 #+END_COMMENT
 
 ** 
-[[../assets/img/GalileoManuscriptZoom.png]]
+[[file:img/GalileoManuscriptZoom.png]]
 
 #+BEGIN_COMMENT
 Ces observations amèneront Galilée à rejeter l'hypothèse
@@ -148,7 +148,7 @@ résidence surveillée.
    :CUSTOM_ID: les-armoires-à-notes-de-placcius-et-leibniz
    :END:
 
-[[../assets/img/Placcius_cabinet_TabIV.png]]
+[[file:img/Placcius_cabinet_TabIV.png]]
 
 #+BEGIN_COMMENT
 Avec l'apparition de l'imprimerie, la demande de papier croît
@@ -166,7 +166,7 @@ construire une armoire spéciale pour résoudre ce problème.
 ** 
 
 #+ATTR_LATEX: :width 0.3\textwidth
-[[../assets/img/Placcius_cabinet_TabIVzoom.png]]
+[[file:img/Placcius_cabinet_TabIVzoom.png]]
 
 #+BEGIN_COMMENT
 Cette armoire contenait une multitude de colonnes capables de
@@ -187,7 +187,7 @@ réordonnées.
 Un extrait de la fin de la préface de « L'île des pingouins » d'Anatole
 France, publié en 1908.
 
-[[../assets/img/A_France_Pingouins.jpg]]
+[[file:img/A_France_Pingouins.jpg]]
 
 #+BEGIN_COMMENT
 Je ne résiste pas, pour vous prévenir contre une accumulation exagérée
@@ -246,7 +246,7 @@ silence et l'immobilité. Menacé moi-même d'être englouti avec mon
    :CUSTOM_ID: le-navigateur-et-son-livre-de-bord-éric-tabarly
    :END:
 
-[[../assets/img/LivredebordpenduickV.JPG]]
+[[file:img/LivredebordpenduickV.jpg]]
 
 #+BEGIN_COMMENT
 Ici, un cas en apparence plus anecdotique : le livre de bord
@@ -255,7 +255,7 @@ d'Éric Tabarly lors de la trans-Pacifique de San-Francisco à Tokyo en
 #+END_COMMENT
 
 ** 
-[[../assets/img/LivredebordpenduickVzoom1.png]]
+[[file:img/LivredebordpenduickVzoom1.png]]
 
 #+BEGIN_COMMENT
 Tabarly y note les événements « marquant ». Par exemple, le 21
@@ -263,7 +263,7 @@ mars à 23 h, le foc ballon est déchiré.
 #+END_COMMENT
 
 ** 
-[[../assets/img/LivredebordpenduickVzoom2.png]]
+[[file:img/LivredebordpenduickVzoom2.png]]
 
 #+BEGIN_COMMENT
 Sur la page opposé il fait ses calculs de positions (il n'y avait
@@ -376,7 +376,7 @@ du livre et de la prise de notes en Occident.
    :CUSTOM_ID: laspect-matériel-résumé-sur-une-diapo
    :END:
 
-[[../assets/img/Figure_W1_S2_1.jpg]]
+[[file:img/Figure_W1_S2_1.jpg]]
 
 #+BEGIN_COMMENT
 En haut à gauche : une tablette d'argile avec des comptes
@@ -412,7 +412,7 @@ En bas à droite : un ordinateur moderne utilisable comme une tablette
    :CUSTOM_ID: tablette-de-cire-et-stylet
    :END:
 
-[[../assets/img/tabula_stilus.jpg]]
+[[file:img/tabula_stilus.jpg]]
 
 #+BEGIN_COMMENT
 
@@ -446,7 +446,7 @@ prendre des notes.
    :CUSTOM_ID: du-volumen-au-codex
    :END:
 
-[[../assets/img/Figure_W1_S2_3.jpg]]
+[[file:img/Figure_W1_S2_3.jpg]]
 
 #+BEGIN_COMMENT
 Le passage du /volumen/ au /codex/ est absolument fondamentale pour
@@ -516,7 +516,7 @@ l'informatique.
    :CUSTOM_ID: eusèbe-et-les-références-croisées
    :END:
 
-[[../assets/img/Eusebe_final.jpg]]
+[[file:img/Eusebe_final.jpg]]
 
 #+BEGIN_COMMENT
 Au IVe siècle de notre ère, Eusèbe de Césarée ou Eusèbe (de) Pamphile
@@ -533,7 +533,7 @@ l'organisation du livre dont la table de références croisées.
    :CUSTOM_ID: canon-eusébien
    :END:
 
-[[../assets/img/Evangeliaire_Lorsch.jpg]]
+[[file:img/Evangeliaire_Lorsch.jpg]]
 
 #+BEGIN_COMMENT
 Pour permettre une comparaison plus facile des quatre évangiles, il
@@ -582,7 +582,7 @@ un statut « supérieur », pas plus que ne le fera la religion musulmane.
    :CUSTOM_ID: parallèle-chinois
    :END:
 
-[[../assets/img/Figure_W1_S2_6.jpg]]
+[[file:img/Figure_W1_S2_6.jpg]]
 
 #+BEGIN_COMMENT
 Le lien entre apparition et généralisation du /codex/, d'une part, et
@@ -614,7 +614,7 @@ siècle avant J.-C....
    :CUSTOM_ID: organiser-en-mettant-dans-la-bonne-case
    :END:
 
-[[../assets/img/Placcius_cabinet_TabIV.png]]
+[[file:img/Placcius_cabinet_TabIV.png]]
 
 #+BEGIN_COMMENT
 
@@ -651,7 +651,7 @@ ne faites pas cela avec les livres de bibliothèques !
    :CUSTOM_ID: organiser-avec-une-bonne-carte-la-méthode-de-john-locke
    :END:
 
-[[../assets/img/MethodeLocke1.jpg]]
+[[file:img/MethodeLocke1.jpg]]
 
 #+BEGIN_COMMENT
 
@@ -687,7 +687,7 @@ après avoir commencé à remplir mon cahier de notes.
    :CUSTOM_ID: la-méthode-de-john-locke-suite
    :END:
 
-[[../assets/img/MethodeLocke2.jpg]]
+[[file:img/MethodeLocke2.jpg]]
 
 #+BEGIN_COMMENT
 Nous voyons maintenant notre index. Il est situé en fin de cahier, même
@@ -797,7 +797,7 @@ un format texte. Les fichiers =doc= et =docx= de =Word= et =odt= de
    :CUSTOM_ID: un-fichier-non-lisible-avec-un-éditeur-de-texte
    :END:
 
-[[../assets/img/Exemple_Fichier_Binaire.png]]
+[[file:img/Exemple_Fichier_Binaire.png]]
 
 Un fichier =PDF= ouvert avec =gedit=
 
@@ -806,7 +806,7 @@ Un fichier =PDF= ouvert avec =gedit=
    :CUSTOM_ID: un-fichier-texte-ouvert-avec-un-éditeur-de-texte
    :END:
 
-[[../assets/img/Exemple_Fichier_Texte.png]]
+[[file:img/Exemple_Fichier_Texte.png]]
 
 ** Pourquoi utiliser des fichiers texte ?
    :PROPERTIES:
@@ -847,7 +847,7 @@ Transformation Format - 8 bits/).
    :END:
 
 
-[[../assets/img/Exemple_Rendu_HTML.png]]
+[[file:img/Exemple_Rendu_HTML.png]]
 
 #+BEGIN_COMMENT
 
@@ -865,7 +865,7 @@ Un exemple banale est le
    :CUSTOM_ID: un-fichier-html-visualisé-avec-un-éditeur-de-texte
    :END:
 
-[[../assets/img/Exemple_Source_HTML.png]]
+[[file:img/Exemple_Source_HTML.png]]
 
 #+BEGIN_COMMENT
 
@@ -928,7 +928,7 @@ Un [[https://fr.wikipedia.org/wiki/Langage_de_balisage_l%C3%A9ger][langage de ba
    :CUSTOM_ID: lexemple-de-markdown
    :END:
 
-[[../assets/img/Exemple_Markdown.png]]
+[[file:img/Exemple_Markdown.png]]
 
 Markdown source (en haut) et sortie HTML (en bas)
 
@@ -1031,7 +1031,7 @@ progrès.
    :END:
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Pierre_Ambroise_Choderlos_de_Laclos_Les_Liaisons_dangereuses.png]]
+[[file:img/Pierre_Ambroise_Choderlos_de_Laclos_Les_Liaisons_dangereuses.png]]
 
 #+BEGIN_COMMENT
 
@@ -1049,7 +1049,7 @@ relativement restreint.
    :CUSTOM_ID: lévolutivité-avec-traitement-de-texte
    :END:
 
-[[../assets/img/LibreOffice_notes_pour_CLOM_diff_origine.png]]
+[[file:img/LibreOffice_notes_pour_CLOM_diff_origine.png]]
 
 #+BEGIN_COMMENT
 
@@ -1080,7 +1080,7 @@ navigant dans les menu /view/ puis /Toolbars/ avant de sélectionner
    :CUSTOM_ID: lévolutivité-avec-un-moteur-de-wiki
    :END:
 
-[[../assets/img/Dokuwiki_notes_pour_CLOM.png]]
+[[file:img/Dokuwiki_notes_pour_CLOM.png]]
 
 #+BEGIN_COMMENT
 
@@ -1101,7 +1101,7 @@ pour illustration.
 #+END_COMMENT
 
 ** 
-[[../assets/img/Dokuwiki_notes_pour_CLOM_historique2.png]]
+[[file:img/Dokuwiki_notes_pour_CLOM_historique2.png]]
 
 #+BEGIN_COMMENT
 Si je clique sur « Derniers changements », alors je vois apparaître la
@@ -1110,7 +1110,7 @@ Si maintenant je clique sur le nom de l'une des pages...
 #+END_COMMENT
 
 ** 
-[[../assets/img/Dokuwiki_notes_pour_CLOM_diff.png]]
+[[file:img/Dokuwiki_notes_pour_CLOM_diff.png]]
 
 #+BEGIN_COMMENT
 
@@ -1138,7 +1138,7 @@ page wikipédia.
    :CUSTOM_ID: lévolutivité-avec-la-gestion-de-version
    :END:
 
-[[../assets/img/Github_Module1.png]]
+[[file:img/Github_Module1.png]]
 
 #+BEGIN_COMMENT
 
@@ -1176,7 +1176,7 @@ Si je clique sur le bouton /History/, je vois...
 #+END_COMMENT
 
 ** 
-[[../assets/img/Github_Module1_historique.png]]
+[[file:img/Github_Module1_historique.png]]
 
 #+BEGIN_COMMENT
 
@@ -1188,7 +1188,7 @@ Si maintenant je clique sur le numéro 5a2951f, je vois...
 #+END_COMMENT
 
 ** 
-[[../assets/img/Github_Module1_diff.png]]
+[[file:img/Github_Module1_diff.png]]
 
 #+BEGIN_COMMENT
 
@@ -1199,7 +1199,7 @@ Commentez...
 #+END_COMMENT
 
 ** 
-[[../assets/img/Git_diff_mixte.png]]
+[[file:img/Git_diff_mixte.png]]
 
 #+BEGIN_COMMENT
 
@@ -1317,21 +1317,21 @@ http://www.backwordsindexing.com/index.html
    :CUSTOM_ID: sy-retrouver-dans-un-fichier-texte
    :END:
 
-[[file:../assets/img/recherche-avec-editeur.png]]
+[[file:img/recherche-avec-editeur.png]]
 
 ** S'y retrouver dans un cahier
    :PROPERTIES:
    :CUSTOM_ID: sy-retrouver-dans-un-cahier
    :END:
 
-[[file:../assets/img/IndexCahierLocke.jpg]]
+[[file:img/IndexCahierLocke.jpg]]
 
 ** S'y retrouver dans des « fiches »
    :PROPERTIES:
    :CUSTOM_ID: sy-retrouver-dans-des-fiches
    :END:
 
-[[file:../assets/img/Placcius_cabinet_TabIV.png]]
+[[file:img/Placcius_cabinet_TabIV.png]]
 
 ** Problèmes, limitations, solutions ?
    :PROPERTIES:
@@ -1364,49 +1364,49 @@ http://www.backwordsindexing.com/index.html
    :CUSTOM_ID: trouver-un-mot-quelconque-avec-un-moteur-de-recherche-de-bureau-docfetcher
    :END:
 
-[[file:../assets/img/Trouver_un_mot_avec_DocFetcher.png]]
+[[file:img/Trouver_un_mot_avec_DocFetcher.png]]
 
 ** Le problème de l'« abondance »
    :PROPERTIES:
    :CUSTOM_ID: le-problème-de-labondance
    :END:
 
-[[file:../assets/img/Trouver_calcium_avec_DocFetcher.png]]
+[[file:img/Trouver_calcium_avec_DocFetcher.png]]
 
 ** Ajouter des étiquettes ou mots clés dans un fichier texte (=Markdown=)
    :PROPERTIES:
    :CUSTOM_ID: ajouter-des-étiquettes-ou-mots-clés-dans-un-fichier-texte-markdown
    :END:
 
-[[file:../assets/img/Ajout_etiquette_avec_Markdown.png]]
+[[file:img/Ajout_etiquette_avec_Markdown.png]]
 
 ** Trouver une étiquette avec un moteur de recherche de bureau (=DocFetcher=)
    :PROPERTIES:
    :CUSTOM_ID: trouver-une-étiquette-avec-un-moteur-de-recherche-de-bureau-docfetcher
    :END:
 
-[[file:../assets/img/Trouver_etiquette_avec_DocFetcher.png]]
+[[file:img/Trouver_etiquette_avec_DocFetcher.png]]
 
 ** Les fichiers images contiennent des métadonnées
    :PROPERTIES:
    :CUSTOM_ID: les-fichiers-images-contiennent-des-métadonnées
    :END:
 
-[[file:../assets/img/Metadonne_fichier_index.jpg]]
+[[file:img/Metadonne_fichier_index.jpg]]
 
 ** Les métadonnées peuvent être modifiées
    :PROPERTIES:
    :CUSTOM_ID: les-métadonnées-peuvent-être-modifiées
    :END:
 
-[[file:../assets/img/Metadonne_fichier_index2.jpg]]
+[[file:img/Metadonne_fichier_index2.jpg]]
 
 ** Les moteurs de recherche de bureau peuvent lire les métadonnées
    :PROPERTIES:
    :CUSTOM_ID: les-moteurs-de-recherche-de-bureau-peuvent-lire-les-métadonnées
    :END:
 
-[[file:../assets/img/Trouver_etiquette_avec_DocFetcher2.jpg]]
+[[file:img/Trouver_etiquette_avec_DocFetcher2.jpg]]
 
 ** Conclusion
    :PROPERTIES:

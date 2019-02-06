@@ -72,7 +72,7 @@ This section discusses a much wider issue than /reproducible research/ (RR). Imp
 
 ** The scholar annotating his book / manuscript
 
-[[../assets/img/ManuscritAnnoteEtCoupe.png]]
+[[file:img/ManuscritAnnoteEtCoupe.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -89,7 +89,7 @@ The next two slides show a case of paramount importance for the History of Scien
  
 ** Galileo observing Jupiter's moons
 
-[[../assets/img/GalileoManuscriptCoupe.png]]
+[[file:img/GalileoManuscriptCoupe.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -103,7 +103,7 @@ Galileo Galilei's notes while observing Jupiter in January 1610 with his telesco
 The first observation was done on January 7 1610. Galileo Galilei first thought that he found new stars close to Jupiter (see the [[https://en.wikipedia.org/wiki/Galileo_Galilei#Jupiter's_moons][Wikipedia page]]). But after several nights of observation, he realized that these "stars" were in fact circling around the planet, *they are satellites*! He named the group of four the Medicean stars, in honour of his future patron, Cosimo II de' Medici, Grand Duke of Tuscany, and Cosimo's three brothers (Wikipedia).
 
 ** 
-[[../assets/img/GalileoManuscriptZoom.png]]
+[[file:img/GalileoManuscriptZoom.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -118,7 +118,7 @@ These observations lead Galileo to reject the geocentric hypothesis in favor of 
 
 ** Placcius' and Leibniz' closet
 
-[[../assets/img/Placcius_cabinet_TabIV.png]]
+[[file:img/Placcius_cabinet_TabIV.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -141,7 +141,7 @@ But taking abundant notes on paper slips is good only if one can find efficientl
          :END:
 
 #+ATTR_LATEX: :width 0.6\textwidth
-[[../assets/img/Placcius_cabinet_TabIVzoom.png]]
+[[file:img/Placcius_cabinet_TabIVzoom.png]]
 
 *** 
 :PROPERTIES:
@@ -173,7 +173,7 @@ cd imgs && wget https://upload.wikimedia.org/wikipedia/commons/c/c1/Anatole_Fran
 #+RESULTS:
 
 #+ATTR_LATEX: :width 0.9\textwidth
-[[../assets/img/Anatole_France_young_years.jpg]]
+[[file:img/Anatole_France_young_years.jpg]]
 
 *** 
 :PROPERTIES:
@@ -278,7 +278,7 @@ made my escape through the topmost pane of the window.
 
 ** A sailor's logbook
 
-[[../assets/img/LivredebordpenduickV.JPG]]
+[[file:img/LivredebordpenduickV.jpg]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -293,7 +293,7 @@ This example is only superficially anecdotal. Information about the source can b
 
 ** 
 #+ATTR_LATEX: :width 0.9\textwidth
-[[../assets/img/LivredebordpenduickVzoom1.png]]
+[[file:img/LivredebordpenduickVzoom1.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -302,7 +302,7 @@ On the left side, Tabarly reports salient events like a ripped jib on March 21 a
 
 ** 
 #+ATTR_LATEX: :width 0.8\textwidth
-[[../assets/img/LivredebordpenduickVzoom2.png]]
+[[file:img/LivredebordpenduickVzoom2.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -377,7 +377,7 @@ We will mostly refer to the "Western" part of this History, with a single slide 
 ** The concrete aspects summarized on a single slide 
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Figure_W1_S2_1.jpg]]
+[[file:img/Figure_W1_S2_1.jpg]]
 
 *** Details
 :PROPERTIES:
@@ -411,7 +411,7 @@ rm Tablette_argile.jpg Proculus.jpg Carnet.jpg Carte.jpg Post_it.jpg Tablette_or
 ** Wax tablet and stylus
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/tabula_stilus.jpg]]
+[[file:img/tabula_stilus.jpg]]
 
 *** Details
 :PROPERTIES:
@@ -426,7 +426,7 @@ Writing on the wax surface was performed with a pointed instrument, a stylus. Wr
 ** From the /scroll/ to the /codex/ 
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Figure_W1_S2_3.jpg]]
+[[file:img/Figure_W1_S2_3.jpg]]
 
 *** Details
 :PROPERTIES:
@@ -464,7 +464,7 @@ Notice the red letters used on the codex (bottom right), an example of [[https:/
 ** Eusebius and the invention of cross-references
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Eusebius_final.jpg]]
+[[file:img/Eusebius_final.jpg]]
 
 *** Details
 :PROPERTIES:
@@ -496,7 +496,7 @@ rm Romia_Imperio.png Eusebius_of_Caesarea.jpg Eusebius.jpg Eusebius_leg.jpg Euse
 ** Eusebian canons
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Fol._10v-11r_Egmond_Gospels.jpg]]
+[[file:img/Fol._10v-11r_Egmond_Gospels.jpg]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.2cm}
@@ -554,7 +554,7 @@ An interesting point: Torah's content got "fixed" before the /codex/ generalizat
 ** Let us not forget China   
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Figure_W1_S2_6.jpg]]
+[[file:img/Figure_W1_S2_6.jpg]]
 
 *** Details
 :PROPERTIES:
@@ -588,7 +588,7 @@ rm Yongle_Dadian_Encyclopedia_1403.jpg Matrice_billet_song.jpg
 ** Getting organized by using the right slot
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Placcius_cabinet_TabIV.png]]
+[[file:img/Placcius_cabinet_TabIV.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -619,7 +619,7 @@ This last technique (pasting when making an anthology) was systematically used b
 ** Constructing a notebook index the John Locke way    
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/MethodeLocke1.jpg]]
+[[file:img/MethodeLocke1.jpg]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -644,7 +644,7 @@ This method can be applied after note-taking, you just need to have few pages le
 ** Locke's method continued  
 
 #+ATTR_LATEX: :width 0.8\textwidth
-[[../assets/img/MethodeLocke2.jpg]]
+[[file:img/MethodeLocke2.jpg]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -704,7 +704,7 @@ We now start the "technical" part of this lecture with the tools that computers 
 ** Example of a file that cannot be read with a text editor   
 
 #+ATTR_LATEX: :width 0.9\textwidth
-[[../assets/img/pdf_opened_with_gedit.png]]
+[[file:img/pdf_opened_with_gedit.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -714,7 +714,7 @@ A =pdf= file (the file shown right now with a pdf reader) opened with =gedit=.
 ** A text file opened with a text editor
 
 #+ATTR_LATEX: :width 0.9\textwidth
-[[../assets/img/source_file_opened_with_gedit.png]]
+[[file:img/source_file_opened_with_gedit.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -752,7 +752,7 @@ These limitations, combined with the benefits of text files, led computer scient
 
 ** A trivial example is the HTML language.
 #+ATTR_LATEX: :width 0.9\textwidth
-[[../assets/img/HTML_viewed_with_qutebrowser.png]]
+[[file:img/HTML_viewed_with_qutebrowser.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -761,7 +761,7 @@ Wikipedia [[https://en.wikipedia.org/wiki/HTML][HTML]] page viewed with [[http:/
 
 ** An HTML file opened with a text editor
 #+ATTR_LATEX: :width 0.9\textwidth
-[[../assets/img/HTML_opened_with_gedit.png]]
+[[file:img/HTML_opened_with_gedit.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -801,7 +801,7 @@ A [[https://en.wikipedia.org/wiki/Lightweight_markup_language][lightweight marku
 
 ** =Markdown= as an example 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Markdown_syntax.png]]
+[[file:img/Markdown_syntax.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -853,7 +853,7 @@ Thanks to lightweight markup languages we will be able to:
          :END:
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Pierre_Ambroise_Choderlos_de_Laclos_Les_Liaisons_dangereuses.png]]
+[[file:img/Pierre_Ambroise_Choderlos_de_Laclos_Les_Liaisons_dangereuses.png]]
 
 *** 
 :PROPERTIES:
@@ -867,7 +867,7 @@ There is clearly a very limited number of changes one can bring in that way!
 
 ** Changing a text with a word processor
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/LibreOffice_notes_pour_CLOM_diff_origine.png]]
+[[file:img/LibreOffice_notes_pour_CLOM_diff_origine.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -891,7 +891,7 @@ This "solution":
 
 ** Making change with a "wiki engine"
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Dokuwiki_notes_pour_CLOM.png]]
+[[file:img/Dokuwiki_notes_pour_CLOM.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -908,7 +908,7 @@ I started using [[https://www.dokuwiki.org/dokuwiki#][dokuwiki]] for this lectur
 
 **  
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Dokuwiki_notes_pour_CLOM_historique2.png]]
+[[file:img/Dokuwiki_notes_pour_CLOM_historique2.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -917,7 +917,7 @@ Clicking /previous versions/ (/anciennes révisions/) gives access to the list o
 
 ** 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Dokuwiki_notes_pour_CLOM_diff.png]]
+[[file:img/Dokuwiki_notes_pour_CLOM_diff.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -942,7 +942,7 @@ I now come to the most "sophisticated" solution:
 
 **   
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/GitLab_Commits.png]]
+[[file:img/GitLab_Commits.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -950,7 +950,7 @@ I now come to the most "sophisticated" solution:
 The [[https://gitlab.com/][GitLab]] interface containing the files of this presentation.
 ** 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/GitLab_Diff.png]]
+[[file:img/GitLab_Diff.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -959,7 +959,7 @@ Modifications are easily visualized...
 
 ** 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/GitLab_Formating.png]]
+[[file:img/GitLab_Formating.png]]
 
 #+BEGIN_EXPORT latex
 \vspace{0.25cm}
@@ -988,17 +988,17 @@ Text files entered with a lightweight markup language get automatically formatte
 ** Finding one's way in a text file
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/recherche-avec-editeur.png]]
+[[file:img/recherche-avec-editeur.png]]
 
 ** Finding one's way in a notebook
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/IndexCahierLocke.jpg]]
+[[file:img/IndexCahierLocke.jpg]]
 
 ** Finding one's way in a cards collection
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Placcius_cabinet_TabIV.png]]
+[[file:img/Placcius_cabinet_TabIV.png]]
 
 ** Problems, limitations, solutions?
 
@@ -1010,38 +1010,38 @@ Text files entered with a lightweight markup language get automatically formatte
 ** Finding an arbitrary word with a desktop search application (=DocFetcher=)
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Trouver_un_mot_avec_DocFetcher.png]]
+[[file:img/Trouver_un_mot_avec_DocFetcher.png]]
 
 ** A problem: overabundance
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Trouver_calcium_avec_DocFetcher.png]]
+[[file:img/Trouver_calcium_avec_DocFetcher.png]]
 
 ** Adding tags / keywords in a text file (=Markdown=)
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Ajout_etiquette_avec_Markdown.png]]
+[[file:img/Ajout_etiquette_avec_Markdown.png]]
 
 ** Finding a tag with a desktop search application  (=DocFetcher=)
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Trouver_etiquette_avec_DocFetcher.png]]
+[[file:img/Trouver_etiquette_avec_DocFetcher.png]]
 
 
 ** Image files contain metadata
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Metadonne_fichier_index.jpg]]
+[[file:img/Metadonne_fichier_index.jpg]]
 
 ** Metadata can be set
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Metadonne_fichier_index2.jpg]]
+[[file:img/Metadonne_fichier_index2.jpg]]
 
 ** Desktop search applications can read metadata
 
 #+ATTR_LATEX: :width 1.0\textwidth
-[[../assets/img/Trouver_etiquette_avec_DocFetcher2.jpg]]
+[[file:img/Trouver_etiquette_avec_DocFetcher2.jpg]]
 
 ** Conclusions
 
