@@ -7,3 +7,6 @@
 *.snm
 *.toc
 *.tex
+_minted*
+svg-inkscape*
+*-svg.pdf
