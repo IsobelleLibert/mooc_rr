@@ -34,9 +34,9 @@
      - RStudio
      - OrgMode
 ** L'analyse de données traditionnelle
-[[./analyse-traditionnelle-3-svg.pdf]]
+[[file:img/analyse-traditionnelle-3-svg.pdf]]
 ** L'analyse de données réplicable
-[[./analyse-replicable-3-svg.pdf]]
+[[file:img/analyse-replicable-3-svg.pdf]]
 ** Pourquoi faire réplicable?
  - Facile à refaire si les données changent 
  - Facile à modifier 

@@ -33,9 +33,9 @@
      - RStudio
      - OrgMode
 ** Traditional data analysis
-[[./traditional-analysis-3-svg.pdf]]
+[[file:img/traditional-analysis-3-svg.pdf]]
 ** Replicable data analysis
-[[./replicable-analysis-3-svg.pdf]]
+[[file:img/replicable-analysis-3-svg.pdf]]
 ** Why do it replicably?
  - Easy to re-do if the data change
  - Easy to modify
