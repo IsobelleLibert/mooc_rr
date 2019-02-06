@@ -1,0 +1,34 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+#+TITLE: Une phrase de description pour les séquences du module 1
+#+DATE: <2018-07-05 jeu.>
+#+AUTHOR: Christophe Pouzat
+#+EMAIL: christophe.pouzat@parisdescartes.fr
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 25.3.1 (Org mode 9.0.9)
+
+* Séquence 1
+- Quelques exemples, célèbres et moins célèbres, de prise de notes.
+- Some famous and less famous examples of note-taking.
+
+* Séquence 2
+- Une courte histoire de la navigation dans le livre et les notes.
+- A brief history of navigation within the book and notes.
+
+* Séquence 3
+- L'intérêt des fichiers textes et des langages de balisage légers.
+- Why should we use text fromats and ligthweight markup languages?
+
+* Séquence 4 
+- Comment archiver des notes tout en les faisant évoluer ? L'intérêt des logiciels de gestion de version. 
+- How to archive notes while letting them evolve? The case for version control systems.
+
+* Sèquence 5
+- S'y retrouver dans ses notes avec des mots-clés et un moteur de recherche de bureau.
+- Finding one's way in a large notes collection with key-words and desktop search software.
+

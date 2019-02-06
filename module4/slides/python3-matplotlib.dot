@@ -1,0 +1,218 @@
+digraph "python3-matplotlib" {
+	rankdir=RL;
+	node [shape=box, color=black, fillcolor=gray, fontcolor=black, style=filled];
+	"python3-matplotlib" -> "python3-dateutil" [color=blue];
+	"python3-dateutil" -> "python3-six" [color=blue,label="(>= 1.5)"];
+	"python3-six" -> "python3:any" [color=blue,label="(>= 3.4~)"];
+	"python3:any" -> virt1 [dir=back,arrowtail=inv,color=green];
+	"python3:any" [shape=octagon];
+	"python3-dateutil" -> "python3:any" [color=blue,label="(>= 3.3.2-2~)"];
+	"python3-dateutil" -> "tzdata" [color=blue];
+	"tzdata" -> "alt1":"debconf" [color=blue,label="(>= 0.5)"];
+	"alt1":"debconf-2.0" -> virt2 [dir=back,arrowtail=inv,color=green];
+	"python3-matplotlib" -> "python-matplotlib-data" [color=blue,label="(>= 2.2.2-2)"];
+	"python-matplotlib-data" -> "fonts-lyx" [color=blue];
+	"python-matplotlib-data" -> "ttf-bitstream-vera" [color=blue];
+	"python3-matplotlib" -> "python3-pyparsing" [color=blue,label="(>= 1.5.6)"];
+	"python3-pyparsing" -> "python3:any" [color=blue,label="(>= 3.3.2-2~)"];
+	"python3-matplotlib" -> "python3-six" [color=blue,label="(>= 1.10)"];
+	"python3-matplotlib" -> "python3-tz" [color=blue];
+	"python3-tz" -> "tzdata" [color=blue];
+	"python3-tz" -> "python3:any" [color=blue,label="(>= 3.3.2-2~)"];
+	"python3-matplotlib" -> "libjs-jquery" [color=blue];
+	"libjs-jquery" -> "jquery" [color=red];
+	"libjs-jquery" -> "javascript-common";
+	"python3-matplotlib" -> "libjs-jquery-ui" [color=blue];
+	"libjs-jquery-ui" -> "libjs-jquery" [color=blue,label="(>= 1.7)"];
+	"libjs-jquery-ui" -> "javascript-common";
+	"python3-matplotlib" -> "python3-numpy" [color=blue,label="(>= 1:1.13.1)"];
+	"python3-numpy" -> "python3" [color=blue,label="(<< 3.7)"];
+	"python3" -> "python3-minimal" [color=purple,style=bold,label="(= 3.6.5-3)"];
+	"python3-minimal" -> "python3.6-minimal" [color=blue,label="(>= 3.6.5-2~)"];
+	"python3.6-minimal" -> "libpython3.6-minimal" [color=blue,label="(= 3.6.5-9)"];
+	"libpython3.6-minimal" -> "libssl1.1" [color=blue,label="(>= 1.1.0)"];
+	"libssl1.1" -> "alt1":"debconf" [color=blue,label="(>= 0.5)"];
+	"libpython3.6-minimal" -> "libpython3.6-stdlib";
+	"libpython3.6-stdlib" -> "libpython3.6-minimal" [color=blue,label="(= 3.6.5-9)"];
+	"libpython3.6-stdlib" -> "mime-support" [color=blue];
+	"mime-support" -> "bzip2";
+	"bzip2" -> "libbz2-1.0" [color=blue,label="(= 1.0.6-8.1)"];
+	"bzip2" -> "bzip2" [color=red];
+	"mime-support" -> "file";
+	"file" -> "libmagic1" [color=blue,label="(= 1:5.33-2)"];
+	"libmagic1" -> "libmagic-mgc" [color=blue,label="(= 1:5.33-2)"];
+	"libmagic-mgc" -> "libmagic-mgc" [color=red];
+	"file" -> "file" [color=red];
+	"mime-support" -> "xz-utils";
+	"xz-utils" -> "liblzma5" [color=blue,label="(>= 5.2.2)"];
+	"xz-utils" -> "xz-lzma" [color=red];
+	"xz-utils" -> "xz-utils" [color=red];
+	"libpython3.6-stdlib" -> "libbz2-1.0" [color=blue];
+	"libpython3.6-stdlib" -> "libdb5.3" [color=blue];
+	"libpython3.6-stdlib" -> "libffi6" [color=blue,label="(>= 3.0.4)"];
+	"libpython3.6-stdlib" -> "liblzma5" [color=blue,label="(>= 5.1.1alpha+20120614)"];
+	"libpython3.6-stdlib" -> "libmpdec2" [color=blue];
+	"libpython3.6-stdlib" -> "libncursesw6" [color=blue,label="(>= 6)"];
+	"libncursesw6" -> "libtinfo6" [color=blue,label="(= 6.1+20180210-3)"];
+	"libncursesw6" -> "libgpm2";
+	"libpython3.6-stdlib" -> "libreadline7" [color=blue,label="(>= 7.0~beta)"];
+	"libreadline7" -> "readline-common" [color=blue];
+	"readline-common" -> "alt2":"dpkg" [color=blue,label="(>= 1.15.4)"];
+	"alt2":"install-info" -> "alt2":"dpkg" [color=purple,style=bold,label="(>= 1.16.1)"];
+	"alt2":"install-info" -> "alt2":"install-info" [color=red];
+	"readline-common" -> "libreadline-common" [color=red];
+	"libreadline7" -> "libtinfo6" [color=blue,label="(>= 6)"];
+	"libpython3.6-stdlib" -> "libsqlite3-0" [color=blue,label="(>= 3.5.9)"];
+	"libpython3.6-stdlib" -> "libtinfo6" [color=blue,label="(>= 6)"];
+	"python3.6-minimal" -> "libexpat1" [color=blue,label="(>= 2.1~beta3)"];
+	"python3.6-minimal" -> "python3.6";
+	"python3.6" -> "python3.6-minimal" [color=blue,label="(= 3.6.5-9)"];
+	"python3.6" -> "libpython3.6-stdlib" [color=blue,label="(= 3.6.5-9)"];
+	"python3.6" -> "mime-support" [color=blue];
+	"python3.6" -> "python3.6" [color=red];
+	"python3.6-minimal" -> "python3.6-minimal" [color=red];
+	"python3-minimal" -> "alt2":"dpkg" [color=blue,label="(>= 1.13.20)"];
+	"python3-minimal" -> "python3-minimal" [color=red];
+	"python3" -> "python3.6" [color=blue,label="(>= 3.6.5-2~)"];
+	"python3" -> "libpython3-stdlib" [color=blue,label="(= 3.6.5-3)"];
+	"libpython3-stdlib" -> "libpython3.6-stdlib" [color=blue,label="(>= 3.6.5-2~)"];
+	"python3" -> "python3" [color=red];
+	"python3-numpy" -> "python3" [color=blue,label="(>= 3.6~)"];
+	"python3-numpy" -> "python3.6:any" [color=blue];
+	"python3.6:any" -> virt3 [dir=back,arrowtail=inv,color=green];
+	"python3.6:any" [shape=octagon];
+	"python3-numpy" -> "python3:any" [color=blue,label="(>= 3.4~)"];
+	"python3-numpy" -> "alt3" [color=blue];
+	"alt3":"libblas3" -> "libgfortran4" [color=blue,label="(>= 7)"];
+	"libgfortran4" -> "gcc-7-base" [color=blue,label="(= 7.3.0-19)"];
+	"libgfortran4" -> "libquadmath0" [color=blue];
+	"libquadmath0" -> "gcc-8-base" [color=blue,label="(= 8.1.0-3)"];
+	"alt3":"libblas3" -> "libquadmath0" [color=blue,label="(>= 4.6)"];
+	"alt3":"libblas.so.3" -> "Pr_libblas.so.3" [label="-3-",dir=back,arrowtail=inv,color=green];
+	"Pr_libblas.so.3" [label="...",style=rounded];
+	"python3-numpy" -> "alt4" [color=blue];
+	"alt4":"liblapack3" -> "alt3" [color=blue];
+	"alt4":"liblapack3" -> "libgfortran4" [color=blue,label="(>= 7)"];
+	"alt4":"liblapack3" -> "libquadmath0" [color=blue,label="(>= 4.6)"];
+	"alt4":"liblapack.so.3" -> "Pr_liblapack.so.3" [label="-3-",dir=back,arrowtail=inv,color=green];
+	"Pr_liblapack.so.3" [label="...",style=rounded];
+	"python3-numpy" -> "python3-numpy" [color=red];
+	"python3-matplotlib" -> "python3-numpy-abi9" [color=blue];
+	"python3-numpy-abi9" -> "python3-numpy" [dir=back,arrowtail=inv,color=green];
+	"python3-numpy-abi9" [shape=octagon];
+	"python3-matplotlib" -> "python3" [color=blue,label="(<< 3.7)"];
+	"python3-matplotlib" -> "python3" [color=blue,label="(>= 3.6~)"];
+	"python3-matplotlib" -> "python3-cycler" [color=blue,label="(>= 0.10.0)"];
+	"python3-cycler" -> "python3-six" [color=blue];
+	"python3-cycler" -> "python3:any" [color=blue,label="(>= 3.3.2-2~)"];
+	"python3-matplotlib" -> "python3-kiwisolver" [color=blue];
+	"python3-kiwisolver" -> "python3" [color=blue,label="(<< 3.7)"];
+	"python3-kiwisolver" -> "python3" [color=blue,label="(>= 3.6~)"];
+	"python3-kiwisolver" -> "python3-pkg-resources" [color=blue];
+	"python3-pkg-resources" -> "python3:any" [color=blue,label="(>= 3.3.2-2~)"];
+	"python3-kiwisolver" -> "python3-kiwisolver" [color=red];
+	"python3-matplotlib" -> "python3:any" [color=blue,label="(>= 3.3.2-2~)"];
+	"python3-matplotlib" -> "libfreetype6" [color=blue,label="(>= 2.2.1)"];
+	"libfreetype6" -> "libpng16-16" [color=blue,label="(>= 1.6.2-1)"];
+	"python3-matplotlib" -> "libpng16-16" [color=blue,label="(>= 1.6.2-1)"];
+	"python3-matplotlib" -> "python3-pil";
+	"python3-pil" -> "python3" [color=blue,label="(<< 3.7)"];
+	"python3-pil" -> "python3" [color=blue,label="(>= 3.6~)"];
+	"python3-pil" -> "python3:any" [color=blue,label="(>= 3.3.2-2~)"];
+	"python3-pil" -> "alt5" [color=blue];
+	"alt5":"python3-pil.imagetk" -> "python3-pil" [color=blue,label="(= 5.1.0-1)"];
+	"alt5":"python3-pil.imagetk" -> "python3-tk" [color=blue,label="(>= 3.4.1-2)"];
+	"python3-tk" -> "python3" [color=blue,label="(>= 3.6.4-1~)"];
+	"python3-tk" -> "python3" [color=blue,label="(<< 3.8)"];
+	"python3-tk" -> "blt" [color=blue,label="(>= 2.4z-9)"];
+	"blt" -> "tk8.6-blt2.5" [color=blue,label="(= 2.5.3+dfsg-5)"];
+	"tk8.6-blt2.5" -> "libtcl8.6" [color=blue,label="(>= 8.6.0)"];
+	"libtcl8.6" -> "tzdata" [color=blue];
+	"tk8.6-blt2.5" -> "libtk8.6" [color=blue,label="(>= 8.6.0)"];
+	"libtk8.6" -> "libtcl8.6" [color=blue,label="(>= 8.6.0-2)"];
+	"libtk8.6" -> "libfontconfig1" [color=blue,label="(>= 2.12)"];
+	"libtk8.6" -> "libfreetype6" [color=blue,label="(>= 2.2.1)"];
+	"libtk8.6" -> "libxext6" [color=blue];
+	"libtk8.6" -> "libxft2" [color=blue,label="(>> 2.1.1)"];
+	"libxft2" -> "libfontconfig1" [color=blue,label="(>= 2.12.6)"];
+	"libxft2" -> "libfreetype6" [color=blue,label="(>= 2.3.5)"];
+	"libxft2" -> "libxrender1" [color=blue];
+	"libtk8.6" -> "libxss1" [color=blue];
+	"libxss1" -> "libxext6" [color=blue];
+	"libxss1" -> "x11-common" [color=blue];
+	"tk8.6-blt2.5" -> "blt4.2" [color=red];
+	"tk8.6-blt2.5" -> "blt8.0" [color=red];
+	"tk8.6-blt2.5" -> "blt8.0-unoff" [color=red];
+	"python3-tk" -> "libtcl8.6" [color=blue,label="(>= 8.6.0)"];
+	"python3-tk" -> "libtk8.6" [color=blue,label="(>= 8.6.0)"];
+	"python3-tk" -> "tk8.6-blt2.5" [color=blue,label="(>= 2.5.3)"];
+	"alt5":"python3-pil.imagetk" -> "python3" [color=blue,label="(<< 3.7)"];
+	"alt5":"python3-pil.imagetk" -> "python3" [color=blue,label="(>= 3.6~)"];
+	"alt5":"python3-pil.imagetk" -> "python3:any" [color=blue,label="(>= 3.3.2-2~)"];
+	"python3-pil" -> "libfreetype6" [color=blue,label="(>= 2.2.1)"];
+	"python3-pil" -> "libjpeg62-turbo" [color=blue,label="(>= 1.3.1)"];
+	"libjpeg62-turbo" -> "libjpeg62" [color=red];
+	"libjpeg62-turbo" -> "libjpeg62" [color=red];
+	"python3-pil" -> "liblcms2-2" [color=blue,label="(>= 2.2+git20110628)"];
+	"python3-pil" -> "libtiff5" [color=blue,label="(>= 4.0.3)"];
+	"libtiff5" -> "libjbig0" [color=blue,label="(>= 2.0)"];
+	"libtiff5" -> "libjpeg62-turbo" [color=blue,label="(>= 1.3.1)"];
+	"libtiff5" -> "liblzma5" [color=blue,label="(>= 5.1.1alpha+20120614)"];
+	"python3-pil" -> "libwebp6" [color=blue,label="(>= 0.5.1)"];
+	"python3-pil" -> "libwebpdemux2" [color=blue,label="(>= 0.5.1)"];
+	"libwebpdemux2" -> "libwebp6" [color=blue,label="(>= 0.5.1)"];
+	"python3-pil" -> "libwebpmux3" [color=blue,label="(>= 0.6.1-2)"];
+	"libwebpmux3" -> "libwebp6" [color=blue,label="(>= 0.5.1)"];
+	"python3-pil" -> "python3-olefile";
+	"python3-olefile" -> "python3:any" [color=blue,label="(>= 3.3.2-2~)"];
+	"python3-matplotlib" -> "python3-tk";
+	"python3-matplotlib" -> "python3-matplotlib" [color=red];
+	"python3-matplotlib" [style="setlinewidth(2)"]
+	"blt4.2" [style=filled,fillcolor=oldlace];
+	"blt8.0" [style=filled,fillcolor=oldlace];
+	"blt8.0-unoff" [style=filled,fillcolor=oldlace];
+	"jquery" [style=filled,fillcolor=oldlace];
+	"libreadline-common" [style=filled,fillcolor=oldlace];
+	"xz-lzma" [style=filled,fillcolor=oldlace];
+	alt1 [
+		shape = "record"
+		label = "<debconf> \{debconf\} | <debconf-2.0> debconf-2.0"
+	]
+	alt2 [
+		shape = "record"
+		label = "<dpkg> \{dpkg\} | <install-info> install-info"
+	]
+	alt3 [
+		shape = "record"
+		label = "<libblas3> libblas3 | <libblas.so.3> libblas.so.3"
+	]
+	alt4 [
+		shape = "record"
+		label = "<liblapack3> liblapack3 | <liblapack.so.3> liblapack.so.3"
+	]
+	alt5 [
+		shape = "record"
+		label = "<mime-support> [mime-support] | <python3-pil.imagetk> python3-pil.imagetk"
+	]
+	virt1 [
+		shape = "record"
+		style = "rounded"
+		label = "<python3> [python3] | <python3> [python3]"
+	]
+	virt2 [
+		shape = "record"
+		style = "rounded"
+		label = "<debconf> [debconf] | <cdebconf> \{cdebconf\}"
+	]
+	virt3 [
+		shape = "record"
+		style = "rounded"
+		label = "<python3.6> [python3.6] | <python3.6> [python3.6]"
+	]
+	"libfontconfig1" [shape=diamond];
+	"x11-common" [shape=diamond];
+}
+// Excluded dependencies:
+// libc6 libgcc1 libstdc++6 libx11-6 zlib1g
+// total size of all shown packages: 106674176
+// download size of all shown packages: 29406112
