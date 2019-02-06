@@ -40,7 +40,7 @@
 
 \vspace{-1cm}
 \begin{flushright}
-   \includegraphics[width=7cm]{../assets/img/phd010708.png}
+   \includegraphics[width=7cm]{img/phd010708.png}
 \end{flushright}
 
 \vspace{-1cm}
@@ -142,7 +142,7 @@
 6.  Comparative study
 ** A Few Recent Controversial Studies
 
-file:../assets/img/in_science_we_trust.jpg
+file:img/in_science_we_trust.jpg
 # Note: 
 
 # Je vous avais promis quelques exemples récents de travaux dont les
@@ -255,7 +255,7 @@ file:../assets/img/in_science_we_trust.jpg
 Statistical methods and methodology should be improved but no
 fundamental invalidation
 
-file:../assets/img/Researcher-test.jpg
+file:img/Researcher-test.jpg
 
 # Note: 
 
@@ -309,7 +309,7 @@ multidrug resistant bacteria
 (Mol. Biology, 2003), Salmonella typhimurium (Science, 2005)
 
 #+LaTeX: \end{column}\begin{column}{3.5cm}
-#+LaTeX:   \hspace{-.3\linewidth}\includegraphics[width=1.2\linewidth]{../assets/img/flipping_fiasco.png}
+#+LaTeX:   \hspace{-.3\linewidth}\includegraphics[width=1.2\linewidth]{img/flipping_fiasco.png}
 #+LaTeX: \end{column}\end{columns}\medskip
 
 *2006*: Inconsistencies, alerts, then 5 retractions 
@@ -363,7 +363,7 @@ team had derived the protein structure.
   findings/, /only one-third of published psychology research was found
   to be reliable/"
 #+LaTeX: \end{column}\begin{column}{3.5cm}
-#+LaTeX:   \hspace{-.1\linewidth}\includegraphics[width=1\linewidth]{../assets/img/in_science_we_trust_small.jpg}
+#+LaTeX:   \hspace{-.1\linewidth}\includegraphics[width=1\linewidth]{img/in_science_we_trust_small.jpg}
 #+LaTeX: \end{column}\end{columns}\medskip
 
 #+BEGIN_CENTER
@@ -413,7 +413,7 @@ team had derived the protein structure.
 5.  Collaborating
 6.  Comparative study
 ** Why is This so Difficult?
-file:../assets/img/box-she-s-told-not-to-open-in-it-the-gods-had-placed-all-the-evils-9vbl9q-clipart.jpg
+file:img/box-she-s-told-not-to-open-in-it-the-gods-had-placed-all-the-evils-9vbl9q-clipart.jpg
 # Note: Comme nous l'avons vu, reproduire les travaux de recherche, même
 # publiés dans des revues prestigieuses est souvent assez
 # difficile. Dans cette séquence, nous allons identifier les difficultés
@@ -777,8 +777,8 @@ demand.
 2. Computation mistakes
 3. Lack of scientific and technical rigor
 
-#+LaTeX: \begin{center}\includegraphics[height=2.5cm]{../assets/img/in_science_we_trust_small.jpg}
-#+LaTeX: \includegraphics[height=2.5cm]{../assets/img/in_code_we_trust.jpg}\end{center}
+#+LaTeX: \begin{center}\includegraphics[height=2.5cm]{img/in_science_we_trust_small.jpg}
+#+LaTeX: \includegraphics[height=2.5cm]{img/in_code_we_trust.jpg}\end{center}
 
 *** Making everything explicit increases the chances of finding and getting rid of mistakes
 
@@ -822,7 +822,7 @@ demand.
 5.  Collaborating
 6.  Comparative study
 ** Computational Documents: Principles
-file:../assets/img/iceberg.jpg
+file:img/iceberg.jpg
 
 # Note:
 
@@ -835,11 +835,11 @@ file:../assets/img/iceberg.jpg
 ** Modern Science
 
 
-#+LaTeX: \includegraphics<1>[width=\linewidth]{../assets/img/iceberg_publication-1.png}%
-#+LaTeX: \includegraphics<2>[width=\linewidth]{../assets/img/iceberg_publication-2.png}%
-#+LaTeX: \includegraphics<3>[width=\linewidth]{../assets/img/iceberg_publication-3.png}%
-#+LaTeX: \includegraphics<4>[width=\linewidth]{../assets/img/iceberg_publication-4.png}%
-#+LaTeX: \includegraphics<5>[width=\linewidth]{../assets/img/iceberg_publication-5.png}%
+#+LaTeX: \includegraphics<1>[width=\linewidth]{img/iceberg_publication-1.png}%
+#+LaTeX: \includegraphics<2>[width=\linewidth]{img/iceberg_publication-2.png}%
+#+LaTeX: \includegraphics<3>[width=\linewidth]{img/iceberg_publication-3.png}%
+#+LaTeX: \includegraphics<4>[width=\linewidth]{img/iceberg_publication-4.png}%
+#+LaTeX: \includegraphics<5>[width=\linewidth]{img/iceberg_publication-5.png}%
 
 # Note:
 
@@ -905,18 +905,18 @@ Keep track to allow:
 #      la procédure d'analyse dans un autre contexte.
 ** Behind the Scenes
 \scriptsize
-#+LaTeX: \only<1>{\hfill\includesvg[width=.5\linewidth]{../assets/img/example_pi_full-1}}%
-#+LaTeX: \only<2>{\includesvg[width=\linewidth]{../assets/img/example_pi_full-2}}%
-#+LaTeX: \only<3>{\includesvg[width=\linewidth]{../assets/img/example_pi_full-3}}%
-#+LaTeX: \only<4>{\includesvg[width=\linewidth]{../assets/img/example_pi_full-4}}%
-#+LaTeX: \only<5>{\includesvg[width=\linewidth]{../assets/img/example_pi_full-5}}%
-#+LaTeX: \only<6>{\includesvg[width=\linewidth]{../assets/img/example_pi_full-6}}%
+#+LaTeX: \only<1>{\hfill\includesvg[width=.5\linewidth]{img/example_pi_full-1}}%
+#+LaTeX: \only<2>{\includesvg[width=\linewidth]{img/example_pi_full-2}}%
+#+LaTeX: \only<3>{\includesvg[width=\linewidth]{img/example_pi_full-3}}%
+#+LaTeX: \only<4>{\includesvg[width=\linewidth]{img/example_pi_full-4}}%
+#+LaTeX: \only<5>{\includesvg[width=\linewidth]{img/example_pi_full-5}}%
+#+LaTeX: \only<6>{\includesvg[width=\linewidth]{img/example_pi_full-6}}%
 
-# #+LaTeX: \includesvg<1>[width=\linewidth]{../assets/img/example_pi_full-2.svg}%
-# #+LaTeX: \includesvg<1>[width=\linewidth]{../assets/img/example_pi_full-3.svg}%
-# #+LaTeX: \includesvg<1>[width=\linewidth]{../assets/img/example_pi_full-4.svg}%
-# #+LaTeX: \includesvg<1>[width=\linewidth]{../assets/img/example_pi_full-5.svg}%
-# #+LaTeX: \includesvg<1>[width=\linewidth]{../assets/img/example_pi_full-6.svg}%
+# #+LaTeX: \includesvg<1>[width=\linewidth]{img/example_pi_full-2.svg}%
+# #+LaTeX: \includesvg<1>[width=\linewidth]{img/example_pi_full-3.svg}%
+# #+LaTeX: \includesvg<1>[width=\linewidth]{img/example_pi_full-4.svg}%
+# #+LaTeX: \includesvg<1>[width=\linewidth]{img/example_pi_full-5.svg}%
+# #+LaTeX: \includesvg<1>[width=\linewidth]{img/example_pi_full-6.svg}%
 
 # Note:
 
@@ -1062,7 +1062,7 @@ Keep track to allow:
 6.  Comparative study
 ** Hands On: Jupyter
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/jupyter-logo.png
+file:img/jupyter-logo.png
 ** Startup
 - Opening a document
 - Quick Tour
@@ -1116,9 +1116,9 @@ file:../assets/img/jupyter-logo.png
 ** Hands On:  Rstudio
 
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/RStudio-Logo-Blue-Gradient.png
+file:img/RStudio-Logo-Blue-Gradient.png
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img//knitr.png
+file:img//knitr.png
 
 ** Startup
 - Opening a document
@@ -1169,9 +1169,9 @@ Writing raw LaTeX (R Sweave: =Rnw=) or HTML (R HTML:
 6.  Comparative study
 ** Hands On: Org Mode
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/600px-EmacsIcon.svg.png
+file:img/600px-EmacsIcon.svg.png
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/442px-Org-mode-unicorn.svg.png
+file:img/442px-Org-mode-unicorn.svg.png
 
 # Note:
 # Même plan que précédemment
@@ -1228,7 +1228,7 @@ file:../assets/img/442px-Org-mode-unicorn.svg.png
 5.  *Collaborating*
 6.  Comparative study
 ** Collaborating
-file:../assets/img/jumping_penguin.png
+file:img/jumping_penguin.png
 ** Preparing a Document for a Journal or a Conference
 Requirements for producing a *pdf*:
 - Internally, /pandoc/, /knitr/ or /emacs/org-mode/
@@ -1327,13 +1327,13 @@ Several options depending on:
 ** Comparative Study
 
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/jupyter-logo.png
+file:img/jupyter-logo.png
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/RStudio-Logo-Blue-Gradient.png
+file:img/RStudio-Logo-Blue-Gradient.png
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/442px-Org-mode-unicorn.svg.png
+file:img/442px-Org-mode-unicorn.svg.png
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/question_mark.png
+file:img/question_mark.png
 
 \bigskip
 

@@ -37,33 +37,26 @@
 #+LaTeX: \begin{frame}{Plan du cours}\tableofcontents\end{frame}
 * Test et informations                                             :noexport:
 ** Images
-   # - file:assets/img/donald_trump.jpg :: [[https://upload.wikimedia.org/wikipedia/commons/d/d4/Donald_Trump_%252825653047910%2529.jpg][Wikimedia]]
-   # - file:assets/img/trump_vs_obama_inauguration.png :: Screenshot from the
-   #      [[https://www.nytimes.com/interactive/2017/01/20/us/politics/trump-inauguration-crowd.html][NY Times]]
-   # - file:assets/img/in_science_we_trust.jpg :: crop from [[http://drrichswier.com/2014/04/23/atheism-evolution-and-secular-humanism-masquerading-as-science-against-the-bible-and-creation/][the blog of a
-   #      conservative]].
-   # - file:assets/img/les_decodeurs.png :: Montage à partir du site
-   #      http://www.lemonde.fr/les-decodeurs/ le 30 juillet.
 Origin of every image used in this series of slides:
 - PhD Comics:
-  - [[file:../assets/img/phd010708.png][phd010708.png]]: http://phdcomics.com/comics/archive.php?comicid=961
+  - [[file:img/phd010708.png][phd010708.png]]: http://phdcomics.com/comics/archive.php?comicid=961
     c'est du fan art, là ;) je cite phdcomics dans la vidéo donc je
     pense qu'on est   bon et je doute qu'il vienne nous embêter vu le sujet.
-- [[file:../assets/img/in_science_we_trust.jpg][in_science_we_trust.jpg]]: https://www.google.fr/search?client=firefox-b&dcr=0&biw=1450&bih=783&tbm=isch&sa=1&q=in+science+we+trust&oq=in+science+we+trust&gs_l=psy-ab.3..0i13k1j0i30k1l3.2692.5748.0.5946.6.5.0.0.0.0.694.1147.0j3j5-1.4.0....0...1.1.64.psy-ab..2.4.1144...0i7i30k1.0.JVlXKVLc9a4#imgrc=bt5vbb5C4e9fHM
+- [[file:img/in_science_we_trust.jpg][in_science_we_trust.jpg]]: https://www.google.fr/search?client=firefox-b&dcr=0&biw=1450&bih=783&tbm=isch&sa=1&q=in+science+we+trust&oq=in+science+we+trust&gs_l=psy-ab.3..0i13k1j0i30k1l3.2692.5748.0.5946.6.5.0.0.0.0.694.1147.0j3j5-1.4.0....0...1.1.64.psy-ab..2.4.1144...0i7i30k1.0.JVlXKVLc9a4#imgrc=bt5vbb5C4e9fHM
   puis http://www.patheos.com/blogs/unreasonablefaith/2012/03/a-better-motto/in-science-we-trust-coin/ normalement
-- [[file:../assets/img/Researcher-test.jpg][Researcher-test.jpg]]: https://fr.wikipedia.org/wiki/Imagerie_par_r%C3%A9sonance_magn%C3%A9tique_fonctionnelle#/media/File:Researcher-test.jpg
-- [[file:../assets/img/flipping_fiasco.png][flipping_fiasco.png]]: https://people.ligo-wa.caltech.edu/~michael.landry/calibration/S5/getsignright.pdf
-- [[file:../assets/img/in_science_we_trust_small.jpg][in_science_we_trust_small.jpg]]: voir file:../assets/img/in_science_we_trust.jpg
+- [[file:img/Researcher-test.jpg][Researcher-test.jpg]]: https://fr.wikipedia.org/wiki/Imagerie_par_r%C3%A9sonance_magn%C3%A9tique_fonctionnelle#/media/File:Researcher-test.jpg
+- [[file:img/flipping_fiasco.png][flipping_fiasco.png]]: https://people.ligo-wa.caltech.edu/~michael.landry/calibration/S5/getsignright.pdf
+- [[file:img/in_science_we_trust_small.jpg][in_science_we_trust_small.jpg]]: voir file:img/in_science_we_trust.jpg
 - 
-   [[file:../assets/img/box-she-s-told-not-to-open-in-it-the-gods-had-placed-all-the-evils-9vbl9q-clipart.jpg][box-she-s-told-not-to-open-in-it-the-gods-had-placed-all-the-evils-9vbl9q-clipart.jpg]]:
+   [[file:img/box-she-s-told-not-to-open-in-it-the-gods-had-placed-all-the-evils-9vbl9q-clipart.jpg][box-she-s-told-not-to-open-in-it-the-gods-had-placed-all-the-evils-9vbl9q-clipart.jpg]]:
    trouvé à la base sur
    https://politicsinpinkdotcom.files.wordpress.com/2016/12/box-she-s-told-not-to-open-in-it-the-gods-had-placed-all-the-evils-9vbl9q-clipart.jpg
    mais visiblement achetable ici:
    http://www.istockphoto.com/fr/vectoriel/femme-laissant-d%C3%A9mons-de-la-poitrine-gm165517954-24325536
    *à acheter*.
-- [[file:../assets/img/in_code_we_trust.jpg][in_code_we_trust.jpg]]: https://www.google.fr/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiJ2ZfIi4fXAhUJVxQKHb-xCBoQjRwIBw&url=https%3A%2F%2Fwww.spreadshirt.com%2Fa%2Bprogrammer%2Blife-A14770086&psig=AOvVaw1ZDWatztzt2-ycU-7qy-Gh&ust=1508859944930121
-- [[file:../assets/img/iceberg.jpg][iceberg.jpg]]:  http://www.jdubuzz.com/files/2016/03/iceberg-principle.jpg
-- [[file:../assets/img/iceberg_publication-1.png][iceberg_publication-1.png]] and others alike:
+- [[file:img/in_code_we_trust.jpg][in_code_we_trust.jpg]]: https://www.google.fr/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiJ2ZfIi4fXAhUJVxQKHb-xCBoQjRwIBw&url=https%3A%2F%2Fwww.spreadshirt.com%2Fa%2Bprogrammer%2Blife-A14770086&psig=AOvVaw1ZDWatztzt2-ycU-7qy-Gh&ust=1508859944930121
+- [[file:img/iceberg.jpg][iceberg.jpg]]:  http://www.jdubuzz.com/files/2016/03/iceberg-principle.jpg
+- [[file:img/iceberg_publication-1.png][iceberg_publication-1.png]] and others alike:
   - Crédits Juliana Freire: slides 2 à 5 de http://catt.nyu.edu/sites/default/files/files/Provenance_In_Data_Exploration.pdf
   - https://en.wikipedia.org/wiki/Large_Hadron_Collider#/media/File:CERN_LHC.jpg
   - https://fr.wikipedia.org/wiki/T%C3%A9lescope#/media/File:Hubble_01.jpg
@@ -73,8 +66,8 @@ Origin of every image used in this series of slides:
   - https://fr.wikipedia.org/wiki/Treemap#/media/File:Carte-proportionnelle-france.png
   - https://fr.wikipedia.org/wiki/Repr%C3%A9sentation_graphique_de_donn%C3%A9es_statistiques
   - https://fr.wikipedia.org/wiki/Visualisation_d%27informations#/media/File:InteractionAandB.png
-- [[file:../assets/img/RStudio-Logo-Blue-Gradient.png and file:../assets/img//knitr.png][RStudio-Logo-Blue-Gradient.png and file:../assets/img//knitr.png]]: https://www.rstudio.com/about/logos/
-- [[file:../assets/img/jumping_penguin.png][jumping_penguin.png]]: http://www.istockphoto.com/be/photo/saut-penguins-de-papou-sur-iceberg-gm466554153-33737494
+- [[file:img/RStudio-Logo-Blue-Gradient.png and file:img//knitr.png][RStudio-Logo-Blue-Gradient.png and file:img//knitr.png]]: https://www.rstudio.com/about/logos/
+- [[file:img/jumping_penguin.png][jumping_penguin.png]]: http://www.istockphoto.com/be/photo/saut-penguins-de-papou-sur-iceberg-gm466554153-33737494
   *à acheter*.
 * Internal refs/notes                                              :noexport:
 ** phdcomics
@@ -150,7 +143,7 @@ ipython3 nbconvert --to pdf Untitled.ipynb
 
 \vspace{-1cm}
 \begin{flushright}
-   \includegraphics[width=7cm]{../assets/img/phd010708.png}
+   \includegraphics[width=7cm]{img/phd010708.png}
 \end{flushright}
 
 \vspace{-1cm}
@@ -252,7 +245,7 @@ ipython3 nbconvert --to pdf Untitled.ipynb
 6. Analyse comparée des différents outils
 ** Exemples récents d'études assez discutées
 
-file:../assets/img/in_science_we_trust.jpg
+file:img/in_science_we_trust.jpg
 # Note: 
 
 # Je vous avais promis quelques exemples récents de travaux dont les
@@ -370,7 +363,7 @@ file:../assets/img/in_science_we_trust.jpg
 Des méthodes statistiques à améliorer mais pas de
 remise en cause fondamentale.
 
-file:../assets/img/Researcher-test.jpg
+file:img/Researcher-test.jpg
 
 # Note: 
 
@@ -424,7 +417,7 @@ des bactéries résistant aux antibiotiques.
 (Mol. Biology, 2003), Salmonella typhimurium (Science, 2005)
 
 #+LaTeX: \end{column}\begin{column}{3.5cm}
-#+LaTeX:   \hspace{-.3\linewidth}\includegraphics[width=1.2\linewidth]{../assets/img/flipping_fiasco.png}
+#+LaTeX:   \hspace{-.3\linewidth}\includegraphics[width=1.2\linewidth]{img/flipping_fiasco.png}
 #+LaTeX: \end{column}\end{columns}\medskip
 
 *2006* : Incohérences, alertes, puis 5 rétractations 
@@ -478,7 +471,7 @@ team had derived the protein structure.
 - [[http://theconversation.com/we-found-only-one-third-of-published-psychology-research-is-reliable-now-what-46596][Psychologie]] : "réplication d'une centaine d'articles /seulement un
   tiers de résultats cohérents/"
 #+LaTeX: \end{column}\begin{column}{3.5cm}
-#+LaTeX:   \hspace{-.1\linewidth}\includegraphics[width=1\linewidth]{../assets/img/in_science_we_trust_small.jpg}
+#+LaTeX:   \hspace{-.1\linewidth}\includegraphics[width=1\linewidth]{img/in_science_we_trust_small.jpg}
 #+LaTeX: \end{column}\end{columns}\medskip
 
 #+BEGIN_CENTER
@@ -529,7 +522,7 @@ team had derived the protein structure.
 5. Travailler avec les autres
 6. Analyse comparée des différents outils
 ** Pourquoi est-ce difficile ?
-file:../assets/img/box-she-s-told-not-to-open-in-it-the-gods-had-placed-all-the-evils-9vbl9q-clipart.jpg
+file:img/box-she-s-told-not-to-open-in-it-the-gods-had-placed-all-the-evils-9vbl9q-clipart.jpg
 # Note: Comme nous l'avons vu, reproduire les travaux de recherche, même
 # publiés dans des revues prestigieuses est souvent assez
 # difficile. Dans cette séquence, nous allons identifier les difficultés
@@ -895,8 +888,8 @@ Donnons nous les moyens que tout soit inspectable à la demande
 2. Erreurs de calcul
 3. Manque de rigueur scientifique et technique
 
-#+LaTeX: \begin{center}\includegraphics[height=2.5cm]{../assets/img/in_science_we_trust_small.jpg}
-#+LaTeX: \includegraphics[height=2.5cm]{../assets/img/in_code_we_trust.jpg}\end{center}
+#+LaTeX: \begin{center}\includegraphics[height=2.5cm]{img/in_science_we_trust_small.jpg}
+#+LaTeX: \includegraphics[height=2.5cm]{img/in_code_we_trust.jpg}\end{center}
 
 *** Expliciter augmente les chances de trouver les erreurs et de les éliminer
 
@@ -940,7 +933,7 @@ Donnons nous les moyens que tout soit inspectable à la demande
 5. Travailler avec les autres
 6. Analyse comparée des différents outils
 **  Le document computationnel :  principe
-file:../assets/img/iceberg.jpg
+file:img/iceberg.jpg
 
 # Note:
 
@@ -953,11 +946,11 @@ file:../assets/img/iceberg.jpg
 ** La science moderne
 
 
-#+LaTeX: \includegraphics<1>[width=\linewidth]{../assets/img/iceberg_publication-1.png}%
-#+LaTeX: \includegraphics<2>[width=\linewidth]{../assets/img/iceberg_publication-2.png}%
-#+LaTeX: \includegraphics<3>[width=\linewidth]{../assets/img/iceberg_publication-3.png}%
-#+LaTeX: \includegraphics<4>[width=\linewidth]{../assets/img/iceberg_publication-4.png}%
-#+LaTeX: \includegraphics<5>[width=\linewidth]{../assets/img/iceberg_publication-5.png}%
+#+LaTeX: \includegraphics<1>[width=\linewidth]{img/iceberg_publication-1.png}%
+#+LaTeX: \includegraphics<2>[width=\linewidth]{img/iceberg_publication-2.png}%
+#+LaTeX: \includegraphics<3>[width=\linewidth]{img/iceberg_publication-3.png}%
+#+LaTeX: \includegraphics<4>[width=\linewidth]{img/iceberg_publication-4.png}%
+#+LaTeX: \includegraphics<5>[width=\linewidth]{img/iceberg_publication-5.png}%
 
 # Note:
 
@@ -1023,18 +1016,18 @@ Garder trace afin de :
 #      la procédure d'analyse dans un autre contexte.
 ** La vitrine... et l'envers du décor 
 \scriptsize
-#+LaTeX: \only<1>{\hfill\includesvg[width=.5\linewidth]{../assets/img/example_pi_full-1}}%
-#+LaTeX: \only<2>{\includesvg[width=\linewidth]{../assets/img/example_pi_full-2}}%
-#+LaTeX: \only<3>{\includesvg[width=\linewidth]{../assets/img/example_pi_full-3}}%
-#+LaTeX: \only<4>{\includesvg[width=\linewidth]{../assets/img/example_pi_full-4}}%
-#+LaTeX: \only<5>{\includesvg[width=\linewidth]{../assets/img/example_pi_full-5}}%
-#+LaTeX: \only<6>{\includesvg[width=\linewidth]{../assets/img/example_pi_full-6}}%
+#+LaTeX: \only<1>{\hfill\includesvg[width=.5\linewidth]{img/example_pi_full-1}}%
+#+LaTeX: \only<2>{\includesvg[width=\linewidth]{img/example_pi_full-2}}%
+#+LaTeX: \only<3>{\includesvg[width=\linewidth]{img/example_pi_full-3}}%
+#+LaTeX: \only<4>{\includesvg[width=\linewidth]{img/example_pi_full-4}}%
+#+LaTeX: \only<5>{\includesvg[width=\linewidth]{img/example_pi_full-5}}%
+#+LaTeX: \only<6>{\includesvg[width=\linewidth]{img/example_pi_full-6}}%
 
-# #+LaTeX: \includesvg<1>[width=\linewidth]{../assets/img/example_pi_full-2.svg}%
-# #+LaTeX: \includesvg<1>[width=\linewidth]{../assets/img/example_pi_full-3.svg}%
-# #+LaTeX: \includesvg<1>[width=\linewidth]{../assets/img/example_pi_full-4.svg}%
-# #+LaTeX: \includesvg<1>[width=\linewidth]{../assets/img/example_pi_full-5.svg}%
-# #+LaTeX: \includesvg<1>[width=\linewidth]{../assets/img/example_pi_full-6.svg}%
+# #+LaTeX: \includesvg<1>[width=\linewidth]{img/example_pi_full-2.svg}%
+# #+LaTeX: \includesvg<1>[width=\linewidth]{img/example_pi_full-3.svg}%
+# #+LaTeX: \includesvg<1>[width=\linewidth]{img/example_pi_full-4.svg}%
+# #+LaTeX: \includesvg<1>[width=\linewidth]{img/example_pi_full-5.svg}%
+# #+LaTeX: \includesvg<1>[width=\linewidth]{img/example_pi_full-6.svg}%
 
 # Note:
 
@@ -1180,7 +1173,7 @@ Garder trace afin de :
 6. Analyse comparée des différents outils
 ** Prise en main de l'outil :  Jupyter
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/jupyter-logo.png
+file:img/jupyter-logo.png
 ** Lancement
 - Ouverture d'un document
 - Description rapide
@@ -1235,9 +1228,9 @@ file:../assets/img/jupyter-logo.png
 ** Prise en main de l'outil :  Rstudio
 
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/RStudio-Logo-Blue-Gradient.png
+file:img/RStudio-Logo-Blue-Gradient.png
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img//knitr.png
+file:img//knitr.png
 
 ** Lancement
 - Ouverture d'un document
@@ -1285,9 +1278,9 @@ Possibilité de faire du LaTeX (R Sweave : =Rnw=) ou du html (R html :
 6. Analyse comparée des différents outils
 ** Prise en main de l'outil :  Org Mode
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/600px-EmacsIcon.svg.png
+file:img/600px-EmacsIcon.svg.png
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/442px-Org-mode-unicorn.svg.png
+file:img/442px-Org-mode-unicorn.svg.png
 
 # Note:
 # Même plan que précédemment
@@ -1346,7 +1339,7 @@ file:../assets/img/442px-Org-mode-unicorn.svg.png
 5. *Travailler avec les autres*
 6. Analyse comparée des différents outils
 ** Travailler avec les autres
-file:../assets/img/jumping_penguin.png
+file:img/jumping_penguin.png
 ** Préparer un document pour un journal
 Pré-requis pour faire un *pdf* :
 - Actuellement caché. En interne /pandoc/, /knitr/ ou /emacs/org-mode/
@@ -1444,13 +1437,13 @@ Plusieurs modalités possibles en fonction de :
 ** Analyse comparée  des différents outils
 
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/jupyter-logo.png
+file:img/jupyter-logo.png
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/RStudio-Logo-Blue-Gradient.png
+file:img/RStudio-Logo-Blue-Gradient.png
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/442px-Org-mode-unicorn.svg.png
+file:img/442px-Org-mode-unicorn.svg.png
 #+ATTR_LATEX: :height 2cm :center nil
-file:../assets/img/question_mark.png
+file:img/question_mark.png
 
 \bigskip
 
