@@ -12,8 +12,8 @@ place](https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_t
 
 The next section provides information on how to install emacs.
 
-Table of Contents[]{.tag data-tag-name="TOC"}
-=============================================
+Table of Contents
+=================
 
 -   [Installing emacs, org-mode, ess, and
     auctex.](#installing-emacs-org-mode-ess-and-auctex)
