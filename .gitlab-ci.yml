@@ -5,11 +5,11 @@ build:
   image: binarin/org-export
   stage: build
   script:
-  - pwd
-  - ls -al
-#  artifacts:
-#    expire_in: 1 day
-#    paths:
-#    - build/*.zip
+    - for file in $(find -name "*.org"); do emacs --batch --load /emacs/export.el --file $file --eval '(org-html-export-to-html)' &> /dev/null || echo "Exported $file"; done
+    - find -name "*.html" -exec mv -t public {} +
+  artifacts:
+    expire_in: 1 day
+    paths:
+    - public/*.html
   only:
   - ci
