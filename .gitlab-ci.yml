@@ -1,12 +1,12 @@
+image: binarin/org-export
 stages:
 - build
 
 build:
-  image: binarin/org-export
   stage: build
   script:
     - for file in $(find -name "*.org"); do
-        emacs --batch --load /emacs/export.el --file $file --eval '(org-html-export-to-html)' && echo "\n\nExported $file\n\n" || echo "\n\nERROR $file\n\n";
+        emacs --batch --load /emacs/export.el --file $file --eval '(org-html-export-to-html)' && echo "Exported $file" || echo "ERROR $file";
       done
   artifacts:
     expire_in: 1 day
