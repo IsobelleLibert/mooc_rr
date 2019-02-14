@@ -6,10 +6,12 @@ build:
   stage: build
   script:
     - for file in $(find -name "*.org"); do emacs --batch --load /emacs/export.el --file $file --eval '(org-html-export-to-html)' &> /dev/null || echo "Exported $file"; done
-    - find -name "*.html" -exec mv -t public {} +
   artifacts:
     expire_in: 1 day
     paths:
-    - public/*.html
+    - module1/ressources/*.html
+    - module2/ressources/*.html
+    - module3/ressources/*.html
+    - module4/ressources/*.html
   only:
   - ci
