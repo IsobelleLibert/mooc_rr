@@ -1,0 +1,15 @@
+stages:
+- build
+
+build:
+  image: binarin/org-export
+  stage: build
+  script:
+  - pwd
+  - ls -al
+#  artifacts:
+#    expire_in: 1 day
+#    paths:
+#    - build/*.zip
+  only:
+  - ci
