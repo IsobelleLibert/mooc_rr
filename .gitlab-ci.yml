@@ -5,15 +5,16 @@ stages:
 build:
   stage: build
   script:
-    - for file in $(find -name "*.org"); do
-        emacs --batch --load /emacs/export.el --file $file --eval '(org-html-export-to-html)' && echo "Exported $file" || echo "ERROR $file";
-      done
-  artifacts:
-    expire_in: 1 day
-    paths:
-    - module1/ressources/*.html
-    - module2/ressources/*.html
-    - module3/ressources/*.html
-    - module4/ressources/*.html
+    - ls -al /
+#    - for file in $(find -name "*.org"); do
+#        emacs --batch --load /emacs/export.el --file $file --eval '(org-html-export-to-html)' && echo "Exported $file" || echo "ERROR $file";
+#      done
+#  artifacts:
+#    expire_in: 1 day
+#    paths:
+#    - module1/ressources/*.html
+#    - module2/ressources/*.html
+#    - module3/ressources/*.html
+#    - module4/ressources/*.html
   only:
   - ci
