@@ -1,12 +1,14 @@
-1. [Installation et configuration des différents outils](#1-installation-et-configuration-des-diff%C3%A9rents-outils)
-  1. [Installer et configurer Emacs](#11-installer-et-configurer-emacs)
-  2. [Ajouter les chemins de R et Python dans dans la variable PATH de Windows](#12-ajouter-les-chemins-de-r-et-python-dans-dans-la-variable-path-de-windows)
-  3. [Installer et configurer matplotlib (librairie graphique Python)](#13-installer-et-configurer-matplotlib-librairie-graphique-python)
-2. [Utilisation d'Emacs](#2-utilisation-demacs)
-  1. [Exécuter des commandes dos](#21-exécuter-des-commandes-dos)
-  2. [Exécuter du code R](#22-exécuter-du-code-r)
-  3. [Exécuter du code Python](#23-exécuter-du-code-python)
-  4. [Écrire dans le journal](#24-écrire-dans-le-journal)
+Table des matières
+=================
+- [1 Installation et configuration des différents outils](#1-installation-et-configuration-des-diff%C3%A9rents-outils)
+  - [1.1 Installer et configurer Emacs](#11-installer-et-configurer-emacs)
+  - [1.2 Ajouter les chemins de R et Python dans dans la variable PATH de Windows](#12-ajouter-les-chemins-de-r-et-python-dans-dans-la-variable-path-de-windows)
+  - [1.3 Installer et configurer matplotlib (librairie graphique Python)](#13-installer-et-configurer-matplotlib-librairie-graphique-python)
+- [2 Utilisation d'Emacs](#2-utilisation-demacs)
+  - [2.1 Exécuter des commandes dos](#21-exécuter-des-commandes-dos)
+  - [2.2 Exécuter du code R](#22-exécuter-du-code-r)
+  - [2.3 Exécuter du code Python](#23-exécuter-du-code-python)
+  - [2.4 Écrire dans le journal](#24-écrire-dans-le-journal)
 
 # 1 Installation et configuration des différents outils
 
@@ -16,7 +18,7 @@
   - version 26.1 pour Windows 64 bits
   - version 25.2 pour Windows 32 bits
   
-- Télécharger le fichier [rr_org_archive.tgz](https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/rr_org_archive.tgz)
+- Télécharger le fichier [rr_org_archive.tgz](https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/rr_org_archive.tgz)
 
 *NB : Avec 7z il faut décompresser l'archive deux fois : une première fois crée une archive `rr_org_archive.tar` et une deuxième fois crée un dossier `rr_org` contenant les fichiers `init.el` et `journal.org`.*
 
