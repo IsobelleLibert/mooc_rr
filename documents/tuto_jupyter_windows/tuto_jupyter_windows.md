@@ -1,12 +1,14 @@
-1. [Installer Python](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md#1-installer-python)
-2. [Installer le package Jupyter](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md#2-installer-le-package-jupyter)
-3. [Installer les modules complémentaires](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md#3-installer-les-modules-compl%C3%A9mentaires)
-4. [Lancer Jupyper](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md#4-lancer-jupyper)
-5. [Autres langages](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md#5-autres-langages)
-  1. [Le package R IRKernel](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md#51-le-package-r-irkernel-permet-dex%C3%A9cuter-du-code-r-dans-un-notebook-r)
-  2. [Le package Python rpy2](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md#52-le-package-python-rpy2-permet-dex%C3%A9cuter-du-code-r-dans-un-notebook-python)
-  3. [Le package Python SASPy](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md#53-le-package-python-saspy-permet-dex%C3%A9cuter-du-code-sas-dans-un-notebook-python)
-  4. [Le package Python SASKernel](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md#54-le-package-python-saskernel-permet-dex%C3%A9cuter-du-code-sas-dans-un-notebook-sas)
+Table des matières
+=================
+- [1 Installer Python](#1-installer-python)
+- [2 Installer le package Jupyter](#2-installer-le-package-jupyter)
+- [3 Installer les modules complémentaires](#3-installer-les-modules-compl%C3%A9mentaires)
+- [4 Lancer Jupyper](#4-lancer-jupyper)
+- [5 Autres langages](#5-autres-langages)
+  - [5.1 Le package R IRKernel](#51-le-package-r-irkernel-permet-dex%C3%A9cuter-du-code-r-dans-un-notebook-r)
+  - [5.2 Le package Python rpy2](#52-le-package-python-rpy2-permet-dex%C3%A9cuter-du-code-r-dans-un-notebook-python)
+  - [5.3 Le package Python SASPy](#53-le-package-python-saspy-permet-dex%C3%A9cuter-du-code-sas-dans-un-notebook-python)
+  - [5.4 Le package Python SASKernel](#54-le-package-python-saskernel-permet-dex%C3%A9cuter-du-code-sas-dans-un-notebook-sas)
 
 # 1 Installer Python
 
@@ -63,7 +65,7 @@ Utiliser les icônes ci-dessous pour l'export
 
 ![export_hide_code](documents/tuto_jupyter_windows/images/export_hide_code.png)
 
-NB : L'export semble mal fonctionner sous Windows (cf. [discussion](https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/discussion/forum/0c40378f778710ac14c97e2f0d8e7bb6c9d8d0c2/threads/5bd1685da0241eb2d5005bc7)).
+NB : Certains ont rencontrés des problèmes lors de l'export sous Windows lors de la 1ère session du Mooc.
 
 # 4 Lancer Jupyper
 
@@ -99,7 +101,7 @@ IRkernel::installspec()  # to register the kernel in the current R installation
 
 On remarque l'icône du logiciel R en haut à droite.
 
-- [Exemple de notebook R](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/notebooks_jupyter/notebook_R/notebook_R.ipynb)
+- [Exemple de notebook R](https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/documents/notebooks/notebook_Jupyter_R.ipynb)
 
 - Lien utile : https://irkernel.github.io/installation/
 
@@ -131,7 +133,7 @@ python -m pip install rpy2‑2.9.4‑cp37‑cp37m‑win_amd64.whl # adapter le n
 
 - Installer le package `tzlocal` à l'aide de la commande `pip`
 
-- [Exemple de notebook Python/R](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/notebooks_jupyter/notebook_Python_R/notebook_Python_R.ipynb)
+- [Exemple de notebook Python/R](https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/documents/notebooks/notebook_Jupyter_Python_R.ipynb)
 
 - Lien utile : https://stackoverflow.com/questions/14882477/rpy2-install-on-windows-7
 
@@ -151,7 +153,7 @@ Dans les deux images ci-dessous, la fenêtre de gauche correspond au fichier ini
 
 ![sascfg2](documents/tuto_jupyter_windows/images/sascfg2.png)
 
-- [Exemple de notebook Python/SAS] (https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/notebooks_jupyter/notebook_Python_SAS/notebook_Python_SAS.ipynb)
+- [Exemple de notebook Python/SAS](https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/documents/notebooks/notebook_Jupyter_Python_SAS.ipynb)
 
 - NB : L'export Jupyter vers pdf ne fonctionne pas pour les sorties HTML et donc SAS. Il est possible de faire l'export depuis pandoc.
 
@@ -180,7 +182,7 @@ mais ça ne marche pas pour tous les tableaux et on perd la coloration syntaxiqu
 
 On remarque l'icône du logiciel SAS en haut à droite.
 
-- [Exemple de notebook SAS](https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/notebooks_jupyter/notebook_SAS/notebook_SAS.ipynb)
+- [Exemple de notebook SAS](https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/documents/notebooks/notebook_Jupyter_SAS.ipynb)
 
 - NB : L'export Jupyter vers pdf ne fonctionne pas pour les sorties HTML et donc SAS. Il est possible de faire l'export depuis pandoc.
 
