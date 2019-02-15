@@ -1,6 +1,13 @@
+Table des matières
+=================
+- [Configurer Gitlab](#configurer-gitlab)
+- [Configurer Git](#configurer-git)
+- [Liens utiles](#liens-utiles)
+
 # Configurer Gitlab
 
-- Accéder à [Gitlab](https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/xblock/block-v1:inria+41016+session01bis+type@lti+block@05a0ce425f1741e5bee5049040f70529/handler/preview_handler)
+- Accéder à [Gitlab](https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/5571950188c946e790f06d4bc90fb5f6) depuis la plateforme FUN (cliquez sur *Accédez à Gitlab / Access to Gitlab*)
+- Vous arrivez sur le formulaire suivant :
 
 ![sign_in](documents/tuto_git_gtlab/images/sign_in.png)
 
@@ -170,7 +177,7 @@ git pull
 
 # Liens utiles
 
-- [Installer Git et Gitlab](https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/courseware/66bc811404b8481da5f794de54681c5e/f6580ad8e997400faeffe9af4fd37063/)
+- [Installer Git et Gitlab](https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/d86ab5b2b3054b179582da125131e2a5)
 
 - [Définir un proxy dans Git](https://gist.github.com/evantoli/f8c23a37eb3558ab8765)
 
