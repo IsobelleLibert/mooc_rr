@@ -1,0 +1,1468 @@
+#+TITLE: Entering Behind the Scenes: Computational Documents
+#+AUTHOR: @@latex:{\large Arnaud Legrand} \\ \vspace{0.2cm}LIG, Univ. Grenoble Alpes, CNRS, Inria\\ \vspace{0.2cm} \texttt{arnaud.legrand@imag.fr}@@
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [presentation,bigger]
+#+STARTUP: beamer indent
+#+LANGUAGE: fr
+#+PROPERTY: header-args :eval no-export
+#+OPTIONS: H:2 tags:nil
+#+OPTIONS:   num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+# #+OPTIONS:   author:nil email:nil creator:nil timestamp:t
+#+TAGS: noexport(n)
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: \usepackage[normalem]{ulem}
+#+LATEX_HEADER: \usepackage{svg}
+#+LATEX_HEADER: \setbeamercovered{invisible}
+#+LATEX_HEADER: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Where are we?}\tableofcontents[currentsection]\end{frame}}
+#+LATEX_HEADER: \beamertemplatenavigationsymbolsempty
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER:  \usepackage{color,soul}
+#+LATEX_HEADER:  \definecolor{lightblue}{rgb}{1,.9,.7}
+#+LATEX_HEADER:  \sethlcolor{lightblue}
+#+LATEX_HEADER: \newcommand{\muuline}[1]{\SoulColor\hl{#1}}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \newcommand\SoulColor{%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \makeatother
+#+LATEX_HEADER:  \let\hrefold=\href
+#+LATEX_HEADER:  \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor\hl{#2}}}
+
+#+LaTeX: \let\alert=\structure % to make sure the org * * works
+
+#+LaTeX: \begin{frame}{Outline}\tableofcontents\end{frame}
+* M2-S0: Computational Documents
+** Entering Behind the Scenes: Computational Documents
+
+\vspace{-1cm}
+\begin{flushright}
+   \includegraphics[width=7cm]{img/phd010708.png}
+\end{flushright}
+
+\vspace{-1cm}
+1.  A few Recent Controversial Studies
+2.  Why is This so Difficult?
+3.  Computational Document: Principles
+4.  Hands on. 
+   -   Jupyter
+   -   Rstudio
+   -   Org-Mode
+5.  Collaborating
+6.  Comparative study
+
+# Note:
+
+# Pour vous convaincre de l'importance de cette traçabilité, je vais
+# commencer par vous présenter quelques exemples récents de travaux dont
+# les résultats ont été particulièrement controversés et discutés. Ils
+# illustrent à quel point la capacité à pouvoir inspecter les méthodes
+# utilisées pour produire tel ou tel résultat est essentielle.
+
+# Comme nous le verrons, la plupart des problèmes rencontrés sont liées
+# au calcul, qu'il s'agisse d'erreurs de programmations, de
+# transformations de données peu rigoureuses, ou bien de procédures
+# statistiques discutables.
+
+# Une fois les origines de tous ces problèmes identifiées, je vous
+# présenterai rapidement quelles bonnes pratiques mettre en oeuvre afin
+# de les éviter.
+
+# En particulier, je vous expliquerai ce que c'est que ce fameux
+# document computationnel: un document qui permet de présenter
+# agréablement des résultats à d'autres (ce que j'appelle la vitrine)
+# mais aussi d'accéder à l'ensemble des calculs sous-jacents (ce que
+# j'appelle l'envers du décor).
+
+# Il existe plusieurs formats de tels documents et nous vous proposons
+# trois environnements permettant d'en produire facilement. Ces trois
+# environnements se distinguent par le niveau de technicité nécessaire à
+# leur mise en oeuvre. À vous de choisir celui qui vous convient le
+# mieux quitte à en essayer un autre plus tard.
+
+# Jupyter, le premier, a été intégré au MOOC et au gitlab et ne
+# nécessite donc aucune installation de votre part. C'est donc le plus
+# simple à mettre en oeuvre. L'ensemble des données et des calculs sera
+# hébergé sur nos serveurs, mais vous pourrez y accéder et les récupérer
+# sur votre propre ordinateur à tout moment via le gitlab si vous le
+# souhaitez. Jupyter vous permettra de gérer des notebooks et d'utiliser
+# le langage python3 ou bien le langage R.
+
+# Rstudio, le second, est un environnement de développement spécifique
+# au langage R. Il vous faudra l'installer sur votre machine et
+# synchroniser vos productions avec le gitlab. C'est un logiciel très
+# bien maintenu, qui fonctionne aussi bien sous linux et mac que sous
+# windows et son installation ne devrait pas poser de difficulté
+# particulière. Si vous êtes déjà familier avec le langage R, c'est
+# l'option que je vous recommande. L'avantage de cette approche est que
+# vous aurez à la fin du MOOC sur votre machine un environnement de
+# travail directement prêt à l'emploi. Avec Rstudio, il est également
+# possible d'utiliser occasionnellement du code python mais si vous avez
+# l'intention de faire principalement du python, il vaut mieux utiliser
+# jupyter.
+
+# Enfin, OrgMode, est clairement celui qui est le plus délicat à mettre
+# en oeuvre mais c'est aussi celui que Konrad, Christophe et moi-même
+# utilisons quotidiennement aussi bien pour gérer notre cahier de
+# laboratoire que pour rédiger des articles ou des notes
+# techniques. Nous nous sommes donc dit qu'il pouvait être intéressant
+# de vous le présenter. OrgMode nécessite l'installation d'Emacs, un
+# éditeur de texte qui révèle toute sa puissance dans un environnement
+# linux ou mac. Il permet de combiner très efficacement différents
+# langages et est par certains aspects moins limité que les deux
+# précédents. Cette option est à réserver à un public averti mais le jeu
+# en vaut la chandelle.
+
+# Une fois familiarisé avec un de ces environnements, nous vous
+# proposerons une petite séance pratique dont l'objectif sera de
+# produire un petit document computationnel.
+
+# Les dernières séquences peuvent être visionnées indépendemment et
+# traitent de sujets un peu plus techniques, en particulier de comment
+# utiliser de tels outils avec vos co-auteurs qui peuvent avoir leurs
+# propres habitudes, ou de comment produire des documents avec un style
+# bien spécifique.
+
+# Nous concluons enfin ce module avec une comparaison de ces différents
+# outils et une présentation des bénéfices d'une utilisation
+# quotidienne.
+* M2-S1: A few Recent Controversial Studies
+** Entering Behind the Scenes: Computational Documents
+1.  *A few Recent Controversial Studies*
+2.  Why is This so Difficult?
+3.  Computational Document: Principles
+4.  Hands on. 
+   -   Jupyter
+   -   Rstudio
+   -   Org-Mode
+5.  Collaborating
+6.  Comparative study
+** A Few Recent Controversial Studies
+
+file:img/in_science_we_trust.jpg
+# Note: 
+
+# Je vous avais promis quelques exemples récents de travaux dont les
+# résultats ont été particulièrement controversés et discutés. C'est ce
+# que je vais vous présenter dans cette séquence.
+
+** Economy: Austerity in Fiscal Policy (1/2)
+*** 2010
+    # - /gross debt [..] exceeding 90 percent of the economy has a
+    #   significant negative effect on economic growth/
+#+BEGIN_QUOTE
+  gross external debt reaches 60 percent of GDP, a country's annual
+  growth declined by two percent
+
+  [..]for levels of external debt in excess of 90 percent, GDP growth
+  was roughly cut in half 
+
+  \flushright -- [[https://en.wikipedia.org/wiki/Growth_in_a_Time_of_Debt][Reinhart et Rogoff]]: /Growth in a Time of Debt/
+#+END_QUOTE
+  #  - données non publiées mais disponibles sur demande
+
+# Note:
+
+# Commençons par des travaux en économie. 2007: crise des subprimes aux
+# États-Unis. De 2008 à 2009, deux économistes prestigieux, Carmen
+# Reinhart et Kenneth Rogoff présentent leurs travaux et annoncent que
+# la crise financière est loin d'avoir produite toutes ses
+# conséquences. En 2010, ils publient un article intitulé "Growth in a
+# Time of debt" qui étudie le lien entre dette et croissance.
+
+# Leurs principales conclusions sont que lorsque lorsque la dette
+# extérieure d'un pays dépasse 90% du PIB, les conséquences sur la
+# croissance sont dramatiques.
+
+# De nombreux politiciens, journalistes et activistes s'appuient sur cet
+# article pour soutenir la mise en place de politiques d'austérité
+# budgétaire.
+
+** Economy: Austerity in Fiscal Policy (2/2)
+*** 2013
+  # - Herndon, Ash and Pollin: /While using RR's working spreadsheet, we
+  #   identified *coding errors*, *selective exclusion* of/ /available data,
+  #   and *unconventional* weighting of summary *statistics*./
+#+BEGIN_QUOTE
+  While using RR's working spreadsheet, we identified *coding errors*,
+  *selective exclusion* of available data, 
+  and *unconventional* weighting of summary *statistics*.
+    
+  \flushright -- Herndon, Ash et Pollin
+#+END_QUOTE
+
+  #   #+BEGIN_EXPORT html
+  #   <br/>
+  #   #+END_EXPORT
+  # - Wray: /combining data across centuries, exchange rate regimes,
+  #   public and private/ /debt, and debt denominated in foreign currency
+  #   as well as domestic currency/
+#+BEGIN_QUOTE
+  combining data across centuries, exchange rate regimes, public and
+  private debt, and debt denominated in foreign currency as well as
+  domestic currency. 
+
+  \flushright -- Wray
+#+END_QUOTE
+
+# Note:
+
+# Ces seuils de 90% ainsi que l'ampleur des conséquences sont très
+# discutés, d'autant plus que certains chercheurs échouent à obtenir des
+# résultats similaires en utilisant les données disponibles
+# publiquement. Ils demandent donc à Reinhart et Rogoff l'ensemble des
+# données et des feuilles de calculs utilisées dans l'étude et ces
+# derniers finissent par leur fournir.
+
+# Dans ces feuilles, des erreurs de calcul évidentes apparaissent
+# rapidement ainsi que des traitement de données assez douteux
+# (exclusion de données, pondérations suspectes, etc.).
+
+# Reinhart et Rogoff répondent point par point en expliquant que ces
+# quelques erreurs ne changent rien au résultat final, que leur façon de
+# calculer les statistiques sont tout à fait standard.
+
+# En fait, une fois les détails révélés, pour beaucoup de chercheurs ces
+# calculs n'ont pas beaucoup de sens, les valeurs utilisées sont très
+# discutables, et il est malhonnête d'utiliser ces travaux pour
+# justifier une politique d'austérité budgétaire.
+
+# Mais le mal est fait. Pendant plus de trois ans, l'austérité n'est pas
+# présentée comme un choix mais comme une nécessité. Et quand bien même
+# l'article original est considéré comme non pertinent par les
+# économistes, ces idées ont fait leur chemin et sont difficiles à
+# détrôner.
+
+# Au delà du caractère idéologique de ce genre de travaux, une des
+# raisons pour lesquelles ce débat a mis autant de temps à avoir lieu
+# est lié à la non publication de l'ensemble des procédures de calcul et
+# des données utilisées, pratique courante en économie.  Sous les feux
+# de la rampe, les auteurs ont bien été forcés de mettre à disposition
+# ce qui sous-tendait leur travaux mais sans pression médiatique
+# particulière, en général, rien ne se passe...
+
+** Functional MRI
+# file:assets/img/Irmf.jpg&size=cover
+- 2010: [[https://www.researchgate.net/publication/255651552_Neural_correlates_of_interspecies_perspective_taking_in_the_post-mortem_Atlantic_Salmon_an_argument_for_multiple_comparisons_correction][Bennett et al. and the dead salmon]] $\smiley$
+- 2016: [[http://www.pnas.org/content/113/28/7900.abstract][Eklund, Nichols, and Knutsson]]. [[http://www.sciencealert.com/a-bug-in-fmri-software-could-invalidate-decades-of-brain-research-scientists-discover][A bug in fmri software could
+  invalidate 15 years of brain research]] \newline (/40 000 articles/)
+- 2016: But it's [[https://www.cogneurosociety.org/debunking-the-myth-that-fmri-studies-are-invalid/][more subtle than it looks like]]. [[http://blogs.warwick.ac.uk/nichols/entry/bibliometrics_of_cluster/][Nichols]].\newline /\approx 3 600
+    impacted studies/
+
+Statistical methods and methodology should be improved but no
+fundamental invalidation
+
+file:img/Researcher-test.jpg
+
+# Note: 
+
+# Continuons avec un autre exemple: l'imagerie cérébrale, qui permet
+# d'observer l'activité du cerveau d'un individu lorsqu'il effectue une
+# tâche cognitive et ainsi de mieux comprendre la structure et le
+# fonctionnement du cerveau. L'IRM fonctionnelle est l'une de ces
+# techniques et mesure de très faibles variations locales du taux
+# d'oxygénation du sang dans le cerveau.
+
+# En 2010, Craig Bennett et ses encadrants ont une idée saugrenue. Ils
+# placent un saumon mort dans un appareil d'IRM et lui présentent des
+# images. Étonnamment, ils observent des signes d'activité cérébrale, ce qui est
+# pour le moins surprenant puisque le saumon est bel et bien mort. Aussi
+# drôle que cela puisse paraître, Bennett et ses encadrants savent très
+# bien ce qu'ils font. Les données brutes obtenues lors d'une IRM sont
+# très bruitées et toute une série de calculs et de tests statistiques
+# sont appliqués pour transformer ces données en images
+# intelligibles. Mais il arrive que le bruit soit trop important, que la
+# machine soit mal calibrée, que la procédure de calcul soit inadaptée
+# et que des signaux apparaissent fortuitement.
+
+# Leur article rédigé avec un ton très humoristique fait sensation car
+# il met le doigt sur des faiblesses méthodologiques.
+
+# L'an dernier, des collègues me sachant intéressé par ces problèmes de
+# réplication me font suivre un article récent assez alarmant. Cet article présente un
+# problème dans les procédures statistiques utilisées dans les logiciels
+# d'analyse d'IRMf les plus courants, ce qui remet potentiellement en
+# cause les résultats obtenus ces quinze dernières années. Étant donnée
+# l'ampleur de l'erreur, les auteurs concluent que 40,000 articles
+# pourraient être concernés. De plus, les données étant très
+# volumineuses dans ce domaine, elles ne sont pas archivées et il ne
+# sera pas possible de simplement les réanalyser. L'ensemble des
+# expériences seraient à refaire...
+
+# En fait, suite aux retours qui leurs sont faits, les auteurs revoient
+# rapidement à la baisse leurs estimations assez alarmistes.
+
+# Au final, le problème méthodologique et la capacité à vérifier les
+# études suite à des erreurs de calcul reste entier même s'il ne remet
+# pas pour autant en cause l'ensemble des résultats obtenus ces
+# dernières années.
+
+** Incorrect Protein Structures
+#+LaTeX: \begin{columns}\begin{column}{6.3cm}
+*Geoffrey Chang*: study the tertiary structures of membrane proteins of
+multidrug resistant bacteria
+
+\small MsbA de Escherichia Coli (Science, 2001), Vibrio cholera
+(Mol. Biology, 2003), Salmonella typhimurium (Science, 2005)
+
+#+LaTeX: \end{column}\begin{column}{3.5cm}
+#+LaTeX:   \hspace{-.3\linewidth}\includegraphics[width=1.2\linewidth]{img/flipping_fiasco.png}
+#+LaTeX: \end{column}\end{columns}\medskip
+
+*2006*: Inconsistencies, alerts, then 5 retractions 
+
+#+BEGIN_QUOTE
+a homemade data-analysis program had flipped
+two columns of data, inverting the electron-density map from which his
+team had derived the protein structure.
+
+\flushright -- [[https://people.ligo-wa.caltech.edu/~michael.landry/calibration/S5/getsignright.pdf][a "buggy software"]]
+#+END_QUOTE
+
+# Note:
+
+# Un dernier exemple, cette fois-ci en cristallographie.
+
+# Geoffray Chang est un chercheur à la trajectoire fulgurante,
+# récompensé par de nombreux prix. Son équipe, basée au Scripps
+# Institute à l'Université de Californie San Diego, a publié une série
+# d'articles dans des revues prestigieuses et détaillant la structure de
+# certaines protéines présentes dans les membranes de cellules. Ces
+# protéines jouent un rôle essentiel dans la résistance de ces bactéries
+# à certains médicaments et connaître leur structure est une étape
+# importante dans la compréhension de leur fonctionnement.
+
+# Hélas, peu de temps après, d'autres équipes de chercheurs qui étudient
+# des protéines très similaires rapportent des structures anormalement
+# différentes de celles publiées par Chang et son équipe.  En lisant ces
+# travaux Chang, horrifié, remonte vite à la source du problème.
+
+# Un des codes d'analyse aurait inversé deux
+# colonnes de données et ainsi inversé la répartition de la densité
+# d'électrons à partir de laquelle la structure finale de la protéine
+# est calculée. D'après Chang, ce code aurait été hérité d'un autre
+# laboratoire et s'était également répandu depuis dans d'autres équipes.
+
+# Même si toute l'acquisition des données avait été faite soigneusement,
+# ce n'était pas le cas de l'analyse et ce petit grain de sable a
+# conduit à la rétractation immédiate de 5 articles par Chang et son
+# équipe. Ces publications ont eu un impact énorme sur la communauté, à
+# tel point que plusieurs années après la rétractation, les résultats
+# contradictoires avec ceux de Chang paraissaient suspects avaient du
+# mal à être publiés.
+
+** Loosing Faith?
+
+#+LaTeX: \begin{columns}\begin{column}{6.8cm}
+- [[http://www.nature.com/nrd/journal/v10/n9/full/nrd3439-c1.html?foxtrotcallback=true][Oncology]]: "/half of published studies, even in prestigious journals,
+  can't be reproduced in industrial labs/"
+- [[http://theconversation.com/we-found-only-one-third-of-published-psychology-research-is-reliable-now-what-46596][Psychology]]: "/attempting to reproduce 100 previously published
+  findings/, /only one-third of published psychology research was found
+  to be reliable/"
+#+LaTeX: \end{column}\begin{column}{3.5cm}
+#+LaTeX:   \hspace{-.1\linewidth}\includegraphics[width=1\linewidth]{img/in_science_we_trust_small.jpg}
+#+LaTeX: \end{column}\end{columns}\medskip
+
+#+BEGIN_CENTER
+*Whistle blowers* or
+*dysfunctional institutions*?
+#+END_CENTER
+
+*** _Questioning_ is part of the scientific processus\pause
+*** Just like _rigor_ and _transparency_...
+# Note: 
+
+# Il n'y a à ce jour pas un domaine des science qui ne soit épargné par
+# ces difficultés à reproduire les travaux publiés. En oncologie, un
+# article récemment publié rapporte que plus de la moitié des études
+# publiées ne peuvent être reproduites en laboratoire industriel, et ce
+# même si les études sont publiées dans des journaux prestigieux.
+
+# En psychologie, les capacités à reproduire les résultats publiés sont
+# également très basses.
+
+
+
+# Le problème est méthodologique mais également certainement
+# sociologique, lié à une pression productiviste trop importante. Mais
+# attention aussi à ne pas donner non plus trop d'importance aux signaux
+# d'alertes que nous venons de voir...
+
+# Le problème est compliqué mais il faut garder à l'esprit que la remise
+# en cause fait partie du processus scientifique. Il n'est donc pas
+# surprenant que de telles difficultés de reproduction de travaux
+# scientifiques soit présentes.
+
+# Cependant, deux autres caractéristiques essentielles du processus
+# scientifique sont la rigueur et la transparence et il est clair que
+# dans l'ensemble des cas que nous venons de voir il manquait souvent
+# l'un et l'autre...
+
+* M2-S2: Why is This so Difficult?
+** Entering Behind the Scenes: Computational Documents
+1.  A few Recent Controversial Studies
+2.  *Why is This so Difficult?*
+3.  Computational Document: Principles
+4.  Hands on. 
+   -   Jupyter
+   -   Rstudio
+   -   Org-Mode
+5.  Collaborating
+6.  Comparative study
+** Why is This so Difficult?
+file:img/box-she-s-told-not-to-open-in-it-the-gods-had-placed-all-the-evils-9vbl9q-clipart.jpg
+# Note: Comme nous l'avons vu, reproduire les travaux de recherche, même
+# publiés dans des revues prestigieuses est souvent assez
+# difficile. Dans cette séquence, nous allons identifier les difficultés
+# les plus communes.
+
+** 1) Information Scarcity
+Clearly indicate:
++ *Provenance* and *data*
+  #+BEGIN_CENTER
+  /Unavailable data = hardly verifiable results/
+  #+END_CENTER
+  
++ *Decisions*
+  #+BEGIN_CENTER
+  /Unexplained Decision = Suspicious Choice/
+  #+END_CENTER
+
+  #+LaTeX: \bigskip
+*** Laboratory Notebooks may help
+
+# Note: La première source de difficultés rencontrées lors de tentatives
+# de reproduction est tout simplement le manque d'informations.
+
+# Si on ne prend pas soin d'expliciter comment on a obtenu nos données
+# et qu'on les garde secrètes, il est certain qu'il va être difficile
+# pour une tierce personne de vérifier si elle arrive aux mêmes
+# conclusions ou pas. 
+
+# # C'est étrange car mettre les données utilisées à disposition permet au
+# # lecteur d'en évaluer la qualité (voire d'y trouver des erreurs). Sans
+# # cette évaluation, difficile pour le lecteur de savoir quelle confiance
+# # avoir dans les conclusions de l'article.
+
+# De même expliciter les choix effectués à chacune des étapes de l'étude
+# s'avère essentiel. Quel protocole expérimental a été choisi et
+# pourquoi ? Quelles données ont été conservées ? Quelles données ont
+# été soigneusement écartées et pourquoi ? Quelle procédure statistique
+# a été utilisée et les hypothèses sous-jacentes étaient elles
+# raisonnables ? Etc.
+
+# Après tout, on doit toujours faire des choix à un moment donné. Mais
+# ne pas expliquer ces choix, même en étant rigoureux et de bonne foi,
+# c'est prendre le risque que les lecteurs deviennent
+# suspicieux. D'autre part, être totalement transparent sur ces choix,
+# c'est permettre à d'autres (ou à vous-même) de décider s'il est
+# nécessaire de revenir dessus ou pas
+
+# Pour garder trace de tous ces choix et des informations sur ces
+# données, le cahier de laboratoire un outil essentiel. Encore faut-il
+# ensuite mettre ces informations à disposition, mais nous reviendrons
+# sur ce point par la suite.
+** 2) Computers [[http://theconversation.com/how-computers-broke-science-and-what-we-can-do-to-fix-it-49938][broke science]]
+
+- *Point and click*:
+- *Spreadsheets*: [[https://qz.com/768334/years-of-genomics-research-is-riddled-with-errors-thanks-to-a-bunch-of-botched-excel-spreadsheets/][programming and data manipulation mistakes]] 
+  - 
+    ~Membrane-Associated Ring Finger (C3HC4) 1, E3 Ubiquitin Protein
+    Ligase~ \to ~MARCH1~ \to 2016-03-01 \to 1456786800
+  - 
+    ~2310009E13~ \to 2.31E+19 
+-  *Complex software stack* 
+-  *Bug*: /Coding is a difficult task!/ 
+
+# Note: 
+
+# La deuxième source de difficultés rencontrées lors de tentatives
+# de reproduction de travaux est tout simplement les erreurs induites
+# par l'utilisation effrénée des ordinateurs.
+
+# Comme toute innovation technologique, les ordinateurs nous permettent
+# d'aller plus vite, plus loin mais aussi de faire des erreurs plus
+# facilement et plus rapidement...
+
+# Au premier plan des sources d'erreurs, ces logiciels intuitifs où
+# l'interaction se fait à la souris et qui ne permettent pas
+# d'expliciter ce qui est calculé et à partir de quoi. Leur simplicité
+# d'utilisation incite à les utiliser pour tout, même pour ce pour quoi
+# ça n'est pas vraiment prévu.
+
+# Il est par exemple très difficile de comprendre la logique du calcul
+# ayant lieu dans une feuille excel pleine de macros. Bien sûr, il est
+# possible de gérer des stocks et la comptabilité d'une entreprise avec
+# un tableur, mais ceux qui ont déjà eu à faire à ce genre
+# d'abominations savent qu'un ERP permet d'éviter bien des soucis. Et
+# bien de la même façon, un tableur n'est pas le bon outil pour faire
+# des statistiques ou du traitement de données !
+
+# Tenez, quelques exemples d'anecdotes effroyables liées à l'utilisation
+# d'un tableur. En génomique, il est bien pratique de donner des petits
+# noms aux gènes tels que celui-ci. Celui-ci, c'est MARCH1. Seulement
+# pas mal de tableurs croient bien faire en l'interprétant
+# comme une date et par effet de bord comme le nombre de secondes
+# écoulées depuis le 1er janvier 1970... L'identifiant de gène 231 000
+# 9E13 se retrouve lui aussi fréquemment convertit en nombre. Alors bien
+# sûr, il n'y a peut-être qu'une vingtaine de gènes concernés par ce
+# genre de problème sur les 30,000 du génome humain, mais c'est quand
+# même assez désagréable.
+
+# De manière générale, il est courant de se reposer sur une pile
+# logicielle complexe. Complexe et souvent mal maîtrisée. Combien
+# d'études reposent ainsi sur des logiciels propriétaires, sortes de
+# boites noires dont on ne maîtrise pas le contenu et qui appliquent
+# aveuglement des procédures de calculs et de transformations de
+# données?
+
+#    # - l'utilisation de telle ou telle méthode plutôt qu'une autre est
+#    #   souvent discutable
+# Alors, je ne suis pas en train de dire qu'il faut tout reprogrammer
+# soi même. Ce n'est bien sûr par la meilleure façon d'échapper aux
+# bugs. Dans les cas de l'étude Reinhart et Rogoff ou des fausses
+# structures de protéines de Chang, les erreurs venaient de programmes
+# maisons.
+
+# Mais il me semble essentiel d'être en mesure de déterminer dans son
+# analyse si chacune des briques est digne de confiance ou pas. Et si
+# l'un des composants, par sa nature, l'interdit, il faut sérieusement
+# songer à le remplacer.
+
+** Are Computers the Only Ones to Blame?
+
+*Lack of rigor and organization*
+- No backup
+- No history
+- No quality control
+
+# Note:
+
+# Enfin, la dernière cause méthodologique de non-reproductibilité et
+# source d'erreurs est certainement le mangue de rigueur et
+# d'organisation.
+
+# Même si le stockage ne coûte plus rien de nos jours, la sauvegarde des
+# données est souvent mal assurée et il est courant d'en perdre suite à
+# une mauvaise manipulation, ou bien à la suppression de son compte
+# informatique lors du passage d'une institution à une autre.
+
+# En l'absence de mécanisme de gestion de version, il est courant
+# de remplacer par inadvertance d'anciennes données par de nouvelles et
+# de ne plus arriver à accéder à d'anciennes observations.
+
+# Dans un certain nombre de domaines, l'utilisation de plans
+# d'expériences randomisés ou de pré-études (study pre-registration),
+# n'est absolument pas systématique. De même les bonnes pratiques de
+# développement logiciel comme la revue de code ou l'intégration
+# continue sont encore rarement appliqués au logiciels utilisés dans la
+# recherche.
+
+** Social and Cultural Causes
+#+BEGIN_QUOTE
+\centering Article = _simplified_ version of the procedure
+#+END_QUOTE
+
+#+LaTeX: \bigskip
+
+#+BEGIN_QUOTE
+\centering
+*Tracing* all these information and *making them available* =
+substantial investment
+#+END_QUOTE
+
+#+LaTeX: \bigskip
+
+If no one requires/inspect such information, why should I worry?
+
+# Note:
+
+# Enfin, il serait naïf de ne pas évoquer la dimension culturelle et
+# sociale du problème.
+
+# Un article est une version simplifiée et intelligible des
+# résultats. Certains diraient même la publicité...  Une description de
+# haut niveau est essentielle car elle permet de prendre du recul mais
+# elle est devenue la norme alors que la technicité de la recherche
+# actuelle est telle qu'il est clairement impossible de donner dans un
+# document de 8 à 10 pages toutes les informations permettant de refaire
+# les expériences et les analyses.
+# - La description du protocole expérimental est souvent succincte
+# - Les données sont généralement bien trop nombreuses pour être données
+#   in extenso et sont résumées à travers quelques courbes.
+# - Les traitements statistiques appliqués pour parvenir à ces courbes
+#   ne sont décrits que rapidement.
+
+# Alors, bien sûr il est possible de tracer toutes ces informations et
+# de les mettre à disposition. À ceci près que cela demande du temps,
+# voire beaucoup de temps si on ne dispose pas des bons outils.
+# # - sans compter que mettre à disposition toutes ces informations, alors
+# #   qu'on a soi-même peiné à les obtenir, c'est permettre à d'autres de
+# #   récupérer les fruits de notre travail sans efforts.
+
+# Mais si personne n'exige ces informations, à quoi bon s'embêter ?
+
+** Going Public?
+- Weaknesses would become obvious
+- Someone may find a flaw
+- Someone may [[http://www.nature.com/news/the-top-100-papers-1.16224][benefit from my hard work]]
+- /Data may be sensitive/
+  # sécurité, machine learning pour la police
+
+Let us give ourselves the means to have everything inspectable on
+demand.
+
+# Note:
+
+# Mais donner accès, mettre à disposition, cela veut dire tout rendre
+# public ? N'est-ce pas un peu radical ? Et risqué ? Démontons ensemble
+# quelques idées reçues.
+
+# Si je donne accès à tout ce que j'ai fait, il deviendra alors évident
+# que ce que j'ai fait n'est pas aussi parfait que ce que je prétends,
+# que c'est un peu sale et pas toujours très rigoureux, que j'ai
+# sélectionné les résultats que je présente.
+
+# - C'est sûr. En même temps, c'est la réalité et vous auriez tort de
+#   croire que vous êtes le seul dans cette situation. Si ça se trouve,
+#   vous travaillez mieux que les autres et dans un domaine où la
+#   réputation est essentielle, vous avez probablement plutôt intérêt à
+#   le montrer. Pire, si vous le cachez, cela finira par paraître
+#   suspicieux.
+
+# Vous me direz qu'en révélant tout, je prend le risque que quelqu'un
+# trouve une erreur et de passer pour un imbécile. 
+
+# - C'est certain, mais tout le monde fait des erreurs, même les plus
+#   grands. Et en ce qui me concerne, je préfère que quelqu'un trouve
+#   une erreur et m'aide à la corriger afin que mes travaux deviennent
+#   corrects.
+
+# Oui, mais quelqu'un pourrait tirer parti, réanalyser ces données que
+# j'ai eu tant de mal à obtenir, ou simplement utiliser ce code que j'ai
+# eu tant de mal à écrire et faire trois ou quatre papiers là où je n'ai
+# eu le temps d'en faire qu'un. 
+
+# - Alors d'abord, si quelqu'un réutilise votre travail, il se doit de
+#   le citer correctement et de vous rendre le crédit qui vous est
+#   dû. Ensuite les articles les plus cités de tous les temps sont des
+#   articles présentant des contributions méthodologiques ou du logiciel
+#   qui sont devenus essentiels dans un domaine.
+
+#   Une petite parenthèse: ceux d'entre vous qui connaissent github,
+#   savent que cette plate-forme est à mi-chemin entre la plate-forme de
+#   développement logiciel et le réseau social. Les contributions d'un
+#   développeur à différents projets sont visibles ainsi que la
+#   fréquence de ses contributions, ce qui permet à un jeune développeur
+#   de se faire une carte de visite infalsifiable et
+#   ultra-visible. Montrer ce que l'on fait est une façon efficace
+#   d'atteindre une certaine forme de reconnaissance par la
+#   communauté. Mettre ses travaux à disposition de tous est
+#   probablement la meilleure façon de démontrer sa propriété
+#   intellectuelle.
+
+# Enfin, il est possible que les données soient sensibles et ne puissent
+# être divulguées sans prendre le risque de causer du tort à des
+# gens. Par exemple, s'il s'agit de données médicales, de données
+# judiciaires, d'informations sur des enfants ou sur des intentions de
+# vote, etc. 
+
+# - Dans ce type de situation où les travaux ont une dimension éthique,
+#   il convient de définir quelles personnes peuvent avoir accès aux
+#   informations pour les vérifier ou les réutiliser. Ensuite, il existe
+#   des techniques cryptographiques assez faciles d'accès permettant de
+#   s'assurer que seulement les personnes habilitées peuvent accéder aux
+#   données.
+
+# Dans tous les cas, même si au final ces informations sont
+# semi-publiques, il est essentiel de se donner les moyens de permettre
+# à autrui d'inspecter ce que nous avons fait.
+** Tools to Avoid and Possible Alternatives
+
+- *Proprietary tools, formats and services*
+  1. +Excel, Word, Evernote+ 
+     - Markdown, Org-mode, CSV, HDF5, ...
+  2. +SAS, Minitab, matlab, mathematica, ...+ 
+     - Scilab, R, Python, ...
+  3. +Dropbox, online proprietary lab. notebooks , ...+ 
+     - Framadrop, GitLab/GitHub, ...
+-  *"Intuitive" Tools *
+  -  +spreadsheet, graphical interfaces, interactive exploration+
+    - learn self control and slow down... $\smiley$
+    - R, Python, ...
+
+# Note:
+
+# Et pour permettre l'inspection, il faut utiliser les bons outils
+
+# Cela commence par banir autant que possible les logiciels et les
+# formats propriétaires. Bien sûr, ces outils sont bien faits et vous y
+# êtes habitués mais on en est également captif et les entreprises qui
+# les développement n'offrent aucune garantie sur le long terme. Je suis
+# sûr que ces mises à jours automatiques vous agacent vous aussi. :)
+# L'expérience montre qu'il est hélas très courant de perdre des données
+# et des informations lors de ces mises à jour.
+
+# Alors, soyons honnête, l'utilisation de logiciel libre ne vous protège
+# absolument pas de ce genre de mauvaises surprises. Mais comme vous
+# avez accès librement à l'ensemble des versions, les chances d'arriver
+# à récupérer vos données sont quand même bien plus élevées. De même
+# l'adoption de formats textes simples et ouverts augmente vos chances
+# d'arriver à les relire avec d'autres logiciels. 
+
+# En ce qui me concerne, à chaque fois que j'ai utilisé un format
+# binaire ou pas bien ouvert, j'ai fini par perdre des données. Cela
+# fait donc 10 ans que je n'utilise plus que des formats texte ou des
+# standards binaires ouverts et le problème ne s'est plus jamais posé,
+# et ce malgré les mises à jours logicielles très régulières de ma
+# machine. 
+
+# Donc règle numéro 1: utiliser autant que possible du format texte
+# (markdown, orgmode pour vos notes, csv pour vos données).
+
+# Règle numéro 2: utiliser autant que possible les logiciels et les
+# langages de programmation libres comme R ou python.
+
+# Et Règle numéro 3: éviter de stocker vos données chez un hébergeur
+# dont vous pourriez être captif.
+
+# En effet, les services gratuits (ou pas) et très intégrés sont
+# tentants mais correspondent à un business plan particulier qui peut se
+# révéler incompatible avec vos besoins futurs, ne pas être pérenne et
+# ne vous donne pas forcément les garanties de confidentialité que vous
+# souhaiteriez.
+
+# Enfin, attention aux tableurs et outils graphiques qui peuvent vous
+# donner au premier abord l'impression d'une meilleur efficacité et
+# productivité mais qui sur le long terme ne vous permettent pas
+# d'atteindre la traçabilité et l'inspectabilité que vous souhaiteriez.
+
+# C'est plus difficile, en particulier au début, mais en utilisant des
+# langages comme R ou python, passé la première marche, on gagne
+# rapidement en puissance et en efficacité.
+** Conséquences                                                   :noexport:
+- Des *erreurs*... 
+- Des *difficultés* certaines à *réutiliser* le travail des autres, voire
+  son propre travail
+- Un *doute* dommageable pour tout le monde (auteur, détracteurs,
+  lecteur, décideur...)
+
+
+# Note:
+
+# C'est pour toutes ces raisons que les résultats de recherche
+# contiennent parfois des erreurs et sont si difficile à répliquer et à
+# réutiliser, même au sein d'une même équipe. 
+
+# Les doutes que cela engendre sont dommageable pour tout le
+# monde. Lorsque l'on propose un résultat, il n'est pas agréable d'être
+# soupçonné de fraude ou d'incompétence. En même temps, les détracteurs
+# d'un résultat apparaissent comme de simples aigris ou au contraire
+# comme des lanceurs d'alertes selon le contexte alors qu'il est normal
+# de questionner un résultat et d'avoir un débat apaisé et rationnel à
+# son sujet. 
+
+# Face à ces problèmes, il me semble que la meilleur attitude à avoir
+# est celle de la transparence: Expliciter augmente les chances de
+# trouver les erreurs et de les éliminer. 
+
+# C'est d'ailleurs une demande de plus en plus pressante de la part
+# de la société civile afin d'éviter les dérives et d'améliorer
+# l'efficacité de nos travaux.
+** Paradigm Shift
+1. Information scarcity, difficulties in accessing data
+2. Computation mistakes
+3. Lack of scientific and technical rigor
+
+#+LaTeX: \begin{center}\includegraphics[height=2.5cm]{img/in_science_we_trust_small.jpg}
+#+LaTeX: \includegraphics[height=2.5cm]{img/in_code_we_trust.jpg}\end{center}
+
+*** Making everything explicit increases the chances of finding and getting rid of mistakes
+
+# Demande de *traçabilité* de plus en plus pressante de la société, des
+# institutions, de l'Europe, ...
+
+
+# Note:
+
+# Nous avons vu que la première cause d'échec de reproduction de
+# résultats scientifiques est tout simplement le manque d'information,
+# la non disponibilité des données ou des procédures appliquées. Cela ne
+# signifie pas que le résultat soit faux mais cela empêche de le
+# vérifier et de s'appuyer dessus.
+
+# La seconde cause d'échec est tout simplement l'erreur de calcul qui
+# peut se glisser n'importe où.
+
+# De manière générale, le manque de rigueur scientifique et technique
+# est souvent à l'origine de ces deux problèmes.
+
+# Il me semble que la meilleur attitude à avoir est celle de la
+# transparence: Expliciter augmente les chances de trouver les erreurs
+# et de les éliminer. C'est pour cela que nous assistons ces dernières
+# années à un changement de paradigme de recherche et que l'on exige un
+# accès à l'ensemble des données et des procédures de calcul.
+
+# C'est d'ailleurs une demande de plus en plus pressante de la part de
+# la société civile (en particulier le Conseil Européen) afin d'éviter
+# les dérives et d'améliorer l'efficacité de nos travaux.
+
+* M2-S3: Computational Documents: Principles
+** Entering Behind the Scenes: Computational Documents
+1.  A few Recent Controversial Studies
+2.  Why is This so Difficult?
+3.  *Computational Document: Principles*
+4.  Hands on. 
+   -   Jupyter
+   -   Rstudio
+   -   Org-Mode
+5.  Collaborating
+6.  Comparative study
+** Computational Documents: Principles
+file:img/iceberg.jpg
+
+# Note:
+
+# Dans cette séquence, je vais vous présenter ce qu'est un document
+# computationnel ainsi que les principes généraux que nous retrouverons
+# dans chacun des trois environnements dont je vous ai précédemment
+# parlé. L'intérêt de ce type de document est de permettre une
+# transparence la plus complète possible.
+
+** Modern Science
+
+
+#+LaTeX: \includegraphics<1>[width=\linewidth]{img/iceberg_publication-1.png}%
+#+LaTeX: \includegraphics<2>[width=\linewidth]{img/iceberg_publication-2.png}%
+#+LaTeX: \includegraphics<3>[width=\linewidth]{img/iceberg_publication-3.png}%
+#+LaTeX: \includegraphics<4>[width=\linewidth]{img/iceberg_publication-4.png}%
+#+LaTeX: \includegraphics<5>[width=\linewidth]{img/iceberg_publication-5.png}%
+
+# Note:
+
+# # Data \to visualization/analysis \to article
+# Si une partie de l'activité scientifique nécessite des mesures sur le
+# terrain ou derrière une paillasse, la majeure partie se passe
+# maintenant derrière un ordinateur, les données provenant de machines
+# spécifiques: je pense par exemple à un accélérateur de particules, des
+# séquenceurs d'ADN, un téléscope, un réseau de capteur ou bien sûr des
+# simulations numériques s'exécutant sur des supercalculateurs.
+
+# Une fois ces données obtenues, elles sont transformées pour être
+# analysées, visualisées afin de mieux en comprendre la structure.  Il
+# est courant de partager ces visualisations avec des collègues,
+# d'avoir un certain nombre d'itérations, de passer d'une vue à une
+# autre jusqu'à trouver celle qui explique le mieux les choses. On
+# utilise d'ailleurs souvent une multitude de logiciels spécifiques pour
+# obtenir ces visualisations.
+# Il arrive souvent qu'on soit déçu par les résultats, qu'on n'y
+# comprenne rien ou qu'on se rende compte que les données ne sont pas
+# intéressantes et qu'il faut se poser la poser la question sous un
+# angle différent. 
+
+# Dans ce cas, retour à la case départ: acquisition de
+# données, visualisations, statistiques, nombreux échanges avec les
+# collègues...
+
+# Puis ça y est, on trouve enfin quelque chose d'intéressant. On prend
+# alors nos plus belles figures, on y ajoute les explications qui sont
+# finalement les bonnes, on tente de rendre tout cela intéressant et on
+# envoie l'ensemble à une conférence ou un journal.
+
+# Hélas, dans un pdf de 8 pages, le lecteur trouvera une jolie histoire,
+# des figures convaincantes mais n'aura aucune idée du réel travail
+# effectué. L'article, c'est la partie émergée de l'iceberg et il n'y a
+# alors plus aucun moyen de revenir sur les nombreuses tentatives et
+# échecs, ni sur les calculs et les données derrière chacune de ces
+# figures.
+
+# La recherche reproductible, c'est permettre de pouvoir naviguer dans
+# les deux sens et de combler le fossé séparant l'auteur du lecteur.
+** Methodological Goals
+
+
+Keep track to allow:
+- *Inspection*: justify/understand
+- *Re-execution*: check/fix/improve/reuse
+
+# Note:
+
+# Notre objectif est donc d'avoir un outil nous permettant:
+
+# - d'une part d'inspecter toute cette démarche, afin que l'auteur
+#   puisse justifier pourquoi tel ou tel code est utilisé et que le
+#   lecteur puisse comprendre ce qui a été fait;
+# - et d'autre part de refaire le calcul et l'analyse le plus
+#   simplement possible, ce qui est essentiel 
+#   1. pour permettre aux lecteurs de vérifier que ces calculs sont
+#      corrects,
+#   2. pour permettre éventuellement de corriger des erreurs s'il y en a
+#   3. et enfin pour permettre à d'autres de réutiliser ces travaux, soit
+#      sur un jeu de données différent, soit en réutilisant une partie de
+#      la procédure d'analyse dans un autre contexte.
+** Behind the Scenes
+\scriptsize
+#+LaTeX: \only<1>{\hfill\includesvg[width=.5\linewidth]{img/example_pi_full-1}}%
+#+LaTeX: \only<2>{\includesvg[width=\linewidth]{img/example_pi_full-2}}%
+#+LaTeX: \only<3>{\includesvg[width=\linewidth]{img/example_pi_full-3}}%
+#+LaTeX: \only<4>{\includesvg[width=\linewidth]{img/example_pi_full-4}}%
+#+LaTeX: \only<5>{\includesvg[width=\linewidth]{img/example_pi_full-5}}%
+#+LaTeX: \only<6>{\includesvg[width=\linewidth]{img/example_pi_full-6}}%
+
+# #+LaTeX: \includesvg<1>[width=\linewidth]{img/example_pi_full-2.svg}%
+# #+LaTeX: \includesvg<1>[width=\linewidth]{img/example_pi_full-3.svg}%
+# #+LaTeX: \includesvg<1>[width=\linewidth]{img/example_pi_full-4.svg}%
+# #+LaTeX: \includesvg<1>[width=\linewidth]{img/example_pi_full-5.svg}%
+# #+LaTeX: \includesvg<1>[width=\linewidth]{img/example_pi_full-6.svg}%
+
+# Note:
+
+# Voici la partie émergée du document computationnel. Au premier abord,
+# il s'agit d'un document tout à fait banal avec un titre, du texte,
+# éventuellement un petit morceau de code illustrant une procédure de
+# calcul, des résultats numériques, des formules de maths, des figures,
+# etc. Bref, un article classique au format pdf ou html.
+
+# Voici maintenant ce qui se cache derrière ce document: ici, un
+# notebook Jupyter tel que nous pouvons le voir dans un navigateur
+# web. C'est un document dynamique constitué de différentes parties sur
+# lesquelles on peut interagir.
+
+# Tout d'abord du texte au format markdown: ce sont les zones de texte
+# que j'ai surlignées en orange. Le formattage est assez simple, on peut
+# assez facilement y inclure des liens hypertextes ou des formules
+# mathématiques.
+
+# Entre ces zones de texte, on trouve des zones de code, que j'ai
+# surlignées en bleu. Ici il s'agit de fragments de code python
+# relativement simples. Dans cet environnement, il est possible d'éditer
+# directement ces fragments de code et les exécuter. En fait, un
+# notebook a en interne une console python ouverte et lorsque l'on
+# demande l'exécution d'un fragment de code, le code est directement
+# envoyé dans la console et le résultat est automatiquement récupéré.
+
+# Le résultat de chacun de ces différents codes est stocké juste en
+# dessous dans les zones que j'ai surlignées en jaune. Puisque cette
+# console reste "vivante" tout au long du document, les résultats
+# calculés dans un bloc sont visibles dans le bloc suivant, ce qui
+# encourage à ne pas écrire de longs blocs de code infâmes, mais au
+# contraire à écrire de petits fragments, à calculer les choses petit à
+# petit, tout en expliquant dans les zones de texte (en orange) comment
+# les différents fragments de code (en bleu) s'enchaînent et éventuellement
+# pourquoi, en fonction de ce que l'on vient de calculer (en jaune), on
+# décide d'appliquer tel nouveau fragment.
+
+# Une fois satisfait avec les calculs, on aime en général bien créer un
+# document classique en exportant vers du pdf ou du html. Chaque zone
+# (texte, code, résultat) est convertie et assemblée en un seul document
+# markdown qui est à son tour transformé vers le format désiré avec un
+# outil comme pandoc.
+
+# Bien sûr, dans le document final, on ne souhaite pas forcément rendre
+# tous les fragments de codes et tous les résultats visibles. C'est la
+# raison pour laquelle pour chacune de ces zones, il est possible de
+# spécifier si l'on souhaite la cacher ou pas.
+
+# Enfin, si les résultats intermédiaires sont stockés automatiquement
+# dans le notebook, l'environnement permet de ré-exécuter très
+# simplement l'ensemble du code du notebook et de mettre à jour les
+# résultats.
+
+# C'est donc à vous de décider, selon le contexte, si vous souhaitez
+# partager le document final, qui est souvent plus compact, ou le document
+# computationnel qui va permettre une inspection complète et une
+# réutilisation. 
+** Existing Tools
+1. Jupyter
+2. Rstudio/knitR
+3. Org mode
+
+| *Same Principles*                      | *Differences*         |
+|--------------------------------------+---------------------|
+| • *A single document*                  | • Syntax            |
+| \qquad (explanations, code, results) |                     |
+| • Session                            | • Interoperability  |
+| • Export                             | • Controling export |
+
+# Note:
+
+# Les trois environnements les plus matures permettant de créer de tels
+# documents sont Jupyter, que vous venez de voir, Rstudio/knitr, et
+# Org-mode. Ces trois environnements se distinguent par le niveau de
+# technicité nécessaire à leur mise en oeuvre. Je ferai une petite démo
+# de chacun de ces trois environnements dans les séquences suivantes. À
+# l'issue de ces démonstrations, vous pourrez choisir lequel vous
+# convient le mieux.
+
+# Vous verrez que le principe reste le même dans les trois environnements:
+# - Tout d'abord, avoir un seul document comprenant un entrelacs
+#   d'explications au format markdown, de code exécutable simplement, et
+#   les résultats de ces exécutions.
+  
+#   Cette organisation permet l'inspection et la réexécution que nous
+#   nous étions fixés comme objectifs.
+# - En interne, une console python ou R est active et assure une
+#   persistance des variables d'un fragment de code à l'autre. C'est la
+#   notion de session sur laquelle nous reviendrons pendant les
+#   démonstrations.
+# - Enfin, il est possible d'exporter le document computationnel vers un
+#   format plus traditionnel éventuellement en masquant certaines
+#   parties.
+
+# Les différences entre ces différents environnements sont relativement
+# mineures: 
+# - Il y a quelques différences de syntaxe. Jupyter et Rstudio utilisent
+#   du markdown alors que Org mode utilise le format org qui est
+#   légèrement différent mais tout aussi lisible. La
+#   façon d'indiquer les zones de code et les résultats est également un
+#   peu différente mais c'est sans grande importance une fois dans
+#   l'environnement correspondant.
+# - Plus important, peut-être l'interopérabilité entre différents
+#   langages. Jupyter vous permet de faire du python, du R, du ruby ou
+#   bien du julia mais pas vraiment d'utiliser plusieurs langages dans
+#   un même notebook. /Enfin/, c'est possible mais ça demande un peu de
+#   travail. 
+
+#   Rstudio est conçu spécifiquement autour du langage R. Même s'il est
+#   possible d'utiliser du code python, vous verrez que ça n'est pas
+#   aussi convivial que pour R.
+
+#   Enfin, Org-mode permet une interaction entre les différents langages
+#   relativement naturelle mais comme je le disais, la courbe
+#   d'apprentissage est un peu plus raide.
+# - Enfin, ces outils diffèrent par le contrôle offert en terme de mise
+#   en page lors de l'export. Jupyter et Rstudio se reposent sur
+#   markdown et donc sur pandoc. Le style par défaut est très bien,
+#   surtout si on souhaite produire du HTML. Mais si on doit produire un
+#   document PDF respectant un style particulier, ça peut être peu
+#   compliqué de demander à pandoc d'appliquer ce style. 
+
+#   Org-mode ne fait à peu près rien pour vous de ce point de vue là. Il
+#   vous faudra donc de toutes façons configurer le style de votre
+#   export. Ceci dit, un des points que j'apprécie particulièrement
+#   lorsque je prépare un article en latex avec org-mode, c'est la
+#   capacité à écrire directement du LaTeX qui sera passé tel quel lors
+#   de l'export, ce qui me permet de faire exactement ce que je
+#   souhaite.
+
+# Bien. Vous savez tout. Alors maintenant, Démo !
+* M2-S4A: Hands On (Jupyter)
+** Entering Behind the Scenes: Computational Documents
+1.  A few Recent Controversial Studies
+2.  Why is This so Difficult?
+3.  Computational Document: Principles
+4.  Hands on. 
+   -   *Jupyter*
+   -   Rstudio
+   -   Org-Mode
+5.  Collaborating
+6.  Comparative study
+** Hands On: Jupyter
+#+ATTR_LATEX: :height 2cm :center nil
+file:img/jupyter-logo.png
+** Startup
+- Opening a document
+- Quick Tour
+- Saving
+- Getting help
+** Running Cells
+- Running and getting results
+- Adding a cell
+- Beware of the order
+  - Session notion
+  - Possible inconsistencies
+  - Restart and run from the beginning
+** Keyboard Shortcuts, Completion, and Ipython Magic
+- Keyboard shortcuts =<h>=
+- Python completion (numpy example)
+- =%matplotlib=, =%lsmagic=
+# =%run=, =%load=, =%load_ext=
+** Using Other Languages
+- Example for R:
+  - =%load_ext rpy2.ipython=
+  - =%%R %%sh %%perl=
+- Interactions between =R= and =Python= are possible
+** Producing and Sharing the Document
+- Results are stored in the document
+  - $\to$ pretty-printed in gitlab
+  - =git pull/push=
+- Export to HTML/PDF
+** Preparing an Article
+# Contrôler la visibilité du code et des résultats
+- Hide-code plugin
+- =%%latex= and =%%html=
+- [[http://nbconvert.readthedocs.io/en/latest/external_exporters.html][Customize /exporters/:]] 
+
+\small\href{-1cm}
+~jupyter nbconvert --to mypackage.MyExporter notebook.ipynb~
+
+** Recap
+- A lot of information in short time period
+- Now it's your turn!
+* M2-S4B: Hands On (Rstudio)
+** Entering Behind the Scenes: Computational Documents
+1.  A few Recent Controversial Studies
+2.  Why is This so Difficult?
+3.  Computational Document: Principles
+4.  Hands on. 
+   -   Jupyter
+   -   *Rstudio*
+   -   Org-Mode
+5.  Collaborating
+6.  Comparative study
+** Hands On:  Rstudio
+
+#+ATTR_LATEX: :height 2cm :center nil
+file:img/RStudio-Logo-Blue-Gradient.png
+#+ATTR_LATEX: :height 2cm :center nil
+file:img//knitr.png
+
+** Startup
+- Opening a document
+- Quick Tour
+- Saving
+- Getting help
+** Running Chunks
+- Running and getting results
+- Adding a chunk
+- Beware of the order
+  - Session notion
+  - Possible inconsistencies
+  - Restart and run from the beginning
+** Keyboard Shortcuts, Completion
+- Keyboard shortcuts
+- R completion
+- Folding
+** Producing and Sharing the Document
+- Knit
+- Easy sharing via rpubs
+** Controlling Code and Results Visibility
+- Completion (chunk parameters)
+** Using a Specific Style
+- pdf, LaTeX
+- html
+- word/office
+
+Writing raw LaTeX (R Sweave: =Rnw=) or HTML (R HTML:
+=Rhtml=) to have full control is possible.
+** Using Other Langages
+- Inserting and running a Python chunk
+- Warning: no session !
+  - Interaction between R and Python is done solely through files,
+    which encourages to write long chunks $\frowny$
+** Recap
+- A lot of information in short time period
+- Now it's your turn!
+* M2-S4C: Hands on (Org-Mode)
+** Entering Behind the Scenes: Computational Documents
+1.  A few Recent Controversial Studies
+2.  Why is This so Difficult?
+3.  Computational Document: Principles
+4.  Hands on. 
+   -   Jupyter
+   -   Rstudio
+   -   *Org-Mode*
+5.  Collaborating
+6.  Comparative study
+** Hands On: Org Mode
+#+ATTR_LATEX: :height 2cm :center nil
+file:img/600px-EmacsIcon.svg.png
+#+ATTR_LATEX: :height 2cm :center nil
+file:img/442px-Org-mode-unicorn.svg.png
+
+# Note:
+# Même plan que précédemment
+** Startup
+- Opening a document
+- Quick Tour
+  - Folding / Browsing
+  - Restructuring
+- Saving
+- Getting help
+** Running Code Blocks
+- Inserting an R block
+- Running and getting résultats
+- Beware of the order
+  - Session notion
+  - Possible inconsistencies
+  - Restart and run from the beginning
+** Keyboard Shortcuts, Completion
+- Block expansion 
+  - R graphics
+  - Python, Perl, ...
+  - Shell session
+- Several sessions, several languages !
+- Language interactions
+** Browsing
+- Folding
+- Restructuration
+# - Annotation (tags) ???
+# - Sparse Tree ???
+** Producing and Sharing the Document
+- Git Commit
+  - Beware of produced files
+- Export
+- Controling visibility of code and results
+  - Hidden sections
+** Using a Specific Style
+- pdf, LaTeX
+- HTML
+- Writing raw LaTeX or raw HTML in the middle of the org document is easy
+** Recap
+- A lot of information in short time period
+- Learn the shortcuts one after the other. The main ones are in the
+  first entry of the journal
+- Now it's your turn!
+* M2-S5: Collaborating
+** Entering Behind the Scenes: Computational Documents
+1.  A few Recent Controversial Studies
+2.  Why is This so Difficult?
+3.  Computational Document: Principles
+4.  Hands on. 
+   -   Jupyter
+   -   Rstudio
+   -   Org-Mode
+5.  *Collaborating*
+6.  Comparative study
+** Collaborating
+file:img/jumping_penguin.png
+** Preparing a Document for a Journal or a Conference
+Requirements for producing a *pdf*:
+- Internally, /pandoc/, /knitr/ or /emacs/org-mode/
+- /LaTeX/ should be installed
+
+Exporting as *office/word* documents is possible (requires a specific
+configuration in Jupyter). Otherwise export *html*...
+
+*** In any case:
+-  Need to hide some cells
+-  Use the right style
+
+# Soyons honnêtes
+*** Producing such kind of documents requires a perfectly configured environment
+
+# Note:
+
+
+# Tout ces détails auront été expliqués avant pour chaque environnement.
+#   - http://blog.juliusschulz.de/blog/ultimate-ipython-notebook
+#     - https://github.com/kirbs-/hide_code is a must-have
+#   - http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
+#   - https://github.com/balouf/Kleinberg/blob/master/KleinbergsGridSimulator.ipynb
+#   - Il y doit y avoir des choses équivalentes, mais plus simples pour
+#     Rmd
+#   - Et pour emacs, c'est d'une certaine façon plus simple car on est
+#     habitué à bidouiller.
+** Convincing Your Co-authors
+
+When confronted to this complexity, there are several possible
+attitudes:
+1. Nevermind, it's awesome! Let's do this!
+2. Err... it looks cool but I really don't have the time to learn this
+   now...
+3. Yet another new tool? Forget it!
+
+$\leadsto$ several possible collaboration modes
+** Option 1: Enthusiastic Co-authors
+
+You'll have to *provide technical support*:
+- Compatibility issues between the different environments
+- Manage this complexity (Jupyter/Rstudio/Emacs, Git, ...)
+
+It is the best way to *ensure everything is reproducible* (not only on
+*your* machine\dots) and inspectable
+** Option 2: A Minima Investment
+
+Your co-authors let you manage the code and the results all by
+yourself but are ready to make efforts to edit your document.
+
+*They can:*
+- Edit the content of the article (Markdown or Org-Mode)
+
+*They can't:*
+- Re-execute the code
+- Export and generate the final document
+** Option 3: "Defiant" Co-auteurs
+
+*Co-auteurs do not change their habits*
+- A separated /computational document/ allows to produce all results and
+  figures
+- An other (/standard/) document includes generated figures
+
+Everything is *stored*, *documented* and can be *re-computed* in your 
+computational document!
+** Publishing / Sharing Your Document
+
+*Rpubs*
+- Great for a quick sharing but no durability
+*Dropbox and alike*
+- +Durability+, access ??, ...
+*Gitlab/Github/...*
+1.  Go public (along with the history!)
+2.  Clean up the repository and archive the current state in a
+   companion website
+*Companion websites*
+-  Runmycode, Editors, ...
+-  Article: *HAL* ; code and data: *Figshare / Zenodo* 
+** Conclusion
+
+Several options depending on:
+- your co-authors
+- technical constraints
+- confidentiality/copyright constraints
+* M2-S6: Comparative Study
+** Entering Behind the Scenes: Computational Documents
+1.  A few Recent Controversial Studies
+2.  Why is This so Difficult?
+3.  Computational Document: Principles
+4.  Hands on. 
+   -   Jupyter
+   -   Rstudio
+   -   Org-Mode
+5.  Collaborating
+6.  *Comparative study*
+** Comparative Study
+
+#+ATTR_LATEX: :height 2cm :center nil
+file:img/jupyter-logo.png
+#+ATTR_LATEX: :height 2cm :center nil
+file:img/RStudio-Logo-Blue-Gradient.png
+#+ATTR_LATEX: :height 2cm :center nil
+file:img/442px-Org-mode-unicorn.svg.png
+#+ATTR_LATEX: :height 2cm :center nil
+file:img/question_mark.png
+
+\bigskip
+
+A  computational document. What for ?
+
+# Note:
+# - Pour comparer ces différents outils, il est important de bien
+#   identifier l'usage que l'on souhaite en faire.
+# - Nous allons regarder ensemble quelques cas d'usages
+
+** A Lecture or a Tutorial
+A Jupyter notebook
+- Easy to use for students
+- Dynamic document
+
+# Note:
+# - Super pratique.
+# - Téléchargement, exécution dynamique, résultats interactifs,
+#   variations faciles, etc.
+# - C'est idéal pour un document à destination d'auto-formation.
+** A Journal
+
+[[file:~/org/journal.org][My journal with org-mode]]
+- A single author
+- Chronological organization
+- Labels
+- Notes, links, code
+
+# Note: 
+
+# - Structuration type: par date
+# - Mots-clés
+# - Navigation aisée
+# - Réexécution de code comme d'habitude
+
+** A Laboratory Notebook
+
+[[file:~/Work/Documents/Articles/2018/Alya-Perf/LabBook.org][A laboratory notebook with org-mode]]
+
+- Semantic organization
+- Conventions
+- Several authors
+- Labels per author, experiment, etc.
+
+# Note:
+# - Assez proche d'un journal mais avec un contenu bien plus technique
+#   et fait pour être exploitable par des collègues.
+# - Exemple de structuration. 
+** A Reproducible Article
+
+[[file:~/Work/Documents/Articles/2017/paper-hpl-at-scale/paper.org][An ongoing article]]
+
+- Several authors
+- Regenerate figures
+- Track back the sources
+
+# Note:
+# - On voit la structure de l'article.
+# - Certaines sections sont cachées
+#   - Elles pointent vers le cahier de laboratoire traçant les données
+#     que je vais exploiter.
+#   - Ici, je suis reparti de figure que Tom avait faites et je les ai
+#     retravaillées et adaptées à ce dont j'avais besoin pour mon
+#     article.
+# - Ici, c'est un peu "sale", il y a des liens vers des fichiers qui
+#   sont sur mon disque dur mais c'est un article en cours de
+#   préparation et vous voyez que j'ai bien accès à l'ensemble des
+#   informations dont j'ai besoin.
+# - Plusieurs structurations sont possibles. En général, j'ai une
+#   grosse section cachée au début de l'article où j'indique comment
+#   récupérer l'ensemble des données (avec les commandes git ou les
+#   URLs). Le reste du code d'analyse contenu dans l'article peut alors
+#   être exécuté.
+# - Ici, comme on prépare un article, il est essentiel de pouvoir cacher
+#   certaines sections et d'avoir un contrôle complet sur la typographie
+#   car on n'a jamais assez de place.
+# - Dans tous les cas, tout ceci n'est possible que si on a suffisemment
+#   de matière, c'est-à-dire que si on a pris régulièrement des notes
+#   sur comment on a obtenu les données et sur comment on les a
+#   analysées. C'est ce que vous mettrez en pratique dans le module 3
+#   avec l'outil de votre choix.
+** Technical Differences
+#+LaTeX: \null\hspace{-1cm}\begin{overlayarea}{\linewidth}{2.4cm}\scalebox{.73}{
+#+ATTR_LATEX: :center nil
+|               | Origin    | Technology         | Usage        | Browsing  | Format | Article?  |
+|---------------+-----------+--------------------+--------------+-----------+--------+-----------|
+| Jupyter       | 2001      | Web App., Python   | Easy         | Limited   | JSON   | Difficult |
+| Rstudio/knitr | 2011/2014 | IDE, Java/R        | Easy         | Limited   | Rmd    | Yes       |
+| Org-Mode      | 1976/2008 | Editeur, EmacsLisp | More complex | Powerful  | Org    | Yes       |
+#+LaTeX: }\end{overlayarea}
+
+Technology does not really matter. You need to:
+- collect information
+- organize it and prepare for exploitation
+- make it available
+
+# Note:
+# - L'écosystème évolue mais vous pouvez déjà vous en saisir.
+
+** Bonus: expériences vécues                                     :noexport:
+- Complétion, introspection donc développement/composition pas si
+  désagréable comparé à un IDE avancé.
+- Objectif atteint. Mois par mois: permet aux collègues d'aider,
+  d'avancer ensemble, etc. Communication de "problèmes" (données
+  manquantes par exemple) bien plus simple.
+- Un document dynamique et traçable, réexecutable, modifiable,
+  réutilisable, ... Quand le reviewer 3 demande de refaire la figure 5
+  en noir et blanc et de changer les légendes. Ou bien de rajouter de
+  la compléter.
+- Au jour le jour: meilleur réutilisation (par exemple entre l'article
+  et le slide)
+
+Éléments clés lors du choix:
+- Simplicité de prise en main vs. vrai éditeur
+- Où sont fait les calculs 
+- Multi-langage
+  - http://carreau.github.io/posts/23-Cross-Language-Integration.html
+- Gestion des langages compilés
+- Notions de caches et d'état
+
+Les principaux outils actuels:
+- jupyter
+- rstudio
+- org-mode
+
+Limitations:
+- Longs calculs
+- Grands documents
+- Solutions wysiwyg pour jupyter
+
+Historique/diff un peu compliqué pour jupyter
+

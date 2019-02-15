@@ -1,0 +1,1216 @@
+#+TITLE: The Rough Road to Real-Life Reproducible Research
+#+AUTHOR: @@latex:Christophe Pouzat, Arnaud Legrand, Konrad Hinsen@@
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [presentation,bigger,xcolor={usenames,dvipsnames,svgnames,table}]
+#+STARTUP: beamer indent
+#+LANGUAGE: fr
+#+PROPERTY: header-args :eval no-export
+#+OPTIONS: H:2 tags:nil
+#+OPTIONS:   num:t toc:nil \n:nil @:t ::t |:t ^:nil -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+# #+OPTIONS:   author:nil email:nil creator:nil timestamp:t
+#+TAGS: noexport(n)
+#+EXCLUDE_TAGS: noexport
+#+LATEX_HEADER: % \usepackage{pgfpages}
+#+LATEX_HEADER: % \setbeameroption{show notes on second screen=right}
+#+LATEX_HEADER: \usepackage[american]{babel}
+#+LATEX_HEADER: \usepackage[normalem]{ulem}
+#+LATEX_HEADER: \usepackage{svg}
+#+LATEX_HEADER: \setbeamercovered{invisible}
+#+LATEX_HEADER: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Where are we?}\tableofcontents[currentsection]\end{frame}}
+#+LATEX_HEADER: \beamertemplatenavigationsymbolsempty
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER:  \usepackage{color,soul}
+#+LATEX_HEADER:  \definecolor{lightblue}{rgb}{1,.9,.7}
+#+LATEX_HEADER:  \sethlcolor{lightblue}
+#+LATEX_HEADER: \newcommand{\muuline}[1]{\SoulColor\hl{#1}}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \newcommand\SoulColor{%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \makeatother
+#+LATEX_HEADER:  \let\hrefold=\href
+#+LATEX_HEADER:  \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor\hl{#2}}}
+
+#+LaTeX: \let\alert=\structure % to make sure the org * * works
+
+#+LaTeX: \begin{frame}{Outline}\tableofcontents\end{frame}
+
+* Test et informations                                             :noexport:
+* Internal refs/notes                                              :noexport:
+** Images
+- Notebook konrad:
+  - file:../slides-module2/jupyter-grippal-full.png
+  - file:../slides-module2/jupyter-grippal-top.png
+  - file:../slides-module2/jupyter-grippal-bottom.png
+  #+begin_src shell :results output :exports both
+  cd /home/alegrand/Work/Documents/Enseignements/RR_MOOC/slides-module2
+  file jupyter-grippal-full.png
+  rm /tmp/cropped_*
+  convert -crop 1345x3000 jupyter-grippal-full.png /tmp/cropped_%d.png
+  convert /tmp/cropped_*.png +append jupyter-grippal-paged.png
+  #+end_src
+
+  #+RESULTS:
+  : jupyter-grippal-full.png: PNG image data, 1345 x 8772, 8-bit/color RGBA, non-interlaced
+
+  #+begin_src shell :results output :exports both
+  cd /home/alegrand/Work/Documents/Enseignements/RR_MOOC/slides-module2
+  convert -scale x1507 jupyter-grippal-paged.png ../assets/img/nb3.png
+  #+end_src
+
+  #+RESULTS:
+- Notebook Elisabeth: https://bitbucket.org/elizabethpwalton/smpe_project
+  #+begin_src shell :results output :exports both
+  cd /home/alegrand/Work/Documents/Enseignements/RR_MOOC/slides-module2
+  file elizabethpwalton_SMPE.png
+  rm /tmp/cropped_*
+  convert -crop 820x2650 elizabethpwalton_SMPE.png /tmp/cropped_%d.png
+  convert /tmp/cropped_*.png +append elizabethpwalton_SMPE-aged.png
+  #+end_src
+
+  #+RESULTS:
+  : elizabethpwalton_SMPE.png: PNG image data, 820 x 15217, 8-bit/color RGBA, non-interlaced
+
+  #+begin_src shell :results output :exports both
+  cd /home/alegrand/Work/Documents/Enseignements/RR_MOOC/slides-module2
+  convert -scale x1507 elizabethpwalton_SMPE-aged.png ../assets/img/nb4.png
+  #+end_src
+
+  #+RESULTS:
+- Notebook Ismail:
+  #+begin_src shell :results output :exports both
+  cd /home/alegrand/Work/Documents/Enseignements/RR_MOOC/slides-module2
+  rm /tmp/cropped_*
+  convert -crop 590x1400 oscar.png /tmp/cropped_%d.png
+  for i in /tmp/cropped_[1-9].png ; do mv $i `echo $i | sed 's/cropped_/cropped_0/'` ; done
+  convert /tmp/cropped_*.png +append And_the_Oscar_goes_to-paged.png
+  #+end_src
+
+  #+RESULTS:
+
+  #+begin_src shell :results output :exports both
+  cd /home/alegrand/Work/Documents/Enseignements/RR_MOOC/slides-module2
+  convert -scale x1507 And_the_Oscar_goes_to-paged.png ../assets/img/nb5.png
+  #+end_src
+
+  #+RESULTS:
+
+- Navette russe: https://io9.gizmodo.com/more-sad-remains-of-the-soviet-buran-space-shuttle-prog-1733190814
+- Msieur il marche mon programme: https://www.luc-damas.fr/humeurs/images/il-marche-mon-programme.jpg
+- PhD Comics:
+  - http://phdcomics.com/comics/archive.php?comicid=1947:
+    http://phdcomics.com/comics/archive/phd050817s.gif
+  - http://phdcomics.com/comics/archive.php?comicid=1948:
+    http://phdcomics.com/comics/archive/phd051017s.gif
+** Graphe syndrome grippal:
+  #+begin_src shell :results output raw :exports both
+  debtree python3-matplotlib > python3-matplotlib.dot
+  sed -i -e 's/rankdir=LR/rankdir=RL/g' \
+         -e 's/node \[shape=box\]/node [shape=box, color=black, fillcolor=gray, fontcolor=black, style=filled]/g' \
+       python3-matplotlib.dot
+  dot -Tpng python3-matplotlib.dot > python3-matplotlib.png
+  echo file:python3-matplotlib.png
+  #+end_src
+
+  #+RESULTS:
+  file:python3-matplotlib.png
+
+  #+begin_src shell :results output :exports both
+  mv python3-matplotlib.png ../assets/img/
+  #+end_src
+
+  #+RESULTS:
+
+* M4-S0: The Rough Road to Real-Life Reproducible Research
+** Reproducible Research Hell
+file:img/phd_sisyphe.png
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+Bonjour à tous,
+
+Maintenant que vous êtes familiers avec les documents computationnels
+et les analyses réplicables, vous disposez des outils principaux vous
+permettant d'améliorer votre pratique et de rendre votre recherche
+reproductible. 
+
+Mais la route est longue et semée d'embûches. Il est temps d'aller un
+peu plus loin et que vous preniez consciences des différentes
+difficultés auxquelles vous risquez d'être confronté.  
+
+Dans ce dernier module, nous vous présenterons trois des enfers de la
+recherche reproductible.
+** Module 4. The Rough Road to Real-Life Reproducible Research
+1. Data Hell
+2. Software Hell
+3. Numerics Hell
+4. Conclusion
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+\scriptsize
+
+*Christophe:* Le premier enfer est celui des données. Quand on travaille
+sur de vrais données, leur taille, leur structure, ou leur diversité
+peuvent rapidement poser d'importantes difficultés. Je présenterai
+quelques approches permettant de survivre dans cet environnement
+hostile.
+
+*Arnaud:* Le second enfer est celui du logiciel et on se trouve
+rapidement confronté à deux défis. D'une part, le logiciel devient
+très rapidement gros, difficile à gérer, et les solutions simples que
+nous vous avons présentées passent alors très mal à
+l'échelle. D'autre part, aussi étonnant que cela puisse paraître, les
+logiciels vieillissent et résistent souvent très mal à l'épreuve du
+temps. Je présenterai des exemples concrets et quelques approches
+permettant de survivre dans cet environnement hostile.
+
+
+*Konrad:* Enfin, le troisième enfer est celui du calcul
+numérique. J'illustrerai les difficultés que peut poser le calcul avec
+des flottants, ou l'ordre des opérations influe sur les
+résultats. Comme cet ordre a aussi un impact sur la performance, il
+faut trouver un compromis entre temps d'exécution et
+reproductibilité. Ceci est particulièrement difficile pour le calcul
+parallèle, qui concerne tous les ordinateurs modernes, même les
+smartphones. J'évoquerai aussi les précautions à prendre quand on
+utilise les nombres aléatoires.
+
+En espérant ne pas vous avoir trop effrayés, nous concluerons enfin
+brièvement ce MOOC par quelques remarques de bon sens.
+
+* M4-S1: Data Hell
+** The Rough Road to Real-Life Reproducible Research              :noexport:
+1. *Data Hell*
+2. Software Hell
+3. Numerics Hell
+4. Conclusion
+** Two new problems
+
+When we start to work on real data, we typically have to deal with two problems:
+- the data are of diverse nature
+- the data occupy a lot of memory
+
+** Non-homogeneous data
+
+- The influenza-like illness data from module can easily be presented as a table (2 dimensional object)
+- Often the table form must be *abandoned* because
+  - the columns don't all have the same length
+  - the data can be a time series *and* a set of images, etc.
+  
+** Big data
+
+- *Text  formats* are not always appropriate for numbers
+- Choice of a *binary format* because
+  - Numbers occupy less memory
+  - Numbers in text format must be converted to binary anyway for computation
+
+** Text format features we wish to keep: metadata
+
+- Text permits storing the data *and* all the rest...
+- \Rightarrow add information about the data:
+  - provenance
+  - recording date
+  - source
+  - etc.
+- This information about the data is what is called *metadata*
+- They are vital for doing reproducible research
+
+** Text format features we wish to keep: endianness
+
+- Text format is universal
+- Binary formats depend on hardware architecture and operating system
+- The four-bit sequence 1010 can be read as
+  - 1x1 + 0x2 + 1x4 + 0x8 = 5, which is *little-endianness*
+  - 1x8 + 0x4 + 1x2 + 0x1 = 10, which is *big-endianness*
+- *A binary storage for reproducible research much specify endianness*
+
+** Binary formats for composite data allow storing metadata
+
+Wanted: binary formats for
+- working with big datasets of diverse nature
+- storing metadata along with the data
+- having endianness fixed *once and for all*
+
+** `FITS` and `HDF5`
+
+- The *Flexible Image Transport System* (`FITS`), developed in 1981 and still regularly updated
+- The *Hierarchical Data Format* (`HDF`), developed at the *National Center for Supercomputing Applications*, is at its fifth version, `HDF5`
+
+** `FITS`
+
+- `FITS` introduced and updates by the astrophysics community
+- Format sufficiently general for use in different contexts
+
+** The anatomy of a `FITS` file
+
+- One or mode segments: *Header/Data Units* (HDUs)
+- A HDU is made up of:
+  - a header (*Header Unit*) followed *optionally* by
+  - the data (*Data Unit*)
+- Header = key-value pair  → *metadata*
+- Data stored as binary tables (one to 999 dimensions) or as tables (text or binary)
+
+** Manipulation of `FITS` files
+
+- The developers of the format offer a `C` library and associated programs that are easy to use
+- `PyFITS` for Python users
+- `FITSio` for R users
+
+** `HDF5`
+
+- Hierarchical organization, resembles a filesystem tree
+- Structuring element: a *group* (similar to a directory) contains one of more *datasets*
+- *Groups* can be nested
+- No structure imposed on metadata
+- No structure imposed on data - they can be text
+
+** Manipulation of `HDF5` files
+
+- More flexible format \Rightarrow the `C` library is more complex thatn its `FITS` equivalent
+- The library is distribued with `HDFView`, a powerful tool for exploring and visualizing data
+- `h5py` is a very complete `Python` interface
+- Three `R` packages: `h5`, `hdf5r` et `rhdf5`
+
+** Archiving
+
+Git (hub, lab, ...): not well suited for data storage
+#+BEGIN_CENTER
+#+ATTR_LATEX: :height 1cm :center nil
+file:img/Zenodo-logo.jpg
+#+ATTR_LATEX: :height 1cm :center nil
+file:img/Figshare-logo.png
+#+END_CENTER
+
+** Conclusions
+
+- Real data \Rightarrow size and structure problems
+- Read data are complex \Rightarrow metadata
+- `FITS` and `HDF5` = *practical* solutions
+- In terms of complexity and flexibility: `FITS` < `HDF5`
+- Archiving platforms \Rightarrow persistent storage accessible for everyone
+* M4-S2: Software Hell
+** The Rough Road to Real-Life Reproducible Research              :noexport:
+1. Data Hell
+2. *Software Hell*
+3. Numerics Hell
+4. Conclusion
+** Scaling up
+#+ATTR_LATEX: :width \linewidth
+file:img/il-marche-mon-programme.jpg
+** Complex code...
+
+#+LaTeX: \includegraphics<+>[height=6cm]{img/nb1.png}%
+#+LaTeX: \includegraphics<+>[height=6cm]{img/nb2.png}%
+#+LaTeX: \includegraphics<+>[height=6cm]{img/nb3.png}%
+#+LaTeX: \includegraphics<+>[height=6cm]{img/nb4.png}%
+#+LaTeX: \includegraphics<+>[height=6cm]{img/grippal_orgmode1.png}%
+#+LaTeX: \includegraphics<+>[height=6cm]{img/grippal_orgmode2.png}%
+#+LaTeX: \includegraphics<+>[height=6cm]{img/nb5.png}%
+- A real spaghetti bowl
+  - No global view
+  - Interaction between multiple languages = danger
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+
+- Des codes compliqués à organiser/orchestrer. Le notebook a ses
+  limitations et vous pouvez en devenir prisonnier.
+** ... that is difficult to orchestrate
+#+LaTeX: \only<1>{\begin{overlayarea}{1.5\linewidth}{7cm}
+#+ATTR_LATEX: :height 7cm :center nil
+file:img/SbmlParameterisation.png
+#+ATTR_LATEX: :height 7cm :center nil
+file:img/SbmlModelling.png
+#+LaTeX: \end{overlayarea}}\pause
+
+*Workflows*:
+- Clearer high-level view
+- Composition of codes and data movement made explicit
+- Safer sharing, reusing, and execution
+- Notebooks are a variant that is both impoverished and richer
+- No simple/mature path from a notebook to a workflow
+
+*Examples*:
+- Galaxy, Kepler, Taverna, Pegasus, Collective Knowledge, VisTrails
+- Light-weight: dask, drake, swift, snakemake, ...
+- Hybrids: SOS-notebook, ...
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+\scriptsize
+
+- un workflow, c'est quoi ? On restructure le code de façon à rendre
+  le flot de traitement plus explicite. Chaque bout de code est
+  encapsulé dans une fonction, on supprime les effets de bord pour que
+  les entrées et les sorties soient parfaitement identifiées. On
+  connecte ensuite chacune de ces fonctions les unes avec les
+  autres.
+- Un environnement de workflow fournit les bonnes abstractions, les
+  bonnes conventions d'écritures permettant d'orchestrer tous ces
+  appels et c'est ensuite le moteur de workflow qui gère l'exécution
+  des choses. Non seulement le workflow peut plus facilement exploiter
+  une machine parallèle, mais en plus, il est possible de sauvegarder
+  l'état d'avancement du calcul (via les données générées jusqu'ici)
+  et le reprendre plus tard. Si on décide de modifier une des briques
+  du workflow, on peut réutiliser les résultats obtenus en amont. Ce
+  genre de manipulation est bien plus compliquée avec un notebook où
+  il y a une session, un état global et où le risque d'erreur est bien
+  plus important.
+- Alors, un workflow peut devenir quelque chose de très compliqué et
+  de pas forcément très clair non plus mais la représentation par un
+  graphe permet de regrouper et d'agréger certaines parties pour se
+  concentrer sur l'essentiel tout en pouvant inspecter les détails
+  quand on le souhaite. 
+- Un autre avantages du workflow est la capacité à partager des
+  parties du workflow avec d'autres et à bénéficier des améliorations
+  que d'autres pourraient apporter à notre propre workflow... C'est un
+  des intérêt de plates-formes comme taverna ou kepler.
+- Le notebook est donc selon moi parfait quand on met quelque chose au
+  point car il permet de prendre des notes sur ce que l'on fait
+  et sur pourquoi on le fait. Au fur et à mesure que le notebook
+  évolue en quelque chose de plus complexe et qu'on a les idées de
+  plus en plus claires sur les manipulations de données à effectuées,
+  il devient intéressant de transformer toute cette matière en un
+  workflow.
+- Cette restructuration est manuelle et il n'existe pas encore de
+  bonne solution pour passer de l'un à l'autre. Il y a des tentatives
+  intéressantes comme le sos-notebook dans Jupyter mais toutes ces
+  initiatives sont encore en plein développement.
+- L'utilisation d'un workflow ne rend pas l'utilisation d'un notebook
+  caduque. Le notebook est utile mais à un autre niveau. Les appels au
+  workflow peuvent parfaitement être faits à partir du notebook et on
+  utilisxe alors ce dernier pour décrire les expériences que l'on mène
+  et le résultats des analyses.
+** The mess of expensive computations
+
+*Long-running computations* and *big datasets*
+- JupyterHub and supercomputers: under development
+- Checkpoints and caching
+- Workflows permit scaling up
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+
+\scriptsize
+  # https://zonca.github.io/2015/04/jupyterhub-hpc.html
+  # https://github.com/ipython/ipyparallel/issues/167
+  # https://groups.google.com/forum/#!topic/jupyter/BlexhV8W5TE
+Les calculs interminables et les gros volumes de données
+- JupyterHub et les supercalculateurs: en développement
+  - Lancement sur des machines distantes ? Compliqué, pas de bonnes
+    solutions à l'heure actuelle.
+  - Actuellement, JupyterHub permet de donner une machine
+    (éventuellement virtuelle) à chaque notebook
+  - Il dispose également d'un onglet cluster permettant d'allouer
+    plusieurs machines à un Ipython parallèle.
+  - Lorsque l'on souhaite paralléliser c'est la plupart du temps le
+    langage du notebook qui fait le travail (Ipython parallèle, R au
+    dessus de spark, etc.), pas le notebook lui même.
+  - Notebook idéal selon moi: tel bloc peut/doit s'exécuter ailleurs
+    - Ce qui n'est pas sans poser de nombreux problèmes de sémantiques
+      (surtout si le mécanisme de session est utilisé et/ou que
+      plusieurs langages sont utilisés)
+- Checkpoint et Cache:
+  - Il y a des mécanismes de cache dans les trois environnements que
+    nous vous avons présentés.
+  - Cela vous permet de ne pas tout réexécuter depuis le début.
+  - Ne pas confondre l'objet résultant (le graphique ou le tableau) des
+    données sous-jacentes.
+  - Un checkpoint explicite (via des fichiers) des données nécessaires
+    à la suite des calculs est la méthode la plus simple.
+- Le workflow gère la séparation des codes et des données, ce qui
+  permet de passer à l'échelle
+
+# - Histoire de montrer que malgré ça c'est dur:
+#   https://github.com/IFB-ElixirFr/ReproHackathon/blob/master/docs/index.md
+#   https://f1000research.com/articles/6-124/v1
+** Complex ecosystems
+
+What is hiding behind the simple
+#+begin_src python :results output :exports both
+import matplotlib
+#+end_src
+
+#+LaTeX: \scriptsize
+#+BEGIN_EXAMPLE
+Package: python3-matplotlib
+Version: 2.1.1-2
+Depends: python3-dateutil, python-matplotlib-data (>= 2.1.1-2),
+python3-pyparsing (>= 1.5.6), python3-six (>= 1.10), python3-tz,
+libjs-jquery, libjs-jquery-ui, python3-numpy (>= 1:1.13.1),
+python3-numpy-abi9, python3 (<< 3.7), python3 (>= 3.6~),
+python3-cycler (>= 0.10.0), python3:any (>= 3.3.2-2~), libc6 (>=
+2.14), libfreetype6 (>= 2.2.1), libgcc1 (>= 1:3.0), libpng16-16 (>=
+1.6.2-1), libstdc++6 (>= 5.2), zlib1g (>= 1:1.1.4)
+#+END_EXAMPLE
+
+#+LaTeX: \only<2>{\vspace{-3.5cm}\includegraphics<2>[width=\linewidth]{img/python3-matplotlib.png}}\vspace{10cm}
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+
+\scriptsize
+- Qu'est-ce qui se cache derrière matplotlib
+  - Python peut nous dire ce qu'il en sait (i.e., pas grand chose)
+    mais comment s'assurer que deux personnes exécutent bien ce code
+    dans le même environnement logiciel
+  - Dans le cadre de ce MOOC, un serveur jupyter est déployé et un
+    environnemnt commun est proposé. Mais pouvez vous vous assurer que
+    vous disposerez du même environnemnt chez vous à la fin du MOOC ?
+- Comment réinstaller un tel environnemnent ? Comment packager un
+  logiciel complexe ?
+- Comment faire en sorte qu'il puisse évoluer si un bug est corrigé ?
+** Complex ecosystems
+\small No standard:
+  - Linux (=apt=, =rpm=, =yum=), MacOS X (=brew=, =McPorts=, =Fink=), Windows (?)
+    #+LaTeX: \null\vspace{-.6em}
+  - Neither for installation nor for retrieving the information... $\frowny$
+    #+LaTeX: \null\vspace{-.6em}
+
+#+LaTeX: \vspace{-1em}
+#+LaTeX: \begin{columns}\begin{column}[t]{.45\linewidth}\scriptsize
+
+#+begin_src python :results output :exports both
+import sys
+print(sys.version)
+import matplotlib
+print(matplotlib.__version__)
+import pandas as pd
+print(pd.__version__)
+#+end_src
+
+#+LaTeX: ~\vspace{-2.4em}~\tiny
+
+#+begin_example
+3.6.3 (default, Oct  3 2017, 21:16:13) 
+[GCC 7.2.0]
+2.1.1
+0.20.3
+#+end_example
+
+#+LaTeX: \end{column}\begin{column}[t]{.55\linewidth}\scriptsize
+
+#+begin_src R :results output :session *R* :exports both
+library(ggplot2)
+sessionInfo()
+#+end_src
+
+#+LaTeX: ~\vspace{-2.4em}~\tiny
+
+#+RESULTS:
+#+begin_example
+R version 3.4.3 (2017-11-30)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Debian GNU/Linux buster/sid
+
+Matrix products: default
+BLAS: /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+
+locale:
+ [1] LC_CTYPE=fr_FR.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=fr_FR.UTF-8        LC_COLLATE=fr_FR.UTF-8    
+ [5] LC_MONETARY=fr_FR.UTF-8    LC_MESSAGES=fr_FR.UTF-8   
+
+other attached packages:
+[1] ggplot2_2.2.1
+
+loaded via a namespace (and not attached):
+ [1] colorspace_1.3-2 scales_0.5.0     compiler_3.4.3   lazyeval_0.2.1  
+ [5] plyr_1.8.4       pillar_1.1.0     gtable_0.2.0     tibble_1.4.2    
+ [9] Rcpp_0.12.15     grid_3.4.3       rlang_0.1.6      munsell_0.4.3
+#+end_example
+
+#+LaTeX: \end{column}\end{columns}
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END: 
+
+\scriptsize
+- Pas de standard:
+  - Ni pour l'installation ni pour récupérer les informations:
+  - Linux (Debian =apt=, RedHat =rpm=, ...), MacOS X (=brew=, =McPorts=,
+    =Fink=), Windows (?)
+  - Indiquer ses dépendances logicielles, c'est la version 0 de la
+    reproductibilité. Ça ne coûte pas bien cher et ça permettra à
+    celui qui viendra après vous de savoir par où commencer.
+  - Il faut mettre en place une solution ad hoc, selon le langage
+    utilisé et ce n'est pas simple.
+  - Lister l'intégralité de ses dépendances logicielles (voire avec
+    quel compilateur telle bibliothèque a été compilée) peut être très
+    compliqué
+** Controlling one's environment
+*A controlled environment:*
+- Work in a virtual machine (heavy) or a Docker container (light)
+
+#+LaTeX: \bigskip\begin{columns}\begin{column}[t]{.45\linewidth}
+*Preserve the mess*
+- Automatic capture of the environment
+- [[http://www.pgbovine.net/cde.html][CDE]], [[https://vida-nyu.github.io/reprozip/][ReproZip]], +[[http://reproducible.io/][CARE]]+
+#+LaTeX: \end{column}\hspace{-2em}\begin{column}[t]{.52\linewidth}
+*Cleaning up*
+- Start with a clean environment
+- Install only what's strictly necessary (and document it)
+- [[https://www.docker.io/][Docker]], [[https://singularity.lbl.gov/][Singularity]], [[https://www.gnu.org/software/guix/][Guix]], [[https://nixos.org/][Nix]], ...
+#+LaTeX: \end{column}\end{columns}
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+\scriptsize
+- Intro:
+  - You cannot expect people to find all the chains of dependencies!
+  - You cannot expect people to install all the dependencies and run your
+    code smoothly!
+- Règle numéro 1 d'un environnement bien contrôlé: travailler dans un
+  environnement isolé (une machine virtuelle ou bien un conteneur)
+  - Brève explication de ce que c'est et de la différence. Sans le
+    savoir, tous ceux qui ont utilisé nos notebooks ont travaillé dans
+    un conteneur docker.
+  - Conséquence:
+    - du point de vue du code exécuté, tout est encapsulé: rien ne
+      rentre, rien ne sort
+    - l'utilisation de l'interface graphique peut être un peu compliquée
+    - exécution a priori possible sur n'importe quel OS (pour une VM,
+      sur un OS compatible pour un conteneur)
+- Un environnement contrôlé: deux approches
+  - Conserver le bazar ::
+    - C'est l'approche toute automatique, un outil se charge
+      d'observer l'exécution de votre logiciel et de capturer
+      l'ensemble des codes et des bibliothèques utilisées
+    - Une archive contenant l'environnement peut alors être construite
+      et partagée. C'est très facile et très pratique.
+    - Avantage: Facile, permet à quelqu'un d'autre de réexécuter le
+      code dans les mêmes conditions
+    - Inconvénient: pas facile de faire évoluer un tel objet, ni de
+      comprendre comment il fonctionne. Le résultat est une boite
+      noire.
+    - Examples: CARE, CDE, Reprozip
+  - Faire le ménage ::
+    - On part d'un environnement minimal dans un conteneur
+    - On rajoute les composants logiciel dont on a besoin au fur et à
+      mesure
+    - Idéalement, au fur et à mesure qu'on rajoute ces logiciel, on
+      scripte leur installation (e.g., dockerfile)
+      - Avantage: cela permettra de facilement faire évoluer
+        l'environnement (mise à jour, remplacement d'un composant
+        défectueux, etc.)
+    - Inconvénient: demande quelques efforts, en particulier quand les
+      composants logiciels sont mal packagés (pas partie d'une
+      distribution, interventions manuelles, etc.) et que beaucoup
+      d'interactions avec l'extérieur sont nécessaires (le téléchargement
+      des données doit être bien séparé)
+    - Examples: Singularity, voire Nix ou GUIX qui permettent une
+      reconstruction parfaite, un environnement étant encodé de façon
+      fonctionnel
+*** Cruft                                                        :noexport:
+#+begin_src shell :results output raw :exports both
+  echo "#+BEGIN_EXAMPLE"
+  apt-cache show python3-matplotlib # | grep Depends | head -1
+  echo "#+END_EXAMPLE"
+#+end_src
+
+#+RESULTS:
+#+BEGIN_EXAMPLE
+Package: python3-matplotlib
+Source: matplotlib
+Version: 2.1.1-2
+Installed-Size: 12159
+Maintainer: Sandro Tosi <morph@debian.org>
+Architecture: amd64
+Depends: python3-dateutil, python-matplotlib-data (>= 2.1.1-2), python3-pyparsing (>= 1.5.6), python3-six (>= 1.10), python3-tz, libjs-jquery, libjs-jquery-ui, python3-numpy (>= 1:1.13.1), python3-numpy-abi9, python3 (<< 3.7), python3 (>= 3.6~), python3-cycler (>= 0.10.0), python3:any (>= 3.3.2-2~), libc6 (>= 2.14), libfreetype6 (>= 2.2.1), libgcc1 (>= 1:3.0), libpng16-16 (>= 1.6.2-1), libstdc++6 (>= 5.2), zlib1g (>= 1:1.1.4)
+Recommends: python3-pil, python3-tk
+Suggests: dvipng, ffmpeg, gir1.2-gtk-3.0, ghostscript, inkscape, ipython3, librsvg2-common, python-matplotlib-doc, python3-cairocffi, python3-gi, python3-gi-cairo, python3-gobject, python3-nose, python3-pyqt4, python3-scipy, python3-sip, python3-tornado, texlive-extra-utils, texlive-latex-extra, ttf-staypuft
+Enhances: ipython3
+Description-fr: système de traçage basé sur Python dans un style similaire à celui Matlab –⋅Python⋅3
+ Matplotlib est une bibliothèque de traçage en Python pur conçue pour
+ apporter à Python des capacités de traçage d'une qualité adaptée à la
+ publication, avec une syntaxe familière aux utilisateurs de Matlab. L'accès
+ à toutes les commandes de traçage, dans l'interface pylab, est possible
+ soit à travers une interface fonctionnelle familière aux utilisateurs de
+ Matlab, soit à travers une interface orientée objet familière à ceux de Python.
+ .
+ Ce paquet fournit la version Python⋅3 de matplotlib.
+Description-md5: 29e115db1f22ec2264a195b584329de9
+Homepage: http://matplotlib.org/
+Section: python
+Priority: optional
+Filename: pool/main/m/matplotlib/python3-matplotlib_2.1.1-2_amd64.deb
+Size: 4597588
+MD5sum: bfca8169a6b4e2cd9f89eb2f862083c7
+SHA256: cbf80fdbf2643f19f926e33ea24cab3f76286d631d0806a2f665989fb17c76e4
+
+Package: python3-matplotlib
+Source: matplotlib
+Version: 2.0.0+dfsg1-2
+Installed-Size: 7362
+Maintainer: Sandro Tosi <morph@debian.org>
+Architecture: amd64
+Depends: python3-dateutil, python-matplotlib-data (>= 2.0.0+dfsg1-2), python3-pyparsing (>= 1.5.6), python3-six (>= 1.10), python3-tz, libjs-jquery, libjs-jquery-ui, python3-numpy (>= 1:1.10.0~b1), python3-numpy-abi9, python3 (<< 3.6), python3 (>= 3.5~), python3-cycler (>= 0.10.0), python3:any (>= 3.3.2-2~), libc6 (>= 2.14), libfreetype6 (>= 2.2.1), libgcc1 (>= 1:3.0), libpng16-16 (>= 1.6.2-1), libstdc++6 (>= 5.2)
+Recommends: python3-pil, python3-tk
+Suggests: dvipng, ffmpeg, gir1.2-gtk-3.0, ghostscript, inkscape, ipython3, librsvg2-common, python-matplotlib-doc, python3-cairocffi, python3-gi, python3-gi-cairo, python3-gobject, python3-nose, python3-pyqt4, python3-scipy, python3-sip, python3-tornado, texlive-extra-utils, texlive-latex-extra, ttf-staypuft
+Enhances: ipython3
+Description-fr: système de traçage basé sur Python dans un style similaire à celui Matlab –⋅Python⋅3
+ Matplotlib est une bibliothèque de traçage en Python pur conçue pour
+ apporter à Python des capacités de traçage d'une qualité adaptée à la
+ publication, avec une syntaxe familière aux utilisateurs de Matlab. L'accès
+ à toutes les commandes de traçage, dans l'interface pylab, est possible
+ soit à travers une interface fonctionnelle familière aux utilisateurs de
+ Matlab, soit à travers une interface orientée objet familière à ceux de Python.
+ .
+ Ce paquet fournit la version Python⋅3 de matplotlib.
+Description-md5: 29e115db1f22ec2264a195b584329de9
+Homepage: http://matplotlib.org/
+Section: python
+Priority: optional
+Filename: pool/main/m/matplotlib/python3-matplotlib_2.0.0+dfsg1-2_amd64.deb
+Size: 1589544
+MD5sum: e8f0571243df303a9b1f37a8ebf8177d
+SHA256: 8f5d3509d4f5451468c6de44fc8dfe391c3df4120079adc01ab5f13ff4194f5a
+
+#+END_EXAMPLE
+** The test of time
+file:img/soviet_space_shuttle.jpg
+** Backwards compatibility
+\small
+- Python and its rapidly evolving environment
+  #+LaTeX: \null\vspace{-1em}
+
+#+begin_src shell :results output :exports both
+python2 -c "print(10/3)"
+python3 -c "print(10/3)"
+#+end_src
+
+#+LaTeX: \null\vspace{-2.4em}{\scriptsize
+#+RESULTS:
+: 3
+: 3.3333333333333335
+#+LaTeX: }
+\pause
+#+ATTR_LATEX: :height 3.2cm :center nil
+file:img/plot_1.5.3.png
+#+ATTR_LATEX: :height 3.2cm :center nil
+file:img/plot_2.1.1.png
+
+\pause
+- Cortical Thickness Measurements (PLOS ONE,
+  June 2012): /FreeSurfer/: /differences were found between the Mac and
+  HP workstations and between Mac OSX 10.5 and OSX 10.6./
+- Format incompatibility between orgmode 7.*, 8.*, 9.*, etc.
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END: 
+\scriptsize
+- Petit exemple en python, le plus simple qui soit, une division:
+  - Le passage de python2 à python3 a introduit des changements
+    majeurs puisque la division par défaut qui était à l'origine une
+    division entière est devenue une division sur des flottants.
+  - Alors, certains diront que python2 et python3 doivent être
+    considérés comme deux langages distincts mais même si python2
+    reste maintenu et continue d'évoluer (doucement), quand tous les
+    efforts de l'écosystème se tournent vers python3, on est bien
+    obligé d'emboiter le pas...
+  - Il y a quelques mois, un de mes collègues qui était bien content
+    d'avoir utilisé un notebook pour préparer son dernier article et
+    d'avoir fait bien attention à sauvegarder tout son code et ses
+    résultats intermédiaires, a été assez surpris en préparant la
+    révision finale de remarquer que la figure qu'il avait générée 3
+    mois auparavant avait décidé de changer de couleurs...
+    - Entre les deux, matplotlib a été mis à jour sur sa machine et il
+      se trouve qu'entre la version 1.5.12 et la 2.0, la palette de
+      couleurs par défaut a changé...
+    - Alors, dans cet exemple précis, ça ne change pas
+      fondamentalement les choses et le plus important était de
+      pouvoir mettre à disposition la démarche utilisée mais c'est
+      quand même assez agaçant.
+  - Ce type d'incident met en évidence le problème de la perméabilité
+    à l'environnement extérieur.
+** Rapid development tools
+*Rapid* but also *fragile* and *unstable*:
+- Correction or introduction of bugs
+- It becomes necessary to check regularly if environments can still be reconstructed and work (continuous integration, regression testing)
+
+  Popper: [[http://falsifiable.us/][http://falsifiable.us/]] 
+  #+ATTR_LATEX: :height 1.5cm :center nil
+  file:img/popper_logo_just_jug.png
+
+*Another option*:
+- Limit onself to what is manageable (C for example)
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+- Les outils informatiques évoluent à une vitesse incroyable et nous
+  permettent d'aller plus vite, plus loin dans nos recherche. Il est
+  donc indispensable de s'appuyer dessus.
+- Néanmoins, ces développements rapides sont aussi a source de
+  nombreuses erreurs, de régressions, de corrections (ce qui est une
+  bonne chose) et très souvent de perte de compatibilité entre les
+  versions.
+- Ce sont des outils à développement rapide dans les deux sens du
+  terme, c'est à dire des outils qui à la fois vous permettent de
+  mettre en place des choses complexes très rapidement mais qui
+  évoluent aussi très (pour ne pas dire trop) rapidement.
+- Dans ce contexte mouvant, il devient nécessaire de vérifier
+  régulièrement que notre code et son environnement peuvent être
+  regénérés et qu'ils sont fonctionnels. En génie logiciel, les termes
+  associés sont "intégration continue" (chaque nuit ou bien à chaque
+  commit dans votre gestionnaire de version, la compilation de votre
+  code est déclenchée et remonte une alerte en cas de problème) et
+  "tests de non régression" (une fois votre code et son environnement
+  compilé, on vérifie via une batterie de tests que les sorties pour
+  des entrées bien spécifiques sont toujours correctes).
+- Certains proposent même une utilisation systématique de ce type
+  d'approche au processus de recherche. Ça demande un investissement
+  technique un peu lourd mais dans le principe, pourquoi pas ?
+- Il faut garder à l'esprit que les notebooks ou les outils que nous
+  vous avons présentés font d'ailleurs partie de cette famille
+  d'outils à développement rapide et n'échappent pas malgré leurs
+  efforts à ces difficultés de pérennité.
+- Pour être le moins possible ennuyé par ce type de problème, certains
+  font le choix de se restreindre à des outils et des langages très
+  stables et qu'ils peuvent maîtriser de bout en bout.
+- Il faut donc trouver le bon compromis entre modernisme et pérennité.
+
+** Archiving
+*Source code management*
+- Git (hub, lab, ...) : stable, open, \dots durable ?
+  - +Google Code+, +Gitorious+, +Code Spaces+
+    #+ATTR_LATEX: :height 1.3cm :center nil
+    file:img/swh-logo.png
+    #+ATTR_LATEX: :height 1.3cm :center nil
+    file:img/LogoHAL.PNG
+
+*Environment management*
+  - Longevity of access to Docker Hub, Nix repository, Code Ocean, ... ?
+  - Once an environment is frozen, what's the lifetime of a virtual machine, a Docker image, ... ?
+*Preserve as much information as possible automatically*
+  - Software, versions, installation procedures
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+- Dans les exercices, faites y bien attention.
+    # file:img/ArXiv-web.png"  height=60 />
+    # file:img/Zenodo-logo.jpg"  height=60 />
+    # file:img/Figshare-logo.png"  height=60 />
+* M4-S3: Numerics Hell
+** The Rough Road to Real-Life Reproducible Research              :noexport:
+1. Data Hell
+2. Software Hell
+3. *Numerics Hell*
+4. Conclusion
+** Floating-point arithmetic
+
+file:img/polynome1.svg
+#+begin_src python :results output :exports both
+def polynome(x):
+    return x**9 - 9.*x**8 + 36.*x**7 - 84.*x**6 + 126.*x**5 \
+           - 126.*x**4 + 84.*x**3 - 36.*x**2 + 9.*x - 1.
+#+end_src
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+  Commençons avec un exemple. Mon collègue Arnaud a calculé les valeurs d'un
+  polynôme d'ordre 9. Le voici.
+
+** Floating-point arithmetic
+
+file:img/polynome2.svg
+#+begin_src python :results output :exports both
+def horner(x):
+    return x*(x*(x*(x*(x*(x*(x*(x*(x - 9.) + 36.) - 84.) + 126.) \
+           - 126.) + 84.) - 36.) + 9.) - 1.
+#+end_src
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+  Mon collègue Christophe lui fait remarquer que la méthode de Horner résulte dans
+  un calcul plus efficace. Il s'agit d'un réarrangement des termes qui reduit notamment
+  le nombre de multiplications. Le voici. Les deux courbes se recouvrent, donc les
+  résultats sont identiques.
+
+** Floating-point arithmetic
+
+file:img/polynome3.svg
+#+begin_src python :results output :exports both
+def simple(x):
+    return (x-1.)**9
+# trop facile!
+#+end_src
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+  Une analyse un peu plus approfondie montre que notre polynôme a une seule racine
+  à x=1, ce qui nous permet d'en simplifier le calcul. Nous avons maintenant
+  trois courbes qui se recouvrent. Tout va bien !
+
+** Floating-point arithmetic
+
+file:img/polynome3-4.svg
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+  Mais regardons la région autour de x=1 de plus près...
+
+** Floating-point arithmetic
+
+file:img/polynome4.svg
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+  Ça a l'air un peu bizarre. Et les trois courbes ne sont enfin pas identiques,
+  juste proches. Qu'est-ce qui se passe ?
+
+** Rounding
+
+#+LaTeX: \def\round{\texttt{arrondi}}
+- Every operation includes implicit rounding.
+- a+b is actually \round(a+b).
+- Unfortunately:
+  #+BEGIN_CENTER
+  \small
+  \round(\round(a+b)+c) $\ne$ \round(a+\round(b+c)).  
+  #+END_CENTER
+- Operation order therefore matters.
+
+*For a reproducible computation, operation order must be preserved!!!*
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+  Le résultat d'une opération arithmétique sur des flottant n'est en général pas
+  représentable par un autre flottant. On applique une opération d'arrondi qui
+  remplace le résultat exact avec une valeur proche qui est représentable.
+  
+  A cause de l'arrondi, les règles habituelles de l'arithmétique ne sont plus
+  applicables à l'identique. On perd notamment l'associativité de l'addition et
+  de la multiplication.
+  
+  En changeant l'ordre des opérations, on peut donc changer le résultat !
+
+** How to explain it to my compiler?
+
+To speed up computations, compilers may change operation order, and thus results.
+ 
+Two options for computing reproducibly:
+
+- Insist on the preservation of operation order, 
+  - if the language permits it.
+  - Example: Module `ieee_arithmetic` in Fortran 2003
+- Make compilation reproducible:
+  - Record the precise compiler version
+  - Record all compilation options
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+
+  Ceci devient un obstacle à la reproductibilité à cause des
+  optimisations appliquées par les compilateurs pour accélérer le
+  calcul. Celle-ci changent souvent l'ordre des opérations et donc le
+  résultat.
+
+  Pour rendre un calcul reproductible, il y a deux
+  approches. Premièrement, on peut dire à son compilateur de ne pas
+  toucher à l'ordre des opérations, idéalement dans le code source du
+  logiciel. Ceci est possible par exemple dans le langage Fortran
+  2003.
+  
+  L'autre approche est de rendre la compilation elle-même
+  reproductible en notant la version précise du compilateur utilisé,
+  ainsi que toutes les options de compilation. Idéalement, il faut
+  alors archiver le compilateur avec le logiciel de calcul.
+
+** Parallel computation
+
+- Goal: get results sooner
+    \to Minimize communications between processosrs
+    \to Adapt data distribution
+    \to \dots hence the operation order $\frowny$
+- Consequence: results depends on the number of processors!
+
+*Minimizing the impact of parallelism is an active research topic.*
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+
+  Un autre obstacle à la reproductibilité résulte du calcul parallèle.
+  Celui-ci a comme seul objectif une exécution plus rapide. Pour y arriver,
+  il faut minimiser la communication entre les processeurs en adaptant
+  la répartition des données. Ceci implique d'adapter l'ordre des opérations,
+  car chaque processeur traite d'abord ses données locales avant d'entrer en
+  communication avec les autres processeurs.
+  
+  La conséquence est que le résultat du calcul change avec le nombre
+  de processeurs utilisés.
+  
+  On peut tenter d'écrire le logiciel tel que l'impact de cette variation
+  soit minimisé. Mais il n'y a pour l'instant aucune technique éprouvée
+  pour y arriver. Ceci reste un sujet de recherche.
+
+** Parallel computation: example
+
+file:img/gouttedo1.png
+
+Source: Rafife Nheili, PhD. Thesis, University of Perpignan, 2016
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+
+  Regardons un simple exemple: la simulation des vagues causées dans
+  un bassin carré d'eau par une goutte qui tombe au milieu. A gauche,
+  la simulation exécutée sur un seul processeur. A droite, le résultat
+  d'un calcul sur quatre proecesseurs, ou les points qui diffèrent
+  sont colorés en gris.
+  
+** Parallel computation: example
+
+file:img/gouttedo2.png
+
+Source: Rafife Nheili, PhD. Thesis, University of Perpignan, 2016
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+
+  Un pas de temps plus loin, le nombre de points à résultat différent
+  a nettement augmenté. Il continuera a augmenter au cours de la
+  simulation, jusqu'à ce qu'il n'y a plus aucun point pour lequel le
+  résultat restera identique.
+  
+** Computing platforms
+- Computing platform: hardware + infrastructure software 
+- Computation = platform + software + data 
+- The platform defines the interpretation of the software.
+- Platform and software define the interpretation of the data.
+- Other platform-defined aspects:
+  - integer representation (16/32/64 bits)
+  - error handling
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+  Les obstacles à la reproductibilité dûs à l'arithmétique à virgule flottante
+  sont un cas spécial important de la dépendance des plateformes. Un logiciel
+  est écrit dans un langage de programmation, mais l'interprétation précise de
+  ce langage est définie par la plateforme de calcul utilisé. Celle-ci consiste
+  du matériel, notamment du processeur, et de l'infrastructure logiciel:
+  système d'exploitation, compilateurs, etc.
+
+  Un calcul est défini par trois ingrédients: la plateforme, le logiciel, et les
+  données traitées. La plateforme définit comment est interprété le logiciel,
+  et les deux ensembles définissent comment sont interprétées les donées.
+
+  L'arithmétique à virgule flottante est interprétée différemment par les différentes
+  plateformes de calcul populaires aujourd'hui, mais ce n'est pas le seul point
+  de divergence. Dans certains langage comme le C ou le Fortran, les entiers sont
+  aussi concernés car les plateformes leur attribuent des tailles et donc des
+  intervalles de valeurs différentes. Enfin, les erreurs de calcul, comme par
+  exemple la division par zéro, ne sont pas gérées de la ême façon par toutes les
+  plateformes.
+** Random numbers
+
+- Used to simulate stochastic processes.
+- In practice: *pseudo-* random numbers.
+- Series of numbers that *appear* to be random...
+- ... but are generated by a deterministic algorithm.
+
+** Pseudo-random number generators
+
+#+LaTeX: \vspace{1cm}
+#+LaTeX: \only<+>{\includesvg[scale=.45]{img/nombres-aleatoires-1.svg}}
+#+LaTeX: \only<+>{\includesvg[scale=.45]{img/nombres-aleatoires-2.svg}}
+#+LaTeX: \only<+>{\includesvg[scale=.45]{img/nombres-aleatoires-3.svg}}
+#+LaTeX: \only<+>{\includesvg[scale=.45]{img/nombres-aleatoires-4.svg}}
+#+LaTeX: \vspace{10cm}
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+  On part d'un état initial appelé "graine" (typiquement un entier).
+
+  Pour générer un nombre, on applique une transformation à cet état,
+  
+  puis on calcule le nombre comme fonction de cet état.
+
+  On repète autant que nécessaire.
+
+** Reproducibility in theory
+
+- Principle: same seed + same algorithm → same series
+- The seed is often chosen as a function of time
+- It must be defined in the application code
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+
+  En principe, il suffit d'utiliser la même graine et le même algorithme pour
+  toujours avoir la même suite de nombres.
+
+  L'algorithme fait partie d'une librairie, dont il faut noter la version
+  utilisée. Les librairie de nombres aléatoires choisissent souvent la graine
+  comme fonction de l'heure, pour donner une apparence "plus aléatoire".
+  
+  Mais pour la reproductibilité, il faut définir la graine dans le code
+  d'application.
+
+** Reproductibility in practice
+
+- Same seed + same algorithm → same series: \newline 
+  not obvious with floating-point arithmetic!
+- A simple trick to permit verification: \newline
+  test the first values of the series.
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+
+  En pratique, il n'est pas si facile d'obtenir une suite identique, même avec
+  la même version de la même librairie, à cause de la variation dans l'arithmétique
+  à virgule flottante.
+  
+  Un astuce simple est de tester quelques valeurs du début de la suite. Si elle ne
+  sont pas identiques, on sait que la suite a changé.
+
+** Example: the Python language
+
+#+begin_src python :results output :exports both
+import random
+
+random.seed(123)
+for i in range(5):
+    print(random.random())
+#+end_src
+
+#+LaTeX: \scriptsize
+#+RESULTS:
+: 0.0523635988509
+: 0.0871866775226
+: 0.40724176367
+: 0.107700234938
+: 0.901198877952
+
+#+LaTeX: \vfill
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+
+  Voici l'application de cet astuce en langage Python. On commence par
+  définir la graine et d'afficher les premières valeurs de la suit de
+  nombres pseudo-aléatoires.
+  
+** Example: the Python language
+
+#+begin_src python :results output :exports both
+import random
+
+random.seed(123)
+assert random.random() == 0.052363598850944326
+assert random.random() == 0.08718667752263232
+assert random.random() == 0.4072417636703983
+#+end_src
+
+#+RESULTS:
+
+#+LaTeX: \vfill
+
+*** Notes 
+:PROPERTIES:
+:BEAMER_ENV: note
+:END:
+
+  Puis on modifie le code en remplaçant l'affichage des valeurs par des
+  comparaisons aux valeurs précédemment affichées. En cas de divergence,
+  le programme s'arrête avec un message d'erreur.
+
+** Take-home message
+- The results of a numerical computation depend on 
+  - the software
+  - the input data
+  - the computing platform: hardware, compilers, ... 
+- Platform influence is important for floating-point arithmetic.
+  Record all parameters on which your results may depend:
+  - compiler version, compilation options 
+  - hardware (processor type, GPU, ...) 
+  - number of processors 
+- When using a random number generator, define your own seed and
+  verify the first elements of the series.
+* M4-S4: Conclusion
+** The Rough Road to Real-Life Reproducible Research              :noexport:
+1. Data Hell
+2. Software Hell
+3. Numerics Hell
+4. *Conclusion*
+** The take-home message of the MOOC
+*A major concern* 
+  - Scientific method
+  - Inspectability and reusability
+*Tools exist*
+  - Computational documents and workflows, version control and archives,
+    software environments, continuous integration, ...
+  - These tools evolve constantly
+    - Choose those that are best adapted to your context
+    - Find a compromise between modern and durable tools
+*Use in practice, don't get discouraged!*
+  - Takes notes rigorously
+  - Make information useable and accessible
+  - Improve in small steps
+* Emacs Setup                                                      :noexport:
+  This document has local variables in its postembule, which should
+  allow Org-mode (9) to work seamlessly without any setup. If you're
+  uncomfortable using such variables, you can safely ignore them at
+  startup. Exporting may require that you copy them in your .emacs.
+
+# Local Variables:
+# eval: (add-to-list 'org-latex-packages-alist '("" "minted"))
+# eval: (setq org-latex-listings 'minted)
+# eval: (setq org-latex-minted-options '(("style" "Tango") ("bgcolor" "Moccasin") ("frame" "lines") ("linenos" "true") ("fontsize" "\\scriptsize")))
+# eval: (setq org-latex-pdf-process '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+# End:
+

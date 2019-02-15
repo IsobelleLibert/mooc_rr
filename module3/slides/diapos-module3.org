@@ -1,0 +1,202 @@
+#+TITLE: La main à la pâte : une analyse réplicable
+#+AUTHOR: @@latex:{\large Konrad Hinsen} \\ \vspace{0.2cm}CBM, CNRS Orléans et Synchrotron SOLEIL\\ \vspace{0.2cm} \texttt{konrad.hinsen@cnrs.fr}@@
+#+OPTIONS: H:2 tags:nil
+#+EXCLUDE_TAGS: noexport
+#+LANGUAGE: fr
+#+SELECT_TAGS: export
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [presentation,bigger]
+#+LATEX_HEADER: \usepackage[french]{babel}
+#+LATEX_HEADER: \usepackage[normalem]{ulem}
+#+BEAMER_HEADER: \setbeamercovered{invisible}
+#+BEAMER_HEADER: \beamertemplatenavigationsymbolsempty
+#+STARTUP: beamer
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
+#+STARTUP: indent
+#+PROPERTY: header-args :eval no-export
+
+
+* M3-S1: Une analyse réplicable, c'est quoi?
+
+** 3. La main à la pâte: une analyse réplicable
+ 1. *Une analyse réplicable, c'est quoi?*
+ 2. Étude de cas: l'incidence de syndromes grippaux
+ 3. Importer les données. Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+ 4. Vérification et inspection. Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+ 5. Questions et réponses.  Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+** L'analyse de données traditionnelle
+[[file:img/analyse-traditionnelle-3-svg.pdf]]
+** L'analyse de données réplicable
+[[file:img/analyse-replicable-3-svg.pdf]]
+** Pourquoi faire réplicable?
+ - Facile à refaire si les données changent 
+ - Facile à modifier 
+ - Facile à inspecter et vérifier
+
+* M3-S2: Étude de cas: l'incidence de syndromes grippaux
+
+** 3. La main à la pâte: une analyse réplicable
+ 1. Une analyse réplicable, c'est quoi?
+ 2. *Étude de cas: l'incidence de syndromes grippaux*
+ 3. Importer les données. Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+ 4. Vérification et inspection. Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+ 5. Questions et réponses.  Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+
+** Les points clés à retenir
+- Aucune modification des données "à la main".
+- Du code pour tout!
+
+* M3-S3A: Importer les données (Jupyter)
+  
+** 3. La main à la pâte: une analyse réplicable
+ 1. Une analyse réplicable, c'est quoi?
+ 2. Étude de cas: l'incidence de syndromes grippaux
+ 3. *Importer les données*. Au choix:
+     - *Jupyter*
+     - RStudio
+     - OrgMode
+ 4. Vérification et inspection. Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+ 5. Questions et réponses.  Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+
+** Choix techniques
+ - Notebook Jupyter
+ - Langage Python 3
+ - Bibliothèques:
+    - pandas
+    - matplotlib
+    - isoweek
+
+** Les points clés à retenir
+ - Lecture des données directement de la source
+ - Gestion des données manquantes
+
+* M3-S3B: Importer les données (RStudio)
+
+** 3. La main à la pâte: une analyse réplicable
+ 1. Une analyse réplicable, c'est quoi?
+ 2. Étude de cas: l'incidence de syndromes grippaux
+ 3. *Importer les données*. Au choix:
+     - Jupyter
+     - *RStudio*
+     - OrgMode
+ 4. Vérification et inspection. Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+ 5. Questions et réponses.  Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+
+** Choix techniques
+ - Environnement RStudio
+ - Langage R
+ - Bibliothèque: parsedate
+** Les points clés à retenir
+ - Lecture des données directement de la source
+ - Attention aux données manquantes
+
+* M3-S3C: Importer les données (OrgMode)
+  
+** 3. La main à la pâte: une analyse réplicable
+ 1. Une analyse réplicable, c'est quoi?
+ 2. Étude de cas: l'incidence de syndromes grippaux
+ 3. *Importer les données*. Au choix:
+     - Jupyter
+     - RStudio
+     - *OrgMode*
+ 4. Vérification et inspection. Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+ 5. Questions et réponses.  Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+
+** Choix techniques
+ - Environnement Environnement Emacs + Org mode
+ - Langages:
+    - Python 3 pour préparer les données
+    - R pour l'analyse
+** Les points clés à retenir
+ - Lecture des données directement de la source
+ - Gestion des données manquantes
+
+* M3-S4A/B/C: Vérification et inspection
+
+** 3. La main à la pâte: une analyse réplicable
+ 1. Une analyse réplicable, c'est quoi?
+ 2. Étude de cas: l'incidence de syndromes grippaux
+ 3. Importer les données. Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+ 4. *Vérification et inspection*. Au choix:
+     - *Jupyter*
+     - *RStudio*
+     - *OrgMode*
+ 5. Questions et réponses.  Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+
+** Les points clés à retenir
+- Pré-traitement des données
+  - Adapter aux conventions des logiciels
+  - Faciliter l'analyse
+- Vérifier autant que possible
+  - Inspection visuelle
+  - Code de validation
+
+* M3-S5A/B/C: Questions et réponses
+
+** 3. La main à la pâte: une analyse réplicable
+ 1. Une analyse réplicable, c'est quoi?
+ 2. Étude de cas: l'incidence de syndromes grippaux
+ 3. Importer les données. Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+ 4. Vérification et inspection. Au choix:
+     - Jupyter
+     - RStudio
+     - OrgMode
+ 5. *Questions et réponses*.  Au choix:
+     - *Jupyter*
+     - *RStudio*
+     - *OrgMode*
+
+** Questions
+ 1. Quelles années ont connu les épidémies les plus fortes?
+ 2. Quelle est la fréquence d'épidémies faibles, moyennes, et fortes?
+
+** Les points clés à retenir
+ - Une analyse réplicable doit contenir *toutes les étapes* de traitement des données sous une forme *exécutable*.
+ - Il est important d'*expliquer* tous les choix qui peuvent influencer les résultats.
+ - Ceci nécessite d'exposer beaucoup de *détails techniques*, parce que c'est à ce niveau qu'on fait *le plus d'erreurs*!
+

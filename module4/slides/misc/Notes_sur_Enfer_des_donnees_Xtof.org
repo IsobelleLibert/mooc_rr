@@ -1,0 +1,122 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+#+TITLE: Notes pour la séquence 1 du module 4 : « L'enfer des données »
+#+AUTHOR: Christophe Pouzat
+#+EMAIL: christophe.pouzat@parisdescartes.fr
+#+LANGUAGE: fr
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 25.3.1 (Org mode 9.0.9)
+#+STARTUP: indent
+
+* Introduction
+
+** Deux problèmes
+Lorsque nous commençons à travailler sur de « vraies » données, comme lorsque nous nous lançons dans une étude numérique « sérieuse » nécessitant de longs calculs intermédiaires, nous nous trouvons généralement confrontés à deux problèmes : 
+- les données / résultats intermédiaires sont de nature « diverse » ;
+- les données / résultats intermédiaires occupent un grand espace mémoire.
+
+
+** Les données « non homogènes »
+
+Jusqu'ici nous n'avons présenté qu'un cas concret de données, dans le module 3, avec les données grippales du [[http://www.sentiweb.fr][réseau sentinelles]]. Ces données étaient suffisamment « petites » pour être stockées en format texte et, mêmes si toutes les variables qu'elles contiennent ne sont pas de même nature — par exemple une date, une incidence, une localisation —, elles sont toutes disponibles en même temps ce qui veut dire qu'il y a autant de dates, que de mesures d'incidence et que de localisations. Les données /se prêtent donc bien à une représentation sous forme de table/.
+
+Il y a néanmoins en pratique de très nombreux cas similaires au précédent dans la mesure où les données se présentent sous forme de suites chronologiques (/time series/) — une quantité donnée est mesurée ou estimée à intervalles réguliers au cours d'une « longue » période —, mais où les fréquences de mesures / estimations des différentes suites ne sont pas identiques — elles peuvent même varier au cours du temps. Pour fixer les idées avec un exemple qui devrait parler à tous le monde, nous pouvons considérer les données employées en [[https://fr.wikipedia.org/wiki/Pal%C3%A9oclimatologie][paléoclimatologie]] (la reconstruction du climat du passé). Là, des données annuelles fournies par l'étude des cernes des arbres ([[https://fr.wikipedia.org/wiki/Dendrochronologie][dendrochronologie]]) sont combinées avec des températures reconstruites à partir d'un forage dans la roche ([[https://en.wikipedia.org/wiki/Proxy_(climate)#Boreholes][boreholes]] en anglais) dont la résolution temporelle se dégrade à mesure que l'on remonte dans le temps (quelques dizaines d'années pour le 20e siècle à quelques siècles vers 1500 avant notre ère). Ces données ne se prête pas bien à un stockage sous forme de tableau et les sites qui les fournissent, comme le [[https://www.ncdc.noaa.gov/data-access/paleoclimatology-data/datasets][National Oceanic and Atmospheric Administration]] aux États-Unis, le font sous forme de fichiers séparés. /Il y a néanmoins un intérêt clair, pour le praticien de la recherche reproductible, à « centraliser » les données sur lesquels il travaille ; cela évite, par exemple, les pertes lors des « déplacements » des données/.
+
+** Les données « trop grosses »
+
+Une activité symptomatique de l'état de dégénérescence du capitalisme contemporain est la pratique de [[https://fr.wikipedia.org/wiki/Transactions_%C3%A0_haute_fr%C3%A9quence][transactions à haute fréquence]] : une activité entièrement gérée par ordinateur puisque des « décisions » de vente ou d'achat doivent être « prises » toutes les 100 microsecondes. Ces décisions sont basées sur des données qui arrivent à ce rythme. On conçoit bien, dès lors, qu'un développeur de programmes de transaction à haute fréquence aura tout intérêt à stocker les données sur lesquelles il testera ses algorithmes dans un format : 
+- plus compacte qu'un format texte ;
+- qui peut être utiliser directement pour les calculs. 
+En effet, pour stocker le nombre 1234567890123456789 il faut 19x7 = 133 bits en format texte ([[https://fr.wikipedia.org/wiki/American_Standard_Code_for_Information_Interchange][ASCII]] ou [[https://fr.wikipedia.org/wiki/Unicode#UTF-8][UTF-8)]] alors qu'il loge sur les 64 bits d'un « format binaire » [[https://fr.wikipedia.org/wiki/Entier_(informatique)][entier non-signé]], ce qui donne un gain de 69 bits. De plus, nos ordinateurs lorsqu'ils manipulent la [[https://fr.wikipedia.org/wiki/Cha%C3%AEne_de_caract%C3%A8res][chaîne de caractères]] « 1234567890123456789 » ne savent pas plus la multiplier par 2 que la chaîne « abcdefghijklmnopqrs » ; pour qu'ils puissent multiplier le nombre correspondant à la première il faut d'abord /convertir/ celle-ci en un type arithmétique et cela prends du temps. Ce surcout en temps est complètement négligeable lorsque nous traitons des « petits jeux de données » comme celui du module 3, mais il peut devenir considérable lors du traitement de grosses données. 
+
+Fort heureusement, les données financières à haute fréquence ne constituent pas le seul exemple de données trop grosses pour être stockées en format texte. Nous avons en fait déjà rencontré un exemple de « grosses données » dans ce cours lorsque nous avons discuté de l'indexation d'images dans la séquence 5 du module 1. Une image, comme une photo numérique, contient en effet une grande quantité de données. Ainsi l'image que nous avions utilisée en exemple dans la diapo intitulée : « Les fichiers images contiennent des métadonnées » est-elle constituée de 7,8 Mégapixels et chaque pixel contient une information sur trois couleurs, chacune étant résolue avec 256 niveaux (8 bits). Cela fait une quantité énorme de données qui est stockée sous format binaire après [[https://fr.wikipedia.org/wiki/Compression_d%27image][compression]] par le format [[https://fr.wikipedia.org/wiki/JPEG][JPEG]].
+  
+** L'intérêt des données au format texte et ce qui serait désirable pour un « bon » format binaire    
+
+*** Métadonnées
+Le premier intérêt du format texte comme nous l'avons vu dans le premier module est que nous pouvons l'utiliser pour stocker à peu près n'importe quoi. En particulier, ce qui nous préoccupe ici est la capacité à stocker non seulement des données, c'est-à-dire des nombres, mais des informations sur les données : d'où proviennent-elles, à qu'elle date ont elles été enregistrées, par qui, quel instrument / appareil de mesure a été utilisé, avec quels paramètres (comme la fréquence à laquelle une suite chronologique est observée), etc., autant d'informations qui peuvent s'avérer cruciales pour rendre nos résultats reproductibles. Mais ces « informations sur les données » ne sont rien d'autre que les métadonnées que nous avons brièvement discutées dans la séquence 5 du module 1. Elles sont si importantes que des formats de données conçus pour une tâche spécifique, comme le format JPEG pour les photos numériques, inclus une place pour elles dans leur spécifications. /Nous voyons bien que si, pour des raisons de taille mémoire trop importante ou d'efficacité de lecture / écriture, nous nous retrouvons « forcés » d'abandonner un format texte, nous avons tout intérêt à choisir un format binaire qui permet l'inclusion de métadonnées/. 
+
+*** Boutisme
+Un autre intérêt du format texte, que nous avons aussi mentionné dans le premier module, est son caractère « universel » (dans l'univers de l'informatique !) : un fichier généré sur une machine avec une architecture et un système d'exploitation donné peut être ouvert et lu sans problème sur une autre machine ayant une architecture et un système d'exploitation complètement différents. Cette universalité se perd très vite avec les formats binaires. Le cas typique est lié au [[https://fr.wikipedia.org/wiki/Endianness][boutisme]] ([[https://en.wikipedia.org/wiki/Endianness][endianness]] en anglais, les explications sur cette notion sont plus claires sur site Wikipedia en anglais) qui spécifie par quel bout il faut lire une séquence de bits comme 1010 ; s'il s'agit d'un entier non signé (codé sur 4 bits), on peut faire:
+- 1x1 + 0x2 + 1x4 + 0x8 = 5, c'est le /petit-boutisme/ utilisé par Unix/Linux, MacOS et Windows sur processeurs Intel ;
+- 1x8 + 0x4 + 1x2 + 0x1 = 10, c'est le /gros-boutisme/ utilisé par les Sparc, Unix/Linux et MacOS sur PowerPC et par les protocoles [[https://fr.wikipedia.org/wiki/Suite_des_protocoles_Internet][TCP/IP]], c'est-à-dire par tout ce qui passe par internet (c'est aussi comme cela que nous écrivons les nombres décimaux : 123 = 1x100 + 2x10 + 3x1).
+Il est évident que le stockage de données binaires à des fins de recherche reproductible devrait toujours se faire avec des formats dont le boutisme a été spécifié « une fois pour toute ».
+
+
+* Des formats binaires, pour données composites, permettant le sauvegarde de métadonnées
+
+Les préoccupations que nous avons évoquées dans la section précédente ne sont évidemment pas nouvelles, même mesurées à l'aune de l'ère numérique.
+De façon non surprenante, ce sont les astrophysiciens qui ont très tôt développé des formats de fichiers de données numériques qui remplissent les critères induits par notre discussion précédente :
+- des données de grandes tailles et de natures différentes doivent pouvoir être sauvegardées dans un même fichier ;
+- des métadonnées doivent pouvoir être sauvegardées dans le même fichier ;
+- le boutisme est spécifié.
+En effet, les astrophysiciens ont très tôt commencés à utiliser des « capteurs numériques », comme les dispositifs à transfert de charges — plus connus sous leur nom anglais de /charge-coupled device/ qui donne l'acronyme [[https://en.wikipedia.org/wiki/Charge-coupled_device][CCD]] —, ils enregistrent des quantités massives de données qui sont le plus souvent de nature variée allant de la « simple image » à des spectres résolus dans le temps et dans l'espace (c'est-à-dire des objets à 5 dimensions). Nous allons présenter ici deux des formats de fichiers développé successivement, le premier par les astrophysiciens, le second pour les applications numériques sur « super-ordinateurs » :
+- le /Flexible Image Transport System/ ([[https://fr.wikipedia.org/wiki/Flexible_Image_Transport_System][FITS]]), créé en 1981 est toujours régulièrement mis à jour — l'adresse du site officiel est : [[https://fits.gsfc.nasa.gov/]] — ;
+- le /Hierarchical Data Format/ ([[https://fr.wikipedia.org/wiki/Hierarchical_Data_Format][HDF]]), développé au /National Center for Supercomputing Applications/, il en est à sa cinquième version, =HDF5= — l'adresse du site officiel est : https://www.hdfgroup.org/.
+ 
+** « Bonus »
+
+*** Bibliothèques
+Les deux formats de fichiers que nous venons d'introduire, =FITS= et =HDF5=, sont en fait plus que des « formats » puisque les institutions / consortiums qui les développent distribuent également une ou plusieurs bibliothèques de fonctions (ainsi que des programmes) permettant de manipuler ces fichiers — un des reproches couramment adressé au format HDF5 est d'ailleurs le fait qu'il est tellement compliqué, que personne ne s'est jamais lancé dans le développement d'une bibliothèque de manipulation indépendante de celle distribué par le consortium. 
+
+*** Lecture partielle de données
+Les deux formats ont été conçus pour de très grosses données, tellement grosses qu'elle peuvent ne pas loger dans la [[https://fr.wikipedia.org/wiki/M%C3%A9moire_vive][mémoire vive]] (=RAM=) d'un ordinateur « typique » de laboratoire. Les bibliothèques fournissent donc des fonctions qui permettent de ne charger en RAM, par exemple, qu'une partie d'une très grosse matrice, cela de façon « transparente » : le code de l'utilisateur est écrit comme si la totalité de la matrice était en RAM (c'est la bibliothèque qui gère le va et vient nécessaire entre RAM et disque).   
+ 
+** FITS
+
+Comme nous l'avons écrit, le format =FITS= a été introduit et continue d'être mis à jour par les astrophysiciens. Ce format est néanmoins suffisamment général pour être utilisé dans des contextes très différents comme en témoigne son adoption par le projet de numérisation des manuscrits de la [[https://www.vaticanlibrary.va/home.php?pag=progettodigit][bibliothèque vaticane]]. Sans aller jusqu'à considérer cette adoption comme une [[https://fr.wikipedia.org/wiki/Imprimatur][imprimatur]], elle témoigne clairement d'une adaptabilité du format.
+
+*** Anatomie d'un fichier =FITS= 
+
+Un fichier =FITS= peut contenir un nombre arbitraire de segments appelés « Header/Data Units (HDUs) » — voir le [[https://fits.gsfc.nasa.gov/fits_primer.html][primer ]]pour plus de détails. Ces segments sont placés « à la queue leu leu » dans le fichier — c'est-à-dire qu'il n'y a pas de structure hiérarchique comme dans les fichiers =HDF5= que nous discutons plus loin. 
+
+Le premier segment qui est obligatoire dans tout fichier =FITS= (même s'il ne contient pas de données). Il est nommé HDU primaire (/Primary HDU/ ou /Primary Array/). Il ne peut contenir qu'un tableau au sens large — c'est-à-dire avec 1, 2 ou plus de dimensions (jusqu'à 999), c'est ce qu'on nomme /array/ en anglais — au format binaire (entiers ou [[https://fr.wikipedia.org/wiki/Virgule_flottante][virgule flottante]]).
+
+Les segments suivants sont facultatifs et son désignés par le terme d'« extension » dans le jargon =FITS=. Les extensions peuvent contenir des tableaux comme l'HDU primaire, mais aussi des tables (objets à 2 dimensions) au format texte (ASCII) ou binaire.
+
+Chaque HDU consiste en une en-tête (/Header Unit/ en jargon =FITS=) suivie, /mais ce n'est pas obligatoire/, par des données (/Data Unit/ en jargon =FITS=). Chaque en-tête est formée de paires de « mots clés / valeurs ». Les paires de mots clés / valeurs fournissent des informations telles que la taille, l'origine, les coordonnées, le format de données binaire, les commentaires en format libre, l'historique des données, et /toute autre chose souhaitée par le rédacteur/ ; tandis que beaucoup de mots-clés sont réservés pour l'usage interne, la norme permet l'utilisation arbitraire du reste (source [[https://fr.wikipedia.org/wiki/Flexible_Image_Transport_System][Wikipédia]]).  
+
+*** Manipulation des fichiers =FITS=
+
+Le consortium qui développe le format =FITS= fournit une bibliothèque [[https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html][CFITSIO]] en langage =C= ainsi qu'une collection de programmes associés. Notre expérience est que la bibliothèque, comme les programmes sont simples d'emploi et « bien pensés ».
+
+Les utilisateurs de =Python= pourront utiliser [[https://pythonhosted.org/pyfits/][PyFITS]], une interface très complète avec [[https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html][CFITSIO]]. 
+
+Les utilisateurs de =R= pourront  utiliser [[https://cran.r-project.org/package=FITSio][FITSio]].
+
+Des [[https://fits.gsfc.nasa.gov/fits_libraries.html][interfaces existent]] également pour =Java=, =Perl=, =Matlab=, etc.
+
+** HDF5
+*** La présentation d'=HDF5= par ses concepteurs
+
+HDF5 est un modèle de données, une bibliothèque et un format de fichier pour stocker et gérer des données. Il prend en charge une variété illimitée de types de données et est conçu pour des entrées / sorties flexibles et efficaces, pour des volumes élevés et des données complexes. HDF5 est utilisable sur différentes plateformes et est extensible. Il permet aux applications d'évoluer dans leur utilisation d'HDF5. La suite technologique HDF5 comprend des outils et des applications pour gérer, manipuler, visualiser et analyser des données au format HDF5.
+
+La [[https://portal.hdfgroup.org/display/HDF5/HDF5][version originale]] du texte ci-dessus :
+
+HDF5 is a data model, library, and file format for storing and managing data. It supports an unlimited variety of datatypes, and is designed for flexible and efficient I/O and for high volume and complex data. HDF5 is portable and is extensible, allowing applications to evolve in their use of HDF5. The HDF5 Technology suite includes tools and applications for managing, manipulating, viewing, and analyzing data in the HDF5 format.
+
+*** Différences majeurs avec =FITS=
+
+Comme son nom l'indique avec le « H » pour /Hierarchical/, l'organisation interne d'un fichier =HDF5= est hierarchique et ressemble elle-même à une arborisation de fichiers. Cela contraste avec l'organisation « plate » des fichiers =FITS= et cela permet clairement d'ordonner des données complexes plus efficacement.
+
+Ainsi un expérimentateur qui effectue des mesures répétées dans les mêmes conditions sur un même objet peut il stoker chaque « mesure » — qui peut elle-même générer des données complexes, /dataset/ en jargon =HDF=, comme une séquence d'images et une ou plusieurs suites chronologiques — dans l'équivalent d'un répertoire, un /group/ en jargon =HDF=. Cela permet à notre expérimentateur de créer un /group/ par condition expérimentale. Comme dans le cas d'une arborescence de répertoires sur le disque d'un ordinateur, les /groups/ peuvent eux-mêmes contenir des /groups/ (les répertoires peuvent avoir des sous-répertoires). Clairement, l'aspect structuré du format =HDF5=, facilite la navigation dans les jeux de données (/datasets/) et constitue une véritable amélioration par-rapport au format =FITS=.
+
+Les méta-données n'ont pas de structure imposée mots clés / valeurs comme dans le cas du format =FITS=. Les données (/datasets/) n'ont pas non plus de structure imposée ce qui permet par exemple d'y stocker de longs textes, comme un article ou des codes sources. Encore une fois, cette possibilité n'est pas présente dans les fichiers =FITS=.
+
+*** Manipulation des fichiers =HDF5=
+
+La plus grande « souplesse » du format =HDF5= se « paie » par une bibliothèque de manipulation =C= (nettement) plus difficile à utiliser que son équivalent du format =FITS=. La bibliothèque vient avec de nombreux programmes utilisables depuis la ligne de commande, ainsi qu'avec une application =JAVA=, [[https://portal.hdfgroup.org/display/HDFVIEW/HDFView][HDFView]], très puissante pour explorer, visualiser et, dans une certaine mesure, éditer les fichiers =HDF5=.
+
+=Python= dispose d'une interface très complète avec [[http://www.h5py.org/][h5py]].
+
+Il y a trois paquets =R= pour manipuler les fichiers =HDF5= : [[https://CRAN.R-project.org/package=h5][h5]], [[https://CRAN.R-project.org/package=hdf5r][hdf5r]] et [[http://www.bioconductor.org/packages/release/bioc/html/rhdf5.html][rhdf5]]. Les deux premiers sont disponibles sur le /Comprehensive R Archive Network/ ([[https://cran.r-project.org/][CRAN]]), et le dernier est disponible sur [[http://www.bioconductor.org/][bioconductor]]. Le plus complet à ce jour est =hdf5r=, mais les trois permettent toutes les opérations de bases et même plus. 
+
+*** Pour aller plus loin
+
+Une présentation par Martial Tola : [[https://perso.liris.cnrs.fr/martial.tola/presentations/hdf5/]].
+
+Le blog de C. Rossant présente une critique intéressante et argumentée du format : [[http://cyrille.rossant.net/moving-away-hdf5/]].

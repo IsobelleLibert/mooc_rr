@@ -1,0 +1,1421 @@
+#+TITLE: Les diapos du module 1
+#+AUTHOR: @@latex:{\large Christophe Pouzat} \\ \vspace{0.2cm}MAP5, Paris-Descartes University and CNRS\\ \vspace{0.2cm} \texttt{christophe.pouzat@parisdescartes.fr}@@
+#+OPTIONS: H:2 tags:nil
+#+EXCLUDE_TAGS: noexport
+#+LANGUAGE: fr
+#+SELECT_TAGS: export
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [presentation,bigger]
+#+LATEX_HEADER: \usepackage[normalem]{ulem}
+#+BEAMER_HEADER: \setbeamercovered{invisible}
+#+BEAMER_HEADER: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Où en sommes nous ?}\tableofcontents[currentsection]\end{frame}}
+#+BEAMER_HEADER: \beamertemplatenavigationsymbolsempty
+#+STARTUP: beamer
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
+#+STARTUP: indent
+#+PROPERTY: header-args :eval no-export
+
+
+* M1-S0: Cahiers de notes / cahiers de laboratoire
+  :PROPERTIES:
+  :CUSTOM_ID: c028al-w1-s0
+  :END:
+
+** Les grandes lignes du module : cahier de notes / cahier de laboratoire
+   :PROPERTIES:
+   :CUSTOM_ID: les-grandes-lignes-du-module-cahier-de-notes-cahier-de-laboratoire
+   :END:
+
+1. Nous utilisons tous des cahiers de notes
+2. Un aperçu historique de la prise de notes
+3. Du fichier texte au langage de balisage léger
+  - Démonstration : markdown
+4. Pérennité et évolutivité des notes avec la gestion de version
+  - Démonstration : gitlab
+5. Les étiquettes et les logiciels d'indexation pour s'y retrouver
+  - Démonstration : DocFetcher
+
+#+BEGIN_COMMENT
+*Première ligne* Nous allons discuter ici d'une question qui
+dépasse la problématique de la recherche reproductible.
+
+En effet, la mise en œuvre concrète de la recherche reproductible
+nécessite la tenue d'un cahier de notes et la prise de notes concerne
+tout le monde. Je commencerai donc ce module en vous disant quelque
+chose que vous savez déjà (!) : nous devons tous prendre des notes.
+
+*Deuxième ligne* Si nous devons tous prendre des notes, nos
+prédécesseurs ont du le faire aussi. Cette constatation élémentaire
+faite, nous éviterons de croire que nous sommes les premiers à avoir à
+faire face un déluge d'informations. Nous en profiterons pour apprendre
+comment nos brillants ancêtres s'y sont pris.
+
+En nous inspirant de nos connaissances des « anciennes » techniques,
+nous verrons ensuite comment mettre à profit les outils fournis par
+l'informatique.
+
+*Troisième ligne* Les fichiers texte et les langages de balisage léger
+font nous permettre de structurer nos notes et de les « recycler »
+facilement (dans des articles, des pages web, etc.).
+
+*Quatrième ligne* La gestion de version nous évitera de tout perdre tout
+en gardant traces de nos corrections et modifications successives.
+
+*Cinquième ligne* Enfin, reprendre une activité de zéro parce que
+retrouver la bonne information dans la jungle de nos notes prendrait
+plus de temps ne sera plus qu'un souvenir avec la construction d'index.
+#+END_COMMENT
+
+* M1-S1: Nous utilisons tous des cahiers de notes
+  :PROPERTIES:
+  :CUSTOM_ID: c028al-w1-s1
+  :END:
+
+** 1. Cahier de notes / cahier de laboratoire
+   :PROPERTIES:
+   :CUSTOM_ID: cahier-de-notes-cahier-de-laboratoire
+   :END:
+
+1. *Nous utilisons tous des cahiers de notes*
+2. Un aperçu historique de la prise de notes
+3. Du fichier texte au langage de balisage léger
+   - Démonstration : markdown
+4. Pérennité et évolutivité des notes avec la gestion de version
+   - Démonstration : gitlab
+5. Les étiquettes et les logiciels d'indexation pour s'y retrouver
+   - Démonstration : DocFetcher
+
+#+BEGIN_COMMENT
+La recherche reproductible est encore -- mais pour peu de temps
+seulement ! --, une activité dont le nombre d'adeptes est restreint.
+Elle suppose par contre une prise de notes « rigoureuse » et là, notre
+propos commence à s'adresser à un groupe beaucoup plus large. C'est ce
+que nous allons illustrer ici par quelques exemples.
+#+END_COMMENT
+
+** L'érudit qui annote son livre / manuscrit
+   :PROPERTIES:
+   :CUSTOM_ID: lérudit-qui-annote-son-livre-manuscrit
+   :END:
+
+[[file:img/ManuscritAnnoteEtCoupe.png]]
+
+Manuscrit d'œuvres d'Aristoteles (XIVe siècle).
+
+#+BEGIN_COMMENT
+Nous voyons ici un manuscrit du XIVe abondamment annoté par son
+propriétaire Nicasius de Planca. Cette forme de prise de note est
+extrêmement fréquente aussi bien à l'époque des manuscrits
+qu'aujourd'hui. Vous devriez néanmoins éviter de l'employer sur des
+livres empruntés dans une bibliothèque ou à des amis !
+
+Les deux pages suivantes présentent un exemple d'une importance
+considérable pour l'histoire des sciences.
+#+END_COMMENT
+
+** Galilée qui observe les lunes de Jupiter
+   :PROPERTIES:
+   :CUSTOM_ID: galilée-qui-observe-les-lunes-de-jupiter
+   :END:
+
+[[file:img/GalileoManuscriptCoupe.png]]
+
+#+BEGIN_COMMENT
+Le 7 janvier 1610, Galilée fait une découverte capitale : il remarque
+trois « petites étoiles » à côté de Jupiter. Après quelques nuits
+d'observation, il découvre qu'il y en a une quatrième et qu'*elles
+accompagnent la planète*, c'est ce qu'il note sur son cahier
+d'observations. Ce sont les satellites visibles de Jupiter, qu'il
+nommera plus tard les étoiles Médicées ou astres médicéens -- en
+l'honneur de ses protecteurs, la Famille des Médicis -- et qui sont
+aujourd'hui appelés lunes galiléennes.
+#+END_COMMENT
+
+** 
+[[file:img/GalileoManuscriptZoom.png]]
+
+#+BEGIN_COMMENT
+Ces observations amèneront Galilée à rejeter l'hypothèse
+géocentrique (la terre est le centre de l'Univers et tout tourne autour
+d'elle) en faveur du système copernicien héliocentrique. Cela l'amènera
+indirectement (je « fais court ») et bien plus tard, le 22 juin 1633, a
+être condamné par l'inquisition, ce qui lui vaudra de finir ses jours en
+résidence surveillée.
+#+END_COMMENT
+
+** Les armoires à notes de Placcius et Leibniz
+   :PROPERTIES:
+   :CUSTOM_ID: les-armoires-à-notes-de-placcius-et-leibniz
+   :END:
+
+[[file:img/Placcius_cabinet_TabIV.png]]
+
+#+BEGIN_COMMENT
+Avec l'apparition de l'imprimerie, la demande de papier croît
+considérablement et le prix de celui-ci chute. En plus de l'emploi des
+codex avec support papier que nous venons de voir, de nombreux savants
+commencent à prendre leurs notes sur des « bouts de papier » qui
+deviendront plus tard des fiches.
+
+Mais si prendre des notes en abondance sur des « bouts de papier », est
+très bien ! encore faut-il être capable de s'y retrouver. Vincent
+Placcius (1642-1699) et Gottfried Leibniz (1646-1716) s'étaient fait
+construire une armoire spéciale pour résoudre ce problème.
+#+END_COMMENT
+
+** 
+
+#+ATTR_LATEX: :width 0.3\textwidth
+[[file:img/Placcius_cabinet_TabIVzoom.png]]
+
+#+BEGIN_COMMENT
+Cette armoire contenait une multitude de colonnes capables de
+tourner autour de leur axe. Un côté de la colonne permettait d'inscrire
+un ou des mots clés et le côté opposé comportait un crochet auquel était
+attaché les notes correspondantes.
+
+Remarquez l'avantage des « bouts de papiers classés » de Placcius et
+Leibniz sur le /codex/ de Galilée : les premiers peuvent être facilement
+réordonnées.
+#+END_COMMENT
+
+** Les dangers de l'abondance de notes : la triste fin de Fulgence Tapir
+   :PROPERTIES:
+   :CUSTOM_ID: les-dangers-de-labondance-de-notes-la-triste-fin-de-fulgence-tapir
+   :END:
+
+Un extrait de la fin de la préface de « L'île des pingouins » d'Anatole
+France, publié en 1908.
+
+[[file:img/A_France_Pingouins.jpg]]
+
+#+BEGIN_COMMENT
+Je ne résiste pas, pour vous prévenir contre une accumulation exagérée
+de notes, à vous lire un extrait du roman d'Anatole France « L'île des
+pingouins », une histoire parodique de la France. Dans la préface, le
+narrateur explique qu'il écrit l'histoire des Pingouins et que sa quête
+d'informations l'amène chez l'immense savant Fulgence Tapir. Cette
+visite va se solder par une catastrophe que le narrateur rapporte
+ainsi :
+
+Les murs du cabinet de travail, le plancher, le plafond même portaient
+des liasses débordantes, des cartons démesurément gonflés, des boîtes où
+se pressait une multitude innombrable de fiches, et je contemplai avec
+une admiration mêlée de terreur les cataractes de l'érudition prêtes à
+se rompre.
+
+---Maître, fis-je d'une voix émue, j'ai recours à votre bonté et à votre
+savoir, tous deux inépuisables. Ne consentiriez-vous pas à me guider
+dans mes recherches ardues sur les origines de l'art pingouin?
+
+---Monsieur, me répondit le maître, je possède tout l'art, vous
+m'entendez, tout l'art sur fiches classées alphabétiquement et par ordre
+de matières. Je me fais un devoir de mettre à votre disposition ce qui
+s'y rapporte aux Pingouins. Montez à cette échelle et tirez cette boîte
+que vous voyez là-haut. Vous y trouverez tout ce dont vous avez besoin.
+
+J'obéis en tremblant. Mais à peine avais-je ouvert la fatale boîte que
+des fiches bleues s'en échappèrent et, glissant entre mes doigts,
+commencèrent à pleuvoir. Presque aussitôt, par sympathie, les boîtes
+voisines s'ouvrirent et il en coula des ruisseaux de fiches roses,
+vertes et blanches, et de proche en proche, de toutes les boîtes les
+fiches diversement colorées se répandirent en murmurant comme, en avril,
+les cascades sur le flanc des montagnes. En une minute elles couvrirent
+le plancher d'une couche épaisse de papier. Jaillissant de leurs
+inépuisables réservoirs avec un mugissement sans cesse grossi, elles
+précipitaient de seconde en seconde leur chute torrentielle. Baigné
+jusqu'aux genoux, Fulgence Tapir, d'un nez attentif, observait le
+cataclysme; il en reconnut la cause et pâlit d'épouvante.
+
+---Que d'art! s'écria-t-il.
+
+Je l'appelai, je me penchai pour l'aider à gravir l'échelle qui pliait
+sous l'averse. Il était trop tard. Maintenant, accablé, désespéré,
+lamentable, ayant perdu sa calotte de velours et ses lunettes d'or, il
+opposait en vain ses bras courts au flot qui lui montait jusqu'aux
+aisselles. Soudain une trombe effroyable de fiches s'éleva,
+l'enveloppant d'un tourbillon gigantesque. Je vis durant l'espace d'une
+seconde dans le gouffre le crâne poli du savant et ses petites mains
+grasses, puis l'abîme se referma, et le déluge se répandit sur le
+silence et l'immobilité. Menacé moi-même d'être englouti avec mon
+échelle, je m'enfuis à travers le plus haut carreau de la croisée.
+#+END_COMMENT
+
+** Le Navigateur et son livre de bord : Éric Tabarly
+   :PROPERTIES:
+   :CUSTOM_ID: le-navigateur-et-son-livre-de-bord-éric-tabarly
+   :END:
+
+[[file:img/LivredebordpenduickV.jpg]]
+
+#+BEGIN_COMMENT
+Ici, un cas en apparence plus anecdotique : le livre de bord
+d'Éric Tabarly lors de la trans-Pacifique de San-Francisco à Tokyo en
+1969.
+#+END_COMMENT
+
+** 
+[[file:img/LivredebordpenduickVzoom1.png]]
+
+#+BEGIN_COMMENT
+Tabarly y note les événements « marquant ». Par exemple, le 21
+mars à 23 h, le foc ballon est déchiré.
+#+END_COMMENT
+
+** 
+[[file:img/LivredebordpenduickVzoom2.png]]
+
+#+BEGIN_COMMENT
+Sur la page opposé il fait ses calculs de positions (il n'y avait
+pas de GPS à l'époque).
+
+*Le cas du livre de bord n'est anecdotique qu'en apparence*.
+
+Un projet européen a, en effet, été consacré, il y a une dizaine
+d'année, à une reconstruction des climats des océans atlantiques et
+indiens aux 17e et 18e siècles. Cette tentative de reconstruction s'est
+basée sur des /livre de bord/ des navires des compagnies des Indes
+portugaises, espagnoles, hollandaises, anglaises et françaises.
+
+De même, les livres de bord des « navires négriers » constituent une
+source d'information capitale pour l'estimation du nombre d'africains
+déportés vers les colonies de ce que les occidentaux désignaient par
+« Nouveau Monde » du 15e au 19e siècle (11 à 12 millions).
+#+END_COMMENT
+
+** Quel(s) support(s) matériel(s) pour les notes ?
+   :PROPERTIES:
+   :CUSTOM_ID: quels-supports-matériels-pour-les-notes
+   :END:
+
+Doit-on utiliser :
+
+- l'objet d'étude (comme pour le livre annoté)
+- un ou des cahiers
+- des fiches ou feuilles volantes stockées dans un classeur
+- un ou des fichiers d'ordinateur
+- des dessins ou photos
+- des films
+- ... ?
+
+** Comment s'y retrouver ?
+   :PROPERTIES:
+   :CUSTOM_ID: comment-sy-retrouver
+   :END:
+
+Les notes posent un problème d'organisation :
+
+- Comment peut-on imposer une structure à nos notes après coup ? Est-ce
+  seulement possible ?
+- Peut-on les indexer, si oui, comment ?
+- Comment peut-on les rendre pérennes tout en les faisant évoluer ?
+
+#+BEGIN_COMMENT
+*En Introduction* Les notes par nature disparates -- par les
+sujets dont elles traitent et, souvent, par leurs supports matériels --
+posent un problème d'organisation.
+
+*En conclusion* *Il est clair que sans organisation, l'utilité des notes
+n'excède qu'à peine notre capacité à mémoriser des faits ou évènements.*
+
+Dans le reste de ce module nous allons /proposer/ des réponses aux
+questions que nous venons de poser dans ces deux dernières diapos.
+#+END_COMMENT
+
+* M1-S2: Un aperçu historique de la prise de notes
+  :PROPERTIES:
+  :CUSTOM_ID: c028al-w1-s2
+  :END:
+
+** 1. Cahier de notes / cahier de laboratoire
+   :PROPERTIES:
+   :CUSTOM_ID: cahier-de-notes-cahier-de-laboratoire-1
+   :END:
+
+1. Nous utilisons tous des cahiers de notes
+2. *Un aperçu historique de la prise de notes*
+3. Du fichier texte au langage de balisage léger
+   - Démonstration : markdown
+4. Pérennité et évolutivité des notes avec la gestion de version
+   - Démonstration : gitlab
+5. Les étiquettes et les logiciels d'indexation pour s'y retrouver
+   - Démonstration : DocFetcher
+
+#+BEGIN_COMMENT
+Si nous devons tous prendre des notes, nos prédécesseurs ont dû le
+faire aussi. Cette constatation élémentaire va nous inciter à regarder
+comment nos brillants ancêtres s'y sont pris pour effectuer cette tâche.
+#+END_COMMENT
+
+** De quoi allons-nous discuter ?
+   :PROPERTIES:
+   :CUSTOM_ID: de-quoi-allons-nous-discuter
+   :END:
+
+- de l'aspect concret de la prise de note -- la « matérialité » des
+  historiens --
+- de l'organisation des livres et des notes
+- du lien entre aspects matériels et organisationnels.
+
+#+BEGIN_COMMENT
+
+Notre discussion va porter en partie sur le livre puisque les éléments
+de navigation de ce dernier : table des matières, index, etc. ;
+s'applique aussi à l'organisation des notes.
+
+Nous allons nous concentrer sur le « côté occidental » de l'histoire
+avec une seule page consacrée aux contributions chinoises et aucune aux
+contributions musulmanes, indiennes ou précolombiennes. Ce biais doit
+être interprété comme un reflet de mes ignorances et par la plus grande
+facilité d'obtenir des documents et illustrations concernant l'histoire
+du livre et de la prise de notes en Occident.
+#+END_COMMENT
+
+** L'aspect matériel résumé sur une diapo
+   :PROPERTIES:
+   :CUSTOM_ID: laspect-matériel-résumé-sur-une-diapo
+   :END:
+
+[[file:img/Figure_W1_S2_1.jpg]]
+
+#+BEGIN_COMMENT
+En haut à gauche : une tablette d'argile avec des comptes
+(précunéiforme, vers -3000)
+
+En haut au milieu : une fresque de Pompéi avec le portrait de Terentius
+Neo et sa femme. Elle porte une /tablette de cire/ et un /stylet/ (les
+outils principaux de prise de notes jusqu'au 19e siècle, ou presque), il
+porte un /volumen/, la support matériel du livre jusqu'au début de notre
+ère.
+
+En haut à droite : un cahier de notes sur papier datant du milieu du 17e
+siècle et contenant des « lieux communs » au sens rhétorique du terme de
+« source générale communément admise d'où un orateur peut tirer ses
+arguments ».
+
+En bas à gauche : une fiche, exemple d'un support de notes dont
+l'utilisation va « exploser » avec la bureaucratisation et le
+développement des bibliothèques. Ce support sera largement adopté dans
+les sciences humaines, mais il a d'abord été systématiquement employé et
+peut être même créé par le naturaliste Carl Linné, père de la
+/taxinomie/.
+
+En bas au milieu : des « Post-it » comme nous sommes nombreux à en
+utiliser tous les jours.
+
+En bas à droite : un ordinateur moderne utilisable comme une tablette
+(numérique cette fois).
+#+END_COMMENT
+
+** Tablette de cire et stylet
+   :PROPERTIES:
+   :CUSTOM_ID: tablette-de-cire-et-stylet
+   :END:
+
+[[file:img/tabula_stilus.jpg]]
+
+#+BEGIN_COMMENT
+
+Les tablettes de cire (en latin tabulæ, planches) sont des supports
+d'écriture effaçables et réutilisables, connus depuis la haute Antiquité
+et qui ont été utilisés jusqu'au milieu du XIXe siècle.
+
+La tablette de cire est formée d'une plaquette le plus souvent en bois
+(mais les nobles auront des tablettes en argent, ivoire, etc.). Elle est
+évidée sur presque toute sa surface en conservant un rebord de quelques
+millimètres qui fait cadre. De la cire est coulée dans la partie en
+dépression puis lissée. L'écriture se fait en gravant les caractères sur
+la cire à l'aide de l'extrémité pointue d'un instrument appelé style ou
+stylet. Ils peuvent être effacés en lissant la cire avec l'autre
+extrémité, plate, du stylet, après l'avoir ramollie.
+
+La plus ancienne tablette connue provient d'un bateau mycénien et date
+du XIVe siècle av. J.-C. Les Grecs ont adopté la tablette par
+l'intermédiaire des Phéniciens en même temps que l'alphabet vers le
+VIIIe siècle av. J.-C..
+
+En français l'expression « faire table rase » vient du latin /tabula
+rasa/, effacer la tablette.
+
+Les ardoises et des tablettes de sable ont également été utilisées pour
+prendre des notes.
+#+END_COMMENT
+
+** Du /volumen/ au /codex/
+   :PROPERTIES:
+   :CUSTOM_ID: du-volumen-au-codex
+   :END:
+
+[[file:img/Figure_W1_S2_3.jpg]]
+
+#+BEGIN_COMMENT
+Le passage du /volumen/ au /codex/ est absolument fondamentale pour
+l'avenir de la civilisation écrite.
+
+Le /volumen/ est un livre à base de feuilles de papyrus collées les unes
+aux autres et qui s'enroule sur lui-même. Il a été créé en Égypte vers
+3000 av. J.-C. Le texte est rédigé en colonnes parallèles assez
+étroites. C'est le support du texte par excellence durant les trente
+siècles précédant notre ère, d'abord en Égypte, puis dans tout le monde
+méditerranéen.
+
+La mosaïque en bas à gauche représente Virgile (70-19 avant J.-C.,
+assis) tenant un volume de l'Énéide et Clio, muse de l'Histoire, tenant
+elle aussi un /volumen/.
+
+Comme l'explique Frédéric Barbier : « La forme du /volumen/ impose une
+pratique de lecture complexe : il faut dérouler (/explicare/) et
+enrouler en même temps, ce qui interdit par exemple, de travailler
+simultanément sur plusieurs rouleaux (un texte et son commentaire) ou de
+prendre des notes, impose une lecture suivie et empêche la simple
+consultation. »
+
+Le /volumen/ n'est clairement pas adapté à une lecture « nomade » ;
+imagine-t-on Ulysse partant pour son Odyssée avec les 24 /volumen/ de
+l'Iliade ?
+
+Le /volumen/ est à l'origine du terme « volume » dans un « livre en
+plusieurs volumes » comme dans la désignation du concept géométrique.
+
+Le passage au codex repose sur deux innovations : - la collection des
+tablettes de cires en « groupes reliés » ; - la généralisation du
+parchemin (peau, généralement, de mouton spécialement préparée) au
+détriment du papyrus. Cette généralisation résulte une lutte pour
+l'hégémonie culturelle entre deux descendants de généraux d'Alexandre le
+Grand, en effet d'après Pline l'ancien : Ptolémé Épiphane d'Alexandrie
+cherchait à empêcher Eumène II d'établir une bibliothèque à Pergame (au
+2e siècle avant J.-C.) et avait interdit l'exportation du papyrus
+(produit exclusivement en Égypte), ce qui incita Eumène à chercher un
+substitut qui devint le parchemin.
+
+Le remplacement du rouleau par le codex aura des conséquences majeures
+sur l'organisation du livre ainsi que sur la façon de lire et il
+permettra le développement ultérieur de l'imprimerie.
+
+La principale révolution introduite par le codex est la notion de page.
+Grâce à elle, le lecteur peut accéder de manière directe à un chapitre
+ou à un passage du texte, alors que le rouleau impose une lecture
+continue. *Les mots ne sont de plus pas séparés par des espaces*. Comme
+l'écrit Collette Sirat : « Il faudra vingt siècles pour qu'on se rende
+compte que l'importance primordiale du codex pour notre civilisation a
+été de permettre la lecture sélective et non pas continue, contribuant
+ainsi à l'élaboration de structures mentales où le texte est dissocié de
+la parole et de son rythme. »
+
+Remarquez les lettres en rouge, résultat de la /rubrication/ (mot qui a
+donné notre « rubrique » moderne) utilisée pour séparer ce qui deviendra
+des paragraphes avec l'imprimerie. Cette dernière en effet utilisera des
+espaces blancs plutôt que des couleurs (trop chères) pour marquer des
+séparations. L'usage de la couleur constitue une technique de mise en
+page qui pourrait parfaitement être remise à l'ordre du jour avec
+l'informatique.
+#+END_COMMENT
+
+** Eusèbe et les références croisées
+   :PROPERTIES:
+   :CUSTOM_ID: eusèbe-et-les-références-croisées
+   :END:
+
+[[file:img/Eusebe_final.jpg]]
+
+#+BEGIN_COMMENT
+Au IVe siècle de notre ère, Eusèbe de Césarée ou Eusèbe (de) Pamphile
+est l'auteur de nombreuses œuvres historiques, apologétiques, bibliques
+et exégétiques. Auteur de l'Histoire ecclésiastique, il est reconnu
+comme un Père de l'Église, et ses écrits historiques ont une importance
+capitale pour la connaissance des trois premiers siècles de l'histoire
+chrétienne. Il va apporter plusieurs innovations capitales à
+l'organisation du livre dont la table de références croisées.
+#+END_COMMENT
+
+** Canon eusébien
+   :PROPERTIES:
+   :CUSTOM_ID: canon-eusébien
+   :END:
+
+[[file:img/Evangeliaire_Lorsch.jpg]]
+
+#+BEGIN_COMMENT
+Pour permettre une comparaison plus facile des quatre évangiles, il
+numérote les différents versets de chacun d'entre eux -- sa numérotation
+n'est celle employée de nos jours qui, elle, date du XVIe siècle. Il
+indique les versets dont les contenus sont identiques dans les 4
+évangiles (à gauche), ceux dont le contenu est identique dans 3 des 4 (à
+droite), dans 2 des 4, etc. Ce « canon eusébien » constitue le premier
+exemple connu de références croisées.
+#+END_COMMENT
+
+** Importance du /codex/
+   :PROPERTIES:
+   :CUSTOM_ID: importance-du-codex
+   :END:
+
+D'après Frédéric Barbier dans l'« Histoire du livre » :
+
+- L'invention du /codex/ est absolument fondamentale pour l'avenir de la
+  civilisation écrite
+- Le /codex/ se prête à la /consultation partielle/
+- On peut lui superposer un système de références facilitant la
+  consultation
+- On peut consulter le /codex/ en prenant des notes
+- La combinaison du /codex/ et de la minuscule donne un outil
+  intellectuel très puissant, tel qu'il n'en existait pas
+  antérieurement.
+
+#+BEGIN_COMMENT
+
+Au fil des siècles, le codex --- qu'on désigne le plus souvent comme un
+manuscrit --- va évoluer et se donner peu à peu les attributs du livre
+moderne : séparation entre les mots (VIIe siècle), début de ponctuation
+(VIIIe siècle), table des matières, titre courant, marque de paragraphe
+(XIe siècle), pagination, index (XIIIe siècle), etc.
+
+Un point intéressant : le contenu de la Thora est « fixé » avant
+l'apparition du codex et, aujourd'hui encore, la Thora est écrite sur
+des /volumen/ (dans les synagogues au moins). La religion chrétienne se
+développe en même temps que le codex et ne donnera jamais au /volumen/
+un statut « supérieur », pas plus que ne le fera la religion musulmane.
+#+END_COMMENT
+
+** Parallèle chinois
+   :PROPERTIES:
+   :CUSTOM_ID: parallèle-chinois
+   :END:
+
+[[file:img/Figure_W1_S2_6.jpg]]
+
+#+BEGIN_COMMENT
+Le lien entre apparition et généralisation du /codex/, d'une part, et
+apparition des « outils de navigation », table des matières, index,
+titre courant etc., d'autre part à un pendant dans la civilisation
+chinoise.
+
+En Chine, les concours d'entrée dans l'administration se développent au
+9e siècle. L'épreuve principale de ceux-ci serait probablement appelée
+épreuve de culture générale de nos jours et demande aux candidat une
+connaissance approfondie des classiques, Confucius en tête, et la
+capacité de les citer.
+
+Pour répondre à cette demande, des ouvrages spécialisés, sorte de
+florilèges, les leishu, vont se développer. Mais leur utilisation
+efficace doit permettre de trouver un ensemble de citations appropriées
+à un contexte donné suppose l'emploi d'index, de table des matières,
+etc. De façon intéressante, le /codex/ et les outils de navigation vont
+eux aussi se développer *de concert* à partir de cette époque.
+
+La majorité de ces leishus *est imprimée* (dès le 9e siècle !), ce que
+rappelle la matrice d'impression à droite de la page. L'impression se
+fait bien sûr sur du papier, support inventé par les Chinois au 8e
+siècle avant J.-C....
+#+END_COMMENT
+
+** Organiser en « mettant dans la bonne case »
+   :PROPERTIES:
+   :CUSTOM_ID: organiser-en-mettant-dans-la-bonne-case
+   :END:
+
+[[file:img/Placcius_cabinet_TabIV.png]]
+
+#+BEGIN_COMMENT
+
+Maintenant que nous avons très brièvement décrit l'apparition des
+principaux outils de navigations du livre -- outils qui peuvent bien
+entendu s'appliquer aux notes prises dans un cahier -- ; nous revenons
+sur le « bout de papier » ou la fiche comme support de note.
+
+Nous montrons à nouveau l'armoire à notes de Placcius et Leibniz
+puisqu'elle évoque parfaitement les inconvénients et les avantages des
+supports ne contenant *qu'une seule note*.
+
+L'inconvénient est que le bout de papier ou la fiche se perdent
+facilement et ne servent à rien s'ils ne sont pas *classés* en plus
+d'être rangés. Problème résolu par l'armoire de la figure. D'une
+certaine façon, sa conception fait qu'on accède à son contenu par
+l'index.
+
+L'avantage est que les notes peuvent être réorganisées si elles
+contiennent des information sur plusieurs sujets. Elle peuvent aussi
+être directement collées dans un livre lors de la composition d'un
+florilège ou d'un ouvrage de synthèse.
+
+Ce dernier procédé était très couramment employé par les humanistes et
+les érudit de la renaissance et du début de la période moderne.
+[[https://fr.wikipedia.org/wiki/Conrad_Gessner][Conrad Gessner]]
+(1516-1565) était un champion de cette technique ; il obtenait même
+parfois ses fiches en découpant les pages des livres. Encore une fois,
+ne faites pas cela avec les livres de bibliothèques !
+#+END_COMMENT
+
+** Organiser avec une bonne « carte » : la méthode de John Locke
+   :PROPERTIES:
+   :CUSTOM_ID: organiser-avec-une-bonne-carte-la-méthode-de-john-locke
+   :END:
+
+[[file:img/MethodeLocke1.jpg]]
+
+#+BEGIN_COMMENT
+
+Nous allons maintenant apprendre une technique de construction d'index
+due à [[https://fr.wikipedia.org/wiki/John_Locke][John Locke]]
+(1632-1704), grand-père du libéralisme, ce qui ne l'empêchait pas d'être
+actionnaire de la /Royal African Company/,
+[[https://en.wikipedia.org/wiki/John_Locke#Constitution_of_Carolina][principale
+compagnie négrière anglaise]]...
+
+J'illustre la méthode avec mon cahier de notes. Les deux pages décrivent
+l'organisation d'un jeu de données dans un fichier au format
+[[https://www.hdfgroup.org/][HDF5]] sur la page de gauche et
+l'organisation correspondante dans un =data frame= du logiciel
+[[https://www.r-project.org/][R]] sur la page de droite. Les données
+concernent la mesure de la concentration des ions calcium dans des
+neurones et ces notes ont été prises lors du développement d'un code
+(programme d'ordinateur) pour les analyser.
+
+Pour l'application de la méthode de Locke, ce n'est pas le contenu des
+pages qui nous importent directement, mais les fait qu'elles sont
+numérotées (en bas dans les coins externes, ici nous avons affaire aux
+pages 86 et 87) et qu'elles comportent des mots clé : =code= ; =neuro= ;
+=calcium= ; inscrits en rouge en bas des pages.
+
+Je signale que la méthode de Locke peut être mise en œuvre après coup.
+Je l'ai en fait testée lors de la préparation de ce cours, c'est-à-dire
+après avoir commencé à remplir mon cahier de notes.
+#+END_COMMENT
+
+** La méthode de John Locke (suite)
+   :PROPERTIES:
+   :CUSTOM_ID: la-méthode-de-john-locke-suite
+   :END:
+
+[[file:img/MethodeLocke2.jpg]]
+
+#+BEGIN_COMMENT
+Nous voyons maintenant notre index. Il est situé en fin de cahier, même
+si Locke recommande de le placer au début, parce-que je ne l'avais pas
+planifié comme je viens de l'expliquer.
+
+L'idée est de référencer les mots clé du cahier en se basant sur leur
+première lettre et sur la première voyelle suivant la première lettre.
+
+L'index est ainsi décomposé en 26 entrées principales, les lettres
+capitales de A à R visibles sur les deux pages, et chaque entrée
+principale est elle-même subdivisée suivant les 5 voyelles les plus
+courantes (par convention le y sera alors classé avec le i).
+
+Les pages 86 et 87 que nous venons de voir comportaient le mot clé
+=code= et nous voyons qu'elles figurent sur la ligne =Co=, elle
+comportaient le mot clé =neurone= et elles figurent également sur la
+ligne =Ne= ; enfin elle comportaient le mot clé =calcium= et figurent
+donc sur la ligne =Ca=.
+
+Si besoin, on peut aussi lister les mots clé avant ou après l'index
+lorsque le cahier est fini.
+#+END_COMMENT
+
+** Conclusions
+   :PROPERTIES:
+   :CUSTOM_ID: conclusions
+   :END:
+
+- Comme il est rarement possible de se passer complètement d'un support
+  papier, apprendre de nos brillants prédécesseurs devrait nous
+  permettre de ne pas « réinventer la roue »
+- Clairement nous avons néanmoins intérêt à utiliser autant que possible
+  un support numérique pour profiter (en nous inspirant de ces mêmes
+  prédécesseurs) :
+
+  - d'une plus grande flexibilité d'organisation, de réorganisation et
+    de structuration
+  - d'outils d'archivage fiables
+  - d'outils d'indexation puissants.
+
+* M1-S3: Du fichier texte au langage de balisage léger
+  :PROPERTIES:
+  :CUSTOM_ID: c028al-w1-s3
+  :END:
+
+** 1. Cahier de notes / cahier de laboratoire
+   :PROPERTIES:
+   :CUSTOM_ID: cahier-de-notes-cahier-de-laboratoire-2
+   :END:
+
+1. Nous utilisons tous des cahiers de notes
+2. Un aperçu historique de la prise de notes
+3. *Du fichier texte au langage de balisage léger*
+   - Démonstration : markdown
+4. Pérennité et évolutivité des notes avec la gestion de version
+   - Démonstration : gitlab
+5. Les étiquettes et les logiciels d'indexation pour s'y retrouver
+   - Démonstration : DocFetcher
+
+#+BEGIN_COMMENT
+
+Nous commençons à présent une discussion plus « technique » dirigée
+principalement vers les outils que l'informatique met à notre
+disposition pour prendre des notes avec les notions de « fichier texte »
+et de « langage de balisage léger ».
+#+END_COMMENT
+
+** Qu'est-ce qu'un fichier texte ?
+   :PROPERTIES:
+   :CUSTOM_ID: quest-ce-quun-fichier-texte
+   :END:
+
+- De façon pratique, un
+  « [[https://fr.wikipedia.org/wiki/Fichier_texte][fichier texte]] »
+  /donne quelque chose de lisible/ lorsqu'il est ouvert avec un
+  [[https://fr.wikipedia.org/wiki/%C3%89diteur_de_texte][éditeur de
+  texte]].
+- Un « éditeur de texte » permet de créer et de modifier des fichiers
+  textes (belle définition circulaire !) :
+
+  - [[https://notepad-plus-plus.org/][Notepad++]] pour =Windows=
+  - [[https://wiki.gnome.org/Apps/Gedit][gedit]] pour les systèmes
+    =Unix / Linux= (mais pas seulement)
+  - [[https://en.wikipedia.org/wiki/TextEdit][TextEdit]] pour les
+    =MacOS=.
+
+#+BEGIN_COMMENT
+
+Nous ne citons ici, délibérément, que des logiciels libres (il est
+difficile de faire de la recherche vraiment reproductible avec des
+logiciels non libres).
+
+Un logiciel de
+« [[https://fr.wikipedia.org/wiki/Traitement_de_texte][traitement de
+texte]] » est plus sophistiqué qu'un simple éditeur de texte ; il permet
+de faire plus, ce qui sous entend qu'il peut aussi ouvrir et manipuler
+des fichiers textes.
+
+*Attention* : le format « natif » des traitements de texte est rarement
+un format texte. Les fichiers =doc= et =docx= de =Word= et =odt= de
+=LibreOffice= /ne sont pas des fichiers textes/.
+#+END_COMMENT
+
+** Un fichier « non lisible » avec un éditeur de texte
+   :PROPERTIES:
+   :CUSTOM_ID: un-fichier-non-lisible-avec-un-éditeur-de-texte
+   :END:
+
+[[file:img/Exemple_Fichier_Binaire.png]]
+
+Un fichier =PDF= ouvert avec =gedit=
+
+** Un fichier « texte » ouvert avec un éditeur de texte
+   :PROPERTIES:
+   :CUSTOM_ID: un-fichier-texte-ouvert-avec-un-éditeur-de-texte
+   :END:
+
+[[file:img/Exemple_Fichier_Texte.png]]
+
+** Pourquoi utiliser des fichiers texte ?
+   :PROPERTIES:
+   :CUSTOM_ID: pourquoi-utiliser-des-fichiers-texte
+   :END:
+
+Les caractères contenus dans le fichier texte sont typiquement codés en
+[[https://fr.wikipedia.org/wiki/UTF-8][UTF-8]] (/Universal Character Set
+Transformation Format - 8 bits/).
+
+*Cela implique que* :
+
+- il est /toujours possible/ de les lire avec un éditeur de texte /même
+  des années plus tard/
+- les logiciels d'indexation ou de
+  « [[https://en.wikipedia.org/wiki/Desktop_search][recherche de
+  bureau]] », comme les logiciels de
+  [[https://fr.wikipedia.org/wiki/Gestion_de_versions][gestion de
+  versions]], les exploitent pleinement.
+
+*Conclusion : choisissez le format texte (UTF-8)*.
+
+** Problème du fichier texte « simple »
+   :PROPERTIES:
+   :CUSTOM_ID: problème-du-fichier-texte-simple
+   :END:
+
+- Avec un fichier texte « simple » il n'est pas possible de profiter des
+  outils de navigation comme les hyperliens.
+- De même, il n'est pas possible de mettre en évidence un mot ou un
+  groupe de mots avec une police *grasse* ou une police /italique/.
+- Si plusieurs personnes travaillent sur un même texte, elles ne peuvent
+  se corriger en +barrant+ des mots.
+
+** Un fichier =HTML= visualisé avec un navigateur
+   :PROPERTIES:
+   :CUSTOM_ID: un-fichier-html-visualisé-avec-un-navigateur
+   :END:
+
+
+[[file:img/Exemple_Rendu_HTML.png]]
+
+#+BEGIN_COMMENT
+
+Ces limitations, combinées aux avantages des fichiers textes, ont
+amenées les informaticiens à développer des
+[[https://fr.wikipedia.org/wiki/Langage_de_balisage][langages de
+balisages]] (/Markup Language/ en anglais).
+
+Un exemple banale est le
+[[https://fr.wikipedia.org/wiki/Hypertext_Markup_Language][langageHTML]].
+#+END_COMMENT
+
+** Un fichier =HTML= visualisé avec un éditeur de texte
+   :PROPERTIES:
+   :CUSTOM_ID: un-fichier-html-visualisé-avec-un-éditeur-de-texte
+   :END:
+
+[[file:img/Exemple_Source_HTML.png]]
+
+#+BEGIN_COMMENT
+
+Ces langages définissent une collection de balises qui ne sont pas
+(typiquement) destinées à être lues par un humain, mais à être
+interprétées par un logiciel.
+
+Retrouvons le texte du début de la page précédente : « En informatique
+les langages de balisage... ».
+
+Remarquez la syntaxe qui permet d'introduire un commentaire dans le
+fichier source. Un commentaire est un élément de texte qui ne sera pas
+interprété par le logiciel de visualisation.
+#+END_COMMENT
+
+** 
+Le problème se résume ainsi :
+
+- Fichiers texte attractifs pour la prise de notes.
+- Langages de balisages $\Rightarrow$ meilleur confort de lecture des fichiers /avec
+  logiciel « de rendu »/.
+- Langages de balisages $\Rightarrow$ fichiers source au format texte, *mais*
+  nécessitent éditeurs spécialisés.
+
+Peut-on combiner la légèreté des fichiers textes « simples » avec le
+confort de lecture offert par les langages de balisage ?
+
+#+BEGIN_COMMENT
+
+Le problème se résume ainsi :
+
+- Les fichiers textes sont très attractifs pour la prise de notes.
+- Les langages de balisages comme l'=HTML= nous permettent d'améliorer
+  considérablement le confort de lecture de nos fichiers /à condition
+  d'utiliser un logiciel « de rendu » adapté/.
+- Les langages de balisages comme l'=HTML= génèrent des fichiers sources
+  au format texte, mais avec lesquels il est difficile (pénible) de
+  travailler et nécessitent des éditeurs spécialisés -- ce qui ralentit
+  l'écriture des notes --.
+
+Peut-on combiner la légèreté des fichiers textes « simples » avec le
+confort de lecture offert par les langages de balisage ?
+#+END_COMMENT
+
+** Langage de balisage léger : l'idée
+   :PROPERTIES:
+   :CUSTOM_ID: langage-de-balisage-léger-lidée
+   :END:
+
+Un [[https://fr.wikipedia.org/wiki/Langage_de_balisage_l%C3%A9ger][langage de balisage léger]] est :
+
+- un type de langage de balisage utilisant une /syntaxe simple/
+- conçu pour qu'un fichier en ce langage soit /aisé à saisir/ avec un
+  éditeur de texte simple
+- /facile à lire dans sa forme non formatée/, c'est-à-dire sans logiciel
+  dédié comme un navigateur internet.
+
+** L'exemple de =Markdown=
+   :PROPERTIES:
+   :CUSTOM_ID: lexemple-de-markdown
+   :END:
+
+[[file:img/Exemple_Markdown.png]]
+
+Markdown source (en haut) et sortie HTML (en bas)
+
+#+BEGIN_COMMENT
+
+Markdown nous permet aussi de structurer facilement nos notes avec des
+sections, sous-sections, etc.
+
+Les hyperliens peuvent être aussi bien avoir des cibles externes, comme
+illustré ici, qu'interne.
+
+Il est possible d'inclure des commentaires.
+#+END_COMMENT
+
+** =Markdown= n'est pas le seul langage de balisage léger disponible
+   :PROPERTIES:
+   :CUSTOM_ID: markdown-nest-pas-le-seul-langage-de-balisage-léger-disponible
+   :END:
+
+- Le plus communément employé est [[https://fr.wikipedia.org/wiki/Wikitexte][Wikitexte]] de Wikipédia
+- [[http://www.methods.co.nz/asciidoc/][AsciiDoc]] a de nombreux adeptes
+- [[http://docutils.sourceforge.net/docs/user/rst/quickstart.html][ReStructuredText]] est très employé par la communauté des programmeurs =Python=
+- Il y en a bien d'autres.
+
+** Conclusions
+   :PROPERTIES:
+   :CUSTOM_ID: conclusions-1
+   :END:
+
+Les langages de balisage léger vont nous permettre de :
+
+- travailler avec des fichiers textes
+- écrire rapidement nos notes, avec n'importe quel éditeur, grâce à leur
+  syntaxe simplifiée
+- organiser nos notes en les structurant.
+
+#+BEGIN_COMMENT
+
+Dans la partie approfondissements, nous montrons :
+
+- comment obtenir n'importe quel format « de sortie » (=HTML=, =PDF=,
+  =docx=, =Wikitexte=) à partir d'un seul « fichier source » au format
+  =Markdown= ;
+- que le langage de balisage léger choisi importe peu puisque nous
+  disposons d'un outil pour convertir l'un dans n'importe quel autre.
+#+END_COMMENT
+
+* M1-S4: Pérennité et évolutivité des notes avec la gestion de version
+   :PROPERTIES:
+   :CUSTOM_ID: c028al-w1-s4
+   :END:
+
+** 1. Cahier de notes / cahier de laboratoire
+   :PROPERTIES:
+   :CUSTOM_ID: cahier-de-notes-cahier-de-laboratoire-3
+   :END:
+
+1. Nous utilisons tous des cahiers de notes
+2. Un aperçu historique de la prise de notes
+3. Du fichier texte au langage de balisage léger
+   - Démonstration : markdown
+4. *Pérennité et évolutivité des notes avec la gestion de version*
+   - Démonstration : gitlab
+5. Les étiquettes et les logiciels d'indexation pour s'y retrouver
+   - Démonstration : DocFetcher
+
+#+BEGIN_COMMENT
+
+Nous allons maintenant discuter de la façon dont l'informatique nous
+permet de conserver nos notes de façon « sûr » tout en nous permettant
+de les faire évoluer.
+
+Les outils dont nous allons parler concernent encore une fois une
+communauté beaucoup plus large que celle de la « recherche
+reproductible ». Toute personne amenée à « travailler » son texte s'y
+trouve confrontée, cela d'autant plus que la rédaction est de plus en
+plus effectuée en commun.
+
+La problème de la pérennité des notes et des textes ne constitue en rien
+une nouveauté.
+
+Pour les humanistes et les savants du début de l'ère moderne qui se
+spécialisaient dans la compilation de textes, elle était une véritable
+obsession et la justification de leur travail.
+
+La solution qu'ils préconisaient alors, la copie multiple, est identique
+à celle que nous employons aujourd'hui, seul le support à changer.
+
+Restons modestes, le support papier des humanistes a démontré sa
+capacité à résister à l'épreuve du temps.
+
+Par contre, en ce qui concerne l'évolutivité, nous avons quelques
+raisons de penser que nos outils modernes constituent un véritable
+progrès.
+#+END_COMMENT
+
+** L'évolutivité avec un support papier
+   :PROPERTIES:
+   :CUSTOM_ID: lévolutivité-avec-un-support-papier
+   :END:
+
+#+ATTR_LATEX: :width 1.0\textwidth
+[[file:img/Pierre_Ambroise_Choderlos_de_Laclos_Les_Liaisons_dangereuses.png]]
+
+#+BEGIN_COMMENT
+
+Ici, l'exemple du manuscrit des « Liaisons dangereuses » de Pierre
+Ambroise Choderlos de Laclos.
+
+L'auteur a apporté de nombreuses corrections à son manuscrit.
+
+On conçoit que le nombre de corrections qu'il peut ainsi apporter est
+relativement restreint.
+#+END_COMMENT
+
+** L'évolutivité avec traitement de texte
+   :PROPERTIES:
+   :CUSTOM_ID: lévolutivité-avec-traitement-de-texte
+   :END:
+
+[[file:img/LibreOffice_notes_pour_CLOM_diff_origine.png]]
+
+#+BEGIN_COMMENT
+
+Une solution qui permet de travailler lorsqu'on utilise que des fichiers
+texte est le suivi de modifications proposé par la plupart des logiciels
+de traitement de texte.
+
+Ce n'est pas la solution que nous préconisons, mais c'est certainement
+le type de « gestion de version » auquel les utilisateurs d'ordinateurs
+ont le plus de chances d'avoir été exposés.
+
+Nous prenons ici un exemple avec =LibreOffice= où nous éditons un
+fichier contenant des notes prises pour préparer ce cours.
+
+Remarquez les boutons en bas à gauche que nous faisons apparaître en
+navigant dans les menu /view/ puis /Toolbars/ avant de sélectionner
+/track changes/.
+
+- solution « facile » à mettre en œuvre
+- pas de format texte
+- faire attention à ne garder *que la dernière version* avant de
+  soumettre un article (pour les scientifiques)
+- les sauvegardes doivent être gérées séparément.
+#+END_COMMENT
+
+** L'évolutivité avec un « moteur de wiki »
+   :PROPERTIES:
+   :CUSTOM_ID: lévolutivité-avec-un-moteur-de-wiki
+   :END:
+
+[[file:img/Dokuwiki_notes_pour_CLOM.png]]
+
+#+BEGIN_COMMENT
+
+Une solution plus proche de l'esprit de ce cours est l'emploi d'un
+/wiki/ pour gérer ses notes.
+
+Ici, j'illustre l'usage d'un wiki personnel utilisant /DokuWiki/ comme
+moteur de wiki, j'aurais aussi pu utiliser /MediaWiki/, le moteur de
+Wikipédia.
+
+/DokuWiki/ n'emploie que des fichiers texte.
+
+Je l'ai appris lors de la préparation de ce cours, ce qui signifie qu'il
+est assez simple à utiliser.
+
+Encore une fois, les notes prises en préparation du cours sont utilisées
+pour illustration.
+#+END_COMMENT
+
+** 
+[[file:img/Dokuwiki_notes_pour_CLOM_historique2.png]]
+
+#+BEGIN_COMMENT
+Si je clique sur « Derniers changements », alors je vois apparaître la
+liste des pages de mon wiki avec les dates des dernières modifications.
+Si maintenant je clique sur le nom de l'une des pages...
+#+END_COMMENT
+
+** 
+[[file:img/Dokuwiki_notes_pour_CLOM_diff.png]]
+
+#+BEGIN_COMMENT
+
+Je vois apparaître la différence entre la dernière version, à gauche, et
+la version présente à droite.
+
+Commenter plus...
+
+Vous avez accès à des informations du même type sur n'importe quelle
+page wikipédia.
+#+END_COMMENT
+
+** Avantages et inconvénients
+   :PROPERTIES:
+   :CUSTOM_ID: avantages-et-inconvénients
+   :END:
+
+- solution qui a fait ses preuves, en particulier dans un cadre
+  collaboratif
+- format texte (avec =DokuWiki=)
+- ne permet de modifier qu'une seule page à la fois
+
+** L'évolutivité avec la gestion de version
+   :PROPERTIES:
+   :CUSTOM_ID: lévolutivité-avec-la-gestion-de-version
+   :END:
+
+[[file:img/Github_Module1.png]]
+
+#+BEGIN_COMMENT
+
+Je présente maintenant la solution la plus sophistiquée à ce jour.
+
+Ici, un logiciel spécifique, /git/ est employé pour gérer les versions
+successives d'un ensemble de fichiers de nature disparate (des fichiers
+textes, des images, etc). En fait des arborescence de fichiers peuvent
+être gérées par ce logiciel.
+
+Les logiciels comme /git/ nécessite la création d'un dépôt, qui peut
+être la machine de l'utilisateur, mais qui est en général hébergé sur un
+site internet dédié comme ici /GitHub/.
+
+Le dépôt va permettre à différentes personnes de travailler sur le même
+« projet ». Elles vont échanger leur modifications via le dépôt. *Elles
+auront néanmoins toutes une copie complète de ce dernier* (datant de
+leur dernière « synchronisation »).
+
+Des nombreux instituts de recherche fournissent maintenant de tels
+dépôts aux laboratoires qui leurs sont rattachés.
+
+Les utilisateurs peuvent alors souvent employer une interface graphique
+pour naviguer dans leurs dépôts, revenir sur des version antérieures,
+faire des comparaisons, des recherches, etc.
+
+Nous voyons ici l'interface fourni par /GitHub/ et nous visualisons un
+état antérieur du fichier source de cette présentation.
+
+Vous pouvez tous vous connectez à /Github/, aller sur le dépôt que nous
+avons utilisé pour préparer le cours, et refaire ce qui est montré dans
+les quelques diapos qui suivent.
+
+Si je clique sur le bouton /History/, je vois...
+#+END_COMMENT
+
+** 
+[[file:img/Github_Module1_historique.png]]
+
+#+BEGIN_COMMENT
+
+Encore une fois, la liste des modifications apportées au fichier avec le
+nom de la personne ayant effectué ces modifications et les dates
+associées.
+
+Si maintenant je clique sur le numéro 5a2951f, je vois...
+#+END_COMMENT
+
+** 
+[[file:img/Github_Module1_diff.png]]
+
+#+BEGIN_COMMENT
+
+Les différences entre la version précédente et la version identifiée par
+le numéro sur lequel j'ai cliqué.
+
+Commentez...
+#+END_COMMENT
+
+** 
+[[file:img/Git_diff_mixte.png]]
+
+#+BEGIN_COMMENT
+
+Lorsque plusieurs fichiers ont été modifiés, comme ici où un fichier
+image a été rajouté et un fichier texte a été modifié, l'ensemble des
+modifications est visible et accessible.
+#+END_COMMENT
+
+** Avantages et inconvénients
+   :PROPERTIES:
+   :CUSTOM_ID: avantages-et-inconvénients-1
+   :END:
+
+- Solution sophistiquée (donc un peu plus difficile à maîtriser que les
+  précédentes)
+- Solution qui a fait ses preuves, en particulier dans un cadre
+  collaboratif sur de grands projets (noyau Linux)
+- Permet d'enregistrer des modifications sur plusieurs fichiers à la
+  fois
+- Une sauvegarde centralisée dont tous les membres du projet ont une
+  copie intégrale
+
+#+BEGIN_COMMENT
+
+Dans la partie approfondissements, nous rentrerons un peu plus dans les
+aspects concrets de l'utilisation de =git=.
+
+=git= devient de fait le standard de la gestion de version bien au-delà
+des projets purement logiciels, cela vaut donc la peine de faire un
+petit effort pour en maîtriser les rudiments.
+
+Quelque soit la stratégie de gestion de version employée, le retour en
+arrière est possible, mais lors des premières tentatives il vous faudra
+faire preuve de calme et de patience !
+#+END_COMMENT
+
+* M1-S5: Les étiquettes et les logiciels d'indexation pour s'y retrouver
+   :PROPERTIES:
+   :CUSTOM_ID: c028al-w1-s5
+   :END:
+
+** 1. Cahier de notes / cahier de laboratoire
+   :PROPERTIES:
+   :CUSTOM_ID: cahier-de-notes-cahier-de-laboratoire-4
+   :END:
+
+1. Nous utilisons tous des cahiers de notes
+2. Un aperçu historique de la prise de notes
+3. Du fichier texte au langage de balisage léger
+   - Démonstration : markdown
+4. Pérennité et évolutivité des notes avec la gestion de version
+   - Démonstration : gitlab
+5. *Les étiquettes et les logiciels d'indexation pour s'y retrouver*
+   - Démonstration : DocFetcher
+
+#+BEGIN_COMMENT
+
+Nous revenons ici sur le problème de l'indexation, pas tant sur
+l'indexation d'un document unique que sur l'indexation de documents
+multiples dans des formats divers.
+
+- comme nous l'avons déjà affirmé, prendre des notes abondantes et
+  détaillées n'est utile que si nous pouvons retrouver les informations
+  qu'elles contiennent quand nous en avons besoin
+- pour des notes contenues dans un seul fichier texte, la fonction de
+  recherche de notre éditeur favori nous permet généralement d'aller
+  assez loin
+- pour des notes manuscrites contenues dans un cahier, la méthode de
+  Locke --- que nous avons exposée dans notre deuxième séquence --- et
+  qui repose sur des mots clé ou étiquettes, donne de bons résultats
+- les notes manuscrites sur fiches sont généralement stockées dans un
+  meuble dont la structure matérialise un index --- comme l'armoire de
+  Placcius et Leibniz ---
+#+END_COMMENT
+
+** Ainsi parlait Leibniz
+   :PROPERTIES:
+   :CUSTOM_ID: ainsi-parlait-leibniz
+   :END:
+
+« Il me semble que l'apparat savant contemporain est comparable à un
+grand magasin qui contient une grande quantité de produits, stockés de
+façon totalement désordonnée, mélangée ; où les nombres ou lettres
+d'indexation manquent ; où les inventaires et livres de comptes pouvant
+aider à ordonner le contenu ont disparu.
+
+Plus grande est la quantité d'objets amassés, plus petite est leur
+utilité. Ainsi, ne devrions nous pas seulement essayer de rassembler de
+nouveaux objets de toutes provenances, mais nous devrions aussi essayer
+d'ordonner ceux que nous avons déjà. »
+
+#+BEGIN_COMMENT
+
+J'emploie ici le terme
+d'« [[https://fr.wikipedia.org/wiki/Apparat_savant][apparat savant]] »
+qui est un terme technique de l'édition désignant : citations,
+références et sources, notes en bas de pages, introduction, texte en
+langue originale (en parallèle avec la traduction), commentaire
+historique ou philologique, index fontium (les sources), index locorum
+(références avec renvoi à la page où le passage est cité ou mentionné,
+par ex. : Évangile selon Marc 1, 1 : p. 100), index nominum (les noms
+propres), index rerum (les thèmes), etc.
+
+#+BEGIN_EXAMPLE
+     "It seems to me that the apparatus of contemporary scholarship is comparable to a very large store which, though it keeps a great variety of goods, yet is totally confused and in disorder, because all items are mixed up, because no numbers or letters of an index are displayed, and because inventories or account ledgers which could throw some light on the matter are missing.
+
+     "The larger the mass of collected things, the less will be their usefulness. Therefore, one should not only strive to assemble new goods from everywhere, but one must endeavor to put in the right order those that one already possesses."
+#+END_EXAMPLE
+
+http://www.backwordsindexing.com/index.html
+#+END_COMMENT
+
+** S'y retrouver dans un fichier texte
+   :PROPERTIES:
+   :CUSTOM_ID: sy-retrouver-dans-un-fichier-texte
+   :END:
+
+[[file:img/recherche-avec-editeur.png]]
+
+** S'y retrouver dans un cahier
+   :PROPERTIES:
+   :CUSTOM_ID: sy-retrouver-dans-un-cahier
+   :END:
+
+[[file:img/IndexCahierLocke.jpg]]
+
+** S'y retrouver dans des « fiches »
+   :PROPERTIES:
+   :CUSTOM_ID: sy-retrouver-dans-des-fiches
+   :END:
+
+[[file:img/Placcius_cabinet_TabIV.png]]
+
+** Problèmes, limitations, solutions ?
+   :PROPERTIES:
+   :CUSTOM_ID: problèmes-limitations-solutions
+   :END:
+
+
+- Un seul document
+- Indexation de fichiers numériques
+- Étiquetage de fichiers numériques au sens large
+- Moteur de recherche pour indexation et recherche globale
+
+#+BEGIN_COMMENT
+
+- les techniques que nous venons de voir ou revoir ne fonctionnent que
+  pour un seul « document » --- recherche avec l'éditeur de texte, index
+  d'un cahier --- et/ou pour un seul type de document
+- les outils informatiques dont nous disposons nous permettent d'aller
+  plus loin dans l'indexation des fichiers numériques
+- il est possible de rajouter des étiquettes ou mots-clés à des fichiers
+  textes comme à des fichiers images (=jpg=, =png=) ou des fichiers
+  « mixtes » (=pdf=) grâce aux métadonnées qu'ils contiennent
+- les moteurs de recherche de bureau permettent d'indexer l'ensemble des
+  fichiers textes d'une arborescence donnée mais aussi les métadonnées
+  des autres fichiers
+#+END_COMMENT
+
+** Trouver un mot quelconque avec un moteur de recherche de bureau (=DocFetcher=)
+   :PROPERTIES:
+   :CUSTOM_ID: trouver-un-mot-quelconque-avec-un-moteur-de-recherche-de-bureau-docfetcher
+   :END:
+
+[[file:img/Trouver_un_mot_avec_DocFetcher.png]]
+
+** Le problème de l'« abondance »
+   :PROPERTIES:
+   :CUSTOM_ID: le-problème-de-labondance
+   :END:
+
+[[file:img/Trouver_calcium_avec_DocFetcher.png]]
+
+** Ajouter des étiquettes ou mots clés dans un fichier texte (=Markdown=)
+   :PROPERTIES:
+   :CUSTOM_ID: ajouter-des-étiquettes-ou-mots-clés-dans-un-fichier-texte-markdown
+   :END:
+
+[[file:img/Ajout_etiquette_avec_Markdown.png]]
+
+** Trouver une étiquette avec un moteur de recherche de bureau (=DocFetcher=)
+   :PROPERTIES:
+   :CUSTOM_ID: trouver-une-étiquette-avec-un-moteur-de-recherche-de-bureau-docfetcher
+   :END:
+
+[[file:img/Trouver_etiquette_avec_DocFetcher.png]]
+
+** Les fichiers images contiennent des métadonnées
+   :PROPERTIES:
+   :CUSTOM_ID: les-fichiers-images-contiennent-des-métadonnées
+   :END:
+
+[[file:img/Metadonne_fichier_index.jpg]]
+
+** Les métadonnées peuvent être modifiées
+   :PROPERTIES:
+   :CUSTOM_ID: les-métadonnées-peuvent-être-modifiées
+   :END:
+
+[[file:img/Metadonne_fichier_index2.jpg]]
+
+** Les moteurs de recherche de bureau peuvent lire les métadonnées
+   :PROPERTIES:
+   :CUSTOM_ID: les-moteurs-de-recherche-de-bureau-peuvent-lire-les-métadonnées
+   :END:
+
+[[file:img/Trouver_etiquette_avec_DocFetcher2.jpg]]
+
+** Conclusion
+   :PROPERTIES:
+   :CUSTOM_ID: conclusion
+   :END:
+
+En combinant :
+
+- des étiquettes insérées dans nos fichiers textes, images, =PDF=, etc
+- avec un moteur de recherche de bureau
+
+nous pouvons espérer éviter le « cauchemar de Leibniz »
