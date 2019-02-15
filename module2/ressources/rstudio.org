@@ -84,9 +84,9 @@ of these documents:
 
 * Using Git from RStudio
 If you have never used git with RStudio, *we strongly advise that you
-follow [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/d132a854b0464ad29085cedaded23136][our tutorial on using git from RStudio]]* (/"RStudio et Gitlab"/
+follow [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/d132a854b0464ad29085cedaded23136][our tutorial on using git from RStudio]]* (/"RStudio et Gitlab"/
 in French). Before proceeding, make sure you also have followed the
-*[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85]["git/GitLab configuration" tutorial]]* (in French).
+*[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85]["git/GitLab configuration" tutorial]]* (in French).
 
 Alternatively, you may want to watch [[https://www.youtube.com/embed/uHYcDQDbMY8][this video]] (in English). If you
 do not like videos, you should have a look at the [[https://swcarpentry.github.io/git-novice/14-supplemental-rstudio/index.html][step-by-step
@@ -112,7 +112,7 @@ Open RStudio and do the following steps:
   [[file:rstudio_images/clone.png]]
   #+END_CENTER
 - If you're behind a proxy, git should be configured
-  accordingly. Check the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/7508aece244548349424dfd61ee3ba85]["Dealing with proxies" section]].
+  accordingly. Check the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85]["Dealing with proxies" section]].
 - Git will then connect to Gitlab and fetch a whole copy of the
   repository.
 - RStudio should restart in a mode related to Git:

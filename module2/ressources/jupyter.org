@@ -76,7 +76,7 @@ to set up your own Jupyter on your computer and benefit from these extensions.
 Since the question was asked several times, if you really need to stay
 with SAS, you should know that SAS can be used within Jupyter using
 either the [[https://sassoftware.github.io/sas_kernel/][Python SASKernel]] or the [[https://sassoftware.github.io/saspy/][Python SASPy]] package (step by step
-explanations about this are given [[https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md][here]]). 
+explanations about this are given [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md][here]]). 
 
 Since proprietary software such as SAS cannot easily be inspected, we discourage its use as it hinders reproducibility by
 essence. But perfection does not exist anyway and using Jupyter

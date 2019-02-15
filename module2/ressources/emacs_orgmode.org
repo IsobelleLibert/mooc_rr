@@ -10,10 +10,10 @@
 and /A stub of replicable article/ explain how to set up
 emacs/org-mode for this MOOC. These are very important sections in the
 context of this MOOC. *These sections are illustrated in two
-out of the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][three video tutorials of this sequence]], and* *which you
+out of the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][three video tutorials of this sequence]], and* *which you
 really should follow carefully*. *Otherwise, you may have trouble doing
 the exercises later on*. Likewise, I strongly encourage you to watch
-the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4]["emacs and git" video tutorial available at the same place]].
+the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4]["emacs and git" video tutorial available at the same place]].
 
 The next section provides information on how to install emacs.
 
@@ -164,7 +164,7 @@ M-x package-install RET htmlize RET    # where M-x means pressing the "Esc" key 
 #+END_EXAMPLE
 
 * A simple "/reproducible research/" emacs configuration 
-This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Mise en place
+This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Mise en place
 Emacs/Orgmode"/ in French). Watching it before following the
 instructions given in this section may help.
 
@@ -189,7 +189,7 @@ tar zcf rr_org_archive.tgz $FILE_LIST
 
 #+RESULTS:
 
-Then download [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/rr_org_archive.tgz][this archive]] and uncompress it. It contains the
+Then download [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/rr_org_archive.tgz][this archive]] and uncompress it. It contains the
 following files and we will refer to them in the following:
 
 #+begin_src shell :results output :exports results
@@ -257,7 +257,7 @@ stored in a version control system like git. We leave it up to you
 to set this up but if you have any trouble, feel free to ask on the
 FUN forums.
 * A stub of a replicable article
-This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Écrire un article
+This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Écrire un article
 réplicable avec Emacs/Orgmode"/ in French). Watching it before
 following the instructions given in this section may help.
 
@@ -274,11 +274,11 @@ make -C replicable_article/ all ../replicable_article.tgz
 
 #+RESULTS:
 
-Download the following [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/replicable_article.tgz][archive]], uncompress it and simply =make= to generate the
+Download the following [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/replicable_article.tgz][archive]], uncompress it and simply =make= to generate the
 article. You should then be able to open the [[https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/blob/master/module2/ressources/replicable_article/article.pdf][resulting article]]. This
 is summarized in the following command:
 #+begin_src sh :results output :exports both
-wget --no-check-certificate -O replicable_article.tgz https://app-learninglab.inria.fr/gitlab/learning-lab/mooc-rr-ressources/raw/master/module2/ressources/replicable_article.tgz
+wget --no-check-certificate -O replicable_article.tgz https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/replicable_article.tgz
 tar zxf replicable_article.tgz; cd replicable_article; make ; evince article.pdf
 #+end_src
 
@@ -329,7 +329,7 @@ feel this is needed, you should follow the instructions from the
 official Web page: [[http://company-mode.github.io/][http://company-mode.github.io/]]
 *** Magit
 [[https://magit.vc/][Magit]] is an Emacs interface for Git. Its usage is briefly illustrated
-in the context of this MOOC in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] 
+in the context of this MOOC in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] 
 ("/Utilisation Emacs/git/" in French).
 
 It is very powerful and we use it on a daily basis but you should
