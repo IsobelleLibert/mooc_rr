@@ -76,7 +76,7 @@ Delta compression using up to 4 threads.
 Compressing objects: 100% (20/20), done.
 Writing objects: 100% (25/25), 7.31 KiB | 499.00 KiB/s, done.
 Total 25 (delta 11), reused 0 (delta 0)
-To ssh://app-learninglab.inria.fr:9418/learning-lab/mooc-rr-ressources.git
+To gitlab.inria.fr:learninglab/mooc-rr/mooc-rr-ressources.git
    6359f8c..1f8a567  master -> master
 #+END_EXAMPLE
 

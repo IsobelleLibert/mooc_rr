@@ -58,7 +58,7 @@ propriétaire.
 Cependant, si vous avez vraiment besoin de rester sous
 SAS, sachez que SAS peut être utilisé dans Jupyter en utilisant
 les packages Python [[https://sassoftware.github.io/saspy/][SASPy]] et [[https://sassoftware.github.io/sas_kernel/][SASKernel]] (tuto pas à pas
-[[https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md#53-le-package-python-saspy-permet-dex%C3%A9cuter-du-code-sas-dans-un-notebook-python][ici]]). L'utilisation d'une telle approche de programmation 
+[[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md#53-le-package-python-saspy-permet-dex%C3%A9cuter-du-code-sas-dans-un-notebook-python][ici]]). L'utilisation d'une telle approche de programmation 
 alphabète alliée à un contrôle systématique de la version et de
 l'environnement est un plus. Des solutions similaires existent pour de
 nombreux langages ([[https://github.com/jupyter/jupyter/wiki/Jupyter-kernels][liste des kernels Jupyter]]).

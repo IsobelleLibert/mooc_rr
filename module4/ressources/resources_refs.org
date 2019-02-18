@@ -46,7 +46,7 @@ software.
 Yet, if you really need to stay with SAS, you should know that SAS can be used 
 within Jupyter using the [[https://sassoftware.github.io/saspy/][Python SASPy]] and the
 [[https://sassoftware.github.io/sas_kernel/][Python SASKernel]] packages (step by step explanations about this are given
-[[https://app-learninglab.inria.fr/gitlab/85bc36e0a8096c618fbd5993d1cca191/mooc-rr/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md#53-le-package-python-saspy-permet-dex%C3%A9cuter-du-code-sas-dans-un-notebook-python][here]]). Using such literate programming approach allied with systematic
+[[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md#53-le-package-python-saspy-permet-dex%C3%A9cuter-du-code-sas-dans-un-notebook-python][here]]). Using such literate programming approach allied with systematic
 version and environment control will always help. Similar solutions exist for many languages ([[https://github.com/jupyter/jupyter/wiki/Jupyter-kernels][list of Jupyter kernels]]).
 * Controlling your software environment
 As we mentioned in the video sequences, there are several solutions to
