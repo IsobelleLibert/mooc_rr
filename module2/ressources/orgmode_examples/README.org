@@ -6,6 +6,12 @@
 #+STARTUP: overview indent inlineimages logdrawer
 #+LANGUAGE:    en
 
+
+* Table of Contents                                                     :TOC:
+- [[#examples-from-the-video][Examples from the Video]]
+- [[#other-examples][Other examples]]
+
+* Examples from the Video
 In the MOOC video, I quickly demo how org-mode can be used in various
 contexts. Here are the (sometimes trimmed) corresponding
 org-files. These documents depend on many other external data files
@@ -50,6 +56,7 @@ you an idea of how it can be organized:
    org-mode made it very easy to generate both HTML and PDF and to
    explicitly explain how the measurements were done.
 
+* Other examples
 Here are a few links to other kind of examples:
 - Slides: all my slides for a series of lectures is available here:
   https://github.com/alegrand/SMPE. Here is a [[https://raw.githubusercontent.com/alegrand/SMPE/master/lectures/lecture_central_limit_theorem.org][typical source]] and the
@@ -59,4 +66,8 @@ Here are a few links to other kind of examples:
     journals/conferences: [[https://github.com/schnorr/ieeeorg][IEEE]], [[https://github.com/schnorr/wileyorg][Wiley]], [[https://github.com/schnorr/acmorg][ACM]], [[https://github.com/schnorr/llncsorg][LNCS]]
   - his lecture on programming languages for undergrads:
     https://github.com/schnorr/mlp/tree/master/conteudo
+- John Kitchin is an expert org-mode user and he maintains a very
+  interesting [[http://kitchingroup.cheme.cmu.edu/blog/][blog with many interesting tips]]. You may want to check
+  this [[https://www.youtube.com/watch?v=IsSMs-4GlT8&list=FLQp2VLAOlvq142YN3JO3y8w&app=desktop][seminar he gave at SciPy]].
+
 
