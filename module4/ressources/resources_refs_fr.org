@@ -6,6 +6,15 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
+* Table des matières                                                    :TOC:
+- [[#réflexions-sur-la-stabilité-des-langages-de-programmation][Réflexions sur la stabilité des langages de programmation]]
+- [[#contrôler-votre-environnement-logiciel][Contrôler votre environnement logiciel]]
+- [[#préservationarchivage][Préservation/Archivage]]
+- [[#workflows][Workflows]]
+- [[#problèmes-numériques-et-statistiques][Problèmes numériques et statistiques]]
+- [[#pratiques-de-publication][Pratiques de publication]]
+- [[#expérimentation][Expérimentation]]
+
 * Réflexions sur la stabilité des langages de programmation
 Comme nous l'avons expliqué, le langage de programmation utilisé dans
 une analyse a une influence évidente sur la reproductibilité de

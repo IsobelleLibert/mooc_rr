@@ -30,6 +30,18 @@ français).
 Veuillez lire attentivement toutes ces instructions, en particulier
 celle sur la "Configuration de votre mot de passe sur GitLab".
 
+* Table des matières                                           :TOC:
+- [[#installer-git][Installer Git]]
+  - [[#linux-debian-ubuntu][Linux (Debian, Ubuntu)]]
+  - [[#mac-osx-et-windows][Mac OSX et Windows]]
+- [[#configurer-git][Configurer Git]]
+  - [[#dire-à-git-qui-vous-êtes-nom-et-email][Dire à Git qui vous êtes : nom et email]]
+  - [[#gérer-les-proxy][Gérer les proxy]]
+  - [[#récupérer-votre-mot-de-passe-par-défaut-sur-gitlab-et-le-changer-éventuellement][Récupérer votre mot de passe par défaut sur GitLab (et le changer éventuellement)]]
+  - [[#enregistrer-votre-mot-de-passe-localement][Enregistrer votre mot de passe localement]]
+  - [[#optionnel-authentification-par-ssh][Optionnel : authentification par SSH]]
+- [[#utiliser-git-par-lignes-de-commandes-pour-synchroniser-vos-fichiers-locaux-avec-gitlab][Utiliser Git par lignes de commandes pour synchroniser vos fichiers locaux avec Gitlab]]
+
 * Installer Git
 ** Linux (Debian, Ubuntu)
 Nous ne fournissons ici que des instructions pour les distributions

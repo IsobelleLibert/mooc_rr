@@ -6,6 +6,15 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
+* Table of Contents                                         :TOC:
+- [[#thoughts-on-languagesoftware-stability]["Thoughts" on language/software stability]]
+- [[#controlling-your-software-environment][Controlling your software environment]]
+- [[#preservationarchiving][Preservation/Archiving]]
+- [[#workflows][Workflows]]
+- [[#numerical-and-statistical-issues][Numerical and statistical issues]]
+- [[#publication-practices][Publication practices]]
+- [[#experimentation][Experimentation]]
+
 * "Thoughts" on language/software stability
 As we explained, the programming language used in an analysis has a
 clear influence on the reproducibility of your analysis. It is not a

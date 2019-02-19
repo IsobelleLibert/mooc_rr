@@ -9,6 +9,24 @@
 
 Voici un aperçu rapide de la syntaxe Markdown repris d'une
 [[https://guides.github.com/features/mastering-markdown/][présentation de Github]] ainsi que de celles d'[[http://csrgxtu.github.io/2015/03/20/Writing-Mathematic-Fomulars-in-Markdown/][Archer Reilly]].
+* Table des matières                                        :TOC:
+- [[#syntaxe][Syntaxe]]
+  - [[#headers][Headers]]
+  - [[#emphasis][Emphasis]]
+  - [[#lists][Lists]]
+  - [[#images][Images]]
+  - [[#links][Links]]
+  - [[#blockquotes][Blockquotes]]
+  - [[#inline-code][Inline code]]
+- [[#écrire-des-maths][Écrire des Maths]]
+  - [[#lettres-grecques][Lettres grecques]]
+  -  [[#fonctions-et-opérateurs][Fonctions et opérateurs]]
+  - [[#exposants-et-indices][Exposants et indices]]
+  - [[#fractions-coefficients-binomiaux-racines-][Fractions, coefficients binomiaux, racines, ...]]
+  - [[#sommes-et-intégrales][Sommes et intégrales]]
+  - [[#déguisements][Déguisements]]
+- [[#autour-de-markdown][Autour de =markdown=]]
+
 * Syntaxe
 ** Headers
 #+BEGIN_EXAMPLE

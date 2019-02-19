@@ -5,6 +5,15 @@
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
 
+* Table des matières                                           :TOC:
+- [[#installer-rstudio][Installer RStudio]]
+  - [[#linux-debian-ubuntu][Linux (debian, ubuntu)]]
+  - [[#mac-osx-and-windows][Mac OSX and Windows]]
+- [[#documentation-rstudio][Documentation RStudio]]
+- [[#utiliser-git-avec-rstudio][Utiliser Git avec RStudio]]
+  - [[#cloner-un-dépôt][Cloner un dépôt]]
+  - [[#modifier-un-fichier][Modifier un fichier]]
+
 * Installer RStudio
 ** Linux (debian, ubuntu)
 Nous ne fournissons ici que des instructions pour les distributions

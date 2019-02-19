@@ -6,6 +6,16 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
+* Table of Contents                                                     :TOC:
+- [[#1-jupyter-tips-and-tricks][1. Jupyter tips and tricks]]
+  - [[#creating-or-importing-a-notebook][Creating or importing a notebook]]
+  - [[#running-r-and-python-in-the-same-notebook][Running R and Python in the same notebook]]
+  - [[#other-languages][Other languages]]
+- [[#2-installing-and-configuring-jupyter-on-your-computer][2. Installing and configuring Jupyter on your computer]]
+  - [[#21-installing-jupyter][2.1 Installing Jupyter]]
+  - [[#22-making-sure-jupyter-allows-you-to-use-r][2.2 Making sure Jupyter allows you to use R]]
+  - [[#23-additional-tips][2.3 Additional tips]]
+
 * 1. Jupyter tips and tricks
 The following [[https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/][webpage]] lists several Jupyter tricks (in particular, it
 illustrates many =IPython magic= commands) that should improve your

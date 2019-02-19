@@ -28,6 +28,17 @@ section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41
 
 Please read all these instructions carefully, in particular the one on
 "Configuring your password on GitLab".
+* Table of Contents                                                     :TOC:
+- [[#installing-git][Installing Git]]
+  - [[#linux-debian-ubuntu][Linux (Debian, Ubuntu)]]
+  - [[#mac-osx-and-windows][Mac OSX and Windows]]
+- [[#configuring-git][Configuring Git]]
+  - [[#telling-git-who-you-are-name-and-email][Telling Git who you are: Name and Email]]
+  - [[#dealing-with-proxies][Dealing with proxies]]
+  - [[#getting-your-default-password-on-gitlab-and-possibly-changing-it][Getting your default password on GitLab (and possibly changing it)]]
+  - [[#remembering-your-password-locally][Remembering your password locally]]
+  - [[#optional-authenticating-through-ssh][Optional: authenticating through SSH]]
+- [[#using-git-through-the-command-line-to-synchronize-your-local-files-with-gitlab][Using Git through the command line to synchronize your local files with Gitlab]]
 
 * Installing Git
 ** Linux (Debian, Ubuntu)

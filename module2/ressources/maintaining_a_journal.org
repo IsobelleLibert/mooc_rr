@@ -6,6 +6,13 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
+* Table of Contents                                                     :TOC:
+- [[#some-examples-of-labbooks-provided-for-inspiration][Some examples of LabBooks provided for inspiration]]
+- [[#how-to-report-efficiently-by-martin-quinson][How to report efficiently (by Martin Quinson)]]
+  - [[#reporting][Reporting]]
+  - [[#reporting-logistics][Reporting Logistics]]
+  - [[#reporting-document-organization][Reporting Document Organization]]
+
 * Some examples of LabBooks provided for inspiration
 Since a few years, we systematically require any or our students to
 have a laboratory notebook in org-mode. Most of the time, they start
