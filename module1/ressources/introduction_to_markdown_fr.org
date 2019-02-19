@@ -1,6 +1,5 @@
 # -*- mode: org -*-
 #+TITLE:     Introduction à Markdown
-#+AUTHOR:    Arnaud Legrand
 #+DATE: June, 2018
 #+LANG:    fr
 #+STARTUP: overview indent

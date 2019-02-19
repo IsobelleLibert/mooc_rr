@@ -1,6 +1,5 @@
 # -*- mode: org -*-
 #+TITLE:     Maintaining a journal
-#+AUTHOR:    Arnaud Legrand
 #+DATE: June, 2018
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
