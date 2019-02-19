@@ -1,3 +1,9 @@
+---
+TITLE:     Emacs/org-mode
+AUTHOR:    Arnaud Legrand
+DATE: June, 2018
+---
+
 **Disclaimer:** The two sections *A simple "reproducible research" emacs configuration* and *A stub of replicable article* explain how to set up emacs/org-mode for this MOOC. These are very important sections in the context of this MOOC. **These sections are illustrated in two out of the [three video tutorials of this sequence](https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4), and** **which you really should follow carefully**. **Otherwise, you may have trouble doing the exercises later on**. Likewise, I strongly encourage you to watch the ["emacs and git" video tutorial available at the same place](https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4).
 
 The next section provides information on how to install emacs.
@@ -301,4 +307,3 @@ Other resources
 
 -   [The compact Org-mode Guide](https://orgmode.org/orgguide.pdf)
 -   [Many examples illustrating the use of different languages in org-mode](https://github.com/dfeich/org-babel-examples)
-
