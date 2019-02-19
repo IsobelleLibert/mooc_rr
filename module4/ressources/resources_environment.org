@@ -6,6 +6,19 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
+* Table of Contents                                                     :TOC:
+- [[#getting-information-about-your-git-repository][Getting information about your Git repository]]
+- [[#getting-information-about-python3-libraries][Getting information about Python(3) libraries]]
+  - [[#getting-information-about-your-system][Getting information about your system]]
+  - [[#getting-the-list-of-installed-packages-and-their-version][Getting the list of installed packages and their version]]
+  - [[#how-to-list-imported-modules][How to list imported modules?]]
+  - [[#saving-and-restoring-an-environment-with-pip][Saving and restoring an environment with pip]]
+  - [[#installing-a-new-package-or-a-specific-version][Installing a new package or a specific version]]
+- [[#getting-information-about-r-libraries][Getting information about R libraries]]
+  - [[#getting-the-list-imported-modules-and-their-version][Getting the list imported modules and their version]]
+  - [[#getting-the-list-of-installed-packages-and-their-version-1][Getting the list of installed packages and their version]]
+  - [[#installing-a-new-package-or-a-specific-version-1][Installing a new package or a specific version]]
+
 * Getting information about your Git repository
 When taking notes, it may be difficult to remember which version of
 the code or of a file was used. This is what version control is useful

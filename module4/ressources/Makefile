@@ -1,15 +1,4 @@
-all: resources_refs.html resources_environment.html exo1.html exo2.html exo3.html
+all: resources_refs.md resources_environment.md resources_refs_fr.md resources_environment_fr.md # exo1.html exo2.html exo3.html
 
-NLINES=10000000
+include ../../Makefile.ressources
 
-%.html: %.org
-	emacs -batch $^  --funcall org-html-export-to-html
-	sed -i -e 's/<pre /<pre style="padding-left: 30px; background-color: #f6f8fa;" /g' \
-	       -e 's/<li>/<li style="margin-bottom:0;">/g' \
-	       -e 's/<ul>/<ul style="margin:0 0;">/g' $@
-	mv $@ $@.bak
-	html_png_inliner.pl < $@.bak | grep -A $(NLINES) -e '<body>' | grep -B $(NLINES) -e '<div id="postamble" class="status">' | grep -v -e '<body>' -e '<div id="postamble" class="status">' > $@
-	rm $@.bak
-
-clean:
-	rm -f *~

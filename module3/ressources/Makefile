@@ -1,3 +1,3 @@
-all: introduction_to_markdown.md
+all:
 
 include ../../Makefile.ressources

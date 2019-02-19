@@ -6,10 +6,18 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-* Table des matières
-- Obtenir des informations sur votre dépôt Git
-- Obtenir des informations sur les librairies Python 3
-- Obtenir des informations sur les packages R
+* Table des matières                                                    :TOC:
+- [[#obtenir-des-informations-sur-votre-dépôt-git][Obtenir des informations sur votre dépôt Git]]
+- [[#obtenir-des-informations-sur-les-librairies-python-3][Obtenir des informations sur les librairies Python 3]]
+  - [[#obtenir-des-informations-sur-votre-système][Obtenir des informations sur votre système]]
+  - [[#lister-les-packages-installés-et-leur-version][Lister les packages installés et leur version]]
+  - [[#lister-les-packages-importés-chargés-dans-une-session-python-et-leur-version][Lister les packages importés (chargés dans une session Python) et leur version]]
+  - [[#sauvegarder-et-restaurer-un-environnement-avec-pip][Sauvegarder et restaurer un environnement avec pip]]
+  - [[#installer-un-nouveau-package-ou-une-version-spécifique][Installer un nouveau package ou une version spécifique]]
+- [[#obtenir-des-informations-sur-les-packages-r][Obtenir des informations sur les packages R]]
+  - [[#lister-les-packages-installés-et-leur-version-1][Lister les packages installés et leur version]]
+  - [[#lister-les-packages-importés-chargés-dans-une-session-r-et-leur-version][Lister les packages importés (chargés dans une session R) et leur version]]
+  - [[#installer-un-nouveau-package-ou-une-version-spécifique-1][Installer un nouveau package ou une version spécifique]]
 
 * Obtenir des informations sur votre dépôt Git
 Lorsqu'on prend des notes, il peut être difficile de se rappeler
