@@ -1,6 +1,6 @@
 
 %.md: %.org
-	chmod a+w $@
+	rm -f $@
 	LANG=C ; pandoc -s  -f org -t markdown_github -o $@ $^
 	mv $@ $@.bak
 	echo '---' > $@
