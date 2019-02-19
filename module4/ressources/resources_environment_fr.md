@@ -1,7 +1,6 @@
 ---
 TITLE:     Informations sur l'environnement
-AUTHOR:    Arnaud Legrand
-Date:   Tue Feb 19 15:28:06 2019 
+Date:   Tue Feb 19 19:19:03 2019 
 ---
 
 Table des matières<span class="tag" data-tag-name="TOC"></span>

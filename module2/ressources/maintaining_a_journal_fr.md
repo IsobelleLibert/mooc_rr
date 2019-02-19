@@ -1,7 +1,6 @@
 ---
 TITLE:     FIXME Maintaining a journal
-AUTHOR:    Arnaud Legrand
-Date:   Tue Feb 19 17:43:42 2019 
+Date:   Tue Feb 19 19:19:03 2019 
 ---
 
 Table of Contents<span class="tag" data-tag-name="TOC"></span>

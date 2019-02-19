@@ -1,7 +1,6 @@
 ---
 TITLE:     Git and GitLab
-AUTHOR:    Arnaud Legrand
-Date:   Tue Feb 19 15:42:13 2019 
+Date:   Tue Feb 19 19:19:03 2019 
 ---
 
 **This document is particularly important if you follow the RStudio or the Org-Mode path.** **If you follow the Jupyter path, it can be ignored at first** **as we have closely integrated Jupyter and GitLab in the context of this MOOC.**

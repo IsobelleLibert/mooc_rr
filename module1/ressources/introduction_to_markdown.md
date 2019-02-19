@@ -1,7 +1,6 @@
 ---
 TITLE:     FIXME Introduction à Markdown
-AUTHOR:    Arnaud Legrand
-Date:   Tue Feb 19 15:57:06 2019 
+Date:   Tue Feb 19 19:19:03 2019 
 ---
 
 Voici un aperçu rapide de la syntaxe Markdown repris d'une [présentation de Github](https://guides.github.com/features/mastering-markdown/) ainsi que de celles d'[Archer Reilly](http://csrgxtu.github.io/2015/03/20/Writing-Mathematic-Fomulars-in-Markdown/).
