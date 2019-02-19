@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # -*- mode: org -*-
 
-#+TITLE:       FIXME Document Examples
+#+TITLE:       TODO Org Document Examples
 #+AUTHOR:      Arnaud Legrand
 #+STARTUP: overview indent inlineimages logdrawer
 #+LANGUAGE:    en
