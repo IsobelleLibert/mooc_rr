@@ -1,7 +1,14 @@
 
 %.md: %.org
 	chmod a+w $@
-	pandoc -f org -t markdown_github -o $@ $^
+	LANG=C ; pandoc -s  -f org -t markdown_github -o $@ $^
+	mv $@ $@.bak
+	echo '---' > $@
+	grep -i -e "#+TITLE:" -e "#+AUTHOR:" $^ | sed 's/#+//' >> $@ # -e "#+DATE:" ## echo "DATE:   `date '+%B %e, %Y'`" >> $@ 
+	git log $^ | grep Date | head -n 1 | sed 's/+.*//' >> $@
+	echo "---\\n" >> $@
+	cat $@.bak >> $@
+	rm $@.bak
 	chmod a-wx $@
 
 # %.html: %.org
