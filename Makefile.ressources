@@ -1,6 +1,8 @@
 
 %.md: %.org
+	chmod a+w $@
 	pandoc -f org -t markdown_github -o $@ $^
+	chmod a-wx $@
 
 # %.html: %.org
 # 	emacs -batch $^  --funcall org-html-export-to-html
