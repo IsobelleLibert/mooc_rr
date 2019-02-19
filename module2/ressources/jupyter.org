@@ -1,5 +1,5 @@
 # -*- mode: org -*-
-#+TITLE:     Jupyter
+#+TITLE:     Jupyter : tips and tricks, Installing and configuring
 #+AUTHOR:    Arnaud Legrand, Benoit Rospars, Konrad Hinsen
 #+DATE: June, 2018
 #+STARTUP: overview indent
