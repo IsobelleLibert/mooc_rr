@@ -1,0 +1,87 @@
+# -*- mode: org -*-
+#+TITLE:     Computational Documents
+#+DATE: June, 2018
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:t
+#+PROPERTY: header-args :eval never-export
+
+* Table of Contents                                                     :TOC:
+- [[#m2-s0-computational-documents][M2-S0: Computational Documents]]
+- [[#m2-s1-a-few-recent-controversial-studies][M2-S1: A few Recent Controversial Studies]]
+  - [[#economy-austerity-in-fiscal-policy][Economy: Austerity in Fiscal Policy]]
+  - [[#functional-mri][Functional MRI]]
+  - [[#incorrect-protein-structures][Incorrect Protein Structures]]
+  - [[#other-domains][Other domains]]
+- [[#m2-s2-why-is-this-so-difficult][M2-S2: Why is This so Difficult?]]
+  - [[#mistakes][Mistakes]]
+  - [[#going-public][Going Public?]]
+  - [[#tools-to-avoid-and-possible-alternatives][Tools to Avoid and Possible Alternatives]]
+- [[#m2-s3-computational-documents-principles][M2-S3: Computational Documents: Principles]]
+- [[#m2-s5-collaborating][M2-S5: Collaborating]]
+  - [[#preparing-a-document-for-a-journal-or-a-conference][Preparing a Document for a Journal or a Conference]]
+- [[#m2-s6-comparative-study][M2-S6: Comparative Study]]
+  - [[#see-org-mode-documents][See org-mode documents.]]
+  - [[#bonus-expériences-vécues][Bonus: expériences vécues]]
+
+* M2-S0: Computational Documents
+* M2-S1: A few Recent Controversial Studies
+** Economy: Austerity in Fiscal Policy
+- [[https://en.wikipedia.org/wiki/Growth_in_a_Time_of_Debt][Reinhart et Rogoff]]: /Growth in a Time of Debt/
+- Herndon, Ash et Pollin
+- Wray: combining data across centuries, exchange rate regimes,
+** Functional MRI
+- 2010: [[https://www.researchgate.net/publication/255651552_Neural_correlates_of_interspecies_perspective_taking_in_the_post-mortem_Atlantic_Salmon_an_argument_for_multiple_comparisons_correction][Bennett et al. and the dead salmon]] $\smiley$
+- 2016: [[http://www.pnas.org/content/113/28/7900.abstract][Eklund, Nichols, and Knutsson]]. [[http://www.sciencealert.com/a-bug-in-fmri-software-could-invalidate-decades-of-brain-research-scientists-discover][A bug in fmri software could
+  invalidate 15 years of brain research]] \newline (/40 000 articles/)
+- 2016: But it's [[https://www.cogneurosociety.org/debunking-the-myth-that-fmri-studies-are-invalid/][more subtle than it looks like]]. [[http://blogs.warwick.ac.uk/nichols/entry/bibliometrics_of_cluster/][Nichols]].\newline /\approx 3 600
+    impacted studies/
+** Incorrect Protein Structures
+   [[https://people.ligo-wa.caltech.edu/~michael.landry/calibration/S5/getsignright.pdf][a "buggy software"]]
+** Other domains
+- [[http://www.nature.com/nrd/journal/v10/n9/full/nrd3439-c1.html?foxtrotcallback=true][Oncology]]: "/half of published studies, even in prestigious journals,
+  can't be reproduced in industrial labs/"
+- [[http://theconversation.com/we-found-only-one-third-of-published-psychology-research-is-reliable-now-what-46596][Psychology]]: "/attempting to reproduce 100 previously published
+  findings/, /only one-third of published psychology research was found
+  to be reliable/"
+* M2-S2: Why is This so Difficult?
+** Mistakes
+- [[http://theconversation.com/how-computers-broke-science-and-what-we-can-do-to-fix-it-49938][Computers broke science]]
+- [[https://qz.com/768334/years-of-genomics-research-is-riddled-with-errors-thanks-to-a-bunch-of-botched-excel-spreadsheets/][Programming and data manipulation mistakes in Genomics]]
+** Going Public?
+- Someone may [[http://www.nature.com/news/the-top-100-papers-1.16224][benefit from my hard work]]
+** Tools to Avoid and Possible Alternatives
+* M2-S3: Computational Documents: Principles
+* M2-S5: Collaborating
+** Preparing a Document for a Journal or a Conference
+Requirements for producing a *pdf*:
+- Internally, /pandoc/, /knitr/ or /emacs/org-mode/
+- /LaTeX/ should be installed
+
+  - http://blog.juliusschulz.de/blog/ultimate-ipython-notebook
+    - https://github.com/kirbs-/hide_code is a must-have
+  - http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
+  - https://github.com/balouf/Kleinberg/blob/master/KleinbergsGridSimulator.ipynb
+* M2-S6: Comparative Study
+** See org-mode documents.
+** Bonus: expériences vécues 
+
+Éléments clés lors du choix:
+- Simplicité de prise en main vs. vrai éditeur
+- Où sont fait les calculs 
+- Multi-langage
+  - http://carreau.github.io/posts/23-Cross-Language-Integration.html
+- Gestion des langages compilés
+- Notions de caches et d'état
+
+Les principaux outils actuels:
+- jupyter
+- rstudio
+- org-mode
+
+Limitations:
+- Longs calculs
+- Grands documents
+- Solutions wysiwyg pour jupyter
+
+Historique/diff un peu compliqué pour jupyter
+

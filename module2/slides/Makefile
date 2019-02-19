@@ -1,3 +1,7 @@
+ressources-md: ressources.md ressources_fr.md
+
+include ../../Makefile.ressources
+
 C028AL_slides_module2-en-gz.pdf: slides_module2.pdf
 	mv $< $@
 
