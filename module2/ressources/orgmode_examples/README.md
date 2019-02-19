@@ -1,3 +1,9 @@
+---
+TITLE:       Org document examples
+AUTHOR:      Arnaud Legrand
+Date:   Tue Feb 19 16:08:56 2019 
+---
+
 Table of Contents<span class="tag" data-tag-name="TOC"></span>
 ==============================================================
 
@@ -25,4 +31,3 @@ Here are a few links to other kind of examples:
     -   a set of templates for various computer science journals/conferences: [IEEE](https://github.com/schnorr/ieeeorg), [Wiley](https://github.com/schnorr/wileyorg), [ACM](https://github.com/schnorr/acmorg), [LNCS](https://github.com/schnorr/llncsorg)
     -   his lecture on programming languages for undergrads: <https://github.com/schnorr/mlp/tree/master/conteudo>
 -   John Kitchin is an expert org-mode user and he maintains a very interesting [blog with many interesting tips](http://kitchingroup.cheme.cmu.edu/blog/). You may want to check this [seminar he gave at SciPy](https://www.youtube.com/watch?v=IsSMs-4GlT8&list=FLQp2VLAOlvq142YN3JO3y8w&app=desktop).
-

@@ -1,3 +1,9 @@
+---
+TITLE:     Additional references
+AUTHOR:    Arnaud Legrand
+Date:   Tue Feb 19 15:42:13 2019 
+---
+
 Table of Contents<span class="tag" data-tag-name="TOC"></span>
 ==============================================================
 
@@ -80,4 +86,3 @@ Experimentation
 Experimentation was not covered in this MOOC, although it is an essential part of science. The main reason is that practices and constraints can vary so wildly from one domain to another that it could not be properly covered in a first edition. We would be happy to gather references you consider as interesting in your domain so do not hesitate to provide us with such references by using the forum and we will update this page.
 
 -   [A recent talk by Lucas Nussbaum on Experimental Testbeds in Computer Science](https://github.com/alegrand/RR_webinars/blob/master/9_experimental_testbeds/index.org).
-

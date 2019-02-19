@@ -1,3 +1,9 @@
+---
+TITLE:     Rstudio
+AUTHOR:    Arnaud Legrand
+Date:   Tue Feb 19 15:42:13 2019 
+---
+
 Table of Contents<span class="tag" data-tag-name="TOC"></span>
 ==============================================================
 
@@ -150,5 +156,3 @@ Modifying a file
 
     **NB**: You won't be able to propagate your modifications on GitLab if some modifications have been done on GitLab in the meantime. ![](rstudio_images/push4.png)
 -   You should first merge these remote modifications locally. Click on `pull` to get these modifications on your machine.
-
-

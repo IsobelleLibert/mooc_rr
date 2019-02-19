@@ -1,3 +1,9 @@
+---
+TITLE:     Références complémentaires
+AUTHOR:    Arnaud Legrand
+Date:   Tue Feb 19 15:42:13 2019 
+---
+
 Table des matières<span class="tag" data-tag-name="TOC"></span>
 ===============================================================
 
@@ -80,4 +86,3 @@ Expérimentation
 L'expérimentation n'est pas couverte dans ce MOOC bien qu'il s'agisse d'un élément essentiel de la science. La raison principale est que les pratiques et les contraintes varient tellement d'un domaine à l'autre que ce thème ne pouvait pas être correctement couvert dans une première édition. Nous serions heureux de rassembler les références que vous jugez intéressantes dans votre domaine. N'hésitez donc pas à nous les fournir à l'aide du forum. Nous les intégrerons dans cette page.
 
 -   [Une récente conférence de Lucas Nussbaum sur les bancs d’essais expérimentaux en informatique](https://github.com/alegrand/RR_webinars/blob/master/9_experimental_testbeds/index.org).
-

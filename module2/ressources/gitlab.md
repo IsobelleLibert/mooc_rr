@@ -1,3 +1,9 @@
+---
+TITLE:     Git and GitLab
+AUTHOR:    Arnaud Legrand
+Date:   Tue Feb 19 15:42:13 2019 
+---
+
 **This document is particularly important if you follow the RStudio or the Org-Mode path.** **If you follow the Jupyter path, it can be ignored at first** **as we have closely integrated Jupyter and GitLab in the context of this MOOC.**
 
 So far, you only used git via the web interface from the GitLab we deployed for the MOOC: <https://app-learninglab.inria.fr/gitlab/>
@@ -251,5 +257,3 @@ Now, let's start!
     ```
 
     Only then will you be able to `git push`.
-
-

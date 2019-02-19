@@ -1,3 +1,9 @@
+---
+TITLE:     Rstudio
+AUTHOR:    Arnaud Legrand
+Date:   Tue Feb 19 15:42:13 2019 
+---
+
 Table des matières<span class="tag" data-tag-name="TOC"></span>
 ===============================================================
 
@@ -154,5 +160,3 @@ Modifier un fichier
     ![](rstudio_images/push4.png)
 
 -   Il faut d’abord récupérer ces modifications distantes sur votre machine locale. Pour ce faire cliquer sur `pull`.
-
-

@@ -1,3 +1,9 @@
+---
+TITLE:     Informations sur l'environnement
+AUTHOR:    Arnaud Legrand
+Date:   Tue Feb 19 15:28:06 2019 
+---
+
 Table des matières<span class="tag" data-tag-name="TOC"></span>
 ===============================================================
 
@@ -444,4 +450,3 @@ Quelques problèmes sont susceptibles de survenir lors de l'installation d'ancie
 
 -   Vous pouvez perdre des fonctionnalités ou des corrections de bugs qui ne sont présentes que dans les versions les plus récentes des packages.
 -   L'ancienne version de package requise peut ne pas être compatible avec la version de R que vous avez installée. Dans ce cas, vous devrez soit rétrograder R vers une version compatible, soit mettre à jour votre code R pour qu'il fonctionne avec une version plus récente du package.
-

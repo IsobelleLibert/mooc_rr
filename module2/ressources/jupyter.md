@@ -1,3 +1,9 @@
+---
+TITLE:     Jupyter : tips and tricks, Installing and configuring
+AUTHOR:    Arnaud Legrand, Benoit Rospars, Konrad Hinsen
+Date:   Tue Feb 19 15:42:13 2019 
+---
+
 Table of Contents<span class="tag" data-tag-name="TOC"></span>
 ==============================================================
 

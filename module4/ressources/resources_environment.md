@@ -1,3 +1,9 @@
+---
+TITLE:     Tracking environment information
+AUTHOR:    Arnaud Legrand
+Date:   Tue Feb 19 15:28:06 2019 
+---
+
 Table of Contents<span class="tag" data-tag-name="TOC"></span>
 ==============================================================
 
@@ -442,4 +448,3 @@ There are a few potential issues that may arise with installing older versions o
 
 -   You may be losing functionality or bug fixes that are only present in the newer versions of the packages.
 -   The older package version needed may not be compatible with the version of R you have installed. In this case, you will either need to downgrade R to a compatible version or update your R code to work with a newer version of the package.
-
