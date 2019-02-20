@@ -17,24 +17,24 @@ the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id
 The next section provides information on how to install emacs.
 
 * Table of Contents                                                     :TOC:
- - [[#installing-emacs-org-mode-ess-and-auctex][Installing emacs, org-mode, ess, and auctex.]]
-     - [[#linux-debian-ubuntu][Linux (Debian, Ubuntu)]]
-     - [[#macos][macOS]]
-     - [[#windows][Windows]]
-     - [[#all-platforms-pretty-code-in-html-export][All platforms: pretty code in HTML export]]
- - [[#a-simple-reproducible-research-emacs-configuration-][A simple "/reproducible research/" emacs configuration ]]
-     - [[#step-0-backup-and-download-our-configuration][Step 0: Backup and download our configuration]]
-     - [[#step-1-prepare-your-journal][Step 1: Prepare your journal]]
-     - [[#step-2-set-up-emacs-configuration][Step 2: Set up Emacs configuration]]
-     - [[#step-3-adapt-the-configuration-to-your-specific-needs-if-required][Step 3: Adapt the configuration to your specific needs if required]]
-     - [[#step-4-check-whether-the-installation-is-working-or-not][Step 4: Check whether the installation is working or not]]
-     - [[#step-5-open-and-play-with-your-journal][Step 5: Open and play with your journal:]]
- - [[#a-stub-of-a-replicable-article][A stub of a replicable article]]
- - [[#emacs-tips-and-tricks][Emacs tips and tricks]]
-     - [[#cheat-sheets][Cheat-sheets]]
-     - [[#video-tutorials][Video tutorials]]
-     - [[#additional-useful-emacs-packages][Additional useful emacs packages]]
-     - [[#other-resources][Other resources]]
+- [[#installing-emacs-org-mode-ess-and-auctex][Installing emacs, org-mode, ess, and auctex.]]
+  - [[#linux-debian-ubuntu][Linux (Debian, Ubuntu)]]
+  - [[#macos][macOS]]
+  - [[#windows][Windows]]
+  - [[#all-platforms-pretty-code-in-html-export][All platforms: pretty code in HTML export]]
+- [[#a-simple-reproducible-research-emacs-configuration][A simple "reproducible research" emacs configuration]]
+  - [[#step-0-backup-and-download-our-configuration][Step 0: Backup and download our configuration]]
+  - [[#step-1-prepare-your-journal][Step 1: Prepare your journal]]
+  - [[#step-2-set-up-emacs-configuration][Step 2: Set up Emacs configuration]]
+  - [[#step-3-adapt-the-configuration-to-your-specific-needs-if-required][Step 3: Adapt the configuration to your specific needs if required]]
+  - [[#step-4-check-whether-the-installation-is-working-or-not][Step 4: Check whether the installation is working or not]]
+  - [[#step-5-open-and-play-with-your-journal][Step 5: Open and play with your journal:]]
+- [[#a-stub-of-a-replicable-article][A stub of a replicable article]]
+- [[#emacs-tips-and-tricks][Emacs tips and tricks]]
+  - [[#cheat-sheets][Cheat-sheets]]
+  - [[#video-tutorials][Video tutorials]]
+  - [[#additional-useful-emacs-packages][Additional useful emacs packages]]
+  - [[#other-resources][Other resources]]
 
 * Installing emacs, org-mode, ess, and auctex.
 ** Linux (Debian, Ubuntu)
@@ -162,7 +162,7 @@ typing the following command:
 M-x package-install RET htmlize RET    # where M-x means pressing the "Esc" key then the "x" key
 #+END_EXAMPLE
 
-* A simple "/reproducible research/" emacs configuration 
+* A simple "reproducible research" emacs configuration 
 This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Mise en place
 Emacs/Orgmode"/ in French). Watching it before following the
 instructions given in this section may help.
