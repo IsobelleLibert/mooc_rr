@@ -7,22 +7,22 @@ Date:   Tue Feb 19 15:42:13 2019
 Table of Contents<span class="tag" data-tag-name="TOC"></span>
 ==============================================================
 
--   [1. Jupyter tips and tricks](#1-jupyter-tips-and-tricks)
-    -   [Creating or importing a notebook](#creating-or-importing-a-notebook)
-    -   [Running R and Python in the same notebook](#running-r-and-python-in-the-same-notebook)
-    -   [Other languages](#other-languages)
--   [2. Installing and configuring Jupyter on your computer](#2-installing-and-configuring-jupyter-on-your-computer)
+-   [1 Jupyter tips and tricks](#1-jupyter-tips-and-tricks)
+    -   [1.1 Creating or importing a notebook](#11-creating-or-importing-a-notebook)
+    -   [1.2 Running R and Python in the same notebook](#12-running-r-and-python-in-the-same-notebook)
+    -   [1.3 Other languages](#13-other-languages)
+-   [2 Installing and configuring Jupyter on your computer](#2-installing-and-configuring-jupyter-on-your-computer)
     -   [2.1 Installing Jupyter](#21-installing-jupyter)
     -   [2.2 Making sure Jupyter allows you to use R](#22-making-sure-jupyter-allows-you-to-use-r)
     -   [2.3 Additional tips](#23-additional-tips)
 
-1. Jupyter tips and tricks
-==========================
+1 Jupyter tips and tricks
+=========================
 
 The following [webpage](https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/) lists several Jupyter tricks (in particular, it illustrates many `IPython magic` commands) that should improve your efficiency (note that this blog post is about two years old so some of the tricks may have been integrated in the default behavior of Jupyter now).
 
-Creating or importing a notebook
---------------------------------
+1.1 Creating or importing a notebook
+------------------------------------
 
 Using the Jupyter environment we deployed for this MOOC will allow to easily access any file from your default GitLab project. There are situations however where you may want to play with other notebooks.
 
@@ -45,8 +45,8 @@ If your notebook is already in your GitLab project, then simply synchronize by u
 3.  Then from the top right button, `Upload` the previously downloaded notebook and confirm the upload.
 4.  Open the freshly uploaded notebook through the Jupyter file manager.
 
-Running R and Python in the same notebook
------------------------------------------
+1.2 Running R and Python in the same notebook
+---------------------------------------------
 
 `rpy2` package allows to use both languages in the same notebook by:
 
@@ -72,8 +72,8 @@ Running R and Python in the same notebook
 
 Note that this `%%R` notation indicates that R should be used for the whole cell but an other possibility is to use `%R` to have a single line of R within a python cell.
 
-Other languages
----------------
+1.3 Other languages
+-------------------
 
 Jupyter is not limited to Pytyhon and R. Many other languages are available: [<https://github.com/jupyter/jupyter/wiki/Jupyter-kernels>](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels), including non-free languages like SAS, Mathematica, Matlab... Note that the maturity of these kernels differs widely.
 
@@ -83,8 +83,8 @@ Since the question was asked several times, if you really need to stay with SAS,
 
 Since proprietary software such as SAS cannot easily be inspected, we discourage its use as it hinders reproducibility by essence. But perfection does not exist anyway and using Jupyter literate programming approach allied with systematic control version and environment control will certainly help anyway.
 
-2. Installing and configuring Jupyter on your computer
-======================================================
+2 Installing and configuring Jupyter on your computer
+=====================================================
 
 In this section, we explain how to set up a Jupyter environment on your own computer similar to the one deployed for this MOOC.
 
