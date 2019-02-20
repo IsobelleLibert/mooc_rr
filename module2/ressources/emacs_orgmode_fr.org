@@ -22,7 +22,7 @@ The next section provides information on how to install emacs.
   - [[#macos][macOS]]
   - [[#windows][Windows]]
   - [[#all-platforms-pretty-code-in-html-export][All platforms: pretty code in HTML export]]
-- [[#a-simple-reproducible-research-emacs-configuration][A simple "/reproducible research/" emacs configuration]]
+- [[#a-simple-reproducible-research-emacs-configuration][A simple "reproducible research" emacs configuration]]
   - [[#step-0-backup-and-download-our-configuration][Step 0: Backup and download our configuration]]
   - [[#step-1-prepare-your-journal][Step 1: Prepare your journal]]
   - [[#step-2-set-up-emacs-configuration][Step 2: Set up Emacs configuration]]
@@ -162,7 +162,7 @@ typing the following command:
 M-x package-install RET htmlize RET    # where M-x means pressing the "Esc" key then the "x" key
 #+END_EXAMPLE
 
-* A simple "/reproducible research/" emacs configuration 
+* A simple "reproducible research" emacs configuration 
 This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Mise en place
 Emacs/Orgmode"/ in French). Watching it before following the
 instructions given in this section may help.

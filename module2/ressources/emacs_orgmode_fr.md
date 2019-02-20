@@ -15,7 +15,7 @@ Table of Contents<span class="tag" data-tag-name="TOC"></span>
     -   [macOS](#macos)
     -   [Windows](#windows)
     -   [All platforms: pretty code in HTML export](#all-platforms-pretty-code-in-html-export)
--   [A simple "*reproducible research*" emacs configuration](#a-simple-reproducible-research-emacs-configuration)
+-   [A simple "reproducible research" emacs configuration](#a-simple-reproducible-research-emacs-configuration)
     -   [Step 0: Backup and download our configuration](#step-0-backup-and-download-our-configuration)
     -   [Step 1: Prepare your journal](#step-1-prepare-your-journal)
     -   [Step 2: Set up Emacs configuration](#step-2-set-up-emacs-configuration)
@@ -155,8 +155,8 @@ To have code pretty printing when exporting to HTML, you should install the `htm
 M-x package-install RET htmlize RET    # where M-x means pressing the "Esc" key then the "x" key
 ```
 
-A simple "*reproducible research*" emacs configuration
-======================================================
+A simple "reproducible research" emacs configuration
+====================================================
 
 This section is illustrated in a [video tutorial](https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4) (/"Mise en place Emacs/Orgmode"/ in French). Watching it before following the instructions given in this section may help.
 
