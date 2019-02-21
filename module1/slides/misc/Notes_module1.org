@@ -321,7 +321,7 @@ Une requête basée sur un simple mot renvoie souvent un très grand nombre de p
 Il nous reste encore nous reste encore un détail technique à régler dans le cas de nos notes prises en format texte comme =Markdown=. En effet, nous ne souhaitons pas que nos étiquettes apparaissent dans les sorties =html=, =pdf= ou =docx= de nos notes. Un façon de procéder, pour les langages de balisage légers qui ne disposent pas d'étiquettes — par exemple, =Markdown= n'en dispose pas, alors que =org= en a — et de les inclure dans des commentaires. En =Markdown=, tout ce qui est encadré par =<!--= et =-->= est considéré comme un commentaire et ne figure pas dans les sorties =html= ou =pdf= des notes. Nous pouvons ainsi utiliser :
 
 #+BEGIN_EXAMPLE
-<!-- :code: -->
+<!-- ;code; -->
 #+END_EXAMPLE       
 
 à l'endroit de nos notes où nous souhaitons aller rapidement lorsque que nous cherchons une information relative à de la programmation (production de codes). 
