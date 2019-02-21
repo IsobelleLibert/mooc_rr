@@ -1,10 +1,9 @@
 - [Annotated manuscripts](#annotated-manuscripts)
 - [Note cabinets from Placcius and Leibniz](#note-cabinets-from-placcius-and-leibniz)
-- [The preface to Anatole France's "L'île des pingouins](#the-preface-to-anatole-france's-"l'île des-pingouins")
+- [The preface to Anatole France's "L'île des pingouins](#the-preface-to-anatole-france's-\"l'île des-pingouins)
 - [The logbooks](#the-logbooks)
-- [One missing: the classic laboratory notebook](#one-missing:-the-classic-laboratory-notebook)
+- [One missing: the classic laboratory notebook](#one-missing\:-the-classic-laboratory-notebook)
    
--
 # Annotated manuscripts
 
 As an introduction to the world of annotated manuscripts, I follow a small selection of passages from the first chapter of "THE PAGE. FROM ANTIQUITY TO THE DIGITAL ERA" by Anthony Grafton (Hazan, 2012):
@@ -45,20 +44,20 @@ that the cataloguers of the Bodleian Library, who were only
 not familiar with rhetoric, have classified this printed book as a manuscript.
 
 Page 40.
-#Note cabinets from Placcius and Leibniz
+# Note cabinets from Placcius and Leibniz
 
 I found this example in Ann Blair's work such as The Rise of Note-Taking in Early Modern Europe and her book TOO MUCH TO KNOW. Managing Scholarly Information before the Modern Age, published by Yale University Press in 2011.
-#The preface to Anatole France's "L'île des pingouins
+# The preface to Anatole France's "L'île des pingouins
 
 Being very far from knowing Anatole France at my fingertips, I found the reference cited in Keith Thomas' remarkable article published by the London Review of Books on June 10, 2010. This article describes and discusses the concrete note-taking work of a historian, it is also very well written and full of anecdotes.
-#The logbooks
+# The logbooks
 
 I would like to thank Joël Caselli for helping me interpret the content of Éric Tabarly's logbook.
 
 The European project for the reconstruction of the climates of the Atlantic and Indian oceans (and not peaceful as I say in the course!): /Climatological Database for the World's Oceans 1750-1850/ has a very interesting website (but in English).
 
 Extensive (and frightening) quotations from slave ship logbooks can be found in Marcus Rediker's book "Aboard the Slave: An Atlantic History of the Trade" (available in pocket edition).
-#One missing: the classic laboratory notebook
+# One missing: the classic laboratory notebook
 A FAIRE METTRE LE TEXTE ORIGINAL
 
 Je traduis ici la section 6.2 Notebooks and Records du remarquable livre de E. Bright Wilson An Introduction to Scientific Research réimprimé par Dover.
