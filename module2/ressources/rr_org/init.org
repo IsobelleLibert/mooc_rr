@@ -75,12 +75,40 @@ document, simply =M-x org-babel-tangle=.
 #+end_src
 
 * Package sources
-** Use melpa-stable
+** Use melpa-stable (preferred) and melpa
 #+BEGIN_SRC emacs-lisp :tangle init.el
 (package-initialize)
 (add-to-list 'package-archives
 		 '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives
+		 '("melpa" . "http://melpa.org/packages/"))
+(package-refresh-contents)
+(setq package-archive-priorities '(("gnu" . 100)
+                                   ("melpa-stable" . 10)))
 #+END_SRC
+* Install missing packages
+** For macOS: 
+#+begin_src emacs-lisp
+(when (equal system-type 'darwin)
+  (unless (package-installed-p 'exec-path-from-shell)
+    (package-install 'exec-path-from-shell)))
+#+end_src
+** ESS
+#+begin_src emacs-lisp
+(unless (package-installed-p 'ess)
+  (package-install 'ess))
+#+end_src
+** AucTeX
+#+begin_src emacs-lisp
+(unless (package-installed-p 'auctex)
+  (package-install 'auctex))
+#+end_src
+* Import environment variables (macOS)
+#+begin_src emacs-lisp
+(when (equal system-type 'darwin)
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "PYTHONPATH"))
+#+end_src
 * Loading files:  
 ** Loading babel: 						     :ARNAUD:
 #+begin_src emacs-lisp :tangle init.el

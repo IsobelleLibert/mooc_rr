@@ -53,6 +53,25 @@
 (package-initialize)
 (add-to-list 'package-archives
 		 '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives
+		 '("melpa" . "http://melpa.org/packages/"))
+(package-refresh-contents)
+(setq package-archive-priorities '(("gnu" . 100)
+                                   ("melpa-stable" . 10)))
+
+(when (equal system-type 'darwin)
+  (unless (package-installed-p 'exec-path-from-shell)
+    (package-install 'exec-path-from-shell)))
+
+(unless (package-installed-p 'ess)
+  (package-install 'ess))
+
+(unless (package-installed-p 'auctex)
+  (package-install 'auctex))
+
+(when (equal system-type 'darwin)
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "PYTHONPATH"))
 
 (require 'org)
 

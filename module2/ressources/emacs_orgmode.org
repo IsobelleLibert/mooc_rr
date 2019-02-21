@@ -77,38 +77,12 @@ which is now deprecated.
 ** macOS
 *Note:* macOS comes with a prehistoric command-line-only version of Emacs located at =/usr/bin/emacs=. It's best to forget about it.
 
-- *Option 1*: Install the =.dmg= file from [[http://vgoulet.act.ulaval.ca/][Vincent Goulet]]:
-  [[https://vigou3.gitlab.io/emacs-modified-macos/][https://vigou3.gitlab.io/emacs-modified-macos/]]. It ships with recent
-  versions:
-  - Emacs 26.1
-  - Org-mode 9.1.13
-  - ESS 17.11
+The Web site https://emacsformacosx.com/ proposes precompiled Emacs versions for macOS. Download the latest version (the one that figures prominently on the page) and install it like you would install any other macOS application, by copying =Emacs.app= from the downloaded disk image to a convenient location on your computer.
 
-  If you install this version of Emacs, or in fact any other version of
-  Emacs distributed as a clickable application in a =.dmg= file,
-  you must type the full path to the executable if you want to run
-  Emacs from a terminal. For example, if your clickable application
-  is at =/Applications/Emacs.app=, then the executable is at
-  =/Applications/Emacs.app/Contents/MacOS/Emacs=
+This Emacs version contains everything used in the MOOC except the packages [[https://ess.r-project.org/][ESS]] (for working with the R language) and [[https://www.gnu.org/software/auctex/][AUCTeX]] (for editing LaTeX). If you use the configuration described under [[#a-simple-reproducible-research-emacs-configuration][A simple "reproducible research" emacs configuration]], these packages will be installed automatically the first time you start Emacs.
 
-- *Option 2*: If you use [[https://docs.brew.sh/][Homebrew]], do the following:
-  #+begin_src sh :results output :exports both
-  brew update
-  brew install emacs --with-cocoa
-  brew linkapps emacs
-  brew install wget
-  brew tap dunn/emacs
-  brew install auctex
-  brew tap brewsci/science
-  brew install ess
-  #+end_src
-  This provides an =emacs= command for use from the command line, plus a clickable application at =Cellar/emacs/26.1_1/Emacs.app= inside your Homebrew directory. If
-  you installed Homebrew at the default location =/usr/local=, then this is =/usr/local/Cellar/emacs/26.1_1/Emacs.app=.
-  If you installed Homebrew on an account with administrator privileges, you can add
-  #+begin_src sh :results output :exports both
-  brew linkapps emacs
-  #+end_src
-  in order to make Emacs accessible directly from =/Applications=.
+In case you need to run Emacs from the command line (note: this is not required in the MOOC), you have to enter the full path to the executable. Assuming that you have copied =Emacs.app= to =/path/to/emacs=, this is =/path/to/emacs/Emacs.app/Contents/MacOS/Emacs=. Note that if you just type =emacs=, you will use the prehistoric command-line-only version at =/usr/bin/emacs= provided by Apple.
+
 ** Windows
 Install the =.exe= file from [[http://vgoulet.act.ulaval.ca/][Vincent Goulet]]:
 [[https://vigou3.gitlab.io/emacs-modified-windows/][https://vigou3.gitlab.io/emacs-modified-windows/]]. It ships with recent
