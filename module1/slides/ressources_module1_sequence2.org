@@ -1,0 +1,73 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+#+TITLE: Ressources pour la séquence 2 du module 1
+#+DATE: <2019-02-21 jeu.>
+#+AUTHOR: Christophe Pouzat
+#+EMAIL: christophe.pouzat@parisdescartes.fr
+#+LANGUAGE: fr
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 26.1 (Org mode 9.1.9)
+#+STARTUP: indent
+
+* Notes et références sur la séquence 2 : « Un aperçu historique de la prise de notes »
+** Références générales
+En plus des deux livres déjà cités (en séquence 1) :
+- « LA PAGE. DE L'ANTIQUITÉ À L'ÈRE DU NUMÉRIQUE » d'Anthony Grafton (Hazan, 2012) ;
+- « [[https://yalebooks.yale.edu/book/9780300165395/too-much-know][TOO MUCH TO KNOW. Managing Scholarly Information before the Modern Age]] », d'Ann Blair publié chez /Yale University Press/ en 2011 ;
+j'ai utilisé :
+- « L'histoire du livre » de Frédéric Barbier ;
+- le remarquable site de Jacques Poitou, [[http://j.poitou.free.fr/pro/index.html][langages écritures typographies]] ;
+- le site [[http://classes.bnf.fr/ecritures/][l'aventure des écritures]] de la BNF ;
+- le catalogue de l'exposition de la BNF « Tous les savoirs du monde : Encyclopédies et bibliothèques de Sumer au XXIème siècle » ;
+- « [[http://litmedmod.ca/sites/default/files/pdf/vandendorpe-papyrusenligne_lr.pdf][Du papyrus à l'hypertexte]] » de Christian Vandendorpe (La Découverte, 1999).
+
+
+** Sur les tablettes de cires
+Voir le site de Jacques Poitou (d'où les illustrations sont empruntées) et le livre de Frédéric Barbier, « L'histoire du livre ».
+** Sur le passage du rouleau (/volumen/) au codex
+Voir le livre de Frédéric Barbier, celui d'Anthony Grafton.
+
+Le /volumen/ est un livre à base de feuilles de papyrus collées les unes aux autres et qui s'enroule sur lui-même. Il a été créé en Égypte vers 3000 av. J.-C. Le texte est rédigé en colonnes parallèles assez étroites. C'est le support du texte par excellence durant les trente siècles précédant notre ère, d'abord en Égypte, puis dans tout le monde méditerranéen. 
+
+Comme l'explique Frédéric Barbier : « La forme du /volumen/ impose une pratique de lecture complexe : il faut dérouler (/explicare/) et enrouler en même temps, ce qui interdit par exemple, de travailler simultanément sur plusieurs rouleaux (un texte et son commentaire) ou de prendre des notes, impose une lecture suivie et empêche la simple consultation. »
+
+Le /volumen/ n'est clairement pas adapté à une lecture « nomade » ; imagine-t-on Ulysse partant pour son Odyssée avec les 24 /volumen/ de l'Iliade ?
+
+Le /volumen/ est à l'origine du terme « volume » dans un « livre en plusieurs volumes » comme dans la désignation du concept géométrique.
+
+Le passage au codex repose sur deux innovations : 
+- la collection des tablettes de cires en « groupes reliés » ;
+- la généralisation du parchemin (peau, généralement, de mouton spécialement préparée) au détriment du papyrus. Cette généralisation résulte une lutte pour l'hégémonie culturelle entre deux descendants de généraux d'Alexandre le Grand, en effet d'après Pline l'ancien : [[https://fr.wikipedia.org/wiki/Ptol%C3%A9m%C3%A9e_V][Ptolémé Épiphane]] d'Alexandrie cherchait à empêcher [[https://fr.wikipedia.org/wiki/Eum%C3%A8ne_II][Eumène II]] d'établir une bibliothèque à Pergame (au 2e siècle avant J.-C.) et avait interdit l'exportation du papyrus (produit exclusivement en Égypte), ce qui incita Eumène à chercher un substitut qui devint le parchemin.
+
+Le remplacement du rouleau par le codex aura des conséquences majeures sur l'organisation du livre ainsi que sur la façon de lire et il permettra le développement ultérieur de l'imprimerie. 
+
+La principale révolution introduite par le codex est la notion de page. Grâce à elle, le lecteur peut accéder de manière directe à un chapitre ou à un passage du texte, alors que le rouleau impose une lecture continue. *Les mots ne sont de plus pas séparés par des espaces*. Comme l'écrit Collette Sirat : « Il faudra vingt siècles pour qu’on se rende compte que l’importance primordiale du codex pour notre civilisation a été de permettre la lecture sélective et non pas continue, contribuant ainsi à l’élaboration de structures mentales où le texte est dissocié de la parole et de son rythme. »
+
+Au fil des siècles, le codex — qu'on désigne le plus souvent comme un manuscrit — va évoluer et se donner peu à peu les attributs du livre moderne : séparation entre les mots (VIIe siècle), début de ponctuation (VIIIe siècle), table des matières, titre courant, marque de paragraphe (XIe siècle), pagination, index (XIIIe siècle), etc. 
+
+Un point intéressant : le contenu de la Thora est « fixé » avant l'apparition du codex et, aujourd'hui encore, la Thora est écrite sur des /volumen/ (dans les synagogues au moins). La religion chrétienne se développe en même temps que le codex, adopte ce support et le répand ; elle ne donnera jamais au /volumen/ un statut « supérieur », pas plus que ne le fera la religion musulmane.
+
+** Sur Eusèbe de Césarée
+Pour en savoir plus sur [[https://fr.wikipedia.org/wiki/Eus%C3%A8be_de_C%C3%A9sar%C3%A9e][Eusèbe de Césarée]], consultez le passionnant deuxième chapitre du livre d'Anthony Grafton.
+** Parallèle chinois
+Comme je le dis, mon inculture fait que je ne rends pas justice aux contributions chinoises, musulmanes, précolombienne, etc. J'essaierai de combler cette énorme lacune pour les seconde version du CLOM...
+
+Ce que je dis sur le passage du volumen au codex accompagné d'un développement des « outils de navigation » (index, table des matières, etc)  en Chine lors du développement de leishus vient du bouquin d'Ann Blair (p. 31) qui cite un article de Susan Cherniack, « Book Culture and Textual Transmission in Sung China », /Harvard Journal of Asiatic Studies/ Vol. 54, No. 1 (Jun., 1994), pp. 5-125.
+** Retour sur l'armoire à notes
+Nous revenons sur le « bout de papier » ou la fiche comme support de note. L'inconvénient est que le bout de papier ou la fiche se perdent facilement et ne servent à rien s'ils ne sont pas *classés* en plus d'être rangés. Problème résolu par l'armoire de Placcius. D'une certaine façon, sa conception fait qu'on accède à son contenu par l'index.
+
+L'avantage est que les notes peuvent être réorganisées si elles contiennent des information sur plusieurs sujets. Elle peuvent aussi être directement collées dans un livre lors de la composition d'un florilège ou d'un ouvrage de synthèse. 
+
+Ce dernier procédé était très couramment employé par les humanistes et les érudit de la renaissance et du début de la période moderne. [[https://fr.wikipedia.org/wiki/Conrad_Gessner][Conrad Gessner]] (1516-1565) était un champion de cette technique ; il obtenait même parfois ses fiches en découpant les pages des livres. Encore une fois, ne faites pas cela avec les livres de bibliothèques !
+
+** L'index et John Locke  
+
+Sur l'origine de l'index, on pourra lire l'article de Jean Berger : [[https://www.theindexer.org/files/25-2-berger.pdf][Indexation, Memoire, pouvoir et representations au seuil du XIIe siecle : La redecouverte des feuillets de tables du Liber De Honoribus, premier cartulaire de la collegiale Saint-Julien de Brioude]], /The Indexer/.
+
+La méthode de John Lock est expliquée dans l'article /Indexing commonplace books: John Locke’s method/ d'Alan Walker, [[https://www.theindexer.org/issues/query.php?vol=22&iss=3][The Indexer]], vol. 22, p. 114-118, 2001.
+
+Sur [[https://fr.wikipedia.org/wiki/John_Locke][John Locke]] (1632-1704) « papa du libéralisme » et actionnaire de la /Royal African Company/ principale compagnie négrière britannique, voir l'article [[https://en.wikipedia.org/wiki/John_Locke#Constitution_of_Carolina][Wikipedia]] (en anglais) et le livre « Contre-histoire du libéralisme » de Domenico Losurdo (La Découverte / Poche, 2014, p. 34-36).
