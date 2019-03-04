@@ -52,7 +52,7 @@ for upgrading...
 
 Simply run (as root):
 #+begin_src sh :results output :exports both
-apt-get update ; apt-get install emacs25 org-mode ess r-base auctex
+apt-get update ; apt-get install emacs25 org-mode
 #+end_src
 
 Then make sure you have a sufficiently recent version of emacs.
@@ -73,7 +73,9 @@ emacs -batch --funcall "org-version" 2>&1 | grep version
 
 The version numbers you get will depend on the distribution you are
 running. _You really want to make sure you do not rely on org-mode 8_,
-which is now deprecated. 
+which is now deprecated.
+
+The packages [[https://ess.r-project.org/][ESS]] (for working with the R language) and [[https://www.gnu.org/software/auctex/][AUCTeX]] (for editing LaTeX) will be installed automatically the first time you start Emacs if you use the configuration described under [[#a-simple-reproducible-research-emacs-configuration][A simple "reproducible research" emacs configuration]].
 ** macOS
 *Note:* macOS comes with a prehistoric command-line-only version of Emacs located at =/usr/bin/emacs=. It's best to forget about it.
 
