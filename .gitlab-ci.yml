@@ -1,20 +1,14 @@
-image: binarin/org-export
-stages:
-- build
-
-build:
-  stage: build
+pages:
+  stage: deploy
   script:
-    - ls -al /
-#    - for file in $(find -name "*.org"); do
-#        emacs --batch --load /emacs/export.el --file $file --eval '(org-html-export-to-html)' && echo "Exported $file" || echo "ERROR $file";
-#      done
-#  artifacts:
-#    expire_in: 1 day
-#    paths:
-#    - module1/ressources/*.html
-#    - module2/ressources/*.html
-#    - module3/ressources/*.html
-#    - module4/ressources/*.html
+  - mkdir .public
+  - for file in $(find -name "*.md"); do
+      pandoc -s -f markdown_github -t html -o ${file%.*}.html $file && echo "Exported ${file%.*}.html" || echo "ERROR $file";
+    done
+  - cp -r * .public
+  - mv .public public
+  artifacts:
+    paths:
+    - public
   only:
   - ci
