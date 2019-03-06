@@ -4,7 +4,7 @@ pages:
   - for file in $(find -name "*.md"); do
       pandoc -s -f markdown_github -t html -o ${file%.*}.html $file && echo "Exported ${file%.*}.html" || echo "ERROR $file";
     done
-  - mv * public
+  - mv !(public) public
   artifacts:
     paths:
     - public
