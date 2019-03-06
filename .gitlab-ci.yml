@@ -1,12 +1,10 @@
 pages:
   stage: deploy
   script:
-  - mkdir .public
   - for file in $(find -name "*.md"); do
       pandoc -s -f markdown_github -t html -o ${file%.*}.html $file && echo "Exported ${file%.*}.html" || echo "ERROR $file";
     done
-  - cp -r * .public
-  - mv .public public
+  - mv * public
   artifacts:
     paths:
     - public
