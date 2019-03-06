@@ -6,13 +6,9 @@
 #+LANGUAGE:   en
 
 This is a "minimal" =.emacs= configuration file. For this configuration
-to work, you'll need:
-- emacs25 (>25.2) (this way installing through elpa will save you some
-  time) and emacs-goodies (e.g., for color themes)
-- org-mode > 9.0 (there has been several major compatibility breakage
-  so need to stay away from old versions)
-- ess and R
-- texlive and auctex
+to work, you'll need one of:
+ - Emacs 26 (preferred)
+ - Emacs 25 plus Org-Mode 9
 
 * Installation Instructions
 Backup you own =.emacs= if you have one and replace it with [[file:init.el][the content
@@ -75,7 +71,7 @@ document, simply =M-x org-babel-tangle=.
 #+end_src
 
 * Package sources
-** Use melpa-stable (preferred) and melpa
+** Use melpa-stable (preferred) and melpa in addition to the default GNU archive
 #+BEGIN_SRC emacs-lisp :tangle init.el
 (package-initialize)
 (add-to-list 'package-archives
@@ -87,27 +83,17 @@ document, simply =M-x org-babel-tangle=.
                                    ("melpa-stable" . 10)))
 #+END_SRC
 * Install missing packages
-** For macOS: 
 #+begin_src emacs-lisp
-(when (equal system-type 'darwin)
-  (unless (package-installed-p 'exec-path-from-shell)
-    (package-install 'exec-path-from-shell)))
+(dolist (pkg '(ess
+               auctex
+               exec-path-from-shell))
+  (when (not (package-installed-p pkg))
+    (package-install pkg)))
 #+end_src
-** ESS
+* Import environment variables
 #+begin_src emacs-lisp
-(unless (package-installed-p 'ess)
-  (package-install 'ess))
-#+end_src
-** AucTeX
-#+begin_src emacs-lisp
-(unless (package-installed-p 'auctex)
-  (package-install 'auctex))
-#+end_src
-* Import environment variables (macOS)
-#+begin_src emacs-lisp
-(when (equal system-type 'darwin)
-  (exec-path-from-shell-initialize)
-  (exec-path-from-shell-copy-env "PYTHONPATH"))
+(exec-path-from-shell-initialize)
+(exec-path-from-shell-copy-env "PYTHONPATH")
 #+end_src
 * Loading files:  
 ** Loading babel: 						     :ARNAUD:

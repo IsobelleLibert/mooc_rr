@@ -59,19 +59,14 @@
 (setq package-archive-priorities '(("gnu" . 100)
                                    ("melpa-stable" . 10)))
 
-(when (equal system-type 'darwin)
-  (unless (package-installed-p 'exec-path-from-shell)
-    (package-install 'exec-path-from-shell)))
+(dolist (pkg '(ess
+               auctex
+               exec-path-from-shell))
+  (when (not (package-installed-p pkg))
+    (package-install pkg)))
 
-(unless (package-installed-p 'ess)
-  (package-install 'ess))
-
-(unless (package-installed-p 'auctex)
-  (package-install 'auctex))
-
-(when (equal system-type 'darwin)
-  (exec-path-from-shell-initialize)
-  (exec-path-from-shell-copy-env "PYTHONPATH"))
+(exec-path-from-shell-initialize)
+(exec-path-from-shell-copy-env "PYTHONPATH")
 
 (require 'org)
 

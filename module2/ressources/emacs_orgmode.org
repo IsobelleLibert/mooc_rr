@@ -36,14 +36,23 @@ The next section provides information on how to install emacs.
   - [[#additional-useful-emacs-packages][Additional useful emacs packages]]
   - [[#other-resources][Other resources]]
 
-* Installing emacs, org-mode, ess, and auctex.
+* Installing Emacs
+The [[https://www.gnu.org/software/emacs/download.html][Emacs Web site]] explains various methods to install Emacs on your computer. Any of them will be fine for our purposes. In the following we describe the method that we consider most convenient for each platform, but feel free to use another one.
+
+For this MOOC, you need one of
+ 1. Emacs 26 (the latest version)
+ 2. Emacs 25 plus Org-Mode 9
+
+Emacs 25 comes with Org-Mode 8, which is not compatible with our examples. So if you use Emacs 25, you must separately install Org-Mode 9.
+
+Our MOOC also requires a few extra Emacs packages: [[https://ess.r-project.org/][ESS]] (for working with the R language) and [[https://www.gnu.org/software/auctex/][AUCTeX]] (for editing LaTeX). They will be installed automatically the first time you start Emacs if you use the configuration described under [[#a-simple-reproducible-research-emacs-configuration][A simple "reproducible research" emacs configuration]].
+
 ** Linux (Debian, Ubuntu)
 We provide here only instructions for Debian-based distributions. Feel
 free to contribute to this document to provide up-to-date information
 for other distributions (e.g.n redhat, fedora).
 
-Today, the stable versions of the most common distributions provide
-recent enough versions of emacs and org-mode:
+These are the versions of Emacs that various distributions provide:
 - Debian (stretch) ships with [[https://packages.debian.org/stretch/emacs25][emacs 25.1]] and [[https://packages.debian.org/stretch/org-mode][org-mode 9.0.3]]
 - Ubuntu (bionic 18.04) ships with [[https://packages.ubuntu.com/bionic/emacs25][emacs 25.2]] and [[https://packages.ubuntu.com/bionic/org-mode][org-mode 9.1.6]]
 - Ubuntu (artful 17.04) ships with [[https://packages.ubuntu.com/artful/emacs25][emacs 25.2]] and [[https://packages.ubuntu.com/artful/org-mode][org-mode 9.0.9]]
@@ -55,7 +64,7 @@ Simply run (as root):
 apt-get update ; apt-get install emacs25 org-mode
 #+end_src
 
-Then make sure you have a sufficiently recent version of emacs.
+Then verify that you have a sufficiently recent version of Emacs.
 #+begin_src sh :results output :exports both
 emacs --version 2>&1 | head -n 1
 #+end_src
@@ -63,7 +72,7 @@ emacs --version 2>&1 | head -n 1
 #+RESULTS:
 : GNU Emacs 25.2.2
 
-Likewise, you'll want to check you have a recent version of org-mode:
+Likewise, you'll want to check you have a recent version of Org-Mode:
 #+begin_src sh :results output :exports both
 emacs -batch --funcall "org-version" 2>&1 | grep version
 #+end_src
@@ -75,24 +84,15 @@ The version numbers you get will depend on the distribution you are
 running. _You really want to make sure you do not rely on org-mode 8_,
 which is now deprecated.
 
-The packages [[https://ess.r-project.org/][ESS]] (for working with the R language) and [[https://www.gnu.org/software/auctex/][AUCTeX]] (for editing LaTeX) will be installed automatically the first time you start Emacs if you use the configuration described under [[#a-simple-reproducible-research-emacs-configuration][A simple "reproducible research" emacs configuration]].
 ** macOS
 *Note:* macOS comes with a prehistoric command-line-only version of Emacs located at =/usr/bin/emacs=. It's best to forget about it.
 
 The Web site https://emacsformacosx.com/ proposes precompiled Emacs versions for macOS. Download the latest version (the one that figures prominently on the page) and install it like you would install any other macOS application, by copying =Emacs.app= from the downloaded disk image to a convenient location on your computer.
 
-This Emacs version contains everything used in the MOOC except the packages [[https://ess.r-project.org/][ESS]] (for working with the R language) and [[https://www.gnu.org/software/auctex/][AUCTeX]] (for editing LaTeX). If you use the configuration described under [[#a-simple-reproducible-research-emacs-configuration][A simple "reproducible research" emacs configuration]], these packages will be installed automatically the first time you start Emacs.
-
 In case you need to run Emacs from the command line (note: this is not required in the MOOC), you have to enter the full path to the executable. Assuming that you have copied =Emacs.app= to =/path/to/emacs=, this is =/path/to/emacs/Emacs.app/Contents/MacOS/Emacs=. Note that if you just type =emacs=, you will use the prehistoric command-line-only version at =/usr/bin/emacs= provided by Apple.
 
 ** Windows
-Install the =.exe= file from [[http://vgoulet.act.ulaval.ca/][Vincent Goulet]]:
-[[https://vigou3.gitlab.io/emacs-modified-windows/][https://vigou3.gitlab.io/emacs-modified-windows/]]. It ships with recent
-versions:
-- Emacs 26.1
-- Org-mode 9.1.13
-- ESS 17.11
-
+Download the [[https://ftp.gnu.org/gnu/emacs/windows/emacs-26/emacs-26.1-i686.zip][precompiled Emacs 26.1]] and unzip the zip file preserving the directory structure, and run bin\runemacs.exe. Alternatively, create a desktop shortcut to bin\runemacs.exe, and start Emacs by double-clicking on that shortcut's icon.
 *** Directory naming conventions
 In the following instructions, we refer to your home
 directory through the (UNIX) =~/= notation. On Windows, your home
