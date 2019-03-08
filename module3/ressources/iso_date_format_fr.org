@@ -1,0 +1,12 @@
+# -*- mode: org -*-
+#+TITLE:     Le format ISO pour les dates
+#+DATE: Mars 2019
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:nil
+#+PROPERTY: header-args :eval never-export
+
+La norme [[https://fr.wikipedia.org/wiki/ISO_8601][ISO 8601]] spécifie la représentation numérique de la date et de l'heure. Pour la date, qui nous intéresse ici, il y a deux façons différentes de procéder : on peut donner l'année, le mois, et le jour du mois, ou on peut donner l'année, la semaine, et le jour de la semaine. Le 8 août 2018 peut donc être écrit =2018-08-08= ou =2018-W32-3=, car il s'agit du troisième jour (mercredi) de la semaine 32 de l'année 2018.
+
+La définition du numéro de la semaine nécessite un peu de réflexion, car le 1er janvier ne tombe que rarement sur un lundi. Quelle semaine est donc la première de l'année ? La réponse de la norme ISO 8601 est : celle qui a plus de la moitié de ses jours dans la nouvelle année, ce qui est équivalent à dire celle qui contient le premier jeudi de l'année. Par conséquent, il est tout à fait possible, même fréquent, que le 1er jour de la première semaine de l'année /N/ tombe dans l'année /N-1/. Pour désigner une semaine entière, on ne fournit simplement pas le jour.
+
+Le Réseau Sentinelles reprend cette définition du numéro de semaine, mais ne respecte pas la représentation précise prévue par la norme ISO 8601. Au lieu d'écrire la troisième semaine de 1995 comme =1995-W03=, il écrit =199503=.
