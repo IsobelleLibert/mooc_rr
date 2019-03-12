@@ -1,8 +1,8 @@
+image: debian:testing-20181011-slim
+
 pages:
   stage: deploy
   script:
-  - apt-get update
-  - apt-get install pandoc
   - pandoc --version
   - pandoc --help
   - pandoc --list-input-formats
