@@ -92,7 +92,9 @@ The Web site https://emacsformacosx.com/ proposes precompiled Emacs versions for
 In case you need to run Emacs from the command line (note: this is not required in the MOOC), you have to enter the full path to the executable. Assuming that you have copied =Emacs.app= to =/path/to/emacs=, this is =/path/to/emacs/Emacs.app/Contents/MacOS/Emacs=. Note that if you just type =emacs=, you will use the prehistoric command-line-only version at =/usr/bin/emacs= provided by Apple.
 
 ** Windows
-Download the [[https://ftp.gnu.org/gnu/emacs/windows/emacs-26/emacs-26.1-i686.zip][precompiled Emacs 26.1]] and unzip the zip file preserving the directory structure, and run bin\runemacs.exe. Alternatively, create a desktop shortcut to bin\runemacs.exe, and start Emacs by double-clicking on that shortcut's icon.
+Download the [[https://ftp.gnu.org/gnu/emacs/windows/emacs-26/emacs-26.1-i686.zip][precompiled Emacs 26.1]] and unzip the zip file preserving the directory structure, and run =bin\runemacs.exe=.
+
+Alternatively, create a desktop shortcut to =bin\runemacs.exe=, and start Emacs by double-clicking on that shortcut's icon. See [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Windows-Startup.html][here]] for an explanation of this and other methods for launching Emacs under Windows.
 *** Directory naming conventions
 In the following instructions, we refer to your home
 directory through the (UNIX) =~/= notation. On Windows, your home
@@ -176,6 +178,9 @@ tar tzf rr_org_archive.tgz
 : rr_org/journal.org
 
 Alternatively, [[file:rr_org/][the files you are looking for are available here]].
+
+If you use Windows, and if you use a desktop shortcut to start Emacs, you must include the path to the file =init.el= in the command for the shortcut. For example, if you installed Emacs as =C:\Users\MyName/emacs=, your desktop shortcut should execute the command =C:\Users\MyName\emacs\bin\runemacs.exe -l .emacs.d/init.el=.
+
 ** Step 1: Prepare your journal
 Create an =org/= directory in the top of your home:
 #+begin_src sh :results output :exports both
