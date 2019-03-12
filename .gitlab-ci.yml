@@ -5,13 +5,13 @@ pages:
   script:
   - pandoc --version
   - pandoc --help
-  - pandoc --list-input-formats
+  # - pandoc --list-input-formats
   - for file in $(find -name "*.md"); do
       pandoc -s -f markdown_github -t html -o ${file%.*}.html $file && echo "Exported ${file%.*}.html" || echo "ERROR $file";
     done
-  - for file in $(find -name "*.org"); do
-      pandoc -s -f org -t html -o ${file%.*}.html $file && echo "Exported ${file%.*}.html" || echo "ERROR $file";
-    done
+  # - for file in $(find -name "*.org"); do
+  #     pandoc -s -f org -t html -o ${file%.*}.html $file && echo "Exported ${file%.*}.html" || echo "ERROR $file";
+  #   done
   - shopt -s extglob
   - mv !(public) public
   artifacts:
