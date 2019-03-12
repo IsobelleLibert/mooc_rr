@@ -7,12 +7,12 @@ pages:
   - pandoc --help
   # - pandoc --list-input-formats    # Broken as pandoc dates from 2013 on this image! :(
   - for file in $(find -name "*.md"); do
-      pandoc -s -f markdown_github -t html -o ${file%.*}.html $file && echo "Exported ${file%.*}.html" || echo "ERROR $file";
-      sed -i 's|https://gitlab.inria.fr/learninglab/|https://learninglab.gitlabpages.inria.fr/|g' ${file%.*}.html
-      sed -i "s|<body>|<body>The <a href='https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/$file'>original version of this document is available on gitlab</a>.|g" ${file%.*}.html
-      sed -i "s|\-\-\-</p>|<hr/>|g" ${file%.*}.html
-      sed -i "s|<p>TITLE: \(.*\)<br|<b>TITLE: \1</b><br|g" ${file%.*}.html
-      sed -i "s|Date\(.*\)<br|<i>Date\1</i><br|g" ${file%.*}.html
+        pandoc -s -f markdown_github -t html -o ${file%.*}.html $file && echo "Exported ${file%.*}.html" || echo "ERROR $file";
+        sed -i 's|https://gitlab.inria.fr/learninglab/|https://learninglab.gitlabpages.inria.fr/|g' ${file%.*}.html;
+        sed -i "s|<body>|<body>The <a href='https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/$file'>original version of this document is available on gitlab</a>.|g" ${file%.*}.html;
+        sed -i "s|\-\-\-</p>|<hr/>|g" ${file%.*}.html;
+        sed -i "s|<p>TITLE:\(.*\)<br|<b>TITLE:\1</b><br|g" ${file%.*}.html;
+        sed -i "s|Date\(.*\)<br|<i>Date\1</i><br|g" ${file%.*}.html;
     done
   # The next part is broken because pandoc is way too old on this image :(
   # - for file in $(find -name "*.org"); do 
