@@ -37,13 +37,14 @@ The next section provides information on how to install emacs.
   - [[#other-resources][Other resources]]
 
 * Installing Emacs
-The [[https://www.gnu.org/software/emacs/download.html][Emacs Web site]] explains various methods to install Emacs on your computer. Any of them will be fine for our purposes. In the following we describe the method that we consider most convenient for each platform, but feel free to use another one.
+In the following we describe for each platform the installation method that we consider most convenient. There are other options that may be preferable in particular situations, so you may want to look at the [[https://www.gnu.org/software/emacs/download.html][Emacs Web site]] for details, but we strongly suggest you first try the method we recommend.
 
-For this MOOC, you need one of
+At the end of the installation procedure, you should have one of
+
  1. Emacs 26 (the latest version)
  2. Emacs 25 plus Org-Mode 9
 
-Emacs 25 comes with Org-Mode 8, which is not compatible with our examples. So if you use Emacs 25, you must separately install Org-Mode 9.
+Emacs 25 comes with Org-Mode 8, which is not compatible with our examples. So if you use Emacs 25, you must separately install Org-Mode 9. Emacs 26 already includes Org-Mode 9.
 
 Our MOOC also requires a few extra Emacs packages: [[https://ess.r-project.org/][ESS]] (for working with the R language) and [[https://www.gnu.org/software/auctex/][AUCTeX]] (for editing LaTeX). They will be installed automatically the first time you start Emacs if you use the configuration described under [[#a-simple-reproducible-research-emacs-configuration][A simple "reproducible research" emacs configuration]].
 
