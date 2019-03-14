@@ -60,7 +60,7 @@ This is the documentation of the data from [[https://ns.sentiweb.fr/incidence/cs
 | ~geo_insee~  | Identifier of the geographic area, from INSEE https://www.insee.fr                                                        |
 | ~geo_name~   | Geographic label of the area, corresponding to INSEE code. This label is not an id and is only provided for human reading |
 
-The [[https://en.wikipedia.org/wiki/ISO_8601][ISO-8601]] is popular in Europe, but less so in North America. This may explain why few software packages handle this format. The Python language does it since version 3.6. We therefore use Python for the pre-processing phase, which has the advantage of not requiring any additional library. (Note: we will explain in module 4 why it is desirable for reproducibility to use as few external libraries as possible.)
+The [[https://en.wikipedia.org/wiki/ISO_8601][ISO-8601]] format is popular in Europe, but less so in North America. This may explain why few software packages handle this format. The Python language does it since version 3.6. We therefore use Python for the pre-processing phase, which has the advantage of not requiring any additional library. (Note: we will explain in module 4 why it is desirable for reproducibility to use as few external libraries as possible.)
 
 ** Download
 After downloading the raw data, we extract the part we are interested in. We first split the file into lines, of which we discard the first one that contains a comment. We then split the remaining lines into columns.
@@ -164,7 +164,7 @@ summary(data)
 #+END_SRC
 
 ** Inspection
-Finally we can look at a plot of our data1!
+Finally we can look at a plot of our data!
 #+BEGIN_SRC R :results output graphics :file inc-plot.png
 plot(data, type="l", xlab="Date", ylab="Weekly incidence")
 #+END_SRC
@@ -181,9 +181,9 @@ Since the peaks of the epidemic happen in winter, near the transition between ca
 
 This R function computes the annual incidence as defined above:
 #+BEGIN_SRC R :results silent
-pic_annuel = function(annee) {
-      debut = paste0(annee-1,"-08-01")
-      fin = paste0(annee,"-08-01")
+yearly_peak = function(year) {
+      debut = paste0(year-1,"-08-01")
+      fin = paste0(year,"-08-01")
       semaines = data$date > debut & data$date <= fin
       sum(data$inc[semaines], na.rm=TRUE)
       }
@@ -191,28 +191,29 @@ pic_annuel = function(annee) {
 
 We must also be careful with the first and last years of the dataset. The data start in October 1984, meaning that we don't have all the data for the peak attributed to the year 1985. We therefore exclude it from the analysis. For the same reason, we define 2018 as the final year. We can increase this value to 2019 only when all data up to July 2019 is available.
 #+BEGIN_SRC R :results silent
-annees <- 1986:2018
+years <- 1986:2018
 #+END_SRC
 
+We make a new data frame for the annual incidence, applying the function ~yearly_peak~ to each year:
 #+BEGIN_SRC R :results value
-inc_annuelle = data.frame(annee = annees,
-                          incidence = sapply(annees, pic_annuel))
-head(inc_annuelle)
+annnual_inc = data.frame(year = years,
+                         incidence = sapply(years, yearly_peak))
+head(annnual_inc)
 #+END_SRC
 
 ** Inspection
 A plot of the annual incidence:
 #+BEGIN_SRC R :results output graphics :file annual-inc-plot.png
-plot(inc_annuelle, type="p", xlab="Année", ylab="Incidence annuelle")
+plot(annnual_inc, type="p", xlab="Année", ylab="Annual incidence")
 #+END_SRC
 
 ** Identification of the strongest epidemics
 A list sorted by decreasing annual incidence makes it easy to find the most important ones:
 #+BEGIN_SRC R :results output
-head(inc_annuelle[order(-inc_annuelle$incidence),])
+head(annnual_inc[order(-annnual_inc$incidence),])
 #+END_SRC
 
 Finally, a histogram clearly shows the few very strong epidemics, which affect about 10% of the French population, but are rare: there were three of them in the course of 35 years. The typical epidemic affects only half as many people.
 #+BEGIN_SRC R :results output graphics :file annual-inc-hist.png
-hist(inc_annuelle$incidence, breaks=10, xlab="Incidence annuelle", ylab="Nb d'observations", main="")
+hist(annnual_inc$incidence, breaks=10, xlab="Annual incidence", ylab="Number of observations", main="")
 #+END_SRC
