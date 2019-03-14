@@ -1,4 +1,4 @@
-#+TITLE: Incidence du syndrôme grippal
+#+TITLE: Incidence of influenza-like illness in France
 #+LANGUAGE: fr
 #+OPTIONS: *:nil num:1 toc:t
 
@@ -12,59 +12,58 @@
 
 #+PROPERTY: header-args  :session  :exports both
 
-* Préface
+* Foreword
 
-Pour exécuter le code de cette analyse, il faut disposer des logiciels suivants:
+For running this analysis, you need the following software:
 
-** Emacs 25 ou 26
-Une version plus ancienne d'Emacs devrait suffire, mais en ce cas il est prudent d'installer une version récente (9.x) d'org-mode.
-** Python 3.6
-Nous utilisons le traitement de dates en format ISO 8601, qui a été implémenté en Python seulement avec la version 3.6.
-
+** Emacs 25 or higher
+Older versions may suffice. For Emacs versions older than 26, org-mode must be updated to version 9.x.
+** Python 3.6 or higher
+We use the ISO 8601 date format, which has been added to Python's standard library with version 3.6.
 #+BEGIN_SRC python :results output
 import sys
 if sys.version_info.major < 3 or sys.version_info.minor < 6:
-    print("Veuillez utiliser Python 3.6 (ou plus) !")
+    print("Please use Python 3.6 (or higher)!")
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp :results output
 (unless (featurep 'ob-python)
-  (print "Veuillez activer python dans org-babel (org-babel-do-languages) !"))
+  (print "Please activate python in org-babel (org-babel-do-languages)!"))
 #+END_SRC
 
 ** R 3.4
-Nous n'utilisons que des fonctionnalités de base du langage R, une version antérieure devrait suffire.
+We use only basic R functionality, so a earlier version might be OK, but we did not test this.
 
 #+BEGIN_SRC emacs-lisp :results output
 (unless (featurep 'ob-R)
-  (print "Veuillez activer R dans org-babel (org-babel-do-languages) !"))
+  (print "Please activate R in org-babel (org-babel-do-languages)!"))
 #+END_SRC
 
-* Préparation des données
+* Data preprocessing
 
-Les données de l'incidence du syndrome grippal sont disponibles du site Web du [[http://www.sentiweb.fr/][Réseau Sentinelles]]. Nous les récupérons sous forme d'un fichier en format CSV dont chaque ligne correspond à une semaine de la période demandée. Nous téléchargeons toujours le jeu de données complet, qui commence en 1984 et se termine avec une semaine récente. L'URL est:
+The data on the incidence of influenza-like illness are available from the Web site of the [[http://www.sentiweb.fr/][Réseau Sentinelles]]. We download them as a file in CSV format, in which each line corresponds to a week in the observation period. Only the complete dataset, starting in 1984 and ending with a recent week, is available for download. The URL is:
 #+NAME: data-url
 http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
 
-Voici l'explication des colonnes donnée sur [[https://ns.sentiweb.fr/incidence/csv-schema-v1.json][le site d'origine:]]
+This is the documentation of the data from [[https://ns.sentiweb.fr/incidence/csv-schema-v1.json][the download site]]:
 
-| Nom de colonne | Libellé de colonne                                                                                                                |
-|----------------+-----------------------------------------------------------------------------------------------------------------------------------|
-| ~week~       | Semaine calendaire (ISO 8601)                                                                                                     |
-| ~indicator~  | Code de l'indicateur de surveillance                                                                                              |
-| ~inc~        | Estimation de l'incidence de consultations en nombre de cas                                                                       |
-| ~inc_low~    | Estimation de la borne inférieure de l'IC95% du nombre de cas de consultation                                                     |
-| ~inc_up~     | Estimation de la borne supérieure de l'IC95% du nombre de cas de consultation                                                     |
-| ~inc100~     | Estimation du taux d'incidence du nombre de cas de consultation (en cas pour 100,000 habitants)                                   |
-| ~inc100_low~ | Estimation de la borne inférieure de l'IC95% du taux d'incidence du nombre de cas de consultation (en cas pour 100,000 habitants) |
-| ~inc100_up~  | Estimation de la borne supérieure de l'IC95% du taux d'incidence du nombre de cas de consultation (en cas pour 100,000 habitants) |
-| ~geo_insee~  | Code de la zone géographique concernée (Code INSEE) http://www.insee.fr/fr/methodes/nomenclatures/cog/                            |
-| ~geo_name~   | Libellé de la zone géographique (ce libellé peut être modifié sans préavis)                                                       |
+| Column name  | Description                                                                                                               |
+|--------------+---------------------------------------------------------------------------------------------------------------------------|
+| ~week~       | ISO8601 Yearweek number as numeric (year*100 + week nubmer)                                                               |
+| ~indicator~  | Unique identifier of the indicator, see metadata document https://www.sentiweb.fr/meta.json                               |
+| ~inc~        | Estimated incidence value for the time step, in the geographic level                                                      |
+| ~inc_low~    | Lower bound of the estimated incidence 95% Confidence Interval                                                            |
+| ~inc_up~     | Upper bound of the estimated incidence 95% Confidence Interval                                                            |
+| ~inc100~     | Estimated rate incidence per 100,000 inhabitants                                                                          |
+| ~inc100_low~ | Lower bound of the estimated incidence 95% Confidence Interval                                                            |
+| ~inc100_up~  | Upper bound of the estimated rate incidence 95% Confidence Interval                                                       |
+| ~geo_insee~  | Identifier of the geographic area, from INSEE https://www.insee.fr                                                        |
+| ~geo_name~   | Geographic label of the area, corresponding to INSEE code. This label is not an id and is only provided for human reading |
 
-L'indication d'une semaine calendaire en format [[https://en.wikipedia.org/wiki/ISO_8601][ISO-8601]] est populaire en Europe, mais peu utilisée aux Etats-Unis. Ceci explique peut-être que peu de logiciels savent gérer ce format. Le langage Python le fait depuis la version 3.6. Nous utilisons donc ce langage pour la préparation de nos données, ce qui a l'avantage de ne nécessiter aucune bibliothèque supplémentaire. (Note: nous expliquerons dans le module 4 pourquoi il est avantageux pour la réproductibilité de se limiter à un minimum de bibliothèques.)
+The [[https://en.wikipedia.org/wiki/ISO_8601][ISO-8601]] is popular in Europe, but less so in North America. This may explain why few software packages handle this format. The Python language does it since version 3.6. We therefore use Python for the pre-processing phase, which has the advantage of not requiring any additional library. (Note: we will explain in module 4 why it is desirable for reproducibility to use as few external libraries as possible.)
 
-** Téléchargement
-Après avoir téléchargé les données, nous commençons par l'extraction des données qui nous intéressent. D'abord nous découpons le contenu du fichier en lignes, dont nous jetons la première qui ne contient qu'un commentaire. Les autres lignes sont découpées en colonnes.
+** Download
+After downloading the raw data, we extract the part we are interested in. We first split the file into lines, of which we discard the first one that contains a comment. We then split the remaining lines into columns.
 
 #+BEGIN_SRC python :results silent :var data_url=data-url
 from urllib.request import urlopen
@@ -75,15 +74,15 @@ data_lines = lines[1:]
 table = [line.split(',') for line in data_lines]
 #+END_SRC
 
-Regardons ce que nous avons obtenu:
+Let's have a look at what we have so far:
 #+BEGIN_SRC python :results value
 table[:5]
 #+END_SRC
 
-** Recherche de données manquantes
-Il y a malheureusement beaucoup de façon d'indiquer l'absence d'un point de données. Nous testons ici seulement pour la présence de champs vides. Il faudrait aussi rechercher des valeurs non-numériques dans les colonnes à priori numériques. Nous ne le faisons pas ici, mais une vérification ultérieure capterait des telles anomalies.
+** Checking for missing data
+Unfortunately there are many ways to indicate the absence of a data value in a dataset. Here we check for a common one: empty fields. For completeness, we should also look for non-numerical data in numerical columns. We don't do this here, but checks in later processing steps would catch such anomalies.
 
-Nous construisons un nouveau jeu de données sans les lignes qui contiennent des champs vides. Nous affichons ces lignes pour en garder une trace.
+We make a new dataset without the lines that contain empty fields. We print those lines to preserve a trace of their contents.
 #+BEGIN_SRC python :results output
 valid_table = []
 for row in table:
@@ -94,8 +93,8 @@ for row in table:
         valid_table.append(row)
 #+END_SRC
 
-** Extraction des colonnes utilisées
-Il y a deux colonnes qui nous intéressent: la première (~"week"~) et la troisième (~"inc"~). Nous vérifions leurs noms dans l'en-tête, que nous effaçons par la suite. Enfin, nous créons un tableau avec les deux colonnes pour le traitement suivant.
+** Extraction of the required columns
+There are only two columns that we will need for our analysis: the first (~"week"~) and the third (~"inc"~). We check the names in the header to be sure we pick the right data. We make a new table containing just the two columns required, without the header.
 #+BEGIN_SRC python :results silent
 week = [row[0] for row in valid_table]
 assert week[0] == 'week'
@@ -106,25 +105,25 @@ del inc[0]
 data = list(zip(week, inc))
 #+END_SRC
 
-Regardons les premières et les dernières lignes. Nous insérons ~None~ pour indiquer à org-mode la séparation entre les trois sections du tableau: en-tête, début des données, fin des données.
+Let's look at the first and last lines. We insert ~None~ to indicate to org-mode the separation between the three parts of the table: header, first lines, last lines.
 #+BEGIN_SRC python :results value
 [('week', 'inc'), None] + data[:5] + [None] + data[-5:]
 #+END_SRC
 
-** Vérification
-Il est toujours prudent de vérifier si les données semblent crédibles. Nous savons que les semaines sont données par six chiffres (quatre pour l'année et deux pour la semaine), et que les incidences sont des nombres entiers positifs.
+** Verification
+It is always prudent to verify if the data looks credible. A simple fact we can check for is that weeks are given as six-digit integers (four for the year, two for the week), and that the incidence values are positive integers.
 #+BEGIN_SRC python :results output
 for week, inc in data:
     if len(week) != 6 or not week.isdigit():
-        print("Valeur suspecte dans la colonne 'week': ", (week, inc))
+        print("Suspicious value in column 'week': ", (week, inc))
     if not inc.isdigit():
-        print("Valeur suspecte dans la colonne 'inc': ", (week, inc))
+        print("Suspicious value in column 'inc': ", (week, inc))
 #+END_SRC
 
-Pas de problème !
+No problem - fine!
 
-** Conversions
-Pour faciliter les traitements suivants, nous remplaçons les numéros de semaine ISO par les dates qui correspondent aux lundis. A cette occasion, nous trions aussi les données par la date, et nous transformons les incidences en nombres entiers.
+** Data conversion
+In order to facilitate the subsequent treatment, we replace the ISO week numbers by the dates of each week's Monday. This is also a good occasion to sort the lines by increasing data, and to convert the incidences from strings to integers.
 
 #+BEGIN_SRC python :results silent
 import datetime
@@ -134,53 +133,53 @@ converted_data = [(datetime.datetime.strptime(year_and_week + ":1" , '%G%V:%u').
 converted_data.sort(key = lambda record: record[0])
 #+END_SRC
 
-Regardons de nouveau les premières et les dernières lignes:
+We'll look again at the first and last lines:
 #+BEGIN_SRC python :results value
 str_data = [(str(date), str(inc)) for date, inc in converted_data]
 [('date', 'inc'), None] + str_data[:5] + [None] + str_data[-5:]
 #+END_SRC
 
-** Vérification des dates
-Nous faisons encore une vérification: nos dates doivent être séparées d'exactement une semaine, sauf autour du point manquant.
+** Date verification
+We do one more verification: our dates must be separated by exactly one week, except around the missing data point.
 #+BEGIN_SRC python :results output
 dates = [date for date, _ in converted_data]
 for date1, date2 in zip(dates[:-1], dates[1:]):
     if date2-date1 != datetime.timedelta(weeks=1):
-        print(f"Il y a {date2-date1} entre {date1} et {date2}")
+        print(f"The difference between {date1} and {date2} is {date2-date1}")
 #+END_SRC
 
-** Passage Python -> R
-Nous passons au langage R pour inspecter nos données, parce que l'analyse et la préparation de graphiques sont plus concises en R, sans nécessiter aucune bibliothèque supplémentaire.
+** Transfer Python -> R
+We switch to R for data inspection and analysis, because the code is more concise in R and requires no additional libraries.
 
-Nous utilisons le mécanisme d'échange de données proposé par org-mode, ce qui nécessite un peu de code Python pour transformer les données dans le bon format.
+Org-mode's data exchange mechanism requires some Python code for transforming the data to the right format.
 #+NAME: data-for-R
 #+BEGIN_SRC python :results silent
 [('date', 'inc'), None] + [(str(date), inc) for date, inc in converted_data]
 #+END_SRC
 
-En R, les données arrivent sous forme d'un data frame, mais il faut encore convertir les dates, qui arrivent comme chaînes de caractères.
+In R, the dataset arrives as a data frame, which is fine. But the dates arrive as strings and must be converted.
 #+BEGIN_SRC R :results output :var data=data-for-R
 data$date <- as.Date(data$date)
 summary(data)
 #+END_SRC
 
 ** Inspection
-Regardons enfin à quoi ressemblent nos données !
+Finally we can look at a plot of our data1!
 #+BEGIN_SRC R :results output graphics :file inc-plot.png
-plot(data, type="l", xlab="Date", ylab="Incidence hebdomadaire")
+plot(data, type="l", xlab="Date", ylab="Weekly incidence")
 #+END_SRC
 
-Un zoom sur les dernières années montre mieux la situation des pics en hiver. Le creux des incidences se trouve en été.
+A zoom on the last few years makes the peaks in winter stand out more clearly.
 #+BEGIN_SRC R :results output graphics :file inc-plot-zoom.png
-plot(tail(data, 200), type="l", xlab="Date", ylab="Incidence hebdomadaire")
+plot(tail(data, 200), type="l", xlab="Date", ylab="Weekly incidence")
 #+END_SRC
 
-* Étude de l'incidence annuelle
+* Study of the annual incidence
 
-** Calcul de l'incidence annuelle
-Étant donné que le pic de l'épidémie se situe en hiver, à cheval entre deux années civiles, nous définissons la période de référence entre deux minima de l'incidence, du 1er août de l'année /N/ au 1er août de l'année /N+1/. Nous mettons l'année /N+1/ comme étiquette sur cette année décalée, car le pic de l'épidémie est toujours au début de l'année /N+1/. Comme l'incidence du syndrome grippal est très faible en été, cette modification ne risque pas de fausser nos conclusions.
+** Computation of the annual incidence
+Since the peaks of the epidemic happen in winter, near the transition between calendar years, we define the reference period for the annual incidence from August 1st of year /N/ to August 1st of year /N+1/. We label this period as year /N+1/ because the peak is always located in year /N+1/. The very low incidence in summer ensures that the arbitrariness of the choice of reference period has no impact on our conclusions.
 
-Voici une fonction qui calcule l'incidence annuelle en appliquant ces conventions.
+This R function computes the annual incidence as defined above:
 #+BEGIN_SRC R :results silent
 pic_annuel = function(annee) {
       debut = paste0(annee-1,"-08-01")
@@ -190,7 +189,7 @@ pic_annuel = function(annee) {
       }
 #+END_SRC
 
-Nous devons aussi faire attention aux premières et dernières années de notre jeux de données. Les données commencent en octobre 1984, ce qui ne permet pas de quantifier complètement le pic attribué à l'année 1985. Nous le supprimons donc de notre analyse. Par contre, les données se terminent après le 1er août 2018 (pour une exécution après cette date bien sûr), ce qui nous permet d'inclure cette année dans l'analyse.
+We must also be careful with the first and last years of the dataset. The data start in October 1984, meaning that we don't have all the data for the peak attributed to the year 1985. We therefore exclude it from the analysis. For the same reason, we define 2018 as the final year. We can increase this value to 2019 only when all data up to July 2019 is available.
 #+BEGIN_SRC R :results silent
 annees <- 1986:2018
 #+END_SRC
@@ -202,18 +201,18 @@ head(inc_annuelle)
 #+END_SRC
 
 ** Inspection
-Voici les incidences annuelles en graphique.
+A plot of the annual incidence:
 #+BEGIN_SRC R :results output graphics :file annual-inc-plot.png
 plot(inc_annuelle, type="p", xlab="Année", ylab="Incidence annuelle")
 #+END_SRC
 
-** Identification des épidémies les plus fortes
-Une liste triée par ordre décroissant d'incidence annuelle permet de plus facilement repérer les valeurs les plus élevées:
+** Identification of the strongest epidemics
+A list sorted by decreasing annual incidence makes it easy to find the most important ones:
 #+BEGIN_SRC R :results output
 head(inc_annuelle[order(-inc_annuelle$incidence),])
 #+END_SRC
 
-Enfin, un histogramme montre bien que les épidémies fortes, qui touchent environ 10% de la population française, sont assez rares: il y en eu trois au cours des 35 dernières années.
+Finally, a histogram clearly shows the few very strong epidemics, which affect about 10% of the French population, but are rare: there were three of them in the course of 35 years. The typical epidemic affects only half as many people.
 #+BEGIN_SRC R :results output graphics :file annual-inc-hist.png
 hist(inc_annuelle$incidence, breaks=10, xlab="Incidence annuelle", ylab="Nb d'observations", main="")
 #+END_SRC
