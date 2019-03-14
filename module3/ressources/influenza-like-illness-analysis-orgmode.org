@@ -1,5 +1,5 @@
 #+TITLE: Incidence of influenza-like illness in France
-#+LANGUAGE: fr
+#+LANGUAGE: en
 #+OPTIONS: *:nil num:1 toc:t
 
 # #+HTML_HEAD: <link rel="stylesheet" title="Standard" href="http://orgmode.org/worg/style/worg.css" type="text/css" />
@@ -122,7 +122,7 @@ for week, inc in data:
 
 No problem - fine!
 
-** Data conversion
+** Date conversion
 In order to facilitate the subsequent treatment, we replace the ISO week numbers by the dates of each week's Monday. This is also a good occasion to sort the lines by increasing data, and to convert the incidences from strings to integers.
 
 #+BEGIN_SRC python :results silent

@@ -41,8 +41,9 @@ This is the documentation of the data from [the download site](https://ns.sentiw
 | `geo_insee`  | Identifier of the geographic area, from INSEE https://www.insee.fr                                                        |
 | `geo_name`   | Geographic label of the area, corresponding to INSEE code. This label is not an id and is only provided for human reading |
 
-The first line of the CSV file is a comment, which we ignore with `skip=1`.
 ### Download
+
+The first line of the CSV file is a comment, which we ignore with `skip=1`.
 ```{r}
 data = read.csv(data_url, skip=1)
 ```
