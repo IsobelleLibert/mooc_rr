@@ -1,5 +1,5 @@
 ---
-title: "Analyse de l'incidence du syndrôme grippal"
+title: "Incidence of influenza-like illness in France"
 author: "Konrad Hinsen"
 output:
   pdf_document:
@@ -19,62 +19,62 @@ header-includes:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Préparation des données
+## Data preprocessing
 
-Les données de l'incidence du syndrome grippal sont disponibles du site Web du [Réseau Sentinelles](http://www.sentiweb.fr/). Nous les récupérons sous forme d'un fichier en format CSV dont chaque ligne correspond à une semaine de la période demandée. Nous téléchargeons toujours le jeu de données complet, qui commence en 1984 et se termine avec une semaine récente. L'URL est:
+The data on the incidence of influenza-like illness are available from the Web site of the [Réseau Sentinelles](http://www.sentiweb.fr/). We download them as a file in CSV format, in which each line corresponds to a week in the observation period. Only the complete dataset, starting in 1984 and ending with a recent week, is available for download. The URL is:
 ```{r}
 data_url = "http://www.sentiweb.fr/datasets/incidence-PAY-3.csv"
 ```
 
-Voici l'explication des colonnes donnée sur le [sur le site d'origine](https://ns.sentiweb.fr/incidence/csv-schema-v1.json):
+This is the documentation of the data from [the download site](https://ns.sentiweb.fr/incidence/csv-schema-v1.json):
 
-| Nom de colonne | Libellé de colonne                                                                                                                |
-|----------------+-----------------------------------------------------------------------------------------------------------------------------------|
-| `week`       | Semaine calendaire (ISO 8601)                                                                                                     |
-| `indicator`  | Code de l'indicateur de surveillance                                                                                              |
-| `inc`        | Estimation de l'incidence de consultations en nombre de cas                                                                       |
-| `inc_low`    | Estimation de la borne inférieure de l'IC95% du nombre de cas de consultation                                                     |
-| `inc_up`     | Estimation de la borne supérieure de l'IC95% du nombre de cas de consultation                                                     |
-| `inc100`     | Estimation du taux d'incidence du nombre de cas de consultation (en cas pour 100,000 habitants)                                   |
-| `inc100_low` | Estimation de la borne inférieure de l'IC95% du taux d'incidence du nombre de cas de consultation (en cas pour 100,000 habitants) |
-| `inc100_up`  | Estimation de la borne supérieure de l'IC95% du taux d'incidence du nombre de cas de consultation (en cas pour 100,000 habitants) |
-| `geo_insee`  | Code de la zone géographique concernée (Code INSEE) http://www.insee.fr/fr/methodes/nomenclatures/cog/                            |
-| `geo_name`   | Libellé de la zone géographique (ce libellé peut être modifié sans préavis)                                                       |
+| Column name  | Description                                                                                                               |
+|--------------+---------------------------------------------------------------------------------------------------------------------------|
+| `week`       | ISO8601 Yearweek number as numeric (year*100 + week nubmer)                                                               |
+| `indicator`  | Unique identifier of the indicator, see metadata document https://www.sentiweb.fr/meta.json                               |
+| `inc`        | Estimated incidence value for the time step, in the geographic level                                                      |
+| `inc_low`    | Lower bound of the estimated incidence 95% Confidence Interval                                                            |
+| `inc_up`     | Upper bound of the estimated incidence 95% Confidence Interval                                                            |
+| `inc100`     | Estimated rate incidence per 100,000 inhabitants                                                                          |
+| `inc100_low` | Lower bound of the estimated incidence 95% Confidence Interval                                                            |
+| `inc100_up`  | Upper bound of the estimated rate incidence 95% Confidence Interval                                                       |
+| `geo_insee`  | Identifier of the geographic area, from INSEE https://www.insee.fr                                                        |
+| `geo_name`   | Geographic label of the area, corresponding to INSEE code. This label is not an id and is only provided for human reading |
 
-La première ligne du fichier CSV est un commentaire, que nous ignorons en précisant `skip=1`.
-### Téléchargement
+The first line of the CSV file is a comment, which we ignore with `skip=1`.
+### Download
 ```{r}
 data = read.csv(data_url, skip=1)
 ```
 
-Regardons ce que nous avons obtenu:
+Let's have a look at what we got:
 ```{r}
 head(data)
 tail(data)
 ```
 
-Y a-t-il des points manquants dans nos données ?
+Are there missing data points?
 ```{r}
 na_records = apply(data, 1, function (x) any(is.na(x)))
 data[na_records,]
 ```
 
-Les deux colonnes qui nous intéressent sont `week` et `inc`. Vérifions leurs classes:
+The two relevant columns for us are `week` and `inc`. Let's verify their classes:
 ```{r}
 class(data$week)
 class(data$inc)
 ```
-Ce sont des entiers, tout va bien !
+Integers, fine!
 
-### Conversion des numéros de semaine
+### Conversion of the week numbers
 
-La gestion des dates est toujours un sujet délicat. Il y a un grand nombre de conventions différentes qu'il ne faut pas confondre. Notre jeux de données utilise un format que peu de logiciels savent traiter: les semaines en format [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601). En `R`, il est géré par la bibliothèque [parsedate](https://cran.r-project.org/package=parsedate):
+Date handling is always a delicate subject. There are many conventions that are easily confused. Our dataset uses the [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) week number format, which is popular in Europe but less so in North America. In `R`, it is handled by the library [parsedate](https://cran.r-project.org/package=parsedate):
 
 ```{r}
 library(parsedate)
 ```
 
-Pour faciliter le traitement suivant, nous remplaçons ces semaines par les dates qui correspondent aux lundis. Voici une petite fonction qui fait la conversion pour une seule valeur:
+In order to facilitate the subsequent treatment, we replace the ISO week numbers by the dates of each week's Monday. This function does it for one value:
 
 ```{r}
 convert_week = function(w) {
@@ -84,80 +84,81 @@ convert_week = function(w) {
 }
 ```
 
-Nous appliquons cette fonction à tous les points, créant une nouvelle colonne `date` dans notre jeu de données:
+We apply it to all points, creating a new column `date` in our data frame:
 ```{r}
 data$date = as.Date(convert_week(data$week))
 ```
 
-Vérifions qu'elle est de classe `Date`:
+Let's check that is has class `Date`:
 ```{r}
 class(data$date)
 ```
 
-Les points sont dans l'ordre chronologique inverse, il est donc utile de les trier:
+The points are in inverse chronological order, so it's preferable to sort them:
 ```{r}
 data = data[order(data$date),]
 ```
 
-C'est l'occasion pour faire une vérification: nos dates doivent être séparées d'exactement sept jours:
+That's a good occasion for another check: our dates should be separated by exactly seven days:
 ```{r}
 all(diff(data$date) == 7)
 ```
 
 ### Inspection
 
-Regardons enfin à quoi ressemblent nos données !
+Finally we can look at a plot of our data!
 ```{r}
-plot(data$date, data$inc, type="l", xlab="Date", ylab="Incidence hebdomadaire")
+plot(data$date, data$inc, type="l", xlab="Date", ylab="Weekly incidence")
 ```
 
-Un zoom sur les dernières années montre mieux la localisation des pics en hiver. Le creux des incidences se trouve en été.
+A zoom on the last few years makes the peaks in winter stand out more clearly.
 ```{r}
-with(tail(data, 200), plot(date, inc, type="l", xlab="Date", ylab="Incidence hebdomadaire"))
+with(tail(data, 200), plot(date, inc, type="l", xlab="Date", ylab="Weekly incidence"))
 ```
 
-## L'incidence annuelle
+## Annual incidence
 
-### Calcul
+### Computation
 
-Étant donné que le pic de l'épidémie se situe en hiver, à cheval entre deux années civiles, nous définissons la période de référence entre deux minima de l'incidence, du 1er août de l'année $N$ au 1er août de l'année $N+1$. Nous mettons l'année $N+1$ comme étiquette sur cette année décalée, car le pic de l'épidémie est toujours au début de l'année $N+1$. Comme l'incidence de syndrome grippal est très faible en été, cette modification ne risque pas de fausser nos conclusions. 
-L'argument `na.rm=True` dans la sommation précise qu'il faut supprimer les points manquants. Ce choix est raisonnable car il n'y a qu'un seul point manquant, dont l'impact ne peut pas être très fort.
+Since the peaks of the epidemic happen in winter, near the transition between calendar years, we define the reference period for the annual incidence from August 1st of year $N$ to August 1st of year $N+1$. We label this period as year $N+1$ because the peak is always located in year $N+1$. The very low incidence in summer ensures that the arbitrariness of the choice of reference period has no impact on our conclusions.
+
+The argument `na.rm=True` in the sum indicates that missing data points are removed. This is a reasonable choice since there is only one missing point, whose impact cannot be very strong.
 ```{r}
-pic_annuel = function(annee) {
-      debut = paste0(annee-1,"-08-01")
-      fin = paste0(annee,"-08-01")
+yearly_peak = function(year) {
+      debut = paste0(year-1,"-08-01")
+      fin = paste0(year,"-08-01")
       semaines = data$date > debut & data$date <= fin
       sum(data$inc[semaines], na.rm=TRUE)
       }
 ```
 
-Nous devons aussi faire attention aux premières et dernières années de notre jeux de données. Les données commencent en octobre 1984, ce qui ne permet pas de quantifier complètement le pic attribué à 1985. Nous l'enlevons donc de notre analyse. Par contre, pour une exécution en octobre 2018, les données se terminent après le 1er août 2018, ce qui nous permet d'inclure cette année.
+We must also be careful with the first and last years of the dataset. The data start in October 1984, meaning that we don't have all the data for the peak attributed to the year 1985. We therefore exclude it from the analysis. For the same reason, we define 2018 as the final year. We can increase this value to 2019 only when all data up to July 2019 is available.
 ```{r}
-annees = 1986:2018
+years = 1986:2018
 ```
 
-Nous créons un nouveau jeu de données pour l'incidence annuelle, en applicant la fonction `pic_annuel` à chaque année:
+We make a new data frame for the annual incidence, applying the function `yearly_peak` to each year:
 ```{r}
-inc_annuelle = data.frame(annee = annees,
-                          incidence = sapply(annees, pic_annuel))
-head(inc_annuelle)
+annnual_inc = data.frame(year = years,
+                          incidence = sapply(years, yearly_peak))
+head(annnual_inc)
 ```
 
 ### Inspection
 
-Voici les incidences annuelles en graphique:
+A plot of the annual incidences:
 ```{r}
-plot(inc_annuelle, type="p", xlab="Année", ylab="Incidence annuelle")
+plot(annnual_inc, type="p", xlab="Année", ylab="Annual incidence")
 ```
 
-### Identification des épidémies les plus fortes
+### Identification of the strongest epidemics
 
-Une liste triée par ordre décroissant d'incidence annuelle permet de plus facilement repérer les valeurs les plus élevées:
+A list sorted by decreasing annual incidence makes it easy to find the most important ones:
 ```{r}
-head(inc_annuelle[order(-inc_annuelle$incidence),])
+head(annnual_inc[order(-annnual_inc$incidence),])
 ```
 
-Enfin, un histogramme montre bien que les épidémies fortes, qui touchent environ 10% de la population française, sont assez rares: il y en eu trois au cours des 35 dernières années.
+Finally, a histogram clearly shows the few very strong epidemics, which affect about 10% of the French population, but are rare: there were three of them in the course of 35 years. The typical epidemic affects only half as many people.
 ```{r}
-hist(inc_annuelle$incidence, breaks=10, xlab="Incidence annuelle", ylab="Nb d'observations", main="")
+hist(annnual_inc$incidence, breaks=10, xlab="Annual incidence", ylab="Number of observations", main="")
 ```
