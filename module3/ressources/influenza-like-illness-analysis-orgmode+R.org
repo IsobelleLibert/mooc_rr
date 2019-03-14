@@ -1,0 +1,167 @@
+#+TITLE: Incidence du syndrôme grippal
+#+LANGUAGE: en
+#+OPTIONS: *:nil num:1 toc:t
+
+# #+HTML_HEAD: <link rel="stylesheet" title="Standard" href="http://orgmode.org/worg/style/worg.css" type="text/css" />
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
+#+HTML_HEAD: <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+#+HTML_HEAD: <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.js"></script>
+#+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
+
+#+PROPERTY: header-args  :session  :exports both
+
+* Foreword
+
+For running this analysis, you need the following software:
+
+** Emacs 25 or higher
+Older versions may suffice. For Emacs versions older than 26, org-mode must be updated to version 9.x.
+** R 3.4
+We use only basic R functionality, so a earlier version might be OK, but we did not test this.
+
+#+BEGIN_SRC emacs-lisp :results output
+(unless (featurep 'ob-R)
+  (print "Please activate R in org-babel (org-babel-do-languages)!"))
+#+END_SRC
+
+For handling dates in ISO-8601 format, we need the library ~parsedate~.
+#+BEGIN_SRC R :results output
+library(parsedate)
+#+END_SRC
+
+* Data preprocessing
+
+The data on the incidence of influenza-like illness are available from the Web site of the [[http://www.sentiweb.fr/][Réseau Sentinelles]]. We download them as a file in CSV format, in which each line corresponds to a week in the observation period. Only the complete dataset, starting in 1984 and ending with a recent week, is available for download. The URL is:
+#+NAME: data-url
+http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
+
+This is the documentation of the data from [[https://ns.sentiweb.fr/incidence/csv-schema-v1.json][the download site]]:
+
+| Column name  | Description                                                                                                               |
+|--------------+---------------------------------------------------------------------------------------------------------------------------|
+| ~week~       | ISO8601 Yearweek number as numeric (year*100 + week nubmer)                                                               |
+| ~indicator~  | Unique identifier of the indicator, see metadata document https://www.sentiweb.fr/meta.json                               |
+| ~inc~        | Estimated incidence value for the time step, in the geographic level                                                      |
+| ~inc_low~    | Lower bound of the estimated incidence 95% Confidence Interval                                                            |
+| ~inc_up~     | Upper bound of the estimated incidence 95% Confidence Interval                                                            |
+| ~inc100~     | Estimated rate incidence per 100,000 inhabitants                                                                          |
+| ~inc100_low~ | Lower bound of the estimated incidence 95% Confidence Interval                                                            |
+| ~inc100_up~  | Upper bound of the estimated rate incidence 95% Confidence Interval                                                       |
+| ~geo_insee~  | Identifier of the geographic area, from INSEE https://www.insee.fr                                                        |
+| ~geo_name~   | Geographic label of the area, corresponding to INSEE code. This label is not an id and is only provided for human reading |
+
+** Download
+The first line of the CSV file is a comment, which we ignore with ~skip=1~.
+
+#+BEGIN_SRC R :session :results silent :var url=data-url
+data = read.csv(trimws(url), skip=1)
+#+END_SRC
+
+Let's see what we got!
+#+BEGIN_SRC R :results output
+head(data)
+tail(data)
+#+END_SRC
+
+** Verification
+Are there missing data points?
+#+BEGIN_SRC R :results value
+na_records = apply(data, 1, function(x) any(is.na(x)))
+data[na_records,]
+#+END_SRC
+
+The two relevant columns for us are `week` and `inc`. Let's verify their classes:
+#+BEGIN_SRC R :results output
+class(data$week)
+class(data$inc)
+#+END_SRC
+
+Integers, fine!
+
+** Conversions
+In order to facilitate the subsequent treatment, we replace the ISO week numbers by the dates of each week's Monday. This function does it for one value:
+#+BEGIN_SRC R :results silent
+convert_week = function(w) {
+	ws = paste(w)
+	iso = paste0(substring(ws,1,4), "-W", substring(ws,5,6))
+	as.Date(parse_iso_8601(iso))
+	}
+#+END_SRC
+
+We apply it to all points, creating a new column ~date~ in our data frame:
+#+BEGIN_SRC R :results output
+data$date = as.Date(convert_week(data$week))
+#+END_SRC
+
+Let's check that is has class ~Date~:
+#+BEGIN_SRC R :results output
+class(data$date)
+#+END_SRC
+
+The points are in inverse chronological order, so it's preferable to sort them:
+#+BEGIN_SRC R :results output
+data = data[order(data$date),]
+#+END_SRC
+
+** Verification of the dates
+Another check: our dates should be separated by exactly seven days:
+#+BEGIN_SRC R :results value
+all(diff(data$date) == 7)
+#+END_SRC
+
+** Inspection
+Finally we can look at a plot of our data!
+#+BEGIN_SRC R :results output graphics :file inc-plot.png
+plot(data$date, data$inc, type="l", xlab="Date", ylab="Incidence hebdomadaire")
+#+END_SRC
+
+A zoom on the last few years makes the peaks in winter stand out more clearly.
+#+BEGIN_SRC R :results output graphics :file inc-plot-zoom.png
+with(tail(data, 200), plot(date, inc, type="l", xlab="Date", ylab="Incidence hebdomadaire"))
+#+END_SRC
+
+* Study of the annual incidence
+
+** Computation of the annual incidence
+Since the peaks of the epidemic happen in winter, near the transition between calendar years, we define the reference period for the annual incidence from August 1st of year /N/ to August 1st of year /N+1/. We label this period as year /N+1/ because the peak is always located in year /N+1/. The very low incidence in summer ensures that the arbitrariness of the choice of reference period has no impact on our conclusions.
+
+This R function computes the annual incidence as defined above:
+#+BEGIN_SRC R :results silent
+yearly_peak = function(year) {
+      debut = paste0(year-1,"-08-01")
+      fin = paste0(year,"-08-01")
+      semaines = data$date > debut & data$date <= fin
+      sum(data$inc[semaines], na.rm=TRUE)
+      }
+#+END_SRC
+
+We must also be careful with the first and last years of the dataset. The data start in October 1984, meaning that we don't have all the data for the peak attributed to the year 1985. We therefore exclude it from the analysis. For the same reason, we define 2018 as the final year. We can increase this value to 2019 only when all data up to July 2019 is available.
+#+BEGIN_SRC R :results silent
+years <- 1986:2018
+#+END_SRC
+
+We make a new data frame for the annual incidence, applying the function ~yearly_peak~ to each year:
+#+BEGIN_SRC R :results value
+annnual_inc = data.frame(year = years,
+                         incidence = sapply(years, yearly_peak))
+head(annnual_inc)
+#+END_SRC
+
+** Inspection
+A plot of the annual incidence:
+#+BEGIN_SRC R :results output graphics :file annual-inc-plot.png
+plot(annnual_inc, type="p", xlab="Année", ylab="Annual incidence")
+#+END_SRC
+
+** Identification of the strongest epidemics
+A list sorted by decreasing annual incidence makes it easy to find the most important ones:
+#+BEGIN_SRC R :results output
+head(annnual_inc[order(-annnual_inc$incidence),])
+#+END_SRC
+
+Finally, a histogram clearly shows the few very strong epidemics, which affect about 10% of the French population, but are rare: there were three of them in the course of 35 years. The typical epidemic affects only half as many people.
+#+BEGIN_SRC R :results output graphics :file annual-inc-hist.png
+hist(annnual_inc$incidence, breaks=10, xlab="Annual incidence", ylab="Number of observations", main="")
+#+END_SRC
