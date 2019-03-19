@@ -7,7 +7,7 @@ pages:
   - pandoc --help
   # - pandoc --list-input-formats    # Broken as pandoc dates from 2013 on this image! :(
   - for file in $(find -name "*.md"); do
-        pandoc -s -f markdown_github -t html -o ${file%.*}.html $file && echo "Exported ${file%.*}.html" || echo "ERROR $file";
+        pandoc -s -f markdown_github -t html -o ${file%.*}.html $file && echo "Exported ${file%.*}.html" && echo "<li><a href='https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr-ressources/${file%.*}.html'>${file%.*}.html</a></li>" >> index.html || echo "ERROR $file";
         sed -i 's|https://gitlab.inria.fr/learninglab/|https://learninglab.gitlabpages.inria.fr/|g' ${file%.*}.html;
         sed -i "s|<body>|<body>The <a href='https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/$file'>original version of this document is available on gitlab</a>.|g" ${file%.*}.html;
         sed -i "s|\-\-\-</p>|<hr/>|g" ${file%.*}.html;
