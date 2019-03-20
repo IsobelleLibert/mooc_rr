@@ -46,7 +46,7 @@ situations however where you may want to play with other notebooks.
      else's repository to re-execute it.
   1. Download the file on your computer. E.g., for this [[https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][GitLab hosted
      notebook]], click on =Open raw= (a small =</>= within a document icon)
-     and save (=Ctrl-S= on most browsers) the content (a long Json text
+     and save (=Ctrl-S= on most browsers) the content (a long JSON text
      file).
   2. Open the Jupyter file manager from the menu =File -> Open= and
      navigate to the directory where you want to upload your notebook.
@@ -75,7 +75,7 @@ Note that this =%%R= notation indicates that R should be used for the whole cell
 an other possibility is to use =%R= to have a single line of R within a
 python cell.
 ** 1.3 Other languages
-Jupyter is not limited to Pytyhon and R. Many other languages are available:
+Jupyter is not limited to Python and R. Many other languages are available:
 [[https://github.com/jupyter/jupyter/wiki/Jupyter-kernels][https://github.com/jupyter/jupyter/wiki/Jupyter-kernels]], including
 non-free languages like SAS, Mathematica, Matlab... Note that the maturity of these kernels differs widely.
 
