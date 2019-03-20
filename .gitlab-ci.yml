@@ -1,4 +1,4 @@
-# image: debian:testing-20181011-slim # Non-functional on Inria Gitlab :(
+image: debian:testing-20181011-slim
 
 pages:
   stage: deploy
