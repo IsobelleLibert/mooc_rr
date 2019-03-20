@@ -22,7 +22,7 @@ a rather crude list.
 - [[#m2-s5-collaborating][M2-S5: Collaborating]]
   - [[#preparing-a-document-for-a-journal-or-a-conference][Preparing a Document for a Journal or a Conference]]
 - [[#m2-s6-comparative-study][M2-S6: Comparative Study]]
-  - [[#examples-de-document-org-mode][Examples de document Org-Mode]]
+  - [[#exemples-of-org-mode-documents][Exemples of Org-Mode documents]]
 
 * M2-S0: Computational Documents
 * M2-S1: A few Recent Controversial Studies
@@ -62,7 +62,7 @@ Requirements for producing a *pdf*:
   - http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
   - https://github.com/balouf/Kleinberg/blob/master/KleinbergsGridSimulator.ipynb
 * M2-S6: Comparative Study
-** [[file:../ressources/orgmode_examples/README.org][Examples de document Org-Mode]]
+** [[file:../ressources/orgmode_examples/README.org][Exemples of Org-Mode documents]]
 # ** Bonus: expériences vécues 
 
 # Éléments clés lors du choix:
