@@ -1,4 +1,4 @@
-image: pandoc/core:2.7
+image: jpbernius/pandoc
 
 pages:
   stage: deploy
