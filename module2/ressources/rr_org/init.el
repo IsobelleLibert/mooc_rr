@@ -227,6 +227,8 @@ Entered on %U
      ))
   (setq org-src-preserve-indentation t)
 
+(require 'org-tempo nil t)
+
 (add-to-list 'org-structure-template-alist
         '("s" "#+begin_src ?\n\n#+end_src" "<src lang=\"?\">\n\n</src>"))
 

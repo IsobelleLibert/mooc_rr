@@ -364,6 +364,10 @@ Additional shortcuts for navigating through org-mode documents:
 #+end_src
 
 ** Adding source code blocks: 					       :LUKA:
+*** Enable the old template system with Orgmode 9.2 and later
+#+begin_src emacs-lisp :tangle init.el
+(require 'org-tempo nil t)
+#+end_src
 *** With capital letters:
 To use this type <s and then TAB
 #+begin_src emacs-lisp :tangle init.el
