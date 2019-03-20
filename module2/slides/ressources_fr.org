@@ -1,8 +1,85 @@
 # -*- mode: org -*-
-#+TITLE:     FIXME Computational Documents
+#+TITLE:     Le document computationnel
 #+DATE: June, 2018
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
 * Table des matières                                                    :TOC:
+- [[#m2-s0-le-document-computationnel][M2-S0: Le document computationnel]]
+- [[#m2-s1-exemples-récents-détudes-assez-discutées][M2-S1: Exemples récents d'études assez discutées]]
+  - [[#économie-politiques-daustérité][Économie: Politiques d'austérité]]
+  - [[#les-irm-fonctionnelles][Les IRM fonctionnelles]]
+  - [[#les-fausses-structures-de-protéines][Les fausses structures de protéines]]
+  - [[#autres-domaines][Autres domaines]]
+- [[#m2-s2-pourquoi-est-ce-difficile][M2-S2: Pourquoi est-ce difficile?]]
+  - [[#les-erreurs-classiques][Les erreurs classiques]]
+  - [[#tout-rendre-publique][Tout rendre publique ?]]
+- [[#m2-s3-le-document-computationnel-principe][M2-S3: Le document computationnel : principe]]
+- [[#m2-s5-travailler-avec-les-autres][M2-S5: Travailler avec les autres]]
+  - [[#préparation-dun-document-pour-un-journal-ou-pour-une-conférence][Préparation d'un document pour un journal ou pour une conférence]]
+- [[#m2-s6-analyse-comparée-des-différents-outils][M2-S6: Analyse comparée des différents outils]]
+  - [[#exemples-de-document-org-mode][Exemples de document Org-Mode]]
+
+* M2-S0: Le document computationnel
+* M2-S1: Exemples récents d'études assez discutées
+** Économie: Politiques d'austérité
+- [[https://en.wikipedia.org/wiki/Growth_in_a_Time_of_Debt][Reinhart et Rogoff]]: /Growth in a Time of Debt/
+- Herndon, Ash et Pollin
+- Wray: combining data across centuries, exchange rate regimes,
+** Les IRM fonctionnelles
+- 2010: [[https://www.researchgate.net/publication/255651552_Neural_correlates_of_interspecies_perspective_taking_in_the_post-mortem_Atlantic_Salmon_an_argument_for_multiple_comparisons_correction][Bennett et al.: le saumon mort]] \smiley
+- 2016: [[http://www.pnas.org/content/113/28/7900.abstract][Eklund, Nichols, and Knutsson]]. [[http://www.sciencealert.com/a-bug-in-fmri-software-could-invalidate-decades-of-brain-research-scientists-discover][Un bug dans les logiciels d'IRM
+  pourrait invalider 15 années de recherche sur le cerveau]] (/40 000 articles/)
+- 2016: C'est [[https://www.cogneurosociety.org/debunking-the-myth-that-fmri-studies-are-invalid/][plus subtil que ça]]. [[http://blogs.warwick.ac.uk/nichols/entry/bibliometrics_of_cluster/][D'après Nichols, un des auteurs de
+  l'article d'origine]], c'est plutôt de l'ordre de /3 600 études qui
+  seraient potentiellement impactées/.
+** Les fausses structures de protéines
+[[https://people.ligo-wa.caltech.edu/~michael.landry/calibration/S5/getsignright.pdf][A "buggy software"]].
+** Autres domaines
+- [[http://www.nature.com/nrd/journal/v10/n9/full/nrd3439-c1.html?foxtrotcallback=true][Oncologie]]: "/half of published studies, even in prestigious journals,
+  can't be reproduced in industrial labs/"
+- [[http://theconversation.com/we-found-only-one-third-of-published-psychology-research-is-reliable-now-what-46596][Psychologie]]: "/attempting to reproduce 100 previously published
+  findings/, /only one-third of published psychology research was found
+  to be reliable/"
+* M2-S2: Pourquoi est-ce difficile?
+** Les erreurs classiques
+- [[http://theconversation.com/how-computers-broke-science-and-what-we-can-do-to-fix-it-49938][Enquoi les ordinateurs ont "cassé" la science]]
+- [[https://qz.com/768334/years-of-genomics-research-is-riddled-with-errors-thanks-to-a-bunch-of-botched-excel-spreadsheets/][Erreurs de programmation et de manipulation de données en génomique]]
+** Tout rendre publique ?
+- Quelqu'un pourrait [[http://www.nature.com/news/the-top-100-papers-1.16224][tirer parti de mon dur labeur]]
+* M2-S3: Le document computationnel : principe
+* M2-S5: Travailler avec les autres
+** Préparation d'un document pour un journal ou pour une conférence
+De quoi aurez-vous besoin pour produire un document  *pdf*:
+- En interne: /pandoc/, /knitr/ ou /emacs/org-mode/.
+- /LaTeX/ devra aussi être installé
+Voici quelques billets intéressants sur le sujet:
+  - http://blog.juliusschulz.de/blog/ultimate-ipython-notebook
+    - https://github.com/kirbs-/hide_code is a must-have
+  - http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
+  - https://github.com/balouf/Kleinberg/blob/master/KleinbergsGridSimulator.ipynb
+* M2-S6: Analyse comparée des différents outils
+** [[file:../ressources/orgmode_examples/README_fr.org][Exemples de document Org-Mode]]
+# ** Bonus: expériences vécues 
+
+# Éléments clés lors du choix:
+# - Simplicité de prise en main vs. vrai éditeur
+# - Où sont fait les calculs 
+# - Multi-langage
+#   - http://carreau.github.io/posts/23-Cross-Language-Integration.html
+# - Gestion des langages compilés
+# - Notions de caches et d'état
+
+# Les principaux outils actuels:
+# - jupyter
+# - rstudio
+# - org-mode
+
+# Limitations:
+# - Longs calculs
+# - Grands documents
+# - Solutions wysiwyg pour jupyter
+
+# Historique/diff un peu compliqué pour jupyter
+
