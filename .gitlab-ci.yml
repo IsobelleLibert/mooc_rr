@@ -1,4 +1,4 @@
-image: debian:testing-20181011-slim
+image: pandoc/core
 
 pages:
   stage: deploy
