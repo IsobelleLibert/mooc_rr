@@ -1,7 +1,9 @@
 ---
-TITLE:     FIXME Computational Documents
-Date:   Tue Feb 19 19:19:03 2019 
+TITLE:     Computational Documents
+Date:   Wed Mar 20 13:19:19 2019 
 ---
+
+This document gathers most references mentioned in the videos. This is a rather crude list.
 
 Table of Contents<span class="tag" data-tag-name="TOC"></span>
 ==============================================================
@@ -15,13 +17,11 @@ Table of Contents<span class="tag" data-tag-name="TOC"></span>
 -   [M2-S2: Why is This so Difficult?](#m2-s2-why-is-this-so-difficult)
     -   [Mistakes](#mistakes)
     -   [Going Public?](#going-public)
-    -   [Tools to Avoid and Possible Alternatives](#tools-to-avoid-and-possible-alternatives)
 -   [M2-S3: Computational Documents: Principles](#m2-s3-computational-documents-principles)
 -   [M2-S5: Collaborating](#m2-s5-collaborating)
     -   [Preparing a Document for a Journal or a Conference](#preparing-a-document-for-a-journal-or-a-conference)
 -   [M2-S6: Comparative Study](#m2-s6-comparative-study)
-    -   [See org-mode documents.](#see-org-mode-documents)
-    -   [Bonus: expériences vécues](#bonus-expériences-vécues)
+    -   [Exemples of Org-Mode documents](#exemples-of-org-mode-documents)
 
 M2-S0: Computational Documents
 ==============================
@@ -46,7 +46,7 @@ Functional MRI
 Incorrect Protein Structures
 ----------------------------
 
-[a "buggy software"](https://people.ligo-wa.caltech.edu/~michael.landry/calibration/S5/getsignright.pdf)
+[A "buggy software"](https://people.ligo-wa.caltech.edu/~michael.landry/calibration/S5/getsignright.pdf).
 
 Other domains
 -------------
@@ -67,9 +67,6 @@ Going Public?
 -------------
 
 -   Someone may [benefit from my hard work](http://www.nature.com/news/the-top-100-papers-1.16224)
-
-Tools to Avoid and Possible Alternatives
-----------------------------------------
 
 M2-S3: Computational Documents: Principles
 ==========================================
@@ -93,31 +90,5 @@ Requirements for producing a **pdf**:
 M2-S6: Comparative Study
 ========================
 
-See org-mode documents.
------------------------
-
-Bonus: expériences vécues
--------------------------
-
-Éléments clés lors du choix:
-
--   Simplicité de prise en main vs. vrai éditeur
--   Où sont fait les calculs
--   Multi-langage
-    -   <http://carreau.github.io/posts/23-Cross-Language-Integration.html>
--   Gestion des langages compilés
--   Notions de caches et d'état
-
-Les principaux outils actuels:
-
--   jupyter
--   rstudio
--   org-mode
-
-Limitations:
-
--   Longs calculs
--   Grands documents
--   Solutions wysiwyg pour jupyter
-
-Historique/diff un peu compliqué pour jupyter
+[Exemples of Org-Mode documents](../ressources/orgmode_examples/README.org)
+---------------------------------------------------------------------------

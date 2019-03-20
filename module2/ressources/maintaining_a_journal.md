@@ -1,19 +1,19 @@
 ---
 TITLE:     Maintaining a journal
-Date:   Tue Feb 19 19:19:03 2019 
+Date:   Wed Mar 20 12:15:41 2019 
 ---
 
 Table of Contents<span class="tag" data-tag-name="TOC"></span>
 ==============================================================
 
--   [Some examples of LabBooks provided for inspiration](#some-examples-of-labbooks-provided-for-inspiration)
--   [How to report efficiently (by Martin Quinson)](#how-to-report-efficiently-by-martin-quinson)
+-   [1. Some examples of LabBooks provided for inspiration](#1-some-examples-of-labbooks-provided-for-inspiration)
+-   [2. How to report efficiently (by Martin Quinson)](#2-how-to-report-efficiently-by-martin-quinson)
     -   [Reporting](#reporting)
     -   [Reporting Logistics](#reporting-logistics)
     -   [Reporting Document Organization](#reporting-document-organization)
 
-Some examples of LabBooks provided for inspiration
-==================================================
+1. Some examples of LabBooks provided for inspiration
+=====================================================
 
 Since a few years, we systematically require any or our students to have a laboratory notebook in org-mode. Most of the time, they start in private repositories but often end up being fully opened. Here are a few ones:
 
@@ -28,8 +28,8 @@ Since a few years, we systematically require any or our students to have a labor
 
 Org-mode is obviously not the only option and many of our students use am mixture of org-mode, rstudio and jupyter depending on what is more convenient.
 
-How to report efficiently (by Martin Quinson)
-=============================================
+2. How to report efficiently (by Martin Quinson)
+================================================
 
 My friend Martin has gathered \[\[<https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/>\]\[an excellent compendium of information and references on his webpage to explain his students what he expects from them\]\]. **I'll therefore simply paraphrase him here** with the most important aspects related to reporting but feel free to read [the original version](https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/):
 

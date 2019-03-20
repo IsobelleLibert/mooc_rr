@@ -1,14 +1,14 @@
 ---
-TITLE:     FIXME Introduction à Markdown
-Date:   Tue Feb 19 19:19:03 2019 
+TITLE:     Introduction to Markdown
+Date:   Wed Mar 20 13:57:10 2019 
 ---
 
-Voici un aperçu rapide de la syntaxe Markdown repris d'une [présentation de Github](https://guides.github.com/features/mastering-markdown/) ainsi que de celles d'[Archer Reilly](http://csrgxtu.github.io/2015/03/20/Writing-Mathematic-Fomulars-in-Markdown/).
+This document presents a brief overview of the Markdown syntax and builds on a [presentation from the Github team](https://guides.github.com/features/mastering-markdown/) and [blog post from Archer Reilly](http://csrgxtu.github.io/2015/03/20/Writing-Mathematic-Fomulars-in-Markdown/).
 
-Table des matières<span class="tag" data-tag-name="TOC"></span>
-===============================================================
+Table of Contents<span class="tag" data-tag-name="TOC"></span>
+==============================================================
 
--   [Syntaxe](#syntaxe)
+-   [Syntax](#syntax)
     -   [Headers](#headers)
     -   [Emphasis](#emphasis)
     -   [Lists](#lists)
@@ -16,17 +16,17 @@ Table des matières<span class="tag" data-tag-name="TOC"></span>
     -   [Links](#links)
     -   [Blockquotes](#blockquotes)
     -   [Inline code](#inline-code)
--   [Écrire des Maths](#écrire-des-maths)
-    -   [Lettres grecques](#lettres-grecques)
-    -   [Fonctions et opérateurs](#fonctions-et-opérateurs)
-    -   [Exposants et indices](#exposants-et-indices)
-    -   [Fractions, coefficients binomiaux, racines, ...](#fractions-coefficients-binomiaux-racines-)
-    -   [Sommes et intégrales](#sommes-et-intégrales)
-    -   [Déguisements](#déguisements)
--   [Autour de `markdown`](#autour-de-markdown)
+-   [Writing Math](#writing-math)
+    -   [Greek Letters](#greek-letters)
+    -   [Usual functions and operators](#usual-functions-and-operators)
+    -   [Exponents and indices](#exponents-and-indices)
+    -   [Fractions, binomial coefficients, square roots, ...](#fractions-binomial-coefficients-square-roots-)
+    -   [Summations and integrals](#summations-and-integrals)
+    -   [Outfits ☺](#outfits-smiley)
+-   [About `markdown`](#about-markdown)
 
-Syntaxe
-=======
+Syntax
+======
 
 Headers
 -------
@@ -108,77 +108,77 @@ print("Hello world!")
 ```
 ````
 
-Écrire des Maths
-================
+Writing Math
+============
 
-Il est possible d'écrire des formules en Markdown, soit en mode **inline** soit en mode **displayed formulas**. Dans le premier cas, les formules sont inclues directement à l'intérieur du paragraphe courant alors que dans le second, elles apparaissent centrées et mises en exergue.
+Math formulas are easy to write using Markdown, either using the **inline** mode or the **displayed formulas** mode. With the inline mode, formulas are inlined in the current paragraph whereas with the displayed mode, they appear as centered and emphasized.
 
-Le formatage de la formule est légèrement différent dans les deux cas car pour qu'une formule s'affiche joliment sur une seule ligne, il faut la "tasser" un peu plus que lorsqu'elle est mise en valeur.
+The formatting generally slightly differs in both cases since, to display nicely on a single line, it is generally required to pack them a bit more than when they are emphasized.
 
-Pour écrire une formule en mode **inline**, il faut la délimiter par un `$` (du coup, pour écrire le symbole dollar, il faut le préfixer par un backslash, comme ceci: `\$`) alors que pour écrire en mode **displayed**, il faut la délimiter par un `$$`. Un petit exemple valant mieux qu'un long discours, voici concrètement comment cela fonctionne:
+To write formulas using the **inline** mode, they should be surrounded by a single `$` (as a consequence, whenever you need to use the original dollar symbol, you should prefix it with a backslash: `\$`). To write formulas using the **displayed** mode, they should be surrounded by a `$$`. Here are a few examples:
 
 ``` example
-Cette expression $\sum_{i=1}^n X_i$ est inlinée.
+This expression $\sum_{i=1}^n X_i$ is inlined.
 ```
 
-Cette expression $\\sum\_{i=1}^n X\_i$ est inlinée.
+This expression $\\sum\_{i=1}^n X\_i$ is inlined.
 
 ``` example
-Cette expression est mise en valeur:
+This expression is emphasized:
 
 $$\sum_{i=1}^n X_i$$
 ```
 
-Cette expression est mise en valeur:
+This expression is emphasized:
 
 $$\\sum\_{i=1}^n X\_i$$
 
-Nous vous présentons par la suite une sélection de symboles et de commandes courantes. En fait, à peu près tout ce qui est classique dans le langage LaTeX peut être utilisé pourvu que vous délimitiez bien avec un `$`. Pour d'autres exemples plus complets jetez un coup d'œil à ces [exemples de James H. Steiger](http://www.statpower.net/Content/310/R%2520Stuff/SampleMarkdown.html).
+In the rest of this section we present a brief selection of common symbols and commands. Actually, almost any classical LaTeX command can used as such in Markdown, provided it is surrounded by a `$`. For more complete examples, please have a look at these ces [examples by James H. Steiger](http://www.statpower.net/Content/310/R%2520Stuff/SampleMarkdown.html).
 
-Lettres grecques
-----------------
+Greek Letters
+-------------
 
-| Symbole | Commande   |
-|---------|------------|
-| *α*     | `$\alpha$` |
-| *β*     | `$\beta$`  |
-| *γ*     | `$\gamma$` |
-| *Γ*     | `$\Gamma$` |
-| *π*     | `$\pi$`    |
+| Symbol | Command    |
+|--------|------------|
+| *α*    | `$\alpha$` |
+| *β*    | `$\beta$`  |
+| *γ*    | `$\gamma$` |
+| *Γ*    | `$\Gamma$` |
+| *π*    | `$\pi$`    |
 
-Fonctions et opérateurs
------------------------
+Usual functions and operators
+-----------------------------
 
-| Symbole | Commande    |
-|---------|-------------|
-| cos     | `$\cos$`    |
-| sin     | `$\sin$`    |
-| lim     | `$\lim$`    |
-| exp     | `$\exp$`    |
-| →       | `$\to$`     |
-| ∈       | `$\in$`     |
-| ∀       | `$\forall$` |
-| ∃       | `$\exists$` |
-| ≡       | `$\equiv$`  |
-| ∼       | `$\sim$`    |
-| ≈       | `$\approx$` |
-| ×       | `$\times$`  |
-| ≤       | `$\le$`     |
-| ≥       | `$\ge$`     |
+| Symbol | Command     |
+|--------|-------------|
+| cos    | `$\cos$`    |
+| sin    | `$\sin$`    |
+| lim    | `$\lim$`    |
+| exp    | `$\exp$`    |
+| →      | `$\to$`     |
+| ∈      | `$\in$`     |
+| ∀      | `$\forall$` |
+| ∃      | `$\exists$` |
+| ≡      | `$\equiv$`  |
+| ∼      | `$\sim$`    |
+| ≈      | `$\approx$` |
+| ×      | `$\times$`  |
+| ≤      | `$\le$`     |
+| ≥      | `$\ge$`     |
 
-Exposants et indices
---------------------
+Exponents and indices
+---------------------
 
-| Symbole                       | Commande    |
+| Symbol                        | Command     |
 |-------------------------------|-------------|
 | *k*<sub>*n* + 1</sub>         | `$k_{n+1}$` |
 | *n*<sup>2</sup>               | `$n^2$`     |
 | *k*<sub>*n*</sub><sup>2</sup> | `$k_n^2$`   |
 
-Fractions, coefficients binomiaux, racines, ...
------------------------------------------------
+Fractions, binomial coefficients, square roots, ...
+---------------------------------------------------
 
-| Symbole                       | Commande                      |
+| Symbol                        | Command                       |
 |-------------------------------|-------------------------------|
 | $\\frac{4z^3}{16}$            | `$\frac{4z^3}{16}$`           |
 | $\\frac{n!}{k!(n-k)!}$        | `$\frac{n!}{k!(n-k)!}$`       |
@@ -188,18 +188,18 @@ Fractions, coefficients binomiaux, racines, ...
 | $\\sqrt{k}$                   | `$\sqrt{k}$`                  |
 | $\\sqrt\[n\]{k}$              | `$\sqrt[n]{k}$`               |
 
-Sommes et intégrales
---------------------
+Summations and integrals
+------------------------
 
-| Symbole                                            | Commande                                       |
+| Symbol                                             | Command                                        |
 |----------------------------------------------------|------------------------------------------------|
 | $\\sum\_{i=1}^{10} t\_i$                           | `$\sum_{i=1}^{10} t_i$`                        |
 | ∫<sub>0</sub><sup>∞</sup>*e*<sup>−*x*</sup> *d**x* | `$\int_0^\infty \mathrm{e}^{-x}\,\mathrm{d}x$` |
 
-Déguisements
-------------
+Outfits ☺
+---------
 
-| Symbole                | Commande                |
+| Symbol                 | Command                 |
 |------------------------|-------------------------|
 | *â*                    | `$\hat{a}$`             |
 | *ā*                    | `$\bar{a}$`             |
@@ -207,27 +207,27 @@ Déguisements
 | $\\ddot{a}$            | `$\ddot{a}$`            |
 | $\\overrightarrow{AB}$ | `$\overrightarrow{AB}$` |
 
-Autour de `markdown`
-====================
+About `markdown`
+================
 
-Tout d'abord, pour aller plus loin avec `markdown` et ses extensions / ramifications :
+First of all, to know more about `markdown` and its extensions, you may want to read:
 
--   Le didacticiel « [Élaboration et conversion de documents avec Markdown et Pandoc](https://enacit1.epfl.ch/markdown-pandoc/) » de Jean-Daniel Bonjour (EPFL), précis, complet, concis, en français ; un vrai bonheur !
--   L'article [Markdown](https://en.wikipedia.org/wiki/Markdown#Example) de wikipedia en anglais contient un bon pense-bête sur la syntaxe `markdown`.
--   Github propose un court et efficace didacticiel (en anglais) : [Mastering Markdown](https://guides.github.com/features/mastering-markdown/).
+-   The « [Élaboration et conversion de documents avec Markdown et Pandoc](https://enacit1.epfl.ch/markdown-pandoc/) » tutorial by Jean-Daniel Bonjour (EPFL). A must-read in French...
+-   The wikipedia article on [Markdown](https://en.wikipedia.org/wiki/Markdown#Example) provides a good overview of the `markdown` syntax.
+-   Github proposes a short and efficient introduction: [Mastering Markdown](https://guides.github.com/features/mastering-markdown/).
 
-Comme nous l'illustrons dans la « film d'écran » (*screencast*), l'éditeur de texte des dépôts `github` et `gitlab` permet d'interpréter / transformer à la demande un fichier `mardown` en un fichier `html`. C'est à la fois agréable et pratique, mais ce n'est pas une solution pour une utilisation quotidienne de `markdown`, pour cela, il est plus efficace d'éditer son texte, avec un éditeur de texte, sur son ordinateur, avant de « l'exporter » dans un format comme `html`, `pdf`, `docx`, `epub`, etc. Il existe des éditeurs plus ou moins spécialisés pour `markdown`, certains sont indiqués sur la page [Editors](https://github.com/jgm/pandoc/wiki/Pandoc-Extras#editors) du site de `pandoc`, mais nous préconisons clairement l'emploi d'un éditeur de texte « généraliste » capable de reconnaître la syntaxe `markdown`. Nous en avons indiqué en début de séquence et on pourra trouver des informations complémentaires dans la section [Quelques éditeurs adaptés à l'édition Markdown](https://enacit1.epfl.ch/markdown-pandoc/#editeurs_markdown) du didacticiel de Jean-Daniel Bonjour.
+As we explain in the video, `github` and `gitlab` allow you to easily edit `mardown` documents and to render them in `html`. This is quite convenient but may be a bit cumbersome for a daily use. You may prefer to edit these documents with a real editor and later to export them in whichever format you may like (`html`, `pdf`, `docx`, `epub`, etc). There are a few editors specifically designed for `markdown` (see for example the [Editors](https://github.com/jgm/pandoc/wiki/Pandoc-Extras#editors) page of the `pandoc` website) but we rather advise you to use a general-purpose editor that is capable of handling the `markdown` syntax. A few ones were mentioned in the beginning of the video and additional information are available in the ["Quelques éditeurs adaptés à l'édition Markdown"](https://enacit1.epfl.ch/markdown-pandoc/#editeurs_markdown) section of Jean-Daniel Bonjour's tutorial.
 
-Pour convertir un fichier `markdown` en un format « arbitraire », la solution à ce jour la plus complète est [Pandoc](http://pandoc.org/), logiciel développé par John MacFarlane, un philosophe de Berkeley (le site [github](https://github.com/jgm/pandoc)). En plus du site de `Pandoc`, le didacticiel de J.-D. Bonjour donne de nombreuses explications sur comment installer et utiliser `pandoc` dans la section [Utilisation du convertisseur Pandoc](https://enacit1.epfl.ch/markdown-pandoc/#commande_pandoc). Comme `pandoc` -- écrit en Haskell -- peut être parfois un peu difficile à installer, nous indiquons maintenant quelques solutions alternatives :
+To convert `markdown` in an "arbitrary" other format, the best solution today is [Pandoc](http://pandoc.org/), a software developed by John MacFarlane, a philosopher from de Berkeley, and whose [main page is on github](https://github.com/jgm/pandoc). J.-D. Bonjour's tutorial provides many explanations on how to install and use `pandoc` in the [Utilisation du convertisseur Pandoc](https://enacit1.epfl.ch/markdown-pandoc/#commande_pandoc) section. `pandoc` is written in Haskell and may be a bit cumbersome to install. Therefore, we provide here a few alternative solutions:
 
--   Des sites comme <http://www.markdowntopdf.com/> et <http://markdown2pdf.com/> permettent de convertir en ligne un fichier `markdown` en un fichier `pdf`.
--   Le projet [CommonMark](http://commonmark.org/) propose, en plus d'une spécifications plus rigoureuse de la syntaxe `markdown`, des convertisseurs `markdown` → `html` / `LaTeX` (et plus) écris en `C` et en `JavaScript` (<https://github.com/CommonMark/CommonMark>).
--   Le site de [John Gruber](https://daringfireball.net/projects/markdown/), le créateur de `markdown`, fournit un convertisseur `markdown` → `html` écrit en `perl`.
--   [MultiMarkdown](http://fletcherpenney.net/multimarkdown/) est une autre extension de `markdown` qui vient avec son convertisseur `markdown` → `html` écrit en `C`.
--   [grip](https://github.com/joeyespo/grip) est un serveur écrit en `python` qui permet de convertir et visualiser à la volée des fichiers `markdown` avec son navigateur (très utile pour éviter d'avoir à faire des « commits » en grande quantité lorsqu'on écrit de tels fichiers pour un dépôt `github` ou `gitlab`).
+-   Some websites like <http://www.markdowntopdf.com/> or <http://markdown2pdf.com/> allow you to convert online `markdown` files into `pdf` files without having to install anything on your computer.
+-   The [CommonMark](http://commonmark.org/) project proposes a rigorous specification of the `markdown` syntax and converters `markdown` → `html` / `LaTeX` written in `C` and `JavaScript` (<https://github.com/CommonMark/CommonMark>).
+-   You will find on the website of [John Gruber](https://daringfireball.net/projects/markdown/), the creator of `markdown`, a `markdown` → `html` converter written in `perl`.
+-   [MultiMarkdown](http://fletcherpenney.net/multimarkdown/) is another `markdown` extension that provides its own `markdown` → `html` converter written in `C`.
+-   [grip](https://github.com/joeyespo/grip) is a `python`-based server that allows you to convert on the fly `markdown` documents and to preview them with your favorite browser (this is quite useful to avoid useless commits just for the sake of previewing when using `github` ou `gitlab`).
 
-La conversion en `pdf` passe toujours par [LaTeX](https://fr.wikipedia.org/wiki/LaTeX) ce qui nécessite d'avoir une version complète et à jour de ce logiciel sur sa machine.
+The `pdf` conversion always relies on [LaTeX](https://fr.wikipedia.org/wiki/LaTeX), which requires a full-fledged and running LaTeX installation on your computer.
 
-Dans la petite démonstration, nous montrons comment générer un fichier `docx` à partir d'un fichier `md` avec `Pandoc` et nous soulignons qu'il est alors possible d'utiliser un traitement de texte comme `LibreOffice` pour modifier le fichier obtenu. Il est clair que si des modifications sont apportées au `docx` elle en seront pas (automatiquement) propagées au `md`. Il faudra utiliser `Pandoc` pour cela et effectuer une conversion de `docx` vers `md` (et seules les éléments du format `docx` qui existent en `md` seront conservés).
+In the demo, we show how to generate a `docx` from a `markdown` document with `Pandoc` and we explain that it is then possible to use a word processor like `LibreOffice` to edit the resulting file. Obviously the modifications will not be back-propagated to the original `markdown` document. You may however want to use `Pandoc` again to convert your new `docx` document to a new `markdown` document.
 
-Une stratégie qui est souvent employée et qui fonctionne bien en pratique consiste à faire le gros du travail de rédaction d'un article ou d'un mémoire en `Markdown`. La rédaction terminée, le fichier est exporté au format `docx` (ou `LaTeX`) et des ajustements de mise en page sont alors effectués avec un logiciel de traitement de texte (ou un éditeur `LaTeX`).
+Another common strategy consists in doing most of the editing of an article/report in `Markdown` and to export it into a `docx` (or `LaTeX`) only in the end so as to prepare it for a camera-ready version with a standard word processing environment (or a `LaTeX` editor).

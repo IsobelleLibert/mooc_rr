@@ -1,7 +1,7 @@
 ---
-TITLE:       FIXME Document Examples
+TITLE:       Document Examples
 AUTHOR:      Arnaud Legrand
-Date:   Tue Feb 19 17:43:42 2019 
+Date:   Wed Mar 20 13:03:17 2019 
 ---
 
 Table of Contents<span class="tag" data-tag-name="TOC"></span>

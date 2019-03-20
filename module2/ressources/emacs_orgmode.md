@@ -1,6 +1,6 @@
 ---
 TITLE:     Emacs/org-mode
-Date:   Tue Feb 19 19:19:03 2019 
+Date:   Wed Mar 13 15:12:03 2019 
 ---
 
 **Disclaimer:** The two sections *A simple "reproducible research" emacs configuration* and *A stub of replicable article* explain how to set up emacs/org-mode for this MOOC. These are very important sections in the context of this MOOC. **These sections are illustrated in two out of the [three video tutorials of this sequence](https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4), and** **which you really should follow carefully**. **Otherwise, you may have trouble doing the exercises later on**. Likewise, I strongly encourage you to watch the ["emacs and git" video tutorial available at the same place](https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4).
@@ -29,15 +29,26 @@ Table of Contents<span class="tag" data-tag-name="TOC"></span>
     -   [Additional useful emacs packages](#additional-useful-emacs-packages)
     -   [Other resources](#other-resources)
 
-Installing emacs, org-mode, ess, and auctex.
-============================================
+Installing Emacs
+================
+
+In the following we describe for each platform the installation method that we consider most convenient. There are other options that may be preferable in particular situations, so you may want to look at the [Emacs Web site](https://www.gnu.org/software/emacs/download.html) for details, but we strongly suggest you first try the method we recommend.
+
+At the end of the installation procedure, you should have one of
+
+1.  Emacs 26 (the latest version)
+2.  Emacs 25 plus Org-Mode 9
+
+Emacs 25 comes with Org-Mode 8, which is not compatible with our examples. So if you use Emacs 25, you must separately install Org-Mode 9. Emacs 26 already includes Org-Mode 9.
+
+Our MOOC also requires a few extra Emacs packages: [ESS](https://ess.r-project.org/) (for working with the R language) and [AUCTeX](https://www.gnu.org/software/auctex/) (for editing LaTeX). They will be installed automatically the first time you start Emacs if you use the configuration described under [A simple "reproducible research" emacs configuration](#a-simple-reproducible-research-emacs-configuration).
 
 Linux (Debian, Ubuntu)
 ----------------------
 
 We provide here only instructions for Debian-based distributions. Feel free to contribute to this document to provide up-to-date information for other distributions (e.g.n redhat, fedora).
 
-Today, the stable versions of the most common distributions provide recent enough versions of emacs and org-mode:
+These are the versions of Emacs that various distributions provide:
 
 -   Debian (stretch) ships with [emacs 25.1](https://packages.debian.org/stretch/emacs25) and [org-mode 9.0.3](https://packages.debian.org/stretch/org-mode)
 -   Ubuntu (bionic 18.04) ships with [emacs 25.2](https://packages.ubuntu.com/bionic/emacs25) and [org-mode 9.1.6](https://packages.ubuntu.com/bionic/org-mode)
@@ -48,10 +59,10 @@ If your distribution is older than this, well, it may be a good time for upgradi
 Simply run (as root):
 
 ``` bash
-apt-get update ; apt-get install emacs25 org-mode ess r-base auctex
+apt-get update ; apt-get install emacs25 org-mode
 ```
 
-Then make sure you have a sufficiently recent version of emacs.
+Then verify that you have a sufficiently recent version of Emacs.
 
 ``` bash
 emacs --version 2>&1 | head -n 1
@@ -61,7 +72,7 @@ emacs --version 2>&1 | head -n 1
 GNU Emacs 25.2.2
 ```
 
-Likewise, you'll want to check you have a recent version of org-mode:
+Likewise, you'll want to check you have a recent version of Org-Mode:
 
 ``` bash
 emacs -batch --funcall "org-version" 2>&1 | grep version
@@ -78,42 +89,16 @@ macOS
 
 **Note:** macOS comes with a prehistoric command-line-only version of Emacs located at `/usr/bin/emacs`. It's best to forget about it.
 
--   **Option 1**: Install the `.dmg` file from [Vincent Goulet](http://vgoulet.act.ulaval.ca/): [<https://vigou3.gitlab.io/emacs-modified-macos/>](https://vigou3.gitlab.io/emacs-modified-macos/). It ships with recent versions:
-    -   Emacs 26.1
-    -   Org-mode 9.1.13
-    -   ESS 17.11
+The Web site <https://emacsformacosx.com/> proposes precompiled Emacs versions for macOS. Download the latest version (the one that figures prominently on the page) and install it like you would install any other macOS application, by copying `Emacs.app` from the downloaded disk image to a convenient location on your computer.
 
-    If you install this version of Emacs, or in fact any other version of Emacs distributed as a clickable application in a `.dmg` file, you must type the full path to the executable if you want to run Emacs from a terminal. For example, if your clickable application is at `/Applications/Emacs.app`, then the executable is at `/Applications/Emacs.app/Contents/MacOS/Emacs`
-
--   **Option 2**: If you use [Homebrew](https://docs.brew.sh/), do the following:
-
-    ``` bash
-    brew update
-    brew install emacs --with-cocoa
-    brew linkapps emacs
-    brew install wget
-    brew tap dunn/emacs
-    brew install auctex
-    brew tap brewsci/science
-    brew install ess
-    ```
-
-    This provides an `emacs` command for use from the command line, plus a clickable application at `Cellar/emacs/26.1_1/Emacs.app` inside your Homebrew directory. If you installed Homebrew at the default location `/usr/local`, then this is `/usr/local/Cellar/emacs/26.1_1/Emacs.app`. If you installed Homebrew on an account with administrator privileges, you can add
-
-    ``` bash
-    brew linkapps emacs
-    ```
-
-    in order to make Emacs accessible directly from `/Applications`.
+In case you need to run Emacs from the command line (note: this is not required in the MOOC), you have to enter the full path to the executable. Assuming that you have copied `Emacs.app` to `/path/to/emacs`, this is `/path/to/emacs/Emacs.app/Contents/MacOS/Emacs`. Note that if you just type `emacs`, you will use the prehistoric command-line-only version at `/usr/bin/emacs` provided by Apple.
 
 Windows
 -------
 
-Install the `.exe` file from [Vincent Goulet](http://vgoulet.act.ulaval.ca/): [<https://vigou3.gitlab.io/emacs-modified-windows/>](https://vigou3.gitlab.io/emacs-modified-windows/). It ships with recent versions:
+Download the [precompiled Emacs 26.1](https://ftp.gnu.org/gnu/emacs/windows/emacs-26/emacs-26.1-i686.zip) and unzip the zip file preserving the directory structure, and run `bin\runemacs.exe`.
 
--   Emacs 26.1
--   Org-mode 9.1.13
--   ESS 17.11
+Alternatively, create a desktop shortcut to `bin\runemacs.exe`, and start Emacs by double-clicking on that shortcut's icon. See [here](https://www.gnu.org/software/emacs/manual/html_node/emacs/Windows-Startup.html) for an explanation of this and other methods for launching Emacs under Windows.
 
 ### Directory naming conventions
 
@@ -167,7 +152,7 @@ Step 0: Backup and download our configuration
 
 The procedure we propose will wipe your already existing custom Emacs configuration if you have one. **You should thus beforehand make a backup** of `~/.emacs` and of `~/.emacs.d/init.el` (if these files exist).
 
-Then download [this archive](https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/rr_org_archive.tgz) and uncompress it. It contains the following files and we will refer to them in the following:
+Then download [this archive](https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/rr_org_archive.tgz) and uncompress it. It contains the following files and we will refer to them in the following:
 
 ``` example
 rr_org/init.el
@@ -175,6 +160,8 @@ rr_org/journal.org
 ```
 
 Alternatively, [the files you are looking for are available here](rr_org/).
+
+If you use Windows, and if you use a desktop shortcut to start Emacs, you must include the path to the file `init.el` in the command for the shortcut. For example, if you installed Emacs as `C:\Users\MyName/emacs`, your desktop shortcut should execute the command `C:\Users\MyName\emacs\bin\runemacs.exe -l .emacs.d/init.el`.
 
 Step 1: Prepare your journal
 ----------------------------

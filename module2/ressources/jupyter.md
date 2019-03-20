@@ -1,7 +1,7 @@
 ---
 TITLE:     Jupyter : tips and tricks, Installing and configuring
 AUTHOR:    Arnaud Legrand, Benoit Rospars, Konrad Hinsen
-Date:   Tue Feb 19 15:42:13 2019 
+Date:   Wed Mar 20 12:15:02 2019 
 ---
 
 Table of Contents<span class="tag" data-tag-name="TOC"></span>
@@ -40,7 +40,7 @@ Simply follow the following steps:
 Importing an already existing notebook  
 If your notebook is already in your GitLab project, then simply synchronize by using the `Git pull` button and use the `File -> Open` menu. Otherwise, imagine, you want to import the [following notebook](https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb) from someone else's repository to re-execute it.
 
-1.  Download the file on your computer. E.g., for this [GitLab hosted notebook](https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb), click on `Open raw` (a small `</>` within a document icon) and save (`Ctrl-S` on most browsers) the content (a long Json text file).
+1.  Download the file on your computer. E.g., for this [GitLab hosted notebook](https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb), click on `Open raw` (a small `</>` within a document icon) and save (`Ctrl-S` on most browsers) the content (a long JSON text file).
 2.  Open the Jupyter file manager from the menu `File -> Open` and navigate to the directory where you want to upload your notebook.
 3.  Then from the top right button, `Upload` the previously downloaded notebook and confirm the upload.
 4.  Open the freshly uploaded notebook through the Jupyter file manager.
@@ -75,7 +75,7 @@ Note that this `%%R` notation indicates that R should be used for the whole cell
 1.3 Other languages
 -------------------
 
-Jupyter is not limited to Pytyhon and R. Many other languages are available: [<https://github.com/jupyter/jupyter/wiki/Jupyter-kernels>](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels), including non-free languages like SAS, Mathematica, Matlab... Note that the maturity of these kernels differs widely.
+Jupyter is not limited to Python and R. Many other languages are available: [<https://github.com/jupyter/jupyter/wiki/Jupyter-kernels>](https://github.com/jupyter/jupyter/wiki/Jupyter-kernels), including non-free languages like SAS, Mathematica, Matlab... Note that the maturity of these kernels differs widely.
 
 None of these other languages have been deployed in the context of our MOOC but you may want to read the next sections to learn how to set up your own Jupyter on your computer and benefit from these extensions.
 

@@ -1,104 +1,104 @@
 ---
-TITLE:     FIXME Maintaining a journal
-Date:   Tue Feb 19 19:19:03 2019 
+TITLE:     Tenir un journal à jour
+Date:   Wed Mar 20 12:16:07 2019 
 ---
 
-Table of Contents<span class="tag" data-tag-name="TOC"></span>
-==============================================================
+Table des matières<span class="tag" data-tag-name="TOC"></span>
+===============================================================
 
--   [Some examples of LabBooks provided for inspiration](#some-examples-of-labbooks-provided-for-inspiration)
--   [How to report efficiently (by Martin Quinson)](#how-to-report-efficiently-by-martin-quinson)
-    -   [Reporting](#reporting)
-    -   [Reporting Logistics](#reporting-logistics)
-    -   [Reporting Document Organization](#reporting-document-organization)
+-   [1. Quelques exemples de cahiers de notes ou de laboratoires pouvant servir de source d'inspiration](#1-quelques-exemples-de-cahiers-de-notes-ou-de-laboratoires-pouvant-servir-de-source-dinspiration)
+-   [2. Comment rendre compte de son activité efficacement](#2-comment-rendre-compte-de-son-activité-efficacement)
+    -   [Le Reporting](#le-reporting)
+    -   [Logistique](#logistique)
+    -   [Organisation d'un compte rendu d'activité](#organisation-dun-compte-rendu-dactivité)
 
-Some examples of LabBooks provided for inspiration
-==================================================
+1. Quelques exemples de cahiers de notes ou de laboratoires pouvant servir de source d'inspiration
+==================================================================================================
 
-Since a few years, we systematically require any or our students to have a laboratory notebook in org-mode. Most of the time, they start in private repositories but often end up being fully opened. Here are a few ones:
+Depuis plusieurs années, nous demandons systématiquement à tout étudiant travaillant avec nous tenir à jour un cahier de laboratoire, généralement en org-mode. La plupart du temps, ces documents commencent à être rédigés dans des dépôts privés mais assez souvent ils finissent par être complètement ouverts et mis à disposition du plus grand nombre. En voici quelques-uns:
 
--   Luka Stanisic (a former PhD student advised by Arnaud Legrand) starting using this methodology during his Msc and developed further throughout his PhD. Part of his [PhD thesis](http://mescal.imag.fr/membres/luka.stanisic/thesis/thesis.pdf) was actually about designing a methodology for reproducible experiments in large scale distributed systems. You may want to have a look at [his postdoc LabBook](http://starpu-simgrid.gforge.inria.fr/) and to the [report of Léo Villeveygoux](https://framagit.org/lvgx/pfe/blob/master/doc/labbook.org) whom he advised.
--   Tom Cornebize is currently a PhD student advised by Arnaud Legrand and during his MSc, he also heavily [loged his activity on Github](https://github.com/Ezibenroc/simulating_mpi_applications_at_scale).
--   [Lucas Schnorr](https://github.com/schnorr)'s students usually also maintain their journal in a very nice way: [Tais Bellini's BSc.](https://github.com/taisbellini/aiyra/blob/master/LabBook.org), [Arthur Krause's LabBook](https://github.com/mittmann/hpc/blob/master/LabBook.org), [Luca Nesi's LabBook](http://www.inf.ufrgs.br/~llnesi/memory_report/MemoryReport.html).
--   [Martin Quinson](https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/)'s students also follow such conventions:
-    -   Ezequiel Torti Lopez, M2R 2014. [Report](https://github.com/mquinson/simgrid-simpar/blob/master/report.org), with both the data provenance and the data analysis included in the appendix.
+-   Luka Stanisic (un ancien doctorant d'Arnaud Legrand) a commencé à utiliser cette méthodologie pendant son stage de M2 et a continué à l'améliorer pendant son doctorat. Une partie de sa [thèse](http://mescal.imag.fr/membres/luka.stanisic/thesis/thesis.pdf) a en fait porté sur la conception d'une méthodologie adaptée à la traçabilité et à la reproductibilité des expériences sur les plates-formes de calcul à hautes performances. Vous pourriez donc vouloir jeter un oeil au [cahier de laboratoire tenu pendant son postdoc](http://starpu-simgrid.gforge.inria.fr/) ainsi qu'au [rapport de Léo Villeveygoux](https://framagit.org/lvgx/pfe/blob/master/doc/labbook.org) qu'il a encadré pendant cette même période.
+-   Tom Cornebize est actuellement en thèse sous la supervision d'Arnaud Legrand et comme les autres, pendant son stage de master, il a également intensément [pris des notes sur son activité quotidienne et les a mis à disposition sur Github](https://github.com/Ezibenroc/simulating_mpi_applications_at_scale).
+-   Les étudiants de [Lucas Schnorr](https://github.com/schnorr) sont aussi généralement bien formés à cet exercice de prise de note dans un journal: [Tais Bellini's BSc.](https://github.com/taisbellini/aiyra/blob/master/LabBook.org), [Arthur Krause's LabBook](https://github.com/mittmann/hpc/blob/master/LabBook.org), [Luca Nesi's LabBook](http://www.inf.ufrgs.br/~llnesi/memory_report/MemoryReport.html).
+-   Ceux qui travaillent sous la supervision de [Martin Quinson](https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/) suivent des conventions similaires:
+    -   Ezequiel Torti Lopez, pendant son M2 en 2014, a produit un [rapport](https://github.com/mquinson/simgrid-simpar/blob/master/report.org) où les données, leur provenance et leur analyse étaient fournies dans l'annexe.
     -   Betsegaw Lemma, M2R 2017. [LabBook](https://github.com/betsegawlemma/internship/blob/master/intern_report.org)
-    -   Gabriel Corona, engineer on SimGrid, 2015-2016. [Journal](https://github.com/randomstuff/simgrid-journal/blob/master/journal.org), [Blog (findings)](http://www.gabriel.urdhr.fr/tags/simgrid/).
-    -   Matthieu Nicolas, engineer on PLM, 2014-2016, [Journal](https://github.com/MatthieuNICOLAS/PLM-reporting/blob/master/activity-report.org).
+    -   Gabriel Corona (ingénieur de recherche sur le projet SimGrid, 2015-2016) maintient également un [journal](https://github.com/randomstuff/simgrid-journal/blob/master/journal.org) et un [blog (findings)](http://www.gabriel.urdhr.fr/tags/simgrid/).
+    -   Matthieu Nicolas (ingénieur sur PLM, 2014-2016): [Journal](https://github.com/MatthieuNICOLAS/PLM-reporting/blob/master/activity-report.org).
 
-Org-mode is obviously not the only option and many of our students use am mixture of org-mode, rstudio and jupyter depending on what is more convenient.
+Org-mode n'est évidemment pas la seule option et il est courant que nos étudiants et collègues utilisent un mélange d'org-mode, rstudio et de jupyter selon ce qui est le plus adapté à leurs besoins du moment.
 
-How to report efficiently (by Martin Quinson)
-=============================================
+2. Comment rendre compte de son activité efficacement
+=====================================================
 
-My friend Martin has gathered \[\[<https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/>\]\[an excellent compendium of information and references on his webpage to explain his students what he expects from them\]\]. **I'll therefore simply paraphrase him here** with the most important aspects related to reporting but feel free to read [the original version](https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/):
+Mon ami Martin a réalisé \[\[<https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/>\]\[une excellente collection d'informations et de références sur sa page web pour expliquer à ses étudiants ce qu'il attends d'eux\]\]. **Je vais donc tout simplement le paraphraser dans cette section** en rappelant les éléments qui me semblent essentiels (mais je vous invite à lire [l'original](https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/)).
 
-Reporting
----------
+Le Reporting
+------------
 
-I ask you to write a little reporting regularly. Depending on the situation, it may be every day, every week or every month. In any case, your reporting is very important for the following reasons:
+Je vous demande de rendre compte de votre activité par écrit, régulièrement. Selon la situation, cela peut être chaque jour, chaque semaine ou chaque mois, mais dans tous les cas, votre compte rendu est essentiel pour les raisons suivantes:
 
--   It forces you to think about what you are doing, which may help you to unblock your problem by your own. Writing down the problems in a clear way is often sufficient to see the solution appearing.
--   It helps me following your progress even between the meetings. I cannot unblock you if I don't detect that you are on a wrong lead or otherwise blocked.
--   It keeps a track of the steps in your work. That's good for the day where you want to write your final report (even if a final report should never be presented in the chronological order). That's good for the next after you who will be supposed to continue you effort, or to build upon it.
--   That person may be yourself (if you go for a PhD program), another intern, myself or even someone else on the Internet: that's what we call Open Science, an effort where everyone can build upon the scientific work of everyone.
+-   Ça vous force à réfléchir à ce que vous êtes en train de faire, à prendre du recul, ce qui peut vous permettre de résoudre vos problèmes par vous même. Énoncer clairement votre problème permet souvent de faire apparaître des solutions.
+-   Ça m'aide à suivre votre progression et à réfléchir à votre problème, même entre deux réunions. Je ne pourrai pas vous aider si je ne sais pas que vous êtes partis dans une mauvaise direction ou même que vous êtes bloqués avec tel ou tel point technique.
+-   Ça vous permet de garder une trace de votre travail. C'est très précieux le jour où vous aurez à écrire votre rapport final (même si un rapport n'est jamais présenté dans un ordre chronologique).
+-   C'est aussi précieux pour celui qui viendra après vous et souhaitera repartir de vos travaux, les poursuivre ou les améliorer. Cette personne peut d'ailleurs être vous même dans quelques mois (si vous vous engagez dans une thèse), un autre stagiaire, moi-même ou même un inconnu à l'autre bout du monde et qui a trouvé vos travaux via Internet: c'est ce qu'on appelle la science ouverte, un effort collectif ou chacun peut efficacement s'appuyer sur le travail scientifique de toute autre personne.
 
-I want you to write your reporting in an org file (yep, you don't have a choice here). \[..\]
+Je veux que vous écriviez votre compte rendu d'activité dans un fichier org-mode (et oui, vous n'avez pas le choix! ). \[..\]
 
-Reporting Logistics
--------------------
+Logistique
+----------
 
-Once you're setup with all software installed and somehow configured, you need to create a reporting file in a place where I can see it and where it won't get lost if your disk crashes or something. Open a dedicated git repository (on github, gitorious, gitlab, ...) for that. After your internship, your report should be archived directly in the source tree of the software that you are working on, if any. But having your reporting located in the source tree may complicate things during your work.
+Une fois que vous aurez mis en place et plus ou moins configuré tous les logiciels dont vous aurez besoin, il vous faudra créer un fichier dans un endroit auquel je puisse accéder et qui ne sera pas perdu si jamais votre disque dur est endommagé, que vous vous faites voler votre ordinateur, ou autre. Pour cela, commencez par créer un dépôt git (sur github, gitorious, ou gitlab, ...). À la fin de votre stage, votre rapport devra être archivé directement dans l'arborescence du logiciel auquel vous avez contribué. Travailler directement dans cette arborescence pendant votre stage peut cependant être un peu compliqué.
 
-Yes, it means that your file will be public at some point, but that's why we call it "Open Science", after all. Also, you should write it in English if possible. The part of your reporting that is called "Journal" (see below) may be written in French if you are more efficient this way but the rest must be in English. Don't make your tone too formal because the file is public. Make it efficient. Nobody will ever blame you for the work you did during an internship a long time ago. If you really want, we can even make this file anonymous. Just speak to me.
+Mais, oui, cela veut dire que votre journal sera publique à un moment ou à un autre (après tout, c'est pour ça qu'on parle de science ouverte). Vous avez donc intérêt à écrire votre rapport en Anglais si c'est possible. La partie compte-rendu d'activité (votre "journal") peut être écrite en Français si vous êtes plus efficace ainsi mais le reste doit être rédigé en Anglais. Pas la peine de prendre un ton trop formel sous prétexte que le document a vocation à être publique. Soyez efficace. Personne ne vous tiendra rigueur de ce que vous avez pu écrire à l'occasion de votre stage il y a de nombreuses années. Si vous insistez, il est possible d'anonymiser ou de pseudonymiser ce document, venez m'en parler.
 
-You want to write your reporting before leaving work. Weekly reporting should be written on Friday, one or two hours before leaving. That's the best solution to have a nice week end without thinking about work, and still lose no information that you would need on Monday morning.
+Enfin, il est important d'écrire votre compte rendu avant de quitter votre bureau, tant que les choses sont fraîches dans votre esprit. En plus, cela vous libérera de la charge mentale induite par ce travail de mémorisation. Si vous décidez de faire un reporting hebdomadaire, faites le le vendredi, une ou deux heures avant de partir. C'est la meilleur façon de passer un bon week-end sans avoir à penser à votre travail et de ne perdre aucune information dont vous pourriez avoir besoin lundi matin. Même principe si vous faites un reporting quotidien.
 
-Reporting Document Organization
--------------------------------
+Organisation d'un compte rendu d'activité
+-----------------------------------------
 
-Your reporting document should have four main parts:
+Selon moi, une bonne pratique consiste à structurer votre compte rendu d'activité de la façon suivante:
 
-Findings  
-This section summarizes the general information that you gathered during your work. It is empty at the beginning of your internship, and gets fleshed with the important things that you find on your way. That's where bibliographical information go, for example. But that's definitely not where TODO notes go (see below).
+Résultats  
+Cette section résume les informations que vous avez obtenu à l'occasion de votre recherche. Elle est généralement vide au début de votre stage et prendra du volume au fur et à mesure que vous trouvez des choses. C'est aussi souvent ici qu'atterrissent les références bibliographiques par exemple mais ce n'est clairement pas l'endroit où vous stockez votre liste des choses à faire (TODO).
 
-Development  
-This section presents the technical sides of your work. Don't write anything in there yet. Put it all in the Journal part for now.
+Développement  
+Cette section présente les aspects techniques de votre travail. N'écrivez rien ici pour l'instant. Mettez tout ce que vous collectez dans la partie Journal.
 
 Journal  
-Describe the day-to-day work done for each period (day, week or month) of your internship. That's the most important part of your reporting, and we come back to it below.
+C'est ici que vous décrivez votre travail au jour le jour, de façon chronologique (jour, semaine, mois, ...). C'est la partie la plus importante de votre reporting et nous y revenons un peu plus bas.
 
 Conclusion  
-That's what you write in the next week of your internship. You can see it as a letter to the next guy, explaining the current state of your work, a few words about its technical organization, and what should be done next on that topic. Keep this part highly technical, the overall organization of your internship will be seen in your final report.
+C'est la section que vous écrivez la dernière semaine (ou celle d'après) de votre stage. Vous pouvez la voir comme une lettre à la prochaine personne expliquant l'état actuel de votre travail, avec quelques informations que son organisation technique et ce qui, selon vous, sont les prochaines choses à faire et pourquoi. Cette partie peut-être hautement technique, les tenants et les aboutissants plus globaux de votre stage étant des considérations qui apparaîtront plutôt dans votre rapport final de stage.
 
-The Journal part is the only part that you may write in French on need. You want to add one subsection per period to your journal. Don't make it too long, or you would waste time writing long texts that very few will ever read. Don't make it too short or it will be impossible to understand it on Monday morning (or three months after). Finding the good balance is sometimes difficult, but I will provide feedback on your first entries, so don't worry.
+La partie Journal est la seul que vous avez le droit d'écrire en Français si vous êtes plus à l'aise ainsi. Pas la peine de vous "répandre", vous perdriez votre temps à écrire un long texte que très peu de personnes seront susceptibles de lire. Ne la bâclez pour autant car si elle est trop courte elle sera incompréhensible la semaine d'après (ou trois mois plus tard). Trouver le bon équilibre n'est pas toujours simple mais je vous ferai un retour sur vos premières entrées donc ne vous inquiétez pas.
 
-Each of section describing a period should contain three subsubsections:
+Une bonne habitude consiste à ce que chacune des entrées section décrivant une période de travail soit structurée de la façon suivante:
 
-Things done  
-a few words about what you've done. Something like 2 or 4 items with a few words describing what you've done. You can omit the title of that section and put the items directly in the upper section (see the example below).
+Travail effectué  
+quelques mots sur ce que vous avez fait et son contexte. Cela peut prendre la forme d'une petite liste de 2 à 4 entrées sur ce que vous avez fait et pourquoi vous l'avez fait.
 
-Blocking points and questions  
-try to explain clearly the things that block you or slow you down. If you found the solution already, then it should be part of the previous subsection (but you should say a few words nevertheless). Also ask every question that you may have for me in that section. If the question are personal (e.g., about the logistics of your internship such as salary or so), please prefer emails that are not publicly visible. If this section is empty for a given period, skip it all together (no empty subsubsections).
+Ponts bloquants et questions  
+essayez d'expliquer clairement les points de blocage que vous rencontrez ou bien les points qui vous gênent et vous ralentissent. Si vous avez finalement déjà trouvé la réponse à ces problèmes, indiquez leu dans la sous-section précédente. C'est aussi ici que vous écrirez toute question que vous aimeriez me poser. Si ce sont des interrogations personnelles (par exemple sur la logistique de votre stage, le logement, votre salaire), utilisez plutôt le mail qui restera privé entre nous (souvenez vous que ce journal a vocation a devenir un document publique). Si cette section est vide pour une période donnée, sautez la tout simplement (ne gardez pas de sous-sections vides).
 
-Planned work  
-A few items about what you plan to work on during the next period.
+Travaux prévus  
+Une petite liste détaillant les points auxquels vous comptez vous attaquer dans la période à venir.
 
-A template of reporting file is given at the end of this section. This is just a strong advice: If you really feel better with another file organization, then give it a try for one period, and ask for my feedback. I can adapt, and I do not pretend that my advice is the definitive answer. It's just the result of my experience so far.
+Vous trouverez à la fin un modèle de compte rendu d'activité. Un conseil: si vraiment vous vous sentez mieux avec une autre structuration de document, essayez pour une période donnée et on fera le point. Je sais m'adapter et je ne prétends pas avoir la science infuse ni que mes conseils soient la solution ultime et universelle. C'est juste le résultat de mon expérience jusqu'ici.
 
-Notice how TODO items are written: they are given as items in the Planned work sections of the journal. As explained in the [documentation](http://orgmode.org/manual/Checkboxes.html), you simply have to write "\[ \]" in front of items that you plan to do in the future.
+Remarquez comment les entrées commençant par le mot-clé TODO apparaissent. On le retrouvera typiquement dans les sections "Travaux prévus" du journal. Comme expliqué dans la [documentation d'org-mode](http://orgmode.org/manual/Checkboxes.html), vous pouvez aussi tout simplement écrire `[ ]` au début de chaque élément d'une liste de choses que vous avez l'intention de faire.
 
-You should add a \[1/\] on the "Planned work" line, so that emacs keeps track of what is done and what is still to do. Once they are done, you type C-c C-C on their lines to change the blank box \[ \] into a checked box \[X\]. Also, the \[1/\] will be changed to denote the amount of work that is still to be done.
+Dans ce cas, en rajoutant un \[1/\] à la fin de la sous-sous-section "Travaux prévus", Emacs tiendra à jour le compte des choses faites et qui restent à faire. Une fois que ce qui est décrit dans l'un des éléments d'une liste est faite, il vous suffit de faire `C-c C-C` sur cette entrée pour transformer le `[ ]` en une version cochée `[X]`. Le \[1/\] sera alors mis à jour pour refléter la quantité de travail restant. Lorsque tout aura été effectué, le mot-clé TODO passera à DONE, ce qui procure un incroyable sentiment de satisfaction. :)
 
-At any point, you can see all ongoing TODO items with the following keystrokes: "C-c / t". More information on TODOs in orgmode's [documentation](http://orgmode.org/manual/TODO-basics.html). The important thing here is that most TODO items must only be written in the *Journal* part (so that we know when they occurred).
+À tout moment, vous pouvez avoir accès à l'ensemble des choses à faire (TODO) à l'aide du raccourci clavier suivant: `C-c / t`. Vous trouverez plus d'informations sur les TODOs dans la [documentation d'orgmode](http://orgmode.org/manual/TODO-basics.html). Le point important à retenir ici est que la plupart des TODO doivent apparaître dans la partie journal (afin de savoir quand ils se sont posés).
 
-**Do not edit past entries of your journal**, unless you have very good reasons. If you must, make sure that you don't lose information about the path that you took (remember the Open Science thingy). You should always **add** information to past entries, such as:
+**N'éditez jamais les entrées de votre journal a posteriori**, sauf si vous avez vraiment une très bonne raison. Si cela devait arriver, assurez vous que vous ne perdez pas d'informations sur ce que vous avez fait et les choix que vous avez effectués (souvenez vous, science ouverte, tout ça tout ça). Il faut toujours **ajouter** des nouvelles informations aux anciennes, par exemple comme ceci:
 
 ``` shell
 - *edit* This hypothesis does not hold; see the entry of [the day where you found it] for more information.
 ```
 
-The only exception are TODO entries, that should clearly be rewritten to DONE entries. If you need to adapt your TODO entry (because the initial goal was poorly stated or otherwise), change the initial entry from TODO to CANCELED (or check the box after stating in a subitem that it was not done but canceled, and why), and create a new TODO entry in the current period section.
+La seule exception à cet édition des entrées passées, ce sont les entrées de type TODO, qui sont dynamiques et ont vocation à être transformées en entrées de type DONE. Si vous réalisez qu'il est utile d'adapter une entrée TODO (parce que l'objectif initial a été mal formulé, est inadapté, que sais je?), faites passer l'entrée d'origine de TODO à CANCELED (et/ou cochez le `[ ]` en indiquant dans une sous-entrée que cette tâche n'a pas été faite mais annulée et pourquoi) et créez une nouvelle entrée TODO dans la section du jour.
 
 ``` example
 * Introduction
