@@ -6,13 +6,13 @@
 #+PROPERTY: header-args :eval never-export
 
 * Table of Contents                                                     :TOC:
-- [[#some-examples-of-labbooks-provided-for-inspiration][Some examples of LabBooks provided for inspiration]]
-- [[#how-to-report-efficiently-by-martin-quinson][How to report efficiently (by Martin Quinson)]]
+- [[#1-some-examples-of-labbooks-provided-for-inspiration][1. Some examples of LabBooks provided for inspiration]]
+- [[#2-how-to-report-efficiently-by-martin-quinson][2. How to report efficiently (by Martin Quinson)]]
   - [[#reporting][Reporting]]
   - [[#reporting-logistics][Reporting Logistics]]
   - [[#reporting-document-organization][Reporting Document Organization]]
 
-* Some examples of LabBooks provided for inspiration
+* 1. Some examples of LabBooks provided for inspiration
 Since a few years, we systematically require any or our students to
 have a laboratory notebook in org-mode. Most of the time, they start
 in private repositories but often end up being fully opened. Here are
@@ -40,7 +40,7 @@ Org-mode is obviously not the only option and many of our students use
 am mixture of org-mode, rstudio and jupyter depending on what is more
 convenient.
 
-* How to report efficiently (by Martin Quinson)
+* 2. How to report efficiently (by Martin Quinson)
 My friend Martin has gathered [[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][an excellent compendium of information
 and references on his webpage to explain his students what he expects
 from them]]. *I'll therefore simply paraphrase him here* with the most
@@ -118,15 +118,13 @@ Your reporting document should have four main parts:
                 highly technical, the overall organization of your
                 internship will be seen in your final report.
 
-                The Journal part is the only part that you may write
-                in French on need. You want to add one subsection per
-                period to your journal. Don't make it too long, or you
-                would waste time writing long texts that very few will
-                ever read. Don't make it too short or it will be
-                impossible to understand it on Monday morning (or
-                three months after). Finding the good balance is
-                sometimes difficult, but I will provide feedback on
-                your first entries, so don't worry.
+The Journal part is the only part that you may write in French on
+need. You want to add one subsection per period to your journal. Don't
+make it too long, or you would waste time writing long texts that very
+few will ever read. Don't make it too short or it will be impossible
+to understand it on Monday morning (or three months after). Finding
+the good balance is sometimes difficult, but I will provide feedback
+on your first entries, so don't worry.
 
 Each of section describing a period should contain three subsubsections:
 - Things done :: a few words about what you've done. Something like 2
