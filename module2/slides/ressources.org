@@ -1,5 +1,5 @@
 # -*- mode: org -*-
-#+TITLE:     FIXME Computational Documents
+#+TITLE:     Computational Documents
 #+DATE: June, 2018
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t

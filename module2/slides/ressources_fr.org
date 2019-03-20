@@ -5,6 +5,10 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
+Ce document rassemble la plupart des références mentionnées dans les
+vidéos. C'est une liste relativement grossière qui mériterait d'être
+améliorée.
+
 * Table des matières                                                    :TOC:
 - [[#m2-s0-le-document-computationnel][M2-S0: Le document computationnel]]
 - [[#m2-s1-exemples-récents-détudes-assez-discutées][M2-S1: Exemples récents d'études assez discutées]]
