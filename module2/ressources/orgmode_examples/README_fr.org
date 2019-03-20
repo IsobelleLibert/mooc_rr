@@ -1,73 +1,106 @@
 # -*- coding: utf-8 -*-
 # -*- mode: org -*-
 
-#+TITLE:       TODO Org Document Examples
+#+TITLE:       Quelques exemples de documents en Org-Mode
 #+AUTHOR:      Arnaud Legrand
 #+STARTUP: overview indent inlineimages logdrawer
 #+LANGUAGE:    en
 
 
 * Table of Contents                                                     :TOC:
-- [[#examples-from-the-video][Examples from the Video]]
-- [[#other-examples][Other examples]]
+- [[#les-documents-montrés-en-exemple-dans-les-vidéos-du-mooc][Les documents montrés en exemple dans les vidéos du MOOC]]
+- [[#autres-exemples][Autres exemples]]
 
-* Examples from the Video
-In the MOOC video, I quickly demo how org-mode can be used in various
-contexts. Here are the (sometimes trimmed) corresponding
-org-files. These documents depend on many other external data files
-and are not meant to lead to reproducible documents but it will give
-you an idea of how it can be organized:
+* Les documents montrés en exemple dans les vidéos du MOOC
+Dans les vidéos, je montre rapidement comment org-mode peut être
+utilisé dans différents contextes (feuille de TD, journal, cahier de
+laboratoire, article). Voici les fichiers org-mode (quelques fois un
+peu épurés) correspondant. Ces documents dépendent souvent d'autres
+fichiers externes et ne sont pas prévu pour permettre de produire
+directement des documents reproductibles mais ils peuvent vous donner
+une idée de la façon dont ils peuvent être organisés:
 
-1. [[file:journal.org][journal.org]]: an excerpt (I've only left a few code samples and links
-   to some resources on R, Stats, ...) from my own journal. This is a
-   personal document where everything (meeting notes, hacking, random
-   thoughts, ...) goes by default. Entries are created with the =C-c c=
-   shortcut.
-2. [[file:labbook_single.org][labbook_single.org]]: this is an excerpt from the laboratory notebook
-   [[https://cornebize.net/][Tom Cornebize]] wrote during his Master thesis internship under my
-   supervision. This a personal labbook. I consider this notebook to be
-   excellent and was the ideal level of details for us to communicate
-   without any ambiguity and for him to move forward with confidence.
-3. [[file:paper.org][paper.org]]: this is an ongoing paper based on the previous labbook of
-   Tom Cornebize. As such it is not reproducible as there are hardcoded
-   paths and uncleaned dependencies but writing it from the labbook was
-   super easy as we just had to cut and paste the parts we
-   needed. What may be interesting is the organization and the org
-   tricks to export to the right LaTeX style. As you may notice, in
-   the end of the document, there is a commented section with emacs
-   commands that are automatically executed when opening the file. It
-   is an effective way to depend less on the =.emacs/init.el= which is
-   generally customized by everyone.
-4. [[file:labbook_several.org][labbook_several.org]]: this is a labbook for a specific project shared
-   by several persons. As a consequence it starts with information
-   about installation, common scripts, has section with notes about all
-   our meetings, a section with information about experiments and an
-   other one about analysis. Entries could have been labeled by who
-   wrote them but there were only a few of us and this information was
-   available in git so we did not bother. In such labbook, it is common
-   to find annotations indicating that such experiment was =:FLAWED:= as
-   it had some issues.
-5. [[file:technical_report.org][technical_report.org]]: this is a short technical document I wrote
-   after a colleague sent me a PDF describing an experiment he was
-   conducting and asked me about how reproducible I felt it was. It
-   turned out I had to cut and paste the C code from the PDF, then
-   remove all the line numbers and fix syntax, etc. Obviously I got
-   quite different performance results but writing everything in
-   org-mode made it very easy to generate both HTML and PDF and to
-   explicitly explain how the measurements were done.
+1. [[file:journal.org][journal.org]]: ceci est un extrait (je n'ai laissé que quelques
+   exemples de programmes et de liens vers des ressources sur R, les
+   statistiques, etc.) de mon propre journal. C'est un document
+   personnel dans lequel tout ce que je peux faire (notes prises
+   pendant une réunion, petit code vite fait, idées diverses et
+   variées, notes bibliographiques, ...) atterrit par défaut. Les
+   entrées avec la date sont créées automatiquement à l'aide du
+   raccourci =C-c c=.
+2. [[file:labbook_single.org][labbook_single.org]]: ceci est un extrait du cahier de laboratoire
+   tenu par [[https://cornebize.net/][Tom Cornebize]] pendant son stage de Master sous ma
+   direction. C'est un cahier de laboratoire personnel et que je
+   considère comme excellent car il a le niveau de détail idéal pour
+   nous permettre à la fois de communiquer sans aucune ambiguïté, pour
+   moi, de bien suivre ses avancées, et pour lui, d'avancer dans ses
+   travaux avec confiance.
+3. [[file:paper.org][paper.org]]: ceci est un article en cours basé sur le cahier de
+   laboratoire précédent. En l'état, il n'est pas reproductible car il
+   y a plusieurs chemins absolus en dur et des dépendances logicielles
+   non explicitées mais sa rédaction à partir du cahier de laboratoire
+   a vraiment été très facile puisqu'il nous suffisait de
+   copier/coller et d'assembler toutes les parties dont nous avions
+   besoin de rendre compte. Ce qui peut être intéressant, c'est
+   l'organisation de ce document (avec des sections cachées qui
+   récupèrent les données, les traitent et génèrent les figures) ainsi
+   que la configuration org-mode permettant d'exporter avec le bon
+   style LaTeX. Comme vous le remarquerez, il y a à la toute fin du
+   document une section avec des commandes emacs lisp commentées mais
+   qui sont exécutées par emacs à l'ouverture du fichier. C'est une
+   façon simple mais efficace de dépendre le moins possible du
+   =.emacs/init.el= que chacun personnalise à sa convenance.
+4. [[file:labbook_several.org][labbook_several.org]]: ceci est un petit exemple de cahier de
+   laboratoire partagé par plusieurs personnes. Il commence donc par
+   des informations sur les dépendances logicielles à installer, les
+   scripts les plus utiles. On y trouve ensuite une section avec des
+   notes sur nos réunions puis une section avec des informations sur
+   nos expériences et enfin une section sur les analyses de données.
+   Idéalement, chaque entrée devrait être étiquetée par le nom de
+   celui qui l'a écrite mais comme nous étions peu nombreux et que
+   cette information est de toutes façons disponible dans le git, nous
+   ne nous sommes pas embêtés. C'est néanmoins une bonne habitude à
+   prendre car si quelqu'un reformate le document (par exemple en
+   ré-indentant et en changeant les espaces) il devient en général le
+   dernier "propriétaire" de l'ensemble des lignes dans git. Dans ce
+   cahier de laboratoire, vous trouverez également des annotations
+   indiquant que telle ou telle expérience est =:FLAWED:=. Ces
+   annotations ont été réalisées a posteriori, lorsque l'on a réalisé
+   qu'il y avait eu un problème et une petite explication (avec une
+   nouvelle date) est en général alors ajoutée. L'annotation =:FLAWED:=
+   nous permet de conserver l'ensemble des expériences tout en sachant
+   d'un coup d'oeil lesquelles ne doivent pas être prises en compte.
+5. [[file:technical_report.org][technical_report.org]]: ceci est un petit document technique que j'ai
+   écrit après qu'un collègue m'ai envoyé un document PDF décrivant
+   une expérience qu'il avait réalisé et souhaitait mon avis sur si
+   c'était suffisant d'un point de vue reproductibilité. Il s'est
+   avéré que ré-exécuter le code présenté, j'ai pu copier coller le
+   code C à partir du PDF mais qu'il a fallu que j'enlève tous les
+   numéros de lignes, que je corrige des problèmes de syntaxes
+   introduit par la colorisation syntaxique et le formatage PDF,
+   etc. Évidemment, les résultats de performance que j'ai obtenus
+   étaient assez différents mais en écrivant tout en org-mode, j'ai
+   très facilement et très rapidement pu produire un document à la
+   fois en HTML et en PDF tout en explicitant très précisément comment
+   les mesures étaient effectuées.
 
-* Other examples
-Here are a few links to other kind of examples:
-- Slides: all my slides for a series of lectures is available here:
-  https://github.com/alegrand/SMPE. Here is a [[https://raw.githubusercontent.com/alegrand/SMPE/master/lectures/lecture_central_limit_theorem.org][typical source]] and the
-  [[https://raw.githubusercontent.com/alegrand/SMPE/master/lectures/lecture_central_limit_theorem.pdf][resulting PDF]]
-- Lucas Schnorr, a colleague, maintains:
-  - a set of templates for various computer science
-    journals/conferences: [[https://github.com/schnorr/ieeeorg][IEEE]], [[https://github.com/schnorr/wileyorg][Wiley]], [[https://github.com/schnorr/acmorg][ACM]], [[https://github.com/schnorr/llncsorg][LNCS]]
-  - his lecture on programming languages for undergrads:
+* Autres exemples
+Voici à toute fin utile quelques liens vers d'autres types d'exemples:
+- John Kitchin est un expert org-modiste impliqué dans les questions
+  de recherche reproductible et qui tient à jour un [[http://kitchingroup.cheme.cmu.edu/blog/][blog avec une
+  foule d'astuces intéressantes]]. Vous pourriez vouloir jeter un œil au
+  [[https://www.youtube.com/watch?v=IsSMs-4GlT8&list=FLQp2VLAOlvq142YN3JO3y8w&app=desktop][séminaire qu'il a donné à SciPy]].
+- Présentations: l'ensemble des slides que j'utilise pour une série de
+  cours ainsi que pour des présentations sur la recherche
+  reproductible sont disponibles ici:
+  https://github.com/alegrand/SMPE. Je n'ai pas fait d'effort
+  particulier pour m'assurer que ça compile sur toutes les machines de
+  la terre mais voici à quoi ressemblent typiquement les [[https://raw.githubusercontent.com/alegrand/SMPE/master/lectures/lecture_central_limit_theorem.org][sources]] avec
+  le [[https://raw.githubusercontent.com/alegrand/SMPE/master/lectures/lecture_central_limit_theorem.pdf][PDF résultant]].
+- Lucas Schnorr, un collègue et ami, maintient:
+  - un ensemble de modèles en org-mode pour certaines conférences et
+    journaux en informatique: [[https://github.com/schnorr/ieeeorg][IEEE]], [[https://github.com/schnorr/wileyorg][Wiley]], [[https://github.com/schnorr/acmorg][ACM]], [[https://github.com/schnorr/llncsorg][LNCS]]
+  - son cours de programmation (en portugais) pour les élèves de licence:
     https://github.com/schnorr/mlp/tree/master/conteudo
-- John Kitchin is an expert org-mode user and he maintains a very
-  interesting [[http://kitchingroup.cheme.cmu.edu/blog/][blog with many interesting tips]]. You may want to check
-  this [[https://www.youtube.com/watch?v=IsSMs-4GlT8&list=FLQp2VLAOlvq142YN3JO3y8w&app=desktop][seminar he gave at SciPy]].
 
 
