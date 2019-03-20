@@ -1,15 +1,15 @@
 # -*- mode: org -*-
-#+TITLE:     FIXME Introduction à Markdown
+#+TITLE:     Introduction to Markdown
 #+DATE: June, 2018
 #+LANG:    fr
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
 
-
-Voici un aperçu rapide de la syntaxe Markdown repris d'une
-[[https://guides.github.com/features/mastering-markdown/][présentation de Github]] ainsi que de celles d'[[http://csrgxtu.github.io/2015/03/20/Writing-Mathematic-Fomulars-in-Markdown/][Archer Reilly]].
-* Table des matières                                        :TOC:
-- [[#syntaxe][Syntaxe]]
+This document presents a brief overview of the Markdown syntax and
+builds on a [[https://guides.github.com/features/mastering-markdown/][presentation from the Github team]] and [[http://csrgxtu.github.io/2015/03/20/Writing-Mathematic-Fomulars-in-Markdown/][blog post from
+Archer Reilly]].
+* Table of Contents                                         :TOC:
+- [[#syntax][Syntax]]
   - [[#headers][Headers]]
   - [[#emphasis][Emphasis]]
   - [[#lists][Lists]]
@@ -17,16 +17,16 @@ Voici un aperçu rapide de la syntaxe Markdown repris d'une
   - [[#links][Links]]
   - [[#blockquotes][Blockquotes]]
   - [[#inline-code][Inline code]]
-- [[#écrire-des-maths][Écrire des Maths]]
-  - [[#lettres-grecques][Lettres grecques]]
-  -  [[#fonctions-et-opérateurs][Fonctions et opérateurs]]
-  - [[#exposants-et-indices][Exposants et indices]]
-  - [[#fractions-coefficients-binomiaux-racines-][Fractions, coefficients binomiaux, racines, ...]]
-  - [[#sommes-et-intégrales][Sommes et intégrales]]
-  - [[#déguisements][Déguisements]]
-- [[#autour-de-markdown][Autour de =markdown=]]
+- [[#writing-math][Writing Math]]
+  - [[#greek-letters][Greek Letters]]
+  - [[#usual-functions-and-operators][Usual functions and operators]]
+  - [[#exponents-and-indices][Exponents and indices]]
+  - [[#fractions-binomial-coefficients-square-roots-][Fractions, binomial coefficients, square roots, ...]]
+  - [[#summations-and-integrals][Summations and integrals]]
+  - [[#outfits-smiley][Outfits \smiley]]
+- [[#about-markdown][About =markdown=]]
 
-* Syntaxe
+* Syntax
 ** Headers
 #+BEGIN_EXAMPLE
  # This is an <h1> tag
@@ -85,75 +85,74 @@ To print some text with python, you should use the `print()` function.
 print("Hello world!")
 ```
 #+END_EXAMPLE
-* Écrire des Maths
-Il est possible d'écrire des formules en Markdown, soit en mode *inline*
-soit en mode *displayed formulas*. Dans le premier cas, les formules
-sont inclues directement à l'intérieur du paragraphe courant alors
-que dans le second, elles apparaissent centrées et mises en exergue.
+* Writing Math
+Math formulas are easy to write using Markdown, either using the
+*inline* mode or the *displayed formulas* mode. With the inline mode,
+formulas are inlined in the current paragraph whereas with the
+displayed mode, they appear as centered and emphasized.
 
-Le formatage de la formule est légèrement différent dans les deux cas
-car pour qu'une formule s'affiche joliment sur une seule ligne, il
-faut la "tasser" un peu plus que lorsqu'elle est mise en valeur.
+The formatting generally slightly differs in both cases since, to
+display nicely on a single line, it is generally required to pack them
+a bit more than when they are emphasized.
 
-Pour écrire une formule en mode *inline*, il faut la délimiter par un =$=
-(du coup, pour écrire le symbole dollar, il faut le préfixer par un
-backslash, comme ceci: =\$=) alors que pour écrire en mode *displayed*, il
-faut la délimiter par un =$$=. Un petit exemple valant mieux qu'un long
-discours, voici concrètement comment cela fonctionne:
+To write formulas using the *inline* mode, they should be surrounded by
+a single =$= (as a consequence, whenever you need to use the original
+dollar symbol, you should prefix it with a backslash: =\$=). To write
+formulas using the *displayed* mode, they should be surrounded by a =$$=. Here are a few examples:
 
 #+BEGIN_EXAMPLE
-Cette expression $\sum_{i=1}^n X_i$ est inlinée.
+This expression $\sum_{i=1}^n X_i$ is inlined.
 #+END_EXAMPLE
 
-Cette expression $\sum_{i=1}^n X_i$ est inlinée.
+This expression $\sum_{i=1}^n X_i$ is inlined.
 
 #+BEGIN_EXAMPLE
-Cette expression est mise en valeur:
+This expression is emphasized:
 
 $$\sum_{i=1}^n X_i$$
 #+END_EXAMPLE
-Cette expression est mise en valeur:
+This expression is emphasized:
 
 $$\sum_{i=1}^n X_i$$
 
-Nous vous présentons par la suite une sélection de symboles et de
-commandes courantes. En fait, à peu près tout ce qui est classique
-dans le langage LaTeX peut être utilisé pourvu que vous délimitiez
-bien avec un =$=. Pour d'autres exemples plus complets jetez un coup
-d'œil à ces [[http://www.statpower.net/Content/310/R%2520Stuff/SampleMarkdown.html][exemples de James H. Steiger]].
-** Lettres grecques
- | Symbole | Commande |
- |---------+----------|
- | $\alpha$     | =$\alpha$=    |
- | $\beta$     | =$\beta$=      |
- | $\gamma$     | =$\gamma$=      |
- | $\Gamma$     | =$\Gamma$=      |
- | $\pi$     | =$\pi$=      |
-**  Fonctions et opérateurs
- | Symbole | Commande |
- |---------+----------|
- | $\cos$  | =$\cos$=   |
- | $\sin$  | =$\sin$=   |
- | $\lim$  | =$\lim$=   |
- | $\exp$  | =$\exp$=   |
- | $\to$     | =$\to$=      |
- | $\in$     | =$\in$=      |
- | $\forall$     | =$\forall$=      |
- | $\exists$     | =$\exists$=      |
- | $\equiv$     | =$\equiv$=      |
- | $\sim$     | =$\sim$=      |
- | $\approx$     | =$\approx$=      |
- | $\times$     | =$\times$=      |
- | $\le$     | =$\le$=      |
- | $\ge$     | =$\ge$=      |
-** Exposants et indices
- | Symbole | Commande  |
+In the rest of this section we present a brief selection of common
+symbols and commands.  Actually, almost any classical LaTeX command
+can used as such in Markdown, provided it is surrounded by a =$=. For
+more complete examples, please have a look at these ces [[http://www.statpower.net/Content/310/R%2520Stuff/SampleMarkdown.html][examples by
+James H. Steiger]].
+** Greek Letters
+ | Symbol | Command |
+ |--------+---------|
+ | $\alpha$    | =$\alpha$=     |
+ | $\beta$    | =$\beta$=     |
+ | $\gamma$    | =$\gamma$=     |
+ | $\Gamma$    | =$\Gamma$=     |
+ | $\pi$    | =$\pi$=     |
+** Usual functions and operators
+ | Symbol | Command |
+ |--------+---------|
+ | $\cos$ | =$\cos$=  |
+ | $\sin$ | =$\sin$=  |
+ | $\lim$ | =$\lim$=  |
+ | $\exp$ | =$\exp$=  |
+ | $\to$    | =$\to$=     |
+ | $\in$    | =$\in$=     |
+ | $\forall$    | =$\forall$=     |
+ | $\exists$    | =$\exists$=     |
+ | $\equiv$    | =$\equiv$=     |
+ | $\sim$    | =$\sim$=     |
+ | $\approx$    | =$\approx$=     |
+ | $\times$    | =$\times$=     |
+ | $\le$    | =$\le$=     |
+ | $\ge$    | =$\ge$=     |
+** Exponents and indices
+ | Symbol | Command   |
  |---------+-----------|
  | $k_{n+1}$  | =$k_{n+1}$= |
  | $n^2$    | =$n^2$=     |
  | $k_n^2$   | =$k_n^2$=   |
-** Fractions, coefficients binomiaux, racines, ...
- | Symbole                     | Commande                    |
+** Fractions, binomial coefficients, square roots, ...
+ | Symbol                      | Command                     |
  |-----------------------------+-----------------------------|
  | $\frac{4z^3}{16}$            | =$\frac{4z^3}{16}$=           |
  | $\frac{n!}{k!(n-k)!}$       | =$\frac{n!}{k!(n-k)!}$=       |
@@ -162,13 +161,13 @@ d'œil à ces [[http://www.statpower.net/Content/310/R%2520Stuff/SampleMarkdown.
  | $^3/_7$                       | =$^3/_7$=                     |
  | $\sqrt{k}$                  | =$\sqrt{k}$=                  |
  | $\sqrt[n]{k}$               | =$\sqrt[n]{k}$=               |
-** Sommes et intégrales
- | Symbole                         | Commande                             |
+** Summations and integrals
+ | Symbol                          | Command                              |
  |---------------------------------+--------------------------------------|
- | $\sum_{i=1}^{10} t_i$                   | =$\sum_{i=1}^{10} t_i$=                  |
+ | $\sum_{i=1}^{10} t_i$                     | =$\sum_{i=1}^{10} t_i$=                   |
  | $\int_0^\infty \mathrm{e}^{-x}\,\mathrm{d}x$ | =$\int_0^\infty \mathrm{e}^{-x}\,\mathrm{d}x$= |
-** Déguisements
- | Symbole               | Commande              |
+** Outfits \smiley
+ | Symbol                | Command               |
  |-----------------------+-----------------------|
  | $\hat{a}$             | =$\hat{a}$=             |
  | $\bar{a}$             | =$\bar{a}$=             |
@@ -176,22 +175,22 @@ d'œil à ces [[http://www.statpower.net/Content/310/R%2520Stuff/SampleMarkdown.
  | $\ddot{a}$            | =$\ddot{a}$=            |
  | $\overrightarrow{AB}$ | =$\overrightarrow{AB}$= |
  
-* Autour de =markdown= 
-Tout d'abord, pour aller plus loin avec =markdown= et ses extensions / ramifications :
-- Le didacticiel « [[https://enacit1.epfl.ch/markdown-pandoc/][Élaboration et conversion de documents avec Markdown et Pandoc]] » de Jean-Daniel Bonjour (EPFL), précis, complet, concis, en français ; un vrai bonheur !
-- L'article [[https://en.wikipedia.org/wiki/Markdown#Example][Markdown]] de wikipedia en anglais contient un bon pense-bête sur la syntaxe =markdown=.
-- Github propose un court et efficace didacticiel (en anglais) : [[https://guides.github.com/features/mastering-markdown/][Mastering Markdown]].
+* About =markdown= 
+First of all, to know more about =markdown= and its extensions, you may want to read:
+- The « [[https://enacit1.epfl.ch/markdown-pandoc/][Élaboration et conversion de documents avec Markdown et Pandoc]] » tutorial by Jean-Daniel Bonjour (EPFL). A must-read in French...
+- The wikipedia article on [[https://en.wikipedia.org/wiki/Markdown#Example][Markdown]] provides a good overview of the =markdown= syntax.
+- Github proposes a short and efficient introduction: [[https://guides.github.com/features/mastering-markdown/][Mastering Markdown]].
 
-Comme nous l'illustrons dans la « film d'écran » (/screencast/), l'éditeur de texte des dépôts =github= et =gitlab= permet d'interpréter / transformer à la demande un fichier =mardown= en un fichier =html=. C'est à la fois agréable et pratique, mais ce n'est pas une solution pour une utilisation quotidienne de =markdown=, pour cela, il est plus efficace d'éditer son texte, avec un éditeur de texte, sur son ordinateur, avant de « l'exporter » dans un format comme =html=, =pdf=, =docx=, =epub=, etc. Il existe des éditeurs plus ou moins spécialisés pour =markdown=, certains sont indiqués sur la page [[https://github.com/jgm/pandoc/wiki/Pandoc-Extras#editors][Editors]] du site de =pandoc=, mais nous préconisons clairement l'emploi d'un éditeur de texte « généraliste » capable de reconnaître la syntaxe =markdown=. Nous en avons indiqué en début de séquence et on pourra trouver des informations complémentaires dans la section [[https://enacit1.epfl.ch/markdown-pandoc/#editeurs_markdown][Quelques éditeurs adaptés à l'édition Markdown]] du didacticiel de Jean-Daniel Bonjour.    
+As we explain in the video, =github= and =gitlab= allow you to easily edit =mardown= documents and to render them in =html=. This is quite convenient but may be a bit cumbersome for a daily use. You may prefer to edit these documents with a real editor and later to export them in whichever format you may like (=html=, =pdf=, =docx=, =epub=, etc). There are a few editors specifically designed for =markdown= (see for example the [[https://github.com/jgm/pandoc/wiki/Pandoc-Extras#editors][Editors]]  page of the =pandoc= website) but we rather advise you to use a general-purpose editor that is capable of handling the =markdown= syntax. A few ones were mentioned in the beginning of the video and additional information are available in the [[https://enacit1.epfl.ch/markdown-pandoc/#editeurs_markdown]["Quelques éditeurs adaptés à l'édition Markdown"]] section of Jean-Daniel Bonjour's tutorial.
 
-Pour convertir un fichier =markdown= en un format « arbitraire », la solution à ce jour la plus complète est [[http://pandoc.org/][Pandoc]], logiciel développé par John MacFarlane, un philosophe de Berkeley (le site [[https://github.com/jgm/pandoc][github]]). En plus du site de =Pandoc=, le didacticiel de J.-D. Bonjour donne de nombreuses explications sur comment installer et utiliser =pandoc= dans la section [[https://enacit1.epfl.ch/markdown-pandoc/#commande_pandoc][Utilisation du convertisseur Pandoc]]. Comme =pandoc= -- écrit en Haskell -- peut être parfois un peu difficile à installer, nous indiquons maintenant quelques solutions alternatives :
-- Des sites comme [[http://www.markdowntopdf.com/]] et [[http://markdown2pdf.com/]] permettent de convertir en ligne un fichier =markdown= en un fichier =pdf=.
-- Le projet [[http://commonmark.org/][CommonMark]] propose, en plus d'une spécifications plus rigoureuse de la syntaxe =markdown=, des convertisseurs =markdown= → =html= / =LaTeX= (et plus) écris en =C= et en =JavaScript= ([[https://github.com/CommonMark/CommonMark]]).
-- Le site de [[https://daringfireball.net/projects/markdown/][John Gruber]], le créateur de =markdown=, fournit un convertisseur =markdown= → =html= écrit en =perl=.
-- [[http://fletcherpenney.net/multimarkdown/][MultiMarkdown]] est une autre extension de =markdown= qui vient avec son convertisseur =markdown= → =html= écrit en =C=.
-- [[https://github.com/joeyespo/grip][grip]] est un serveur écrit en =python= qui permet de convertir et visualiser à la volée des fichiers =markdown= avec son navigateur (très utile pour éviter d'avoir à faire des « commits » en grande quantité lorsqu'on écrit de tels fichiers pour un dépôt =github= ou =gitlab=).
-La conversion en =pdf= passe toujours par [[https://fr.wikipedia.org/wiki/LaTeX][LaTeX]] ce qui nécessite d'avoir une version complète et à jour de ce logiciel sur sa machine.
+To convert =markdown= in an "arbitrary" other format, the best solution today is [[http://pandoc.org/][Pandoc]], a software developed by John MacFarlane, a philosopher from de Berkeley, and whose [[https://github.com/jgm/pandoc][main page is on github]]. J.-D. Bonjour's tutorial provides many explanations on how to install and use =pandoc= in the [[https://enacit1.epfl.ch/markdown-pandoc/#commande_pandoc][Utilisation du convertisseur Pandoc]] section. =pandoc= is written in Haskell and may be a bit cumbersome to install. Therefore, we provide here a few alternative solutions:
+- Some websites like [[http://www.markdowntopdf.com/]] or [[http://markdown2pdf.com/]] allow you to convert online =markdown= files into =pdf= files without having to install anything on your computer.
+- The [[http://commonmark.org/][CommonMark]] project proposes a rigorous specification of the =markdown= syntax and converters =markdown= → =html= / =LaTeX= written in =C= and =JavaScript= ([[https://github.com/CommonMark/CommonMark]]).
+- You will find on the website of [[https://daringfireball.net/projects/markdown/][John Gruber]], the creator of =markdown=, a =markdown= → =html= converter written in =perl=.
+- [[http://fletcherpenney.net/multimarkdown/][MultiMarkdown]] is another =markdown= extension that provides its own =markdown= → =html= converter written in =C=.
+- [[https://github.com/joeyespo/grip][grip]] is a =python=-based server that allows you to convert on the fly =markdown= documents and to preview them with your favorite browser (this is quite useful to avoid useless commits just for the sake of previewing when using =github= ou =gitlab=).
+The =pdf= conversion always relies on [[https://fr.wikipedia.org/wiki/LaTeX][LaTeX]], which requires a full-fledged and running LaTeX installation on your computer.
  
-Dans la petite démonstration, nous montrons comment générer un fichier =docx= à partir d'un fichier =md= avec =Pandoc= et nous soulignons qu'il est alors possible d'utiliser un traitement de texte comme =LibreOffice= pour modifier le fichier obtenu. Il est clair que si des modifications sont apportées au =docx= elle en seront pas (automatiquement) propagées au =md=. Il faudra utiliser =Pandoc= pour cela et effectuer une conversion de =docx= vers =md= (et seules les éléments du format =docx= qui existent en =md= seront conservés).
+In the demo, we show how to generate a =docx= from a =markdown= document with =Pandoc= and we explain that it is then possible to use a word processor like =LibreOffice= to edit the resulting file. Obviously the modifications will not be back-propagated to the original  =markdown= document. You may however want to use =Pandoc= again to convert your new =docx= document to a new =markdown= document.
 
-Une stratégie qui est souvent employée et qui fonctionne bien en pratique consiste à faire le gros du travail de rédaction d'un article ou d'un mémoire en =Markdown=. La rédaction terminée, le fichier est exporté au format =docx= (ou =LaTeX=) et des ajustements de mise en page sont alors effectués avec un logiciel de traitement de texte (ou un éditeur  =LaTeX=).
+Another common strategy consists in doing most of the editing of an article/report in =Markdown= and to export it into a =docx= (or =LaTeX=) only in the end so as to prepare it for a camera-ready version with a standard word processing environment (or a =LaTeX= editor).
