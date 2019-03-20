@@ -86,6 +86,7 @@ document, simply =M-x org-babel-tangle=.
 #+begin_src emacs-lisp
 (dolist (pkg '(ess
                auctex
+               htmlize
                exec-path-from-shell))
   (when (not (package-installed-p pkg))
     (package-install pkg)))

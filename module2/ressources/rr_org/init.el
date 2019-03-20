@@ -61,6 +61,7 @@
 
 (dolist (pkg '(ess
                auctex
+               htmlize
                exec-path-from-shell))
   (when (not (package-installed-p pkg))
     (package-install pkg)))
