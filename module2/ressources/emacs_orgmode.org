@@ -90,7 +90,7 @@ which is now deprecated.
 
 The Web site https://emacsformacosx.com/ proposes precompiled Emacs versions for macOS. Download the latest version (the one that figures prominently on the page) and install it like you would install any other macOS application, by copying =Emacs.app= from the downloaded disk image to a convenient location on your computer.
 
-In case you need to run Emacs from the command line (note: this is not required in the MOOC), you have to enter the full path to the executable. Assuming that you have copied =Emacs.app= to =/path/to/emacs=, this is =/path/to/emacs/Emacs.app/Contents/MacOS/Emacs=. Note that if you just type =emacs=, you will use the prehistoric command-line-only version at =/usr/bin/emacs= provided by Apple.
+In case you need to run Emacs from the command line (note: this is not required for the MOOC), you have to enter the full path to the executable. Assuming that you have copied =Emacs.app= to =/path/to/emacs=, this is =/path/to/emacs/Emacs.app/Contents/MacOS/Emacs=. If you just type =emacs=, you will use the prehistoric command-line-only version at =/usr/bin/emacs= provided by Apple.
 
 ** Windows
 Download the [[https://ftp.gnu.org/gnu/emacs/windows/emacs-26/emacs-26.1-i686.zip][precompiled Emacs 26.1]] and unzip the zip file preserving the directory structure, and run =bin\runemacs.exe=.
@@ -138,28 +138,50 @@ This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inr
 Emacs/Orgmode"/ in French). Watching it before following the
 instructions given in this section may help.
 
-Emacs comes with very basic default configuration and it appears like
-everyone has its own taste. You will for example find [[https://www.emacswiki.org/emacs/StarterKits][here]] several
-default Emacs configurations that reflect the preferences of their
-creators. Likewise the configuration of Org-Mode is incredibly
-flexible (see for example [[https://orgmode.org/worg/org-configs/index.html][the org-mode website]] for more
-references). In the context of this MOOC, we propose you a relatively
-minimalist one that is rather "/reproducible research/" oriented by
-adding a few org-mode specific configurations.
+Emacs comes with a very basic default configuration, so almost
+everyone wants to personalize it. Given the flexibility of Emacs, a
+configuration can become quite complex and in fact include what would
+otherwise be considered complete software packages. In the context of
+this MOOC, we propose a relatively minimalist configuration oriented
+towards "/reproducible research/" with Org-Mode. If you are new to
+Emacs, we strongly recommended that you use it with as little
+modification as possible, by following the instructions in this
+section. If you are a more experienced Emacs user, you can go through
+the instructions and adopt the pieces that you consider useful for
+you.
 
-** Step 0: Backup and download our configuration
-The procedure we propose will wipe your already existing custom Emacs
-configuration if you have one. *You should thus beforehand make a
-backup* of =~/.emacs= and of =~/.emacs.d/init.el= (if these files exist).
+It is unfortunately rather probable that some of you will run into
+unforeseen problems with this configuration. If that is your case, ask
+a question on the forum. We will do our best to help you.
+** Step 0: Backup and remove your previous configuration
+If you have used Emacs before, you may already have a personal
+configuration. And even if not, you may have Emacs configuration files
+without being aware of them, since some software packages create or
+modify Emacs configuration files. In order to avoid trouble, remove
+prior configurations, after making a backup elsewhere.
+
+The files that you should backup and then remove (if they exist) are:
+
+  1. =~/.emacs=
+  2. =~/.emacs.el=
+  3. =~/.emacs.elc=
+
+There is also a directory that you should backup and then remove (if
+it exists), with everything it might contain:
+
+  4. =~/.emacs.d=
+
+In the above filenames, =~/= stands for your home directory. Windows
+users should replace it by =C:\Users\MyName=, replacing MyName by
+their user name.
+** Step 1: Download our configuration
 
 #+begin_src shell :results output :exports none
 export FILE_LIST="rr_org/init.el rr_org/journal.org"
 tar zcf rr_org_archive.tgz $FILE_LIST
 #+end_src
 
-#+RESULTS:
-
-Then download [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/rr_org_archive.tgz][this archive]] and uncompress it. It contains the
+Download [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/rr_org_archive.tgz][this archive]] and uncompress it. It contains the
 following files and we will refer to them in the following:
 
 #+begin_src shell :results output :exports results
@@ -172,9 +194,13 @@ tar tzf rr_org_archive.tgz
 
 Alternatively, [[file:rr_org/][the files you are looking for are available here]].
 
-If you use Windows, and if you use a desktop shortcut to start Emacs, you must include the path to the file =init.el= in the command for the shortcut. For example, if you installed Emacs as =C:\Users\MyName/emacs=, your desktop shortcut should execute the command =C:\Users\MyName\emacs\bin\runemacs.exe -l .emacs.d/init.el=.
+If you use Windows, and if you use a desktop shortcut to start Emacs,
+you must include the path to the file =init.el= in the command for the
+shortcut. For example, if you installed Emacs as
+=C:\Users\MyName/emacs=, your desktop shortcut should execute the
+command =C:\Users\MyName\emacs\bin\runemacs.exe -l .emacs.d/init.el=.
 
-** Step 1: Prepare your journal
+** Step 2: Prepare your journal
 Create an =org/= directory in the top of your home:
 #+begin_src sh :results output :exports both
 mkdir -p ~/org/
@@ -184,13 +210,9 @@ file will be your laboratory notebook and all the notes you will
 capture with =C-c c= will go automatically go in this file. The first
 entry of this notebook is populated with [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org][many Emacs shortcuts]] that you
 should give a try.
-** Step 2: Set up Emacs configuration
-Copy =rr_org/init.el= in your =~/.emacs.d/= directory.
-
-Alternatively, if you do not want to mess with your already existing
-emacs configuration, you may launch emacs with this specific
-configuration with the following command: =emacs -q -l rr_org/init.el=.
-** Step 3: Adapt the configuration to your specific needs if required
+** Step 3: Put the Emacs configuration file in the right place
+Create the directory =~/.emacs.d/= and copy =rr_org/init.el= into it.
+** Step 4: Adapt the configuration to your specific needs if required
 There are two situations in which it might be necessary to modify
 =init.el=:
 1. Your network environment forces you to use a proxy for access
@@ -205,9 +227,13 @@ There are two situations in which it might be necessary to modify
 
 If you do have to modify =init.el=, check the comments at the
 beginning of the file for instructions.
-** Step 4: Check whether the installation is working or not
-Open a new instance of Emacs and open a =foo.org= file. Copy the
-following lines in this file:
+** Step 5: Check whether the installation is working or not
+Quit Emacs if it is running, and start it again. This first start
+will take a bit of time because Emacs will download a few add-on
+packages. For that reason, please make sure that you have a working
+internet connection for this step.
+
+Then open a file =foo.org=. Copy the following lines into this file:
    : #+begin_src shell :session foo :results output :exports both
    : ls -la # or dir under windows
    : #+end_src
@@ -223,12 +249,12 @@ In the video, we already have demonstrated the main features and
 shortcuts of emacs/org-mode that will help you maintain a document and
 benefit from literate programming. The list of features and shortcuts
 is demonstrated in the [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org][first entry of your labbook]].
-** Step 5: Open and play with your journal:
-In step 1, you were told to create an journal in
-=~org/journal.org=. First you probably want to make sure this file is
+** Step 6: Open and play with your journal:
+In step 2, you were told to create a journal in
+=~org/journal.org=. You probably want to make sure this file is
 stored in a version control system like git. We leave it up to you
 to set this up but if you have any trouble, feel free to ask on the
-FUN forums.
+MOOC forum.
 * A stub of a replicable article
 This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Écrire un article
 réplicable avec Emacs/Orgmode"/ in French). Watching it before
