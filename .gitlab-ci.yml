@@ -8,7 +8,7 @@ pages:
   - for file in $(find -name "*.md"); do
         pandoc -s -f gfm -t html -o ${file%.*}.html $file && echo "Exported ${file%.*}.html" && echo "<li><a href='https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr-ressources/${file%.*}.html'>${file%.*}.html</a></li>" >> index.html || echo "ERROR $file";
         bin/pandoc_fixer.pl ${file} > ${file}.new;
-        mv ${file}.new ${file};
+        mv ${file}.new ${file%.*}.html;
     done
   # The next part is broken because pandoc is way too old on this image :(
   # - for file in $(find -name "*.org"); do 
