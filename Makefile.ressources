@@ -1,11 +1,12 @@
 
 %.md: %.org
 	rm -f $@
-	LANG=C ; pandoc -s  -f org -t markdown_github -o $@ $^
+	LANG=C ; pandoc -s  -f org -t gfm -o $@ $^
 	mv $@ $@.bak
 	echo '---' > $@
 	grep -i -e "#+TITLE:" -e "#+AUTHOR:" $^ | sed 's/#+//' >> $@ # -e "#+DATE:" ## echo "DATE:   `date '+%B %e, %Y'`" >> $@ 
 	git log $^ | grep Date | head -n 1 | sed 's/+.*//' >> $@
+	sed -i -e 's/TITLE:/title:/i' -e 's/AUTHOR:/author:/i' -e 's/Date:/date:/i' $@
 	echo "---\\n" >> $@
 	cat $@.bak >> $@
 	rm $@.bak
