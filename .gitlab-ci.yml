@@ -1,5 +1,4 @@
-image: jpbernius/pandoc
-
+image: brospars/pandoc-gitlab-ci:latest
 pages:
   stage: deploy
   script:
