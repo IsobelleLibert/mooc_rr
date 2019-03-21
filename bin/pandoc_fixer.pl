@@ -41,7 +41,7 @@ while(defined($line=<INPUT>)) {
     $line =~ s|href=" ---</p>|<hr/>|g;
 
     $line =~ s|img src="http|img src="%|g;
-    $line =~ s|img src="([^%][^"]*)"|img src="$url_path/$1"|g;
+    $line =~ s|img src="([^%][^"]*)"|img src="$url_path/$1?inline=false"|g;
     $line =~ s|img src="%|img src="http|g;
 
     # if($line =~ /img src="([^%][^"]*)"/) {
