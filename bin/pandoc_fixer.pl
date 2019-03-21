@@ -24,7 +24,7 @@ my($input_path)=$input;
 $input_path =~ s|/[^/]*$||g;
 # print $input."\n\n";
 
-my($url_path) = "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/".$input_path;
+my($url_path) = "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/raw/master/".$input_path;
 
 my($gitlab_origin)= "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/";
 
