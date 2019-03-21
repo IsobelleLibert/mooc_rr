@@ -1,3 +1,5 @@
-ressources-md: introduction_to_markdown.md introduction_to_markdown_fr.md
+ressources-md: Module1_1_MaterielSupplementaire_fr.md Module1_2_MaterielSupplementaire_fr.md\
+Module1_3_MaterielSupplementaire_fr.md Module1_5_MaterielSupplementaire_fr.md\
+Module1_1_SupplementaryMaterial.md Module1_2_SupplementaryMaterial.md
 
 include ../../Makefile.ressources

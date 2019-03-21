@@ -1,0 +1,358 @@
+---
+TITLE: We all use notebooks (Module 1 sequence 1)
+AUTHOR: Christophe Pouzat
+---\n
+broken-links:nil c:nil creator:nil
+
+Introduction
+============
+
+This sequence discusses a much wider issue than *reproducible research*
+(RR). Implementing RR requires thorough note-taking and note-taking
+concerns everyone. The purpose of this sequence is therefore to remind
+the reader / auditor that he/she already knows: **note-taking concerns
+everyone**. Few examples are used to that end.
+
+Annotated manuscripts
+=====================
+
+As an introduction to the world of annotated manuscripts, I quote now a
+small selection of passages from the first chapter of *LA PAGE. DE
+L'ANTIQUITÉ À L'ÈRE DU NUMÉRIQUE* (THE PAGE. FROM ANTIQUITY TO THE
+DIGITAL ERA) by Anthony Grafton (Hazan, 2012):
+
+``` example
+  By the very movement of his pen on the page, it is clear that
+Casaubon masters everything he reads. He constantly underlines the importance of
+words and expressions, he notes in the margin key words and summaries
+showing that he has read carefully, even when, he states in his
+diary that he studied in one day forty to fifty pages
+in-folio of Greek with many abbreviations. The most important 
+passages give rise to longer comments in the margin.
+On the title pages, Casaubon very often carries - a little
+as Montaigne - a global judgment on the value of the work.
+In addition, he notes his thoughts in notebooks, or takes
+notes on texts he can't buy. As they are
+gathered in his library, his books represent a whole life of
+reading that can be reconstructed over the pages.
+```
+
+Pages 32 and 33, about [Isaac
+Casaubon](https://en.wikipedia.org/wiki/Isaac_Casaubon) (1559-1614).
+
+``` example
+  Yet Harvey left much more than that, including
+traces of his readings in the form of more than a hundred books
+covered with wonderfully written annotations of his beautiful slanted 
+writing - in addition to the notebooks in which he wrote extracts.
+Clearly, Harvey considered reading to be his profession,
+and he made it an art too. Decade after decade, he lays down his
+thoughts on history in an in-folio edition of 1555 of Livy's "History
+of Rome". His notes, mostly in Latin, go through
+the margins, spread between chapters and fill in
+loose sheets, taking on a particularly erudite aspect and
+quite daunting.
+```
+
+Pages 35 and 36, on [Gabriel
+Harvey](https://en.wikipedia.org/wiki/Gabriel_Harvey) (1545-1630).
+
+``` example
+... But in the remaining working copy of the
+text, the basic edition of 1549, he [Casaubon] introduced so many annotations
+that the cataloguers of the Bodleian Library, who were only
+not familiar with rhetoric, have classified this printed book as a manuscript.
+```
+
+Page 40.
+
+Note cabinets from Placcius and Leibniz
+=======================================
+
+I found this example in Ann Blair's work such as [The Rise of
+Note-Taking in Early Modern
+Europe](https://dash.harvard.edu/bitstream/handle/1/4774908/blair_notetaking.pdf?sequence=1)
+and her book *TOO MUCH TO KNOW. Managing Scholarly Information before
+the Modern Age*, published by Yale University Press in 2011.
+
+On the preface to *Penguin Island*
+==================================
+
+The text can be found *legally* at several places, the [Project
+Gutenberg](https://en.wikipedia.org/wiki/Project_Gutenberg) one is
+missing the "Preface", so don't use it, go to one of the versions
+available on [Internet
+Archive](https://archive.org/search.php?query=title%3Apenguin%20island%20AND%20-contributor%3Agutenberg%20AND%20mediatype%3Atexts).
+The importance of the preface in illustrated by the following two
+quotations:
+
+> One word more if you want your book to be well received, lose no
+> opportunity for exalting the virtues on which society is based —
+> attachment to wealth, pious senti- ments, and especially resignation
+> on the part of the poor, which latter is the very foundation of order.
+> Proclaim, sir, that the origins of property — nobility and police —
+> are treat- ed in your history with the respect which these
+> institutions deserve. Make it known that you admit the supernatural
+> when it presents itself. On these conditions you will succeed in good
+> society.
+
+And more importantly for our present subject:
+
+> The idea occurred to me, in the month of June last year, to go and
+> consult on the origins and progress of Penguin art, the lamented M.
+> Fulgence Tapir, the learned author of the ‘Universal Annals of
+> Painting, Sculpture and Architecture’
+>
+> Having been shown into his study, I found seated before a roll-top
+> desk, beneath a frightful mass of papers, an amaz- ingly short-sighted
+> little man whose eyelids blinked behind his gold-mounted spectacles.
+>
+> To make up for the defect of his eyes his long and mobile nose,
+> endowed with an exquisite sense of touch, explored the sensible world.
+> By means of this organ Fulgence Tapir put himself in contact with art
+> and beauty. It is observed that in France, as a general rule, musical
+> critics are deaf and art critics are blind. This allows them the
+> collectedness neces- sary for æsthetic ideas. Do you imagine that with
+> eyes capable of perceiving the forms and colours with which mysterious
+> nature envelops herself, Fulgence Tapir would have raised himself, on
+> a mountain of printed and manuscript docu- ments, to the summit of
+> doctrinal spiritualism, or that he would have conceived that mighty
+> theory which makes the arts of all tunes and countries converge
+> towards the Institute of France, their supreme end?
+>
+> The walls of the study, the floor, and even the ceiling were loaded
+> with overflowing bundles, pasteboard boxes swollen beyond measure,
+> boxes in which were compressed an in- numerable multitude of small
+> cards covered with writing. I beheld in admiration minted with terror
+> the cataracts of erudition that threatened to burst forth.
+>
+> ‘Master,’ said I in feeling tones, ‘I throw myself upon your kindness
+> and your knowledge, both of which are inexhaustible. Would you consent
+> to guide me in my arduous researches into the origins of Penguin art?’
+>
+> ‘Sir,’ answered the Master, ‘I possess all art, you under- stand me,
+> all art, on cards classed alphabetically and in order of subjects. I
+> consider it my duty to place at your dis- posal all that relates to
+> the Penguins. Get on that ladder and take out that box you see above.
+> You will find in it every- thing you require.’
+>
+> I tremblingly obeyed. But scarcely had I opened the fatal box than
+> some blue cards escaped from it, and slipping through my fingers,
+> began to rain down. Almost immediate- ly, acting in sympathy, the
+> neighbouring boxes opened, and there flowed streams of pink, green,
+> and white cards, and by degrees, from all the boxes, differently
+> coloured cards were poured out murmuring like a waterfall on a
+> mountain side in April. In a minute they covered the floor with a
+> thick layer of paper. Issuing from their inexhaustible reservoirs with
+> a roar that continually grew in force, each second in- creased the
+> vehemence of their torrential fall. Swamped up to the knees in cards,
+> Fulgence Tapir observed the cataclysm with attentive nose. He
+> recognised its cause and grew pale with fright
+>
+> ‘What a mass of art !’ he exclaimed.
+>
+> I called to him and leaned forward to help him mount the ladder which
+> bent under the shower. It was too late. Over- whelmed, desperate,
+> pitiable, his velvet smoking-cap and his gold-mounted spectacles
+> having fallen from him, he vainly opposed his short arms to the flood
+> which had now mounted to his arm-pits. Suddenly a terrible spurt of
+> cards arose and enveloped him in a gigantic whirlpool. During the
+> space of a second I could see in the gulf the shining skull and little
+> fat hands of the scholar, then it closed up and the deluge kept on
+> pouring over what was silence and immobility. In dread lest I in my
+> turn should be swallowed up ladder and all I maae my escape through
+> the topmost pane of the window.
+
+The logbooks
+============
+
+I would like to thank Joël Caselli for helping me interpret the content
+of Éric Tabarly's logbook.
+
+This example is only superficially anecdotal. Ten years ago, a European
+project was aiming at estimating the Atlantic and Indian Oceans climates
+during the 18th century using logbooks from ships of the West- and
+East-India companies from the Kingdoms of Portugal, Spain, Holland,
+Britain and France. See the [Climatological Database for the World's
+Oceans 1750-1850](http://webs.ucm.es/info/cliwoc/).
+
+In the same vein, logbooks from slave ships give a lot of quantitative
+information about the slave trade between Africa and the "New World"
+(see Marcus Rediker frightening book *The Slave Ship: A Human History*,
+2007).
+
+One missing: the classic laboratory notebook
+============================================
+
+I quote here Sec. 6.2 `Notebooks and Records` of the highly recommended
+reading *An Introduction to Scientific Research* by E. Bright Wilson
+(reprinted by Dover):
+
+> It is hard to conceive of a perfect laboratory notebook, and it is
+> regrettably rare to find one that is even moderately satisfactory; yet
+> the keeping of good records of work done is a major key to efficiency.
+> There are bound to be dissenters to any set of fixed rules, but these
+> will probably be rarer for the ritual of notebook keeping than
+> elsewhere. Consequently, a set of rules which is generally regarded as
+> satisfactory, or even as essential, will be somewhat dogmatically
+> stated.
+>
+> Some great discoveries have been delayed because of careless record
+> keeping. Thus it is related that the astronomer Le Monnier observed
+> the planet Uranus on several occasions, before its identification as a
+> planet had been announced by Herschel, but decided that it was a fixed
+> star. This was probably due in part to the fact that he wrote his
+> measurements on scraps of paper, including a paper bag originally
+> containing hair powder!
+>
+> Laboratory notebooks should be permanently and strongly bound and of
+> sufficient size, say roughly 8 by 10 inches, with numbered pages.
+> Loose-leaf pages or separate sheets are too easily lost to be
+> satisfactory, especially since a laboratory notebook gets rather rough
+> handling, and perhaps an occasional dousing with acid. An exception is
+> the case of routine, repeated measurements, where a printed or
+> mimeographed special blank is often useful if a good system is
+> established for collecting and binding the separate sheets. Ruled
+> pages are generally used, but this is a matter of personal taste, and
+> some prefer unruled or cross-sectional pages. A rubber stamp may be
+> used to provide headings for routine entries.
+>
+> Data should be entered directly into the notebook at the time of
+> observation. It is intolerable to use memory or scraps of paper for
+> primary recording, because of the inevitability of error and loss.
+> Therefore, there should be a good place for the notebook at the
+> operating position, and the experimenter should never be without his
+> book when in action. Data should be recorded in ink, preferably a
+> permanent brand, and a blotter should be handy. Otherwise the record
+> is too ephemeral. Notebooks get hard usage, and pencil smudges
+> rapidly. When the notebook may be used as evidence in a patent case,
+> ink is much preferred.
+>
+> Rough, qualitative graphs can be drawn in directly, but more careful
+> ones are usually best prepared on graph paper of the most appropriate
+> type These are then carefully pasted in the notebook, a blank page
+> being cut out in order to compensate for the bulk of the one added.
+>
+> Notebooks should carry the name of the user and the dates covered. It
+> is convenient in a research group to agree on a standard size, but
+> then some sort of external identification is a great timesaver. The
+> first eight or ten pages should be reserved for a table of contents.
+> This consists of a line added chronologically for each series of
+> similar experiments, together with the page reference. The table of
+> contents is enormously helpful in finding items later and is very
+> simple to keep up. An index in the back of the book is advantageous
+> but not indispensable.
+>
+> Each entry should be dated and, if several individuals use one book
+> (not generally recommended), initialed. The material should not be
+> crowded on the pages; paper is cheap compared with other research
+> expenses. The principal difficulty is in deciding what to put in.
+> Obviously, one enters numerical results and those values of the
+> independent variables such as temperature, composition, or pressure
+> which are directly concerned. It is also necessary to have a system of
+> entries or references so that years later it will be possible to tell
+> what apparatus was used and under what circumstances. Somewhere there
+> should be available a rather complete description of the apparatus.
+> Then, when modifications are made, they should be described
+> immediately in the notebook. It should also be possible to trace back
+> the source of calibration curves, corrections, etc., which were
+> appropriate to the data of a given day. It is helpful if the
+> requirements for writing a paper, a thesis, or a book are kept in
+> mind. Such a task, once carried out, usually leads to solemn resolves
+> to keep a more careful notebook in the future. Also extremely salutary
+> is the effect of trying to figure out something from another’s book.
+> All references to apparatus, places, times, books, papers, graphs, and
+> people should be sufficiently explicit to be understandable years
+> later. It should be possible to take each scientific paper and show
+> just where every figure, description, or statement in it is backed up
+> by original observations in the laboratory notebook, and exactly why
+> the final and original numbers differ, if they do.
+>
+> Some statement of the purpose of each experiment and a summary of the
+> conclusions reached make the notebook vastly more useful. Sketches,
+> drawings, and diagrams are essential. Since so much observation is
+> visual, it is important to record what is actually seen, including
+> things not fully understood at the time. Bad or unpromising
+> experiments, even those deemed failures, should be fully recorded.
+> They represent an investment of effort which should not be thrown
+> away, because often something can be salvaged, even if it is only a
+> knowledge of what not to do. Data should always be entered in their
+> most primary form, not after recalculation or transformation. If it is
+> a ratio of two observations which is of interest but it is the two
+> numbers which are actually observed, the two numbers should be
+> recorded. If the precise weight of an object is important, the
+> individual balance weights used and their identification should be
+> included, i.e., the serial number of the box. Otherwise it is not
+> possible to apply calibration corrections later or to change the
+> corrections if new values appear. Naturally, this detail is not
+> necessary if only a rough weight is involved. A tabular form is best
+> for numerical data. Units should be noted.
+>
+> Where patent questions are involved, it may be desirable to witness
+> and even to notarize notebook pages at intervals. The witness should
+> be someone who understands the material but is not a coinventor.
+> Material added to a page at a later date should be in a
+> different-colored ink, and any alterations should be initialed,
+> witnessed, and dated if they are likely to be important. Industrial
+> concerns usually enforce their own rules concerning patent matters.
+>
+> Identification Numbers. It is foolish to spend time and money making
+> records of various kinds such as pen-and-ink recorder sheets,
+> photographic records, or spectra if these are then lost or mixed up.
+> Every such record should carry indelibly on it complete
+> identification. A simple system of doing this which has worked well in
+> practice is to write in ink on each record a symbol identifying the
+> notebook and then the page number on which the auxiliary data are
+> recorded. If more than one record occurs on a page, letters or further
+> numerals can be added. Thus EBW II 85c would identify the third record
+> discussed on page 85 of the second EBW notebook. This is better than a
+> serial number, which doesn’t tell without extra keying where to look
+> for the notebook entry. A good filing system is indispensable for all
+> films, photographs, charts, graphs, circuit diagrams, drawings,
+> blueprints, etc. It is hardest to devise satisfactory filing methods
+> for either very small or very large material. The former are easily
+> lost and the latter very bulky. Small envelopes are useful for tiny
+> films and also protect them from scratching.
+>
+> It is thoroughly worth while to save drawings and blueprints from
+> which apparatus has been built, however rough these may be. These
+> should be dated, initialed, and labeled; in fact every piece of paper
+> containing useful material should be so marked. When an electronic or
+> other similar piece of equipment is built, a careful circuit diagram
+> should be prepared, fully labeled with all constants. The apparatus
+> should carry a serial number which also appears on the diagram. When
+> changes are made, these should be indicated on the diagram and dated
+> or a revised, dated diagram made. The old one should not be obscured
+> or thrown away because it may be required to explain earlier data,
+> later found to be peculiar. It is convenient to draw such diagrams on
+> tracing paper with a good black pencil. Cheap ozalid or similarly
+> processed copies can then be made. One should be kept in the
+> laboratory, where it will usually prove indispensable for trouble
+> shooting. Sooner or later, however, it will be used as scratch paper
+> by someone with a brilliant idea to demonstrate; so the official copy
+> and spares should be filed elsewhere. A great deal of time is
+> unnecessarily wasted poking around the insides of an apparatus trying
+> to find out where some wire goes. \[…\] Labeling. Related to the
+> question of notebooks and records is that of labeling. Naturally
+> bottles of chemicals must carry adequate labels, which should include
+> not only the chemical name but also the source, or a notebook page
+> reference if there has been any special treatment, or initials and
+> date. One research worker departed from a certain laboratory to take
+> another job and left a good deal of material behind. One bottle of
+> clear liquid carried no label. Those assigned to clean up examined it,
+> smelled it, finally concluded that it was water, and poured it down
+> the drain. It was water, all right—heavy water at $30 an ounce. Some
+> supervisors relentlessly throw out unlabeled bottles on sight. It only
+> needs to be done once or twice. Labels are also essential on all kinds
+> of specimens, pieces of apparatus, gadgets, etc. Controls on apparatus
+> should be labeled and the apparatus itself numbered. Every laboratory
+> has orphaned pieces of equipment, often electronic, of which no one
+> knows the nature and purpose. The notebook page system is good here,
+> provided the old notebooks can be found. Labels should be attached so
+> that they will stay. Metal tags can be riveted on. Paper labels should
+> be covered with some sort of varnish.
+>
+> The whole purpose of all these recording systems is to preserve
+> values. They should be carefully thought out to fit the conditions of
+> each laboratory and should be adequate but not overelaborate. If too
+> much is demanded of human nature, the system will break down.
