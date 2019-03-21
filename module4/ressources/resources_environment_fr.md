@@ -1,27 +1,41 @@
 ---
-TITLE:     Informations sur l'environnement
-Date:   Tue Feb 19 19:19:03 2019 
+title:     Informations sur l'environnement
+date:   Tue Feb 19 19:19:03 2019 
 ---
 
-Table des matières<span class="tag" data-tag-name="TOC"></span>
-===============================================================
+# Table des matières <span class="tag" data-tag-name="TOC"><span class="smallcaps">TOC</span></span>
 
--   [Obtenir des informations sur votre dépôt Git](#obtenir-des-informations-sur-votre-dépôt-git)
--   [Obtenir des informations sur les librairies Python 3](#obtenir-des-informations-sur-les-librairies-python-3)
-    -   [Obtenir des informations sur votre système](#obtenir-des-informations-sur-votre-système)
-    -   [Lister les packages installés et leur version](#lister-les-packages-installés-et-leur-version)
-    -   [Lister les packages importés (chargés dans une session Python) et leur version](#lister-les-packages-importés-chargés-dans-une-session-python-et-leur-version)
-    -   [Sauvegarder et restaurer un environnement avec pip](#sauvegarder-et-restaurer-un-environnement-avec-pip)
-    -   [Installer un nouveau package ou une version spécifique](#installer-un-nouveau-package-ou-une-version-spécifique)
--   [Obtenir des informations sur les packages R](#obtenir-des-informations-sur-les-packages-r)
-    -   [Lister les packages installés et leur version](#lister-les-packages-installés-et-leur-version-1)
-    -   [Lister les packages importés (chargés dans une session R) et leur version](#lister-les-packages-importés-chargés-dans-une-session-r-et-leur-version)
-    -   [Installer un nouveau package ou une version spécifique](#installer-un-nouveau-package-ou-une-version-spécifique-1)
+  - [Obtenir des informations sur votre dépôt
+    Git](#obtenir-des-informations-sur-votre-dépôt-git)
+  - [Obtenir des informations sur les librairies Python
+    3](#obtenir-des-informations-sur-les-librairies-python-3)
+      - [Obtenir des informations sur votre
+        système](#obtenir-des-informations-sur-votre-système)
+      - [Lister les packages installés et leur
+        version](#lister-les-packages-installés-et-leur-version)
+      - [Lister les packages importés (chargés dans une session Python)
+        et leur
+        version](#lister-les-packages-importés-chargés-dans-une-session-python-et-leur-version)
+      - [Sauvegarder et restaurer un environnement avec
+        pip](#sauvegarder-et-restaurer-un-environnement-avec-pip)
+      - [Installer un nouveau package ou une version
+        spécifique](#installer-un-nouveau-package-ou-une-version-spécifique)
+  - [Obtenir des informations sur les packages
+    R](#obtenir-des-informations-sur-les-packages-r)
+      - [Lister les packages installés et leur
+        version](#lister-les-packages-installés-et-leur-version-1)
+      - [Lister les packages importés (chargés dans une session R) et
+        leur
+        version](#lister-les-packages-importés-chargés-dans-une-session-r-et-leur-version)
+      - [Installer un nouveau package ou une version
+        spécifique](#installer-un-nouveau-package-ou-une-version-spécifique-1)
 
-Obtenir des informations sur votre dépôt Git
-============================================
+# Obtenir des informations sur votre dépôt Git
 
-Lorsqu'on prend des notes, il peut être difficile de se rappeler quelle version de code ou de fichier a été utilisée. C'est l'intérêt du contrôle de versions. Voici quelques commandes utiles que nous insérons généralement au début de nos notebooks dans des cellules shell :
+Lorsqu'on prend des notes, il peut être difficile de se rappeler quelle
+version de code ou de fichier a été utilisée. C'est l'intérêt du
+contrôle de versions. Voici quelques commandes utiles que nous insérons
+généralement au début de nos notebooks dans des cellules shell :
 
 ``` shell
 git log -1
@@ -65,9 +79,12 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-*Note : L'option -u indique que Git doit aussi afficher le contenu des répertoires nouvellement créés.*
+*Note : L'option -u indique que Git doit aussi afficher le contenu des
+répertoires nouvellement créés.*
 
-Nous ajoutons aussi souvent des commandes à la fin des notebooks pour indiquer comment commiter les résultats (ajout des nouveaux fichiers, commit avec un message clair et commande push). Par exemple :
+Nous ajoutons aussi souvent des commandes à la fin des notebooks pour
+indiquer comment commiter les résultats (ajout des nouveaux fichiers,
+commit avec un message clair et commande push). Par exemple :
 
 ``` shell
 git add resources.org;
@@ -87,15 +104,18 @@ To gitlab.inria.fr:learninglab/mooc-rr/mooc-rr-ressources.git
    6359f8c..1f8a567  master -> master
 ```
 
-Évidemment, dans ce cas il faut enregistrer le notebook avant d'exécuter cette cellule, donc le résultat de cette dernière commande (avec le nouveau Git hash) ne sera pas stocké dans la cellule. Ce n'est pas vraiment un problème et c'est le prix à payer pour exécuter Git à partir du notebook lui-même.
+Évidemment, dans ce cas il faut enregistrer le notebook avant d'exécuter
+cette cellule, donc le résultat de cette dernière commande (avec le
+nouveau Git hash) ne sera pas stocké dans la cellule. Ce n'est pas
+vraiment un problème et c'est le prix à payer pour exécuter Git à partir
+du notebook lui-même.
 
-Obtenir des informations sur les librairies Python 3
-====================================================
+# Obtenir des informations sur les librairies Python 3
 
-Obtenir des informations sur votre système
-------------------------------------------
+## Obtenir des informations sur votre système
 
-Cette question est discutée sur [StackOverflow](https://stackoverflow.com/questions/3103178/how-to-get-the-system-info-with-python).
+Cette question est discutée sur
+[StackOverflow](https://stackoverflow.com/questions/3103178/how-to-get-the-system-info-with-python).
 
 ``` python
 import platform
@@ -106,10 +126,14 @@ print(platform.uname())
 uname_result(system='Linux', node='icarus', release='4.15.0-2-amd64', version='#1 SMP Debian 4.15.11-1 (2018-03-20)', machine='x86_64', processor='')
 ```
 
-Lister les packages installés et leur version
----------------------------------------------
+## Lister les packages installés et leur version
 
-Cette question est discutée sur [StackOverflow](https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules). Il est facile d'obtenir la version de tous les packages installés en exécutant `pip` (l'installateur de packages Python) dans une commande shell (la commande peut être `pip` or `pip3` selon la configuration de votre ordinateur).
+Cette question est discutée sur
+[StackOverflow](https://stackoverflow.com/questions/20180543/how-to-check-version-of-python-modules).
+Il est facile d'obtenir la version de tous les packages installés en
+exécutant `pip` (l'installateur de packages Python) dans une commande
+shell (la commande peut être `pip` or `pip3` selon la configuration de
+votre ordinateur).
 
 Voici par exemple comment j'obtiens ces informations sur ma machine :
 
@@ -137,7 +161,10 @@ wcwidth==0.1.7
 webencodings==0.5
 ```
 
-Dans un notebook Jupyter, cela peut facilement être fait en utilisant la commande magique `%%sh`. Voici par exemple ce que vous pouvez faire et obtenir avec les notebooks Jupyter que nous avons déployés pour le MOOC (notez qu’ici vous devez simplement utiliser la commande `pip`) :
+Dans un notebook Jupyter, cela peut facilement être fait en utilisant la
+commande magique `%%sh`. Voici par exemple ce que vous pouvez faire et
+obtenir avec les notebooks Jupyter que nous avons déployés pour le MOOC
+(notez qu’ici vous devez simplement utiliser la commande `pip`) :
 
 ``` python
 %%sh
@@ -162,9 +189,14 @@ xlrd==1.1.0
 zope.interface==4.5.0
 ```
 
-Dans la suite de ce document, je supposerai que la commande correcte est `pip` et je ne vais pas systématiquement insérer la commande magique `%%sh`.
+Dans la suite de ce document, je supposerai que la commande correcte est
+`pip` et je ne vais pas systématiquement insérer la commande magique
+`%%sh`.
 
-Une fois que vous savez quels packages sont installés, vous pouvez facilement obtenir des informations supplémentaires sur un package donné et notamment vérifier s'il a été installé "localement" via pip ou s'il est installé à l'échelle du système. À nouveau dans une commande shell :
+Une fois que vous savez quels packages sont installés, vous pouvez
+facilement obtenir des informations supplémentaires sur un package donné
+et notamment vérifier s'il a été installé "localement" via pip ou s'il
+est installé à l'échelle du système. À nouveau dans une commande shell :
 
 ``` shell
 pip show pandas
@@ -194,10 +226,15 @@ Location: /home/alegrand/.local/lib/python3.6/site-packages
 Requires: patsy, pandas
 ```
 
-Lister les packages importés (chargés dans une session Python) et leur version
-------------------------------------------------------------------------------
+## Lister les packages importés (chargés dans une session Python) et leur version
 
-Vous pouvez vouloir savoir quels packages sont chargés dans une session Python ainsi que leur version sans recourir à pip (qui listera tous les packages disponibles). Inspiré par [StackOverflow](https://stackoverflow.com/questions/4858100/how-to-list-imported-modules), voici une fonction simple qui liste les packages chargés (ayant un attribut `__version__`, qui n’est malheureusement pas tout à fait standard).
+Vous pouvez vouloir savoir quels packages sont chargés dans une session
+Python ainsi que leur version sans recourir à pip (qui listera tous les
+packages disponibles). Inspiré par
+[StackOverflow](https://stackoverflow.com/questions/4858100/how-to-list-imported-modules),
+voici une fonction simple qui liste les packages chargés (ayant un
+attribut `__version__`, qui n’est malheureusement pas tout à fait
+standard).
 
 ``` python
 def print_imported_modules():
@@ -249,24 +286,31 @@ urllib.request 3.6
 zlib 1.0
 ```
 
-Sauvegarder et restaurer un environnement avec pip
---------------------------------------------------
+## Sauvegarder et restaurer un environnement avec pip
 
-La façon la plus simple de faire est la suivante :
+La façon la plus simple de faire est la
+suivante :
 
 ``` shell
 pip3 freeze > requirements.txt # to obtain the list of packages with their version
 pip3 install -r requirements.txt # to install the previous list of packages, possibly on an other machine
 ```
 
-Si vous voulez avoir plusieurs environnements Python sur votre ordinateur, vous pouvez vouloir utiliser [Pipenv](https://docs.pipenv.org/) (mais je doute que cela permette de tracer correctement les bibliothèques dynamiques FORTRAN ou C encapsulées dans Python).
+Si vous voulez avoir plusieurs environnements Python sur votre
+ordinateur, vous pouvez vouloir utiliser
+[Pipenv](https://docs.pipenv.org/) (mais je doute que cela permette de
+tracer correctement les bibliothèques dynamiques FORTRAN ou C
+encapsulées dans Python).
 
-Installer un nouveau package ou une version spécifique
-------------------------------------------------------
+## Installer un nouveau package ou une version spécifique
 
-L’environnement Jupyter que nous avons déployé sur nos serveurs pour le MOOC est basé sur Miniconda 4.5.4 et Python 3.6. Dans cet environnement, vous devez simplement utiliser la commande `pip` (vous devrez peut-être utiliser `pip3` sur votre ordinateur).
+L’environnement Jupyter que nous avons déployé sur nos serveurs pour le
+MOOC est basé sur Miniconda 4.5.4 et Python 3.6. Dans cet environnement,
+vous devez simplement utiliser la commande `pip` (vous devrez peut-être
+utiliser `pip3` sur votre ordinateur).
 
-Voici ce que j'obtiens si j'interroge la version actuelle de `statsmodels` dans une commande shell.
+Voici ce que j'obtiens si j'interroge la version actuelle de
+`statsmodels` dans une commande shell.
 
 ``` shell
 pip show statsmodels
@@ -308,40 +352,41 @@ Location: /opt/conda/lib/python3.6/site-packages
 Requires: scipy, patsy, pandas
 ```
 
-Il est même possible d’installer une version spécifique (peut-être beaucoup plus ancienne), par exemple :
+Il est même possible d’installer une version spécifique (peut-être
+beaucoup plus ancienne), par exemple :
 
 ``` shell
 pip install statsmodels==0.6.1
 ```
 
-Obtenir des informations sur les packages R
-===========================================
+# Obtenir des informations sur les packages R
 
-Lister les packages installés et leur version
----------------------------------------------
+## Lister les packages installés et leur version
 
-Il existe une commande R intégrée (`installed.packages`) permettant de récupérer et de lister les détails de tous packages installés.
+Il existe une commande R intégrée (`installed.packages`) permettant de
+récupérer et de lister les détails de tous packages installés.
 
 ``` r
 head(installed.packages())
 ```
 
-| Package                                                        | LibPath                                                    | Version                                                    | Priority    | Depends                                                        | Imports                                                        | LinkingTo | Suggests      | Enhances                              | License                              | License<sub>isFOSS</sub> | License<sub>restrictsuse</sub> | OS<sub>type</sub> | MD5sum | NeedsCompilation | Built |       |
-|----------------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------|-------------|----------------------------------------------------------------|----------------------------------------------------------------|-----------|---------------|---------------------------------------|--------------------------------------|--------------------------|--------------------------------|-------------------|--------|------------------|-------|-------|
-| BH                                                             | /home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5 | 1.66.0-1                                                   | nil         | nil                                                            | nil                                                            | nil       | nil           | nil                                   | BSL-1.0                              | nil                      | nil                            | nil               | nil    | no               | 3.5.1 |       |
-| Formula                                                        | /home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5 | 1.2-3                                                      | nil         | R (&gt;= 2.0.0), stats                                         | nil                                                            | nil       | nil           | nil                                   | GPL-2                                | GPL-3                    | nil                            | nil               | nil    | nil              | no    | 3.5.1 |
-| Hmisc                                                          | /home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5 | 4.1-1                                                      | nil         | lattice, survival (&gt;= 2.40-1), Formula, ggplot2 (&gt;= 2.2) | methods, latticeExtra, cluster, rpart, nnet, acepack, foreign, |           |               |                                       |                                      |                          |                                |                   |        |                  |       |       |
-| gtable, grid, gridExtra, data.table, htmlTable (&gt;= 1.11.0), |                                                            |                                                            |             |                                                                |                                                                |           |               |                                       |                                      |                          |                                |                   |        |                  |       |       |
-| viridis, htmltools, base64enc                                  | nil                                                        | chron, rms, mice, tables, knitr, ff, ffbase, plotly (&gt;= |             |                                                                |                                                                |           |               |                                       |                                      |                          |                                |                   |        |                  |       |       |
-| 4.5.6)                                                         | nil                                                        | GPL (&gt;= 2)                                              | nil         | nil                                                            | nil                                                            | nil       | yes           | 3.5.1                                 |                                      |                          |                                |                   |        |                  |       |       |
-| Matrix                                                         | /home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5 | 1.2-14                                                     | recommended | R (&gt;= 3.2.0)                                                | methods, graphics, grid, stats, utils, lattice                 | nil       | expm, MASS    | MatrixModels, graph, SparseM, sfsmisc | GPL (&gt;= 2)                        | file LICENCE             | nil                            | nil               | nil    | nil              | yes   | 3.5.1 |
-| StanHeaders                                                    | /home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5 | 2.17.2                                                     | nil         | nil                                                            | nil                                                            | nil       | RcppEigen, BH | nil                                   | BSD<sub>3clause</sub> + file LICENSE | nil                      | nil                            | nil               | nil    | yes              | 3.5.1 |       |
-| acepack                                                        | /home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5 | 1.4.1                                                      | nil         | nil                                                            | nil                                                            | nil       | testthat      | nil                                   | MIT + file LICENSE                   | nil                      | nil                            | nil               | nil    | yes              | 3.5.1 |       |
+| Package                                                      | LibPath                                                    | Version                                                  | Priority    | Depends                                                    | Imports                                                        | LinkingTo | Suggests      | Enhances                              | License                              | License<sub>isFOSS</sub> | License<sub>restrictsuse</sub> | OS<sub>type</sub> | MD5sum | NeedsCompilation | Built |       |
+| ------------------------------------------------------------ | ---------------------------------------------------------- | -------------------------------------------------------- | ----------- | ---------------------------------------------------------- | -------------------------------------------------------------- | --------- | ------------- | ------------------------------------- | ------------------------------------ | ------------------------ | ------------------------------ | ----------------- | ------ | ---------------- | ----- | ----- |
+| BH                                                           | /home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5 | 1.66.0-1                                                 | nil         | nil                                                        | nil                                                            | nil       | nil           | nil                                   | BSL-1.0                              | nil                      | nil                            | nil               | nil    | no               | 3.5.1 |       |
+| Formula                                                      | /home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5 | 1.2-3                                                    | nil         | R (\>= 2.0.0), stats                                       | nil                                                            | nil       | nil           | nil                                   | GPL-2                                | GPL-3                    | nil                            | nil               | nil    | nil              | no    | 3.5.1 |
+| Hmisc                                                        | /home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5 | 4.1-1                                                    | nil         | lattice, survival (\>= 2.40-1), Formula, ggplot2 (\>= 2.2) | methods, latticeExtra, cluster, rpart, nnet, acepack, foreign, |           |               |                                       |                                      |                          |                                |                   |        |                  |       |       |
+| gtable, grid, gridExtra, data.table, htmlTable (\>= 1.11.0), |                                                            |                                                          |             |                                                            |                                                                |           |               |                                       |                                      |                          |                                |                   |        |                  |       |       |
+| viridis, htmltools, base64enc                                | nil                                                        | chron, rms, mice, tables, knitr, ff, ffbase, plotly (\>= |             |                                                            |                                                                |           |               |                                       |                                      |                          |                                |                   |        |                  |       |       |
+| 4.5.6)                                                       | nil                                                        | GPL (\>= 2)                                              | nil         | nil                                                        | nil                                                            | nil       | yes           | 3.5.1                                 |                                      |                          |                                |                   |        |                  |       |       |
+| Matrix                                                       | /home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5 | 1.2-14                                                   | recommended | R (\>= 3.2.0)                                              | methods, graphics, grid, stats, utils, lattice                 | nil       | expm, MASS    | MatrixModels, graph, SparseM, sfsmisc | GPL (\>= 2)                          | file LICENCE             | nil                            | nil               | nil    | nil              | yes   | 3.5.1 |
+| StanHeaders                                                  | /home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5 | 2.17.2                                                   | nil         | nil                                                        | nil                                                            | nil       | RcppEigen, BH | nil                                   | BSD<sub>3clause</sub> + file LICENSE | nil                      | nil                            | nil               | nil    | yes              | 3.5.1 |       |
+| acepack                                                      | /home/alegrand/R/x86<sub>64</sub>-pc-linux-gnu-library/3.5 | 1.4.1                                                    | nil         | nil                                                        | nil                                                            | nil       | testthat      | nil                                   | MIT + file LICENSE                   | nil                      | nil                            | nil               | nil    | yes              | 3.5.1 |       |
 
-Lister les packages importés (chargés dans une session R) et leur version
--------------------------------------------------------------------------
+## Lister les packages importés (chargés dans une session R) et leur version
 
-Le meilleur moyen semble être d'utiliser le package `devtools`. Si le package n'est pas installé, vous devez d'abord l'installer en exécutant la commande `install.packages("devtools",dep=TRUE)` dans `R`).
+Le meilleur moyen semble être d'utiliser le package `devtools`. Si le
+package n'est pas installé, vous devez d'abord l'installer en exécutant
+la commande `install.packages("devtools",dep=TRUE)` dans `R`).
 
 ``` r
 sessionInfo()
@@ -396,20 +441,39 @@ Packages ----------------------------------------------------------------------
  withr       2.1.2   2018-03-15 CRAN (R 3.5.0)
 ```
 
-Certains suggèrent même [l'écriture d'un package R pour faciliter la recherche reproductible](https://github.com/ropensci/rrrpkg).
+Certains suggèrent même [l'écriture d'un package R pour faciliter la
+recherche reproductible](https://github.com/ropensci/rrrpkg).
 
-Ceux d'entre vous qui souhaitent disposer d'une gestion des dépendances "propre" en R peuvent aussi jeter un coup d'œil à [Packrat](https://rstudio.github.io/packrat/).
+Ceux d'entre vous qui souhaitent disposer d'une gestion des dépendances
+"propre" en R peuvent aussi jeter un coup d'œil à
+[Packrat](https://rstudio.github.io/packrat/).
 
-Installer un nouveau package ou une version spécifique
-------------------------------------------------------
+## Installer un nouveau package ou une version spécifique
 
-Cette section est principalement un copier-coller du [récent post de Ian Pylvainen](https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages) sur ce sujet. Il comprend une explication très claire de la façon de procéder.
+Cette section est principalement un copier-coller du [récent post de Ian
+Pylvainen](https://support.rstudio.com/hc/en-us/articles/219949047-Installing-older-versions-of-packages)
+sur ce sujet. Il comprend une explication très claire de la façon de
+procéder.
 
 ### Installer une version pré-compilée
 
-Si vous êtes sur un système Debian ou Ubuntu, il peut être difficile d’accéder à une version spécifique sans casser votre système. Donc, sauf si vous passez à la dernière version disponible pour votre distribution Linux, **nous vous recommandons fortement d'installer les packages à l'aide des fichiers source**. Dans ce cas, vous devez vous assurer que vous disposez de l'ensemble des outils nécessaires pour créer des packages à partir des sources (par exemple : gcc, FORTRAN, etc.). Sous Windows, il se peut que vous deviez installer [Rtools](https://cran.r-project.org/bin/windows/Rtools/).
+Si vous êtes sur un système Debian ou Ubuntu, il peut être difficile
+d’accéder à une version spécifique sans casser votre système. Donc,
+sauf si vous passez à la dernière version disponible pour votre
+distribution Linux, **nous vous recommandons fortement d'installer les
+packages à l'aide des fichiers source**. Dans ce cas, vous devez vous
+assurer que vous disposez de l'ensemble des outils nécessaires pour
+créer des packages à partir des sources (par exemple : gcc, FORTRAN,
+etc.). Sous Windows, il se peut que vous deviez installer
+[Rtools](https://cran.r-project.org/bin/windows/Rtools/).
 
-Si vous utilisez Windows ou OS X et recherchez un package pour une **ancienne version de R** (version 2.1 ou inférieure), vous pouvez le rechercher sur l'[archive binaire du site CRAN](https://cran-archive.r-project.org/bin/). Une fois que vous avez l'URL, vous pouvez l'installer à l'aide d'une commande similaire à l'exemple ci-dessous :
+Si vous utilisez Windows ou OS X et recherchez un package pour une
+**ancienne version de R** (version 2.1 ou inférieure), vous pouvez le
+rechercher sur l'[archive binaire du site
+CRAN](https://cran-archive.r-project.org/bin/). Une fois que vous avez
+l'URL, vous pouvez l'installer à l'aide d'une commande similaire à
+l'exemple
+ci-dessous :
 
 ``` r
 packageurl <- "https://cran-archive.r-project.org/bin/windows/contrib/2.13/BBmisc_1.0-58.zip"
@@ -418,7 +482,11 @@ install.packages(packageurl, repos=NULL, type="binary")
 
 ### Utiliser devtools
 
-La méthode la plus simple pour installer la version dont vous avez besoin consiste à utiliser la fonction `install_version()` du package `devtools` (vous devez évidemment avoir préalablement installé `devtools`, ce qui peut être fait en exécutant `R` la commande `install.packages("devtools",dep=TRUE)`). Par exemple:
+La méthode la plus simple pour installer la version dont vous avez
+besoin consiste à utiliser la fonction `install_version()` du package
+`devtools` (vous devez évidemment avoir préalablement installé
+`devtools`, ce qui peut être fait en exécutant `R` la commande
+`install.packages("devtools",dep=TRUE)`). Par exemple:
 
 ``` r
 require(devtools)
@@ -427,16 +495,25 @@ install_version("ggplot2", version = "0.9.1", repos = "http://cran.us.r-project.
 
 ### Installer à partir du code source
 
-Vous pouvez également installer un ancien package à partir de son code source. Si vous ne réussissez pas avec devtools ou si vous ne voulez pas dépendre de ce package, vous pouvez l’installer à partir du source à l'aide de la commande `install.packages()` en utilisant la bonne URL. Cette URL peut être obtenue en naviguant dans [l'archive de packages du site CRAN](https://cran.r-project.org/src/contrib/Archive).
+Vous pouvez également installer un ancien package à partir de son code
+source. Si vous ne réussissez pas avec devtools ou si vous ne voulez pas
+dépendre de ce package, vous pouvez l’installer à partir du source à
+l'aide de la commande `install.packages()` en utilisant la bonne URL.
+Cette URL peut être obtenue en naviguant dans [l'archive de packages du
+site CRAN](https://cran.r-project.org/src/contrib/Archive).
 
-Une fois que vous avez l'URL, vous pouvez l'installer à l'aide d'une commande similaire à l'exemple ci-dessous :
+Une fois que vous avez l'URL, vous pouvez l'installer à l'aide d'une
+commande similaire à l'exemple
+ci-dessous :
 
 ``` r
 packageurl <- "http://cran.r-project.org/src/contrib/Archive/ggplot2/ggplot2_0.9.1.tar.gz"
 install.packages(packageurl, repos=NULL, type="source")
 ```
 
-Si vous connaissez l'URL, vous pouvez également installer à partir du source par ligne de commande en dehors de R. Par exemple (en bash) :
+Si vous connaissez l'URL, vous pouvez également installer à partir du
+source par ligne de commande en dehors de R. Par exemple (en
+bash) :
 
 ``` shell
 wget http://cran.r-project.org/src/contrib/Archive/ggplot2/ggplot2_0.9.1.tar.gz
@@ -445,7 +522,14 @@ R CMD INSTALL ggplot2_0.9.1.tar.gz
 
 ### Problèmes potentiels
 
-Quelques problèmes sont susceptibles de survenir lors de l'installation d'anciennes versions de packages :
+Quelques problèmes sont susceptibles de survenir lors de l'installation
+d'anciennes versions de packages :
 
--   Vous pouvez perdre des fonctionnalités ou des corrections de bugs qui ne sont présentes que dans les versions les plus récentes des packages.
--   L'ancienne version de package requise peut ne pas être compatible avec la version de R que vous avez installée. Dans ce cas, vous devrez soit rétrograder R vers une version compatible, soit mettre à jour votre code R pour qu'il fonctionne avec une version plus récente du package.
+  - Vous pouvez perdre des fonctionnalités ou des corrections de bugs
+    qui ne sont présentes que dans les versions les plus récentes des
+    packages.
+  - L'ancienne version de package requise peut ne pas être compatible
+    avec la version de R que vous avez installée. Dans ce cas, vous
+    devrez soit rétrograder R vers une version compatible, soit mettre à
+    jour votre code R pour qu'il fonctionne avec une version plus
+    récente du package.

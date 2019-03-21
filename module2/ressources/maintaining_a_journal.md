@@ -1,104 +1,218 @@
 ---
-TITLE:     Maintaining a journal
-Date:   Wed Mar 20 12:15:41 2019 
+title:     Maintaining a journal
+date:   Wed Mar 20 12:15:41 2019 
 ---
 
-Table of Contents<span class="tag" data-tag-name="TOC"></span>
-==============================================================
+# Table of Contents <span class="tag" data-tag-name="TOC"><span class="smallcaps">TOC</span></span>
 
--   [1. Some examples of LabBooks provided for inspiration](#1-some-examples-of-labbooks-provided-for-inspiration)
--   [2. How to report efficiently (by Martin Quinson)](#2-how-to-report-efficiently-by-martin-quinson)
-    -   [Reporting](#reporting)
-    -   [Reporting Logistics](#reporting-logistics)
-    -   [Reporting Document Organization](#reporting-document-organization)
+  - [1. Some examples of LabBooks provided for
+    inspiration](#1-some-examples-of-labbooks-provided-for-inspiration)
+  - [2. How to report efficiently (by Martin
+    Quinson)](#2-how-to-report-efficiently-by-martin-quinson)
+      - [Reporting](#reporting)
+      - [Reporting Logistics](#reporting-logistics)
+      - [Reporting Document
+        Organization](#reporting-document-organization)
 
-1. Some examples of LabBooks provided for inspiration
-=====================================================
+# 1\. Some examples of LabBooks provided for inspiration
 
-Since a few years, we systematically require any or our students to have a laboratory notebook in org-mode. Most of the time, they start in private repositories but often end up being fully opened. Here are a few ones:
+Since a few years, we systematically require any or our students to have
+a laboratory notebook in org-mode. Most of the time, they start in
+private repositories but often end up being fully opened. Here are a few
+ones:
 
--   Luka Stanisic (a former PhD student advised by Arnaud Legrand) starting using this methodology during his Msc and developed further throughout his PhD. Part of his [PhD thesis](http://mescal.imag.fr/membres/luka.stanisic/thesis/thesis.pdf) was actually about designing a methodology for reproducible experiments in large scale distributed systems. You may want to have a look at [his postdoc LabBook](http://starpu-simgrid.gforge.inria.fr/) and to the [report of Léo Villeveygoux](https://framagit.org/lvgx/pfe/blob/master/doc/labbook.org) whom he advised.
--   Tom Cornebize is currently a PhD student advised by Arnaud Legrand and during his MSc, he also heavily [loged his activity on Github](https://github.com/Ezibenroc/simulating_mpi_applications_at_scale).
--   [Lucas Schnorr](https://github.com/schnorr)'s students usually also maintain their journal in a very nice way: [Tais Bellini's BSc.](https://github.com/taisbellini/aiyra/blob/master/LabBook.org), [Arthur Krause's LabBook](https://github.com/mittmann/hpc/blob/master/LabBook.org), [Luca Nesi's LabBook](http://www.inf.ufrgs.br/~llnesi/memory_report/MemoryReport.html).
--   [Martin Quinson](https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/)'s students also follow such conventions:
-    -   Ezequiel Torti Lopez, M2R 2014. [Report](https://github.com/mquinson/simgrid-simpar/blob/master/report.org), with both the data provenance and the data analysis included in the appendix.
-    -   Betsegaw Lemma, M2R 2017. [LabBook](https://github.com/betsegawlemma/internship/blob/master/intern_report.org)
-    -   Gabriel Corona, engineer on SimGrid, 2015-2016. [Journal](https://github.com/randomstuff/simgrid-journal/blob/master/journal.org), [Blog (findings)](http://www.gabriel.urdhr.fr/tags/simgrid/).
-    -   Matthieu Nicolas, engineer on PLM, 2014-2016, [Journal](https://github.com/MatthieuNICOLAS/PLM-reporting/blob/master/activity-report.org).
+  - Luka Stanisic (a former PhD student advised by Arnaud Legrand)
+    starting using this methodology during his Msc and developed further
+    throughout his PhD. Part of his [PhD
+    thesis](http://mescal.imag.fr/membres/luka.stanisic/thesis/thesis.pdf)
+    was actually about designing a methodology for reproducible
+    experiments in large scale distributed systems. You may want to have
+    a look at [his postdoc
+    LabBook](http://starpu-simgrid.gforge.inria.fr/) and to the [report
+    of Léo
+    Villeveygoux](https://framagit.org/lvgx/pfe/blob/master/doc/labbook.org)
+    whom he advised.
+  - Tom Cornebize is currently a PhD student advised by Arnaud Legrand
+    and during his MSc, he also heavily [loged his activity on
+    Github](https://github.com/Ezibenroc/simulating_mpi_applications_at_scale).
+  - [Lucas Schnorr](https://github.com/schnorr)'s students usually also
+    maintain their journal in a very nice way: [Tais Bellini's
+    BSc.](https://github.com/taisbellini/aiyra/blob/master/LabBook.org),
+    [Arthur Krause's
+    LabBook](https://github.com/mittmann/hpc/blob/master/LabBook.org),
+    [Luca Nesi's
+    LabBook](http://www.inf.ufrgs.br/~llnesi/memory_report/MemoryReport.html).
+  - [Martin
+    Quinson](https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/)'s
+    students also follow such conventions:
+      - Ezequiel Torti Lopez, M2R 2014.
+        [Report](https://github.com/mquinson/simgrid-simpar/blob/master/report.org),
+        with both the data provenance and the data analysis included in
+        the appendix.
+      - Betsegaw Lemma, M2R 2017.
+        [LabBook](https://github.com/betsegawlemma/internship/blob/master/intern_report.org)
+      - Gabriel Corona, engineer on SimGrid, 2015-2016.
+        [Journal](https://github.com/randomstuff/simgrid-journal/blob/master/journal.org),
+        [Blog (findings)](http://www.gabriel.urdhr.fr/tags/simgrid/).
+      - Matthieu Nicolas, engineer on PLM, 2014-2016,
+        [Journal](https://github.com/MatthieuNICOLAS/PLM-reporting/blob/master/activity-report.org).
 
-Org-mode is obviously not the only option and many of our students use am mixture of org-mode, rstudio and jupyter depending on what is more convenient.
+Org-mode is obviously not the only option and many of our students use
+am mixture of org-mode, rstudio and jupyter depending on what is more
+convenient.
 
-2. How to report efficiently (by Martin Quinson)
-================================================
+# 2\. How to report efficiently (by Martin Quinson)
 
-My friend Martin has gathered \[\[<https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/>\]\[an excellent compendium of information and references on his webpage to explain his students what he expects from them\]\]. **I'll therefore simply paraphrase him here** with the most important aspects related to reporting but feel free to read [the original version](https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/):
+My friend Martin has gathered
+\[\[<https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/>\]\[an
+excellent compendium of information and references on his webpage to
+explain his students what he expects from them\]\]. **I'll therefore
+simply paraphrase him here** with the most important aspects related to
+reporting but feel free to read [the original
+version](https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/):
 
-Reporting
----------
+## Reporting
 
-I ask you to write a little reporting regularly. Depending on the situation, it may be every day, every week or every month. In any case, your reporting is very important for the following reasons:
+I ask you to write a little reporting regularly. Depending on the
+situation, it may be every day, every week or every month. In any case,
+your reporting is very important for the following reasons:
 
--   It forces you to think about what you are doing, which may help you to unblock your problem by your own. Writing down the problems in a clear way is often sufficient to see the solution appearing.
--   It helps me following your progress even between the meetings. I cannot unblock you if I don't detect that you are on a wrong lead or otherwise blocked.
--   It keeps a track of the steps in your work. That's good for the day where you want to write your final report (even if a final report should never be presented in the chronological order). That's good for the next after you who will be supposed to continue you effort, or to build upon it.
--   That person may be yourself (if you go for a PhD program), another intern, myself or even someone else on the Internet: that's what we call Open Science, an effort where everyone can build upon the scientific work of everyone.
+  - It forces you to think about what you are doing, which may help you
+    to unblock your problem by your own. Writing down the problems in a
+    clear way is often sufficient to see the solution appearing.
+  - It helps me following your progress even between the meetings. I
+    cannot unblock you if I don't detect that you are on a wrong lead or
+    otherwise blocked.
+  - It keeps a track of the steps in your work. That's good for the day
+    where you want to write your final report (even if a final report
+    should never be presented in the chronological order). That's good
+    for the next after you who will be supposed to continue you effort,
+    or to build upon it.
+  - That person may be yourself (if you go for a PhD program), another
+    intern, myself or even someone else on the Internet: that's what we
+    call Open Science, an effort where everyone can build upon the
+    scientific work of everyone.
 
-I want you to write your reporting in an org file (yep, you don't have a choice here). \[..\]
+I want you to write your reporting in an org file (yep, you don't have a
+choice here). \[..\]
 
-Reporting Logistics
--------------------
+## Reporting Logistics
 
-Once you're setup with all software installed and somehow configured, you need to create a reporting file in a place where I can see it and where it won't get lost if your disk crashes or something. Open a dedicated git repository (on github, gitorious, gitlab, ...) for that. After your internship, your report should be archived directly in the source tree of the software that you are working on, if any. But having your reporting located in the source tree may complicate things during your work.
+Once you're setup with all software installed and somehow configured,
+you need to create a reporting file in a place where I can see it and
+where it won't get lost if your disk crashes or something. Open a
+dedicated git repository (on github, gitorious, gitlab, …) for that.
+After your internship, your report should be archived directly in the
+source tree of the software that you are working on, if any. But having
+your reporting located in the source tree may complicate things during
+your work.
 
-Yes, it means that your file will be public at some point, but that's why we call it "Open Science", after all. Also, you should write it in English if possible. The part of your reporting that is called "Journal" (see below) may be written in French if you are more efficient this way but the rest must be in English. Don't make your tone too formal because the file is public. Make it efficient. Nobody will ever blame you for the work you did during an internship a long time ago. If you really want, we can even make this file anonymous. Just speak to me.
+Yes, it means that your file will be public at some point, but that's
+why we call it "Open Science", after all. Also, you should write it in
+English if possible. The part of your reporting that is called "Journal"
+(see below) may be written in French if you are more efficient this way
+but the rest must be in English. Don't make your tone too formal because
+the file is public. Make it efficient. Nobody will ever blame you for
+the work you did during an internship a long time ago. If you really
+want, we can even make this file anonymous. Just speak to me.
 
-You want to write your reporting before leaving work. Weekly reporting should be written on Friday, one or two hours before leaving. That's the best solution to have a nice week end without thinking about work, and still lose no information that you would need on Monday morning.
+You want to write your reporting before leaving work. Weekly reporting
+should be written on Friday, one or two hours before leaving. That's the
+best solution to have a nice week end without thinking about work, and
+still lose no information that you would need on Monday morning.
 
-Reporting Document Organization
--------------------------------
+## Reporting Document Organization
 
 Your reporting document should have four main parts:
 
-Findings  
-This section summarizes the general information that you gathered during your work. It is empty at the beginning of your internship, and gets fleshed with the important things that you find on your way. That's where bibliographical information go, for example. But that's definitely not where TODO notes go (see below).
+  - Findings  
+    This section summarizes the general information that you gathered
+    during your work. It is empty at the beginning of your internship,
+    and gets fleshed with the important things that you find on your
+    way. That's where bibliographical information go, for example. But
+    that's definitely not where TODO notes go (see below).
+  - Development  
+    This section presents the technical sides of your work. Don't write
+    anything in there yet. Put it all in the Journal part for now.
+  - Journal  
+    Describe the day-to-day work done for each period (day, week or
+    month) of your internship. That's the most important part of your
+    reporting, and we come back to it below.
+  - Conclusion  
+    That's what you write in the next week of your internship. You can
+    see it as a letter to the next guy, explaining the current state of
+    your work, a few words about its technical organization, and what
+    should be done next on that topic. Keep this part highly technical,
+    the overall organization of your internship will be seen in your
+    final report.
 
-Development  
-This section presents the technical sides of your work. Don't write anything in there yet. Put it all in the Journal part for now.
-
-Journal  
-Describe the day-to-day work done for each period (day, week or month) of your internship. That's the most important part of your reporting, and we come back to it below.
-
-Conclusion  
-That's what you write in the next week of your internship. You can see it as a letter to the next guy, explaining the current state of your work, a few words about its technical organization, and what should be done next on that topic. Keep this part highly technical, the overall organization of your internship will be seen in your final report.
-
-The Journal part is the only part that you may write in French on need. You want to add one subsection per period to your journal. Don't make it too long, or you would waste time writing long texts that very few will ever read. Don't make it too short or it will be impossible to understand it on Monday morning (or three months after). Finding the good balance is sometimes difficult, but I will provide feedback on your first entries, so don't worry.
+The Journal part is the only part that you may write in French on need.
+You want to add one subsection per period to your journal. Don't make it
+too long, or you would waste time writing long texts that very few will
+ever read. Don't make it too short or it will be impossible to
+understand it on Monday morning (or three months after). Finding the
+good balance is sometimes difficult, but I will provide feedback on your
+first entries, so don't worry.
 
 Each of section describing a period should contain three subsubsections:
 
-Things done  
-a few words about what you've done. Something like 2 or 4 items with a few words describing what you've done. You can omit the title of that section and put the items directly in the upper section (see the example below).
+  - Things done  
+    a few words about what you've done. Something like 2 or 4 items with
+    a few words describing what you've done. You can omit the title of
+    that section and put the items directly in the upper section (see
+    the example below).
+  - Blocking points and questions  
+    try to explain clearly the things that block you or slow you down.
+    If you found the solution already, then it should be part of the
+    previous subsection (but you should say a few words nevertheless).
+    Also ask every question that you may have for me in that section. If
+    the question are personal (e.g., about the logistics of your
+    internship such as salary or so), please prefer emails that are not
+    publicly visible. If this section is empty for a given period, skip
+    it all together (no empty subsubsections).
+  - Planned work  
+    A few items about what you plan to work on during the next period.
 
-Blocking points and questions  
-try to explain clearly the things that block you or slow you down. If you found the solution already, then it should be part of the previous subsection (but you should say a few words nevertheless). Also ask every question that you may have for me in that section. If the question are personal (e.g., about the logistics of your internship such as salary or so), please prefer emails that are not publicly visible. If this section is empty for a given period, skip it all together (no empty subsubsections).
+A template of reporting file is given at the end of this section. This
+is just a strong advice: If you really feel better with another file
+organization, then give it a try for one period, and ask for my
+feedback. I can adapt, and I do not pretend that my advice is the
+definitive answer. It's just the result of my experience so far.
 
-Planned work  
-A few items about what you plan to work on during the next period.
+Notice how TODO items are written: they are given as items in the
+Planned work sections of the journal. As explained in the
+[documentation](http://orgmode.org/manual/Checkboxes.html), you simply
+have to write "\[ \]" in front of items that you plan to do in the
+future.
 
-A template of reporting file is given at the end of this section. This is just a strong advice: If you really feel better with another file organization, then give it a try for one period, and ask for my feedback. I can adapt, and I do not pretend that my advice is the definitive answer. It's just the result of my experience so far.
+You should add a \[1/\] on the "Planned work" line, so that emacs keeps
+track of what is done and what is still to do. Once they are done, you
+type C-c C-C on their lines to change the blank box \[ \] into a checked
+box \[X\]. Also, the \[1/\] will be changed to denote the amount of work
+that is still to be done.
 
-Notice how TODO items are written: they are given as items in the Planned work sections of the journal. As explained in the [documentation](http://orgmode.org/manual/Checkboxes.html), you simply have to write "\[ \]" in front of items that you plan to do in the future.
+At any point, you can see all ongoing TODO items with the following
+keystrokes: "C-c / t". More information on TODOs in orgmode's
+[documentation](http://orgmode.org/manual/TODO-basics.html). The
+important thing here is that most TODO items must only be written in the
+*Journal* part (so that we know when they occurred).
 
-You should add a \[1/\] on the "Planned work" line, so that emacs keeps track of what is done and what is still to do. Once they are done, you type C-c C-C on their lines to change the blank box \[ \] into a checked box \[X\]. Also, the \[1/\] will be changed to denote the amount of work that is still to be done.
-
-At any point, you can see all ongoing TODO items with the following keystrokes: "C-c / t". More information on TODOs in orgmode's [documentation](http://orgmode.org/manual/TODO-basics.html). The important thing here is that most TODO items must only be written in the *Journal* part (so that we know when they occurred).
-
-**Do not edit past entries of your journal**, unless you have very good reasons. If you must, make sure that you don't lose information about the path that you took (remember the Open Science thingy). You should always **add** information to past entries, such as:
+**Do not edit past entries of your journal**, unless you have very good
+reasons. If you must, make sure that you don't lose information about
+the path that you took (remember the Open Science thingy). You should
+always **add** information to past entries, such
+as:
 
 ``` shell
 - *edit* This hypothesis does not hold; see the entry of [the day where you found it] for more information.
 ```
 
-The only exception are TODO entries, that should clearly be rewritten to DONE entries. If you need to adapt your TODO entry (because the initial goal was poorly stated or otherwise), change the initial entry from TODO to CANCELED (or check the box after stating in a subitem that it was not done but canceled, and why), and create a new TODO entry in the current period section.
+The only exception are TODO entries, that should clearly be rewritten to
+DONE entries. If you need to adapt your TODO entry (because the initial
+goal was poorly stated or otherwise), change the initial entry from TODO
+to CANCELED (or check the box after stating in a subitem that it was not
+done but canceled, and why), and create a new TODO entry in the current
+period section.
 
 ``` example
 * Introduction
