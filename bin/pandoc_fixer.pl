@@ -23,15 +23,17 @@ open INPUT, $input or die;
 my($input_path)=$input;
 $input_path =~ s|/[^/]*$||g;
 # print $input."\n\n";
+
 my($url_path) = "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/".$input_path;
 
+my($gitlab_origin)= "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/";
 
 while(defined($line=<INPUT>)) {
-    $line =~ s|https://gitlab.inria.fr/learninglab/|https://learninglab.gitlabpages.inria.fr/|g; ## Not such a good idea!
+#    $line =~ s|https://gitlab.inria.fr/learninglab/|https://learninglab.gitlabpages.inria.fr/|g; ## Not such a good idea!
     if($input=~ /_fr.html/) {
-	$line =~ s|<body>|<body>Les <a href='https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/$input'>sources de ce document sont disponibles sur gitlab</a>.|g;
+	$line =~ s|<body>|<body>Les <a href='$gitlab_origin/$input'>sources de ce document sont disponibles sur gitlab</a>.|g;
     } else {
-	$line =~ s|<body>|<body>The <a href='https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/$input'>source of this this document is available on gitlab</a>.|g;
+	$line =~ s|<body>|<body>The <a href='$gitlab_origin/$input'>source of this this document is available on gitlab</a>.|g;
     }
     $line =~ s|---</p>|<hr/>|g;
     $line =~ s|Date:.*<br|<i>Date: $gitdate</i><br|g;
