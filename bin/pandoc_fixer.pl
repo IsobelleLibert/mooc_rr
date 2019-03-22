@@ -47,12 +47,14 @@ while(defined(my $line=<INPUT>)) {
     if($line =~ /<h1 class="title"/) { next; }
     if($line =~ /<h1 class="date"/) { next; }
 #    $line =~ s|https://gitlab.inria.fr/learninglab/|https://learninglab.gitlabpages.inria.fr/|g; ## Not such a good idea!
-    if($input=~ /_fr.html/) {
-	$line =~ s|<body>|<body>Les <a href='$gitlab_origin/$input'>sources de ce document sont disponibles sur gitlab</a>.|g;
-	$line .= "<br><i>Version du $gitdate.</i><br><hr/>\n"
-    } else {
-	$line =~ s|<body>|<body>The <a href='$gitlab_origin/$input'>source of this this document is available on gitlab</a>.|g;
-	$line .= "<br><i>Last version: $gitdate</i><br><hr/>\n"
+    if($line =~ /<body>/) {
+	if($input=~ /_fr.html/) {
+	    $line =~ s|<body>|<body>Les <a href='$gitlab_origin/$input'>sources de ce document sont disponibles sur gitlab</a>.|g;
+	    $line .= "<br><i>Version du $gitdate.</i><br><hr/>\n"
+	} else {
+	    $line =~ s|<body>|<body>The <a href='$gitlab_origin/$input'>source of this this document is available on gitlab</a>.|g;
+	    $line .= "<br><i>Last version: $gitdate</i><br><hr/>\n"
+	}
     }
     $line =~ s|<span class="smallcaps">TOC</span>||g;
     
