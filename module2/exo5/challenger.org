@@ -1,7 +1,7 @@
-#+TITLE: Analyse du risque de défaillance des joints toriques de la navette Challenger
+#+TITLE: Analysis of the risk of failure of the O-rings of the space shuttle Challenger
 #+AUTHOR: Konrad Hinsen, Arnaud Legrand, Christophe Pouzat
 #+DATE: Juin 2018
-#+LANGUAGE: fr
+#+LANGUAGE: en
 
 #+OPTIONS: H:3 creator:nil timestamp:nil skip:nil toc:nil num:t ^:nil ~:~ 
 # #+OPTIONS: author:nil title:nil date:nil
@@ -17,106 +17,89 @@
 #+LATEX_HEADER: \usepackage[T1]{fontenc}
 #+LATEX_HEADER: \usepackage{textcomp}
 #+LATEX_HEADER: \usepackage[a4paper,margin=.8in]{geometry}
-#+LATEX_HEADER: \usepackage[french]{babel}
 #+LATEX_HEADER: \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 #+LATEX_HEADER: \usepackage{palatino}
 #+LATEX_HEADER: \usepackage{svg}
 #+LATEX_HEADER: \let\epsilon=\varepsilon
-*Préambule :* Les explications données dans ce document sur le contexte
-de l'étude sont largement reprises de l'excellent livre d'Edward
-R. Tufte intitulé /Visual Explanations: Images and Quantities, Evidence
-and Narrative/, publié en 1997 par /Graphics Press/ et réédité en 2005,
-ainsi que de l'article de Dalal et al. intitulé /Risk Analysis of the
-Space Shuttle: Pre-Challenger Prediction of Failure/ et publié en 1989
-dans /Journal of the American Statistical Association/.
 
-* Contexte
-Dans cette étude, nous vous proposons de revenir sur [[https://fr.wikipedia.org/wiki/Accident_de_la_navette_spatiale_Challenger][l'accident de la
-navette spatiale Challenger]]. Le 28 Janvier 1986, 73 secondes après son
-lancement, la navette Challenger se désintègre (voir Figure [[fig:photo]])
-et entraîne avec elle, les sept astronautes à son bord. Cette
-explosion est due à la défaillance des deux joints toriques
-assurant l'étanchéité entre les parties hautes et basses des
-propulseurs (voir Figure [[fig:oring]]). Ces joints ont perdu de leur
-efficacité en raison du froid particulier qui régnait au moment du
-lancement. En effet, la température ce matin là était juste en dessous
-de 0°C alors que l'ensemble des vols précédents avaient été effectués
-à une température d'au moins 7 à 10°C de plus.
+*Foreword:* The explanations given in this document about the context
+of the study have been taken from the excellent book /Visual
+Explanations: Images and Quantities, Evidence and Narrative/ by Edward
+R. Tufte, published in 1997 by /Graphics Press/ and re-edited in 2005,
+and from the article /Risk Analysis of the Space Shuttle:
+Pre-Challenger Prediction of Failure/ by Dalal et al., published in
+1989 in the /Journal of the American Statistical Association/.
+
+* Context
+In this study, we propose a re-examination of the [[https://en.wikipedia.org/wiki/Space_Shuttle_Challenger_disaster][space shuttle
+Challenger disaster]]. On January 28th, 1986, the space shuttle
+Challenged exploded 73 seconds after launch (see Figure [[fig:photo]]),
+causing the death of the seven astronauts on board. The explosion was
+caused by the failure of the two O-ring seals between the upper and
+lower parts of the boosters (see Figure [[fig:oring]]). The seals had
+lost their efficiency because of the exceptionally cold weather at the
+time of launch. The temperature on that morning was just below 0°C,
+whereas the preceding flights hat been launched at temperatures at
+least 7 to 10°C higher.
 
 #+NAME:   fig:photo
 #+ATTR_LATEX: :width 10cm
-#+CAPTION: Photos de la catastrophe de Challenger.
+#+CAPTION: Photographs of the Challenger catastrophe.
 file:challenger5.jpg
 
 
-# #+NAME:   fig:photo
-# #+ATTR_LATEX: :width 6cm
-# #+CAPTION: Photo montage de la catastrophe de Challenger. De gauche à droite, de haut en bas : traînée de fumée après la désintégration de la navette spatiale américaine Challenger 73 secondes après son lancement ; débris d'un propulseur d'appoint à poudre ; joints toriques brûlés, les fautifs de l'accident ; décollage final de Challenger ; cérémonie funéraire tenue par le président Ronald Reagan en hommage aux astronautes ; explosion en vol de Challenger
-# file:Challenger_Photo_Montage.jpg
-
-# # From https://upload.wikimedia.org/wikipedia/commons/a/a8/Challenger_Photo_Montage.jpg
-
 #+NAME:   fig:oring
 #+ATTR_LATEX: :width 10cm
-#+CAPTION: Schéma des propulseurs de la navette challenger. Les joints toriques (un joint principale et un joint secondaire) en caoutchouc de plus de 11 mètres de circonférence assurent l'étanchéité entre la partie haute et la partie basse du propulseur. 
+#+CAPTION: Diagram of the boosters of space shuttle Challenger. The rubber O-ring seals (a principal and a secondary one) of more than 11 meter circumference prevent  leaks between the upper and lower parts.
 file:o-ring.png
-# From https://upload.wikimedia.org/wikipedia/commons/a/a8/Challenger_Photo_Montage.jpg
+# From
 # https://i0.wp.com/www.kylehailey.com/wp-content/uploads/2014/01/Screen-Shot-2013-12-30-at-12.05.04-PM-1024x679.png?zoom=2&resize=594%2C393
 
-Le plus étonnant est que la cause précise de cet accident avait été
-débattue intensément plusieurs jours auparavant et était encore
-discutée la veille même du décollage, pendant trois heures de
-télé-conférence entre les ingénieurs de la Morton Thiokol
-(constructeur des moteurs) et de la NASA. Si la cause immédiate de
-l'accident (la défaillance des joints toriques) a rapidement été
-identifiée, les raisons plus profondes qui ont conduit à ce désastre
-servent régulièrement de cas d'étude, que ce soit dans des cours de
-management (organisation du travail, décision technique malgré des
-pressions politiques, problèmes de communication), de statistiques
-(évaluation du risque, modélisation, visualisation de données), ou de
-sociologie (symptôme d'un historique, de la bureaucratie et du
-conformisme à des normes organisationnelles). 
+What is most astonishing is that the precise cause of the accident had
+been intensely debated several days before and was still under
+discussion the day before the launch, during a three-hour
+teleconference involving engineers from Morton Thiokol (the supplier
+of the engines) and from NASA. Whereas the immediate cause of the
+accident, the failure of the O-ring, was quickly identified, the
+underlying causes of the disaster have regularly served as a case
+study, be it in management training (work organisation, decision
+taking in spite of political pressure, communication problems),
+statistics (risk evaluation, modelisation, data visualization), or
+sociology (history, bureaucracy, conforming to organisational norms).
 
-Dans l'étude que nous vous proposons, nous nous intéressons
-principalement à l'aspect statistique mais ce n'est donc qu'une
-facette (extrêmement limitée) du problème et nous vous invitons à lire
-par vous même les documents donnés en référence dans le
-préambule. L'étude qui suit reprend donc une partie des analyses
-effectuées cette nuit là et dont l'objectif était d'évaluer
-l'influence potentielle de la température et de la pression à laquelle
-sont soumis les joints toriques sur leur probabilité de
-dysfonctionnement. Pour cela, nous disposons des résultats des
-expériences réalisées par les ingénieurs de la NASA durant les 6
-années précédant le lancement de la navette Challenger.
+In the study that we propose, we are mainly concerned with the
+statistical aspect, which however is only one piece of the puzzle. We
+invite you to read the documents cited in the foreword for more
+information. The following study takes up a part of the analyses that
+were done that night with the goal of evaluating the potential impact
+of temperature and air pressure on the probability of O-ring
+malfunction. The starting point is experimental results obtained by
+NASA engineers over the six years preceding the Challenger launch.
 
-Dans le répertoire ~module2/exo5/~ de votre espace =gitlab=, vous
-trouverez les données d'origine ainsi qu'une analyse pour chacun des
-différents parcours proposés. Cette analyse comporte quatre étapes :
-1. Chargement des données
-2. Inspection graphique des données
-3. Estimation de l'influence de la température
-4. Estimation de la probabilité de dysfonctionnement des joints
-   toriques
+In the directory ~module2/exo5/~ of your GitLab workspace, you will
+find the original data as well as an analysis for each of the paths we
+offer. This analysis consists of four steps:
 
-Les deux premières étapes ne supposent que des compétences de base en
-R ou en Python. La troisième étape suppose une familiarité avec la
-régression logistique (généralement abordée en L3 ou M1 de stats,
-économétrie, bio-statistique...) et la quatrième étape des bases de
-probabilités (niveau lycée). Nous vous présentons donc dans la
-prochaine section une introduction à la régression logistique qui ne
-s'attarde pas sur les détails du calcul, mais juste sur le sens donné
-aux résultats de cette régression.
+1. Loading the data
+2. Visual inspection
+3. Estimation of the influence of temperature
+4. Estimation of the probability of O-ring malfunction
 
-* Introduction à la régression logistique
+The first two steps require only a basic knowledge of R or Python. The
+third step assumes some familiarity with logistic regression, and the
+fourth a basic knowledge of probability. In the next section, we give
+an introduction to logistic regression that skips the details of the
+computations and focuses instead on the interpretation of the results.
 
-Imaginons que l'on dispose des données suivantes qui indiquent pour
-une cohorte d'individus s'ils ont déclaré une maladie particulière ou
-pas. Je montre ici l'analyse avec R mais le code Python n'est pas forcément
-très éloigné. Les données sont stockées dans une data frame dont voici
-un bref résumé :
+* Introduction to logistic regression
+
+Suppose we have the following dataset that indicates for a group of
+people of varying age if they suffer from a specific illness or not. I
+will present the analysis in R but Python code would look quite
+similar. The data are stored in a data frame that is summarized as:
 
 #+begin_src R :results output :session *R* :exports none
-library(Hmisc) # pour calculer un intervalle de confiance sur des données binomiales
+library(Hmisc) # to compute a confidence interval on binomial data
 library(ggplot2)
 library(dplyr)
 set.seed(42)
@@ -125,36 +108,10 @@ proba = function(age) {
     return(exp(val)/(1+exp(val)))
 }
 df = data.frame(Age = runif(400,min=22,max=80))
-df$Malade = sapply(df$Age, function(x) rbinom(n=1,size=1,prob=proba(x)))
+df$Ill = sapply(df$Age, function(x) rbinom(n=1,size=1,prob=proba(x)))
 #+end_src
 
 #+RESULTS:
-#+begin_example
-Le chargement a nécessité le package : lattice
-Le chargement a nécessité le package : survival
-Le chargement a nécessité le package : Formula
-Le chargement a nécessité le package : ggplot2
-
-Attachement du package : ‘Hmisc’
-
-The following objects are masked from ‘package:base’:
-
-    format.pval, units
-
-Attachement du package : ‘dplyr’
-
-The following objects are masked from ‘package:Hmisc’:
-
-    src, summarize
-
-The following objects are masked from ‘package:stats’:
-
-    filter, lag
-
-The following objects are masked from ‘package:base’:
-
-    intersect, setdiff, setequal, union
-#+end_example
 
 #+begin_src R :results output :session *R* :exports both
 summary(df)
@@ -163,7 +120,7 @@ str(df)
 
 #+RESULTS:
 #+begin_example
-      Age            Malade     
+      Age             Ill       
  Min.   :22.01   Min.   :0.000  
  1st Qu.:35.85   1st Qu.:0.000  
  Median :50.37   Median :1.000  
@@ -171,39 +128,38 @@ str(df)
  3rd Qu.:65.37   3rd Qu.:1.000  
  Max.   :79.80   Max.   :1.000
 'data.frame':	400 obs. of  2 variables:
- $ Age   : num  75.1 76.4 38.6 70.2 59.2 ...
- $ Malade: int  1 1 0 1 1 1 0 0 1 1 ...
+ $ Age: num  75.1 76.4 38.6 70.2 59.2 ...
+ $ Ill: int  1 1 0 1 1 1 0 0 1 1 ...
 #+end_example
 
-Voici une représentation graphique des données qui permet de mieux
-percevoir le lien qu'il peut y avoir entre l'âge et le fait de
-contracter cette maladie ou pas :
+Here is a plot that provides a better indication of the link that
+could exist between age and illness:
+
 #+begin_src R :results output graphics :file fig1.svg :exports both :width 4 :height 3 :session *R* 
-ggplot(df,aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) + theme_bw()
+ggplot(df,aes(x=Age,y=Ill)) + geom_point(alpha=.3,size=3) + theme_bw()
 #+end_src
 
 #+ATTR_LATEX: :width 8cm
 #+RESULTS:
 [[file:fig1.svg]]
 
-Il apparaît clairement sur ces données que plus l'on est âgé, plus la
-probabilité de développer cette maladie est importante. Mais comment
-estimer cette probabilité à partir uniquement de ces valeurs binaires
-(malade/pas malade) ? Pour chaque tranche d'âge (par exemple de 5 ans),
-on pourrait regarder la fréquence de la maladie (le code qui suit est
-un peu compliqué car le calcul de l'intervalle de confiance pour ce
-type de données nécessite un traitement particulier via la fonction
-=binconf=).
+Clearly the probability of suffering from this illness increases with
+age. But how can we estimate this probability based only on this
+binary data ill/not ill? For each age slice (of, for example, 5
+years), we could look at the frequency of the illness. The following
+code is a bit complicated because the computation of the confidence
+interval for this kind of data requires a particular treatment using
+the function =binconf=.
 
 #+begin_src R :results output graphics :file fig1bis.svg :exports both :width 4 :height 3 :session *R* 
 age_range=5
 df_grouped = df %>% mutate(Age=age_range*(floor(Age/age_range)+.5)) %>%
-                    group_by(Age) %>% summarise(Malade=sum(Malade),N=n()) %>% 
+                    group_by(Age) %>% summarise(Ill=sum(Ill),N=n()) %>% 
                     rowwise() %>% 
-                    do(data.frame(Age=.$Age, binconf(.$Malade, .$N, alpha=0.05))) %>%
+                    do(data.frame(Age=.$Age, binconf(.$Ill, .$N, alpha=0.05))) %>%
                     as.data.frame()
 
-ggplot(df_grouped,aes(x=Age)) + geom_point(data=df,aes(y=Malade),alpha=.3,size=3)  +
+ggplot(df_grouped,aes(x=Age)) + geom_point(data=df,aes(y=Ill),alpha=.3,size=3)  +
     geom_errorbar(data=df_grouped,
                   aes(x=Age,ymin=Lower, ymax=Upper, y=PointEst), color="darkred") +
     geom_point(data=df_grouped, aes(x=Age, y=PointEst), size=3, shape=21, color="darkred") +
@@ -214,15 +170,14 @@ ggplot(df_grouped,aes(x=Age)) + geom_point(data=df,aes(y=Malade),alpha=.3,size=3
 #+RESULTS:
 [[file:fig1bis.svg]]
 
-L'inconvénient de cette approche est que ce calcul est effectué
-indépendemment pour chaque tranches d'âges, que la tranche d'âge est
-arbitraire, et qu'on n'a pas grande idée de la façon dont ça
-évolue. Pour modéliser cette évolution de façon plus continue, on
-pourrait tenter une régression linéaire (le modèle le plus simple
-possible pour rendre compte de l'influence d'un paramètre) et ainsi
-estimer l'effet de l'âge sur la probabilité d'être malade :
+A disadvantage of this method is that the computation is done
+independently for each age slice, which moreover has been chosen
+arbitrarily. For describing the evolution in a more continuous
+fashion, we could apply a linear regression (which is the simplest
+model for taking into account the influence of a parameter) and thus estimate the impact of age on the probability of illness:
+
 #+begin_src R :results output graphics :file fig2.svg :exports both :width 4 :height 3 :session *R* 
-ggplot(df,aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) + 
+ggplot(df,aes(x=Age,y=Ill)) + geom_point(alpha=.3,size=3) + 
     theme_bw() + geom_smooth(method="lm")
 #+end_src
 
@@ -230,27 +185,25 @@ ggplot(df,aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) +
 #+RESULTS:
 [[file:fig2.svg]]
 
-La ligne bleue est la régression linéaire au sens des moindres carrés
-et la zone grise est la zone de confiance à 95% de cette
-estimation (avec les données dont on dispose et cette hypothèse de
-linéarité, la ligne bleue est la plus probable et il y a 95% de chance
-que la vraie ligne soit dans cette zone grise).
+The blue line is the linear regression in the sense of least squares,
+and the grey zone is the 95% confidence interval of this
+estimation. In other words, given the dataset and the hypothesis of
+linearity, the blue line is the most probable one and there is a 95%
+chance that the true line is in the grey zone.
 
-Mais on voit clairement dans cette représentation graphique que cette
-estimation n'a aucun sens. Une probabilité doit être comprise entre 0
-et 1 et avec une régression linéaire on arrivera forcément pour des
-valeurs un peu extrêmes (jeune ou âgé) à des prédictions aberrantes
-(négative ou supérieures à 1). C'est tout simplement dû au fait qu'une
-régression linéaire fait l'hypothèse que $\textsf{Malade} =
-\alpha.\textsf{Age} + \beta + \epsilon$, où $\alpha$ et $\beta$ sont des nombres réels et $\epsilon$
-est un bruit (une variable aléatoire de moyenne nulle), et estime $\alpha$
-et $\beta$ à partir des données.
+It is, however, clear from the plot that this estimation is
+meaningless. A probability must lie between 0 and 1, whereas a linear
+regression will inevitably lead to impossible values (negative or
+greater than 1) for somewhat extreme age values (young or old).  The
+reason is simply that a linear regression implies the hypothesis
+$\textsf{Ill} = \alpha.\textsf{Age} + \beta + \epsilon$, where
+$\alpha$ and $\beta$ are real numbers and $\epsilon$ is a noise (a
+random variable of mean zero), with $\alpha$ and $\beta$ estimated
+from the data. This doesn't make sense for estimating a probability,
+and therefore [[https://en.wikipedia.org/wiki/Logistic_regression][logistic regression]] is a better choice:
 
-Cette technique n'a pas de sens pour estimer une probabilité et il
-convient donc d'utiliser ce que l'on appelle une [[https://fr.wikipedia.org/wiki/R%C3%A9gression_logistique][régression
-logistique]] :
 #+begin_src R :results output graphics :file fig3.svg :exports both :width 4 :height 3 :session *R* 
-ggplot(df,aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) + 
+ggplot(df,aes(x=Age,y=Ill)) + geom_point(alpha=.3,size=3) + 
     theme_bw() + 
     geom_smooth(method = "glm", 
         method.args = list(family = "binomial")) + xlim(20,80)
@@ -260,38 +213,33 @@ ggplot(df,aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) +
 #+RESULTS:
 [[file:fig3.svg]]
 
-Ici, la bibliothèque =ggplot= fait tous les calculs de régression
-logistique pour nous et nous montre uniquement le résultat "graphique"
-mais dans l'analyse que nous vous proposerons pour Challenger, nous
-réalisons la régression et la prédiction à la main (en =R= ou en =Python=
-selon le parcours que vous choisirez) de façon à pouvoir effectuer si
-besoin une inspection plus fine. Comme avant, la courbe bleue indique
-l'estimation de la probabilité d'être malade en fonction de l'âge et
-la zone grise nous donne des indications sur l'incertitude de cette
-estimation, i.e., "sous ces hypothèses et étant donné le peu de
-données qu'on a et leur variabilité, il y a 95% de chances pour que la
-vraie courbe se trouve quelque part (n'importe où) dans la zone
-grise".
+Here the =ggplot= library does all the computations for us and only
+shows the result graphically, but in the Challenger risk analysis we
+perform the regression and prediction "by hand" in =R= or =Python=
+(depending on the path you have chosen), so that we can inspect the
+results in more detail. Like before, the blue line indicates the
+estimation of the probability of being ill as a function of age, and
+the grey zone informs us about the uncertainty of this estimate, i.e.
+given the hypotheses and the dataset, there is a 95% chance for the
+true curve to lie somewhere in the grey zone.
 
-Dans ce modèle, on suppose que $P[\textsf{Malade}] = \pi(\textsf{Age})$ avec
-$\displaystyle\pi(x)=\frac{e^{\alpha.x + \beta}}{1+e^{\alpha.x + \beta}}$. Cette
-formule (étrange au premier abord) a la bonne propriété de nous donner
-systématiquement une valeur comprise entre 0 et 1 et de bien tendre
-rapidement vers $0$ quand l'âge tend vers $-\infty$ et vers $1$ quand l'âge
-tend vers $+\infty$ (mais ce n'est pas bien sûr pas la seule motivation). 
+In this model, the assumption is $P[\textsf{Ill}] = \pi(\textsf{Age})$
+with $\displaystyle\pi(x)=\frac{e^{\alpha.x + \beta}}{1+e^{\alpha.x +
+\beta}}$. This at first look strange formulae has the nice property of
+always yielding a value between zero and one, and to approach 0 and 1
+rapidly as the age tends to $-\infty$ or $+\infty$, but this is not
+the only motivation for this choice.
 
-En conclusion, lorsque l'on dispose de données évènementielles
-(binaires) et que l'on souhaite estimer l'influence d'un paramètre sur
-la probabilité d'occurrence de l'évènement (maladie, défaillance...), 
-le modèle le plus naturel et le plus simple est celui de la
-régression logistique. Notez, que même en se restreignant à une petite
-partie des données (par exemple, uniquement les patients de moins de
-50 ans), il est possible d'obtenir une estimation assez raisonnable,
-même si, comme on pouvait s'y attendre, l'incertitude augmente
-singulièrement.
+In summary, when we have event-like data (binary) and we wish to
+estimate the influence of a parameter on the probability of the event
+occurring (illness, failure, ...), the most natural and simple model
+is logistic regression. Note that even if we restrain ourselves to a
+small part of the data, e.g., only patients less than 50 years old, it
+is possible to get a reasonable estimate, even though, as is to be
+expected, the uncertainty grows rapidly.
 
 #+begin_src R :results output graphics :file fig4.svg :exports both :width 4 :height 3 :session *R* 
-ggplot(df[df$Age<50,],aes(x=Age,y=Malade)) + geom_point(alpha=.3,size=3) + 
+ggplot(df[df$Age<50,],aes(x=Age,y=Ill)) + geom_point(alpha=.3,size=3) + 
     theme_bw() + 
     geom_smooth(method = "glm", 
         method.args = list(family = "binomial"),fullrange = TRUE) + xlim(20,80)
