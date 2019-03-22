@@ -7,7 +7,7 @@ my($usage) = "Usage: pandox_fixer.pl input.md";
 my($input)=shift(@ARGV);
 
 ########### Git date #################
-my($gitdate)=`git log $input | grep Date | head -n 1`;
+my($gitdate)=`git log --date=short $input | grep Date | head -n 1`;
 chomp($gitdate);
 $gitdate =~ s/Date: *//g;
 $gitdate =~ s/\s*\+.*$//g;
@@ -43,12 +43,12 @@ open OUTPUT, "> ".$output or die;
 
 
 while(defined(my $line=<INPUT>)) {
-    if($line =~ /<p>AUTHOR:/) { next; }
+    if($line =~ /<p class="author"/) { next; }
     if($line =~ /<h1 class="title"/) { next; }
-    if($line =~ /<h1 class="date"/) { next; }
+    if($line =~ /<p class="date"/) { next; }
 #    $line =~ s|https://gitlab.inria.fr/learninglab/|https://learninglab.gitlabpages.inria.fr/|g; ## Not such a good idea!
     if($line =~ /<body>/) {
-	if($input=~ /_fr.html/) {
+	if($output=~ /_fr.html/) {
 	    $line =~ s|<body>|<body>Les <a href='$gitlab_origin/$input'>sources de ce document sont disponibles sur gitlab</a>.|g;
 	    $line .= "<br><i>Version du $gitdate.</i><br><hr/>\n"
 	} else {
@@ -72,3 +72,6 @@ while(defined(my $line=<INPUT>)) {
     print OUTPUT $line;
 }
 
+close OUTPUT;
+close INPUT;
+unlink($output_temp);
