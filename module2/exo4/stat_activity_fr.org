@@ -1,4 +1,4 @@
-#+TITLE: FIXME Analyse des mots-clés de mon journal
+#+TITLE: Analyse des mots-clés de mon journal
 #+LANGUAGE: fr
 
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
