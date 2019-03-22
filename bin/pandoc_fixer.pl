@@ -1,34 +1,48 @@
 #!/usr/bin/perl -w
 use strict;
 
-if($#ARGV!=0) {
-    die "Usage: pandox_fixer.pl input.md";
-}
-my($input)=shift(@ARGV);
-if(!($input =~ /.md$/)) { 
-    die "Usage: pandox_fixer.pl input.md";
-}
-my($line);
+my($usage) = "Usage: pandox_fixer.pl input.md";
+($#ARGV==0) or die $usage;
 
+my($input)=shift(@ARGV);
+
+########### Git date #################
 my($gitdate)=`git log $input | grep Date | head -n 1`;
 chomp($gitdate);
 $gitdate =~ s/Date: *//g;
 $gitdate =~ s/\s*\+.*$//g;
 
-    
-$input =~ s/.md/.html/;
+########### Input file ###############
+my($type) = "";
+my($output) = $input;
+if($input =~ /.md$/) {
+    $type = "gfm";
+    $output =~ s/.md$/.html/;
+} elsif ($input =~ /.org$/) {
+    $type = "org";
+    $output =~ s/.org$/.html/;
+} else {
+    die "Usage: pandox_fixer.pl input.md";
+}
+my($output_temp) = $output."tmp";
 
-open INPUT, $input or die;
+########### URL Fixing ###############
 
 my($input_path)=$input;
 $input_path =~ s|/[^/]*$||g;
-# print $input."\n\n";
-
 my($url_path) = "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/raw/master/".$input_path;
-
 my($gitlab_origin)= "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/";
 
-while(defined($line=<INPUT>)) {
+########### Pandoc   #################
+
+print "Exporting $input\n";
+my($pandoc_output) = `LANG=C ; pandoc -s -f $type -t html -o $output_temp $input`;
+
+open INPUT, $output_temp or die;
+open OUTPUT, "> ".$output or die;
+
+
+while(defined(my $line=<INPUT>)) {
 #    $line =~ s|https://gitlab.inria.fr/learninglab/|https://learninglab.gitlabpages.inria.fr/|g; ## Not such a good idea!
     if($input=~ /_fr.html/) {
 	$line =~ s|<body>|<body>Les <a href='$gitlab_origin/$input'>sources de ce document sont disponibles sur gitlab</a>.|g;
@@ -48,6 +62,6 @@ while(defined($line=<INPUT>)) {
     # 	$line = "\t".$line;
     # }
     if($line =~ /<p>AUTHOR:/) { next; }
-    print $line;
+    print OUTPUT $line;
 }
 

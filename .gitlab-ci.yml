@@ -3,19 +3,15 @@ pages:
   stage: deploy
   script:
   - pandoc --version
-  - pandoc --help
+  # - pandoc --help
   # - pandoc --list-input-formats    # Broken as pandoc dates from 2013 on this image! :(
-  - for file in $(find -name "*.md"); do
-        pandoc -s -f gfm -t html -o ${file%.*}.html $file && echo "Exported ${file%.*}.html" && echo "<li><a href='https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr-ressources/${file%.*}.html'>${file%.*}.html</a></li>" >> index.html || echo "ERROR $file";
-        bin/pandoc_fixer.pl ${file} > ${file}.new;
-        mv ${file}.new ${file%.*}.html;
+  - for file in $(find -name "*.md") $(find -name "*.org"); do
+        bin/pandoc_fixer.pl ${file};
+        mkdir -p public/`dirname ${file}`
+        mv ${file%.*}.html public/`dirname ${file}`
     done
-  # The next part is broken because pandoc is way too old on this image :(
-  # - for file in $(find -name "*.org"); do 
-  #     pandoc -s -f org -t html -o ${file%.*}.html $file && echo "Exported ${file%.*}.html" || echo "ERROR $file";
-  #   done
   - shopt -s extglob
-  - mv !(public) public
+  # - mv !(public) public
   artifacts:
     paths:
     - public
