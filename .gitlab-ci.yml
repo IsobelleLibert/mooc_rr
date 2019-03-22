@@ -8,7 +8,7 @@ pages:
   - for file in $(find -name "*.md") $(find -name "*.org"); do
         bin/pandoc_fixer.pl ${file};
         mkdir -p public/`dirname ${file}`
-        mv ${file%.*}.html public/`dirname ${file}`
+        mv ${file%.*}.html public/`dirname ${file}`;
     done
   - shopt -s extglob
   # - mv !(public) public
