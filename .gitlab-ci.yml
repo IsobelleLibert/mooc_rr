@@ -10,7 +10,6 @@ pages:
         mkdir -p public/`dirname ${file}`;
         mv ${file%.*}.html public/`dirname ${file}`/;
     done
-  - shopt -s extglob
   artifacts:
     paths:
     - public
