@@ -43,16 +43,22 @@ open OUTPUT, "> ".$output or die;
 
 
 while(defined(my $line=<INPUT>)) {
+    if($line =~ /<p>AUTHOR:/) { next; }
+    if($line =~ /<h1 class="title"/) { next; }
+    if($line =~ /<h1 class="date"/) { next; }
 #    $line =~ s|https://gitlab.inria.fr/learninglab/|https://learninglab.gitlabpages.inria.fr/|g; ## Not such a good idea!
     if($input=~ /_fr.html/) {
 	$line =~ s|<body>|<body>Les <a href='$gitlab_origin/$input'>sources de ce document sont disponibles sur gitlab</a>.|g;
+	$line .= "<br><i>Version du $gitdate.</i><br><hr/>\n"
     } else {
 	$line =~ s|<body>|<body>The <a href='$gitlab_origin/$input'>source of this this document is available on gitlab</a>.|g;
+	$line .= "<br><i>Last version: $gitdate</i><br><hr/>\n"
     }
+    $line =~ s|<span class="smallcaps">TOC</span>||g;
+    
     $line =~ s|---</p>|<hr/>|g;
-    $line =~ s|Date:.*<br|<i>Date: $gitdate</i><br|g;
-    $line =~ s|<p>TITLE:\(.*\)<br|<b>TITLE:$1</b><br|g;
-    $line =~ s|href=" ---</p>|<hr/>|g;
+    # $line =~ s|Date:.*<br|<i>Date: $gitdate</i><br|g;
+    # $line =~ s|<p>TITLE:\(.*\)<br|<b>TITLE:$1</b><br|g;
 
     $line =~ s|img src="http|img src="%|g;
     $line =~ s|img src="([^%][^"]*)"|img src="$url_path/$1?inline=false"|g;
@@ -61,7 +67,6 @@ while(defined(my $line=<INPUT>)) {
     # if($line =~ /img src="([^%][^"]*)"/) {
     # 	$line = "\t".$line;
     # }
-    if($line =~ /<p>AUTHOR:/) { next; }
     print OUTPUT $line;
 }
 
