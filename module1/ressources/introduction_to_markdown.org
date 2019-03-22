@@ -23,7 +23,7 @@ Archer Reilly]].
   - [[#exponents-and-indices][Exponents and indices]]
   - [[#fractions-binomial-coefficients-square-roots-][Fractions, binomial coefficients, square roots, ...]]
   - [[#summations-and-integrals][Summations and integrals]]
-  - [[#outfits-smiley][Outfits \smiley]]
+  - [[#outfits][Outfits]]
 - [[#about-markdown][About =markdown=]]
 
 * Syntax
@@ -166,7 +166,7 @@ James H. Steiger]].
  |---------------------------------+--------------------------------------|
  | $\sum_{i=1}^{10} t_i$                     | =$\sum_{i=1}^{10} t_i$=                   |
  | $\int_0^\infty \mathrm{e}^{-x}\,\mathrm{d}x$ | =$\int_0^\infty \mathrm{e}^{-x}\,\mathrm{d}x$= |
-** Outfits \smiley
+** Outfits
  | Symbol                | Command               |
  |-----------------------+-----------------------|
  | $\hat{a}$             | =$\hat{a}$=             |
