@@ -46,6 +46,8 @@ while(defined(my $line=<INPUT>)) {
     if($line =~ /<p class="author"/) { next; }
     if($line =~ /<h1 class="title"/) { next; }
     if($line =~ /<p class="date"/) { next; }
+    if($line =~ /<p>.*broken-links:nil/) { next; }
+
 #    $line =~ s|https://gitlab.inria.fr/learninglab/|https://learninglab.gitlabpages.inria.fr/|g; ## Not such a good idea!
     if($line =~ /<body>/) {
 	if($output=~ /_fr.html/) {
