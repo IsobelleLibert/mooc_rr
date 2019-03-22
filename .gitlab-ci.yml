@@ -6,7 +6,7 @@ pages:
   - for file in $(find -name "*.md") $(find -name "*.org"); do
         bin/pandoc_fixer.pl ${file};
         echo "Creating"  public/`dirname ${file}`;
-        echo "<a style='display:block;' href='${file%.*}.html'>${file%.*}.html</a>" >> index.html
+        echo "<a style='display:block;' href='${file%.*}.html'>${file%.*}.html</a>" >> index.html;
         mkdir -p public/`dirname ${file}`;
         mv ${file%.*}.html public/`dirname ${file}`/;
     done
