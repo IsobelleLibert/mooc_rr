@@ -1,0 +1,228 @@
+* GitLab CI configuration
+Here is the manually filtered list of org and md files that need to be
+exported to html with the gitlab pages CI mechanism.
+
+#+BEGIN_SRC txt :tangle html_src_files.lst
+./module2/ressources/maintaining_a_journal.org
+./module2/ressources/jupyter_fr.org
+./module2/ressources/rstudio_fr.org
+./module2/ressources/gitlab_fr.org
+./module2/ressources/emacs_orgmode_fr.org
+./module2/ressources/jupyter.org
+./module2/ressources/emacs_orgmode.org
+./module2/ressources/maintaining_a_journal_fr.org
+./module2/ressources/rstudio.org
+./module2/ressources/gitlab.org
+./module2/ressources/orgmode_examples/README.org
+./module2/ressources/orgmode_examples/README_fr.org
+./module2/exo4/stat_activity.org
+./module2/slides/ressources_fr.org
+./module2/slides/ressources.org
+./module3/ressources/iso_date_format.org
+./module3/ressources/iso_date_format_fr.org
+
+./module3/ressources/influenza-like-illness-analysis-orgmode+R.org
+./module3/ressources/influenza-like-illness-analysis-orgmode+Lisp+Python+R.org
+./module3/ressources/influenza-like-illness-analysis-orgmode.org
+./module3/ressources/analyse-syndrome-grippal-orgmode.org
+./module3/ressources/analyse-syndrome-grippal-orgmode+R.org
+./module3/ressources/analyse-syndrome-grippal-orgmode+Lisp+Python+R.org
+
+./module1/ressources/Module1_1_MaterielSupplementaire_fr.org
+./module1/ressources/Module1_2_MaterielSupplementaire_fr.org
+./module1/ressources/Module1_3_MaterielSupplementaire_fr.org
+./module1/ressources/Module1_5_MaterielSupplementaire_fr.org
+./module1/ressources/Module1_1_SupplementaryMaterial.org
+./module1/ressources/Module1_2_SupplementaryMaterial.org
+./module1/ressources/introduction_to_markdown_fr.org
+./module1/ressources/introduction_to_markdown.org
+./module1/ressources/module1_supplementary_material.org
+./module1/ressources/module1_additionalRessources.md
+
+./module1/ressources/sequence3_fr.org
+./module1/ressources/sequence5_fr.org
+./module1/ressources/sequence2_fr.org
+./module1/ressources/sequence1_fr.org
+
+./module4/ressources/resources_refs.org
+./module4/ressources/resources_refs_fr.org
+./module4/ressources/exo1.org
+./module4/ressources/exo2.org
+./module4/ressources/exo3.org
+./module4/ressources/resources_environment.org
+./module4/ressources/resources_environment_fr.org
+
+./documents/notebooks/notebook_RStudio_SASmarkdown.md
+./documents/tuto_git_gtlab/tuto_git_gitlab.md
+./documents/tuto_rstudio_gitlab/tuto_rstudio_gitlab.md
+./documents/tuto_magit/tuto_magit.md
+./documents/tuto_emacs_windows/tuto_emacs_windows.md
+./documents/tuto_jupyter_windows/tuto_jupyter_windows.md
+#+END_SRC
+
+Here is the yaml file used for CI. All the work is done in a single
+perl script.
+#+BEGIN_SRC yaml :tangle .gitlab-ci.yml
+image: brospars/pandoc-gitlab-ci:latest
+pages:
+  stage: deploy
+  script:
+  - pandoc --version
+  # - pandoc --help
+  # - pandoc --list-input-formats    # Broken as pandoc dates from 2013 on this image! :(
+  - for file in `cat html_src_files.lst`; do
+        bin/pandoc_fixer.pl ${file};
+        echo "Creating"  public/`dirname ${file}`;
+        mkdir -p public/`dirname ${file}`;
+        mv ${file%.*}.html public/`dirname ${file}`/;
+    done
+  - shopt -s extglob
+  # - mv !(public) public
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
+#+END_SRC
+
+* Local Testing
+Having to go through a commit/push all the time to check whether it
+works or not is a pain. Here a simple mechanism that allows to test
+the CI script locally.
+
+#+begin_src perl :results output :file gitlab-ci.sh :exports both
+open INPUT, ".gitlab-ci.yml";
+my($line);
+my($script_found)=0;
+while(defined($line=<INPUT>)) {
+    if($line=~/\s*script:/) { $script_found=1; next;}
+    if($line=~/\s*artifacts:/) { $script_found=0; }
+    if($script_found) {
+	if($line =~ /^\s*#\s/) { next; }
+#	if($line =~ /mv.*public/) { next; }
+	$line =~ s/^\s*-\s//g;
+	print($line);
+    }
+}
+#+end_src
+
+#+RESULTS:
+[[file:gitlab-ci.sh]]
+
+#+begin_src shell :results output :exports both 
+chmod +x ./gitlab-ci.sh
+./gitlab-ci.sh 
+#+end_src
+
+#+RESULTS:
+#+begin_example
+pandoc 2.2.1
+Compiled with pandoc-types 1.17.5.1, texmath 0.11.1, skylighting 0.7.5
+Default user data directory: /home/alegrand/.pandoc
+Copyright (C) 2006-2018 John MacFarlane
+Web:  http://pandoc.org
+This is free software; see the source for copying conditions.
+There is no warranty, not even for merchantability or fitness
+for a particular purpose.
+Exporting ./module2/ressources/maintaining_a_journal.org
+Creating public/./module2/ressources
+Exporting ./module2/ressources/jupyter_fr.org
+Creating public/./module2/ressources
+Exporting ./module2/ressources/rstudio_fr.org
+Creating public/./module2/ressources
+Exporting ./module2/ressources/gitlab_fr.org
+Creating public/./module2/ressources
+Exporting ./module2/ressources/emacs_orgmode_fr.org
+Creating public/./module2/ressources
+Exporting ./module2/ressources/jupyter.org
+Creating public/./module2/ressources
+Exporting ./module2/ressources/emacs_orgmode.org
+Creating public/./module2/ressources
+Exporting ./module2/ressources/maintaining_a_journal_fr.org
+Creating public/./module2/ressources
+Exporting ./module2/ressources/rstudio.org
+Creating public/./module2/ressources
+Exporting ./module2/ressources/gitlab.org
+Creating public/./module2/ressources
+Exporting ./module2/ressources/orgmode_examples/README.org
+Creating public/./module2/ressources/orgmode_examples
+Exporting ./module2/ressources/orgmode_examples/README_fr.org
+Creating public/./module2/ressources/orgmode_examples
+Exporting ./module2/exo4/stat_activity.org
+Creating public/./module2/exo4
+Exporting ./module2/slides/ressources_fr.org
+Creating public/./module2/slides
+Exporting ./module2/slides/ressources.org
+Creating public/./module2/slides
+Exporting ./module3/ressources/iso_date_format.org
+Creating public/./module3/ressources
+Exporting ./module3/ressources/iso_date_format_fr.org
+Creating public/./module3/ressources
+Exporting ./module3/ressources/influenza-like-illness-analysis-orgmode+R.org
+Creating public/./module3/ressources
+Exporting ./module3/ressources/influenza-like-illness-analysis-orgmode+Lisp+Python+R.org
+Creating public/./module3/ressources
+Exporting ./module3/ressources/influenza-like-illness-analysis-orgmode.org
+Creating public/./module3/ressources
+Exporting ./module3/ressources/analyse-syndrome-grippal-orgmode.org
+Creating public/./module3/ressources
+Exporting ./module3/ressources/analyse-syndrome-grippal-orgmode+R.org
+Creating public/./module3/ressources
+Exporting ./module3/ressources/analyse-syndrome-grippal-orgmode+Lisp+Python+R.org
+Creating public/./module3/ressources
+Exporting ./module1/ressources/Module1_1_MaterielSupplementaire_fr.org
+Creating public/./module1/ressources
+Exporting ./module1/ressources/Module1_2_MaterielSupplementaire_fr.org
+Creating public/./module1/ressources
+Exporting ./module1/ressources/Module1_3_MaterielSupplementaire_fr.org
+Creating public/./module1/ressources
+Exporting ./module1/ressources/Module1_5_MaterielSupplementaire_fr.org
+Creating public/./module1/ressources
+Exporting ./module1/ressources/Module1_1_SupplementaryMaterial.org
+Creating public/./module1/ressources
+Exporting ./module1/ressources/Module1_2_SupplementaryMaterial.org
+Creating public/./module1/ressources
+Exporting ./module1/ressources/introduction_to_markdown_fr.org
+Creating public/./module1/ressources
+Exporting ./module1/ressources/introduction_to_markdown.org
+Creating public/./module1/ressources
+Exporting ./module1/ressources/module1_supplementary_material.org
+Creating public/./module1/ressources
+Exporting ./module1/ressources/module1_additionalRessources.md
+Creating public/./module1/ressources
+Exporting ./module1/ressources/sequence3_fr.org
+Creating public/./module1/ressources
+Exporting ./module1/ressources/sequence5_fr.org
+Creating public/./module1/ressources
+Exporting ./module1/ressources/sequence2_fr.org
+Creating public/./module1/ressources
+Exporting ./module1/ressources/sequence1_fr.org
+Creating public/./module1/ressources
+Exporting ./module4/ressources/resources_refs.org
+Creating public/./module4/ressources
+Exporting ./module4/ressources/resources_refs_fr.org
+Creating public/./module4/ressources
+Exporting ./module4/ressources/exo1.org
+Creating public/./module4/ressources
+Exporting ./module4/ressources/exo2.org
+Creating public/./module4/ressources
+Exporting ./module4/ressources/exo3.org
+Creating public/./module4/ressources
+Exporting ./module4/ressources/resources_environment.org
+Creating public/./module4/ressources
+Exporting ./module4/ressources/resources_environment_fr.org
+Creating public/./module4/ressources
+Exporting ./documents/notebooks/notebook_RStudio_SASmarkdown.md
+Creating public/./documents/notebooks
+Exporting ./documents/tuto_git_gtlab/tuto_git_gitlab.md
+Creating public/./documents/tuto_git_gtlab
+Exporting ./documents/tuto_rstudio_gitlab/tuto_rstudio_gitlab.md
+Creating public/./documents/tuto_rstudio_gitlab
+Exporting ./documents/tuto_magit/tuto_magit.md
+Creating public/./documents/tuto_magit
+Exporting ./documents/tuto_emacs_windows/tuto_emacs_windows.md
+Creating public/./documents/tuto_emacs_windows
+Exporting ./documents/tuto_jupyter_windows/tuto_jupyter_windows.md
+Creating public/./documents/tuto_jupyter_windows
+#+end_example
+
