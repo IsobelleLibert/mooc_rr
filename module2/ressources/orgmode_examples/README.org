@@ -58,6 +58,9 @@ you an idea of how it can be organized:
 
 * Other examples
 Here are a few links to other kind of examples:
+- John Kitchin is an expert org-mode user and he maintains a very
+  interesting [[http://kitchingroup.cheme.cmu.edu/blog/][blog with many interesting tips]]. You may want to check
+  this [[https://www.youtube.com/watch?v=IsSMs-4GlT8&list=FLQp2VLAOlvq142YN3JO3y8w&app=desktop][seminar he gave at SciPy]].
 - Slides: all my slides for a series of lectures is available here:
   https://github.com/alegrand/SMPE. Here is a [[https://raw.githubusercontent.com/alegrand/SMPE/master/lectures/lecture_central_limit_theorem.org][typical source]] and the
   [[https://raw.githubusercontent.com/alegrand/SMPE/master/lectures/lecture_central_limit_theorem.pdf][resulting PDF]]
@@ -66,8 +69,5 @@ Here are a few links to other kind of examples:
     journals/conferences: [[https://github.com/schnorr/ieeeorg][IEEE]], [[https://github.com/schnorr/wileyorg][Wiley]], [[https://github.com/schnorr/acmorg][ACM]], [[https://github.com/schnorr/llncsorg][LNCS]]
   - his lecture on programming languages for undergrads:
     https://github.com/schnorr/mlp/tree/master/conteudo
-- John Kitchin is an expert org-mode user and he maintains a very
-  interesting [[http://kitchingroup.cheme.cmu.edu/blog/][blog with many interesting tips]]. You may want to check
-  this [[https://www.youtube.com/watch?v=IsSMs-4GlT8&list=FLQp2VLAOlvq142YN3JO3y8w&app=desktop][seminar he gave at SciPy]].
 
 
