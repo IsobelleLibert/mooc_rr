@@ -62,11 +62,11 @@ control your environment:
 - The easy (preserve the mess) ones: [[http://www.pgbovine.net/cde.html][CDE]] or [[https://vida-nyu.github.io/reprozip/][ReproZip]]
 - The more demanding (encourage cleanliness) where you start with a
   clean environment and install only what's strictly necessary (and document it):
-  - The very well known [[https://www.docker.io/][Docker]]
+  - The very well known [[https://www.docker.io/][Docker]];
   - [[https://singularity.lbl.gov/][Singularity]] or [[https://spack.io/][Spack]], which are more targeted toward the specific
-    needs of high performance computing users
+    needs of high performance computing users;
   - [[https://www.gnu.org/software/guix/][Guix]], [[https://nixos.org/][Nix]] that are very clean (perfect?) solutions to this
-    dependency hell and which we recommend
+    dependency hell and which we recommend.
 
 It may be hard to understand the difference between these different
 approaches and decide which one is better in your context.
@@ -103,12 +103,8 @@ Bio-informatics: Current Status, Solutions and Research Opportunities
 We have mentioned these topics in our MOOC but we could by no way
 cover them properly. We only suggest here a few interesting talks
 about this.
-- [[https://github.com/alegrand/RR_webinars/blob/master/10_statistics_and_replication_in_HCI/index.org][In this talk, Pierre Dragicevic provides a nice illustration of the
-  consequences of statistical uncertainty and of how some concepts
-  (e.G. p-values) are commonly badly understood.]]
-- [[https://github.com/alegrand/RR_webinars/blob/master/3_numerical_reproducibility/index.org][Nathalie Revol, Philippe Langlois and Stef Graillat present the main
-  challenges encountered when trying to achieve numerical
-  reproducibility and present recent research work on this topic.]]
+- [[https://github.com/alegrand/RR_webinars/blob/master/10_statistics_and_replication_in_HCI/index.org][In this talk, Pierre Dragicevic provides a nice illustration of the consequences of statistical uncertainty and of how some concepts (e.g., p-values) are commonly badly understood.]]
+- [[https://github.com/alegrand/RR_webinars/blob/master/3_numerical_reproducibility/index.org][Nathalie Revol, Philippe Langlois and Stef Graillat present the main challenges encountered when trying to achieve numerical reproducibility and present recent research work on this topic.]]
 * Publication practices
 You may want to have a look at the following two webinars:
 - [[https://github.com/alegrand/RR_webinars/blob/master/8_artifact_evaluation/index.org][Enabling open and reproducible research at computer systems’

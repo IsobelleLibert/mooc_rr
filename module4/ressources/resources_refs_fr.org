@@ -78,11 +78,11 @@ solutions permettent de contrôler votre environnement :
 - Les plus exigeants (encourageant la propreté) où vous commencez avec un
   environnement propre et n’installez que ce qui est strictement
   nécessaire (et le documentez) :
-  - Le très connu [[https://www.docker.io/][Docker]]
+  - Le très connu [[https://www.docker.io/][Docker]];
   - [[https://singularity.lbl.gov/][Singularity]] ou [[https://spack.io/][Spack]], qui sont plus ciblés sur les besoins
-    spécifiques des utilisateurs d'informatique de haute performance 
+    spécifiques des utilisateurs d'informatique de haute performance;
   - [[https://www.gnu.org/software/guix/][Guix]], [[https://nixos.org/][Nix]] qui sont des solutions très propres (parfaites ?) à cet
-    enfer de dépendance et que nous recommandons
+    enfer de dépendance et que nous recommandons.
 
 Il peut être difficile de comprendre la différence entre ces
 différentes approches et de décider laquelle est la meilleure dans
@@ -125,13 +125,8 @@ Jérôme Chopard)]].
 Nous avons mentionné ces sujets dans notre MOOC mais nous ne pourrions
 en aucun cas les couvrir correctement. Nous ne suggérons ici que
 quelques présentations intéressantes à ce sujet.
-- [[https://github.com/alegrand/RR_webinars/blob/master/10_statistics_and_replication_in_HCI/index.org][Pierre Dragicevic donne une belle illustration des conséquences de
-  l’incertitude statistique et de la manière dont certains concepts
-  (par exemple les p-values) sont généralement mal compris]]. 
-- [[https://github.com/alegrand/RR_webinars/blob/master/3_numerical_reproducibility/index.org][Nathalie Revol, Philippe Langlois et Stef Graillat présentent les
-  principaux problèmes rencontrés en essayant d'obtenir une
-  reproductibilité numérique et présentent les travaux de recherche
-  récents en la matière]].
+- [[https://github.com/alegrand/RR_webinars/blob/master/10_statistics_and_replication_in_HCI/index.org][Pierre Dragicevic donne une belle illustration des conséquences de l'incertitude statistique et de la manière dont certains concepts par exemple les p-values) sont généralement mal compris]]. 
+- [[https://github.com/alegrand/RR_webinars/blob/master/3_numerical_reproducibility/index.org][Nathalie Revol, Philippe Langlois et Stef Graillat présentent les principaux problèmes rencontrés en essayant d'obtenir une reproductibilité numérique et présentent les travaux de recherche récents en la matière]].
 
 * Pratiques de publication
 Vous souhaiterez peut-être consulter les webinaires suivants :
@@ -157,4 +152,4 @@ références que vous jugez intéressantes dans votre domaine. N'hésitez
 donc pas à nous les fournir à l'aide du forum. Nous les intégrerons
 dans cette page.
 
-- [[https://github.com/alegrand/RR_webinars/blob/master/9_experimental_testbeds/index.org][Une récente conférence de Lucas Nussbaum sur les bancs d’essais expérimentaux en informatique]].
+- [[https://github.com/alegrand/RR_webinars/blob/master/9_experimental_testbeds/index.org][Une récente conférence de Lucas Nussbaum sur les plates-formes expérimentales en informatique]].
