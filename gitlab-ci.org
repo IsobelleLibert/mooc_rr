@@ -1,59 +1,7 @@
 * GitLab CI configuration
 Here is the manually filtered list of org and md files that need to be
-exported to html with the gitlab pages CI mechanism.
-
-#+BEGIN_SRC txt :tangle html_src_files.lst
-./module1/ressources/introduction_to_markdown_fr.org
-./module1/ressources/introduction_to_markdown.org
-./module1/ressources/sequence0_fr.org
-./module1/ressources/sequence1_fr.org
-./module1/ressources/sequence2_fr.org
-./module1/ressources/sequence3_fr.org
-./module1/ressources/sequence5_fr.org
-./module1/ressources/sequence1.org
-./module1/ressources/sequence2.org
-
-./module2/ressources/maintaining_a_journal.org
-./module2/ressources/maintaining_a_journal_fr.org
-./module2/ressources/jupyter.org
-./module2/ressources/jupyter_fr.org
-./module2/ressources/rstudio.org
-./module2/ressources/rstudio_fr.org
-./module2/ressources/gitlab.org
-./module2/ressources/gitlab_fr.org
-./module2/ressources/emacs_orgmode.org
-./module2/ressources/emacs_orgmode_fr.org
-./module2/ressources/sequence6_examples/README.org
-./module2/ressources/sequence6_examples/README_fr.org
-./module2/exo4/stat_activity.org
-./module2/slides/ressources.org
-./module2/slides/ressources_fr.org
-
-
-./module3/ressources/iso_date_format.org
-./module3/ressources/iso_date_format_fr.org
-./module3/ressources/influenza-like-illness-analysis-orgmode+R.org
-./module3/ressources/influenza-like-illness-analysis-orgmode+Lisp+Python+R.org
-./module3/ressources/influenza-like-illness-analysis-orgmode.org
-./module3/ressources/analyse-syndrome-grippal-orgmode.org
-./module3/ressources/analyse-syndrome-grippal-orgmode+R.org
-./module3/ressources/analyse-syndrome-grippal-orgmode+Lisp+Python+R.org
-
-./module4/ressources/resources_refs.org
-./module4/ressources/resources_refs_fr.org
-./module4/ressources/exo1.org
-./module4/ressources/exo2.org
-./module4/ressources/exo3.org
-./module4/ressources/resources_environment.org
-./module4/ressources/resources_environment_fr.org
-
-./documents/notebooks/notebook_RStudio_SASmarkdown.md
-./documents/tuto_git_gtlab/tuto_git_gitlab.md
-./documents/tuto_rstudio_gitlab/tuto_rstudio_gitlab.md
-./documents/tuto_magit/tuto_magit.md
-./documents/tuto_emacs_windows/tuto_emacs_windows.md
-./documents/tuto_jupyter_windows/tuto_jupyter_windows.md
-#+END_SRC
+exported to html with the gitlab pages CI mechanism. Have a look at
+file:html_src_files.lst to know which files are exported.
 
 Here is the yaml file used for CI. All the work is done in a single
 perl script.
