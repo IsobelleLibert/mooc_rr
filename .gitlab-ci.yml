@@ -11,6 +11,8 @@ pages:
         mkdir -p public/`dirname ${file}`;
         mv ${file%.*}.html public/`dirname ${file}`/;
     done
+  - cat html_src_files.lst | sed 's|^./|- file:./|' > index.org
+  - pandoc pandoc -s -f org -t html -o public_html/index.html index.org
   artifacts:
     paths:
     - public
