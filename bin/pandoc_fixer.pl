@@ -78,6 +78,13 @@ while(defined(my $line=<INPUT>)) {
     # if($line =~ /img src="([^%][^"]*)"/) {
     # 	$line = "\t".$line;
     # }
+
+    #### Changing headers
+    foreach($i in (4,3,2,1)) {
+	$j=$i+1;
+	$line =~ s|<h$i|<h$j|g;
+	$line =~ s|</h$i|</h$j|g;
+    }
     print OUTPUT $line;
 }
 
