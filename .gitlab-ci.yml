@@ -5,13 +5,13 @@ pages:
   - pandoc --version
   # - pandoc --help
   # - pandoc --list-input-formats    # Broken as pandoc dates from 2013 on this image! :(
-  - for file in `cat html_src_files.lst`; do
+  - for file in `cat html_src_files.lst | sed 's/#.*//g' `; do
         bin/pandoc_fixer.pl ${file};
         echo "Creating"  public/`dirname ${file}`;
         mkdir -p public/`dirname ${file}`;
         mv ${file%.*}.html public/`dirname ${file}`/;
     done
-  - cat html_src_files.lst | sed -e 's|.md$|.html|' -e 's|.org$|.html|' -e 's|^./\(.*\)$|- [[./\1]]|' > index.org
+  - cat html_src_files.lst | sed -e 's|.md$|.html|' -e 's|.org$|.html|' -e 's|^./\([^ ]*\) *# *\([^ ]*\)|- [[./\1]]  (\2)|' > index.org
   - pandoc -s -f org -t html -o public/index.html index.org
   artifacts:
     paths:

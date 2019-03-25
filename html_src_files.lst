@@ -1,50 +1,49 @@
-./module1/ressources/introduction_to_markdown_fr.org
-./module1/ressources/introduction_to_markdown.org
-./module1/ressources/sequence0_fr.org
-./module1/ressources/sequence1_fr.org
-./module1/ressources/sequence2_fr.org
-./module1/ressources/sequence3_fr.org
-./module1/ressources/sequence5_fr.org
-./module1/ressources/sequence1.org
-./module1/ressources/sequence2.org
+./module1/ressources/introduction_to_markdown_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/ecbcbd8bfafd48e9a912f66237b76c92
+./module1/ressources/introduction_to_markdown.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/ecbcbd8bfafd48e9a912f66237b76c92
+./module1/ressources/sequence0_fr.org               #     
+./module1/ressources/sequence1_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9719a1f5b81a4f2d89c27e54ce81f498
+./module1/ressources/sequence2_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/565a72fe3c8b464f8ec3e31b56cd4c57
+./module1/ressources/sequence3_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/d85eb783ff884ff8b1306b680326b198
+./module1/ressources/sequence5_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/c96bfaf3804847a38d2a8850ee0baf54
+./module1/ressources/sequence1.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9719a1f5b81a4f2d89c27e54ce81f498
+./module1/ressources/sequence2.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/565a72fe3c8b464f8ec3e31b56cd4c57
 
-./module2/ressources/maintaining_a_journal.org
-./module2/ressources/maintaining_a_journal_fr.org
-./module2/ressources/jupyter.org
-./module2/ressources/jupyter_fr.org
-./module2/ressources/rstudio.org
-./module2/ressources/rstudio_fr.org
-./module2/ressources/gitlab.org
-./module2/ressources/gitlab_fr.org
-./module2/ressources/emacs_orgmode.org
-./module2/ressources/emacs_orgmode_fr.org
-./module2/ressources/sequence6_examples/README.org
-./module2/ressources/sequence6_examples/README_fr.org
-./module2/exo4/stat_activity.org
-./module2/slides/ressources.org
-./module2/slides/ressources_fr.org
+./module2/ressources/maintaining_a_journal.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/0af0b6bf03194c1bb2798c29d7375a76
+./module2/ressources/maintaining_a_journal_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/0af0b6bf03194c1bb2798c29d7375a76
+./module2/ressources/jupyter.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/8dcce91be83c4ece834abfa98b8bbfb1
+./module2/ressources/jupyter_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/8dcce91be83c4ece834abfa98b8bbfb1
+./module2/ressources/rstudio.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/09d339f009cd4b45a468583ab7730221
+./module2/ressources/rstudio_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/09d339f009cd4b45a468583ab7730221
+./module2/ressources/gitlab.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/448cd6f9018545d1a67405551add6fda
+./module2/ressources/gitlab_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/448cd6f9018545d1a67405551add6fda
+./module2/ressources/emacs_orgmode.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/954f94ce4f9a4d858d47b41793cc96c8
+./module2/ressources/emacs_orgmode_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/954f94ce4f9a4d858d47b41793cc96c8
+./module2/ressources/sequence6_examples/README.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/827b36e10ddd49239f1c62cc1903951a
+./module2/ressources/sequence6_examples/README_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/827b36e10ddd49239f1c62cc1903951a
+./module2/exo4/stat_activity.org               #     
+./module2/slides/ressources.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/36723edefc72488ab44e269501cfc9f8
+./module2/slides/ressources_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/36723edefc72488ab44e269501cfc9f8
 
+./module3/ressources/iso_date_format.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/316fc24edc1b44278ada4ca531c705be
+./module3/ressources/iso_date_format_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/316fc24edc1b44278ada4ca531c705be
+./module3/ressources/influenza-like-illness-analysis-orgmode+R.org               #     
+./module3/ressources/influenza-like-illness-analysis-orgmode+Lisp+Python+R.org               #     
+./module3/ressources/influenza-like-illness-analysis-orgmode.org               #     
+./module3/ressources/analyse-syndrome-grippal-orgmode.org               #     
+./module3/ressources/analyse-syndrome-grippal-orgmode+R.org               #     
+./module3/ressources/analyse-syndrome-grippal-orgmode+Lisp+Python+R.org               #     
 
-./module3/ressources/iso_date_format.org
-./module3/ressources/iso_date_format_fr.org
-./module3/ressources/influenza-like-illness-analysis-orgmode+R.org
-./module3/ressources/influenza-like-illness-analysis-orgmode+Lisp+Python+R.org
-./module3/ressources/influenza-like-illness-analysis-orgmode.org
-./module3/ressources/analyse-syndrome-grippal-orgmode.org
-./module3/ressources/analyse-syndrome-grippal-orgmode+R.org
-./module3/ressources/analyse-syndrome-grippal-orgmode+Lisp+Python+R.org
+./module4/ressources/resources_refs.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/3c3c8cb2160d44e09a087b825beb92b8
+./module4/ressources/resources_refs_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/3c3c8cb2160d44e09a087b825beb92b8
+./module4/ressources/exo1.org               #     
+./module4/ressources/exo2.org               #     
+./module4/ressources/exo3.org               #     
+./module4/ressources/resources_environment.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/4be922aa6b8c471ab1addcdbddb4e487
+./module4/ressources/resources_environment_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/4be922aa6b8c471ab1addcdbddb4e487
 
-./module4/ressources/resources_refs.org
-./module4/ressources/resources_refs_fr.org
-./module4/ressources/exo1.org
-./module4/ressources/exo2.org
-./module4/ressources/exo3.org
-./module4/ressources/resources_environment.org
-./module4/ressources/resources_environment_fr.org
-
-./documents/notebooks/notebook_RStudio_SASmarkdown.md
-./documents/tuto_git_gtlab/tuto_git_gitlab.md
-./documents/tuto_rstudio_gitlab/tuto_rstudio_gitlab.md
-./documents/tuto_magit/tuto_magit.md
-./documents/tuto_emacs_windows/tuto_emacs_windows.md
-./documents/tuto_jupyter_windows/tuto_jupyter_windows.md
+./documents/notebooks/notebook_RStudio_SASmarkdown.md               #     
+./documents/tuto_git_gtlab/tuto_git_gitlab.md               #     
+./documents/tuto_rstudio_gitlab/tuto_rstudio_gitlab.md               #     
+./documents/tuto_magit/tuto_magit.md               #     
+./documents/tuto_emacs_windows/tuto_emacs_windows.md               #     
+./documents/tuto_jupyter_windows/tuto_jupyter_windows.md               #     
