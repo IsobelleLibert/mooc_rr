@@ -69,8 +69,8 @@ while(defined(my $line=<INPUT>)) {
     $line =~ s|img src="%|img src="http|g;
 
     $line =~ s|href="http|href="%|g;
-    $line =~ s|href="([^%][^"]*.tgz)"|href="$raw_path_percent/$1"|g; # ?inline=false
-    $line =~ s|href="([^%][^"]*)"|href="$tree_path/$1"|g; # ?inline=false
+    $line =~ s|href="([^%#][^"]*.tgz)"|href="$raw_path_percent/$1"|g; # ?inline=false
+    $line =~ s|href="([^%#][^"]*)"|href="$tree_path/$1"|g; # ?inline=false
     $line =~ s|href="%|href="http|g;
 
     # if($line =~ /img src="([^%][^"]*)"/) {
