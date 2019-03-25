@@ -19,7 +19,7 @@ pages:
         mkdir -p public/`dirname ${file}`;
         mv ${file%.*}.html public/`dirname ${file}`/;
     done
-  - cat html_src_files.lst | sed -e 's|.md *#|.html  #|' -e 's|.org *#|.html  #|' -e 's|^./\([^ ]*\) *# *\([^ ]*\)|- [[./\1]]  (\2)|' > index.org
+  - cat html_src_files.lst | sed -e 's|\.md |.html |' -e 's|\.org |\.html |' -e 's|^./\([^ ]*\) *# *\([^ ]*\)|- [[./\1]]  (\2)|' > index.org
   - pandoc -s -f org -t html -o public/index.html index.org
   artifacts:
     paths:
