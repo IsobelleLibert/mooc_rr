@@ -22,8 +22,8 @@ exported to html with the gitlab pages CI mechanism.
 ./module2/ressources/gitlab_fr.org
 ./module2/ressources/emacs_orgmode.org
 ./module2/ressources/emacs_orgmode_fr.org
-./module2/ressources/orgmode_examples/README.org
-./module2/ressources/orgmode_examples/README_fr.org
+./module2/ressources/module6_examples/README.org
+./module2/ressources/module6_examples/README_fr.org
 ./module2/exo4/stat_activity.org
 ./module2/slides/ressources.org
 ./module2/slides/ressources_fr.org
