@@ -24,19 +24,19 @@
 
 * Références générales
 En plus des deux livres déjà cités (en séquence 1) :
-- « LA PAGE. DE L'ANTIQUITÉ À L'ÈRE DU NUMÉRIQUE » d'Anthony Grafton (Hazan, 2012) ;
+- « La page. De l'Antiquité à l'ère du numérique » d'Anthony Grafton (Hazan, 2012) ;
 - « [[https://yalebooks.yale.edu/book/9780300165395/too-much-know][TOO MUCH TO KNOW. Managing Scholarly Information before the Modern Age]] », d'Ann Blair publié chez /Yale University Press/ en 2011 ;
 j'ai utilisé :
 - « L'histoire du livre » de Frédéric Barbier ;
 - le remarquable site de Jacques Poitou, [[http://j.poitou.free.fr/pro/index.html][langages écritures typographies]] ;
 - le site [[http://classes.bnf.fr/ecritures/][l'aventure des écritures]] de la BNF ;
-- le catalogue de l'exposition de la BNF « Tous les savoirs du monde : Encyclopédies et bibliothèques de Sumer au XXIème siècle » ;
+- le catalogue de l'exposition de la BNF « [[http://editions.bnf.fr/tous-les-savoirs-du-monde-encyclop%C3%A9dies-et-biblioth%C3%A8ques-de-sumer-au-xxie-si%C3%A8cle][Tous les savoirs du monde : Encyclopédies et bibliothèques de Sumer au XXIe siècle, sous la direction de Roland Schaer, 1997]]» ;
 - « [[http://litmedmod.ca/sites/default/files/pdf/vandendorpe-papyrusenligne_lr.pdf][Du papyrus à l'hypertexte]] » de Christian Vandendorpe (La Découverte, 1999).
 
 * Sur les tablettes de cires
-Voir le site de Jacques Poitou (d'où les illustrations sont empruntées) et le livre de Frédéric Barbier, « L'histoire du livre ».
+Voir le site de Jacques Poitou d'où les illustrations sont empruntées([[http://j.poitou.free.fr/pro/index.html][langages écritures typographies]]) et le livre de Frédéric Barbier (« L'histoire du livre » de Frédéric Barbier - Armand Colin, 2001).
 * Sur le passage du rouleau (/volumen/) au codex
-Voir le livre de Frédéric Barbier, celui d'Anthony Grafton.
+Voir le livre de Frédéric Barbier (« L'histoire du livre » de Frédéric Barbier - Armand Colin, 2001), celui d'Anthony Grafton (« La page. De l'Antiquité à l'ère du numérique » de Anthony Grafton - Hazan, 2012).
 
 Le /volumen/ est un livre à base de feuilles de papyrus collées les unes aux autres et qui s'enroule sur lui-même. Il a été créé en Égypte vers 3000 av. J.-C. Le texte est rédigé en colonnes parallèles assez étroites. C'est le support du texte par excellence durant les trente siècles précédant notre ère, d'abord en Égypte, puis dans tout le monde méditerranéen. 
 
@@ -60,6 +60,11 @@ Un point intéressant : le contenu de la Thora est « fixé » avant l'appari
 
 * Sur Eusèbe de Césarée
 Pour en savoir plus sur [[https://fr.wikipedia.org/wiki/Eus%C3%A8be_de_C%C3%A9sar%C3%A9e][Eusèbe de Césarée]], consultez le passionnant deuxième chapitre du livre d'Anthony Grafton.
+La notion de « références croisées » apparaît aussi dans un autre contexte que celui du « canon eusébien » lorsque l’œuvre d’Eusèbe de Césarée est discutée. Eusèbe de Césarée a en effet rédigé l’[[https://fr.wikipedia.org/wiki/Histoire_eccl%C3%A9siastique ][Histoire ecclésiastique]] (IVe siècle après J.-C.) et a employé un « recoupement de sources » (comparaison de textes de différents auteurs relatifs au même événement) pour étayer sa chronologie – voir l’article de Claire Muckenstum-Poulle « [[https://www.persee.fr/doc/dha_2108-1433_2010_sup_4_1_3347?q=Muckensturm-Poulle][Exégèse et Histoire sainte dans l’Histoire ecclésiastique d’Eusèbe de Césarée (Livre I)] », Dialogues d’histoire ancienne, 2010, Suppl. 4-1, pp. 141-153 – or il n’est pas le premier à avoir utilisé ce type de recoupements, qualifiés de « références croisées » par Claire Muckenstum-Poulle (voir les deux derniers paragraphes de la page 150) : l’historien [[https://fr.wikipedia.org/wiki/Flavius_Jos%C3%A8phe][Flavius Josèphe]] (Ier siècle après J.-C.) l’avait fait avant lui.
+
+Par la suite, Ammonius d’Alexandrie (IIIe siècle après J.-C.) a inventé un procédé consistant à reproduire intégralement les textes des quatre évangiles dans quatre colonnes, en établissant des correspondances entre eux.
+
+Au début du IVe siècle après J.-C., Eusèbe de Césarée reprend cette idée sous forme d’un tableau simplifié, ce qui constitue le canon eusébien. Il semble que ce tableau simplifié – dont le but est de permettre un recoupement aisé des quatre évangiles mais aurait pu être étendu à d’autres sources – soit le premier exemple de ce que nous qualifions aujourd’hui communément de « références croisées ». Je remercie M.-G. Dondon pour l’intéressante discussion à l’origine de ces clarifications et sa contribution à l’écriture des ces notes.
 * Parallèle chinois
 Comme je le dis, mon inculture fait que je ne rends pas justice aux contributions chinoises, musulmanes, précolombienne, etc. J'essaierai de combler cette énorme lacune pour les seconde version du CLOM...
 
@@ -76,5 +81,7 @@ Ce dernier procédé était très couramment employé par les humanistes et les 
 Sur l'origine de l'index, on pourra lire l'article de Jean Berger : [[https://www.theindexer.org/files/25-2-berger.pdf][Indexation, Memoire, pouvoir et representations au seuil du XIIe siecle : La redecouverte des feuillets de tables du Liber De Honoribus, premier cartulaire de la collegiale Saint-Julien de Brioude]], /The Indexer/.
 
 La méthode de John Lock est expliquée dans l'article /Indexing commonplace books: John Locke’s method/ d'Alan Walker, [[https://www.theindexer.org/issues/query.php?vol=22&iss=3][The Indexer]], vol. 22, p. 114-118, 2001.
+
+Une précision manque dans mes propos de la vidéo : la deuxième lettre (la voyelle) qui constitue l’entrée d’un mot clé dans l’index est la première voyelle qui suit la première lettre. Le mot clé « Analyse » trouverait donc sa place à la ligne « Aa » de l’index.
 
 Sur [[https://fr.wikipedia.org/wiki/John_Locke][John Locke]] (1632-1704) « papa du libéralisme » et actionnaire de la /Royal African Company/ principale compagnie négrière britannique, voir l'article [[https://en.wikipedia.org/wiki/John_Locke#Constitution_of_Carolina][Wikipedia]] (en anglais) et le livre « Contre-histoire du libéralisme » de Domenico Losurdo (La Découverte / Poche, 2014, p. 34-36).
