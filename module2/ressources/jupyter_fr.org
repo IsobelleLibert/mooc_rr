@@ -7,16 +7,16 @@
 #+PROPERTY: header-args :eval never-export
 
 * Table des matières                                         :TOC:
-- [[#1-jupyter-trucs-et-astuces][1 Jupyter: Trucs et astuces]]
-  - [[#11-création-ou-import-dun-notebook][1.1 Création ou import d'un notebook]]
-  - [[#12-exécuter-du-code-r-et-du-code-python-dans-le-même-notebook][1.2 Exécuter du code R et du code Python dans le même notebook]]
-  - [[#13-autres-langages-que-python-et-r][1.3 Autres langages que Python et R]]
-- [[#2-installation-et-configuration-de-jupyter-sur-votre-ordinateur][2 Installation et configuration de Jupyter sur votre ordinateur]]
-  - [[#21-installation-de-jupyter][2.1 Installation de Jupyter]]
-  - [[#22-sassurer-que-jupyter-vous-permet-dutiliser-r][2.2 S'assurer que Jupyter vous permet d'utiliser R]]
-  - [[#23-conseils-additionnels][2.3 Conseils additionnels]]
+- [[#jupyter-trucs-et-astuces][Jupyter: Trucs et astuces]]
+  - [[#création-ou-import-dun-notebook][Création ou import d'un notebook]]
+  - [[#exécuter-du-code-r-et-du-code-python-dans-le-même-notebook][Exécuter du code R et du code Python dans le même notebook]]
+  - [[#autres-langages-que-python-et-r][Autres langages que Python et R]]
+- [[#installation-et-configuration-de-jupyter-sur-votre-ordinateur][Installation et configuration de Jupyter sur votre ordinateur]]
+  - [[#installation-de-jupyter][Installation de Jupyter]]
+  - [[#sassurer-que-jupyter-vous-permet-dutiliser-r][S'assurer que Jupyter vous permet d'utiliser R]]
+  - [[#conseils-additionnels][Conseils additionnels]]
 
-* 1 Jupyter: Trucs et astuces
+* Jupyter: Trucs et astuces
 Cette [[https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/][page web]] (en anglais) recense un certain nombre d'astuces
 relatives à l'utilisation de Jupyter (et en particulier des
 illustrations des nombreuses commandes magiques =IPython magic=) et
@@ -24,7 +24,7 @@ susceptibles d'améliorer votre efficacité (notez bien que ce billet a
 plus de deux ans que Jupyter évoluant très rapidement, certaines de
 ces astuces ou de ces modules complémentaires font maintenant partie
 du comportement par défaut des versions les plus récentes de Jupyter).
-** 1.1 Création ou import d'un notebook
+** Création ou import d'un notebook
 L'environnement Jupyter que nous avons déployé dans le cadre de ce
 MOOC vous permettra d'accéder très simplement à tout fichier (et en
 particulier les notebooks des différents exercices que nous avons
@@ -64,7 +64,7 @@ ceux du MOOC.
   4. Vous pouvez maintenant ouvrir le notebook fraîchement récupéré
      à l'aide du navigateur de fichiers de Jupyter et réexécuter le
      code correspondant.
-** 1.2 Exécuter du code R et du code Python dans le même notebook
+** Exécuter du code R et du code Python dans le même notebook
 C'était impossible avec les premières versions de Jupyter mais c'est
 désormais très facile grâce à la bibliothèque python =rpy2=. Il vous
 faut tout d'abord ouvrir un notebook python.
@@ -91,7 +91,7 @@ python (=rpy2=) maintient une session R, lui passe le code de la cellule
 et récupère le résultat. Jupyter fait alors le nécessaire pour
 l'afficher correctement. Il est également possible d'utiliser =%R= pour
 avoir une seule ligne de R au sein d'une cellule python.
-** 1.3 Autres langages que Python et R
+** Autres langages que Python et R
 Jupyter tire son nom des langages Julia, Python, et R. Il ne se limite
 donc pas aux langages Python et R. De nombreux autres langages de
 programmation sont disponibles:
@@ -119,7 +119,7 @@ objectif de recherche reproductible mais il faut aussi savoir ne pas
 SAS, l'utilisation de la programmation lettrée de Jupyter et d'un
 contrôle de version (avec gitlab) et d'environnement (avec docker par
 exemple) se révélera très certainement précieux.
-* 2 Installation et configuration de Jupyter sur votre ordinateur
+* Installation et configuration de Jupyter sur votre ordinateur
 Dans cette section, nous expliquons comment installer, sur votre
 ordinateur, un environnement Jupyter similaire à celui que nous avons
 déployé pour ce MOOC.
@@ -132,7 +132,7 @@ avons manqué de temps pour bénéficier de tout JupyterLab qui était
 toujours en développement actif. À l'heure actuelle, vous pouvez
 cependant avoir intérêt à installer tout JupyterLab sur votre ordinateur.
 
-** 2.1 Installation de Jupyter
+** Installation de Jupyter
 Ces instructions permettent d'obtenir sur votre ordinateur un
 environnement Jupyter similaire à celui que nous avons déployé dans le
 cadre du MOOC.
@@ -159,7 +159,7 @@ source activate mooc_rr
 # Linux, MacOS and Windows: launch the notebook
 jupyter notebook
 #+end_src
-** 2.2 S'assurer que Jupyter vous permet d'utiliser R
+** S'assurer que Jupyter vous permet d'utiliser R
 Si vous avez installé l'environnement de la façon décrite dans la
 section précédente, vous devriez déjà avoir R à votre disposition et
 vous n'avez donc rien à faire. Mais si vous avez procédé différemment
@@ -214,7 +214,7 @@ Installez également =tzlocal=:
 #+begin_src shell :results output :exports both
 python -m pip install tzlocal
 #+end_src
-** 2.3 Conseils additionnels
+** Conseils additionnels
 *** • Exporter un notebook
 Jupyter évolue rapidement et ces informations peuvent vite devenir
 obsolète mais voici ce qu'il peut être utile d'installer sur une

@@ -6,13 +6,13 @@
 #+PROPERTY: header-args :eval never-export
 
 * Table des matières                                                    :TOC:
-- [[#1-quelques-exemples-de-cahiers-de-notes-ou-de-laboratoires-pouvant-servir-de-source-dinspiration][1. Quelques exemples de cahiers de notes ou de laboratoires pouvant servir de source d'inspiration]]
-- [[#2-comment-rendre-compte-de-son-activité-efficacement][2. Comment rendre compte de son activité efficacement]]
+- [[#quelques-exemples-de-cahiers-de-notes-ou-de-laboratoires-pouvant-servir-de-source-dinspiration][Quelques exemples de cahiers de notes ou de laboratoires pouvant servir de source d'inspiration]]
+- [[#rendre-compte-de-son-activité-efficacement][Rendre compte de son activité efficacement]]
   - [[#le-reporting][Le Reporting]]
   - [[#logistique][Logistique]]
   - [[#organisation-dun-compte-rendu-dactivité][Organisation d'un compte rendu d'activité]]
 
-* 1. Quelques exemples de cahiers de notes ou de laboratoires pouvant servir de source d'inspiration
+* Quelques exemples de cahiers de notes ou de laboratoires pouvant servir de source d'inspiration
 Depuis plusieurs années, nous demandons systématiquement à tout
 étudiant travaillant avec nous tenir à jour un cahier de laboratoire,
 généralement en org-mode. La plupart du temps, ces documents
@@ -50,7 +50,7 @@ Org-mode n'est évidemment pas la seule option et il est courant que
 nos étudiants et collègues utilisent un mélange d'org-mode, rstudio et
 de jupyter selon ce qui est le plus adapté à leurs besoins du moment.
 
-* 2. Comment rendre compte de son activité efficacement
+* Rendre compte de son activité efficacement
 Mon ami Martin a réalisé [[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][une excellente collection d'informations et de références sur sa page web pour expliquer à ses étudiants ce qu'il attends d'eux]]. *Je vais donc tout simplement le paraphraser dans cette
 section* en rappelant les éléments qui me semblent essentiels (mais je
 vous invite à lire [[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][l'original]]).
