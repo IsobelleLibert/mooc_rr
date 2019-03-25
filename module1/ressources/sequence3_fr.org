@@ -21,7 +21,7 @@
 * Fichier texte et éditeur de texte
 Une définition plus technique (et moins circulaire !) du fichier texte se trouve sur [[https://fr.wikipedia.org/wiki/Fichier_texte][la page wikipédia]] consacrée au sujet. Pour plus de détails sur les éditeurs de texte, voir aussi la [[https://fr.wikipedia.org/wiki/%C3%89diteur_de_texte][page wikipédia correspondante]]. 
 
-Un logiciel de « [[https://fr.wikipedia.org/wiki/Traitement_de_texte][traitement de texte]] » est plus sophistiqué qu'un simple éditeur de texte ; il permet de faire plus, ce qui sous entend qu'il peut aussi ouvrir et manipuler des fichiers textes.
+Un logiciel de « [[https://fr.wikipedia.org/wiki/Traitement_de_texte][traitement de texte]] » est plus sophistiqué qu'un simple éditeur de texte ; il permet de faire plus, ce qui sous entend qu'il peut aussi ouvrir et manipuler des fichiers textes. Par « faire plus », nous entendons ici travailler sur la mise en page du document final. Mais certains éditeurs de texte comme [[https://fr.wikipedia.org/wiki/Emacs][Emacs]] ou [[https://fr.wikipedia.org/wiki/Vim][Vim]] proposent des fonctionnalités – aide à la programmation, interaction avec les autres logiciels installés sur la machine, etc. – qui font de ces outils de véritables « couteaux suisses » et qui permettent de passer des journées et des semaines sans avoir besoin d’un traitement de texte.
 
 *Attention* : le format « natif » des traitements de texte est rarement un format texte. Les fichiers =doc= et =docx= de =Word= et =odt= de =LibreOffice= /ne sont pas des fichiers textes/.
 
@@ -57,3 +57,7 @@ Pour ceux qui doivent souvent utiliser des lettres grecs (par exemple pour écri
 #+END_EXAMPLE
 
 J'ai en plus redéfini la « <Multi_key> » pour qu'elle corresponde à la touche « impression d'écran » de mon clavier. Pour apprendre à redéfinir des touches, consultez : [[https://wiki.archlinux.org/index.php/Keyboard_configuration_in_Xorg#Configuring_compose_key]].
+
+* À propos de TinyTex
+
+Yihui Xie, auteur du remarquable package R "bookdown", a mis au point une version allégée de LaTeX, TinyTex ("[[https://yihui.name/tinytex/][A lightweight, cross-platform, portable, and easy-to-maintain LaTeX distribution based on TeX Live]]").
