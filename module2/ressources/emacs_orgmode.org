@@ -317,16 +317,20 @@ amount of shortcuts. Many people have thus come up with
 cheat-sheats. Here is a selection in case it helps:
 *** Emacs
 - [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org][Common and step-by-step Emacs shortcuts for our /reproducible research/ configuration]]
-- [[https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf][The official GNU emacs refcard]]
+- [[https://www.gnu.org/software/emacs/refcards/pdf/refcard.pdf][The official GNU emacs refcard]] 
+  # French version: https://www.gnu.org/software/emacs/refcards/pdf/fr-refcard.pdf
 - Two graphical cheat-sheats by Sacha Chua on [[http://sachachua.com/blog/wp-content/uploads/2013/05/How-to-Learn-Emacs-v2-Large.png][how to learn Emacs]] and on
   [[http://sachachua.com/blog/wp-content/uploads/2013/08/20130830-Emacs-Newbie-How-to-Learn-Emacs-Keyboard-Shortcuts.png][how to learn Emacs shortcuts]].
 *** Org-mode
 - [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org][Common and step-by-step org-mode shortcuts for our /reproducible research/ configuration]]
-- [[https://orgmode.org/worg/orgcard.html][The official org-mode refcard]]
+- [[https://orgmode.org/worg/orgcard.html][The official org-mode refcard]] ([[https://www.gnu.org/software/emacs/refcards/pdf/orgcard.pdf][in pdf]]).
 - [[https://orgmode.org/worg/dev/org-syntax.html][The official description of the org-mode syntax]] and a [[https://gist.github.com/hoeltgman/3825415][relatively concise description of the org-mode syntax]].
 ** Video tutorials
 For those of you who prefer video explanations, here is a [[https://www.youtube.com/playlist?list=PL9KxKa8NpFxIcNQa9js7dQQIHc81b0-Xg][Youtube
 channel with many step by step emacs tutorials]].
+
+For general information about a number of packages you could also
+check the [[https://cestlaz.github.io/stories/emacs/][Using Emacs]], series of blogposts / videos.
 ** Additional useful emacs packages
 *** Company-mode
 [[http://company-mode.github.io/][Company-mode]] is a text completion framework for Emacs. It allows to
@@ -346,4 +350,10 @@ previous "/reproducible research/" emacs configuration, you can easily
 invoke magit by using ~C-x g~.
 ** Other resources
 - [[https://orgmode.org/orgguide.pdf][The compact Org-mode Guide]]
-- [[https://github.com/dfeich/org-babel-examples][Many examples illustrating the use of different languages in org-mode]]
+- A huge ressource of emacs/org-mode magic is Bernt Hansen's «[[http://doc.norang.ca/org-mode.html][Organize
+  your life in plain text]]», whose source is obviously itself an
+  [[http://doc.norang.ca/org-mode.org][org-mode document]].
+- [[https://github.com/dfeich/org-babel-examples][Many examples illustrating the use of different languages in
+  org-mode]]
+
+
