@@ -13,8 +13,16 @@
 #+CREATOR: Emacs 26.1 (Org mode 9.1.9)
 #+STARTUP: indent
 
-* Notes et références sur la séquence 2 : « Un aperçu historique de la prise de notes »
-** Références générales
+* Table des matières                                           :TOC:
+- [[#références-générales][Références générales]]
+- [[#sur-les-tablettes-de-cires][Sur les tablettes de cires]]
+- [[#sur-le-passage-du-rouleau-volumen-au-codex][Sur le passage du rouleau (/volumen/) au codex]]
+- [[#sur-eusèbe-de-césarée][Sur Eusèbe de Césarée]]
+- [[#parallèle-chinois][Parallèle chinois]]
+- [[#retour-sur-larmoire-à-notes][Retour sur l'armoire à notes]]
+- [[#lindex-et-john-locke][L'index et John Locke]]
+
+* Références générales
 En plus des deux livres déjà cités (en séquence 1) :
 - « LA PAGE. DE L'ANTIQUITÉ À L'ÈRE DU NUMÉRIQUE » d'Anthony Grafton (Hazan, 2012) ;
 - « [[https://yalebooks.yale.edu/book/9780300165395/too-much-know][TOO MUCH TO KNOW. Managing Scholarly Information before the Modern Age]] », d'Ann Blair publié chez /Yale University Press/ en 2011 ;
@@ -25,10 +33,9 @@ j'ai utilisé :
 - le catalogue de l'exposition de la BNF « Tous les savoirs du monde : Encyclopédies et bibliothèques de Sumer au XXIème siècle » ;
 - « [[http://litmedmod.ca/sites/default/files/pdf/vandendorpe-papyrusenligne_lr.pdf][Du papyrus à l'hypertexte]] » de Christian Vandendorpe (La Découverte, 1999).
 
-
-** Sur les tablettes de cires
+* Sur les tablettes de cires
 Voir le site de Jacques Poitou (d'où les illustrations sont empruntées) et le livre de Frédéric Barbier, « L'histoire du livre ».
-** Sur le passage du rouleau (/volumen/) au codex
+* Sur le passage du rouleau (/volumen/) au codex
 Voir le livre de Frédéric Barbier, celui d'Anthony Grafton.
 
 Le /volumen/ est un livre à base de feuilles de papyrus collées les unes aux autres et qui s'enroule sur lui-même. Il a été créé en Égypte vers 3000 av. J.-C. Le texte est rédigé en colonnes parallèles assez étroites. C'est le support du texte par excellence durant les trente siècles précédant notre ère, d'abord en Égypte, puis dans tout le monde méditerranéen. 
@@ -51,20 +58,20 @@ Au fil des siècles, le codex — qu'on désigne le plus souvent comme un manusc
 
 Un point intéressant : le contenu de la Thora est « fixé » avant l'apparition du codex et, aujourd'hui encore, la Thora est écrite sur des /volumen/ (dans les synagogues au moins). La religion chrétienne se développe en même temps que le codex, adopte ce support et le répand ; elle ne donnera jamais au /volumen/ un statut « supérieur », pas plus que ne le fera la religion musulmane.
 
-** Sur Eusèbe de Césarée
+* Sur Eusèbe de Césarée
 Pour en savoir plus sur [[https://fr.wikipedia.org/wiki/Eus%C3%A8be_de_C%C3%A9sar%C3%A9e][Eusèbe de Césarée]], consultez le passionnant deuxième chapitre du livre d'Anthony Grafton.
-** Parallèle chinois
+* Parallèle chinois
 Comme je le dis, mon inculture fait que je ne rends pas justice aux contributions chinoises, musulmanes, précolombienne, etc. J'essaierai de combler cette énorme lacune pour les seconde version du CLOM...
 
 Ce que je dis sur le passage du volumen au codex accompagné d'un développement des « outils de navigation » (index, table des matières, etc)  en Chine lors du développement de leishus vient du bouquin d'Ann Blair (p. 31) qui cite un article de Susan Cherniack, « Book Culture and Textual Transmission in Sung China », /Harvard Journal of Asiatic Studies/ Vol. 54, No. 1 (Jun., 1994), pp. 5-125.
-** Retour sur l'armoire à notes
+* Retour sur l'armoire à notes
 Nous revenons sur le « bout de papier » ou la fiche comme support de note. L'inconvénient est que le bout de papier ou la fiche se perdent facilement et ne servent à rien s'ils ne sont pas *classés* en plus d'être rangés. Problème résolu par l'armoire de Placcius. D'une certaine façon, sa conception fait qu'on accède à son contenu par l'index.
 
 L'avantage est que les notes peuvent être réorganisées si elles contiennent des information sur plusieurs sujets. Elle peuvent aussi être directement collées dans un livre lors de la composition d'un florilège ou d'un ouvrage de synthèse. 
 
 Ce dernier procédé était très couramment employé par les humanistes et les érudit de la renaissance et du début de la période moderne. [[https://fr.wikipedia.org/wiki/Conrad_Gessner][Conrad Gessner]] (1516-1565) était un champion de cette technique ; il obtenait même parfois ses fiches en découpant les pages des livres. Encore une fois, ne faites pas cela avec les livres de bibliothèques !
 
-** L'index et John Locke  
+* L'index et John Locke  
 
 Sur l'origine de l'index, on pourra lire l'article de Jean Berger : [[https://www.theindexer.org/files/25-2-berger.pdf][Indexation, Memoire, pouvoir et representations au seuil du XIIe siecle : La redecouverte des feuillets de tables du Liber De Honoribus, premier cartulaire de la collegiale Saint-Julien de Brioude]], /The Indexer/.
 

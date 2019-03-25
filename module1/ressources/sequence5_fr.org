@@ -13,8 +13,21 @@
 #+CREATOR: Emacs 26.1 (Org mode 9.1.9)
 #+STARTUP: indent
 
-* Notes et références sur la séquence 5 : « Les étiquettes et les logiciels d'indexation pour s'y retrouver »
-** La structure de la séquence 
+* Table des matières                                           :TOC:
+- [[#la-structure-de-la-séquence][La structure de la séquence]]
+- [[#la-citation-de-leibniz][La citation de Leibniz]]
+- [[#rechercher-avec-un-éditeur-de-texte][Rechercher avec un éditeur de texte]]
+- [[#recherche-avec-index-construit-à-la-main-sur-des-cahiers-de-notes][Recherche avec index construit « à la main » sur des cahiers de notes]]
+- [[#recherche-avec-index-matérialisés][Recherche avec index « matérialisés »]]
+- [[#vers-les-outils-sophistiqués-de-linformatique][Vers les outils « sophistiqués » de l'informatique]]
+- [[#les-moteurs-de-recherche-de-bureau][Les moteurs de recherche de bureau]]
+- [[#pourquoi-des-étiquettes][Pourquoi des étiquettes]]
+- [[#les-métadonnées][Les métadonnées]]
+  - [[#fichiers-images][Fichiers images]]
+  - [[#fichiers-pdf][Fichiers =PDF=]]
+  - [[#fichiers-audios][Fichiers audios]]
+
+* La structure de la séquence 
 
 Nous revenons ici sur le problème de l'indexation, pas tant sur l'indexation d'un document unique que sur l'indexation de documents multiples dans des formats divers :
 - comme nous l'avons déjà affirmé, prendre des notes abondantes et détaillées n'est utile que si nous pouvons retrouver les informations qu'elles contiennent quand nous en avons besoin ;
@@ -24,7 +37,7 @@ Nous revenons ici sur le problème de l'indexation, pas tant sur l'indexation d'
 - mais nous voulons ici aller plus loin, dans le cadre restreint des « notes » numérisées, en discutant de l'indexation de fichiers multiples qu'ils soient au format « texte » où dans d'autres format comme les images =jpg= où les fichier =pdf= ;
 - cela nous amménera à introduire les « moteurs de recherche de bureau » et à expliquer comment des =étiquettes= ou =mots-clés= peuvent être ajoutés à nos fichiers.
 
-** La citation de Leibniz
+* La citation de Leibniz
 J'ai trouvé la citation introductive :
 
 « Il me semble que l'apparat savant contemporain est comparable à un grand magasin qui contient une grande quantité de produits, stockés de façon totalement désordonnée, mélangée ; où les nombres ou lettres d'indexation manquent ; où les inventaires et livres de comptes pouvant aider à ordonner le contenu ont disparus.
@@ -35,28 +48,28 @@ sur le site [[http://www.backwordsindexing.com/index.html]], c'est donc une trad
  
 Leibniz a, pendant une bonne partie de sa vie, « gagné celle-ci » comme [[https://www.reseau-canope.fr/savoirscdi/societe-de-linformation/le-monde-du-livre-et-des-medias/histoire-du-livre-et-de-la-documentation/biographies/leibniz-le-bibliothecaire.html][bibliothécaire]], ce qui explique en partie sont intérêt très poussé pour les questions de classifications, d'indexations, etc.
 
-** Rechercher avec un éditeur de texte
+* Rechercher avec un éditeur de texte
 
 La diapo correspondante rappelle juste au lecteur quelque chose qu'il sait déjà et qui est vue, par les gens qui passent des notes « papier » aux notes « numériques », comme le gros attrait du numérique.
 
 Les gens de monde Unix/Linux connaissent aussi généralement le programme [[https://fr.wikipedia.org/wiki/Grep][grep]] qui permet de faire des recherches de mots et, plus généralement d'[[https://fr.wikipedia.org/wiki/Expression_r%C3%A9guli%C3%A8re][expressions régulières]], sur un ou /plusieurs/ fichiers ; nous y reviendrons.
 
-** Recherche avec index construit « à la main » sur des cahiers de notes  
+* Recherche avec index construit « à la main » sur des cahiers de notes  
 
 Là encore, il s'agit juste d'un rappel pour les lecteurs assidus de ce cours ; à ce stade se sont des experts dans la méthode d'indexation de Locke.
 
-** Recherche avec index « matérialisés »
+* Recherche avec index « matérialisés »
 
 Encore un rappel pour les lecteurs.
 
-** Vers les outils « sophistiqués » de l'informatique
+* Vers les outils « sophistiqués » de l'informatique
 
 - les techniques que nous venons de voir ou revoir ne fonctionnent que pour un seul « document » — recherche avec l'éditeur de texte, index d'un cahier — et/ou pour un seul type de document ;
 - les outils informatiques dont nous disposons nous permettent d'aller plus loin dans l'indexation des fichiers numériques ;
 - il est possible de rajouter des étiquettes ou mots-clés à des fichiers textes comme à des fichiers images (`jpg`, `png`) ou des fichiers « mixtes » (`pdf`) grâce aux métadonnées qu'ils contiennent ;
 - les moteurs de recherche de bureau permettent d'indexer l'ensemble des fichiers textes d'une arborescence donnée mais aussi les métadonnées des autres fichiers.
 
-** Les moteurs de recherche de bureau
+* Les moteurs de recherche de bureau
 
 Les moteurs de recherche de bureau comme :
 - [[http://docfetcher.sourceforge.net/fr/index.html][DocFetcher]] (Linux, MacOS, Windows) ;
@@ -85,8 +98,7 @@ grep -r Galilée
 
 Une version plus sophistiquée de =grep= est fournie par le programme [[http://uzix.org/cgvg.html][cgvg]].
 
-
-** Pourquoi des étiquettes
+* Pourquoi des étiquettes
 
 Une requête basée sur un simple mot renvoie souvent un très grand nombre de propositions, même si la plupart des moteurs de recherche de bureau permettent de filtrer ces dernières. Une façon efficace de limiter leur nombre est d'inclure dans nos documents des étiquettes, c'est-à-dire des points d'ancrage labelisés, qui seront aisément indexés par le moteur de recherche de bureau et dont le label ne correspond à aucun mot ou locution du dictionnaire — nous effectuons ainsi une version simplifiée du travail de l'/indexeur/, la personne chargée de construire l'index d'un livre. Pour que l'étiquette garde un sens, il suffit d'encadrer un mot par une paire de signes de ponctuation comme « : », « ; » ou « ? ». Un label comme « :code: » sera facilement mémorisé et fera un parfait équivalent du mot-clé « code » utilisé dans l'exemple du cahier de note de la deuxième séquence de ce module — pour illustrer la méthode de Locke. 
 
@@ -98,15 +110,14 @@ Il nous reste encore nous reste encore un détail technique à régler dans le c
 
 à l'endroit de nos notes où nous souhaitons aller rapidement lorsque que nous cherchons une information relative à de la programmation (production de codes). 
 
-** Les métadonnées 
-
-*** Fichiers images
+* Les métadonnées 
+** Fichiers images
 Nous savons à présent comment rajouter des étiquettes à un fichier au format texte, mais nous devons souvent aussi travailler avec des fichiers contenant des images ou des photos, comme les fichiers [[https://fr.wikipedia.org/wiki/JPEG][JPEG]] — les appareils photos numériques utilisent tous ce format —,  [[https://fr.wikipedia.org/wiki/Graphics_Interchange_Format][GIF]] ou [[https://fr.wikipedia.org/wiki/Portable_Network_Graphics][PNG]]. La question se pose alors, peut-on ajouter des étiquettes à nos fichiers images de sorte que nos moteurs de recherche de bureau les indexent ? La réponse et oui, grâce aux [[https://fr.wikipedia.org/wiki/M%C3%A9tadonn%C3%A9e][métadonnées]] que contiennent ces fichiers. Les métadonnées, dans ce cas, sont des données stockées dans le fichier mais qui ne sont pas montrées par le logiciel de rendu (en tout cas, pas montrées par défaut). Nous savons tous que ces métadonnées « existent » ; ce sont elles qui contiennent la date, la localisation GPS, le temps d'exposition, etc. de nos photos numériques. Dans les fichiers =JPEG=, elles sont stockées suivant l'[[https://fr.wikipedia.org/wiki/Exchangeable_image_file_format][exchangeable image file format]] (=EXIF=). La plupart des logiciels de manipulations d'images et de photos permettent d'accéder au contenu des métadonnées et de les modifier. L'exemple illustré dans le cours utilise une solution très simple en « ligne de commande », [[http://owl.phy.queensu.ca/~phil/exiftool/][ExifTool]] qui permet de visualiser et de modifier les métadonnées. D'autres logiciels comme [[http://www.exiv2.org/index.html][exiv2]] ou [[https://imagemagick.org/script/index.php][ImageMagick]] permettent de le faire (pour ne citer que des logiciels libres disponibles sur Linux, Windows et MacOS). Certains des éléments du format =EXIF= sont des chaînes de caractères, c'est-à-dire du texte, que nous somme libres d'utiliser comme nous le souhaitons ; nous pouvons dès lors les utiliser pour rajouter nos étiquettes. Nous illustrons dans le cours comment le faire avec =ExifTool=, mais nous aurions aussi pu le faire avec le programme [[https://www.imagemagick.org/script/command-line-options.php#comment][mogrify]] d'ImageMagick. Tous les moteurs de recherche de bureau que nous avons mentionné vont « aller regarder » les métadonnées des fichier =JPEG= lors de la phase d'indexation et nous permettront ainsi d'exploiter les étiquettes que nous y aurons insérées.
 
 =EXIF= n'est pas le seul format de métadonnées existant ; un format plus récent est l'[[https://fr.wikipedia.org/wiki/Extensible_Metadata_Platform][Extensible Metadata Platform ]](=XMP=), disponible pour un plus grand nombre de formats de fichiers — il n'est pour l'instant pas lu sur les fichiers =JPEG= par =DocFetcher=, c'est pourquoi nous avons mis en avant le format =EXIF=, mais cela devrait évoluer assez vite ; les autres moteurs comme =Tracker= et =Recoll= le lisent.
 
-*** Fichiers =PDF=
+** Fichiers =PDF=
 En plus des fichiers images, nous sommes tous très fréquemment amenés à travailler avec les fichiers « composites » — contenant textes, images, et plus — que sont les fichiers [[https://fr.wikipedia.org/wiki/Portable_Document_Format][PDF]]. Ces fichiers contiennent eux aussi des métadonnées ; c'est d'ailleurs pour eux qu'Adobe a initialement introduit le format =XMP= que nous venons de discuter. Ces métadonnées peuvent être lues et modifiées, en particulier l'élément =Keywords= (mot-clé) qui peut contenir des chaînes de caractères de longueur arbitraires et qui est parfait pour accueillir nos étiquettes. Le programme =ExifTool=, permet de modifier les métadonnées des fichiers =PDF=. Les moteurs de recherche de bureau que nous avons mentionnés, vont tous aller lire les métadonnées des fichiers =PDF= lors de la phase d'indexation.
 
-*** Fichiers audios  
+** Fichiers audios  
 Les formats audio comme le [[https://fr.wikipedia.org/wiki/MPEG-1/2_Audio_Layer_III][mp3]] ou le [[https://fr.wikipedia.org/wiki/Ogg][ogg]] contiennent eux aussi des métadonnées, où sont stockés les titres, noms des interprètes, etc ; ces métadonnées peuvent être modifiées et sont lues par les moteurs de recherche de bureau lors de la phase d'indexation. 

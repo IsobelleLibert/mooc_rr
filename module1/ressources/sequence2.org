@@ -13,6 +13,17 @@
 #+CREATOR: Emacs 26.1 (Org mode 9.1.9)
 
 
+* Table of contents                                            :TOC:
+- [[#illustrations-used-in-the-first-figure][Illustrations used in the first figure]]
+- [[#wax-tablet-and-stylus][Wax tablet and stylus]]
+  - [[#from-the-scroll-to-the-codex][From the /scroll/ to the /codex/]]
+- [[#codex-significance][/Codex/ significance]]
+- [[#eusebius-and-the-invention-of-cross-references][Eusebius and the invention of cross-references]]
+  - [[#eusebian-canons][Eusebian canons]]
+- [[#let-us-not-forget-china][Let us not forget China]]
+- [[#getting-organized-by-using-the-right-slot][Getting organized by using the right slot]]
+- [[#constructing-a-notebook-index-the-john-locke-way][Constructing a notebook index the John Locke way]]
+
 * Illustrations used in the first figure
 
 All illustrations are taken from Wikimedia Commons
@@ -39,58 +50,42 @@ The entire tablet could be erased for reuse by warming it to about 50 °C and sm
 "a clean slate" equates to the Latin expression "tabula rasa".
 #+END_QUOTE 
 
-* From the /scroll/ to the /codex/
+** From the /scroll/ to the /codex/
 
-The shift from the /scroll/ to the /codex/ is fundamental for development of written civilization.
+ The shift from the /scroll/ to the /codex/ is fundamental for development of written civilization.
 
-A scroll (from the Old French escroe or escroue), is a roll of papyrus, [[https://en.wikipedia.org/wiki/Parchment][parchment]], or paper containing writing.
+ A scroll (from the Old French escroe or escroue), is a roll of papyrus, [[https://en.wikipedia.org/wiki/Parchment][parchment]], or paper containing writing.
 
-From [[https://en.wikipedia.org/wiki/History_of_scrolls#Replacement_by_the_Codex][Wikipedia]]:
+ From [[https://en.wikipedia.org/wiki/History_of_scrolls#Replacement_by_the_Codex][Wikipedia]]:
 
-#+BEGIN_QUOTE
-The codex was a new format for reading the written word, consisting of individual pages loosely attached to each other at one 
-side and bound with boards or cloth. It came to replace the scroll thanks to several problems that limited the scroll's function 
-and readability. For one, scrolls were very long, sometimes as long as ten meters. This made them hard to hold open and read, a 
-difficulty not helped by the fact that most scrolls in that era were read horizontally, instead of vertically as scrolling virtual 
-documents are read now. The text on a scroll was continuous, without page breaks, which made indexing and bookmarking impossible. 
-Conversely, the codex was easier to hold open, separate pages made it possible to index sections and mark a page, and the protective 
-covers kept the fragile pages intact better than scrolls generally stayed. This last made it particularly attractive for important 
-religious texts.
-#+END_QUOTE
+ #+BEGIN_QUOTE
+ The codex was a new format for reading the written word, consisting of individual pages loosely attached to each other at one 
+ side and bound with boards or cloth. It came to replace the scroll thanks to several problems that limited the scroll's function 
+ and readability. For one, scrolls were very long, sometimes as long as ten meters. This made them hard to hold open and read, a 
+ difficulty not helped by the fact that most scrolls in that era were read horizontally, instead of vertically as scrolling virtual 
+ documents are read now. The text on a scroll was continuous, without page breaks, which made indexing and bookmarking impossible. 
+ Conversely, the codex was easier to hold open, separate pages made it possible to index sections and mark a page, and the protective 
+ covers kept the fragile pages intact better than scrolls generally stayed. This last made it particularly attractive for important 
+ religious texts.
+ #+END_QUOTE
 
-The bottom left mosaic shows Virgil seating (70-19 BCE) holding a scroll of the /Aeneid/, with Clio, muse of history, also holding a scroll.
+ The bottom left mosaic shows Virgil seating (70-19 BCE) holding a scroll of the /Aeneid/, with Clio, muse of history, also holding a scroll.
 
-As explained by Frédéric Barbier (/Histoire du Livre/): "The scroll / volumen imposes a complex reading practice: one must unroll (/explicare/) and roll at the same time; that forbids working on several scrolls (the original text and its commentary) at the same time or to take notes. It imposes a continuous reading and making consultation impossible."
+ As explained by Frédéric Barbier (/Histoire du Livre/): "The scroll / volumen imposes a complex reading practice: one must unroll (/explicare/) and roll at the same time; that forbids working on several scrolls (the original text and its commentary) at the same time or to take notes. It imposes a continuous reading and making consultation impossible."
 
-Scrolls are clearly unsuited to "nomadic reading"; can you imagine Ulysses embarking for his Odyssey carrying the 24 scrolls/volumen of the Iliad?
+ Scrolls are clearly unsuited to "nomadic reading"; can you imagine Ulysses embarking for his Odyssey carrying the 24 scrolls/volumen of the Iliad?
 
-The term /volumen/ is the origin of our modern /volumes/ (a book in several volumes) as of the word for the geometrical concept.
+ The term /volumen/ is the origin of our modern /volumes/ (a book in several volumes) as of the word for the geometrical concept.
 
-Switching from scroll to codices required two innovations:
-- The collection of wax tablets bound together with leather strands.
-- The generalization of [[https://en.wikipedia.org/wiki/Parchment][parchment]] (usually sheep skin specially processed) as a replacement for [[https://en.wikipedia.org/wiki/Papyrus][papyrus]]. This generalization could be due (according to Pliny the Elder) to a rivalry between the cities of Pergamon and Alexandria for cultural hegemony: [[https://en.wikipedia.org/wiki/Ptolemy_V_Epiphanes][Ptolemy V Epiphanes]] King of Egypt wanted to block [[https://en.wikipedia.org/wiki/Eumenes_II][Eumenes II]] from developing in Pergamon a library that could compete with the one of Alexandria; he therefore imposed an embargo on papyrus export (Egypt was the sole papyrus producer). Eumenes looked for an alternative and fostered parchment development. The link between Pergamon and parchment is much clearer in German where Pergamon is written in the way as in English but where parchment is written /Pergament/.
+ Switching from scroll to codices required two innovations:
+ - The collection of wax tablets bound together with leather strands.
+ - The generalization of [[https://en.wikipedia.org/wiki/Parchment][parchment]] (usually sheep skin specially processed) as a replacement for [[https://en.wikipedia.org/wiki/Papyrus][papyrus]]. This generalization could be due (according to Pliny the Elder) to a rivalry between the cities of Pergamon and Alexandria for cultural hegemony: [[https://en.wikipedia.org/wiki/Ptolemy_V_Epiphanes][Ptolemy V Epiphanes]] King of Egypt wanted to block [[https://en.wikipedia.org/wiki/Eumenes_II][Eumenes II]] from developing in Pergamon a library that could compete with the one of Alexandria; he therefore imposed an embargo on papyrus export (Egypt was the sole papyrus producer). Eumenes looked for an alternative and fostered parchment development. The link between Pergamon and parchment is much clearer in German where Pergamon is written in the way as in English but where parchment is written /Pergament/.
 
-Switching from scrolls to codices will have major consequences on books organization as well as on the reading practices, it will later on allow printing development.
+ Switching from scrolls to codices will have major consequences on books organization as well as on the reading practices, it will later on allow printing development.
 
-The main revolution brought by the codex is the /page/. Thanks to this structural element, the reader can access directly to a specific chapter or a specific part of the text, while scrolls imposed continuous reading *at a time when there were no blanks between words*. According to Collette Sirat: "Twenty centuries will be necessary to realize the paramount importance of the codex for our civilization through the *selective reading* it made possible as opposed to the continuous reading. It opened room for the elaboration of mental structures where the text is dissociated from the speech and its rhythm."
+ The main revolution brought by the codex is the /page/. Thanks to this structural element, the reader can access directly to a specific chapter or a specific part of the text, while scrolls imposed continuous reading *at a time when there were no blanks between words*. According to Collette Sirat: "Twenty centuries will be necessary to realize the paramount importance of the codex for our civilization through the *selective reading* it made possible as opposed to the continuous reading. It opened room for the elaboration of mental structures where the text is dissociated from the speech and its rhythm."
 
-Notice the red letters used on the codex (bottom right), an example of [[https://en.wikipedia.org/wiki/Rubrication][rubrication]] used by scribes to mark paragraphs. With printing and the high cost of colors it entailed, an empty space started to be used to that end. Thinking about it, colors don't cost anything on a numerical support and could perfectly be used again in the same way.  
-
-* Eusebius and the invention of cross-references
-
-From the Wikipedia page on [[https://en.wikipedia.org/wiki/Eusebius][Eusebius]]:
-#+BEGIN_QUOTE
-Eusebius of Caesarea (ad 260/265 – 339/340), also known as Eusebius Pamphili, was a historian of Christianity, exegete, and Christian polemicist. He became the bishop of Caesarea Maritima about 314 AD. Together with Pamphilus, he was a scholar of the Biblical canon and is regarded as an extremely learned Christian of his time. He wrote Demonstrations of the Gospel, Preparations for the Gospel, and On Discrepancies between the Gospels, studies of the Biblical text.
-#+END_QUOTE
-
-According to Anthony Grafton and Megan Williams (2006) /Christianity and the Transformation of the Book/, The Belknap Press of Harvard University Press, his writings are crucial for our knowledge of the first three centuries of Christian history. /He brought several essential innovations to the book's organization like the cross-references/.
-
-* Eusebian canons
-
-Quote from [[https://en.wikipedia.org/wiki/Eusebius#Biblical_text_criticism][Wikipedia]]:
-#+BEGIN_QUOTE
-For an easier survey of the material of the four Evangelists, Eusebius divided his edition of the New Testament into paragraphs and provided it with a synoptical table so that it might be easier to find the pericopes that belong together. These canon tables or "Eusebian canons" remained in use throughout the Middle Ages, and illuminated manuscript versions are important for the study of early medieval art, as they are the most elaborately decorated pages of many Gospel books.
-#+END_QUOTE
+ Notice the red letters used on the codex (bottom right), an example of [[https://en.wikipedia.org/wiki/Rubrication][rubrication]] used by scribes to mark paragraphs. With printing and the high cost of colors it entailed, an empty space started to be used to that end. Thinking about it, colors don't cost anything on a numerical support and could perfectly be used again in the same way.  
 
 * /Codex/ significance
 
@@ -113,6 +108,22 @@ Over centuries, /codices/---that we often call /manuscripts/---will slowly evolv
 - index (XIIIth century).
 
 An interesting point: Torah's content got "fixed" before the /codex/ generalization and today Torah scrolls are still used.  
+
+* Eusebius and the invention of cross-references
+
+From the Wikipedia page on [[https://en.wikipedia.org/wiki/Eusebius][Eusebius]]:
+#+BEGIN_QUOTE
+Eusebius of Caesarea (ad 260/265 – 339/340), also known as Eusebius Pamphili, was a historian of Christianity, exegete, and Christian polemicist. He became the bishop of Caesarea Maritima about 314 AD. Together with Pamphilus, he was a scholar of the Biblical canon and is regarded as an extremely learned Christian of his time. He wrote Demonstrations of the Gospel, Preparations for the Gospel, and On Discrepancies between the Gospels, studies of the Biblical text.
+#+END_QUOTE
+
+According to Anthony Grafton and Megan Williams (2006) /Christianity and the Transformation of the Book/, The Belknap Press of Harvard University Press, his writings are crucial for our knowledge of the first three centuries of Christian history. /He brought several essential innovations to the book's organization like the cross-references/.
+
+** Eusebian canons
+
+ Quote from [[https://en.wikipedia.org/wiki/Eusebius#Biblical_text_criticism][Wikipedia]]:
+ #+BEGIN_QUOTE
+ For an easier survey of the material of the four Evangelists, Eusebius divided his edition of the New Testament into paragraphs and provided it with a synoptical table so that it might be easier to find the pericopes that belong together. These canon tables or "Eusebian canons" remained in use throughout the Middle Ages, and illuminated manuscript versions are important for the study of early medieval art, as they are the most elaborately decorated pages of many Gospel books.
+ #+END_QUOTE
 
 * Let us not forget China
 

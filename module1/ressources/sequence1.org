@@ -12,6 +12,14 @@
 #+EXCLUDE_TAGS: noexport
 #+CREATOR: Emacs 26.1 (Org mode 9.1.9)
 
+* Table of contents                                                     :TOC:
+- [[#introduction][Introduction]]
+- [[#annotated-manuscripts][Annotated manuscripts]]
+- [[#note-cabinets-from-placcius-and-leibniz][Note cabinets from Placcius and Leibniz]]
+- [[#on-the-preface-to-penguin-island][On the preface to /Penguin Island/]]
+- [[#the-logbooks][The logbooks]]
+- [[#one-missing-the-classic-laboratory-notebook][One missing: the classic laboratory notebook]]
+
 * Introduction
 
 This sequence discusses a much wider issue than /reproducible research/ (RR). Implementing RR requires thorough note-taking and note-taking concerns everyone. The purpose of this sequence is therefore to remind the reader / auditor that he/she already knows: *note-taking concerns everyone*. Few examples are used to that end. 

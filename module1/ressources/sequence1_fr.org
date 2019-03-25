@@ -13,9 +13,14 @@
 #+CREATOR: Emacs 26.1 (Org mode 9.1.9)
 #+STARTUP: indent
 
-* Notes et références sur la séquence 1 : « Nous utilisons tous des cahiers de notes »
+* Table des matières                                           :TOC:
+- [[#manuscrits-annotés][Manuscrits annotés]]
+- [[#armoires-à-notes-de-placcius-et-leibniz][Armoires à notes de Placcius et Leibniz]]
+- [[#la-préface-de-lîle-des-pingouins-danatole-france][La préface de « L'île des pingouins » d'Anatole France]]
+- [[#les-livres-de-bord][Les livres de bord]]
+- [[#un-absent-le-cahier-de-laboratoire-classique][Un absent : le cahier de laboratoire classique]]
 
-** Manuscrits annotés
+* Manuscrits annotés
 En guise d'entrée dans l'univers des manuscrits annotés, je fais suivre une petite sélection de passages du premier chapitre de « LA PAGE. DE L'ANTIQUITÉ À L'ÈRE DU NUMÉRIQUE » d'Anthony Grafton (Hazan, 2012) :
 
 #+BEGIN_EXAMPLE
@@ -61,11 +66,11 @@ pas rompus à la rhétorique, ont classé ce livre imprimé parmi les manuscrits
 
 Page 40.
 
-** Armoires à notes de Placcius et Leibniz
+* Armoires à notes de Placcius et Leibniz
    J'ai trouvé cet exemple dans les travaux d'[[https://projects.iq.harvard.edu/ablair][Ann Blair]] comme « [[https://dash.harvard.edu/handle/1/4774908][The Rise of Note-Taking in Early Modern Europe]] » et son livre « [[https://yalebooks.yale.edu/book/9780300165395/too-much-know][TOO MUCH TO KNOW. Managing Scholarly Information before the Modern Age]] », publié chez /Yale University Press/ en 2011. 
-** La préface de « L'île des pingouins » d'Anatole France
+* La préface de « L'île des pingouins » d'Anatole France
 Étant très loin de connaître Anatole France sur le bout des doigts, j'ai trouvé la référence citée dans le remarquable article de Keith Thomas publié par la /London Review of Books/, [[https://www.lrb.co.uk/v32/n11/keith-thomas/diary][le 10 juin 2010]]. Cet article (en anglais) décrit et discute le travail concret de prise de notes par un historien, il est de plus très bien écrit et plein d'anecdotes.
-** Les livres de bord
+* Les livres de bord
 Je remercie Joël Caselli de m'avoir aidé à interpréter le contenu du livre de bord d'Éric Tabarly. 
 
 Le projet européen de reconstruction des climats des océans atlantique et indien (et non pacifique comme je le dis dans le cours !) : [[http://webs.ucm.es/info/cliwoc/][/Climatological Database for the World's Oceans 1750-1850/]] ; dispose d'un site internet très intéressant (mais en anglais).
@@ -75,8 +80,7 @@ On trouvera des citations abondantes (et effrayantes) de livres de bord de navir
 
 
 
-
-** Un absent : le cahier de laboratoire classique
+* Un absent : le cahier de laboratoire classique
 
 Je traduis ici la section 6.2 /Notebooks and Records/ du remarquable livre de E. Bright Wilson /An Introduction to Scientific Research/ réimprimé par Dover.
 

@@ -13,20 +13,23 @@
 #+CREATOR: Emacs 26.1 (Org mode 9.1.9)
 #+STARTUP: indent
 
-* Notes et références sur la séquence 3 : « Du fichier texte au langage de balisage léger »
+* Table des matières                                           :TOC:
+- [[#fichier-texte-et-éditeur-de-texte][Fichier texte et éditeur de texte]]
+- [[#le-cas-du-fichier-pdf-ouvert-avec-un-éditeur-de-texte][Le cas du fichier =PDF= ouvert avec un éditeur de texte]]
+- [[#sur-lutf-8][Sur l'UTF-8]]
 
-** Fichier texte et éditeur de texte
+* Fichier texte et éditeur de texte
 Une définition plus technique (et moins circulaire !) du fichier texte se trouve sur [[https://fr.wikipedia.org/wiki/Fichier_texte][la page wikipédia]] consacrée au sujet. Pour plus de détails sur les éditeurs de texte, voir aussi la [[https://fr.wikipedia.org/wiki/%C3%89diteur_de_texte][page wikipédia correspondante]]. 
 
 Un logiciel de « [[https://fr.wikipedia.org/wiki/Traitement_de_texte][traitement de texte]] » est plus sophistiqué qu'un simple éditeur de texte ; il permet de faire plus, ce qui sous entend qu'il peut aussi ouvrir et manipuler des fichiers textes.
 
 *Attention* : le format « natif » des traitements de texte est rarement un format texte. Les fichiers =doc= et =docx= de =Word= et =odt= de =LibreOffice= /ne sont pas des fichiers textes/.
 
-** Le cas du fichier =PDF= ouvert avec un éditeur de texte 
+* Le cas du fichier =PDF= ouvert avec un éditeur de texte 
 
 Dans le cours filmé, j'utilise l'exemple du [[https://en.wikipedia.org/wiki/Portable_Document_Format][PDF]] — je donne l'adresse de la page wikipedia en anglais, bien plus complète que celle en français — ouvert avec un éditeur de texte pour montrer que le fichier ne peut pas être visualisé avec un tel logiciel, il faut un logiciel de rendu dédié comme =Adobe Reader=, =Evince=, =MuPDF=, =Aperçu=,... Vous remarquez néanmoins que le début du fichier contient du texte (la première ligne nous apprend que le fichier utilise la version 1.3 du format =PDF=). Cette partie au format texte du fichier contient les méta-données — qui ne sont pas montrées, en tout cas pas directement, par les logiciels de rendu. Ces méta-données sont (en partie) au format [[https://en.wikipedia.org/wiki/Extensible_Metadata_Platform][XMP]] (/Extensible Metadata Platform/), nous y reviendrons dans la cinquème séquence.
 
-** Sur l'UTF-8
+* Sur l'UTF-8
 
 Une table des symboles UTF-8, avec leur code se trouve à l'adresse : [[http://www.utf8-chartable.de/]]. C'est pratique pour insérer un symbole pas très courant comme la lettre « TLO » : Ꮰ de la langue cherokee, ou le symbole mathématique ∀, « pour tout ».
 
