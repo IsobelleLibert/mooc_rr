@@ -51,9 +51,7 @@ nos étudiants et collègues utilisent un mélange d'org-mode, rstudio et
 de jupyter selon ce qui est le plus adapté à leurs besoins du moment.
 
 * 2. Comment rendre compte de son activité efficacement
-Mon ami Martin a réalisé [[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][une excellente collection d'informations et
-de références sur sa page web pour expliquer à ses étudiants ce qu'il
-attends d'eux]]. *Je vais donc tout simplement le paraphraser dans cette
+Mon ami Martin a réalisé [[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][une excellente collection d'informations et de références sur sa page web pour expliquer à ses étudiants ce qu'il attends d'eux]]. *Je vais donc tout simplement le paraphraser dans cette
 section* en rappelant les éléments qui me semblent essentiels (mais je
 vous invite à lire [[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][l'original]]).
 ** Le Reporting

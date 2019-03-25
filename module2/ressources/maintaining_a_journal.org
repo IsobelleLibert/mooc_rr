@@ -41,9 +41,7 @@ am mixture of org-mode, rstudio and jupyter depending on what is more
 convenient.
 
 * 2. How to report efficiently (by Martin Quinson)
-My friend Martin has gathered [[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][an excellent compendium of information
-and references on his webpage to explain his students what he expects
-from them]]. *I'll therefore simply paraphrase him here* with the most
+My friend Martin has gathered [[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][an excellent compendium of information and references on his webpage to explain his students what he expects from them]]. *I'll therefore simply paraphrase him here* with the most
 important aspects related to reporting but feel free to read [[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][the
 original version]]:
 ** Reporting
