@@ -59,11 +59,13 @@ while(defined(my $line=<INPUT>)) {
 	}
     }
     $line =~ s|<span class="smallcaps">TOC</span>||g;
-    
+
     $line =~ s|---</p>|<hr/>|g;
     # $line =~ s|Date:.*<br|<i>Date: $gitdate</i><br|g;
     # $line =~ s|<p>TITLE:\(.*\)<br|<b>TITLE:$1</b><br|g;
 
+
+    #### Processing links to images, org files, archives, ...
     $line =~ s|img src="http|img src="%|g;
     $line =~ s|img src="([^%][^"]*)"|img src="$raw_path/$1"|g; # ?inline=false
     $line =~ s|img src="%|img src="http|g;
