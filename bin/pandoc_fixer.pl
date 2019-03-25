@@ -80,8 +80,8 @@ while(defined(my $line=<INPUT>)) {
     # }
 
     #### Changing headers
-    foreach($i in (4,3,2,1)) {
-	$j=$i+1;
+    foreach my $i (4,3,2,1) {
+	my($j)=$i+1;
 	$line =~ s|<h$i|<h$j|g;
 	$line =~ s|</h$i|</h$j|g;
     }
