@@ -31,6 +31,7 @@ my($output_temp) = $output."tmp";
 my($input_path)=$input;
 $input_path =~ s|/[^/]*$||g;
 my($raw_path) = "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/raw/master/".$input_path;
+my($raw_path_percent) = $raw_path; $raw_path_percent =~ s/^http/%/g;
 my($tree_path) = "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/tree/master/".$input_path;
 my($gitlab_origin)= "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/";
 
@@ -68,6 +69,7 @@ while(defined(my $line=<INPUT>)) {
     $line =~ s|img src="%|img src="http|g;
 
     $line =~ s|href="http|href="%|g;
+    $line =~ s|href="([^%][^"]*.tgz)"|href="$raw_path_percent/$1"|g; # ?inline=false
     $line =~ s|href="([^%][^"]*)"|href="$tree_path/$1"|g; # ?inline=false
     $line =~ s|href="%|href="http|g;
 

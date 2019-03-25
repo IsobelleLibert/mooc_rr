@@ -181,7 +181,7 @@ export FILE_LIST="rr_org/init.el rr_org/journal.org"
 tar zcf rr_org_archive.tgz $FILE_LIST
 #+end_src
 
-Download [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/rr_org_archive.tgz][this archive]] and uncompress it. It contains the
+Download [[file:rr_org_archive.tgz][this archive]] and uncompress it. It contains the
 following files and we will refer to them in the following:
 
 #+begin_src shell :results output :exports results
@@ -273,7 +273,7 @@ make -C replicable_article/ all ../replicable_article.tgz
 
 #+RESULTS:
 
-Download the following [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/replicable_article.tgz][archive]], uncompress it and simply =make= to generate the
+Download the following [[file:replicable_article.tgz][archive]], uncompress it and simply =make= to generate the
 article. You should then be able to open the [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/replicable_article/article.pdf][resulting article]]. This
 is summarized in the following command:
 #+begin_src sh :results output :exports both
