@@ -177,7 +177,7 @@ their user name.
 ** Step 1: Download our configuration
 
 #+begin_src shell :results output :exports none
-export FILE_LIST="rr_org/init.el rr_org/journal.org"
+export FILE_LIST="rr_org/init.el rr_org/journal.org rr_org/init.org"
 tar zcf rr_org_archive.tgz $FILE_LIST
 #+end_src
 
@@ -191,8 +191,15 @@ tar tzf rr_org_archive.tgz
 #+RESULTS:
 : rr_org/init.el
 : rr_org/journal.org
+: rr_org/init.org
 
-Alternatively, [[file:rr_org/][the files you are looking for are available here]].
+Alternatively, [[file:rr_org/][the files you are looking for are available here]]. As
+you may notice, the configuration (=init.el= in emacs lisp) is hard to
+follow, which is why we manage it through an =init.org=, file, which is
+really nice for readability. This is a trick you may want to adopt
+too (i.e., modify the =init.org= and regenerate the =init.el= by simply
+/tangling/ the file --with =M-x org-babel-tangle=, see instructions in the
+beginning of =init.org=).
 
 If you use Windows, and if you use a desktop shortcut to start Emacs,
 you must include the path to the file =init.el= in the command for the
