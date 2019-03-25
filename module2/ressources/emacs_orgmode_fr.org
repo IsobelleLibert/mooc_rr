@@ -162,7 +162,7 @@ tar zcf rr_org_archive.tgz $FILE_LIST
 
 #+RESULTS:
 
-Then download [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/rr_org_archive.tgz][this archive]] and uncompress it. It contains the
+Then download [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/tree/master/module2/ressources/rr_org_archive.tgz][this archive]] and uncompress it. It contains the
 following files and we will refer to them in the following:
 
 #+begin_src shell :results output :exports results
