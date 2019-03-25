@@ -5,6 +5,7 @@ exported to html with the gitlab pages CI mechanism.
 #+BEGIN_SRC txt :tangle html_src_files.lst
 ./module1/ressources/introduction_to_markdown_fr.org
 ./module1/ressources/introduction_to_markdown.org
+./module1/ressources/sequence0_fr.org
 ./module1/ressources/sequence1_fr.org
 ./module1/ressources/sequence2_fr.org
 ./module1/ressources/sequence3_fr.org

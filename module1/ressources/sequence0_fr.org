@@ -1,0 +1,33 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+#+TITLE: Ressources pour la séquence 0 du module 1 : « Introduction »
+#+DATE: <2019-03-25 jeu.>
+#+AUTHOR: Christophe Pouzat
+#+EMAIL: christophe.pouzat@parisdescartes.fr
+#+LANGUAGE: fr
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 26.1 (Org mode 9.1.9)
+#+STARTUP: indent
+
+* Table des matières                                           :TOC:
+- [[#le-cahier-de-notes][Le « cahier de notes »]]
+- [[#exemples-concrets-de-cahier-de notes][Exemples concrets de « cahier de notes ]]
+
+* Le « cahier de notes »
+Le « cahier de notes » doit être considéré ici « au sens large » ; c’est-à-dire que, suivant le contexte, il sera plus proprement appelé « cahier de terrain », « cahier d’observations », « journal » ou « cahier de laboratoire ». Ce qui nous intéresse ici est la notion de supports (papiers ou numériques) dans lesquels des informations sont stockées au fil du temps – contrairement au cas d’un mémoire ou d’un article où c’est la logique de l’argumentation qui structure le contenu – ; ces informations sont de plus de nature souvent hétérogène et leurs supports, lorsqu’ils sont multiples, aussi (par exemple, un cahier de notes associé à des fichiers textes).
+
+* Exemples concrets de « cahier de notes »
+- Les cahiers de Léonard de Vinci ([[http://unesdoc.unesco.org/images/0007/000748/074877fo.pdf][lien vers le pdf]]) et la page Wikipédia sur [[https://fr.wikipedia.org/wiki/Codex_Leicester][Le Codex Leicester]] ;
+- La [[https://en.wikipedia.org/wiki/Galileo_Galilei][Page wikipedia sur Galilée]] contient de nombreux liens, certains vers ses cahiers de notes ;
+- Les « [[http://gallica.bnf.fr/Search?ArianeWireIndex=index&p=1&lang=EN&f_typedoc=manuscrits&q=Louis+Pasteur+registres][registres de laboratoire]] » de Pasteur sont disponibles sur Gallica ;
+- Les [[http://gallica.bnf.fr/ark:/12148/btv1b90797770/f1.image.r=Emile%20Zola][dossiers préparatoires de Zola pour les Rougon-Macquart]] sont aussi disponibles sur Gallica ;
+- Le [[https://ebooks.adelaide.edu.au/c/cook/james/c77j/index.html][journal de bord de James Cook]] lors de son premier voyage sont consultables – [[http://southseas.nla.gov.au/journals/hv01/title.html][un autre exemple]] plus complet est aussi disponible –, [[https://en.wikipedia.org/wiki/James_Cook][la page Wikipedia]] contient un grand nombre de liens ;
+- L’essentiel des [[http://darwin-online.org.uk/][cahiers de notes de Charles Darwin]] est consultable en ligne ;
+- Les [[http://linnean-online.org/61332/#/0][fiches de Carl von Linnée]] sont consultables en ligne ;
+- Les [[http://scarc.library.oregonstate.edu/coll/pauling/rnb/index.html][cahiers de laboratoire de Linus Pauling]] sont disponibles dans leur intégralité ;
+- L’histoire de la [[https://fr.wikipedia.org/wiki/Figure_de_la_Terre_et_m%C3%A9ridienne_de_Delambre_et_M%C3%A9chain#M%C3%A9ridienne_de_Delambre_et_M%C3%A9chain_et_progr%C3%A8s_scientifiques_%C3%A0_la_m%C3%AAme_%C3%A9poque][mesure du méridien]] de Dunkerke à Barcelone par Delambre et Méchain est remarquablement contée dans le livre de Ken Alder, « Mesurer le monde - 1792-1799 : l’incroyable histoire de l’invention du mètre » (en poche chez Flammarion) ; les cahiers de notes y jouent un rôle tout à fait primordial.
+
