@@ -30,7 +30,8 @@ my($output_temp) = $output."tmp";
 
 my($input_path)=$input;
 $input_path =~ s|/[^/]*$||g;
-my($url_path) = "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/raw/master/".$input_path;
+my($raw_path) = "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/raw/master/".$input_path;
+my($tree_path) = "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/tree/master/".$input_path;
 my($gitlab_origin)= "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/";
 
 ########### Pandoc   #################
@@ -63,8 +64,12 @@ while(defined(my $line=<INPUT>)) {
     # $line =~ s|<p>TITLE:\(.*\)<br|<b>TITLE:$1</b><br|g;
 
     $line =~ s|img src="http|img src="%|g;
-    $line =~ s|img src="([^%][^"]*)"|img src="$url_path/$1?inline=false"|g;
+    $line =~ s|img src="([^%][^"]*)"|img src="$raw_path/$1"|g; # ?inline=false
     $line =~ s|img src="%|img src="http|g;
+
+    $line =~ s|href="http|href="%|g;
+    $line =~ s|href="([^%][^"]*)"|href="$tree_path/$1"|g; # ?inline=false
+    $line =~ s|href="%|href="http|g;
 
     # if($line =~ /img src="([^%][^"]*)"/) {
     # 	$line = "\t".$line;
