@@ -3,6 +3,15 @@ Here is the manually filtered list of org and md files that need to be
 exported to html with the gitlab pages CI mechanism.
 
 #+BEGIN_SRC txt :tangle html_src_files.lst
+./module1/ressources/introduction_to_markdown_fr.org
+./module1/ressources/introduction_to_markdown.org
+./module1/ressources/sequence1_fr.org
+./module1/ressources/sequence2_fr.org
+./module1/ressources/sequence3_fr.org
+./module1/ressources/sequence5_fr.org
+./module1/ressources/sequence1.org
+./module1/ressources/sequence2.org
+
 ./module2/ressources/maintaining_a_journal.org
 ./module2/ressources/jupyter_fr.org
 ./module2/ressources/rstudio_fr.org
@@ -27,16 +36,6 @@ exported to html with the gitlab pages CI mechanism.
 ./module3/ressources/analyse-syndrome-grippal-orgmode.org
 ./module3/ressources/analyse-syndrome-grippal-orgmode+R.org
 ./module3/ressources/analyse-syndrome-grippal-orgmode+Lisp+Python+R.org
-
-./module1/ressources/Module1_1_SupplementaryMaterial.org
-./module1/ressources/Module1_2_SupplementaryMaterial.org
-./module1/ressources/introduction_to_markdown_fr.org
-./module1/ressources/introduction_to_markdown.org
-
-./module1/ressources/sequence1_fr.org
-./module1/ressources/sequence2_fr.org
-./module1/ressources/sequence3_fr.org
-./module1/ressources/sequence5_fr.org
 
 ./module4/ressources/resources_refs.org
 ./module4/ressources/resources_refs_fr.org

@@ -1,3 +1,12 @@
+./module1/ressources/introduction_to_markdown_fr.org
+./module1/ressources/introduction_to_markdown.org
+./module1/ressources/sequence1_fr.org
+./module1/ressources/sequence2_fr.org
+./module1/ressources/sequence3_fr.org
+./module1/ressources/sequence5_fr.org
+./module1/ressources/sequence1.org
+./module1/ressources/sequence2.org
+
 ./module2/ressources/maintaining_a_journal.org
 ./module2/ressources/jupyter_fr.org
 ./module2/ressources/rstudio_fr.org
@@ -22,22 +31,6 @@
 ./module3/ressources/analyse-syndrome-grippal-orgmode.org
 ./module3/ressources/analyse-syndrome-grippal-orgmode+R.org
 ./module3/ressources/analyse-syndrome-grippal-orgmode+Lisp+Python+R.org
-
-./module1/ressources/Module1_1_MaterielSupplementaire_fr.org
-./module1/ressources/Module1_2_MaterielSupplementaire_fr.org
-./module1/ressources/Module1_3_MaterielSupplementaire_fr.org
-./module1/ressources/Module1_5_MaterielSupplementaire_fr.org
-./module1/ressources/Module1_1_SupplementaryMaterial.org
-./module1/ressources/Module1_2_SupplementaryMaterial.org
-./module1/ressources/introduction_to_markdown_fr.org
-./module1/ressources/introduction_to_markdown.org
-./module1/ressources/module1_supplementary_material.org
-./module1/ressources/module1_additionalRessources.md
-
-./module1/ressources/sequence3_fr.org
-./module1/ressources/sequence5_fr.org
-./module1/ressources/sequence2_fr.org
-./module1/ressources/sequence1_fr.org
 
 ./module4/ressources/resources_refs.org
 ./module4/ressources/resources_refs_fr.org
