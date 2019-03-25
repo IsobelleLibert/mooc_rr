@@ -36,9 +36,7 @@ my($gitlab_origin)= "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressour
 ########### Pandoc   #################
 
 print "Exporting $input\n";
-my($pandoc_output) = `LANG=C ; pandoc -s -f $type -t html -o $output_temp $input`;
-
-open INPUT, $output_temp or die;
+my($pandoc_output) = `LANG=C ; pandoc -s --mathjax -f $type -t html -o $output_temp $input`;open INPUT, $output_temp or die;
 open OUTPUT, "> ".$output or die;
 
 
