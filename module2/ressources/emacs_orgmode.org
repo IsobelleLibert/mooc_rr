@@ -266,14 +266,14 @@ quit Emacs (=C-x C-c=, meaning =Ctrl + x= followed by =Ctrl + c=) and
 restart it. At worst, repeat this until you get no more errors on
 startup.
 
-Next, open a file =foo.org=. Copy the following lines into this file:
+Next, create a file =foo.org=. Copy the following lines into this file:
    : #+begin_src shell :session foo :results output :exports both
    : ls -la # or dir under windows
    : #+end_src
 
 Put your cursor inside this code block and execute it with the
 following command: =C-c C-c= (If you are not familiar with Emacs
-commands, this one means '=Ctrl + C=' twice)
+commands, this one means '=Ctrl + c=' twice)
 
 A =#+RESULTS:= block with the result of the command should appear if it
 worked. 
