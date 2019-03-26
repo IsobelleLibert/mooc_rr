@@ -305,11 +305,11 @@ tar zcf replicable_article.tgz $FILE_LIST
 
 #+RESULTS:
 
-Download the following [[file:replicable_article.tgz][archive]] and uncompress it. The archive contains the compiled article, so you can start by looking at it.
+Download the following [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/raw/master/module2/ressources/replicable_article.tgz][archive]] and uncompress it. The archive contains the compiled article, so you can start by looking at it.
 
 To rebuild the article, delete =article.pdf=, or rename it to something else. Otherwise the rebuild procedure will simply tell you that the article is already up to date. Then type =make= to build everything from scratch. Open the freshly built =article.pdf= to see if it looks OK.
 
-If you get tired of always re-executing all the source code when exporting, look for the following line in [[file:replicable_article/article.org][article.org]]:
+If you get tired of always re-executing all the source code when exporting, look for the following line in [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/replicable_article/article.org][article.org]]:
 #+BEGIN_EXAMPLE
 # #+PROPERTY: header-args :eval never-export
 #+END_EXAMPLE
