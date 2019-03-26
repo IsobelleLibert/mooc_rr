@@ -136,6 +136,18 @@ matplotlib.matplotlib_fname()
 
 Open the =matplotlibrc= file and modify the line starting with =backend=
 to make it =backend : Agg=.
+* Python and R
+Computational documents contain code, which in the case of our MOOC use the languages Python and R. So you must install Python and R in addition to Emacs, unless of course they are already installed on your computer. Note that when we say Python, we mean the Python 3 language, not its predecessors Python 1 and Python 2, which are similar but not quite compatible. More precisely, the examples in the MOOC require Python 3.6 or later, the current official version being 3.7.3. For R, we have used version 3.4, but somewhat older versions are probably fine as well.
+
+Like for Emacs, there are many ways to install Python and R. Worse, there are good reasons for there being many ways, because there is no single best one for everybody. The following guidelines should help you pick a good one for you.
+
+*Linux users* should start by checking the packages provided by their Linux distribution. It almost certainly contains Python and R, but the versions may not be sufficiently recent. For example, Debian 9 (named "stretch"), the current stable release, proposes Python 3.5. The exact names of the packages you need to install unfortunately varies among distributions, but they should be similar to =python3= and =r-base=.
+
+*macOS* users who already use one of the package managers for macOS, i.e. one of [[https://brew.sh/][Homebrew]], [[https://www.macports.org/][MacPorts]], or [[http://www.finkproject.org/][fink]], should also look for Python and R in their distributions. However, it's not worth installing any of these package managers just for Python and R.
+
+Users of *Windows*, as well as *Linux* and *macOS* users who don't find sufficiently recent versions in their package manager's distributions, should consider the [[https://www.anaconda.com/distribution/][Anaconda distribution]] that contains both Python and R plus a huge collection of add-on packages for both languages. Anaconda is particularly recommended for those who plan to use Python more regularly, as it is the most convenient approach to managing Python environments.
+
+Finally, you can follow the installation procedures proposed by the development teams of [[https://www.python.org/][Python]] and [[https://www.r-project.org/][R]] for their respective languages. Compared to the approaches described above, the main inconvenience is the absence of simple strategies for updating and for installing add-on packages. But if you install Python and/or R just for the MOOC, this is not much of an issue.
 
 * A simple "reproducible research" emacs configuration 
 This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Mise en place
