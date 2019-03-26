@@ -42,9 +42,9 @@ situations however where you may want to play with other notebooks.
 - Importing an already existing notebook :: If your notebook is
      already in your GitLab project, then simply synchronize by using
      the =Git pull= button and use the =File -> Open= menu. Otherwise,
-     imagine, you want to import the [[https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][following notebook]] from someone
+     imagine, you want to import the [[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][following notebook]] from someone
      else's repository to re-execute it.
-  1. Download the file on your computer. E.g., for this [[https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][GitLab hosted
+  1. Download the file on your computer. E.g., for this [[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][GitLab hosted
      notebook]], click on =Open raw= (a small =</>= within a document icon)
      and save (=Ctrl-S= on most browsers) the content (a long JSON text
      file).

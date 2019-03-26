@@ -49,9 +49,9 @@ ceux du MOOC.
      intéresse est déjà dans votre projet GitLab, il vous suffit de
      synchroniser la copie de votre Jupyter à l'aide du bouton =Git
      pull= et d'utiliser le menu =File -> Open=. Dans le cas contraire,
-     par exemple si souhaitez importer cet [[https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][autre notebook]] rédigé par
+     par exemple si souhaitez importer cet [[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][autre notebook]] rédigé par
      quelqu'un d'autre, procédez de la façon suivante:
-  1. Télé-chargez le fichier sur votre répertoire. Pour ce [[https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][Notebook
+  1. Télé-chargez le fichier sur votre répertoire. Pour ce [[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][Notebook
      hébergé sur un gitLab]], cliquez sur =Open raw= (l'icone avec
      un petit =</>= ) et sauvegardez (=Ctrl-S= sur la plupart des
      navigateurs) son contenu (un long fichier texte au format JSON).
