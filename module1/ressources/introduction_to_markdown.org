@@ -25,6 +25,7 @@ Archer Reilly]].
   - [[#summations-and-integrals][Summations and integrals]]
   - [[#outfits][Outfits]]
 - [[#about-markdown][About =markdown=]]
+- [[#markdown-and-pandoc-resources-in-english][Markdown/Pandoc Resources in english]]
 
 * Syntax
 ** Headers
@@ -194,3 +195,18 @@ The =pdf= conversion always relies on [[https://fr.wikipedia.org/wiki/LaTeX][LaT
 In the demo, we show how to generate a =docx= from a =markdown= document with =Pandoc= and we explain that it is then possible to use a word processor like =LibreOffice= to edit the resulting file. Obviously the modifications will not be back-propagated to the original  =markdown= document. You may however want to use =Pandoc= again to convert your new =docx= document to a new =markdown= document.
 
 Another common strategy consists in doing most of the editing of an article/report in =Markdown= and to export it into a =docx= (or =LaTeX=) only in the end so as to prepare it for a camera-ready version with a standard word processing environment (or a =LaTeX= editor).
+
+* Markdown and Pandoc Resources in english
+** Mardown et pandoc
+- [[https://programminghistorian.org/en/lessons/sustainable-authorship-in-plain-text-using-pandoc-and-markdown][Sustainable Authorship in Plain Text using Pandoc and Markdown by Dennis Tenen and Grant Wythoff]]: in this tutorial, you will first learn the basics of Markdown—an easy to read and write markup syntax for plain text—as well as Pandoc, a command line tool that converts plain text into a number of beautifully formatted file types: PDF, .docx, HTML, LaTeX, slide decks, and more.
+- The « [[https://github.com/jgm/pandoc/wiki/Documentation-and-Tutorials][Documentation and Tutorials]] » page of the github Pandoc project provides many links to resources about Pandoc.
+
+** Markdown syntax
+- [[https://programminghistorian.org/en/lessons/getting-started-with-markdown][Programming Historian : Getting Started with Markdown]] is very usefull to understand why this language is used, how to format Markdown files, and how to preview Markdown-formatted documents on the web (in spanish [[https://programminghistorian.org/es/lecciones/introduccion-a-markdown][Introducción a Markdown]])
+- To write equations with Markdown: [[http://pandoc.org/MANUAL.html#math][see the relevant part of the Pandoc documentation]]
+- Writing equations requires a basic knowledge of TeX / LaTeX: [[https://en.wikibooks.org/wiki/LaTeX][see wikibooks.org documentation about LaTeX]]
+
+** Others
+
+The resources listed under the [[https://programminghistorian.org/en/lessons/?activity=sustaining][Sustain section of "The Programming Historian"]] are all relevant for Module 1 (in particular the tutorial on Git/GitHub).
+

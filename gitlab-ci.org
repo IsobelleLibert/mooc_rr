@@ -13,14 +13,13 @@ pages:
   - pandoc --version
   # - pandoc --help
   # - pandoc --list-input-formats    # Broken as pandoc dates from 2013 on this image! :(
+  - bin/pandoc_fixer.pl html_src_files.lst;
   - for file in `cat html_src_files.lst | sed 's/#.*//g' `; do
-        bin/pandoc_fixer.pl ${file};
-        echo "Creating"  public/`dirname ${file}`;
         mkdir -p public/`dirname ${file}`;
         mv ${file%.*}.html public/`dirname ${file}`/;
     done
-  - cat html_src_files.lst | sed -e 's|\.md |.html |' -e 's|\.org |\.html |' -e 's|^./\([^ ]*\) *# *\([^ ]*\)|- [[./\1]]  (\2)|' > index.org
-  - pandoc -s -f org -t html -o public/index.html index.org
+  - cd module2/ressources/; tar zcf rr_org_archive.tgz rr_org/init.el rr_org/journal.org rr_org/init.org ; cd ../.. ; mv module2/ressources/rr_org_archive.tgz public/module2/ressources/
+  - cd module2/ressources/; make -C replicable_article/ all ../replicable_article.tgz ; cd ../.. ; mv module2/ressources/replicable_article.tgz public/module2/ressources/
   artifacts:
     paths:
     - public
@@ -114,116 +113,4 @@ while(defined($line=<INPUT>)) {
 chmod +x ./gitlab-ci.sh
 ./gitlab-ci.sh 
 #+end_src
-
-#+RESULTS:
-#+begin_example
-pandoc 2.2.1
-Compiled with pandoc-types 1.17.5.1, texmath 0.11.1, skylighting 0.7.5
-Default user data directory: /home/alegrand/.pandoc
-Copyright (C) 2006-2018 John MacFarlane
-Web:  http://pandoc.org
-This is free software; see the source for copying conditions.
-There is no warranty, not even for merchantability or fitness
-for a particular purpose.
-Exporting ./module2/ressources/maintaining_a_journal.org
-Creating public/./module2/ressources
-Exporting ./module2/ressources/jupyter_fr.org
-Creating public/./module2/ressources
-Exporting ./module2/ressources/rstudio_fr.org
-Creating public/./module2/ressources
-Exporting ./module2/ressources/gitlab_fr.org
-Creating public/./module2/ressources
-Exporting ./module2/ressources/emacs_orgmode_fr.org
-Creating public/./module2/ressources
-Exporting ./module2/ressources/jupyter.org
-Creating public/./module2/ressources
-Exporting ./module2/ressources/emacs_orgmode.org
-Creating public/./module2/ressources
-Exporting ./module2/ressources/maintaining_a_journal_fr.org
-Creating public/./module2/ressources
-Exporting ./module2/ressources/rstudio.org
-Creating public/./module2/ressources
-Exporting ./module2/ressources/gitlab.org
-Creating public/./module2/ressources
-Exporting ./module2/ressources/orgmode_examples/README.org
-Creating public/./module2/ressources/orgmode_examples
-Exporting ./module2/ressources/orgmode_examples/README_fr.org
-Creating public/./module2/ressources/orgmode_examples
-Exporting ./module2/exo4/stat_activity.org
-Creating public/./module2/exo4
-Exporting ./module2/slides/ressources_fr.org
-Creating public/./module2/slides
-Exporting ./module2/slides/ressources.org
-Creating public/./module2/slides
-Exporting ./module3/ressources/iso_date_format.org
-Creating public/./module3/ressources
-Exporting ./module3/ressources/iso_date_format_fr.org
-Creating public/./module3/ressources
-Exporting ./module3/ressources/influenza-like-illness-analysis-orgmode+R.org
-Creating public/./module3/ressources
-Exporting ./module3/ressources/influenza-like-illness-analysis-orgmode+Lisp+Python+R.org
-Creating public/./module3/ressources
-Exporting ./module3/ressources/influenza-like-illness-analysis-orgmode.org
-Creating public/./module3/ressources
-Exporting ./module3/ressources/analyse-syndrome-grippal-orgmode.org
-Creating public/./module3/ressources
-Exporting ./module3/ressources/analyse-syndrome-grippal-orgmode+R.org
-Creating public/./module3/ressources
-Exporting ./module3/ressources/analyse-syndrome-grippal-orgmode+Lisp+Python+R.org
-Creating public/./module3/ressources
-Exporting ./module1/ressources/Module1_1_MaterielSupplementaire_fr.org
-Creating public/./module1/ressources
-Exporting ./module1/ressources/Module1_2_MaterielSupplementaire_fr.org
-Creating public/./module1/ressources
-Exporting ./module1/ressources/Module1_3_MaterielSupplementaire_fr.org
-Creating public/./module1/ressources
-Exporting ./module1/ressources/Module1_5_MaterielSupplementaire_fr.org
-Creating public/./module1/ressources
-Exporting ./module1/ressources/Module1_1_SupplementaryMaterial.org
-Creating public/./module1/ressources
-Exporting ./module1/ressources/Module1_2_SupplementaryMaterial.org
-Creating public/./module1/ressources
-Exporting ./module1/ressources/introduction_to_markdown_fr.org
-Creating public/./module1/ressources
-Exporting ./module1/ressources/introduction_to_markdown.org
-Creating public/./module1/ressources
-Exporting ./module1/ressources/module1_supplementary_material.org
-Creating public/./module1/ressources
-Exporting ./module1/ressources/module1_additionalRessources.md
-Creating public/./module1/ressources
-Exporting ./module1/ressources/sequence3_fr.org
-Creating public/./module1/ressources
-Exporting ./module1/ressources/sequence5_fr.org
-Creating public/./module1/ressources
-Exporting ./module1/ressources/sequence2_fr.org
-Creating public/./module1/ressources
-Exporting ./module1/ressources/sequence1_fr.org
-Creating public/./module1/ressources
-Exporting ./module4/ressources/resources_refs.org
-Creating public/./module4/ressources
-Exporting ./module4/ressources/resources_refs_fr.org
-Creating public/./module4/ressources
-Exporting ./module4/ressources/exo1.org
-Creating public/./module4/ressources
-Exporting ./module4/ressources/exo2.org
-Creating public/./module4/ressources
-Exporting ./module4/ressources/exo3.org
-Creating public/./module4/ressources
-Exporting ./module4/ressources/resources_environment.org
-Creating public/./module4/ressources
-Exporting ./module4/ressources/resources_environment_fr.org
-Creating public/./module4/ressources
-Exporting ./documents/notebooks/notebook_RStudio_SASmarkdown.md
-Creating public/./documents/notebooks
-Exporting ./documents/tuto_git_gtlab/tuto_git_gitlab.md
-Creating public/./documents/tuto_git_gtlab
-Exporting ./documents/tuto_rstudio_gitlab/tuto_rstudio_gitlab.md
-Creating public/./documents/tuto_rstudio_gitlab
-Exporting ./documents/tuto_magit/tuto_magit.md
-Creating public/./documents/tuto_magit
-Exporting ./documents/tuto_emacs_windows/tuto_emacs_windows.md
-Creating public/./documents/tuto_emacs_windows
-Exporting ./documents/tuto_jupyter_windows/tuto_jupyter_windows.md
-Creating public/./documents/tuto_jupyter_windows
-#+end_example
 

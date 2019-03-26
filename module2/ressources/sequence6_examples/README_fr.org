@@ -20,7 +20,13 @@ fichiers externes et ne sont pas prévu pour permettre de produire
 directement des documents reproductibles mais ils peuvent vous donner
 une idée de la façon dont ils peuvent être organisés:
 
-1. [[file:journal.org][journal.org]]: ceci est un extrait (je n'ai laissé que quelques
+1. [[file:td2_PS.ipynb][td2_PS.ipynb]]: ceci est une feuille de TD (en français) sur la
+   génération de nombres aléatoires à destination d'étudiants de
+   première année de Master en informatique. Elle utilise le langage
+   R. Dans ce contexte d'enseignement, l'intérêt du notebook jupyter
+   est qu'ils peuvent utiliser le jupyterhub de l'université et n'ont
+   donc rien à installer sur leur machine.
+2. [[file:journal.org][journal.org]]: ceci est un extrait (je n'ai laissé que quelques
    exemples de programmes et de liens vers des ressources sur R, les
    statistiques, etc.) de mon propre journal. C'est un document
    personnel dans lequel tout ce que je peux faire (notes prises
@@ -28,14 +34,14 @@ une idée de la façon dont ils peuvent être organisés:
    variées, notes bibliographiques, ...) atterrit par défaut. Les
    entrées avec la date sont créées automatiquement à l'aide du
    raccourci =C-c c=.
-2. [[file:labbook_single.org][labbook_single.org]]: ceci est un extrait du cahier de laboratoire
+3. [[file:labbook_single.org][labbook_single.org]]: ceci est un extrait du cahier de laboratoire
    tenu par [[https://cornebize.net/][Tom Cornebize]] pendant son stage de Master sous ma
    direction. C'est un cahier de laboratoire personnel et que je
    considère comme excellent car il a le niveau de détail idéal pour
    nous permettre à la fois de communiquer sans aucune ambiguïté, pour
    moi, de bien suivre ses avancées, et pour lui, d'avancer dans ses
    travaux avec confiance.
-3. [[file:paper.org][paper.org]]: ceci est un article en cours basé sur le cahier de
+4. [[file:paper.org][paper.org]]: ceci est un article en cours basé sur le cahier de
    laboratoire précédent. En l'état, il n'est pas reproductible car il
    y a plusieurs chemins absolus en dur et des dépendances logicielles
    non explicitées mais sa rédaction à partir du cahier de laboratoire
@@ -50,7 +56,7 @@ une idée de la façon dont ils peuvent être organisés:
    qui sont exécutées par emacs à l'ouverture du fichier. C'est une
    façon simple mais efficace de dépendre le moins possible du
    =.emacs/init.el= que chacun personnalise à sa convenance.
-4. [[file:labbook_several.org][labbook_several.org]]: ceci est un petit exemple de cahier de
+5. [[file:labbook_several.org][labbook_several.org]]: ceci est un petit exemple de cahier de
    laboratoire partagé par plusieurs personnes. Il commence donc par
    des informations sur les dépendances logicielles à installer, les
    scripts les plus utiles. On y trouve ensuite une section avec des
@@ -70,7 +76,7 @@ une idée de la façon dont ils peuvent être organisés:
    nouvelle date) est en général alors ajoutée. L'annotation =:FLAWED:=
    nous permet de conserver l'ensemble des expériences tout en sachant
    d'un coup d'oeil lesquelles ne doivent pas être prises en compte.
-5. [[file:technical_report.org][technical_report.org]]: ceci est un petit document technique que j'ai
+6. [[file:technical_report.org][technical_report.org]]: ceci est un petit document technique que j'ai
    écrit après qu'un collègue m'ai envoyé un document PDF décrivant
    une expérience qu'il avait réalisé et souhaitait mon avis sur si
    c'était suffisant d'un point de vue reproductibilité. Il s'est
