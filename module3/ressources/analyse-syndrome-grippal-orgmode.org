@@ -27,10 +27,14 @@ if sys.version_info.major < 3 or sys.version_info.minor < 6:
     print("Veuillez utiliser Python 3.6 (ou plus) !")
 #+END_SRC
 
+#+RESULTS:
+
 #+BEGIN_SRC emacs-lisp :results output
 (unless (featurep 'ob-python)
   (print "Veuillez activer python dans org-babel (org-babel-do-languages) !"))
 #+END_SRC
+
+#+RESULTS:
 
 ** R 3.4
 Nous n'utilisons que des fonctionnalités de base du langage R, une version antérieure devrait suffire.
@@ -39,6 +43,8 @@ Nous n'utilisons que des fonctionnalités de base du langage R, une version ant�
 (unless (featurep 'ob-R)
   (print "Veuillez activer R dans org-babel (org-babel-do-languages) !"))
 #+END_SRC
+
+#+RESULTS:
 
 * Préparation des données
 
@@ -80,6 +86,13 @@ Regardons ce que nous avons obtenu:
 table[:5]
 #+END_SRC
 
+#+RESULTS:
+|   week | indicator |    inc | inc_low | inc_up | inc100 | inc100_low | inc100_up | geo_insee | geo_name |
+| 201911 |         3 |  31787 |   26747 |  36827 |     48 |         40 |        56 | FR        | France   |
+| 201910 |         3 |  49871 |   43378 |  56364 |     76 |         66 |        86 | FR        | France   |
+| 201909 |         3 |  88354 |   79564 |  97144 |    134 |        121 |       147 | FR        | France   |
+| 201908 |         3 | 172604 |  160024 | 185184 |    262 |        243 |       281 | FR        | France   |
+
 ** Recherche de données manquantes
 Il y a malheureusement beaucoup de façon d'indiquer l'absence d'un point de données. Nous testons ici seulement pour la présence de champs vides. Il faudrait aussi rechercher des valeurs non-numériques dans les colonnes à priori numériques. Nous ne le faisons pas ici, mais une vérification ultérieure capterait des telles anomalies.
 
@@ -93,6 +106,9 @@ for row in table:
     else:
         valid_table.append(row)
 #+END_SRC
+
+#+RESULTS:
+: ['198919', '3', '0', '', '', '0', '', '', 'FR', 'France']
 
 ** Extraction des colonnes utilisées
 Il y a deux colonnes qui nous intéressent: la première (~"week"~) et la troisième (~"inc"~). Nous vérifions leurs noms dans l'en-tête, que nous effaçons par la suite. Enfin, nous créons un tableau avec les deux colonnes pour le traitement suivant.
@@ -111,6 +127,21 @@ Regardons les premières et les dernières lignes. Nous insérons ~None~ pour in
 [('week', 'inc'), None] + data[:5] + [None] + data[-5:]
 #+END_SRC
 
+#+RESULTS:
+|   week |    inc |
+|--------+--------|
+| 201911 |  31787 |
+| 201910 |  49871 |
+| 201909 |  88354 |
+| 201908 | 172604 |
+| 201907 | 307338 |
+|--------+--------|
+| 198448 |  78620 |
+| 198447 |  72029 |
+| 198446 |  87330 |
+| 198445 | 135223 |
+| 198444 |  68422 |
+
 ** Vérification
 Il est toujours prudent de vérifier si les données semblent crédibles. Nous savons que les semaines sont données par six chiffres (quatre pour l'année et deux pour la semaine), et que les incidences sont des nombres entiers positifs.
 #+BEGIN_SRC python :results output
@@ -120,6 +151,8 @@ for week, inc in data:
     if not inc.isdigit():
         print("Valeur suspecte dans la colonne 'inc': ", (week, inc))
 #+END_SRC
+
+#+RESULTS:
 
 Pas de problème !
 
@@ -140,6 +173,21 @@ str_data = [(str(date), str(inc)) for date, inc in converted_data]
 [('date', 'inc'), None] + str_data[:5] + [None] + str_data[-5:]
 #+END_SRC
 
+#+RESULTS:
+|       date |    inc |
+|------------+--------|
+| 1984-10-29 |  68422 |
+| 1984-11-05 | 135223 |
+| 1984-11-12 |  87330 |
+| 1984-11-19 |  72029 |
+| 1984-11-26 |  78620 |
+|------------+--------|
+| 2019-02-11 | 307338 |
+| 2019-02-18 | 172604 |
+| 2019-02-25 |  88354 |
+| 2019-03-04 |  49871 |
+| 2019-03-11 |  31787 |
+
 ** Vérification des dates
 Nous faisons encore une vérification: nos dates doivent être séparées d'exactement une semaine, sauf autour du point manquant.
 #+BEGIN_SRC python :results output
@@ -148,6 +196,9 @@ for date1, date2 in zip(dates[:-1], dates[1:]):
     if date2-date1 != datetime.timedelta(weeks=1):
         print(f"Il y a {date2-date1} entre {date1} et {date2}")
 #+END_SRC
+
+#+RESULTS:
+: Il y a 14 days, 0:00:00 entre 1989-05-01 et 1989-05-15
 
 ** Passage Python -> R
 Nous passons au langage R pour inspecter nos données, parce que l'analyse et la préparation de graphiques sont plus concises en R, sans nécessiter aucune bibliothèque supplémentaire.
@@ -164,16 +215,31 @@ data$date <- as.Date(data$date)
 summary(data)
 #+END_SRC
 
+#+RESULTS:
+:       date                 inc         
+:  Min.   :1984-10-29   Min.   :      0  
+:  1st Qu.:1993-06-07   1st Qu.:   5137  
+:  Median :2002-01-07   Median :  16182  
+:  Mean   :2002-01-06   Mean   :  62939  
+:  3rd Qu.:2010-08-09   3rd Qu.:  51746  
+:  Max.   :2019-03-11   Max.   :1001824
+
 ** Inspection
 Regardons enfin à quoi ressemblent nos données !
 #+BEGIN_SRC R :results output graphics :file inc-plot.png
 plot(data, type="l", xlab="Date", ylab="Incidence hebdomadaire")
 #+END_SRC
 
+#+RESULTS:
+[[file:inc-plot.png]]
+
 Un zoom sur les dernières années montre mieux la situation des pics en hiver. Le creux des incidences se trouve en été.
 #+BEGIN_SRC R :results output graphics :file inc-plot-zoom.png
 plot(tail(data, 200), type="l", xlab="Date", ylab="Incidence hebdomadaire")
 #+END_SRC
+
+#+RESULTS:
+[[file:inc-plot-zoom.png]]
 
 * Étude de l'incidence annuelle
 
@@ -201,11 +267,22 @@ inc_annuelle = data.frame(annee = annees,
 head(inc_annuelle)
 #+END_SRC
 
+#+RESULTS:
+| 1986 | 5100540 |
+| 1987 | 2861556 |
+| 1988 | 2766142 |
+| 1989 | 5460155 |
+| 1990 | 5233987 |
+| 1991 | 1660832 |
+
 ** Inspection
 Voici les incidences annuelles en graphique.
 #+BEGIN_SRC R :results output graphics :file annual-inc-plot.png
 plot(inc_annuelle, type="p", xlab="Année", ylab="Incidence annuelle")
 #+END_SRC
+
+#+RESULTS:
+[[file:annual-inc-plot.png]]
 
 ** Identification des épidémies les plus fortes
 Une liste triée par ordre décroissant d'incidence annuelle permet de plus facilement repérer les valeurs les plus élevées:
@@ -213,7 +290,19 @@ Une liste triée par ordre décroissant d'incidence annuelle permet de plus faci
 head(inc_annuelle[order(-inc_annuelle$incidence),])
 #+END_SRC
 
+#+RESULTS:
+:    annee incidence
+: 4   1989   5460155
+: 5   1990   5233987
+: 1   1986   5100540
+: 28  2013   4182265
+: 25  2010   4085126
+: 14  1999   3897443
+
 Enfin, un histogramme montre bien que les épidémies fortes, qui touchent environ 10% de la population française, sont assez rares: il y en eu trois au cours des 35 dernières années.
 #+BEGIN_SRC R :results output graphics :file annual-inc-hist.png
 hist(inc_annuelle$incidence, breaks=10, xlab="Incidence annuelle", ylab="Nb d'observations", main="")
 #+END_SRC
+
+#+RESULTS:
+[[file:annual-inc-hist.png]]
