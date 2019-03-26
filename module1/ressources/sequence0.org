@@ -1,0 +1,33 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+#+TITLE: The Introductory Sequence (Module 1 sequence 0)
+#+DATE: <2019-03-25 jeu.>
+#+AUTHOR: Christophe Pouzat
+#+EMAIL: christophe.pouzat@parisdescartes.fr
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 26.1 (Org mode 9.1.9)
+#+STARTUP: indent
+
+* Table of content :TOC:
+- [[The "notebook"]]
+- [[Examples of notebooks]]
+
+* The "notebook"
+"Notebook" must be here understood with a fairly general meaning; that is, depending on the context, it could more specifically be called "field book", "observations book", "journal" or "labbook". What we concentrate on is a a meduim (paper or digital) on which information get stored "as it arrives"--as opposed to a report or a scientic paper where the logic of the argument directs the structure of the content--; the information concidered is not homogeneous (different topics do show up) and multiple media can be used.
+
+* Examples of notebooks 
+
+- Leonardo da Vinci notebooks ([[http://unesdoc.unesco.org/images/0007/000748/074877fo.pdf][in pdf format]]) and the Wikipdia page on the [[https://en.wikipedia.org/wiki/Codex_Leicester][Codex Leicester]].
+- The [[https://en.wikipedia.org/wiki/Galileo_Galilei][Wikipedia page on Galileo Galilei]] gives many links to his notebooks.
+- [[https://ebooks.adelaide.edu.au/c/cook/james/c77j/index.html][Captain Cook's journal]] relating his first trip is available.
+- [[http://darwin-online.org.uk/][Darwin's notebooks]] are also available.
+- The exhaustive collection of  [[http://linnean-online.org/61332/#/0][Carl Linneaus]] paper slips can be found online.
+- The complete collection of [[http://scarc.library.oregonstate.edu/coll/pauling/rnb/index.html][Linus Pauling]] labbooks can also be accesssed.
+- The meridian's measure from Bunkirk to Barcelona by Delambre and Méchain is wonderfully made by Ken Alder in his book "The Measure of All Things: The Seven-Year Odyssey and Hidden Error that Transformed the World", *a must read*.
+
+
