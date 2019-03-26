@@ -25,7 +25,7 @@ Voici un aperçu rapide de la syntaxe Markdown repris d'une
   - [[#sommes-et-intégrales][Sommes et intégrales]]
   - [[#déguisements][Déguisements]]
 - [[#autour-de-markdown][Autour de =markdown=]]
-- [[#markdown-pandoc-resources-in-english][Markdown/Pandoc Resources in english]]
+
 
 * Syntaxe
 ** Headers
@@ -196,20 +196,4 @@ La conversion en =pdf= passe toujours par [[https://fr.wikipedia.org/wiki/LaTeX]
 Dans la petite démonstration, nous montrons comment générer un fichier =docx= à partir d'un fichier =md= avec =Pandoc= et nous soulignons qu'il est alors possible d'utiliser un traitement de texte comme =LibreOffice= pour modifier le fichier obtenu. Il est clair que si des modifications sont apportées au =docx= elle en seront pas (automatiquement) propagées au =md=. Il faudra utiliser =Pandoc= pour cela et effectuer une conversion de =docx= vers =md= (et seules les éléments du format =docx= qui existent en =md= seront conservés).
 
 Une stratégie qui est souvent employée et qui fonctionne bien en pratique consiste à faire le gros du travail de rédaction d'un article ou d'un mémoire en =Markdown=. La rédaction terminée, le fichier est exporté au format =docx= (ou =LaTeX=) et des ajustements de mise en page sont alors effectués avec un logiciel de traitement de texte (ou un éditeur  =LaTeX=).
-
-* Markdown/Pandoc Resources in english
-** Mardown et pandoc
-- [[https://programminghistorian.org/en/lessons/sustainable-authorship-in-plain-text-using-pandoc-and-markdown][Sustainable Authorship in Plain Text using Pandoc and Markdown by Dennis Tenen and Grant Wythoff]]: in this tutorial, you will first learn the basics of Markdown—an easy to read and write markup syntax for plain text—as well as Pandoc, a command line tool that converts plain text into a number of beautifully formatted file types: PDF, .docx, HTML, LaTeX, slide decks, and more.
-- The « [[https://github.com/jgm/pandoc/wiki/Documentation-and-Tutorials][Documentation and Tutorials]] » page of the github Pandoc project provides many links to resources about Pandoc.
-
-** Markdown syntax
-- [[https://programminghistorian.org/en/lessons/getting-started-with-markdown][Programming Historian : Getting Started with Markdown]] is very usefull to understand why this language is used, how to format Markdown files, and how to preview Markdown-formatted documents on the web (in spanish [[https://programminghistorian.org/es/lecciones/introduccion-a-markdown][Introducción a Markdown]])
-- To write equations with Markdown: [[http://pandoc.org/MANUAL.html#math][see the relevant part of the Pandoc documentation]]
-- Writing equations requires a basic knowledge of TeX / LaTeX: [[https://en.wikibooks.org/wiki/LaTeX][see wikibooks.org documentation about LaTeX]]
-
-** Others
-
-The resources listed under the [[https://programminghistorian.org/en/lessons/?activity=sustaining][Sustain section of "The Programming Historian"]] are all relevant for Module 1 (in particular the tutorial on Git/GitHub).
-
-
 
