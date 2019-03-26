@@ -148,7 +148,12 @@ Like for Emacs, there are many ways to install Python and R. Worse, there are go
 Users of *Windows*, as well as *Linux* and *macOS* users who don't find sufficiently recent versions in their package manager's distributions, should consider the [[https://www.anaconda.com/distribution/][Anaconda distribution]] that contains both Python and R plus a huge collection of add-on packages for both languages. Anaconda is particularly recommended for those who plan to use Python more regularly, as it is the most convenient approach to managing Python environments.
 
 Finally, you can follow the installation procedures proposed by the development teams of [[https://www.python.org/][Python]] and [[https://www.r-project.org/][R]] for their respective languages. Compared to the approaches described above, the main inconvenience is the absence of simple strategies for updating and for installing add-on packages. But if you install Python and/or R just for the MOOC, this is not much of an issue.
+* LaTeX (optional)
+If you want to work with the replicable article stub (shown in [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][this video]]), you also need an installation of LaTeX. This is a rather big piece of software (several GB), so you may prefer to skip its installation. It is not required to follow the MOOC, but if you end up producing real-life computational documents with Emacs, you will have to install it eventually.
 
+As for Python and R, *Linux* users, and also *macOS* users with a package manager, should start by checking their distribution's package list for packages called =tex=, =latex=, or better yet =texlive= or =miktex=, the two main TeX distributions that already contain almost everything you are likely to need.
+
+Otherwise, pick one of [[https://tug.org/texlive/][TeX Live]] or  [[https://miktex.org/][MiKTeX]] and follow the installation instructions they provide. [[https://www.tug.org/mactex/][MacTeX]] for macOS is TeX Live plus a few macOS-specific add-ons. The differences between MiKTeX and TeX Live are not very important, so if you don't know which one to pick, toss a coin!
 * A simple "reproducible research" emacs configuration 
 This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Mise en place
 Emacs/Orgmode"/ in French). Watching it before following the
