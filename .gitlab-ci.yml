@@ -11,7 +11,7 @@ pages:
         mv ${file%.*}.html public/`dirname ${file}`/;
     done
   - cd module2/ressources/; tar zcf rr_org_archive.tgz rr_org/init.el rr_org/journal.org rr_org/init.org ; cd ../.. ; mv module2/ressources/rr_org_archive.tgz public/module2/ressources/
-  - cd module2/ressources/; make -C replicable_article/ all ../replicable_article.tgz ; cd ../.. ; mv module2/ressources/replicable_article.tgz public/module2/ressources/
+  - cd module2/ressources/; tar zcf replicable_article.tgz replicable_article/Makefile replicable_article/article.org replicable_article/biblio.bib ; cd ../.. ; mv module2/ressources/replicable_article.tgz public/module2/ressources/
   artifacts:
     paths:
     - public
