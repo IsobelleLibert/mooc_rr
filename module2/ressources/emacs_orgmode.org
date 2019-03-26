@@ -293,48 +293,27 @@ This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inr
 réplicable avec Emacs/Orgmode"/ in French). Watching it before
 following the instructions given in this section may help.
 
-Remember, you need a working LaTeX and R environment. If you can't
-open a terminal and run the commands =R=, =pdflatex=, and =python=, you will not be
-able to generate this document. When being compiled, the article downloads the
-corresponding LaTeX packages so you also need to have a working =wget=
-command (alternatively, it uses =curl=). Once downloaded, you may still read the
-source ([[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/replicable_article/article.org]]) and understand how it works though.
+To work with this article stub, you need working installations of LaTeX, R, and Python. If you can't open a terminal and run the commands =R=, =pdflatex=, and =python3=, you will not be able to generate this document. When being compiled, the article downloads the corresponding LaTeX packages, so you must have a working network connection.
+
+Note for macOS users: Since the article is compiled using =make=, you need to put the Emacs executable on your shell's search path, as explained above under [[*Advanced topics - not required for following the MOOC][advanced topics]].
 
 #+begin_src shell :results output :exports none
-make -C replicable_article/ all ../replicable_article.tgz
+export FILE_LIST="replicable_article/Makefile replicable_article/article.org replicable_article/biblio.bib replicable_article/article.pdf"
+make -C replicable_article/ article.pdf
+tar zcf replicable_article.tgz $FILE_LIST
 #+end_src
 
 #+RESULTS:
 
-Download the following [[file:replicable_article.tgz][archive]], uncompress it and simply =make= to generate the
-article. You should then be able to open the [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/replicable_article/article.pdf][resulting article]]. This
-is summarized in the following command:
-#+begin_src sh :results output :exports both
-wget --no-check-certificate -O replicable_article.tgz https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/replicable_article.tgz
-tar zxf replicable_article.tgz; cd replicable_article; make ; evince article.pdf
-#+end_src
+Download the following [[file:replicable_article.tgz][archive]] and uncompress it. The archive contains the compiled article, so you can start by looking at it.
 
-*Possible issues*:
-- If the =make= command fails (especially on Mac), it may be because
-  Emacs or something else is not correctly installed. In that case,
-  open the article directly with the following command:
-  #+begin_src sh :results output :exports both
-  emacs -q --eval "(setq enable-local-eval t)" --eval "(setq enable-local-variables t)"  article.org
-  #+end_src
-  and export it to pdf with the following shortcut: =C-c C-e l o=
-- If it still doesn't work and emacs complains about not finding ESS,
-  it may be because you installed ESS in your home instead of
-  system-wide. In that case, try to remove the =-q= in the previous
-  command line to load your personal emacs configuration.
+To rebuild the article, delete =article.pdf=, or rename it to something else. Otherwise the rebuild procedure will simply tell you that the article is already up to date. Then type =make= to build everything from scratch. Open the freshly built =article.pdf= to see if it looks OK.
 
-Finally, when you'll be tired of always re-executing all the source
-code when exporting, just look for the following line in [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/replicable_article/article.org][article.org]]:
+If you get tired of always re-executing all the source code when exporting, look for the following line in [[file:replicable_article/article.org][article.org]]:
 #+BEGIN_EXAMPLE
 # #+PROPERTY: header-args :eval never-export
 #+END_EXAMPLE
-If you remove the =# = in the beginning of the line, it will not be a
-comment anymore and will indicate org-mode to stop evaluating every
-chunk of code when exporting.
+If you remove the =# = in the beginning of the line, it will not be a comment anymore and will indicate org-mode to stop evaluating every chunk of code when exporting.
 
 * Emacs tips and tricks
 ** Cheat-sheets
