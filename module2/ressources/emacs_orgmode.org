@@ -239,12 +239,17 @@ There are two situations in which it might be necessary to modify
 If you do have to modify =init.el=, check the comments at the
 beginning of the file for instructions.
 ** Step 5: Check whether the installation is working or not
-Quit Emacs if it is running, and start it again. This first start
-will take a bit of time because Emacs will download a few add-on
+Quit Emacs if it is running, and start it again. This first start will
+take a bit of time because Emacs will download a few add-on
 packages. For that reason, please make sure that you have a working
-internet connection for this step.
+internet connection for this step. Note also that the download can
+fail for other reasons, such as the package servers being overloaded.
+Such situations do not last very long, so we recommend that you just
+quit Emacs (=C-x C-c=, meaning =Ctrl + x= followed by =Ctrl + c=) and
+restart it. At worst, repeat this until you get no more errors on
+startup.
 
-Then open a file =foo.org=. Copy the following lines into this file:
+Next, open a file =foo.org=. Copy the following lines into this file:
    : #+begin_src shell :session foo :results output :exports both
    : ls -la # or dir under windows
    : #+end_src
