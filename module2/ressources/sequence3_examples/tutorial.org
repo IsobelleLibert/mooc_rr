@@ -1,0 +1,171 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+
+#+TITLE:       Une petite démo d'Org-Mode
+#+AUTHOR:      Arnaud Legrand
+#+STARTUP: overview indent inlineimages logdrawer
+#+LANGUAGE:    en
+#+HTML_HEAD: <link rel="stylesheet" title="Standard" href="http://orgmode.org/worg/style/worg.css" type="text/css" />
+#+PROPERTY: header-args :eval never-export
+
+* Section 1
+** Sous-section
+* Section 2
+** Foo
+*** Hello
+Avec du texte
+- ici du *gras*
+- et là, de /l'italique/
+*** Salut
+*** Etc
+** Bar
+** Baz
+* Exécution de calculs                                             :noexport:
+
+#+begin_src R :results output :session *R* :exports both
+cars
+#+end_src
+
+#+RESULTS:
+#+begin_example
+   speed dist
+1      4    2
+2      4   10
+3      7    4
+4      7   22
+5      8   16
+6      9   10
+7     10   18
+8     10   26
+9     10   34
+10    11   17
+11    11   28
+12    12   14
+13    12   20
+14    12   24
+15    12   28
+16    13   26
+17    13   34
+18    13   34
+19    13   46
+20    14   26
+21    14   36
+22    14   60
+23    14   80
+24    15   20
+25    15   26
+26    15   54
+27    16   32
+28    16   40
+29    17   32
+30    17   40
+31    17   50
+32    18   42
+33    18   56
+34    18   76
+35    18   84
+36    19   36
+37    19   46
+38    19   68
+39    20   32
+40    20   48
+41    20   52
+42    20   56
+43    20   64
+44    22   66
+45    23   54
+46    24   70
+47    24   92
+48    24   93
+49    24  120
+50    25   85
+#+end_example
+
+#+begin_src R :results output graphics :file (org-babel-temp-file "figure" ".png") :exports results :width 600 :height 400 :session *R* 
+plot(cars)
+#+end_src
+
+#+RESULTS:
+[[file:/tmp/babel-148945lI/figure14894n0r.png]]
+#+begin_src R :results output :session *R* :exports both
+(x=10)
+#+end_src
+
+#+RESULTS:
+: [1] 10
+
+#+begin_src R :results output :session *R* :exports both
+(x = x+10)
+#+end_src
+
+#+RESULTS:
+: [1] 20
+* Autres langages
+
+#+begin_src python :results output :exports both
+print(2+2)
+#+end_src
+
+#+RESULTS:
+: 4
+
+#+begin_src shell :results output :exports both
+ls /tmp
+#+end_src
+
+#+RESULTS:
+#+begin_example
+babel-148945lI
+babel-1933r-E
+babel-7506nSG
+emacs1000
+emacs14894axZ
+firefox-esr_alegrand
+mozilla_alegrand0
+pulse-PKdhtXMmr18n
+RtmpsK10QZ
+RtmpvMPlZs
+ScientificMethodologyProjectGithub.ipynb
+ssh-KQXcWTA8Cx6u
+systemd-private-0461cab7d3944a9e974b73d23efc09af-apache2.service-QPpUU4
+systemd-private-0461cab7d3944a9e974b73d23efc09af-colord.service-wdsVAi
+systemd-private-0461cab7d3944a9e974b73d23efc09af-iio-sensor-proxy.service-UYGEGU
+systemd-private-0461cab7d3944a9e974b73d23efc09af-ModemManager.service-FKfsh9
+systemd-private-0461cab7d3944a9e974b73d23efc09af-rtkit-daemon.service-43AVDL
+systemd-private-0461cab7d3944a9e974b73d23efc09af-systemd-timesyncd.service-4pB1fo
+thunderbird_alegrand
+tracker-extract-files.1000
+tutoriel.pdf
+#+end_example
+
+#+begin_src shell :session *shell* :results output :exports both 
+hostname 
+#+end_src
+
+#+RESULTS:
+: 
+: icarus
+
+#+begin_src shell :session *shell* :results output :exports both 
+ssh nipmuk
+#+end_src
+
+#+RESULTS:
+: The programs included with the Debian GNU/Linux system are free software;
+: the exact distribution terms for each program are described in the
+: individual files in /usr/share/doc/*/copyright.
+: 
+: Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+: permitted by applicable law.
+: Last login: Tue Apr 10 12:10:47 2018 from ligone.imag.fr
+
+#+begin_src shell :session *shell* :results output :exports both 
+hostname
+ls /tmp/
+#+end_src
+
+#+RESULTS:
+: nipmuk
+: ATN452-P5785-Linux-X64.bin  tina_update          vgauthsvclog.txt.0
+: P57                         tn_pipe              vmware-root
+: ssh-0xgYrn2tUz              upgrade_linux.batch
