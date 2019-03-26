@@ -33,6 +33,8 @@ $input_path =~ s|/[^/]*$||g;
 my($raw_path) = "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/raw/master/".$input_path;
 my($raw_path_percent) = $raw_path; $raw_path_percent =~ s/^http/%/g;
 my($tree_path) = "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/tree/master/".$input_path;
+my($pages_path) = "https://learninglab.gitlabpages.inria.fr/mooc-rr/mooc-rr-ressources/".$input_path;
+my($pages_path_percent) = $pages_path; $pages_path_percent =~ s/^http/%/g;
 my($gitlab_origin)= "https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/";
 
 ########### Pandoc   #################
@@ -71,7 +73,7 @@ while(defined(my $line=<INPUT>)) {
     $line =~ s|img src="%|img src="http|g;
 
     $line =~ s|href="http|href="%|g;
-    $line =~ s|href="([^%#][^"]*.tgz)"|href="$raw_path_percent/$1"|g; # ?inline=false
+    $line =~ s|href="([^%#][^"]*.tgz)"|href="$pages_path_percent/$1"|g; 
     $line =~ s|href="([^%#][^"]*)"|href="$tree_path/$1"|g; # ?inline=false
     $line =~ s|href="%|href="http|g;
 
