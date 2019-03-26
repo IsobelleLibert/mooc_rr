@@ -80,21 +80,30 @@ permettent de rechercher le /contenu/ des fichiers textes, des courriels, des fi
 
 Les moteurs de recherche de bureau « utilisent des techniques d'[[https://fr.wikipedia.org/wiki/Indexation_automatique_de_documents][indexation]] qui permettent de réduire considérablement les temps de recherche, par rapport aux fonctions de recherche intégrées par défaut aux systèmes d'exploitation. Au contraire de ces derniers, ils prennent aussi souvent en charge les [[https://fr.wikipedia.org/wiki/M%C3%A9tadonn%C3%A9e][métadonnées]], et sont capables de faire une [[https://fr.wikipedia.org/wiki/Analyse_syntaxique][analyse syntaxique]] des fichiers. » (Source : [[https://fr.wikipedia.org/wiki/Moteur_de_recherche_de_bureau][Moteur de recherche de bureau]] sur Wikipédia)
 
-Comme exemple de « fonctions de recherche intégrées par défaut », on trouvera sur les systèmes Unix/Linux le programme [[https://fr.wikipedia.org/wiki/Grep][grep ]]avec lequel nous pouvons chercher les occurrences du mot « Galilée » dans le répertoire « RR_MOOC » de notre cours sur GitHub (après l'avoir cloné) :
+Comme exemple de « fonctions de recherche intégrées par défaut », on trouvera sur les systèmes Unix/Linux le programme [[https://fr.wikipedia.org/wiki/Grep][grep ]]avec lequel nous pouvons chercher les occurrences du mot « Placcius » dans le répertoire « module1/ressources » de notre dépôt [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources][mooc-rr-ressources]] (après l'avoir cloné) :
 
-#+NAME: grep-Leibniz-RR_MOOC
+#+NAME: grep-Placcius-module1/ressources
 #+BEGIN_SRC sh :results output :exports both
-grep -r Galilée
+grep -r Placcius
 #+END_SRC 
 
-#+RESULTS: grep-Leibniz-RR_MOOC
-: PITCHME.md:## Galilée qui observe les lunes de Jupiter
-: PITCHME.md:Le 7 janvier 1610, Galilée fait une découverte capitale : il remarque trois « petites étoiles » à côté de Jupiter. Après quelques nuits d'observation, il découvre qu'il y en a une quatrième et qu'**elles accompagnent la planète**, c'est ce qu'il note sur son cahier d'observations. Ce sont les satellites visibles de Jupiter, qu'il nommera plus tard les étoiles Médicées ou astres médicéens – en l'honneur de ses protecteurs, la Famille des Médicis – et qui sont aujourd'hui appelés lunes galiléennes.
-: PITCHME.md:Ces observations amèneront Galilée à rejeter l'hypothèse géocentrique (la terre est le centre de l'Univers et tout tourne autour d'elle) en faveur du système copernicien héliocentrique. Cela l'amènera indirectement (je « fais court ») et bien plus tard, le 22 juin 1633, a être condamné par l'inquisition, ce qui lui vaudra de finir ses jours en résidence surveillée.
-: PITCHME.md:Remarquez l'avantage des « bouts de papiers classés » de Placcius et Leibniz sur le _codex_ de Galilée : les premiers peuvent être facilement réordonnées.
-: Notes_module1.org:- [[https://en.wikipedia.org/wiki/Galileo_Galilei][la page wikipedia sur Galilée]] contient de nombreux liens, certains vers ses cahiers de notes ;
-: Notes_module1.org:Comme exemple de « fonctions de recherche intégrées par défaut » on trouvera sur les systèmes Unix/Linux le programme [[https://fr.wikipedia.org/wiki/Grep][grep ]]avec lequel nous pouvons chercher les occurrences du mot « Galilée » dans le répertoire « RR_MOOC » de notre cours sur GitHub (après l'avoir cloné) :
-: Notes_module1.org:grep -r Galilée
+#+RESULTS: grep-Placcius-module1/ressources
+#+begin_example
+sequence1.org:- [[#note-cabinets-from-placcius-and-leibniz][Note cabinets from Placcius and Leibniz]]
+sequence1.org:* Note cabinets from Placcius and Leibniz
+sequence2_fr.org:Nous revenons sur le « bout de papier » ou la fiche comme support de note. L'inconvénient est que le bout de papier ou la fiche se perdent facilement et ne servent à rien s'ils ne sont pas *classés* en plus d'être rangés. Problème résolu par l'armoire de Placcius. D'une certaine façon, sa conception fait qu'on accède à son contenu par l'index.
+sequence2.org:We see (again) Placcius' and Leibniz's closet since it displays both the benefits and the shortcomings of media that hold *a single note*.
+sequence2.org:These problems are solved by Placcius' cabinet, the content of which is fundamentally accessed through the index.
+sequence5_fr.org:- les notes manuscrites sur fiches sont généralement stockées dans un meuble dont la structure matérialise un index — comme l'armoire de Placcius et Leibniz — ;
+sequence5_fr.org:: PITCHME.md:Remarquez l'avantage des « bouts de papiers classés » de Placcius et Leibniz sur le _codex_ de Galilée : les premiers peuvent être facilement réordonnées.
+sequence1_fr.org:- [[#armoires-à-notes-de-placcius-et-leibniz][Armoires à notes de Placcius et Leibniz]]
+sequence1_fr.org:* Armoires à notes de Placcius et Leibniz
+#sequence5_fr.org#:- les notes manuscrites sur fiches sont généralement stockées dans un meuble dont la structure matérialise un index — comme l'armoire de Placcius et Leibniz — ;
+#sequence5_fr.org#:module1/ressources/sequence5_fr.org:: PITCHME.md:Remarquez l'avantage des « bouts de papiers classés » de Placcius et Leibniz sur le _codex_ de Galilée : les premiers peuvent être facilement réordonnées.
+#sequence5_fr.org#:module1/slides/misc/Notes_module1.org:: PITCHME.md:Remarquez l'avantage des « bouts de papiers classés » de Placcius et Leibniz sur le _codex_ de Galilée : les premiers peuvent être facilement réordonnées.
+#sequence5_fr.org#:module1/slides/misc/PITCHME.md:Remarquez l'avantage des « bouts de papiers classés » de Placcius et Leibniz sur le _codex_ de Galilée : les premiers peuvent être facilement réordonnées.
+#+end_example
+
 
 Une version plus sophistiquée de =grep= est fournie par le programme [[http://uzix.org/cgvg.html][cgvg]].
 
