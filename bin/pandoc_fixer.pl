@@ -122,7 +122,7 @@ sub main() {
     close INDEX;
     close LIST;
 
-    my($pandoc_output) = `LANG=C ; pandoc -s -c http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css -f org -t html -o public/index.html public/index.org`;
+    my($pandoc_output) = `LANG=C ; pandoc -s -c readtheorg.css -f org -t html -o public/index.html public/index.org`;
 }
 
 main()
