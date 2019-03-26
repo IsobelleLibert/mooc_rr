@@ -112,7 +112,7 @@ sub main() {
 	my($file,$url) = split(/\s*#\s*/,$f);
 	if($file eq "" || !defined($url)) { warn "Malformed line"; next;}
 	# print "'$file' --- '$url'\n";
-#	pandoc_export($file);
+	pandoc_export($file);
 
 	my($html)=$file;     $html=~ s/\.[^\.]*$/.html/g;
 	my($url_id) = $url;  $url_id =~ s|^.*jump_to_id/||g;
