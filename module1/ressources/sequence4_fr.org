@@ -1,0 +1,21 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+#+TITLE: Ressources pour la séquence 0 du module 4 : « Introduction »
+#+DATE: <2019-03-26 mar.>
+#+AUTHOR: Christophe Pouzat
+#+EMAIL: christophe.pouzat@parisdescartes.fr
+#+LANGUAGE: fr
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 26.1 (Org mode 9.1.9)
+#+STARTUP: indent
+
+
+L'enregistrement des modifications des fichiers générés et gérés par =LibreOffice= est succinctement décrite sur la [[https://help.libreoffice.org/Common/Recording_Changes/fr][page du Wiki]] de ce logiciel. Une espèce de [[https://help.libreoffice.org/Common/Navigating_Changes/fr][sommaire]] des pages concernant la gestion des modifications est également disponible. Le livre [[https://framabook.org/libreoffice-cest-style/][LibreOffice, c’est stylé !]] téléchargeable gratuitement (et légalement) ne semble pas aborder la question. Sa version source est disponible sur [[https://framagit.org/Framatophe/DWL/][framagit]]= (un autre serveur type GitLab) et est écrite en… =markdown= !
+
+Pour DokuWiki, le plus simple est de consulter le [[https://www.dokuwiki.org/fr:dokuwiki][Wiki]] écrit, cette fois au moins !, en DokuWiki.
+
+Enfin, pour ceux qui veulent aller plus plus loin et en savoir plus sur l'outil de gestion de version git sur lequel s'appuie GitLab,  quelques vidéos de démonstration sur git et Gitlab sont proposées dans ce Mooc la [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85][séquence "7. Installations, configurations, references" du module 2]] ainsi que des ressources pour apprivoiser git en ligne de commandes.
