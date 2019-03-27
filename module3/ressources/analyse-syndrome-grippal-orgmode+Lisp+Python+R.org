@@ -10,7 +10,7 @@
 #+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.js"></script>
 #+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
 
-#+PROPERTY: header-args  :session  :exports both
+#+PROPERTY: header-args  :session
 
 * Préface
 
@@ -22,7 +22,7 @@ Une version plus ancienne d'Emacs devrait suffire, mais en ce cas il est prudent
 Bibliothèque supplémentaire:
 - [[https://github.com/magnars/dash.el][Dash]] 2.13.0
 
-#+BEGIN_SRC emacs-lisp :results output
+#+BEGIN_SRC emacs-lisp :results output  :exports both
 (require 'dash)
 (unless (featurep 'dash)
   (print "Veuillez installer Dash !"))
@@ -33,13 +33,13 @@ Bibliothèque supplémentaire:
 ** Python 3.6
 Nous utilisons le traitement de dates en format ISO 8601, qui a été implémenté en Python seulement avec la version 3.6.
 
-#+BEGIN_SRC python :results output
+#+BEGIN_SRC python :results output  :exports both
 import sys
 if sys.version_info.major < 3 or sys.version_info.minor < 6:
     print("Veuillez utiliser Python 3.6 (ou plus) !")
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp :results output
+#+BEGIN_SRC emacs-lisp :results output  :exports both
 (unless (featurep 'ob-python)
   (print "Veuillez activer python dans org-babel (org-babel-do-languages) !"))
 #+END_SRC
@@ -47,7 +47,7 @@ if sys.version_info.major < 3 or sys.version_info.minor < 6:
 ** R 3.4
 Nous n'utilisons que des fonctionnalités de base du langage R, une version antérieure devrait suffire.
 
-#+BEGIN_SRC emacs-lisp :results output
+#+BEGIN_SRC emacs-lisp :results output  :exports both
 (unless (featurep 'ob-R)
   (print "Veuillez activer R dans org-babel (org-babel-do-languages) !"))
 #+END_SRC
@@ -80,7 +80,7 @@ Pour éviter de télécharger les données plusieurs fois, nous les gardons dans
 #+NAME: data-buffer-name
 *données syndrome grippal*
 
-#+BEGIN_SRC emacs-lisp :results silent :var url=data-url :var name=data-buffer-name
+#+BEGIN_SRC emacs-lisp :results silent :var url=data-url :var name=data-buffer-name  :exports both
 (require 'url)
 (with-current-buffer (get-buffer-create name)
   (unless buffer-read-only
@@ -90,7 +90,7 @@ Pour éviter de télécharger les données plusieurs fois, nous les gardons dans
 #+END_SRC
 
 La prochaine étape est l'extraction des données qui nous intéressent. D'abord nous découpons le contenu du fichier en lignes, dont nous jetons la première qui ne contient qu'un commentaire. Les autres lignes sont découpées en colonnes. Pour détecter les données manquantes, nous vérifions si une ligne contient au moins un champ vide. A la fin de ce bloc, deux variables contiennent les données manquantes et les donées valables.
-#+BEGIN_SRC emacs-lisp :results silent :var name=data-buffer-name
+#+BEGIN_SRC emacs-lisp :results silent :var name=data-buffer-name  :exports both
 (require 'cl)
 (require 'dash)
 (defun missing-data? (row)
@@ -105,19 +105,19 @@ La prochaine étape est l'extraction des données qui nous intéressent. D'abord
 #+END_SRC
 
 Regardons les données manquantes...
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp  :exports both
 missing-data-lines
 #+END_SRC
 
 Nous ne gardons que la première (~"week"~) et la troisième (~"inc"~) colonne des données valables. Nous insérons ~hline~ comme deuxième élément de notre tableau pour indiquer à org-mode la séparation entre l'en-tête (les noms des colonnes) et les données.
 #+NAME: data
-#+BEGIN_SRC emacs-lisp :results silent
+#+BEGIN_SRC emacs-lisp :results silent  :exports both
 (-insert-at 1 'hline
             (-select-columns '(0 2) valid-data-lines))
 #+END_SRC
 
 Regardons les premières et les dernières lignes:
-#+BEGIN_SRC emacs-lisp :results value :var data=data :colnames yes
+#+BEGIN_SRC emacs-lisp :results value :var data=data :colnames yes  :exports both
 (-concat (-take 5 data)
          '(hline)
          (-take-last 5 data))
@@ -126,7 +126,7 @@ Regardons les premières et les dernières lignes:
 ** Vérification
 Il est toujours prudent de vérifier si les données semblent crédibles. Nous savons que les semaines sont données par six chiffres (quatre pour l'année et deux pour la semaine), dont les deux premiers sont ou "19" ou "20", et que les incidences sont des nombres entiers positifs.
 
-#+BEGIN_SRC emacs-lisp :results output :var data=data :colnames yes
+#+BEGIN_SRC emacs-lisp :results output :var data=data :colnames yes  :exports both
 (defun check-week (week)
   (unless (string-match-p (rx (or "19" "20") (repeat 4 digit))  week)
     (princ (format "Invalid week value: %s\n" week))))
@@ -146,7 +146,7 @@ Rien à signaler !
 ** Conversions
 Pour faciliter les traitements suivants, nous remplaçons les numéros de semaine ISO par les dates qui correspondent aux lundis. A cette occasion, nous trions aussi les données par la date, et nous transformons les incidences en nombres entiers. Nous utilisons le langage Python 3 parce qu'il est un des rares à proposer la conversion de semaines ISO en dates dans sa biblithèque standard.
 
-#+BEGIN_SRC python :results silent :var input_data=data
+#+BEGIN_SRC python :results silent :var input_data=data  :exports both
 import datetime
 data = [(datetime.datetime.strptime(year_and_week + ":1" , '%G%V:%u').date(),
          int(inc))
@@ -155,14 +155,14 @@ data.sort(key = lambda record: record[0])
 #+END_SRC
 
 Regardons de nouveau les premières et les dernières lignes:
-#+BEGIN_SRC python :results value
+#+BEGIN_SRC python :results value  :exports both
 str_data = [(str(date), str(inc)) for date, inc in data]
 [('date', 'inc'), None] + str_data[:5] + [None] + str_data[-5:]
 #+END_SRC
 
 ** Vérification des dates
 Nous faisons encore une vérification: nos dates doivent être séparées d'exactement une semaine, sauf autour du point manquant.
-#+BEGIN_SRC python :results output
+#+BEGIN_SRC python :results output  :exports both
 dates = [date for date, _ in data]
 for date1, date2 in zip(dates[:-1], dates[1:]):
     if date2-date1 != datetime.timedelta(weeks=1):
@@ -174,24 +174,24 @@ Nous passons au langage R pour inspecter nos données, parce que l'analyse et la
 
 Nous utilisons le mécanisme d'échange de données proposé par org-mode, ce qui nécessite un peu de code Python pour transformer les données dans le bon format.
 #+NAME: data-for-R
-#+BEGIN_SRC python :results silent
+#+BEGIN_SRC python :results silent  :exports both
 [('date', 'inc'), None] + [(str(date), inc) for date, inc in data]
 #+END_SRC
 
 En R, les données arrivent sous forme d'un data frame, mais il faut encore convertir les dates, qui arrivent comme chaînes de caractères.
-#+BEGIN_SRC R :results output :var data=data-for-R
+#+BEGIN_SRC R :results output :var data=data-for-R  :exports both
 data$date <- as.Date(data$date)
 summary(data)
 #+END_SRC
 
 ** Inspection
 Regardons enfin à quoi ressemblent nos données !
-#+BEGIN_SRC R :results output graphics :file inc-plot.png
+#+BEGIN_SRC R :results output graphics :file inc-plot.png  :exports both
 plot(data, type="l", xlab="Date", ylab="Incidence hebdomadaire")
 #+END_SRC
 
 Un zoom sur les dernières années montre mieux la situation des pics en hiver. Le creux des incidences se trouve en été.
-#+BEGIN_SRC R :results output graphics :file inc-plot-zoom.png
+#+BEGIN_SRC R :results output graphics :file inc-plot-zoom.png  :exports both
 plot(tail(data, 200), type="l", xlab="Date", ylab="Incidence hebdomadaire")
 #+END_SRC
 
@@ -201,7 +201,7 @@ plot(tail(data, 200), type="l", xlab="Date", ylab="Incidence hebdomadaire")
 Étant donné que le pic de l'épidémie se situe en hiver, à cheval entre deux années civiles, nous définissons la période de référence entre deux minima de l'incidence, du 1er août de l'année /N/ au 1er août de l'année /N+1/. Nous mettons l'année /N+1/ comme étiquette sur cette année décalée, car le pic de l'épidémie est toujours au début de l'année /N+1/. Comme l'incidence du syndrome grippal est très faible en été, cette modification ne risque pas de fausser nos conclusions.
 
 Voici une fonction qui calcule l'incidence annuelle en appliquant ces conventions.
-#+BEGIN_SRC R :results silent
+#+BEGIN_SRC R :results silent  :exports both
 pic_annuel = function(annee) {
       debut = paste0(annee-1,"-08-01")
       fin = paste0(annee,"-08-01")
@@ -211,11 +211,11 @@ pic_annuel = function(annee) {
 #+END_SRC
 
 Nous devons aussi faire attention aux premières et dernières années de notre jeux de données. Les données commencent en octobre 1984, ce qui ne permet pas de quantifier complètement le pic attribué à l'année 1985. Nous le supprimons donc de notre analyse. Par contre, les données se terminent après le 1er août 2018 (pour une exécution après cette date bien sûr), ce qui nous permet d'inclure cette année dans l'analyse.
-#+BEGIN_SRC R :results silent
+#+BEGIN_SRC R :results silent  :exports both
 annees <- 1986:2018
 #+END_SRC
 
-#+BEGIN_SRC R :results value
+#+BEGIN_SRC R :results value  :exports both
 inc_annuelle = data.frame(annee = annees,
                           incidence = sapply(annees, pic_annuel))
 head(inc_annuelle)
@@ -223,17 +223,17 @@ head(inc_annuelle)
 
 ** Inspection
 Voici les incidences annuelles en graphique.
-#+BEGIN_SRC R :results output graphics :file annual-inc-plot.png
+#+BEGIN_SRC R :results output graphics :file annual-inc-plot.png  :exports both
 plot(inc_annuelle, type="p", xlab="Année", ylab="Incidence annuelle")
 #+END_SRC
 
 ** Identification des épidémies les plus fortes
 Une liste triée par ordre décroissant d'incidence annuelle permet de plus facilement repérer les valeurs les plus élevées:
-#+BEGIN_SRC R :results output
+#+BEGIN_SRC R :results output  :exports both
 head(inc_annuelle[order(-inc_annuelle$incidence),])
 #+END_SRC
 
 Enfin, un histogramme montre bien que les épidémies fortes, qui touchent environ 10% de la population française, sont assez rares: il y en eu trois au cours des 35 dernières années.
-#+BEGIN_SRC R :results output graphics :file annual-inc-hist.png
+#+BEGIN_SRC R :results output graphics :file annual-inc-hist.png  :exports both
 hist(inc_annuelle$incidence, breaks=10, xlab="Incidence annuelle", ylab="Nb d'observations", main="")
 #+END_SRC

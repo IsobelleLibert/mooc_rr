@@ -10,7 +10,7 @@
 #+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.js"></script>
 #+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
 
-#+PROPERTY: header-args  :session  :exports both
+#+PROPERTY: header-args  :session
 
 * Foreword
 
@@ -21,13 +21,13 @@ Older versions may suffice. For Emacs versions older than 26, org-mode must be u
 ** R 3.4
 We use only basic R functionality, so a earlier version might be OK, but we did not test this.
 
-#+BEGIN_SRC emacs-lisp :results output
+#+BEGIN_SRC emacs-lisp :results output  :exports both
 (unless (featurep 'ob-R)
   (print "Please activate R in org-babel (org-babel-do-languages)!"))
 #+END_SRC
 
 For handling dates in ISO-8601 format, we need the library ~parsedate~.
-#+BEGIN_SRC R :results output
+#+BEGIN_SRC R :results output  :exports both
 library(parsedate)
 #+END_SRC
 
@@ -55,25 +55,25 @@ This is the documentation of the data from [[https://ns.sentiweb.fr/incidence/cs
 ** Download
 The first line of the CSV file is a comment, which we ignore with ~skip=1~.
 
-#+BEGIN_SRC R :session :results silent :var url=data-url
+#+BEGIN_SRC R :session :results silent :var url=data-url  :exports both
 data = read.csv(trimws(url), skip=1)
 #+END_SRC
 
 Let's see what we got!
-#+BEGIN_SRC R :results output
+#+BEGIN_SRC R :results output  :exports both
 head(data)
 tail(data)
 #+END_SRC
 
 ** Verification
 Are there missing data points?
-#+BEGIN_SRC R :results value
+#+BEGIN_SRC R :results value  :exports both
 na_records = apply(data, 1, function(x) any(is.na(x)))
 data[na_records,]
 #+END_SRC
 
 The two relevant columns for us are `week` and `inc`. Let's verify their classes:
-#+BEGIN_SRC R :results output
+#+BEGIN_SRC R :results output  :exports both
 class(data$week)
 class(data$inc)
 #+END_SRC
@@ -82,7 +82,7 @@ Integers, fine!
 
 ** Conversions
 In order to facilitate the subsequent treatment, we replace the ISO week numbers by the dates of each week's Monday. This function does it for one value:
-#+BEGIN_SRC R :results silent
+#+BEGIN_SRC R :results silent  :exports both
 convert_week = function(w) {
 	ws = paste(w)
 	iso = paste0(substring(ws,1,4), "-W", substring(ws,5,6))
@@ -91,34 +91,34 @@ convert_week = function(w) {
 #+END_SRC
 
 We apply it to all points, creating a new column ~date~ in our data frame:
-#+BEGIN_SRC R :results output
+#+BEGIN_SRC R :results output  :exports both
 data$date = as.Date(convert_week(data$week))
 #+END_SRC
 
 Let's check that is has class ~Date~:
-#+BEGIN_SRC R :results output
+#+BEGIN_SRC R :results output  :exports both
 class(data$date)
 #+END_SRC
 
 The points are in inverse chronological order, so it's preferable to sort them:
-#+BEGIN_SRC R :results output
+#+BEGIN_SRC R :results output  :exports both
 data = data[order(data$date),]
 #+END_SRC
 
 ** Verification of the dates
 Another check: our dates should be separated by exactly seven days:
-#+BEGIN_SRC R :results value
+#+BEGIN_SRC R :results value  :exports both
 all(diff(data$date) == 7)
 #+END_SRC
 
 ** Inspection
 Finally we can look at a plot of our data!
-#+BEGIN_SRC R :results output graphics :file inc-plot.png
+#+BEGIN_SRC R :results output graphics :file inc-plot.png  :exports both
 plot(data$date, data$inc, type="l", xlab="Date", ylab="Incidence hebdomadaire")
 #+END_SRC
 
 A zoom on the last few years makes the peaks in winter stand out more clearly.
-#+BEGIN_SRC R :results output graphics :file inc-plot-zoom.png
+#+BEGIN_SRC R :results output graphics :file inc-plot-zoom.png  :exports both
 with(tail(data, 200), plot(date, inc, type="l", xlab="Date", ylab="Incidence hebdomadaire"))
 #+END_SRC
 
@@ -128,7 +128,7 @@ with(tail(data, 200), plot(date, inc, type="l", xlab="Date", ylab="Incidence heb
 Since the peaks of the epidemic happen in winter, near the transition between calendar years, we define the reference period for the annual incidence from August 1st of year /N/ to August 1st of year /N+1/. We label this period as year /N+1/ because the peak is always located in year /N+1/. The very low incidence in summer ensures that the arbitrariness of the choice of reference period has no impact on our conclusions.
 
 This R function computes the annual incidence as defined above:
-#+BEGIN_SRC R :results silent
+#+BEGIN_SRC R :results silent  :exports both
 yearly_peak = function(year) {
       debut = paste0(year-1,"-08-01")
       fin = paste0(year,"-08-01")
@@ -138,12 +138,12 @@ yearly_peak = function(year) {
 #+END_SRC
 
 We must also be careful with the first and last years of the dataset. The data start in October 1984, meaning that we don't have all the data for the peak attributed to the year 1985. We therefore exclude it from the analysis. For the same reason, we define 2018 as the final year. We can increase this value to 2019 only when all data up to July 2019 is available.
-#+BEGIN_SRC R :results silent
+#+BEGIN_SRC R :results silent  :exports both
 years <- 1986:2018
 #+END_SRC
 
 We make a new data frame for the annual incidence, applying the function ~yearly_peak~ to each year:
-#+BEGIN_SRC R :results value
+#+BEGIN_SRC R :results value  :exports both
 annnual_inc = data.frame(year = years,
                          incidence = sapply(years, yearly_peak))
 head(annnual_inc)
@@ -151,17 +151,17 @@ head(annnual_inc)
 
 ** Inspection
 A plot of the annual incidence:
-#+BEGIN_SRC R :results output graphics :file annual-inc-plot.png
+#+BEGIN_SRC R :results output graphics :file annual-inc-plot.png  :exports both
 plot(annnual_inc, type="p", xlab="Année", ylab="Annual incidence")
 #+END_SRC
 
 ** Identification of the strongest epidemics
 A list sorted by decreasing annual incidence makes it easy to find the most important ones:
-#+BEGIN_SRC R :results output
+#+BEGIN_SRC R :results output  :exports both
 head(annnual_inc[order(-annnual_inc$incidence),])
 #+END_SRC
 
 Finally, a histogram clearly shows the few very strong epidemics, which affect about 10% of the French population, but are rare: there were three of them in the course of 35 years. The typical epidemic affects only half as many people.
-#+BEGIN_SRC R :results output graphics :file annual-inc-hist.png
+#+BEGIN_SRC R :results output graphics :file annual-inc-hist.png  :exports both
 hist(annnual_inc$incidence, breaks=10, xlab="Annual incidence", ylab="Number of observations", main="")
 #+END_SRC
