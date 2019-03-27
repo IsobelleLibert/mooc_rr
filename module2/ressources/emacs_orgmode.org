@@ -21,6 +21,8 @@ The next section provides information on how to install emacs.
   - [[#linux-debian-ubuntu][Linux (Debian, Ubuntu)]]
   - [[#macos][macOS]]
   - [[#windows][Windows]]
+- [[#python-and-r][Python and R]]
+- [[#latex-optional][LaTeX (optional)]]
 - [[#a-simple-reproducible-research-emacs-configuration][A simple "reproducible research" emacs configuration]]
   - [[#step-0-backup-and-remove-your-previous-configuration][Step 0: Backup and remove your previous configuration]]
   - [[#step-1-download-our-configuration][Step 1: Download our configuration]]
