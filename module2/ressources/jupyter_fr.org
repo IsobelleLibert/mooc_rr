@@ -66,7 +66,8 @@ ceux du MOOC.
      code correspondant.
 ** Exécuter du code R et du code Python dans le même notebook
 C'était impossible avec les premières versions de Jupyter mais c'est
-désormais très facile grâce à la bibliothèque python =rpy2=. Il vous
+désormais très facile grâce à la bibliothèque python =rpy2= (les détails
+d'installation sont donnés plus bas dans ce document) Il vous
 faut tout d'abord ouvrir un notebook python.
 1. Chargez la bibliothèque =rpy2=. Le =%load_ext= est une commande magique
    jupyter qui charge cette bibliothèque et vous donne accès à de
@@ -91,6 +92,9 @@ python (=rpy2=) maintient une session R, lui passe le code de la cellule
 et récupère le résultat. Jupyter fait alors le nécessaire pour
 l'afficher correctement. Il est également possible d'utiliser =%R= pour
 avoir une seule ligne de R au sein d'une cellule python.
+
+Un exemple de notebook utilisant R et Python est donné [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/documents/notebooks/notebook_Jupyter_Python_R.ipynb][ici]].
+
 ** Autres langages que Python et R
 Jupyter tire son nom des langages Julia, Python, et R. Il ne se limite
 donc pas aux langages Python et R. De nombreux autres langages de
@@ -168,7 +172,24 @@ certainement suivre les étapes suivantes
 *** • Installation de [[https://github.com/IRkernel/IRkernel][IRKernel]] (R package)
 IRKernel vous permettra de faire des notebooks utilisant le langage R
 plutôt que le langage Python. Nous supposons ici que R est déjà
-installé et fonctionnel sur votre ordinateur. Dans une console R:
+installé et fonctionnel sur votre ordinateur. 
+
+*Windows*
+
+Pour windows, il ne sera probablement pas possible de compiler la
+toute dernière version et il faudra installer la version binaire de la
+façon suivante. Dans une console R ou bien dans Rstudio :
+#+begin_src R :results output :session *R* :exports both
+install.packages('IRkernel',dep=TRUE)
+IRkernel::installspec()  # to register the kernel in the current R installation
+#+end_src
+
+Voir ce qui suit pour un exemple d'utilisation de notebook R.
+
+*Linux ou Mac*
+
+Pour installer la toute dernière version d'IRkernel, dans une console
+R ou bien dans Rstudio :
 - Installer la bibliothèque =devtools=:
   #+begin_src R :results output :session *R* :exports both
   install.packages('devtools',dep=TRUE)
@@ -185,11 +206,22 @@ installé et fonctionnel sur votre ordinateur. Dans une console R:
   devtools::install_github('IRkernel/IRkernel')
   IRkernel::installspec()  # to register the kernel in the current R installation
   #+end_src
+
+Vous pourrez alors créer des notebooks utilisant directement R:
+[[file:jupyter_images/new_notebook.png]]
+
+[[file:jupyter_images/notebook_R.png]]
+
+On remarque l'icône du logiciel R en haut à droite. Vous trouverez ici
+[[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/documents/notebooks/notebook_Jupyter_R.ipynb][un exemple de notebook R]].
 *** • Installation de rpy2 (Python package)
 La bibliothèque =rpy2= permet à Python d'appeler R et donc de mélanger
-les deux langages dans le même notebook. Cette bibliothèque est en
-général disponible sur les distributions récentes. Par exemple sous
-debian ou ubuntu:
+les deux langages dans le même notebook. 
+
+*Linux ou Mac*
+
+Cette bibliothèque est en général disponible sur les distributions
+récentes. Par exemple sous debian ou ubuntu:
 #+begin_src shell :results output :exports both
 sudo apt-get install python3-rpy2 python3-tzlocal
 #+end_src
@@ -205,15 +237,24 @@ pip3 install rpy2
 Téléchargez le [[https://www.lfd.uci.edu/~gohlke/pythonlibs/#rpy2][fichier binaire]] =rpy2= en choisissant le bon système
 d'exploitation.
 
-Ouvrez une console DOS et tapez les commandes suivantes:
+Ouvrez une console DOS, placez vous dans le dossier de téléchargement,
+et exécutez la commande suivante :
 #+begin_src shell :results output :exports both
-python -m pip install rpy2‑2.9.4‑cp37‑cp37m‑win_amd64.whl # adapt filename
+python -m pip install rpy2‑2.9.4‑cp37‑cp37m‑win_amd64.whl # adaptez le nom de fichier
 #+end_src
 
 Installez également =tzlocal=:
 #+begin_src shell :results output :exports both
 python -m pip install tzlocal
 #+end_src
+
+En cas de difficulté, vous pouvez vouloir vous référer à 
+[[https://stackoverflow.com/questions/14882477/rpy2-install-on-windows-7][StackOverflow]] (NB : quand nous avons essayé, nous n'avons pas eu
+besoin de définir les variables d'environnement =R_HOME= et =R_USER=). 
+
+Vous pouvez alors lancer Jupyter et créer un notebook python utilisant
+R en suivant les instructions données au début de ce document
+(cherchez =rpy2=).
 ** Conseils additionnels
 *** • Exporter un notebook
 Jupyter évolue rapidement et ces informations peuvent vite devenir
