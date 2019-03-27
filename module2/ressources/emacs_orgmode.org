@@ -352,12 +352,35 @@ in the context of this MOOC in a [[https://www.fun-mooc.fr/courses/course-v1:inr
 It is very powerful and we use it on a daily basis but you should
 definitely understand what git does behind the scenes beforehand. If
 you feel this would be useful for you, you should follow [[https://magit.vc/screenshots/][this visual
-walk-through]] or [[https://www.emacswiki.org/emacs/Magit][this really short "crash course"]]. If you installed the
-previous "/reproducible research/" emacs configuration, you can easily
-invoke magit by using ~C-x g~.
+walk-through]] or [[https://www.emacswiki.org/emacs/Magit][this really short "crash course"]]. 
+
+If you installed the previous "/reproducible research/" emacs
+configuration, you can easily invoke magit by using ~C-x g~.  Magit will
+then prompt you for the path of your local clone of the git repository
+(the path to mooc-rr in the context of this MOOC).
+[[file:emacs_orgmode_images/git1.png]]
+
+If you do not rely on our "/reproducible research/" emacs configuration,
+you should have a look at [[https://magit.vc/manual/magit/Installing-from-an-Elpa-Archive.html][how to install magit from an ELPA archive]].
+
+The following method has been tested with Windows and worked like a charm:
+- Add the following piece of text in your =.emacs.d/init.el= file:
+  #+begin_src emacs-lisp
+  (require 'package)
+  (add-to-list 'package-archives
+               '("melpa" . "http://melpa.org/packages/") t)
+
+  #+end_src
+- Launch Emacs and run the following commands:
+  #+BEGIN_EXAMPLE
+  M-x package-refresh-contents RET
+  M-x package-install RET magit RET
+  #+END_EXAMPLE
+  NB: =M-= corresponds to the =<Alt>= key and =RET= corresponds to the
+  =<Return>= key.
 ** Other resources
 - [[https://orgmode.org/orgguide.pdf][The compact Org-mode Guide]]
-- A huge ressource of emacs/org-mode magic is Bernt Hansen's «[[http://doc.norang.ca/org-mode.html][Organize
+- A huge resource of emacs/org-mode magic is Bernt Hansen's «[[http://doc.norang.ca/org-mode.html][Organize
   your life in plain text]]», whose source is obviously itself an
   [[http://doc.norang.ca/org-mode.org][org-mode document]].
 - [[https://github.com/dfeich/org-babel-examples][Many examples illustrating the use of different languages in
