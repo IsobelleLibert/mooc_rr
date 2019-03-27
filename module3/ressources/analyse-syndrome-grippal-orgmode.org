@@ -10,7 +10,7 @@
 #+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.js"></script>
 #+HTML_HEAD: <script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
 
-#+PROPERTY: header-args  :session  :exports both
+#+PROPERTY: header-args  :session
 
 * Préface
 
@@ -21,7 +21,7 @@ Une version plus ancienne d'Emacs devrait suffire. Pour une version antérieure 
 ** Python 3.6 ou plus
 Nous utilisons le traitement de dates en format ISO 8601, qui a été implémenté en Python seulement avec la version 3.6.
 
-#+BEGIN_SRC python :results output
+#+BEGIN_SRC python :results output :exports both
 import sys
 if sys.version_info.major < 3 or sys.version_info.minor < 6:
     print("Veuillez utiliser Python 3.6 (ou plus) !")
@@ -29,7 +29,7 @@ if sys.version_info.major < 3 or sys.version_info.minor < 6:
 
 #+RESULTS:
 
-#+BEGIN_SRC emacs-lisp :results output
+#+BEGIN_SRC emacs-lisp :results output :exports both
 (unless (featurep 'ob-python)
   (print "Veuillez activer python dans org-babel (org-babel-do-languages) !"))
 #+END_SRC
@@ -39,7 +39,7 @@ if sys.version_info.major < 3 or sys.version_info.minor < 6:
 ** R 3.4
 Nous n'utilisons que des fonctionnalités de base du langage R, une version antérieure devrait suffire.
 
-#+BEGIN_SRC emacs-lisp :results output
+#+BEGIN_SRC emacs-lisp :results output :exports both
 (unless (featurep 'ob-R)
   (print "Veuillez activer R dans org-babel (org-babel-do-languages) !"))
 #+END_SRC
@@ -72,7 +72,7 @@ L'indication d'une semaine calendaire en format [[https://en.wikipedia.org/wiki/
 ** Téléchargement
 Après avoir téléchargé les données, nous commençons par l'extraction des données qui nous intéressent. D'abord nous découpons le contenu du fichier en lignes, dont nous jetons la première qui ne contient qu'un commentaire. Les autres lignes sont découpées en colonnes.
 
-#+BEGIN_SRC python :results silent :var data_url=data-url
+#+BEGIN_SRC python :results silent :var data_url=data-url :exports both
 from urllib.request import urlopen
 
 data = urlopen(data_url).read()
@@ -82,7 +82,7 @@ table = [line.split(',') for line in data_lines]
 #+END_SRC
 
 Regardons ce que nous avons obtenu:
-#+BEGIN_SRC python :results value
+#+BEGIN_SRC python :results value :exports both
 table[:5]
 #+END_SRC
 
@@ -97,7 +97,7 @@ table[:5]
 Il y a malheureusement beaucoup de façon d'indiquer l'absence d'un point de données. Nous testons ici seulement pour la présence de champs vides. Il faudrait aussi rechercher des valeurs non-numériques dans les colonnes à priori numériques. Nous ne le faisons pas ici, mais une vérification ultérieure capterait des telles anomalies.
 
 Nous construisons un nouveau jeu de données sans les lignes qui contiennent des champs vides. Nous affichons ces lignes pour en garder une trace.
-#+BEGIN_SRC python :results output
+#+BEGIN_SRC python :results output :exports both
 valid_table = []
 for row in table:
     missing = any([column == '' for column in row])
@@ -112,7 +112,7 @@ for row in table:
 
 ** Extraction des colonnes utilisées
 Il y a deux colonnes qui nous intéressent: la première (~"week"~) et la troisième (~"inc"~). Nous vérifions leurs noms dans l'en-tête, que nous effaçons par la suite. Enfin, nous créons un tableau avec les deux colonnes pour le traitement suivant.
-#+BEGIN_SRC python :results silent
+#+BEGIN_SRC python :results silent :exports both
 week = [row[0] for row in valid_table]
 assert week[0] == 'week'
 del week[0]
@@ -123,7 +123,7 @@ data = list(zip(week, inc))
 #+END_SRC
 
 Regardons les premières et les dernières lignes. Nous insérons ~None~ pour indiquer à org-mode la séparation entre les trois sections du tableau: en-tête, début des données, fin des données.
-#+BEGIN_SRC python :results value
+#+BEGIN_SRC python :results value :exports both
 [('week', 'inc'), None] + data[:5] + [None] + data[-5:]
 #+END_SRC
 
@@ -144,7 +144,7 @@ Regardons les premières et les dernières lignes. Nous insérons ~None~ pour in
 
 ** Vérification
 Il est toujours prudent de vérifier si les données semblent crédibles. Nous savons que les semaines sont données par six chiffres (quatre pour l'année et deux pour la semaine), et que les incidences sont des nombres entiers positifs.
-#+BEGIN_SRC python :results output
+#+BEGIN_SRC python :results output :exports both
 for week, inc in data:
     if len(week) != 6 or not week.isdigit():
         print("Valeur suspecte dans la colonne 'week': ", (week, inc))
@@ -159,7 +159,7 @@ Pas de problème !
 ** Conversions
 Pour faciliter les traitements suivants, nous remplaçons les numéros de semaine ISO par les dates qui correspondent aux lundis. A cette occasion, nous trions aussi les données par la date, et nous transformons les incidences en nombres entiers.
 
-#+BEGIN_SRC python :results silent
+#+BEGIN_SRC python :results silent :exports both
 import datetime
 converted_data = [(datetime.datetime.strptime(year_and_week + ":1" , '%G%V:%u').date(),
                   int(inc))
@@ -168,7 +168,7 @@ converted_data.sort(key = lambda record: record[0])
 #+END_SRC
 
 Regardons de nouveau les premières et les dernières lignes:
-#+BEGIN_SRC python :results value
+#+BEGIN_SRC python :results value :exports both
 str_data = [(str(date), str(inc)) for date, inc in converted_data]
 [('date', 'inc'), None] + str_data[:5] + [None] + str_data[-5:]
 #+END_SRC
@@ -190,7 +190,7 @@ str_data = [(str(date), str(inc)) for date, inc in converted_data]
 
 ** Vérification des dates
 Nous faisons encore une vérification: nos dates doivent être séparées d'exactement une semaine, sauf autour du point manquant.
-#+BEGIN_SRC python :results output
+#+BEGIN_SRC python :results output :exports both
 dates = [date for date, _ in converted_data]
 for date1, date2 in zip(dates[:-1], dates[1:]):
     if date2-date1 != datetime.timedelta(weeks=1):
@@ -205,12 +205,12 @@ Nous passons au langage R pour inspecter nos données, parce que l'analyse et la
 
 Nous utilisons le mécanisme d'échange de données proposé par org-mode, ce qui nécessite un peu de code Python pour transformer les données dans le bon format.
 #+NAME: data-for-R
-#+BEGIN_SRC python :results silent
+#+BEGIN_SRC python :results silent :exports both
 [('date', 'inc'), None] + [(str(date), inc) for date, inc in converted_data]
 #+END_SRC
 
 En R, les données arrivent sous forme d'un data frame, mais il faut encore convertir les dates, qui arrivent comme chaînes de caractères.
-#+BEGIN_SRC R :results output :var data=data-for-R
+#+BEGIN_SRC R :results output :var data=data-for-R :exports both
 data$date <- as.Date(data$date)
 summary(data)
 #+END_SRC
@@ -226,7 +226,7 @@ summary(data)
 
 ** Inspection
 Regardons enfin à quoi ressemblent nos données !
-#+BEGIN_SRC R :results output graphics :file inc-plot.png
+#+BEGIN_SRC R :results output graphics :file inc-plot.png :exports both
 plot(data, type="l", xlab="Date", ylab="Incidence hebdomadaire")
 #+END_SRC
 
@@ -234,7 +234,7 @@ plot(data, type="l", xlab="Date", ylab="Incidence hebdomadaire")
 [[file:inc-plot.png]]
 
 Un zoom sur les dernières années montre mieux la situation des pics en hiver. Le creux des incidences se trouve en été.
-#+BEGIN_SRC R :results output graphics :file inc-plot-zoom.png
+#+BEGIN_SRC R :results output graphics :file inc-plot-zoom.png :exports both
 plot(tail(data, 200), type="l", xlab="Date", ylab="Incidence hebdomadaire")
 #+END_SRC
 
@@ -247,7 +247,7 @@ plot(tail(data, 200), type="l", xlab="Date", ylab="Incidence hebdomadaire")
 Étant donné que le pic de l'épidémie se situe en hiver, à cheval entre deux années civiles, nous définissons la période de référence entre deux minima de l'incidence, du 1er août de l'année /N/ au 1er août de l'année /N+1/. Nous mettons l'année /N+1/ comme étiquette sur cette année décalée, car le pic de l'épidémie est toujours au début de l'année /N+1/. Comme l'incidence du syndrome grippal est très faible en été, cette modification ne risque pas de fausser nos conclusions.
 
 Voici une fonction qui calcule l'incidence annuelle en appliquant ces conventions.
-#+BEGIN_SRC R :results silent
+#+BEGIN_SRC R :results silent :exports both
 pic_annuel = function(annee) {
       debut = paste0(annee-1,"-08-01")
       fin = paste0(annee,"-08-01")
@@ -257,11 +257,11 @@ pic_annuel = function(annee) {
 #+END_SRC
 
 Nous devons aussi faire attention aux premières et dernières années de notre jeux de données. Les données commencent en octobre 1984, ce qui ne permet pas de quantifier complètement le pic attribué à l'année 1985. Nous le supprimons donc de notre analyse. Pour la même raison, nous arrêtons en 2018. Nous devons attendre les données pour juillet 2019 avant d'augmenter la dernière année à 2019.
-#+BEGIN_SRC R :results silent
+#+BEGIN_SRC R :results silent :exports both
 annees <- 1986:2018
 #+END_SRC
 
-#+BEGIN_SRC R :results value
+#+BEGIN_SRC R :results value :exports both
 inc_annuelle = data.frame(annee = annees,
                           incidence = sapply(annees, pic_annuel))
 head(inc_annuelle)
@@ -277,7 +277,7 @@ head(inc_annuelle)
 
 ** Inspection
 Voici les incidences annuelles en graphique.
-#+BEGIN_SRC R :results output graphics :file annual-inc-plot.png
+#+BEGIN_SRC R :results output graphics :file annual-inc-plot.png :exports both
 plot(inc_annuelle, type="p", xlab="Année", ylab="Incidence annuelle")
 #+END_SRC
 
@@ -286,7 +286,7 @@ plot(inc_annuelle, type="p", xlab="Année", ylab="Incidence annuelle")
 
 ** Identification des épidémies les plus fortes
 Une liste triée par ordre décroissant d'incidence annuelle permet de plus facilement repérer les valeurs les plus élevées:
-#+BEGIN_SRC R :results output
+#+BEGIN_SRC R :results output :exports both
 head(inc_annuelle[order(-inc_annuelle$incidence),])
 #+END_SRC
 
@@ -300,7 +300,7 @@ head(inc_annuelle[order(-inc_annuelle$incidence),])
 : 14  1999   3897443
 
 Enfin, un histogramme montre bien que les épidémies fortes, qui touchent environ 10% de la population française, sont assez rares: il y en eu trois au cours des 35 dernières années.
-#+BEGIN_SRC R :results output graphics :file annual-inc-hist.png
+#+BEGIN_SRC R :results output graphics :file annual-inc-hist.png :exports both
 hist(inc_annuelle$incidence, breaks=10, xlab="Incidence annuelle", ylab="Nb d'observations", main="")
 #+END_SRC
 
