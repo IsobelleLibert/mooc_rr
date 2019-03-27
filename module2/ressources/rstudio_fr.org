@@ -125,7 +125,7 @@ Ouvrir RStudio et procéder comme suit :
   [[file:rstudio_images/clone.png]]
   #+END_CENTER
 - Si vous êtes derrière un proxy, il faut le définir dans Git (voir le
-  paragraphe "Gérer les proxy" de la page sur  [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85][Git et Gitlab]]).
+  paragraphe "Gérer les proxy" de la page sur [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85][Git et Gitlab]]).
 - Git se connecte à Gitlab et récupère une copie complète du dépôt.
 - RStudio redémarre dans un mode lié à Git :
   #+BEGIN_CENTER
