@@ -43,8 +43,5 @@
 ./module4/ressources/resources_environment_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/4be922aa6b8c471ab1addcdbddb4e487
 
 ./documents/notebooks/notebook_RStudio_SASmarkdown.md               #     
-./documents/tuto_git_gtlab/tuto_git_gitlab.md               #     
-./documents/tuto_rstudio_gitlab/tuto_rstudio_gitlab.md               #     
-./documents/tuto_magit/tuto_magit.md               #     
 ./documents/tuto_emacs_windows/tuto_emacs_windows.md               #     
 ./documents/tuto_jupyter_windows/tuto_jupyter_windows.md               #     
