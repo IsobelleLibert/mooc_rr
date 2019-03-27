@@ -67,7 +67,11 @@ apt-get update ; apt-get install git
    git config --global user.email "email@example.com"
    #+end_src
 
-   #+RESULTS:
+   These two steps are really important to commit. If you forget to do
+   so, you will get the following message:
+   #+BEGIN_CENTER
+   [[file:gitlab_images/commit3.png]]
+   #+END_CENTER
 
 3. Confirm that you have set the Git username correctly:   
    #+begin_src shell :results output :exports both
@@ -91,6 +95,12 @@ git config --global http.proxy http://proxyUsername:proxyPassword@proxy.server.c
 The =proxyPassword= will be stored in plain text (unencrypted) in your ~.gitconfig~ file,
 which you may not want. In that case, remove it from the URL and you
 will be prompted for it every time it is needed.
+
+To stop using a proxy, simply use the following command:
+#+begin_src shell :results output :exports both
+git config --global --unset http.proxy
+#+end_src
+
 ** Getting your default password on GitLab (and possibly changing it)
 *Warning (Jupyter users) :* changing your default Gitlab password will
 prevent you from committing in Jupyter. You will have to do the extra
@@ -160,6 +170,25 @@ git config credential.helper store
 Your password will be then stored in a =.git-credentials= file in plain
 text. On a perfectly secured machine, it may be fine... or not... ;)
 Use it at your own risk.
+
+To delete all the passwords that may have been stored, simply use the
+following command:
+#+begin_src shell :results output :exports both
+git config --system --unset credential.helper
+#+end_src
+
+Finally, those of you using Windows may get the following error
+message:
+#+BEGIN_EXAMPLE
+git: 'credential-cache' is not a git command. See 'get --help'.
+#+END_EXAMPLE
+This issue is mentioned on [[https://stackoverflow.com/questions/11693074/git-credential-cache-is-not-a-git-command][stackoverflow]]. In such case, try the
+following command:
+#+begin_src shell :results output :exports both
+git config --global --unset credential.helper
+#+end_src
+If the problem persists, do not hesitate to describe your problem on
+the MOOC forum to get some help.
 ** Optional: authenticating through SSH
 There are two ways of authenticating and synchronizing your local
 repository with GitLab: through HTTPS or through SSH. The first one is
