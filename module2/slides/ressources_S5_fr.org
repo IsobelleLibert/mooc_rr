@@ -1,0 +1,16 @@
+# -*- mode: org -*-
+#+TITLE:     Travailler avec les autres
+#+DATE: June, 2018
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:t
+#+PROPERTY: header-args :eval never-export
+
+* Préparation d'un document pour un journal ou pour une conférence
+De quoi aurez-vous besoin pour produire un document  *pdf*:
+- En interne: /pandoc/, /knitr/ ou /emacs/org-mode/.
+- /LaTeX/ devra aussi être installé
+Voici quelques billets intéressants sur le sujet:
+  - http://blog.juliusschulz.de/blog/ultimate-ipython-notebook
+    - https://github.com/kirbs-/hide_code is a must-have
+  - http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
+  - https://github.com/balouf/Kleinberg/blob/master/KleinbergsGridSimulator.ipynb

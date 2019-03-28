@@ -1,0 +1,26 @@
+# -*- mode: org -*-
+#+TITLE:     A few Recent Controversial Studies
+#+DATE: June, 2018
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:t
+#+PROPERTY: header-args :eval never-export
+
+
+* Economy: Austerity in Fiscal Policy
+- [[https://en.wikipedia.org/wiki/Growth_in_a_Time_of_Debt][Reinhart et Rogoff]]: /Growth in a Time of Debt/
+- Herndon, Ash et Pollin
+- Wray: combining data across centuries, exchange rate regimes,
+* Functional MRI
+- 2010: [[https://www.researchgate.net/publication/255651552_Neural_correlates_of_interspecies_perspective_taking_in_the_post-mortem_Atlantic_Salmon_an_argument_for_multiple_comparisons_correction][Bennett et al. and the dead salmon]] \smiley
+- 2016: [[http://www.pnas.org/content/113/28/7900.abstract][Eklund, Nichols, and Knutsson]]. [[http://www.sciencealert.com/a-bug-in-fmri-software-could-invalidate-decades-of-brain-research-scientists-discover][A bug in fmri software could
+  invalidate 15 years of brain research]] (/40 000 articles/)
+- 2016: But it's [[https://www.cogneurosociety.org/debunking-the-myth-that-fmri-studies-are-invalid/][more subtle than it looks like]]. [[http://blogs.warwick.ac.uk/nichols/entry/bibliometrics_of_cluster/][Nichols]]. /\approx
+  3 600 impacted studies/
+* Incorrect Protein Structures
+[[https://people.ligo-wa.caltech.edu/~michael.landry/calibration/S5/getsignright.pdf][A "buggy software"]].
+* Other domains
+- [[http://www.nature.com/nrd/journal/v10/n9/full/nrd3439-c1.html?foxtrotcallback=true][Oncology]]: "/half of published studies, even in prestigious journals,
+  can't be reproduced in industrial labs/"
+- [[http://theconversation.com/we-found-only-one-third-of-published-psychology-research-is-reliable-now-what-46596][Psychology]]: "/attempting to reproduce 100 previously published
+  findings/, /only one-third of published psychology research was found
+  to be reliable/"

@@ -1,0 +1,16 @@
+# -*- mode: org -*-
+#+TITLE:     Collaborating
+#+DATE: June, 2018
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:t
+#+PROPERTY: header-args :eval never-export
+
+* Preparing a Document for a Journal or a Conference
+Requirements for producing a *pdf*:
+- Internally, /pandoc/, /knitr/ or /emacs/org-mode/
+- /LaTeX/ should be installed
+
+  - http://blog.juliusschulz.de/blog/ultimate-ipython-notebook
+    - https://github.com/kirbs-/hide_code is a must-have
+  - http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/
+  - https://github.com/balouf/Kleinberg/blob/master/KleinbergsGridSimulator.ipynb

@@ -1,0 +1,14 @@
+# -*- mode: org -*-
+#+TITLE:     Pourquoi est-ce difficile?
+#+DATE: June, 2018
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:t
+#+PROPERTY: header-args :eval never-export
+
+* Les erreurs classiques
+- [[http://theconversation.com/how-computers-broke-science-and-what-we-can-do-to-fix-it-49938][Enquoi les ordinateurs ont "cassé" la science]]
+- [[https://qz.com/768334/years-of-genomics-research-is-riddled-with-errors-thanks-to-a-bunch-of-botched-excel-spreadsheets/][Erreurs de programmation et de manipulation de données en génomique]]
+* Tout rendre publique ?
+- Quelqu'un pourrait [[http://www.nature.com/news/the-top-100-papers-1.16224][tirer parti de mon dur labeur]]. Les papiers les
+  plus cités sont des papiers qui décrivent une nouvelle technique ou
+  un logiciel permettant à une communauté de recherche d'avancer.
