@@ -347,8 +347,8 @@ maintenant plutôt les journaux de mes doctorants qui réalisent
 vraiment les choses que je ne fais que superviser.
 
 Bon, une analyse de ce genre ne serait pas digne de ce nom sans un
-/wordcloud/ (souvent illisible, mais tellement sexy! \smiley). Pour ça, je
-m'inspire librement de ce post :
+/wordcloud/ (souvent illisible, mais tellement tape à l'œil! \smiley). Pour
+ça, je m'inspire librement de ce post :
 http://onertipaday.blogspot.com/2011/07/word-cloud-in-r.html
 
 #+begin_src R :results output graphics :file wordcloud.png :exports both :width 600 :height 400 :session *R* 
