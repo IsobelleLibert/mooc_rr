@@ -24,9 +24,11 @@
 ./module2/ressources/emacs_orgmode_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/954f94ce4f9a4d858d47b41793cc96c8
 ./module2/ressources/sequence6_examples/README.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/827b36e10ddd49239f1c62cc1903951a
 ./module2/ressources/sequence6_examples/README_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/827b36e10ddd49239f1c62cc1903951a
+./module2/ressources/python_r_latex.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/19c2b1de7766484bae73f3ab133463c6
 ./module2/exo4/stat_activity.org               #     
 ./module2/slides/ressources.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/36723edefc72488ab44e269501cfc9f8
 ./module2/slides/ressources_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/36723edefc72488ab44e269501cfc9f8
+
 
 ./module3/ressources/iso_date_format.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/316fc24edc1b44278ada4ca531c705be
 ./module3/ressources/iso_date_format_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/316fc24edc1b44278ada4ca531c705be
