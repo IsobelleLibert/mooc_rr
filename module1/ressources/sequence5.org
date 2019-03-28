@@ -13,17 +13,17 @@
 #+STARTUP: indent
 
 * Table of contents                                                     :TOC:
-- [[Leibniz quote]]
-- [[Searching with a text editor]]
-- [[Search with a hand-made index in a notebook]]
-- [[Search with a "materialized" index]]
-- [[Towards the "sophisticated" tools of computers]]
-- [[Desktop search engines]]
-- [[Why labels/tags?]]
-- [[Metadata]]
-  - [[Image files]]
-  - [[=PDF= files]]
-  - [[Audios files]]
+- [[#leibniz-quote][Leibniz quote]]
+- [[#searching-with-a-text-editor][Searching with a text editor]]
+- [[#search-with-a-hand-made-index-in-a-notebook][Search with a hand-made index in a notebook]]
+- [[#search-with-a-materialized-index][Search with a "materialized" index]]
+- [[#towards-the-sophisticated-tools-of-computers][Towards the "sophisticated" tools of computers]]
+- [[#desktop-search-engines][Desktop search engines]]
+- [[#why-labels-tags?][Why labels/tags?]]
+- [[#metadata][Metadata]]
+  - [[#image-files][Image files]]
+  - [[#pdf-files][=PDF= files]]
+  - [[#audios-files][Audios files]]
 
 * Leibniz quote
 I found the introductory quote on the  [[http://www.backwordsindexing.com/index.html]] website.
