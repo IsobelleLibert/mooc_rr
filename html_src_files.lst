@@ -6,8 +6,11 @@
 ./module1/ressources/sequence3_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/d85eb783ff884ff8b1306b680326b198
 ./module1/ressources/sequence4_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/27b18e9ea3c14a77942eaa7cd00b8506
 ./module1/ressources/sequence5_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/c96bfaf3804847a38d2a8850ee0baf54
+./module1/ressources/sequence0.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/a1b9841f7ff34f83a637c56897ac8439
 ./module1/ressources/sequence1.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9719a1f5b81a4f2d89c27e54ce81f498
 ./module1/ressources/sequence2.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/565a72fe3c8b464f8ec3e31b56cd4c57
+./module1/ressources/sequence3.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/d85eb783ff884ff8b1306b680326b198
+./module1/ressources/sequence5.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/c96bfaf3804847a38d2a8850ee0baf54
 
 ./module2/ressources/maintaining_a_journal.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/0af0b6bf03194c1bb2798c29d7375a76
 ./module2/ressources/maintaining_a_journal_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/0af0b6bf03194c1bb2798c29d7375a76
