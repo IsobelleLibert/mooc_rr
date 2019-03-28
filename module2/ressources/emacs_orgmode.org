@@ -140,7 +140,7 @@ Open the =matplotlibrc= file and modify the line starting with =backend=
 to make it =backend : Agg=.
 
 * Python, R, and LaTeX
-Computational documents contain code, which in the case of our MOOC use the languages Python and R. So you must install Python and R in addition to Emacs, unless of course they are already installed on your computer. Since Python and R are also used in the other paths of our MOOC, we explain their installation in a separate resource.
+Computational documents contain code, which in the case of our MOOC use the languages Python and R. So you must install Python and R in addition to Emacs, unless of course they are already installed on your computer. Since Python and R are also used in the other paths of our MOOC, we explain their installation in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/19c2b1de7766484bae73f3ab133463c6][separate resource]].
 
 That same resource also explains how to install LaTeX, which you must have if you want to produce PDF versions of org-mode documents. For example, if you want to work with the replicable article stub (shown in [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][this video]]), you must install LaTeX. However, it is a rather big piece of software (several GB), so you may prefer to skip its installation. It is not required to follow the MOOC.
 

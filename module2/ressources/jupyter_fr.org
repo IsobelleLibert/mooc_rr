@@ -255,6 +255,8 @@ besoin de définir les variables d'environnement =R_HOME= et =R_USER=).
 Vous pouvez alors lancer Jupyter et créer un notebook python utilisant
 R en suivant les instructions données au début de ce document
 (cherchez =rpy2=).
+** LaTeX pour la génération de PDF
+Si vous voulez convertir vos notebooks en PDF, vous devez aussi installer LaTeX sur votre ordinateur. Nous expliquons cette procédure dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/19c2b1de7766484bae73f3ab133463c6][ressource spécifique]].
 ** Conseils additionnels
 *** • Exporter un notebook
 Jupyter évolue rapidement et ces informations peuvent vite devenir

@@ -1,5 +1,5 @@
 # -*- mode: org -*-
-#+TITLE:     Jupyter : tips and tricks, Installing and configuring
+#+TITLE:     Jupyter : tips and tricks, installing and configuring
 #+AUTHOR:    Arnaud Legrand, Benoit Rospars, Konrad Hinsen
 #+DATE: June, 2018
 #+STARTUP: overview indent
@@ -221,6 +221,8 @@ the =R_HOME= and =R_USER= environnement variables).
 You should be able to run Jupyter and to create a python notebook that runs
 R commands by following the instructions given in the beginning of
 this document (look for =rpy2=).
+** LaTeX for PDF export
+For exporting your notebooks as PDF files, you must also install LaTeX on your system. We describe this process in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/19c2b1de7766484bae73f3ab133463c6][separate resource]].
 ** Additional tips
 *** • Exporting a notebook
 Here is what we had to install on a recent Debian computer to make sure
