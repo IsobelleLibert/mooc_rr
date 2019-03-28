@@ -13,9 +13,9 @@
 #+STARTUP: indent
 
 * Table of contents                                                     :TOC:
-- [[Text files and text editors]]
-- [[The case of the =PDF= file opened with a text editor]]
-- [[On TinyTex]]
+- [[#text-files-and-text-editors][Text files and text editors]]
+- [[#the-case-of-the-pdf-file-opened-with-a-text-editor][The case of the =PDF= file opened with a text editor]]
+- [[#on-tinyTex][On TinyTex]]
 
 * Text files and text editors
 A more technical as well as less circular (!) definition of a text file can be found on the dedicated [[https://en.wikipedia.org/wiki/Text_file][Wikipedia article]]. For more details on text editors you can also check the [[https://en.wikipedia.org/wiki/Text_editor][corresponding Wikipedia page]]. 
