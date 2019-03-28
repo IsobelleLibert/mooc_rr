@@ -1,0 +1,38 @@
+# -*- mode: org -*-
+#+TITLE: Python, R, and LaTeX
+#+DATE: March 2019
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:t
+#+PROPERTY: header-args :eval never-export
+
+Computational documents contain code, which in the case of our MOOC use the languages Python and R. If you follow the RStudio or Emacs/Orgmode paths, or if you want to install Jupyter on your own computer, you must install Python and R.
+
+LaTeX is a document typesetting language that is widely used to write scientific articles. We do not use LaTeX directly in this MOOC, but it is used both by Jupyter and Emacs/Orgmode to produce PDF output. LaTeX is a rather big piece of software (a complete installation takes one to five GB), so you may prefer not to install it. That will not prevent you from following the MOOC, you just lose the ability to produce PDF versions of your computational documents.
+
+* Version requirements
+For Python, the examples in the MOOC require version 3.6 or later. The current version is 3.7.3. Python 3.6 was released more than two years ago, but older versions are still very common. For example, the current stable release of Debian Linux (Debian 9, named "stretch"), proposes Python 3.5. Make sure you have Python 3.6 or later, if necessary by installing it in addition to an older version you might already have. Note that multiple Python versions co-exist very well on a single computer, but you must be careful to always run the right one.
+
+For R, we have used version 3.4, but somewhat older versions are probably fine as well.
+
+LaTeX evolves much more slowly, so even a installation that is a few years old should be fine.
+
+* Installation
+There are many ways to install Python, R, and LaTeX. Worse, there are good reasons for there being many ways, because there is no single best one for everybody. The following guidelines should help you pick a good one for you.
+
+1. Use a package manager you already have.
+
+*Linux users* should start by checking the packages provided by their Linux distribution. It almost certainly contains Python, R, and LaTeX. Unless you use a very conservative distribution (such as [[https://www.centos.org/][CentOS]]), you can expect to find sufficiently recent versions of R and LaTeX, but for Python, make sure you get 3.6 or later.
+
+The exact names of the packages you need to install unfortunately vary among distributions, but they should be similar to =python3=, =r-base=, and =texlive=.
+
+*macOS* users who already use one of the package managers for macOS, i.e. one of [[https://brew.sh/][Homebrew]], [[https://www.macports.org/][MacPorts]], or [[http://www.finkproject.org/][fink]], should also look for Python and R in their distributions. However, it's probably not worth installing any of these package managers just for Python, R, or LaTeX.
+
+2. Anaconda
+
+Users of *Windows*, as well as *Linux* and *macOS* users who don't find sufficiently recent versions in their package manager's distributions, should consider the [[https://www.anaconda.com/distribution/][Anaconda distribution]] that contains both Python and R plus a huge collection of add-on packages for both languages. Anaconda is particularly recommended for those who plan to use Python more regularly, as it is the most convenient approach to managing Python environments. It is also the method we recommend for a local installation of Jupyter.
+
+3. Follow the instructions proposed by each language's developers
+
+Finally, you can install [[https://www.python.org/][Python]] and [[https://www.r-project.org/][R]] following the installation procedures proposed by their development teams. Compared to the approaches described above, the main inconvenience is the absence of simple strategies for updating and for installing add-on packages. But if you install Python and/or R just for the MOOC, this is not much of an issue.
+
+LaTeX is a bit different because it is already an add-on package to another piece of software called TeX, and then requires additional add-ons to be of practical use. You should therefore use one of [[https://tug.org/texlive/][TeX Live]] or  [[https://miktex.org/][MiKTeX]], the two major TeX distributions that come with their own package managers, and follow the installation instructions they provide. [[https://www.tug.org/mactex/][MacTeX]] for macOS is TeX Live plus a few macOS-specific add-ons. The differences between MiKTeX and TeX Live are not very important, so if you don't know which one to pick, toss a coin!
