@@ -33,7 +33,7 @@ graphique final selon les versions de bibliothèques utilisées.
 
 L'ensemble des calculs à effectuer est décrit ici avec les
 indications sur comment contribuer :
-[[https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/][https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/]]
+[[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/][https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/]]
 
 Vous y trouverez notre réplication des calculs de Dallal /et al./ (en
 R), une mise en œuvre en Python et une en R (très similaires à ce que
@@ -45,7 +45,7 @@ faire à deux niveaux :
    logistique, il suffit de bien inspecter les sorties produites et de
    vérifier qu'elles correspondent bien aux valeurs attendues. Pour
    ceux qui ré-exécuteraient le notebook Python dans l'environnement
-   Jupyter du MOOC, n'hésitez pas à consulter [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/4ab5bb42ca1e45c8b0f349751b96d405][les ressources de la
+   Jupyter du MOOC, n'hésitez pas à consulter [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/4ab5bb42ca1e45c8b0f349751b96d405][les ressources de la
    section 4A du module 2]] qui expliquent comment y importer un
    notebook.
 2. un niveau plus difficile pour ceux qui souhaiteront le réécrire
@@ -63,7 +63,7 @@ vous aurez pu rencontrer. Pour cela :
   (numéros de version, etc.) sur votre système et sur les
   bibliothèques installées.
 - Vous indiquerez votre résultat (que ça soit un succès ou échec à
-  obtenir les mêmes résultats) en *remplissant ce [[https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/results.md][tableau]]* (vous avez
+  obtenir les mêmes résultats) en *remplissant ce [[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/blob/master/results.md][tableau]]* (vous avez
   les droits d'édition donc il vous suffit d'éditer les fichiers via
   l'interface GitLab). Vous vérifierez les valeurs obtenues pour :
   1) les coefficients de la pente et de l'intercept
@@ -85,7 +85,7 @@ vous aurez pu rencontrer. Pour cela :
     - R : BLAS, ggplot, dplyr si chargées
 
 Ne vous inquiétez pas si ces consignes vous semblent peu claires sur l'instant,
-elles sont rappelées en haut du [[https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/results.md][tableau]] et vous vous rendrez vite
+elles sont rappelées en haut du [[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/blob/master/results.md][tableau]] et vous vous rendrez vite
 compte s'il vous manque quelque chose quand vous essaierez de remplir
 ce tableau.
 
@@ -120,19 +120,19 @@ surprises is the final graphical presentation, depending on the
 versions of the libraries that are used.
 
 The computations to be done are described at
-[[https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/][https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/]]
+[[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/][https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/]]
 together with instructions for contributing.
 
 You will find there our replications of the computations by Dallal /et
 al./ (in R), one in Python and one in R (very similar to what you have
 used in module 2). This exercise can be done at two levels:
 
-1. an easy level at which you start from the code in the language that you did not use initially, and content yourself with re-executin it. This doesn't require mastering logistic regression, it is sufficien to inspect the outputs produced and check that they correspond to the expected values. For those who want to re-execute the Python notebook in our MOOC's Jupyter environment, check [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session01bis/jump_to_id/4ab5bb42ca1e45c8b0f349751b96d405][the resources for sequence 4A of module 2]] that explain how to import a notebook.
+1. an easy level at which you start from the code in the language that you did not use initially, and content yourself with re-executin it. This doesn't require mastering logistic regression, it is sufficien to inspect the outputs produced and check that they correspond to the expected values. For those who want to re-execute the Python notebook in our MOOC's Jupyter environment, check [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/4ab5bb42ca1e45c8b0f349751b96d405][the resources for sequence 4A of module 2]] that explain how to import a notebook.
 2. a more difficult level at which you rewrite the analysis completely, possibly in a different language than Python or R, which makes the exercise more interesting because we have not tested such variants. If logistic regression is not already implemented for your language, you will need a good understanding of it in order to write the code yourself, which of course makes the exercise even more instructive.
 
 You can discuss your successes or failures on the forum, after following these instructions:
 - *First, publish your notebooks in your repository*, taking care to enrich your document with information about your system and your libraries (version numbers etc.).
-- Indicate your result by adding to this [[https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/results.md][table]] (you have write permissions, so you can simply edit it via the GitLab interface). Check the values obtained for:
+- Indicate your result by adding to this [[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/blob/master/results.md][table]] (you have write permissions, so you can simply edit it via the GitLab interface). Check the values obtained for:
   1) the slope and intercept coefficients
   2) the error estimates for these coefficients
   3) the goodness of fit
@@ -151,6 +151,6 @@ You can discuss your successes or failures on the forum, after following these i
     - Python: numpy, pandas, matplotlib, statsmodels...
     - R: BLAS, ggplot, dplyr if used
 
-Don't worry if these instructions seem confusing, they are reproduced above the [[https://app-learninglab.inria.fr/gitlab/moocrr-session1/moocrr-reproducibility-study/blob/master/results.md][table]] and you will quickly notice if something is missing when you try to add your data.
+Don't worry if these instructions seem confusing, they are reproduced above the [[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/blob/master/results.md][table]] and you will quickly notice if something is missing when you try to add your data.
 
 We will compile a synthesis of the principal divergences observes and make it available at the end of the MOOC.
