@@ -13,7 +13,7 @@
 #+CREATOR: Emacs 26.1 (Org mode 9.1.9)
 #+STARTUP: indent
 
-* Gestion de version avec GitLab et Git
+* Gestion de version avec GitLab et Git dans le MOOC "Recherche reproductible"
 Nous avons déployé un GitLab spécialement pour ce MOOC afin que vous
 puissiez vous familiariser en douceur avec la gestion de
 version. Cette section décrit étape par étape comment y accéder. [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/5571950188c946e790f06d4bc90fb5f6][Cette

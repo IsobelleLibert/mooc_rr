@@ -16,7 +16,7 @@
 - [[Version control with GitLab and Git]]
 - [[Version control with =LibreOffice= or DokuWiki]]
 
-* Version control with GitLab and Git
+* Version control with GitLab and Git in the "Reproducible research" MOOC
 We have created a GitLab server especially for this MOOC so that you can smoothly learn how to implement version control. 
 This section describes the successive steps involved. The following [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/5571950188c946e790f06d4bc90fb5f6][video]] shows how to use GitLab. We strongly recommend that you watch it if you've never used GitLab before.
 
