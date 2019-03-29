@@ -6,14 +6,22 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
+Once you will have followed all these installation instructions, you
+will be able to run jupyter notebooks by simply typing in a shell/DOS
+command:
+#+begin_src shell :results output :exports both
+jupyter notebook
+#+end_src
+
 * Table of Contents                                                     :TOC:
 - [[#jupyter-tips-and-tricks][Jupyter tips and tricks]]
   - [[#creating-or-importing-a-notebook][Creating or importing a notebook]]
   - [[#running-r-and-python-in-the-same-notebook][Running R and Python in the same notebook]]
   - [[#other-languages][Other languages]]
 - [[#installing-and-configuring-jupyter-on-your-computer][Installing and configuring Jupyter on your computer]]
-  - [[#installing-jupyter][Installing Jupyter]]
+  - [[#installing-jupyter-and-python-r-][Installing Jupyter (and Python, R, ...)]]
   - [[#making-sure-jupyter-allows-you-to-use-r][Making sure Jupyter allows you to use R]]
+  - [[#latex-for-pdf-export][LaTeX for PDF export]]
   - [[#additional-tips][Additional tips]]
 
 * Jupyter tips and tricks
@@ -54,6 +62,10 @@ situations however where you may want to play with other notebooks.
      notebook and confirm the upload.
   4. Open the freshly uploaded notebook through the Jupyter file
      manager.
+
+You will find [[file:../../documents/notebooks/][here]] a list of jupyter notebooks that illustrate how
+different languages (python, R, SAS) can be used in Jupyter.
+
 ** Running R and Python in the same notebook
 It used to be impossible with earlier versions of Jupyter but it is
 now very easy thanks to the the =rpy2= package (see the details of the
@@ -90,15 +102,63 @@ None of these other languages have been deployed in the context of our
 MOOC but you may want to read the next sections to learn how
 to set up your own Jupyter on your computer and benefit from these extensions.
 
-Since the question was asked several times, if you really need to stay
-with SAS, you should know that SAS can be used within Jupyter using
-either the [[https://sassoftware.github.io/sas_kernel/][Python SASKernel]] or the [[https://sassoftware.github.io/saspy/][Python SASPy]] package (step by step
-explanations about this are given [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/documents/tuto_jupyter_windows/tuto_jupyter_windows.md][here]]). 
+*** SAS
+SAS is a proprietary statistical software which is very commonly used
+in health research. Since the question was asked several times, if you
+really need to stay with SAS, you should know that SAS can be used
+within Jupyter using either the [[https://sassoftware.github.io/sas_kernel/][Python SASKernel]] (similar to the
+=IRKernel=) or the [[https://sassoftware.github.io/saspy/][Python SASPy]] package (similar to the =rpy2= package).
 
-Since proprietary software such as SAS cannot easily be inspected, we discourage its use as it hinders reproducibility by
-essence. But perfection does not exist anyway and using Jupyter
-literate programming approach allied with systematic control version
-and environment control will certainly help anyway.
+Since proprietary software such as SAS cannot easily be inspected, we
+discourage its use as it hinders reproducibility by essence. But
+perfection does not exist anyway and using Jupyter literate
+programming approach allied with systematic control version and
+environment control will certainly help anyway.
+
+*[[https://sassoftware.github.io/saspy/][SASPy]]*
+- Install =saspy= with the =pip= command. E.g.,
+  #+begin_src shell :results output :exports both
+  python -m pip install saspy
+  #+end_src
+- On Windows, you will have to modify the file =C:\Program
+  Files\Python\Python37\Lib\site-packages\saspy\sascfg_sav.py= and to
+  adapt it to your own system. In both following screenshots, the left
+  window corresponds to the initial file and the right window
+  corresponds to the modified one:
+  #+BEGIN_CENTER
+  [[file:jupyter_images/sascfg1.png]]
+  #+END_CENTER
+  #+BEGIN_CENTER
+  [[file:jupyter_images/sascfg2.png]]
+  #+END_CENTER
+- Here is a [[file:../../documents/notebooks/notebook_Jupyter_Python_SAS.ipynb][example of Python/SAS notebook]].
+- NB : Some people from the first edition of the MOOC reported us that
+  the pdf export did not not seem to work for SAS notebooks. However,
+  they could obtain pdf files through pandoc. E.g., export in HTML (or
+  markdown) in jupyter and then run:
+  #+begin_src shell :results output :exports both
+  pandoc --variable=geometry:a4paper --variable=geometry:margin=1in notebook_sas.html -o  notebook_sas.pdf  
+  #+end_src
+- Useful link: https://sassoftware.github.io/saspy/
+
+*[[https://sassoftware.github.io/sas_kernel/install.html][SASKernel]]*
+
+- The =sas_kernel= is based on the =saspy= so first instll =saspy= by
+  following the previous instructions.
+- Install the =sas_kernel= package through =pip=. E.g.,
+  #+begin_src shell :results output :exports both
+  python -m pip install sas_kernel  
+  #+end_src
+- You will then be able to create SAS notebooks
+  #+BEGIN_CENTER
+  [[file:jupyter_images/new_notebook.png]]
+  #+END_CENTER
+  #+BEGIN_CENTER
+  [[file:jupyter_images/notebook_SAS.png]]
+  #+END_CENTER
+  Please note the top right SAS icon.
+- Here is a [[file:../../documents/notebooks/notebook_Jupyter_SAS.ipynb][example of SAS notebook]].
+- Useful link: https://sassoftware.github.io/sas_kernel/install.html
 
 * Installing and configuring Jupyter on your computer
 In this section, we explain how to set up a Jupyter environment on
@@ -110,7 +170,7 @@ you to mix various components (including notebooks) in your
 browser. In the context of this MOOC, our time frame was too short to
 benefit from JupyterLab which was still under active development. You may, however, prefer JupyterLab when doing an installation on your own computer.
 
-** Installing Jupyter
+** Installing Jupyter (and Python, R, ...)
 Follow these instructions if you wish to have a Jupyter environment on
 your own computer similar to the one we set up for this MOOC.
 
@@ -268,6 +328,21 @@ Here are a few extensions that can ease your life:
   jupyter-serverextension enable --py hide_code
   #+end_src
   
+  Then in jupyter, choose =Hide_code= in the menu
+  #+BEGIN_CENTER
+  [[file:jupyter_images/menu_hide_code.png]]
+  #+END_CENTER
+  You should then obtain this:
+  #+BEGIN_CENTER
+  [[file:jupyter_images/hide_code.png]]
+  #+END_CENTER
+  You should then use the icons to export rather than going through
+  the menu:
+  #+BEGIN_CENTER
+  [[file:jupyter_images/export_hide_code.png]]
+  #+END_CENTER
+  NB: In the first edition of the MOOC some people had issues making
+  it work under Windows.
 *** • Interacting with GitLab and GitHub
 To ease your experience, we added pull/push buttons that allow
 you to commit and sync with GitLab. This development was specific to
