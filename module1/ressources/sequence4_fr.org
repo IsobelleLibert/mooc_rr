@@ -13,6 +13,10 @@
 #+CREATOR: Emacs 26.1 (Org mode 9.1.9)
 #+STARTUP: indent
 
+* Table des matières                                         :TOC:
+- [[#gestion-de-version-avec-gitlab-et-git-dans-le-mooc-recherche-reproductible][Gestion de version avec GitLab et Git dans le MOOC "Recherche reproductible"]]
+- [[#gestion-de-version-dans-libreoffice-ou-dans-dokuwiki][Gestion de version dans LibreOffice ou dans DokuWiki]]
+
 * Gestion de version avec GitLab et Git dans le MOOC "Recherche reproductible"
 Nous avons déployé un GitLab spécialement pour ce MOOC afin que vous
 puissiez vous familiariser en douceur avec la gestion de
@@ -59,7 +63,7 @@ quelques vidéos de démonstration sur git et Gitlab sont proposées dans
 la [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85][séquence "7. Installations, configurations, references" du module 2]]
 de ce Mooc ainsi que des ressources pour apprivoiser git en ligne de commandes.
 
-* Gestion de version dans =LibreOffice= ou dans DokuWiki
+* Gestion de version dans LibreOffice ou dans DokuWiki
 L'enregistrement des modifications des fichiers générés et gérés par =LibreOffice= est succinctement décrite sur la [[https://help.libreoffice.org/Common/Recording_Changes/fr][page du Wiki]] de ce logiciel. Une espèce de [[https://help.libreoffice.org/Common/Navigating_Changes/fr][sommaire]] des pages concernant la gestion des modifications est également disponible. Le livre [[https://framabook.org/libreoffice-cest-style/][LibreOffice, c’est stylé !]] téléchargeable gratuitement (et légalement) ne semble pas aborder la question. Sa version source est disponible sur [[https://framagit.org/Framatophe/DWL/][framagit]]= (un autre serveur type GitLab) et est écrite en… =markdown= !
 
 Pour DokuWiki, le plus simple est de consulter le [[https://www.dokuwiki.org/fr:dokuwiki][Wiki]] écrit, cette fois au moins !, en DokuWiki.
