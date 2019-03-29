@@ -1,0 +1,8 @@
+# -*- mode: org -*-
+#+TITLE: TODO Python, R et LaTeX
+#+DATE: March 2019
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:t
+#+PROPERTY: header-args :eval never-export
+
+Sorry. See the English version. French translation in progress.
