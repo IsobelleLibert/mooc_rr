@@ -23,6 +23,8 @@
 ./module2/ressources/gitlab_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/448cd6f9018545d1a67405551add6fda
 ./module2/ressources/emacs_orgmode.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/954f94ce4f9a4d858d47b41793cc96c8
 ./module2/ressources/emacs_orgmode_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/954f94ce4f9a4d858d47b41793cc96c8
+./module2/ressources/emacs_newbie.org               #     
+./module2/ressources/emacs_newbie_fr.org               #     
 ./module2/ressources/sequence6_examples/README.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/827b36e10ddd49239f1c62cc1903951a
 ./module2/ressources/sequence6_examples/README_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/827b36e10ddd49239f1c62cc1903951a
 ./module2/ressources/python_r_latex.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/19c2b1de7766484bae73f3ab133463c6
@@ -53,5 +55,4 @@
 ./module4/ressources/resources_environment_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/4be922aa6b8c471ab1addcdbddb4e487
 
 ./documents/notebooks/notebook_RStudio_SASmarkdown.md               #     
-./documents/tuto_emacs_windows/tuto_emacs_windows.md               #     
 ./documents/tuto_jupyter_windows/tuto_jupyter_windows.md               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/512cf2f3bc844d88b3954a3748d01c0f

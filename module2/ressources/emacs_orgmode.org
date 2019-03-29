@@ -5,6 +5,8 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
+This document provides information on how to install emacs.
+
 *Disclaimer:* The two sections /A simple "reproducible research" emacs configuration/ 
 and /A stub of replicable article/ explain how to set up
 emacs/org-mode for this MOOC. These are very important sections in the
@@ -14,15 +16,12 @@ really should follow carefully*. *Otherwise, you may have trouble doing
 the exercises later on*. Likewise, I strongly encourage you to watch
 the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4]["emacs and git" video tutorial available at the same place]].
 
-The next section provides information on how to install emacs.
-
 * Table of Contents                                                     :TOC:
 - [[#installing-emacs][Installing Emacs]]
   - [[#linux-debian-ubuntu][Linux (Debian, Ubuntu)]]
   - [[#macos][macOS]]
   - [[#windows][Windows]]
-- [[#python-and-r][Python and R]]
-- [[#latex-optional][LaTeX (optional)]]
+- [[#python-r-and-latex][Python, R, and LaTeX]]
 - [[#a-simple-reproducible-research-emacs-configuration][A simple "reproducible research" emacs configuration]]
   - [[#step-0-backup-and-remove-your-previous-configuration][Step 0: Backup and remove your previous configuration]]
   - [[#step-1-download-our-configuration][Step 1: Download our configuration]]
@@ -99,16 +98,23 @@ For advanced uses of Emacs, such as calling Emacs from a Makefile to automate do
 
 Be aware that running Emacs the Unix way implies some subtle differences compared to running Emacs the macOS way. In particular, Emacs will inherit the shell's environment variables when run the Unix way, but the user session's environment variables when run the macOS way.
 ** Windows
-Download the [[https://ftp.gnu.org/gnu/emacs/windows/emacs-26/emacs-26.1-i686.zip][precompiled Emacs 26.1]] and unzip the zip file preserving the directory structure, and run =bin\runemacs.exe=.
+Download the recompiled Emacs 26 ([[https://ftp.gnu.org/gnu/emacs/windows/emacs-26/emacs-26.1-i686.zip][for 32 bits architectures]]  or [[https://ftp.gnu.org/gnu/emacs/windows/emacs-26/emacs-26.1-x86_64.zip][for 64 bits architectures]] depending on your machine) and unzip the zip file preserving the directory structure. If this approach does not work, follow the instructions from the [[https://www.gnu.org/software/emacs/download.html#windows][official emacs website]]. If this still fails, do not hesitate to ask questions on the forum.
 
-Alternatively, create a desktop shortcut to =bin\runemacs.exe=, and start Emacs by double-clicking on that shortcut's icon. See [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Windows-Startup.html][here]] for an explanation of this and other methods for launching Emacs under Windows.
+Finally run =bin\runemacs.exe=. Alternatively, create a desktop shortcut to =bin\runemacs.exe=, and start Emacs by double-clicking on that shortcut's icon. See [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Windows-Startup.html][here]] for an explanation of this and other methods for launching Emacs under Windows. You should be able to obtain a window that looks like this:
+#+BEGIN_CENTER
+[[file:emacs_orgmode_images/emacs.png]]
+
+[[file:emacs_orgmode_images/scratch.png]]
+#+END_CENTER
 *** Directory naming conventions
 In the following instructions, we refer to your home
 directory through the (UNIX) =~/= notation. On Windows, your home
 directory should be something like =C:\Users\yourname=. Therefore,
 whenever we mention the =~/org/= (resp. the =~/.emacs.d/=) directory this
 means we are referring to =C:\Users\yourname\org= (resp.
-=C:\Users\yourname\.emacs.d\=).
+=C:\Users\yourname\.emacs.d\=). Note that the =C:\Users\yourname\.emacs.d\= directory should be automatically created when running emacs for the first time. This is where the emacs configuration will go.
+*** Managing archives
+Later in this document, you will be asked to download small archives containing files ([[file:rr_org_archive.tgz][rr_org_archive.tgz]] and [[file:replicable_article.tgz][replicable_article.tgz]]). To uncompress these archives on your computer, you may want to use the =7z= program. In this case, you may have to uncompress each file twice... The first time, =archive.tgz= will be uncompressed in =archive.tar= and the second time =archive.tar= will create a =archive/= directory comprising all the files of the original archive.
 *** Making R and Python available to the console
 When running a command, Windows will look for the command in the
 directories indicated in the =PATH= environment variable. If none of
@@ -206,7 +212,7 @@ tar tzf rr_org_archive.tgz
 
 Alternatively, [[file:rr_org/][the files you are looking for are available here]]. As
 you may notice, the configuration (=init.el= in emacs lisp) is hard to
-follow, which is why we manage it through an =init.org=, file, which is
+follow, which is why we manage it through an =init.org= file, which is
 really nice for readability. This is a trick you may want to adopt
 too (i.e., modify the =init.org= and regenerate the =init.el= by simply
 /tangling/ the file --with =M-x org-babel-tangle=, see instructions in the
@@ -215,13 +221,14 @@ beginning of =init.org=).
 If you use Windows, and if you use a desktop shortcut to start Emacs,
 you must include the path to the file =init.el= in the command for the
 shortcut. For example, if you installed Emacs as
-=C:\Users\MyName/emacs=, your desktop shortcut should execute the
+=C:\Users\MyName\emacs=, your desktop shortcut should execute the
 command =C:\Users\MyName\emacs\bin\runemacs.exe -l .emacs.d/init.el=.
 
 ** Step 2: Prepare your journal
 Create an =org/= directory in the top of your home:
 #+begin_src sh :results output :exports both
-mkdir -p ~/org/
+mkdir -p ~/org/ 
+# on Windows, use the file explorer to create the directory C:\Users\MyName\org
 #+end_src
 Then copy =rr_org/journal.org= file in your =~/org/= directory. This
 file will be your laboratory notebook and all the notes you will
@@ -295,7 +302,7 @@ tar zcf replicable_article.tgz $FILE_LIST
 
 #+RESULTS:
 
-Download the following [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/raw/master/module2/ressources/replicable_article.tgz][archive]] and uncompress it. The archive contains the compiled article, so you can start by looking at it.
+Download the following [[replicable_article.tgz][archive]] and uncompress it. The archive contains the compiled article, so you can start by looking at it.
 
 To rebuild the article, delete =article.pdf=, or rename it to something else. Otherwise the rebuild procedure will simply tell you that the article is already up to date. Then type =make= to build everything from scratch. Open the freshly built =article.pdf= to see if it looks OK.
 

@@ -1,6 +1,6 @@
 # -*- mode: org -*-
-#+TITLE:     FIXME Emacs/org-mode
-#+DATE: June, 2018
+#+TITLE:     FIXME Premiers pas avec Emacs/org-mode
+#+DATE: March 2019
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
