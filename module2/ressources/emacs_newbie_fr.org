@@ -1,8 +1,148 @@
 # -*- mode: org -*-
-#+TITLE:     FIXME Premiers pas avec Emacs/org-mode
+#+TITLE:     Premiers pas avec Emacs/org-mode
 #+DATE: March 2019
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-See the English version. French translation in progress.
+Ce document présuppose que vous avez déjà installé emacs et suivi les
+instructions données [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/954f94ce4f9a4d858d47b41793cc96c8][ici]].  Toutes les captures d'écran utilisées dans
+ce document ont été faites sous Windows mais vous devriez obtenir le
+même genre de choses avec n'importe quel système d'exploitation.
+
+* Premiers pas avec Emacs pour éditer des documents computationnels
+** Un premier document org-mode
+- Lancez Emacs
+  #+BEGIN_CENTER
+  [[file:emacs_orgmode_images/emacs.png]]
+  #+END_CENTER
+- Créez un nouveau fichier à l'aide de la petite icône en forme de
+  "feuille de papier" en haut à gauche, juste en dessous du menu =File=.
+  Placez le dans le répertoire de votre choix et nommez le =toto.org=.
+** Exécuter des commandes dos/shell
+- Vous disposez maintenant d'un document org-mode vide
+- Tapez =<b= et appuyez sur =tab= pour obtenir un bloc de code shell. Vous
+  pouvez alors écrire la commande shell de votre choix (par exemple
+  =dir= sous windows ou =ls= sous linux et Mac). Maintenant, faites =C-c
+  C-c= (cette notation signifie appuyer deux fois de suite rapidement
+  sur les touches =Ctrl= et =c=). Votre commande shell devrait avoir été
+  exécutée et la sortie devrait avoir été mise juste en dessous.
+  #+BEGIN_CENTER
+  [[file:emacs_orgmode_images/shell.png]]
+  #+END_CENTER
+- Si jamais vous avez l'impression qu'emacs est entré dans un mode un
+  peu étrange suite à un raccourci clavier malencontreux, faites
+  plusieurs fois de suite =C-g= (une fois de plus, cela signifie appuyer
+  sur les touches =Ctrl= et =g=).
+** Exécuter du code R 
+- De la même façon que le raccourci =<b= que nous venons de présenter
+  permet d'insérer des blocs de commandes shell, le raccourci =<r= + =tab=
+  vous permettra d'insérer des blocs de commandes R (par exemple
+  =summary(cars)=). Toujours pareil, le code est exécuté à l'aide de la
+  séquence de touches =C-c C-c= (appuyer deux fois de suite sur les
+  touches =Ctrl= et =c=).
+  #+BEGIN_CENTER
+  [[file:emacs_orgmode_images/commandeR1.png]]
+  #+END_CENTER
+  Normalement, Emacs vous demandera alors où il doit lancer
+  R. Conservez alors la proposition d'utiliser le répertoire courrant
+  en appuyant sur la touche =Entrée=. À nouveau, la sortie devrait être
+  capturée et insérée juste en dessous.
+  #+BEGIN_CENTER
+  [[file:emacs_orgmode_images/commandeR2.png]]
+  #+END_CENTER
+
+- Le raccourci clavier =<R= + =tab= vous permettra d'insérer des blocs de
+  code R adaptés au cas où vos commandes R génèrent des images. Le
+  =(org-babel-temp-file \"figure\" \".png\")= génère un nom de fichier
+  temporaire à chaque exécution. Ce fichier sera donc effacé lorsque
+  vous fermerez emacs. Si vous souhaitez que vos images soient
+  conservées d'une fois sur l'autre, indiquez un vrai nom de fichier à
+  la place.
+  #+BEGIN_CENTER
+  [[file:emacs_orgmode_images/graphiqueR.png]]
+  #+END_CENTER
+
+  Si ce comportement de noms de fichiers temporaires ne vous convient
+  pas, il vous suffit d'éditer votre fichier de configuration =init.el=
+  et de remplacer les occurrences (pour =<R= et =<PP=) de
+  =(org-babel-temp-file \"figure\" \".png\")= par =\"D:/temp/figure.png\"=
+  ou tout autre endroit/nom de fichier que vous préféreriez.
+** Exécuter du code Python
+- Vous pourriez trouver utile de lire la page [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html][Python Source Code Blocks
+  in Org Mode]] pour avoir quelques exemples.
+
+- Le raccourci =<p= + =tab= permet d'insérer un block de code python en
+  mode /non-session/. Cela signifie qu'un nouvel interpréteur Python est
+  lancé à chaque fois pour ce block et que les variables ne seront pas
+  partagées entre les blocs. Comme d'habitude, le code sera exécuté à
+  l'aide de la séquence de touches =C-c C-c=.
+  #+BEGIN_CENTER
+  [[file:emacs_orgmode_images/commande_python.png]]
+  #+END_CENTER
+  #+BEGIN_CENTER
+  [[file:emacs_orgmode_images/python1.png]]
+  #+END_CENTER
+  # Note that if python was not correctly installed, you may end up with
+  # a message like this:
+  # #+BEGIN_CENTER
+  # [[file:emacs_orgmode_images/python3.png]]
+  # #+END_CENTER
+  # Then try to follow the steps in the installation section.
+- Le raccourci =<P= + =tab= permet d'insérer un bloc de code Python, mais
+  cette fois ci en mode /session/. Cela permet de conserver les
+  variables et leurs valeurs d'un bloc sur l'autre. En interne et en
+  arrière plan, emacs aura un buffer avec une session python en cours
+  d'exécution. Comme d'habitude, le code sera exécuté à
+  l'aide de la séquence de touches =C-c C-c=.
+  #+BEGIN_CENTER
+  [[file:emacs_orgmode_images/python2.png]]
+  #+END_CENTER
+
+- Enfin, le raccourci =<PP= + =tab= vous permettra d'insérer un bloc
+  python en mode /session/ spécialement adapté à la production de graphiques
+  #+BEGIN_CENTER
+  [[file:emacs_orgmode_images/python4.png]]
+  #+END_CENTER
+  Si vous rencontrez un problème, essayez de mettre à jour la
+  bibliothèque Python =numpy=, par exemple à l'aide de =pip= dans une
+  commande dos/shell:
+  #+begin_src shell :results output :exports both
+  python -m pip install -U numpy
+  #+end_src
+* Prendre des notes avec Emacs Org-Mode
+** Le journal
+- Ouvrez le fichier =journal.org= que vous devriez avoir placé dans le
+  répertoire =~/org/=. Vous y trouverez au tout début quelques
+  "vieilles" entrées avec les raccourcis clavier emacs les plus
+  utiles, dont ceux que nous venons de vous présenter au dessus.
+** Prendre des notes
+- Le raccourci =C-c c= (attention, pas =C-c C-c=, mais =Ctrl c= puis =c=)
+  ouvrira un menu vous demandant si vous souhaitez prendre des notes
+  dans votre todo list ou dans votre journal.
+  #+BEGIN_CENTER
+  [[file:emacs_orgmode_images/ctrl_c_c.png]]
+  #+END_CENTER
+
+- Appuyez sur =j= pour prendre des notes dans votre journal. Emacs va
+  alors ouvrir votre fichier =journal.org= pour y créer, à la toute fin,
+  une entrée avec la date du jour et va vous présenter un mini buffer
+  dans le quel vous allez pouvoir prendre vos notes.
+  #+BEGIN_CENTER
+  [[file:emacs_orgmode_images/org_mode.png]]
+  #+END_CENTER
+  Lorsque vous avez fini, faites simplement =C-c C-c= pour sauvegarder
+  vos modifications et fermer le mini-buffer.
+** Édition d'un document org
+- Il est courrant lorsque l'on prend des notes dans une session de
+  brainstorming de devoir les nettoyer et les réorganiser. Les
+  raccourcis =Alt= + =\leftarrow= et =Alt= + =\rightarrow= vous permettrons de
+  décaler les entrées vers la gauche ou vers la droite. Pareil pour
+  vers le haut ou vers le bas...
+- Les raccourcis Org-mode sont en fait bien plus intuitifs que les
+  raccourcis (pré-)historiques d'emacs. Vous devriez vite vous y faire.
+  Encore une fois, regarder bien la première entrée de votre
+  =journal.org=. Nous y avons mis les raccourcis et les ruses les plus
+  essentiel(le)s.
+- N'oubliez pas de sauvegarder vos fichiers avant de fermer emacs.
+  Amusez vous bien!
