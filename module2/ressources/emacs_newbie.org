@@ -11,7 +11,7 @@ the screenshots in this demo are done under the Windows operating
 system but similar results should be obtained on any OS.
 
 * First steps with Emacs as a computationnal environment
-** Run Emacs
+** A first org-mode document
 - Launch emacs
   #+BEGIN_CENTER
   [[file:emacs_orgmode_images/emacs.png]]
@@ -59,13 +59,13 @@ system but similar results should be obtained on any OS.
   If you do not like this behavior, you can edit the =init.el= file and
   replace =(org-babel-temp-file \"figure\" \".png\")= by
   =\"D:/temp/figure.png\"= or whichever location/name you prefer (both
-  for =<R= et =<PP=).
-** Running python code
+  for =<R= and =<PP=).
+** Running Python code
 - You may want to read the [[https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-python.html][Python Source Code Blocks in Org Mode]]
   webpage for more examples
 
-- The =<p= + =tab= will insert a python block in a /non-session/ mode. This
-  means that a new python shell will be started for this block and
+- The =<p= + =tab= will insert a Python block in a /non-session/ mode. This
+  means that a new Python shell will be started for this block and
   that variables will not be shared between blocks. Again, the code
   is executed with the =C-c C-c= shortcut.
   #+BEGIN_CENTER
@@ -80,20 +80,20 @@ system but similar results should be obtained on any OS.
   # [[file:emacs_orgmode_images/python3.png]]
   # #+END_CENTER
   # Then try to follow the steps in the installation section.
-- The =<P= + =tab= will insert a python block in /session/ mode. This
+- The =<P= + =tab= will insert a Python block in /session/ mode. This
   allows to keep variables alive from a block to an other. Internally,
-  emacs will have a buffer with a python session running. Again, the
+  emacs will have a buffer with a Python session running. Again, the
   code is executed with the =C-c C-c= shortcut.
   #+BEGIN_CENTER
   [[file:emacs_orgmode_images/python2.png]]
   #+END_CENTER
 
-- The =<PP= + =tab= will insert a python block in /session/ mode and ready
+- The =<PP= + =tab= will insert a Python block in /session/ mode and ready
   to generate graphics.
   #+BEGIN_CENTER
   [[file:emacs_orgmode_images/python4.png]]
   #+END_CENTER
-  If this fails, try to update the python =numpy= library, for exemple
+  If this fails, try to update the Python =numpy= library, for exemple
   like this in a dos/shell command:
   #+begin_src shell :results output :exports both
   python -m pip install -U numpy
@@ -119,12 +119,13 @@ system but similar results should be obtained on any OS.
   #+BEGIN_CENTER
   [[file:emacs_orgmode_images/org_mode.png]]
   #+END_CENTER
-  When you are dones, simply hit =C-c C-c= to save your modifications
+  When you are done, simply hit =C-c C-c= to save your modifications
   and close the mini-buffer.
 ** Fast editing of an org document
 - It is common when taking notes in a brainstorming session to have to
   clean and reorganize them. The =Alt= + =\leftarrow= or =Alt= +
-  =\rightarrow=  will allow you to shift items to the left or to the right.
+  =\rightarrow=  will allow you to shift items to the left or to the
+  right. Likewise, entries can be moved up or down.
 - Org-mode shortcuts are actually much more intuitive than prehistoric
   emacs shortcuts. You'll quickly get use to it. Again, have a look to
   the first entry of the =journal.org= file we gave you and which
