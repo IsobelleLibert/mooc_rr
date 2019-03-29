@@ -1,8 +1,40 @@
 # -*- mode: org -*-
-#+TITLE: TODO Python, R et LaTeX
+#+TITLE: Python, R et LaTeX
 #+DATE: March 2019
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-Sorry. See the English version. French translation in progress.
+Les documents computationnels contiennent du code, et en particulier dans le cadre de notre MOOC du code Python et R. Si vous suivez le parcours RStudio ou le parcours Emacs/Orgmode, ou encore si vous souhaiter installer Jupyter sur votre propre ordinateur, il vous faudra donc installer Python et R.
+
+LaTeX est un système de composition de documents qui est couramment utilisé pour mettre en page des articles scientifiques. Dans ce MOOC, nous n'utilisons pas directement LaTeX mais il est utilisé à la fois par Jupyter et par Emacs/Orgmode pour produire des documents au format PDF. LaTeX est un relativement gros logiciel (une installation complète prend 1 à 5 Go) donc vous pourriez souhaiter ne pas l'installer. Cela ne vous empêchera pas de suivre le MOOC. Vous ne pourrez juste pas produire de versions PDF de vos documents computationnels.
+
+* Versions recommandées
+En ce qui concerne Python, les exemples du MOOC nécessitent a minima la version 3.6 de Python.  La version actuelle est la 3.7.3. Python 3.6 a été publiée il y a plus de deux ans mais il est encore très courant de trouver des versions plus anciennes. Par exemple, la version stable actuelle de Debian (Debian 9, "stretch") propose Python 3.5. Assurez vous que vous avec Python 3.6 ou une version plus récente en l'installant si besoin en plus de la version de python que vous auriez déjà. En effet, il est parfaitement possible d'avoir plusieurs versions de Python sur la même machine. Il vous faudra juste bien faire attention à toujours utiliser la bonne.
+
+En ce qui concerne R, nous avons utilisé la version 3.4 mais des versions un peu plus anciennes devraient parfaitement faire l'affaire.
+
+Enfin, LaTeX est assez stable et donc une installation datant de quelques années ne devrait poser aucun problème.
+
+* Installation
+Il y a hélas plusieurs façons d'installer Python, R et LaTeX. Et le pire, c'est qu'il y a même de très bonnes raisons pour cette disparité: pour chacune de ces méthode il existe des situations où elle ne convient pas... Les conseils suivant devraient vous permettre de décider la méthode la plus adaptée à votre propre situation.
+
+1. Utilisez le gestionnaires de paquets/logiciels de votre système d'exploitation.
+
+   Les utilisateurs de *Linux* ont intérêt à commencer par vérifier quels sont les paquets fournis par leur distribution Linux. Elle propose certainement des versions de Python, R et LaTeX. À moins que vous n'utilisiez une version extrêmement conservative (par exemple [[https://www.centos.org/][CentOS]]), vous devriez y trouver des versions suffisamment récentes de R et de LaTeX. En revanche pour Python, assurez vous que vous avez une version supérieure à 3.6.
+
+   Le nom exact des paquets à installer varie hélas d'une distribution
+   à l'autre mais ils devraient ressembler à quelque chose comme
+   =python3=, =r-base= et =texlive=.
+
+   Les utilisateurs de *macOS* qui utilisent déjà un des gestionnaire de paquets de macOS (c'est-à-dire [[https://brew.sh/][Homebrew]], [[https://www.macports.org/][MacPorts]], ou [[http://www.finkproject.org/][fink]]) devraient également y chercher Python et R. Cependant, cela ne vaut probablement pas le coût d'installer un de ces gestionnaires de paquets, juste pour avoir accès à Python, R, et LaTeX.
+
+2. Anaconda (c'est [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/8dcce91be83c4ece834abfa98b8bbfb1][la méthode que nous recommendons]] si vous souhaitez installer exactement la même version que celle que nous avons déployé sur nos serveurs pour ce MOOC)
+
+   Nous conseillons aux utilisateurs de *Windows*, ainsi qu'à ceux de *Linux* et de *macOS* qui n'auraient pas trouvé de versions suffisamment récentes dans le gestionnaire de paquets de leur distribution, d'envisager la [[https://www.anaconda.com/distribution/][distribution Anaconda]] qui contient  Python, R et une importante collection de paquets pour ces deux langages. Anaconda est particulièrement adapté à ceux qui ont l'intention d'utiliser Python régulièrement puisque c'est actuellement la méthode la plus pratique pour gérer des environnements Python. C'est également [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/8dcce91be83c4ece834abfa98b8bbfb1][la méthode que nous recommendons pour installer Jupyter]].
+
+3. Suivre les instructions proposées par les développeurs de chaque langage.
+
+   Il est tout à fait possible d'installer [[https://www.python.org/][Python]] and [[https://www.r-project.org/][R]] en suivant les procédures d'installation proposées par leurs équipes de développement respectives. En comparaison aux approches que nous venons de décrire, l'inconvénient principal de cette approche et l'absence de stratégie simple permettant de faire des mises à jour ou d'installer des paquets supplémentaires. Mais si vous prévoyez d'installer Python et R juste pour le MOOC, ça devrait être sans importance.
+
+   LaTeX est un peu différent car c'est déjà une extension à un autre logiciel appelé  TeX et qu'il a besoin de nombreux paquets supplémentaires pour être d'une quelconque utilité. Nous vous conseillons d'utiliser l'une des deux principales distributions LaTeX, [[https://tug.org/texlive/][TeX Live]] ou [[https://miktex.org/][MiKTeX]], qui viennent avec leur propre gestionnaire de paquets. Vous n'aurez alors qu'à suivre les instructions d'installations fournies. [[https://www.tug.org/mactex/][MacTeX]] (pour macOS) est une distribution TeX Live avec quelques extensions spécifiques pour macOS en plus. La différence entre MiKTeX et TeX Live n'a pas grande importance donc si vous hésitez, tirez ça à pile ou face!
