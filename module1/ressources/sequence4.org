@@ -14,7 +14,7 @@
 
 * Table of contents :TOC:
 - [[Version control with GitLab and Git]]
-- [[Version control with =LibreOffice= or DokuWiki]]
+- [[Version control with LibreOffice or DokuWiki]]
 
 * Version control with GitLab and Git in the "Reproducible research" MOOC
 We have created a GitLab server especially for this MOOC so that you can smoothly learn how to implement version control. 
@@ -52,7 +52,7 @@ This section describes the successive steps involved. The following [[https://ww
 If you want to go further, few tutorial videos are gathered in [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85][sequence "7. Installations, configurations, references" of module 2]]
 of this MOOC.
 
-* Version control with =LibreOffice= or DokuWiki
+* Version control with LibreOffice or DokuWiki
 Modification tracking in files generated and managed by =LibreOffice= is briefly described on the [[https://help.libreoffice.org/Common/Recording_Changes][wiki page]] of this software. A [[https://help.libreoffice.org/Common/Navigating_Changes][table of contents]] of the pages dedicated to this subject is available.
 
 For DoKuWiki, the best is to check the [[https://www.dokuwiki.org/start?id=dokuwiki][wiki]].
