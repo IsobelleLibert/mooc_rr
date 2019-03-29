@@ -94,7 +94,7 @@ et récupère le résultat. Jupyter fait alors le nécessaire pour
 l'afficher correctement. Il est également possible d'utiliser =%R= pour
 avoir une seule ligne de R au sein d'une cellule python.
 
-Un exemple de notebook utilisant R et Python est donné [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/documents/notebooks/notebook_Jupyter_Python_R.ipynb][ici]].
+Un exemple de notebook utilisant R et Python est donné [[file:../../documents/notebooks/notebook_Jupyter_Python_R.ipynb][ici]].
 
 ** Autres langages que Python et R
 Jupyter tire son nom des langages Julia, Python, et R. Il ne se limite
@@ -269,7 +269,7 @@ Vous pourrez alors créer des notebooks utilisant directement R:
 [[file:jupyter_images/notebook_R.png]]
 
 On remarque l'icône du logiciel R en haut à droite. Vous trouverez ici
-[[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/documents/notebooks/notebook_Jupyter_R.ipynb][un exemple de notebook R]].
+[[file:../../documents/notebooks/notebook_Jupyter_R.ipynb][un exemple de notebook R]].
 *** • Installation de rpy2 (Python package)
 La bibliothèque =rpy2= permet à Python d'appeler R et donc de mélanger
 les deux langages dans le même notebook. 

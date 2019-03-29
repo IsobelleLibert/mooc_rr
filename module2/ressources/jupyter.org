@@ -91,7 +91,7 @@ Note that this =%%R= notation indicates that R should be used for the whole cell
 an other possibility is to use =%R= to have a single line of R within a
 python cell.
 
-[[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/documents/notebooks/notebook_Jupyter_Python_R.ipynb][Here]] is an notebook example using both R et Python
+[[file:../../documents/notebooks/notebook_Jupyter_Python_R.ipynb][Here]] is an notebook example using both R et Python
 
 ** Other languages
 Jupyter is not limited to Python and R. Many other languages are available:
@@ -241,8 +241,9 @@ You will then be able to create native R notebooks:
 
 [[file:jupyter_images/notebook_R.png]]
 
-Note the R icon in the top right corner. [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/documents/notebooks/notebook_Jupyter_R.ipynb][Here is an example of R
-notebook]].
+Note the R icon in the top right
+corner. [[file:../..//documents/notebooks/notebook_Jupyter_R.ipynb][Here
+is an example of R notebook]].
 *** • Installing rpy2 (Python package)
 The =rpy2= package allows python to seamlessly call R and therefore to
 have both languages in the same notebook.
