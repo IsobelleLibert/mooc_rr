@@ -40,12 +40,13 @@
 
 ./module3/ressources/iso_date_format.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/316fc24edc1b44278ada4ca531c705be
 ./module3/ressources/iso_date_format_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/316fc24edc1b44278ada4ca531c705be
-./module3/ressources/influenza-like-illness-analysis-orgmode+R.org               #     
-./module3/ressources/influenza-like-illness-analysis-orgmode+Lisp+Python+R.org               #     
-./module3/ressources/influenza-like-illness-analysis-orgmode.org               #     
-./module3/ressources/analyse-syndrome-grippal-orgmode.org               #     
-./module3/ressources/analyse-syndrome-grippal-orgmode+R.org               #     
-./module3/ressources/analyse-syndrome-grippal-orgmode+Lisp+Python+R.org               #     
+# ./module3/ressources/influenza-like-illness-analysis-orgmode+R.org               #     
+# ./module3/ressources/influenza-like-illness-analysis-orgmode+Lisp+Python+R.org               #     
+# ./module3/ressources/influenza-like-illness-analysis-orgmode.org               #     
+# ./module3/ressources/analyse-syndrome-grippal-orgmode.org               #     
+# ./module3/ressources/analyse-syndrome-grippal-orgmode+R.org               #     
+# ./module3/ressources/analyse-syndrome-grippal-orgmode+Lisp+Python+R.org               #  
+
 
 ./module4/ressources/resources_refs.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/3c3c8cb2160d44e09a087b825beb92b8
 ./module4/ressources/resources_refs_fr.org               #     https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/3c3c8cb2160d44e09a087b825beb92b8

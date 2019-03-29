@@ -105,6 +105,7 @@ sub main() {
 
     while(defined($f = <LIST>)) {
 	chomp($f);
+	if($f =~ /^#/) { warn "Skipping $f"; next;}
 	if($f =~ /^\s*$/) {
 	    print INDEX "|---+---+---|\n";
 	    next;
