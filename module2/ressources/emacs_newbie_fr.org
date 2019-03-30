@@ -5,7 +5,7 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-Ce document présuppose que vous avez déjà installé emacs et suivi les
+Ce document présuppose que vous avez déjà installé Emacs et suivi les
 instructions données [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/954f94ce4f9a4d858d47b41793cc96c8][ici]]. 
 Toutes les captures d'écran utilisées dans ce document ont été faites sous 
 Windows mais vous devriez obtenir le même genre de choses avec n'importe quel 
