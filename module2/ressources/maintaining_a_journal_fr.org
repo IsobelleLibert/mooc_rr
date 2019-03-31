@@ -18,7 +18,7 @@ Depuis plusieurs années, nous demandons systématiquement à tout
 généralement en org-mode. La plupart du temps, ces documents
 commencent à être rédigés dans des dépôts privés mais assez souvent
 ils finissent par être complètement ouverts et mis à disposition du
-plus grand nombre. En voici quelques-uns:
+plus grand nombre. En voici quelques-uns :
 
 - Luka Stanisic (un ancien doctorant d'Arnaud Legrand) a commencé à
   utiliser cette méthodologie pendant son stage de M2 et a continué à
@@ -32,37 +32,39 @@ plus grand nombre. En voici quelques-uns:
 - Tom Cornebize est actuellement en thèse sous la supervision d'Arnaud
   Legrand et comme les autres, pendant son stage de master, il a
   également intensément [[https://github.com/Ezibenroc/simulating_mpi_applications_at_scale][pris des notes sur son activité quotidienne et
-  les a mis à disposition sur Github]].
+  les a mises à disposition sur Github]].
 - Les étudiants de [[https://github.com/schnorr][Lucas Schnorr]] sont aussi généralement bien formés à
-  cet exercice de prise de note dans un journal: [[https://github.com/taisbellini/aiyra/blob/master/LabBook.org][Tais Bellini's BSc.]],
+  cet exercice de prise de note dans un journal : [[https://github.com/taisbellini/aiyra/blob/master/LabBook.org][Tais Bellini's BSc.]],
   [[https://github.com/mittmann/hpc/blob/master/LabBook.org][Arthur Krause's LabBook]], [[http://www.inf.ufrgs.br/~llnesi/memory_report/MemoryReport.html][Luca Nesi's LabBook]].
 - Ceux qui travaillent sous la supervision de [[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][Martin Quinson]] suivent
-  des conventions similaires:
+  des conventions similaires :
   - Ezequiel Torti Lopez, pendant son M2 en 2014, a produit un [[https://github.com/mquinson/simgrid-simpar/blob/master/report.org][rapport]]
     où les données, leur provenance et leur analyse étaient fournies
     dans l'annexe.
-  - Betsegaw Lemma, M2R 2017. [[https://github.com/betsegawlemma/internship/blob/master/intern_report.org][LabBook]]
+  - Betsegaw Lemma, M2R 2017, [[https://github.com/betsegawlemma/internship/blob/master/intern_report.org][LabBook]].
   - Gabriel Corona (ingénieur de recherche sur le projet SimGrid,
     2015-2016) maintient également un [[https://github.com/randomstuff/simgrid-journal/blob/master/journal.org][journal]] et un [[http://www.gabriel.urdhr.fr/tags/simgrid/][blog (findings)]].
   - Matthieu Nicolas (ingénieur sur PLM, 2014-2016): [[https://github.com/MatthieuNICOLAS/PLM-reporting/blob/master/activity-report.org][Journal]].
 
 Org-mode n'est évidemment pas la seule option et il est courant que
-nos étudiants et collègues utilisent un mélange d'org-mode, rstudio et
-de jupyter selon ce qui est le plus adapté à leurs besoins du moment.
+nos étudiants et collègues utilisent un mélange d'Org-mode, Rstudio et
+de Jupyter selon ce qui est le plus adapté à leurs besoins du moment.
 
 * Rendre compte de son activité efficacement
-Mon ami Martin a réalisé [[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][une excellente collection d'informations et de références sur sa page web pour expliquer à ses étudiants ce qu'il attends d'eux]]. *Je vais donc tout simplement le paraphraser dans cette
+Mon ami Martin a réalisé 
+[[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][une excellente collection d'informations et de références sur sa page web pour expliquer à ses étudiants ce qu'il attend d'eux]]. 
+*Je vais donc tout simplement le paraphraser dans cette
 section* en rappelant les éléments qui me semblent essentiels (mais je
 vous invite à lire [[https://people.irisa.fr/Martin.Quinson/Research/Students/Methodo/][l'original]]).
 ** Le Reporting
 Je vous demande de rendre compte de votre activité par écrit,
 régulièrement. Selon la situation, cela peut être chaque jour, chaque
 semaine ou chaque mois, mais dans tous les cas, votre compte rendu est
-essentiel pour les raisons suivantes:
+essentiel pour les raisons suivantes :
 
 - Ça vous force à réfléchir à ce que vous êtes en train de faire, à
   prendre du recul, ce qui peut vous permettre de résoudre vos
-  problèmes par vous même. Énoncer clairement votre problème permet
+  problèmes par vous-même. Énoncer clairement votre problème permet
   souvent de faire apparaître des solutions.
 - Ça m'aide à suivre votre progression et à réfléchir à votre
   problème, même entre deux réunions. Je ne pourrai pas vous aider si
@@ -73,32 +75,32 @@ essentiel pour les raisons suivantes:
   un rapport n'est jamais présenté dans un ordre chronologique).
 - C'est aussi précieux pour celui qui viendra après vous et souhaitera
   repartir de vos travaux, les poursuivre ou les améliorer. Cette
-  personne peut d'ailleurs être vous même dans quelques mois (si vous
+  personne peut d'ailleurs être vous-même dans quelques mois (si vous
   vous engagez dans une thèse), un autre stagiaire, moi-même ou même
   un inconnu à l'autre bout du monde et qui a trouvé vos travaux via
-  Internet: c'est ce qu'on appelle la science ouverte, un effort
+  Internet : c'est ce qu'on appelle la science ouverte, un effort
   collectif ou chacun peut efficacement s'appuyer sur le travail
   scientifique de toute autre personne.
 
 Je veux que vous écriviez votre compte rendu d'activité dans un
-fichier org-mode (et oui, vous n'avez pas le choix! ). [..]
+fichier org-mode (et oui, vous n'avez pas le choix !). [...]
 ** Logistique
 Une fois que vous aurez mis en place et plus ou moins configuré tous
 les logiciels dont vous aurez besoin, il vous faudra créer un fichier
 dans un endroit auquel je puisse accéder et qui ne sera pas perdu si
 jamais votre disque dur est endommagé, que vous vous faites voler
 votre ordinateur, ou autre. Pour cela, commencez par créer un dépôt
-git (sur github, gitorious, ou gitlab, ...). À la fin de votre stage,
+git (sur GitHub, Gitorious, ou GitLab...). À la fin de votre stage,
 votre rapport devra être archivé directement dans l'arborescence du
 logiciel auquel vous avez contribué. Travailler directement dans cette
 arborescence pendant votre stage peut cependant être un peu compliqué. 
 
 Mais, oui, cela veut dire que votre journal sera publique à un moment
 ou à un autre (après tout, c'est pour ça qu'on parle de science
-ouverte). Vous avez donc intérêt à écrire votre rapport en Anglais si
+ouverte). Vous avez donc intérêt à écrire votre rapport en anglais si
 c'est possible. La partie compte-rendu d'activité (votre "journal")
-peut être écrite en Français si vous êtes plus efficace ainsi mais le
-reste doit être rédigé en Anglais. Pas la peine de prendre un ton trop
+peut être écrite en français si vous êtes plus efficace ainsi mais le
+reste doit être rédigé en anglais. Pas la peine de prendre un ton trop
 formel sous prétexte que le document a vocation à être publique.
 Soyez efficace. Personne ne vous tiendra rigueur de ce que vous avez
 pu écrire à l'occasion de votre stage il y a de nombreuses années. Si
@@ -109,19 +111,19 @@ Enfin, il est important d'écrire votre compte rendu avant de quitter
 votre bureau, tant que les choses sont fraîches dans votre esprit. En
 plus, cela vous libérera de la charge mentale induite par ce travail
 de mémorisation. Si vous décidez de faire un reporting hebdomadaire,
-faites le le vendredi, une ou deux heures avant de partir.  C'est la
-meilleur façon de passer un bon week-end sans avoir à penser à votre
+faites le le vendredi, une ou deux heures avant de partir. C'est la
+meilleure façon de passer un bon week-end sans avoir à penser à votre
 travail et de ne perdre aucune information dont vous pourriez avoir
-besoin lundi matin. Même principe si vous faites un reporting
+besoin le lundi matin. Même principe si vous faites un reporting
 quotidien.
 ** Organisation d'un compte rendu d'activité
 Selon moi, une bonne pratique consiste à structurer votre compte rendu
-d'activité de la façon suivante:
+d'activité de la façon suivante :
 
 - Résultats :: Cette section résume les informations que vous avez
-               obtenu à l'occasion de votre recherche. Elle est
+               obtenues à l'occasion de votre recherche. Elle est
                généralement vide au début de votre stage et prendra du
-               volume au fur et à mesure que vous trouvez des
+               volume au fur et à mesure que vous trouverez des
                choses. C'est aussi souvent ici qu'atterrissent les
                références bibliographiques par exemple mais ce n'est
                clairement pas l'endroit où vous stockez votre liste
@@ -131,43 +133,43 @@ d'activité de la façon suivante:
                    l'instant. Mettez tout ce que vous collectez dans
                    la partie Journal.
 - Journal :: C'est ici que vous décrivez votre travail au jour le
-             jour, de façon chronologique (jour, semaine, mois,
-             ...). C'est la partie la plus importante de votre
-             reporting et nous y revenons un peu plus bas.
+             jour, de façon chronologique (jour, semaine, mois...). 
+             C'est la partie la plus importante de votre
+             reporting et nous y reviendrons un peu plus bas.
 - Conclusion :: C'est la section que vous écrivez la dernière semaine
                 (ou celle d'après) de votre stage. Vous pouvez la voir
                 comme une lettre à la prochaine personne expliquant
                 l'état actuel de votre travail, avec quelques
-                informations que son organisation technique et ce qui,
+                informations sur son organisation technique et ce qui,
                 selon vous, sont les prochaines choses à faire et
                 pourquoi. Cette partie peut-être hautement technique,
                 les tenants et les aboutissants plus globaux de votre
                 stage étant des considérations qui apparaîtront plutôt
                 dans votre rapport final de stage.
 
-La partie Journal est la seul que vous avez le droit d'écrire en
-Français si vous êtes plus à l'aise ainsi. Pas la peine de vous
+La partie Journal est la seule que vous avez le droit d'écrire en
+français si vous êtes plus à l'aise ainsi. Pas la peine de vous
 "répandre", vous perdriez votre temps à écrire un long texte que très
-peu de personnes seront susceptibles de lire. Ne la bâclez pour autant
+peu de personnes seraient susceptibles de lire. Ne la bâclez pour autant
 car si elle est trop courte elle sera incompréhensible la semaine
 d'après (ou trois mois plus tard). Trouver le bon équilibre n'est pas
 toujours simple mais je vous ferai un retour sur vos premières entrées
 donc ne vous inquiétez pas.
 
-Une bonne habitude consiste à ce que chacune des entrées section
-décrivant une période de travail soit structurée de la façon suivante:
+Une bonne habitude consiste à ce que chacune des sections
+décrivant une période de travail soit structurée de la façon suivante :
 - Travail effectué :: quelques mots sur ce que vous avez fait et son
      contexte. Cela peut prendre la forme d'une petite liste de 2 à 4
      entrées sur ce que vous avez fait et pourquoi vous l'avez fait.
 - Ponts bloquants et questions :: essayez d'expliquer clairement les
      points de blocage que vous rencontrez ou bien les points qui vous
      gênent et vous ralentissent. Si vous avez finalement déjà trouvé
-     la réponse à ces problèmes, indiquez leu dans la sous-section
+     la réponse à ces problèmes, indiquez le dans la sous-section
      précédente. C'est aussi ici que vous écrirez toute question que
      vous aimeriez me poser. Si ce sont des interrogations
      personnelles (par exemple sur la logistique de votre stage, le
      logement, votre salaire), utilisez plutôt le mail qui restera
-     privé entre nous (souvenez vous que ce journal a vocation a
+     privé entre nous (souvenez-vous que ce journal a vocation à
      devenir un document publique). Si cette section est vide pour une
      période donnée, sautez la tout simplement (ne gardez pas de
      sous-sections vides).
@@ -175,7 +177,7 @@ décrivant une période de travail soit structurée de la façon suivante:
                     vous comptez vous attaquer dans la période à venir.
 
 Vous trouverez à la fin un modèle de compte rendu d'activité. Un
-conseil: si vraiment vous vous sentez mieux avec une autre
+conseil : si vraiment vous vous sentez mieux avec une autre
 structuration de document, essayez pour une période donnée et on fera
 le point. Je sais m'adapter et je ne prétends pas avoir la science
 infuse ni que mes conseils soient la solution ultime et
@@ -197,7 +199,7 @@ restant. Lorsque tout aura été effectué, le mot-clé TODO passera à
 DONE, ce qui procure un incroyable sentiment de satisfaction. :)
 
 À tout moment, vous pouvez avoir accès à l'ensemble des choses à faire
-(TODO) à l'aide du raccourci clavier suivant: =C-c / t=. Vous trouverez
+(TODO) à l'aide du raccourci clavier suivant : =C-c / t=. Vous trouverez
 plus d'informations sur les TODOs dans la [[http://orgmode.org/manual/TODO-basics.html][documentation d'orgmode]]. Le
 point important à retenir ici est que la plupart des TODO doivent
 apparaître dans la partie journal (afin de savoir quand ils se sont
@@ -208,17 +210,17 @@ vous avez vraiment une très bonne raison. Si cela devait arriver,
 assurez vous que vous ne perdez pas d'informations sur ce que vous
 avez fait et les choix que vous avez effectués (souvenez vous, science
 ouverte, tout ça tout ça). Il faut toujours *ajouter* des nouvelles
-informations aux anciennes, par exemple comme ceci:
+informations aux anciennes, par exemple comme ceci :
 
 #+begin_src shell :results output :exports both
 - *edit* This hypothesis does not hold; see the entry of [the day where you found it] for more information.
 #+end_src
 
-La seule exception à cet édition des entrées passées, ce sont les
+La seule exception à cette édition des entrées passées, ce sont les
 entrées de type TODO, qui sont dynamiques et ont vocation à être
 transformées en entrées de type DONE. Si vous réalisez qu'il est utile
 d'adapter une entrée TODO (parce que l'objectif initial a été mal
-formulé, est inadapté, que sais je?), faites passer l'entrée d'origine
+formulé, est inadapté, que sais je ?), faites passer l'entrée d'origine
 de TODO à CANCELED (et/ou cochez le =[ ]= en indiquant dans une
 sous-entrée que cette tâche n'a pas été faite mais annulée et
 pourquoi) et créez une nouvelle entrée TODO dans la section du jour.
