@@ -7,17 +7,17 @@
 #+PROPERTY: header-args :eval never-export
 
 * Table des matières                                         :TOC:
-- [[#jupyter-trucs-et-astuces][Jupyter: Trucs et astuces]]
+- [[#jupyter-trucs-et-astuces][Jupyter : Trucs et astuces]]
   - [[#création-ou-import-dun-notebook][Création ou import d'un notebook]]
   - [[#exécuter-du-code-r-et-du-code-python-dans-le-même-notebook][Exécuter du code R et du code Python dans le même notebook]]
   - [[#autres-langages-que-python-et-r][Autres langages que Python et R]]
 - [[#installation-et-configuration-de-jupyter-sur-votre-ordinateur][Installation et configuration de Jupyter sur votre ordinateur]]
-  - [[#installation-de-jupyter-et-de-python-r-][Installation de Jupyter (et de Python, R, ...)]]
+  - [[#installation-de-jupyter-et-de-python-r-][Installation de Jupyter (et de Python, R...)]]
   - [[#sassurer-que-jupyter-vous-permet-dutiliser-r][S'assurer que Jupyter vous permet d'utiliser R]]
   - [[#latex-pour-la-génération-de-pdf][LaTeX pour la génération de PDF]]
   - [[#conseils-additionnels][Conseils additionnels]]
 
-* Jupyter: Trucs et astuces
+* Jupyter : Trucs et astuces
 Cette [[https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/][page web]] (en anglais) recense un certain nombre d'astuces
 relatives à l'utilisation de Jupyter (et en particulier des
 illustrations des nombreuses commandes magiques =IPython magic=) et
@@ -33,32 +33,32 @@ créés pour vous) de votre projet gitlab par défaut. Il y a néanmoins
 des situations où vous pouvez vouloir utiliser d'autres notebooks que
 ceux du MOOC.
 - Créer un notebook tout neuf dans un répertoire donné :: 
-  1. À partir du menu: =File -> Open=. Ceci vous permet d'accéder au
+  1. À partir du menu : =File -> Open=. Ceci vous permet d'accéder au
      gestionnaire de fichiers de Jupyter.
   2. Naviguez jusque dans le répertoire dans lequel vous souhaitez
      créer votre notebook.
-  3. Utilisez le bouton en haut à droite: =New -> Notebook: Python 3=.
-  4. Donnez un nom à votre notebook à partir du menu: =File -> Rename=.
+  3. Utilisez le bouton en haut à droite : =New -> Notebook: Python 3=.
+  4. Donnez un nom à votre notebook à partir du menu : =File -> Rename=.
 
-     N.B.: Si vous créez un notebook à partir du menu ~File -> New
-     Notebook -> Python 3~, il sera créé dans le répertoire courant. Le
-     déplacer après coup et un peu pénible. Il vous faudra aller dans
+     N.B. : Si vous créez un notebook à partir du menu ~File -> New Notebook -> Python 3~, 
+     il sera créé dans le répertoire courant. Le
+     déplacer après coup est un peu pénible. Il vous faudra aller dans
      le gestionnaire de fichiers de Jupyter (menu =File -> Open=),
-     sélectionner le notebook, l'arrêter (=Shut =down=), puis le déplacer
+     sélectionner le notebook, l'arrêter (=Shutdown=), puis le déplacer
      (=Move=) et/ou le renommer (=Rename=).
-- Importer un notebook déja existant :: Si le notebook qui vous
+- Importer un notebook déjà existant :: Si le notebook qui vous
      intéresse est déjà dans votre projet GitLab, il vous suffit de
-     synchroniser la copie de votre Jupyter à l'aide du bouton =Git
-     pull= et d'utiliser le menu =File -> Open=. Dans le cas contraire,
-     par exemple si souhaitez importer cet [[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][autre notebook]] rédigé par
-     quelqu'un d'autre, procédez de la façon suivante:
-  1. Télé-chargez le fichier sur votre répertoire. Pour ce [[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][Notebook
+     synchroniser la copie de votre Jupyter à l'aide du bouton =Git pull= 
+     et d'utiliser le menu =File -> Open=. Dans le cas contraire,
+     par exemple si souhaitez importer cet 
+     [[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][autre notebook]] 
+     rédigé par quelqu'un d'autre, procédez de la façon suivante :
+  1. Téléchargez le fichier sur votre répertoire. Pour ce [[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][Notebook
      hébergé sur un gitLab]], cliquez sur =Open raw= (l'icone avec
      un petit =</>= ) et sauvegardez (=Ctrl-S= sur la plupart des
      navigateurs) son contenu (un long fichier texte au format JSON).
-  2. Ouvrez le gestionnaire de fichiers de Jupyter via le menu =File ->
-     Open= et naviguez jusqu'au répertoire où vous souhaitez déposer
-     votre notebook.
+  2. Ouvrez le gestionnaire de fichiers de Jupyter via le menu =File -> Open=
+     et naviguez jusqu'au répertoire où vous souhaitez déposer votre notebook.
   3. Utilisez le bouton en haut à droite =Upload= pour transférer le
      document de votre ordinateur vers le serveur Jupyter et confirmez
      l'upload.
@@ -67,57 +67,57 @@ ceux du MOOC.
      code correspondant.
 ** Exécuter du code R et du code Python dans le même notebook
 C'était impossible avec les premières versions de Jupyter mais c'est
-désormais très facile grâce à la bibliothèque python =rpy2= (les détails
-d'installation sont donnés plus bas dans ce document) Il vous
-faut tout d'abord ouvrir un notebook python.
+désormais très facile grâce à la bibliothèque Python =rpy2= (les détails
+d'installation sont donnés plus bas dans ce document). Il vous
+faut tout d'abord ouvrir un notebook Python.
 1. Chargez la bibliothèque =rpy2=. Le =%load_ext= est une commande magique
-   jupyter qui charge cette bibliothèque et vous donne accès à de
+   Jupyter qui charge cette bibliothèque et vous donne accès à de
    nouvelles commandes magiques.
    #+begin_src python :results output :exports both
    %load_ext rpy2.ipython
    #+end_src
-2. Utilisez la (nouvellement activée) commande magique =%R=:
+2. Utilisez la (nouvellement activée) commande magique =%R= :
    #+begin_src python :results output :exports both
    %%R 
    summary(cars)
    #+end_src
    Les objets Python peuvent même être passé à R de la façon suivante
-   (ici, on suppose que =df= est une dataframe pandas):
+   (ici, on suppose que =df= est une dataframe pandas) :
    #+begin_src python :results output :exports both
    %%R -i df
    plot(df)
    #+end_src
 Cette notation =%%R= indique à Python et à Jupyter et que le langage R
 doit être utilisé pour évaluer l'ensemble de la cellule. En interne,
-python (=rpy2=) maintient une session R, lui passe le code de la cellule
+Python (=rpy2=) maintient une session R, lui passe le code de la cellule
 et récupère le résultat. Jupyter fait alors le nécessaire pour
 l'afficher correctement. Il est également possible d'utiliser =%R= pour
-avoir une seule ligne de R au sein d'une cellule python.
+avoir une seule ligne de R au sein d'une cellule Python.
 
-Un exemple de notebook utilisant R et Python est donné [[file:../../documents/notebooks/notebook_Jupyter_Python_R.ipynb][ici]].
+Un exemple de notebook utilisant R et Python est proposé [[file:../../documents/notebooks/notebook_Jupyter_Python_R.ipynb][ici]].
 
 ** Autres langages que Python et R
 Jupyter tire son nom des langages Julia, Python, et R. Il ne se limite
 donc pas aux langages Python et R. De nombreux autres langages de
-programmation sont disponibles:
+programmation sont disponibles :
 [[https://github.com/jupyter/jupyter/wiki/Jupyter-kernels][https://github.com/jupyter/jupyter/wiki/Jupyter-kernels]], et en
 particulier des langages non libres comme SAS, Mathematica,
-Matlab... Notez que la maturité de ces noyaux est très variables.
+Matlab... Notez que la maturité de ces noyaux est très variable.
 
 Nous n'avons déployé aucun de ces autres langages dans le cadre du
 MOOC mais nous vous invitons à lire les sections suivantes pour
-apprendre à déployer votre propre instance de jupyter et activer
+apprendre à déployer votre propre instance de Jupyter et activer
 certaines de ses extensions.
 
-Vous trouverez [[file:../../documents/notebooks/][ici]] une liste de notebooks jupyter illustrant comment
-différents langages (python, R, SAS) peuvent être utilisés dans Jupyter.
+Vous trouverez [[file:../../documents/notebooks/][ici]] une liste de notebooks Jupyter illustrant comment
+différents langages (Python, R, SAS) peuvent être utilisés dans Jupyter.
 
 *** SAS
 SAS est un logiciel de statistiques propriétaires qui est très
 couramment utilisé dans le domaine de la santé.  Puisque la question
 est posée de façon récurrente, si vous avez besoin d'utiliser le
 langage SAS plutôt que le langage R, il y a deux façons d'utiliser SAS
-avec Jupyter: soit avec le noyau [[https://sassoftware.github.io/sas_kernel/][Python SASKernel]] (l'équivalent du
+avec Jupyter : soit avec le noyau [[https://sassoftware.github.io/sas_kernel/][Python SASKernel]] (l'équivalent du
 =IRKernel=), soit avec la bibliothèque [[https://sassoftware.github.io/saspy/][Python SASPy]] (l'équivalent de
 =rpy2=).
 
@@ -128,19 +128,19 @@ produites par d'autres chercheurs. Nous le déconseillons donc dans un
 objectif de recherche reproductible mais il faut aussi savoir ne pas
 être dogmatique. La perfection n'existe pas ;) et, même en utilisant
 SAS, l'utilisation de la programmation lettrée de Jupyter et d'un
-contrôle de version (avec gitlab) et d'environnement (avec docker par
+contrôle de version (avec GitLab) et d'environnement (avec Docker par
 exemple) se révélera très certainement précieux.
 
 *[[https://sassoftware.github.io/saspy/][SASPy]]*
-- Installer =saspy= via =pip=, par exemple comme ceci:
+- Installer =saspy= via =pip=, par exemple comme ceci :
   #+begin_src shell :results output :exports both
   python -m pip install saspy
   #+end_src
-- Sous Windows, il vous faudra probablement modifier le fichier =C:\Program
-  Files\Python\Python37\Lib\site-packages\saspy\sascfg_sav.py= et
-  l'adapter à votre propre système. Dans les deux captures d'écran
+- Sous Windows, il vous faudra probablement modifier le fichier 
+  =C:\Program Files\Python\Python37\Lib\site-packages\saspy\sascfg_sav.py= 
+  et l'adapter à votre propre système. Dans les deux captures d'écran
   suivantes, la fenêtre de gauche correspond à la version originale du
-  fichier et celle de droite à la version modifiée:
+  fichier et celle de droite à la version modifiée :
   #+BEGIN_CENTER
   [[file:jupyter_images/sascfg1.png]]
   #+END_CENTER
@@ -148,26 +148,26 @@ exemple) se révélera très certainement précieux.
   [[file:jupyter_images/sascfg2.png]]
   #+END_CENTER
 - Voici un [[file:../../documents/notebooks/notebook_Jupyter_Python_SAS.ipynb][exemple de notebook Python/SAS]].
-- NB : Lors de la première édition du MOOC, certains participants nous
+- N.B. : Lors de la première édition du MOOC, certains participants nous
   on rapporté avoir rencontré des difficultés pour exporter leurs
   notebooks SAS au format PDF. Ils sont néanmoins parvenus à leur fin
   en passant par pandoc. Par exemple, exportez en HTML (ou en
-  markdown) dans jupyter puis exécutez la commande suivante:
+  markdown) dans jupyter puis exécutez la commande suivante :
   #+begin_src shell :results output :exports both
   pandoc --variable=geometry:a4paper --variable=geometry:margin=1in notebook_sas.html -o  notebook_sas.pdf  
   #+end_src
-- Une référence, plus complète, et bien utile en cas de difficulté::
-  https://sassoftware.github.io/saspy/
+- Une référence, plus complète, et bien utile en cas de difficultés :
+  [[https://sassoftware.github.io/saspy/]]
 
 *[[https://sassoftware.github.io/sas_kernel/install.html][SASKernel]]*
 
-- Le =sas_kernel= utilise =saspy= docn la première chose à faire est
+- Le =sas_kernel= utilise =saspy= donc la première chose à faire est
   d'installer =saspy= en suivant les instructions précédentes.
-- Installez =sas_kernel= à l'aide de =pip=, par exemple comme ceci:
+- Installez =sas_kernel= à l'aide de =pip=, par exemple comme ceci :
   #+begin_src shell :results output :exports both
   python -m pip install sas_kernel  
   #+end_src
-- Yous pourrez alors créer des notebooks utilisant SAS nativement:
+- Yous pourrez alors créer des notebooks utilisant SAS nativement :
   #+BEGIN_CENTER
   [[file:jupyter_images/new_notebook.png]]
   #+END_CENTER
@@ -176,8 +176,8 @@ exemple) se révélera très certainement précieux.
   #+END_CENTER
   Vous pouvez remarquer la petite icône SAS en haut à droite.
 - À toute fin utile, voici un [[file:../../documents/notebooks/notebook_Jupyter_SAS.ipynb][exemple de notebooks SAS]].
-- Une référence, plus complète, et bien utile en cas de difficulté:
-  https://sassoftware.github.io/sas_kernel/install.htmlxo
+- Une référence, plus complète, et bien utile en cas de difficultés :
+  [[https://sassoftware.github.io/sas_kernel/install.htmlxo]].
 
 * Installation et configuration de Jupyter sur votre ordinateur
 Dans cette section, nous expliquons comment installer, sur votre
@@ -186,13 +186,14 @@ déployé pour ce MOOC.
 
 Notez que les notebooks Jupyter ne constituent qu'une petite partie de
 l'écosystème et que Jupyter fait maintenant partie d'un projet plus
-large, [[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]], qui permet d'assembler différents composants (dont
+large, [[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]], 
+qui permet d'assembler différents composants (dont
 les notebooks) dans votre navigateur. Dans le cadre de ce MOOC, nous
 avons manqué de temps pour bénéficier de tout JupyterLab qui était
 toujours en développement actif. À l'heure actuelle, vous pouvez
 cependant avoir intérêt à installer tout JupyterLab sur votre ordinateur.
 
-** Installation de Jupyter (et de Python, R, ...)
+** Installation de Jupyter (et de Python, R...)
 Ces instructions permettent d'obtenir sur votre ordinateur un
 environnement Jupyter similaire à celui que nous avons déployé dans le
 cadre du MOOC.
@@ -206,7 +207,7 @@ incluant Python, Jupyter, R ainsi que les bibliothèques les plus
 couramment utilisées en calcul scientifique et en science des données.
 
 Téléchargez ensuite le [[https://gist.github.com/brospars/4671d9013f0d99e1c961482dab533c57][fichier d'environnement =mooc_rr= ]] et déployez
-votre environnement à l'aide de conda:
+votre environnement à l'aide de Conda :
 #+begin_src shell :results output :exports both
 conda env create -f environment.yml
 
@@ -224,7 +225,7 @@ Si vous avez installé l'environnement de la façon décrite dans la
 section précédente, vous devriez déjà avoir R à votre disposition et
 vous n'avez donc rien à faire. Mais si vous avez procédé différemment
 et n'avez que Python et Jupyter à votre disposition, il vous faudra
-certainement suivre les étapes suivantes
+certainement suivre les étapes suivantes :
 *** • Installation de [[https://github.com/IRkernel/IRkernel][IRKernel]] (R package)
 IRKernel vous permettra de faire des notebooks utilisant le langage R
 plutôt que le langage Python. Nous supposons ici que R est déjà
@@ -245,25 +246,25 @@ Voir ce qui suit pour un exemple d'utilisation de notebook R.
 *Linux ou Mac*
 
 Pour installer la toute dernière version d'IRkernel, dans une console
-R ou bien dans Rstudio :
-- Installer la bibliothèque =devtools=:
+R ou bien dans Rstudio :
+- Installer la bibliothèque =devtools= :
   #+begin_src R :results output :session *R* :exports both
   install.packages('devtools',dep=TRUE)
   #+end_src
 - Définissez un proxy si nécessaire (c'est important si votre
   ordinateur est connecté à une entreprise qui limite l'accès à
-  Internet):
+  Internet) :
   #+begin_src R :results output :session *R* :exports both
   library(httr)
   set_config(use_proxy(url="proxy", port=80, username="username", password="password")) 
   #+end_src
-- Installez la bibliothèque =IRkernel=:
+- Installez la bibliothèque =IRkernel= :
   #+begin_src R :results output :session *R* :exports both
   devtools::install_github('IRkernel/IRkernel')
   IRkernel::installspec()  # to register the kernel in the current R installation
   #+end_src
 
-Vous pourrez alors créer des notebooks utilisant directement R:
+Vous pourrez alors créer des notebooks utilisant directement R :
 [[file:jupyter_images/new_notebook.png]]
 
 [[file:jupyter_images/notebook_R.png]]
@@ -277,13 +278,13 @@ les deux langages dans le même notebook.
 *Linux ou Mac*
 
 Cette bibliothèque est en général disponible sur les distributions
-récentes. Par exemple sous debian ou ubuntu:
+récentes. Par exemple sous Debian ou Ubuntu :
 #+begin_src shell :results output :exports both
 sudo apt-get install python3-rpy2 python3-tzlocal
 #+end_src
-Si vous ne disposez pas d'une distribution linux récente, il est
+Si vous ne disposez pas d'une distribution Linux récente, il est
 possible (mais non recommandé) d'utiliser le gestionnaire de paquets
-de python:
+de Python :
 #+begin_src python :results output :exports both
 pip3 install rpy2
 #+end_src
@@ -299,16 +300,16 @@ et exécutez la commande suivante :
 python -m pip install rpy2‑2.9.4‑cp37‑cp37m‑win_amd64.whl # adaptez le nom de fichier
 #+end_src
 
-Installez également =tzlocal=:
+Installez également =tzlocal= :
 #+begin_src shell :results output :exports both
 python -m pip install tzlocal
 #+end_src
 
 En cas de difficulté, vous pouvez vouloir vous référer à 
-[[https://stackoverflow.com/questions/14882477/rpy2-install-on-windows-7][StackOverflow]] (NB : quand nous avons essayé, nous n'avons pas eu
+[[https://stackoverflow.com/questions/14882477/rpy2-install-on-windows-7][StackOverflow]] (N.B. : quand nous avons essayé, nous n'avons pas eu
 besoin de définir les variables d'environnement =R_HOME= et =R_USER=). 
 
-Vous pouvez alors lancer Jupyter et créer un notebook python utilisant
+Vous pouvez alors lancer Jupyter et créer un notebook Python utilisant
 R en suivant les instructions données au début de ce document
 (cherchez =rpy2=).
 ** LaTeX pour la génération de PDF
@@ -316,16 +317,16 @@ Si vous voulez convertir vos notebooks en PDF, vous devez aussi installer LaTeX 
 ** Conseils additionnels
 *** • Exporter un notebook
 Jupyter évolue rapidement et ces informations peuvent vite devenir
-obsolète mais voici ce qu'il peut être utile d'installer sur une
-debian récente pour que l'export des notebooks via LaTeX soit
-fonctionnel:
+obsolètes mais voici ce qu'il peut être utile d'installer sur une
+Debian récente pour que l'export des notebooks via LaTeX soit
+fonctionnel :
 #+begin_src shell :results output :exports both
 sudo apt-get install texlive-xetex wkhtmltopdf
 #+end_src
 
-L'export vers HTML ou PDF peut se faire dans Jupyter via le menu =File
-> Download as > HTML= (ou =PDF=). Il peut également être fait en ligne de
-commande de la façon suivante:
+L'export vers HTML ou PDF peut se faire dans Jupyter via le menu 
+=File > Download as > HTML= (ou =PDF=). Il peut également être fait en ligne de
+commande de la façon suivante :
 #+begin_src sh :results output :exports both
 ipython3 nbconvert --to pdf Untitled.ipynb
 #+end_src
@@ -335,7 +336,7 @@ l'exporter =nbconvert=. Cette personnalisation est présentée [[http://markus-b
 nous vous encourageons à simplement lire la [[https://nbconvert.readthedocs.io/en/latest/][documentation de
 nbconvert]].
 
-Plutôt que de bidouiller trop =nbconvert=, il est aussi possible
+Plutôt que de trop bidouiller =nbconvert=, il est aussi possible
 d'exporter en Markdown et d'utiliser [[https://pandoc.org/][pandoc]] qui est très flexible. Les
 deux approches sont possibles, c'est une question de goût.
 
@@ -347,28 +348,28 @@ d'exploitation. Lors de votre premier export vers pdf, il vous sera
 certainement demandé d'installer des packages LaTeX spécifiques.
 
 *** • Améliorer la lisibilité d'un notebook
-Lorsque les notebooks s'allongent, ils deviennent vite difficile à
+Lorsque les notebooks s'allongent, ils deviennent vite difficiles à
 lire. Voici quelques extensions qui peuvent vous faciliter un peu la
-vie:
-- Il est possible [[https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook][plier/déplier votre code]]:
+vie :
+- Il est possible [[https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook][plier/déplier votre code]] :
   #+begin_src shell :results output :exports both
   pip3 install jupyter_contrib_nbextensions
   # jupyter contrib nbextension install --user # not done yet
   #+end_src
 - Il est aussi possible de [[https://github.com/kirbs-/hide_code][contrôler la visibilité des cellules]], ce
-  qui peut être très utile si on exporte le notebook:
+  qui peut être très utile si on exporte le notebook :
   #+begin_src sh :results output :exports both
   sudo pip3 install hide_code
   sudo jupyter-nbextension  install --py hide_code
   jupyter-nbextension  enable --py hide_code
   jupyter-serverextension enable --py hide_code
   #+end_src
-  Vous pourrez alors choisir =Hide_code= dans le menu de Jupyter
+  Vous pourrez alors choisir =Hide_code= dans le menu de Jupyter :
   #+BEGIN_CENTER
   [[file:jupyter_images/menu_hide_code.png]]
   #+END_CENTER
   Cela devrait vous permettre d'obtenir ce genre de panneau de
-  configuration pour chaque cellule:
+  configuration pour chaque cellule :
   #+BEGIN_CENTER
   [[file:jupyter_images/hide_code.png]]
   #+END_CENTER
@@ -377,7 +378,7 @@ vie:
   #+BEGIN_CENTER
   [[file:jupyter_images/export_hide_code.png]]
   #+END_CENTER
-  NB: Dans la première édition de ce MOOC, certains participants nous
+  N.B. : Dans la première édition de ce MOOC, certains participants nous
   ont rapporté avoir eu des difficultés à faire fonctionner cette
   extension sous Windows.
 *** • Interaction avec GitLab et GitHub
@@ -389,9 +390,9 @@ hoc/. Indépendemment et à peu près au même moment, une autre personne a
 développé un [[https://github.com/sat28/githubcommit][Plugin Jupyter assez générique permettant de se
 synchroniser avec Gitlab ou Github]]. Si cette fonctionnalité vous
 intéresse, c'est donc une piste intéressante à explorer. Sinon,
-souvenez vous qu'il est très simple d'insérer une cellule shell dans
-Jupyter et dans laquelle vous pouvez facilement insérer des commandes
-git. C'est la façon dont nous travaillons en pratique la majorité du
+souvenez-vous qu'il est très simple d'insérer une cellule shell dans
+Jupyter et vous pouvez facilement y insérer des commandes
+Git. C'est la façon dont nous travaillons en pratique la majorité du
 temps.
 
 Ceci étant dit, vous avez certainement remarqué que Jupyter conserve
@@ -399,12 +400,14 @@ une trace parfaite de l'ordre dans lequel les cellules ont été
 exécutées en incrémentant leur "indice". C'est une très bonne
 propriété d'un point de vue reproductibilité mais il se peut, selon
 votre usage, que cela s'avère peu pratique du point de vue du suivi de
-version. Certaines personnes ont donc développé des [[https://gist.github.com/pbugnion/ea2797393033b54674af][git hooks
-spécifiques]] permettant d'ignorer ces numéros lorsque l'on committe des
-notebooks Jupyter. Il y au une longue discussion à ce sujet sur
-[[https://stackoverflow.com/questions/18734739/using-ipython-notebooks-under-version-control][StackOverflow]] qui détaille différentes options.
+version. Certaines personnes ont donc développé des 
+[[https://gist.github.com/pbugnion/ea2797393033b54674af][git hooks spécifiques]] 
+permettant d'ignorer ces numéros lorsque l'on commite des
+notebooks Jupyter. Il y eu une longue discussion à ce sujet sur
+[[https://stackoverflow.com/questions/18734739/using-ipython-notebooks-under-version-control][StackOverflow]] 
+qui détaille différentes options.
 
 Enfin, pour ceux qui utilisent [[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]] plutôt que le Jupyter de
-base, un [[https://github.com/jupyterlab/jupyterlab-git][plugin git pour JupyterLab]] a été développé et offre des
+base, un [[https://github.com/jupyterlab/jupyterlab-git][plugin Git pour JupyterLab]] a été développé et offre des
 fonctionnalités de suivi de version dignes d'un IDE classique.
 
