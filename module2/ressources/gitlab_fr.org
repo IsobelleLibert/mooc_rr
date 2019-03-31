@@ -153,9 +153,9 @@ l’environnement Jupyter (éventuellement plusieurs fois).
    #+BEGIN_CENTER
    [[file:gitlab_images/signin.png]]
    #+END_CENTER
-4. Si vous souhaitez modifier votre mot de passe, accédez à =Account >
-   Settings > Password= et définissez votre mot de passe à l'aide du mot
-   de passe par défaut que vous venez de récupérer. Encore une fois, si
+4. Si vous souhaitez modifier votre mot de passe, accédez à 
+   =Account > Settings > Password= et définissez votre mot de passe à l'aide 
+   du mot de passe par défaut que vous venez de récupérer. Encore une fois, si
    vous utilisez les notebooks Jupyter que nous avons déployés pour le
    MOOC, n’oubliez pas que changer votre mot de passe Gitlab par défaut
    vous empêchera de les commiter. Vous devrez effectuer l’étape
@@ -199,7 +199,7 @@ git config --system --unset credential.helper
 #+end_src
 
 Enfin, il peut arriver que vous ayez le message d'erreur suivant sous
-Windows:
+Windows :
 #+BEGIN_EXAMPLE
 git: 'credential-cache' is not a git command. See 'get --help'.
 #+END_EXAMPLE
@@ -257,7 +257,7 @@ effectuées via Magit et vous voudrez peut-être lire
 
 
 Voici d'autres moyens d'apprendre Git par lignes de commandes :
-- Le [[http://swcarpentry.github.io/git-novice/][Software Carpentry git tutorial]]
+- Le [[http://swcarpentry.github.io/git-novice/][Software Carpentry Git tutorial]]
 - Le livre Pro Git (gratuit) en [[https://git-scm.com/book/en/v2][englais]] ou en [[https://git-scm.com/book/fr/v2][français]]. Les deux
   premiers chapitres suffisent pour bien commencer. 
 - Le site [[https://learngitbranching.js.org/][Apprenez Git Branching]] permet d'apprendre Git
@@ -338,7 +338,7 @@ Maintenant, commençons !
    sauf si vous avez suivi les instructions de la partie /Enregistrer
    votre mot de passe localement/. 
 
-   NB : vous ne serez pas autorisé à propager vos modifications dans
+   N.B. : vous ne serez pas autorisé à propager vos modifications dans
    GitLab si d'autres modifications ont été propagées entre temps (par
    exemple par quelqu'un d'autre). 
 
