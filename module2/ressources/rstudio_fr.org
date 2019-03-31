@@ -105,8 +105,7 @@ pas à pas]] /(en anglais) de Software Carpentry.)/
 
 ** Cloner un dépôt
 Ouvrir RStudio et procéder comme suit :
-- Créer un nouveau projet sous contrôle de version : =File / New
-  Project / Version Control= 
+- Créer un nouveau projet sous contrôle de version : =File / New Project / Version Control= 
   #+BEGIN_CENTER
   [[file:rstudio_images/new_project.png]]
 
@@ -155,7 +154,7 @@ Ouvrir RStudio et procéder comme suit :
 
   [[file:rstudio_images/push3.png]]
   #+END_CENTER
-  *NB :* Vous ne pouvez pas propager vos modifications sur GitLab si
+  N.B. : Vous ne pouvez pas propager vos modifications sur GitLab si
   des modifications ont été faites sur GitLab entre-temps. 
   #+BEGIN_CENTER
   [[file:rstudio_images/push4.png]]
