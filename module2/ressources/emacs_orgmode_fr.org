@@ -34,7 +34,7 @@ regarder la vidéo [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+sessi
   - [[#étape-6--ouvrez-et-commencez-à-utiliser--avec-votre-journal][Étape 6 : Ouvrez et commencez à utiliser  avec votre journal]]
 - [[#un-modèle-darticle-réplicable][Un modèle d'article réplicable]]
 - [[#emacs-trucs-et-astuces][Emacs trucs et astuces]]
-  - [[#pense-bête][Pense-bête]]
+  - [[#pense-bêtes][Pense-bêtes]]
   - [[#tutoriels-vidéo][Tutoriels vidéo]]
   - [[#paquets-emacs-utiles-supplémentaires][Paquets emacs utiles supplémentaires]]
   - [[#autres-ressources][Autres ressources]]
@@ -155,7 +155,8 @@ Cette section est illustrée dans une [[https://www.fun-mooc.fr/courses/course-v
 Emacs s'installe avec une configuration par défaut très basique que
 chacun va donc vouloir personnaliser. Compte tenu de la flexibilité
 d'Emacs, sa configuration peut vite devenir assez complexe et pourrait
-même faire l'objet d'un paquet à part entière. Dans le contexte de ce
+même faire l'objet d'un paquet à part entière (voir par exemple les
+différents Emacs Starter Kits [[https://kieranhealy.org/resources/emacs-starter-kit/][ici]] ou [[https://www.emacswiki.org/emacs/StarterKits][ici]]). Dans le contexte de ce
 MOOC, nous vous proposons une configuration relativement minimaliste
 orientée "/recherche reproductible/" avec Org-Mode. Si vous êtes peu
 familier d'Emacs, nous vous recommandons fortement de l'utiliser et de la modifier le moins possible. Il vous suffira de suivre

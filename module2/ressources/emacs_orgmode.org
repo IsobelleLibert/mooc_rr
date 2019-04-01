@@ -158,7 +158,8 @@ instructions given in this section may help.
 Emacs comes with a very basic default configuration, so almost
 everyone wants to personalize it. Given the flexibility of Emacs, a
 configuration can become quite complex and in fact include what would
-otherwise be considered complete software packages. In the context of
+otherwise be considered complete software packages (see for example
+these Emacs Starter Kits [[https://kieranhealy.org/resources/emacs-starter-kit/][here]] or [[https://www.emacswiki.org/emacs/StarterKits][here]]). In the context of
 this MOOC, we propose a relatively minimalist configuration oriented
 towards "/reproducible research/" with Org-Mode. If you are new to
 Emacs, we strongly recommended that you use it with as little
