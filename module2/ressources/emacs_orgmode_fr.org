@@ -9,7 +9,7 @@ Ce document explique comment installer Emacs et Org-mode sur votre
 machine et recense un certain nombre d'autres références utiles sur
 cet environnement.
 
-*Attention:* Les sections [[#a-simple-reproducible-research-emacs-configuration][Une configuration Emacs adaptée à la
+*Attention:* Les sections [[#une-configuration-emacs-adaptée-à-la-recherche-reproductible][Une configuration Emacs adaptée à la
 "recherche reproductible"]], et [[#un-mod%C3%A8le-darticle-r%C3%A9plicable][Un modèle d'article réplicable]]
 expliquent comment configure Emacs/Org-Mode pour ce MOOC. Ce sont donc
 des sections très *importantes* qui sont *illustrées dans [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][deux des trois
