@@ -94,7 +94,7 @@ The Web site https://emacsformacosx.com/ proposes precompiled Emacs versions for
 If you like working in a terminal (the =Terminal.app= from macOS, or an enhanced one such as [[https://iterm2.com/][iTerm2]]), the standard macOS way of opening a file in Emacs is =open -a Emacs.app /path/to/my/file.txt=. This will launch Emacs, unless it is already running, and then ask Emacs to open the file. Note that this is different from the Unix/Linux way of running Emacs, which is what you see in the videos. Under Linux, you type =emacs /path/to/my/file.txt= in the terminal, which always starts a fresh copy of Emacs.
 
 *** Advanced topics - not required for following the MOOC
-For advanced uses of Emacs, such as calling Emacs from a Makefile to automate document processing, you have to adopt the Unix way also under macOS, because this is the only way to provide parameters other than filenames. However, you have to enter the full path to the executable. Assuming that you have copied =Emacs.app= to =/path/to/emacs=, this is =/path/to/emacs/Emacs.app/Contents/MacOS/Emacs=. If you just type =emacs=, you will use the prehistoric command-line-only version at =/usr/bin/emacs= provided by Apple. You can of course make the Emacs executable more easily accessible using a shell alias, or by putting =/path/to/emacs/Emacs.app/Contents/MacOS/= on your =$PATH=. See the [[https://www.gnu.org/software/bash/manual/bashref.html][bash manual]] for details and explanation.
+For advanced uses of Emacs, such as calling Emacs from a Makefile to automate document processing, you have to adopt the Unix way also under macOS, because this is the only way to provide parameters other than filenames. However, you have to enter the full path to the executable. Assuming that you have copied =Emacs.app= to =/path/to/emacs=, this is =/path/to/emacs/Emacs.app/Contents/MacOS/Emacs=. If you just type =emacs=, you will use the prehistoric command-line-only version at =/usr/bin/emacs= provided by Apple. You can of course make the Emacs executable more easily accessible using a shell alias, or by putting =/path/to/emacs/Emacs.app/Contents/MacOS/= on your =$PATH= in your =~/.bashrc= ou =~/.bash_profile=. See the [[https://www.gnu.org/software/bash/manual/bashref.html][bash manual]] for details and explanation.
 
 Be aware that running Emacs the Unix way implies some subtle differences compared to running Emacs the macOS way. In particular, Emacs will inherit the shell's environment variables when run the Unix way, but the user session's environment variables when run the macOS way.
 ** Windows
@@ -148,7 +148,7 @@ to make it =backend : Agg=.
 * Python, R, and LaTeX
 Computational documents contain code, which in the case of our MOOC use the languages Python and R. So you must install Python and R in addition to Emacs, unless of course they are already installed on your computer. Since Python and R are also used in the other paths of our MOOC, we explain their installation in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/19c2b1de7766484bae73f3ab133463c6][separate resource]].
 
-That same resource also explains how to install LaTeX, which you must have if you want to produce PDF versions of org-mode documents. For example, if you want to work with the replicable article stub (shown in [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][this video]]), you must install LaTeX. However, it is a rather big piece of software (several GB), so you may prefer to skip its installation. It is not required to follow the MOOC.
+That same resource also explains how to install LaTeX, which you must have if you want to produce PDF versions of org-mode documents. For example, if you want to work with the replicable article stub (shown in [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4#tuto3][the video "Write a replicable article with Emacs/Org-mode"]]), you must install LaTeX. However, it is a rather big piece of software (several GB), so you may prefer to skip its installation. It is not required to follow the MOOC.
 
 * A simple "reproducible research" emacs configuration 
 This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Mise en place
@@ -286,8 +286,7 @@ stored in a version control system like git. We leave it up to you
 to set this up but if you have any trouble, feel free to ask on the
 MOOC forum.
 * A stub of a replicable article
-This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][video tutorial]] (/"Écrire un article
-réplicable avec Emacs/Orgmode"/ in French). Watching it before
+This section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4#tuto3][video tutorial]] (/"Write a replicable article with Emacs/Org-mode"/). Watching it before
 following the instructions given in this section may help.
 
 To work with this article stub, you need working installations of LaTeX, R, and Python. If you can't open a terminal and run the commands =R=, =pdflatex=, and =python3=, you will not be able to generate this document. When being compiled, the article downloads the corresponding LaTeX packages, so you must have a working network connection.
@@ -374,7 +373,7 @@ The following method has been tested with Windows and worked like a charm:
   NB: =M-= corresponds to the =<Alt>= key and =RET= corresponds to the
   =<Return>= key.
 ** Other resources
-- [[https://orgmode.org/orgguide.pdf][The compact Org-mode Guide]]
+- The compact Org-mode Guide ([[https://orgmode.org/orgguide.pdf][pdf file]])
 - A huge resource of emacs/org-mode magic is Bernt Hansen's «[[http://doc.norang.ca/org-mode.html][Organize
   your life in plain text]]», whose source is obviously itself an
   [[http://doc.norang.ca/org-mode.org][org-mode document]].

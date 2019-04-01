@@ -22,7 +22,7 @@ These informations were gathered and first demonstrated in my [[https://github.c
 webinar on reproducible research: litterate programming]].
 ***** Emacs shortcuts
 Here are a few convenient emacs shortcuts for those that have never
-used emacs. In all of the emacs shortcuts, =C=Ctrl=, =M=Alt/Esc= and
+used emacs. In all of the emacs shortcuts, =C=Ctrl=, =M=Alt/Esc or Cmd with MacOs= and
 =S=Shift=.  Note that you may want to use two hours to follow the emacs
 tutorial (=C-h t=). In the configuration file CUA keys have been
 activated and allow you to use classical copy/paste (=C-c/C-v=)

@@ -10,8 +10,8 @@ machine et recense un certain nombre d'autres références utiles sur
 cet environnement.
 
 *Attention:* Les sections [[#une-configuration-emacs-adaptée-à-la-recherche-reproductible][Une configuration Emacs adaptée à la
-"recherche reproductible"]], et [[#un-mod%C3%A8le-darticle-r%C3%A9plicable][Un modèle d'article réplicable]]
-expliquent comment configure Emacs/Org-Mode pour ce MOOC. Ce sont donc
+"recherche reproductible"]] et [[#un-mod%C3%A8le-darticle-r%C3%A9plicable][Un modèle d'article réplicable]]
+expliquent comment configurer Emacs/Org-Mode pour ce MOOC. Ce sont donc
 des sections très *importantes* qui sont *illustrées dans [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][deux des trois
 tutoriels vidéo de cette page]]*. *Nous vous encourageons vivement à
 suivre attentivement ces sections* *et ces vidéos avant de vous lancer
@@ -57,11 +57,11 @@ distributions de type Debian (Ubuntu par exemple). N'hésitez pas à
 contribuer à ce document pour partager des informations à jour pour
 d'autres distributions (redhat, fedora, ...).
 
-Voici les version d'Emacs fournies par différentes distributions:
+Voici les versions d'Emacs fournies par différentes distributions:
 - Debian (stretch) fourni [[https://packages.debian.org/stretch/emacs25][emacs 25.1]] et [[https://packages.debian.org/stretch/org-mode][org-mode 9.0.3]]
 - Ubuntu (bionic 18.04) fourni [[https://packages.ubuntu.com/bionic/emacs25][emacs 25.2]] et [[https://packages.ubuntu.com/bionic/org-mode][org-mode 9.1.6]]
 - Ubuntu (artful 17.04) fourni [[https://packages.ubuntu.com/artful/emacs25][emacs 25.2]] et [[https://packages.ubuntu.com/artful/org-mode][org-mode 9.0.9]]
-Si votre distribution est plus anciennes que celles-ci, et bien... c'est peut-être le bon moment pour faire une mise à jour.
+Si votre distribution est plus ancienne que celles-ci, et bien... c'est peut-être le bon moment pour faire une mise à jour.
 
 En tant que root, tapez les commandes suivantes:
 #+begin_src sh :results output :exports both
@@ -93,10 +93,10 @@ complètement obsolète.
 
 Le site  Web https://emacsformacosx.com/ propose des versions pré-compilées d'Emacs pour macOS. Téléchargez la dernière version (celle dont le numéro apparaît en gros sur la page d'accueil) et installez le de la même façon que n'importe quelle autre application  macOS, en copiant =Emacs.app= de la zone de téléchargement vers le répertoire de votre choix sur votre ordinateur.
 
-Si vous aimez travailler avec un terminal (le =Terminal.app= de macOS ou bien une version plus évoluée comme [[https://iterm2.com/][iTerm2]]), la façon standard sous macOS d'ouvrir emacs dans un terminal consiste à taper la commande =open -a Emacs.app /path/to/my/file.txt=. Cela lancera Emacs, à moins qu'il ne soit déjà ouvert, et demandera à Emacs d'ouvrir le fichier =file.txt=. Avec cette approche, il n'y a qu'une seule instance d'Emacs en cours d'exécution. C'est donc légèrement différent de la méthode Unix/Linux qui est illustrée dans les vidéos et où on tape =emacs /path/to/my/file.txt= in the terminal, ce qui conduit à l'ouverture d'un nouvel emacs à chaque fois.
+Si vous aimez travailler avec un terminal (le =Terminal.app= de macOS ou bien une version plus évoluée comme [[https://iterm2.com/][iTerm2]]), la façon standard sous macOS d'ouvrir emacs dans un terminal consiste à taper la commande =open -a Emacs.app /path/to/my/file.txt=. Cela lancera Emacs, à moins qu'il ne soit déjà ouvert, et demandera à Emacs d'ouvrir le fichier =file.txt=. Avec cette approche, il n'y a qu'une seule instance d'Emacs en cours d'exécution. C'est donc légèrement différent de la méthode Unix/Linux qui est illustrée dans les vidéos et où on tape =emacs /path/to/my/file.txt= dans le terminal, ce qui conduit à l'ouverture d'un nouvel emacs à chaque fois.
 
 *** Sujets avancés - non requis pour suivre le MOOC
-Pour les utilisations avancées d'Emacs, comme appeler Emacs à partir d'un Makefile pour automatiser le traitement de documents, il vous faudra adopter l'approche Unix également sous macOS car c'est le seul moyen de fournir des paramètres autres que des noms de fichiers. Il vous faudra alors également spécifier le chemin complet de l'exécutable. En effet, si vous tapez simplement =emacs=, vous utiliserez la version préhistorique en ligne de commande uniquement de =/usr/bin/emacs= fournie par Apple. En supposant que vous avez copié =Emacs.app= vers =/path/to/emacs=, l'exécutable =Emacs= sera situé dans =/path/to/emacs/Emacs.app/Contents/MacOS/Emacs=. Vous pouvez bien sûr rendre l'exécutable Emacs plus facilement accessible en utilisant un =alias= shell, ou en mettant =/path/to/emacs/Emacs.app/Contents/MacOS/= dans votre =$PATH=, par exemple en écrivant =export PATH=/path/to/emacs/Emacs.app/Contents/MacOS/:$PATH= dans votre =~/.bashrc=. Voir le [[https://www.gnu.org/software/bash/manual/bashref.html][bash manual]] pour plus de détails et explications.
+Pour les utilisations avancées d'Emacs, comme appeler Emacs à partir d'un Makefile pour automatiser le traitement de documents, il vous faudra adopter l'approche Unix également sous macOS car c'est le seul moyen de fournir des paramètres autres que des noms de fichiers. Il vous faudra alors également spécifier le chemin complet de l'exécutable. En effet, si vous tapez simplement =emacs=, vous utiliserez la version préhistorique en ligne de commande uniquement de =/usr/bin/emacs= fournie par Apple. En supposant que vous avez copié =Emacs.app= vers =/path/to/emacs=, l'exécutable =Emacs= sera situé dans =/path/to/emacs/Emacs.app/Contents/MacOS/Emacs=. Vous pouvez bien sûr rendre l'exécutable Emacs plus facilement accessible en utilisant un =alias= shell, ou en mettant =/path/to/emacs/Emacs.app/Contents/MacOS/= dans votre =$PATH=, par exemple en écrivant =export PATH=/path/to/emacs/Emacs.app/Contents/MacOS/:$PATH= dans votre =~/.bashrc= ou =~/.bash_profile=. Voir le [[https://www.gnu.org/software/bash/manual/bashref.html][bash manual]] pour plus de détails et explications.
 
 Notez bien que l'exécution d'Emacs à la mode Unix implique quelques différences subtiles par rapport à l'exécution d'Emacs à la mode MacOS. En particulier, Emacs héritera des variables d'environnement du shell lorsqu'il est lancé à la mode Unix, alors qu'il héritera des variables d'environnement de la session utilisateur lorsqu'il est lancé à la mode MacOS.
 
@@ -120,7 +120,7 @@ cela signifie que nous faisons référence à =C:\Users\yourname\org= (respectiv
 *** Gestion des archives
 Plus loin dans ce document, il vous sera demandé de télécharger de petites archives contenant des fichiers ([[file:rr_org_archive.tgz][rr_org_archive.tgz]] et [[file:réplicable_article.tgz][réplicable_article.tgz]]). Pour décompresser ces archives sur votre ordinateur, vous pouvez utiliser le programme =7z=. Dans ce cas, vous devrez probablement décompresser chaque fichier deux fois.... La première fois, =archive.tgz= sera décompressé dans =archive.tar= et la deuxième fois =archive.tar= créera un répertoire =archive/= comprenant tous les fichiers de l'archive originale.
 *** Rendre R et Python disponible dans une console
-Lors de l'exécution d'une commande, Windows recherchera l'exécutable dans les répertoires indiqués dans la variable d'environnement =PATH=. Si aucun des
+Lors de l'exécution d'une commande, Windows recherchera l'exécutable dans les répertoires indiqués dans la variable d'environnement =PATH=. Si aucun de
 ces répertoires ne contient la commande, Windows s'arrêtera et indiquera que
 la commande n'existe pas. Pour s'assurer que R (qui peut être dans
 quelque chose comme =C:/Program Files/R/R-3.5.1/bin/x64/=) et Python (qui peut être dans quelque chose comme =C:/Program Files/Python/Python/Python37/=) puissent
@@ -147,10 +147,10 @@ Ouvrez le fichier =matplotlibrc=, localisez la ligne commençant par =backend= e
 * Python, R et LaTeX
 Les documents computationnels contiennent du code, et en particulier dans le cas de notre MOOC du code utilisant les langages Python et R. Vous devrez donc installer Python et R en plus d'Emacs, sauf s'ils sont déjà installés sur votre ordinateur. Puisque Python et R sont aussi utilisés dans les autres parcours de notre MOOC, nous expliquons leur installation dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/19c2b1de7766484bae73f3ab133463c6][ressource séparée]].
 
-Cette même ressource explique également comment installer LaTeX, dont vous devrez disposer si vous voulez produire des versions PDF de documents org-mode. Par exemple, si vous voulez travailler avec modèle d'article réplicable (montré dans [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][cette vidéo]]), il vous faudra installer LaTeX. Cependant, comme il s'agit d'un logiciel assez volumineux (plusieurs Go), vous pouvez préférer ne pas l'installer. Ce n'est pas indispensable.
+Cette même ressource explique également comment installer LaTeX, dont vous devrez disposer si vous voulez produire des versions PDF de documents org-mode. Par exemple, si vous voulez travailler avec modèle d'article réplicable (montré dans [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4#tuto3][la vidéo "écrire un article réplicable avec Emacs/Org-mode"]]), il vous faudra installer LaTeX. Cependant, comme il s'agit d'un logiciel assez volumineux (plusieurs Go), vous pouvez préférer ne pas l'installer. Ce n'est pas indispensable.
 
 * Une configuration Emacs adaptée à la "recherche reproductible"
-Cette section est illustrée dans un [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][une vidéo de démonstration]] (/Mise en place en place Emacs/Orgmode/). Nous vous suggérons de la regarder avant de suivre les instructions données dans cette section.
+Cette section est illustrée dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][vidéo de démonstration]] (/Mise en place en place Emacs/Orgmode/). Nous vous suggérons de la regarder avant de suivre les instructions données dans cette section.
 
 Emacs s'installe avec une configuration par défaut très basique que
 chacun va donc vouloir personnaliser. Compte tenu de la flexibilité
@@ -158,8 +158,7 @@ d'Emacs, sa configuration peut vite devenir assez complexe et pourrait
 même faire l'objet d'un paquet à part entière. Dans le contexte de ce
 MOOC, nous vous proposons une configuration relativement minimaliste
 orientée "/recherche reproductible/" avec Org-Mode. Si vous êtes peu
-familier d'Emacs, nous vous recommandons fortement de l'utiliser et de
-ne la modifier qu'aussi peu que possible. Il vous suffira de suivre
+familier d'Emacs, nous vous recommandons fortement de l'utiliser et de la modifier le moins possible. Il vous suffira de suivre
 les instructions données dans cette section. Si vous êtes un
 utilisateur Emacs plus expérimenté, vous pouvez vous contenter de
 regarder nos instructions et de ne récupérer que les parties qui vous
@@ -213,7 +212,7 @@ Si vous avez des problèmes avec cette archive, [[file:rr_org/][les fichiers don
 aurez besoin sont également disponibles ici]]. Vous allez vite réaliser
 que la configuration (=init.el= en emacs lisp) est assez difficile à
 suivre. C'est pourquoi nous le gérons via un fichier =init.org=, qui
-bien plus lisble. C'est une astuce que vous voudrez peut-être aussi
+bien plus lisible. C'est une astuce que vous voudrez peut-être aussi
 adopter (pour cela, modifiez le =init.org= et régénérez le =init.el= en
 /tanglant/ le fichier avec =M-x org-babel-tangle= comme expliqué dans les
 instructions au début de =init.org=).
@@ -255,7 +254,7 @@ prendre un peu de temps parce qu'Emacs va télécharger quelques paquets supplé
 échouer pour diverses raisons (surcharge des serveurs de paquets, connexion trop lente, ...).
 Ces situations durent rarement bien longtemps. C'est pourquoi si cela arrive, nous vous recommandons de vous contenter de
 quittez Emacs (=C-x C-c=, c'est-à-dire =Ctrl + x= suivi de =Ctrl + c=) et
-redémarrez-le. Au pire, répétez cette opération jusqu'à ce que vous n'obteniez plus d'erreurs au
+redémarrez-le. Au pire, répétez cette opération jusqu'à ce que vous n'obteniez plus d'erreur au
 démarrage.
 
 Ensuite, créez un fichier =foo.org=. Copiez les lignes suivantes dans ce fichier :
@@ -283,7 +282,7 @@ un système de contrôle de version comme git. Nous vous laissons la
 responsabilité de mettre tout ceci en place mais si vous avez des
 problèmes, n'hésitez pas à poser des questions sur le forum du MOOC.
 * Un modèle d'article réplicable
-Cette section est illustrée dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2388d2317ec7b037b4][vidéo]] (/"Écrire un article
+Cette section est illustrée dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4#tuto3][vidéo]] (/"Écrire un article
 réplicable avec Emacs/Orgmode"/). Nous vous suggérons de la regarder avant de suivre les instructions données dans cette section.
 
 Pour travailler avec ce modèle d'article, vous aurez besoin d'installations fonctionnelles de LaTeX, R, et Python. Si vous ne pouvez pas ouvrir un terminal et exécuter les commandes =R=, =pdflatex=, et =python3=, vous ne pourrez pas générer ce document.
@@ -299,7 +298,7 @@ tar zcf replicable_article.tgz $FILE_LIST
 
 #+RESULTS:
 
-Téléchargez l'[[file:replicable_article.tgz][archive]] suivante et décompressez la. L'archive contient l'article compilé, vous pouvez donc commencer par le consulter.
+Téléchargez l'[[file:replicable_article.tgz][archive]] suivante et décompressez-la. L'archive contient l'article compilé, vous pouvez donc commencer par le consulter.
 
 Pour reconstruire l'article, supprimez =article.pdf=, ou renommez-le en autre chose. Sinon, la procédure de reconstruction vous indiquera simplement que l'article est déjà à jour. Tapez ensuite =make= pour tout construire à partir de zéro. Ouvrez l'article fraîchement construit =article.pdf= pour voir s'il a l'air correct.
 
@@ -311,9 +310,9 @@ Si vous supprimez le =#= au début de la ligne qui indique un commentaire, org-m
 
 
 * Emacs trucs et astuces
-** Pense-bête
+** Pense-bêtes
 L'apprentissage d'Emacs et d'Org-Mode peut être difficile car il y a quantité de raccourcis clavier assez inhumaine.
-On trouve donc de nombreuses pense-bêtes dont voici une sélection à toute fin utile :
+On trouve donc de nombreux pense-bêtes dont voici une sélection à toute fin utile :
 *** Emacs
 - [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org][Notre liste des raccourcis Emacs les plus utiles dans le contexte de notre configuration emacs /recherche reproductible/.]]
 - [[https://www.gnu.org/software/emacs/refcards/pdf/fr-refcard.pdf][Le pense-bête officiel de GNU emacs]] 
@@ -366,8 +365,8 @@ La méthode suivante a été testée avec Windows et a fonctionné sans encombre
   NB : =M-= (Meta) correspond à la touche =<Alt>= et =RET= correspond à la touche
   =<Entrée>=.
 ** Autres ressources
-- [[https://orgmode.org/orgguide.pdf][The compact Org-mode Guide]]
-- Une source inépuisable de magie emacs/org-mode: le site web de Bernt  Hansen "[[http://doc.norang.ca/org-mode.html][Organisez votre vie en plain text]]", dont les sources sont évidemment eux-mêmes un [[http://doc.norang.ca/org-mode.org][document org-mode]].
+- The compact Org-mode Guide ([[https://orgmode.org/orgguide.pdf][lien vers le pdf]])
+- Une source inépuisable de magie emacs/org-mode: le site web de Bernt  Hansen "[[http://doc.norang.ca/org-mode.html][Organisez votre vie en texte brute]]", dont les sources sont évidemment eux-mêmes un [[http://doc.norang.ca/org-mode.org][document org-mode]].
 - [[https://github.com/dfeich/org-babel-examples][De nombreux exemples illustrant l'utilisation de différents langages]].
 
 
