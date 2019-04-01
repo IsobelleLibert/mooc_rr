@@ -52,7 +52,7 @@ Our MOOC also requires a few extra Emacs packages: [[https://ess.r-project.org/]
 ** Linux (Debian, Ubuntu)
 We provide here only instructions for Debian-based distributions. Feel
 free to contribute to this document to provide up-to-date information
-for other distributions (e.g.n redhat, fedora).
+for other distributions (e.g. redhat, fedora).
 
 These are the versions of Emacs that various distributions provide:
 - Debian (stretch) ships with [[https://packages.debian.org/stretch/emacs25][emacs 25.1]] and [[https://packages.debian.org/stretch/org-mode][org-mode 9.0.3]]
@@ -91,7 +91,7 @@ which is now deprecated.
 
 The Web site https://emacsformacosx.com/ proposes precompiled Emacs versions for macOS. Download the latest version (the one that figures prominently on the page) and install it like you would install any other macOS application, by copying =Emacs.app= from the downloaded disk image to a convenient location on your computer.
 
-If you like working in a terminal (the =Terminal.app= from macOS, or an enhanced one such as [[https://iterm2.com/][iTerm2]]), the standard macOS way of opening a file in Emacs is =open -a Emacs.app /path/to/my/file.txt=. This will launch Emacs, unless it is already running, and then ask Emacs to open the file. Note that this is different from the Unix/Linux way of running Emacs, which is what you see in the videos. Under Linux, you type "emacs /path/to/my/file.txt" in the terminal, which always starts a fresh copy of Emacs.
+If you like working in a terminal (the =Terminal.app= from macOS, or an enhanced one such as [[https://iterm2.com/][iTerm2]]), the standard macOS way of opening a file in Emacs is =open -a Emacs.app /path/to/my/file.txt=. This will launch Emacs, unless it is already running, and then ask Emacs to open the file. Note that this is different from the Unix/Linux way of running Emacs, which is what you see in the videos. Under Linux, you type =emacs /path/to/my/file.txt= in the terminal, which always starts a fresh copy of Emacs.
 
 *** Advanced topics - not required for following the MOOC
 For advanced uses of Emacs, such as calling Emacs from a Makefile to automate document processing, you have to adopt the Unix way also under macOS, because this is the only way to provide parameters other than filenames. However, you have to enter the full path to the executable. Assuming that you have copied =Emacs.app= to =/path/to/emacs=, this is =/path/to/emacs/Emacs.app/Contents/MacOS/Emacs=. If you just type =emacs=, you will use the prehistoric command-line-only version at =/usr/bin/emacs= provided by Apple. You can of course make the Emacs executable more easily accessible using a shell alias, or by putting =/path/to/emacs/Emacs.app/Contents/MacOS/= on your =$PATH=. See the [[https://www.gnu.org/software/bash/manual/bashref.html][bash manual]] for details and explanation.
@@ -245,8 +245,8 @@ There are two situations in which it might be necessary to modify
 2. You have multiple installations of Python or R on your computer,
    or they are in unusual places and not fully configured.
    If you can run 
-      - "python3" and "R" under Linux and macOS
-      - "Python" and "R" under Windows
+      - =python3= and =R= under Linux and macOS
+      - =Python= and =R= under Windows
    in a terminal without getting an error message, then you should
    not have to do anything.
 
@@ -302,7 +302,7 @@ tar zcf replicable_article.tgz $FILE_LIST
 
 #+RESULTS:
 
-Download the following [[replicable_article.tgz][archive]] and uncompress it. The archive contains the compiled article, so you can start by looking at it.
+Download the following [[file:replicable_article.tgz][archive]] and uncompress it. The archive contains the compiled article, so you can start by looking at it.
 
 To rebuild the article, delete =article.pdf=, or rename it to something else. Otherwise the rebuild procedure will simply tell you that the article is already up to date. Then type =make= to build everything from scratch. Open the freshly built =article.pdf= to see if it looks OK.
 
