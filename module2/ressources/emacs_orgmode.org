@@ -11,10 +11,10 @@ This document provides information on how to install emacs.
 and /A stub of replicable article/ explain how to set up
 emacs/org-mode for this MOOC. These are very important sections in the
 context of this MOOC. *These sections are illustrated in two
-out of the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][three video tutorials of this sequence]], and* *which you
+out of the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][three video tutorials of this page]], and* *which you
 really should follow carefully*. *Otherwise, you may have trouble doing
 the exercises later on*. Likewise, I strongly encourage you to watch
-the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4]["emacs and git" video tutorial available at the same place]].
+the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4]["Use Emacs/git" video tutorial available at the same page]].
 
 * Table of Contents                                                     :TOC:
 - [[#installing-emacs][Installing Emacs]]

@@ -13,10 +13,10 @@ cet environnement.
 "recherche reproductible"]], et [[#un-mod%C3%A8le-darticle-r%C3%A9plicable][Un modèle d'article réplicable]]
 expliquent comment configure Emacs/Org-Mode pour ce MOOC. Ce sont donc
 des sections très *importantes* qui sont *illustrées dans [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][deux des trois
-tutoriels vidéo de cette séquence]]*. *Nous vous encourageons vivement à
+tutoriels vidéo de cette page]]*. *Nous vous encourageons vivement à
 suivre attentivement ces sections* *et ces vidéos avant de vous lancer
 dans les exercices*. De même, nous vous encourageons vivement à
-regarder la vidéo [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4]["emacs et git" disponible au même endroit]].
+regarder la vidéo [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4]["utilisation Emacs/git" disponible sur la même page]].
 
 * Table des matières                                           :TOC:
 - [[#installation-demacs][Installation d'Emacs]]
@@ -118,7 +118,7 @@ cela signifie que nous faisons référence à =C:\Users\yourname\org= (respectiv
 =C:\Utilisateurs\votre nom\.emacs.d\=). Notez que le répertoire =C:\Users\yourname\.emacs.d\= devrait être automatiquement créé lors de la première exécution d'emacs. C'est là que la configuration d'emacs ira.
 
 *** Gestion des archives
-Plus loin dans ce document, il vous sera demandé de télécharger de petites archives contenant des fichiers ([[fichier:rr_org_archive.tgz][rr_org_archive.tgz]] et [[fichier:réplicable_article.tgz][réplicable_article.tgz]]). Pour décompresser ces archives sur votre ordinateur, vous pouvez utiliser le programme =7z=. Dans ce cas, vous devrez probablement décompresser chaque fichier deux fois.... La première fois, =archive.tgz= sera décompressé dans =archive.tar= et la deuxième fois =archive.tar= créera un répertoire =archive/= comprenant tous les fichiers de l'archive originale.
+Plus loin dans ce document, il vous sera demandé de télécharger de petites archives contenant des fichiers ([[file:rr_org_archive.tgz][rr_org_archive.tgz]] et [[file:réplicable_article.tgz][réplicable_article.tgz]]). Pour décompresser ces archives sur votre ordinateur, vous pouvez utiliser le programme =7z=. Dans ce cas, vous devrez probablement décompresser chaque fichier deux fois.... La première fois, =archive.tgz= sera décompressé dans =archive.tar= et la deuxième fois =archive.tar= créera un répertoire =archive/= comprenant tous les fichiers de l'archive originale.
 *** Rendre R et Python disponible dans une console
 Lors de l'exécution d'une commande, Windows recherchera l'exécutable dans les répertoires indiqués dans la variable d'environnement =PATH=. Si aucun des
 ces répertoires ne contient la commande, Windows s'arrêtera et indiquera que
@@ -140,7 +140,7 @@ Ensuite, il vous faudra désactiver les tracés interactifs dans matplotlib (pou
 import matplotlib
 matplotlib.matplotlib_fname()
 #+end_src
-[[fichier:emacs_orgmode_images/matplotlib.png]]
+[[file:emacs_orgmode_images/matplotlib.png]]
 
 Ouvrez le fichier =matplotlibrc=, localisez la ligne commençant par =backend= et transformez là en =backend : Agg=.
 
@@ -150,7 +150,7 @@ Les documents computationnels contiennent du code, et en particulier dans le cas
 Cette même ressource explique également comment installer LaTeX, dont vous devrez disposer si vous voulez produire des versions PDF de documents org-mode. Par exemple, si vous voulez travailler avec modèle d'article réplicable (montré dans [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][cette vidéo]]), il vous faudra installer LaTeX. Cependant, comme il s'agit d'un logiciel assez volumineux (plusieurs Go), vous pouvez préférer ne pas l'installer. Ce n'est pas indispensable.
 
 * Une configuration Emacs adaptée à la "recherche reproductible"
-Cette section est illustrée dans un [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2388d2317ec7b037b4][une vidéo de démonstration]] (/Mise en place en place Emacs/Orgmode/). Nous vous suggérons de la regarder avant de suivre les instructions données dans cette section.
+Cette section est illustrée dans un [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][une vidéo de démonstration]] (/Mise en place en place Emacs/Orgmode/). Nous vous suggérons de la regarder avant de suivre les instructions données dans cette section.
 
 Emacs s'installe avec une configuration par défaut très basique que
 chacun va donc vouloir personnaliser. Compte tenu de la flexibilité
