@@ -382,7 +382,7 @@ vie :
   N.B. : Dans la première édition de ce MOOC, certains participants nous
   ont rapporté avoir eu des difficultés à faire fonctionner cette
   extension sous Windows.
-** • Interaction avec GitLab et GitHub
+** • Interaction avec GitLab et git
 Pour rendre vous simplifier la vie, nous avons rajouté des boutons
 =pull/push= dans Jupyter qui vous permettent de synchroniser vos
 modifications avec GitLab. Ce développement spécifique pour ce MOOC
