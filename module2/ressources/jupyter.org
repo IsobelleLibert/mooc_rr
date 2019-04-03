@@ -23,7 +23,7 @@ jupyter notebook
   - [[#making-sure-jupyter-allows-you-to-use-r][Making sure Jupyter allows you to use R]]
   - [[#latex-for-pdf-export][LaTeX for PDF export]]
   - [[#additional-tips][Additional tips]]
-  - [[#interacting-with-gitlab-and-github][Interacting with GitLab and GitHub]]
+  - [[#interacting-with-gitlab-and-git][Interacting with GitLab and Git]]
 
 * Jupyter tips and tricks
 The following [[https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/][webpage]] lists several Jupyter tricks (in particular, it

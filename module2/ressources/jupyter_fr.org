@@ -16,7 +16,7 @@
   - [[#sassurer-que-jupyter-vous-permet-dutiliser-r][S'assurer que Jupyter vous permet d'utiliser R]]
   - [[#latex-pour-la-génération-de-pdf][LaTeX pour la génération de PDF]]
   - [[#conseils-additionnels][Conseils additionnels]]
-  [[interaction-avec-gitlab-et-github][Interaction avec GitLab et GitHub]]
+  - [[interaction-avec-gitlab-et-git][Interaction avec GitLab et git]]
 
 * Jupyter : Trucs et astuces
 Cette [[https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/][page web]] (en anglais) recense un certain nombre d'astuces
