@@ -352,10 +352,10 @@ the MOOC but inspired from a previous [[https://github.com/Lab41/sunny-side-up][
 recently discovered that someone else developed about at the same time
 a [[https://github.com/sat28/githubcommit][rather generic version of this Jupyter plugin]]. Otherwise, remember
 that it is very easy to insert a shell cell in Jupyter in which you
-can easily issue git commands. This is how we work most of the time. If you choose this solution, *we strongly advise that you
-follow [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/d132a854b0464ad29085cedaded23136][our tutorial on using git from RStudio]]* (/"RStudio et Gitlab"/
-). Before proceeding, make sure you also have followed the
-*[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85]["git/GitLab configuration" tutorial]]*.
+can easily issue git commands. This is how we work most of the time. If you choose this solution, you will have to configure Git on your
+computer. To do this, you can follow the video 
+[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85][Configure git for Gitlab]] and read the document
+[[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/gitlab.org][Git and GitLab]].
 
 This being said, you may have noticed that Jupyter keeps a perfect
 track of the sequence in which cells have been run by updating the
