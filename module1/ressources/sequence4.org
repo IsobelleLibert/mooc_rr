@@ -13,8 +13,8 @@
 #+STARTUP: indent
 
 * Table of contents :TOC:
-- [[Version control with GitLab and Git]]
-- [[Version control with LibreOffice or DokuWiki]]
+- [[#version-control-with-gitlab-and-git-in-the-Reproducible-research-mooc][Version control with GitLab and Git]]
+- [[#version-control-with-libreoffice-or-dokuwiki][Version control with LibreOffice or DokuWiki]]
 
 * Version control with GitLab and Git in the "Reproducible research" MOOC
 We have created a GitLab server especially for this MOOC so that you can smoothly learn how to implement version control. 
