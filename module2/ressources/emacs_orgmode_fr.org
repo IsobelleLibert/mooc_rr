@@ -131,7 +131,7 @@ expliqué [[http://sametmax.com/ajouter-un-chemin-a-la-variable-denvironnement-p
 *** Installation et configuration de Matplotlib (bibliothèque graphique python)
 Ouvrez une console DOS et tapez la commande suivante :
 #+begin_src shell :results output :exports both
-python -m pip install install -U matplotlib
+python -m pip install -U matplotlib
 #+end_src
 [[file:emacs_orgmode_images/install_matplotlib.png]]
 
