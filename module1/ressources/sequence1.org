@@ -279,3 +279,5 @@ The whole purpose of all these recording systems is to preserve values. They sho
 laboratory and should be adequate but not overelaborate. If too much is demanded of human nature, the system will break down.
 #+END_QUOTE 
 
+** Additional links
+A student of the course pointed to us a very interesting ressource on laboratory notebooks: [[https://colinpurrington.com/tips/lab-notebooks]].

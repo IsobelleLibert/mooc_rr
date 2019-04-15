@@ -16,6 +16,7 @@
   - [[#sassurer-que-jupyter-vous-permet-dutiliser-r][S'assurer que Jupyter vous permet d'utiliser R]]
   - [[#latex-pour-la-génération-de-pdf][LaTeX pour la génération de PDF]]
   - [[#conseils-additionnels][Conseils additionnels]]
+  - [[#interaction-avec-gitlab-et-git][Interaction avec GitLab et git]]
 
 * Jupyter : Trucs et astuces
 Cette [[https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/][page web]] (en anglais) recense un certain nombre d'astuces
@@ -381,7 +382,7 @@ vie :
   N.B. : Dans la première édition de ce MOOC, certains participants nous
   ont rapporté avoir eu des difficultés à faire fonctionner cette
   extension sous Windows.
-*** • Interaction avec GitLab et GitHub
+** • Interaction avec GitLab et git
 Pour rendre vous simplifier la vie, nous avons rajouté des boutons
 =pull/push= dans Jupyter qui vous permettent de synchroniser vos
 modifications avec GitLab. Ce développement spécifique pour ce MOOC
@@ -393,7 +394,10 @@ intéresse, c'est donc une piste intéressante à explorer. Sinon,
 souvenez-vous qu'il est très simple d'insérer une cellule shell dans
 Jupyter et vous pouvez facilement y insérer des commandes
 Git. C'est la façon dont nous travaillons en pratique la majorité du
-temps.
+temps. Si vous optez pour cette solution, il vous faudra configurer Git sur votre
+ordinateur. Pour ce faire, vous pouvez suivre la vidéo
+[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85][configurer Git pour Gitlab]] et le document
+[[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/gitlab_fr.org][Git et Gitlab]] correspondant.
 
 Ceci étant dit, vous avez certainement remarqué que Jupyter conserve
 une trace parfaite de l'ordre dans lequel les cellules ont été
