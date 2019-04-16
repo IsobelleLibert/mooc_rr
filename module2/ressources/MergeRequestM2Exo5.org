@@ -1,0 +1,44 @@
+# -*- mode: org -*-
+#+TITLE:     Perform a Merge/Request in Gitlab to update your mooc-rr repository
+#+AUTHOR:    Laurence Farhi
+#+DATE: April, 2019
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:t
+#+PROPERTY: header-args :eval never-export
+
+
+This document explains how to retrieve from your GitLab repository the resource changes required for the exercise5 of Module 2.
+To do this, we ask you to validate a Merge request with all the modifications made by Konrad, following the procedure below.
+
+Go to your Gitlab workspace, from the page [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/5571950188c946e790f06d4bc90fb5f6]["Your Gitlab space"]]
+
+Follow the instructions below.
+
+[[file:MergeRequest_images/MergeRequest1.png]]
+
+You can see that there is a request for Merge pending.
+
+[[file:MergeRequest_images/MergeRequest2.png]]
+
+Select the Merge request.
+
+[[file:MergeRequest_images/MergeRequest3.png]]
+
+If you have meanwhile modified one of the files, Gitlab will warn you that there is a conflict (grey button with "!'') and will propose you to do the merge manually. Let you be guided...
+
+If you go to mooc-rr/module2/exo5, you should see that 4 files have been modified.
+
+[[file:MergeRequest_images/MergeRequest4.png]]
+
+Then, if you follow the Jupyter path, you must also apply the changes in your Jupyter space.
+
+To do this, go to your Jupyter space, from [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/5310b948b605466d95b47e0676cf1069]["exercice 5 of Module 2"]]
+ (bouton "Read the analysis").
+
+Make a "Git pull" to update your Jupiter space.
+
+ [[file:MergeRequest_images/MergeRequest5.png]]
+
+When you read the notebook again (reload it), you should see the following change:
+
+ [[file:MergeRequest_images/MergeRequest6.png]]

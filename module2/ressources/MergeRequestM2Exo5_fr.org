@@ -36,6 +36,7 @@ Pour cela, rendez-vous sur votre espace Jupyter, depuis [[https://www.fun-mooc.f
  (bouton "Lire l'analyse").
 
 Faites un "Git pull" pour mettre à jour votre espace Jupiter.
+
  [[file:MergeRequest_images/MergeRequest5.png]]
 
 Quand vous lisez à nouveau le notebook (quittez la page et rechargez), vous devez voir la modification suivante :
