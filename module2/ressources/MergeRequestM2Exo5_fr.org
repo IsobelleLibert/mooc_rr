@@ -24,11 +24,11 @@ Sélectionnez la demande de Merge.
 
 [[file:MergeRequest_images/MergeRequest3.png]]
 
+Si vous aviez entretemps modifié un des fichiers, Gitlab vous avertira qu’il y a un conflit (bouton gris avec ‘!’) et vous proposera de faire le merge manuellement. Laissez-vous guider …
+
 Si vous allez sur mooc-rr/module2/exo5, vous devez voir que 4 fichiers ont été modifiés.
+
 [[file:MergeRequest_images/MergeRequest4.png]]
-
-
-Si vous aviez entretemps modifié un des fichiers, Gitlab vous proposera de faire un merge sur les fichiers modifiés. Laissez-vous guider ...
 
 Ensuite, si vous suivez le parcours Jupyter, il faut aussi répercuter les modifications dans votre espace Jupyter.
 
