@@ -46,7 +46,7 @@ pharmaceutique où les procédures statistiques doivent être
 standardisées et stables/solides. R n’est évidemment pas à l’abri des
 évolutions qui cassent les anciennes versions et gênent la
 reproductibilité/compatibilité avec les versions antérieures. Voici
-une [[http://members.cbio.mines-paristech.fr//thocking/HOCKING-reproducible-research-with-R.html][véritable histoire relativement récente à ce sujet]] et des
+une [[http://members.cbio.mines-paristech.fr/~thocking/HOCKING-reproducible-research-with-R.html][véritable histoire relativement récente à ce sujet]] et des
 collègues qui ont travaillé sur le [[https://www.fun-mooc.fr/courses/course-v1:UPSUD+42001+session10/about][MOOC d'initiation à la statistique
 avec R sur FUN]] nous ont signalé plusieurs problèmes concernant 
 quelques fonctions (=gplots::plotmeans=, =survival::survfit= ou =hclust=)
