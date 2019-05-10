@@ -5,7 +5,6 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-* Ressources externes pour découvrir git
 Pour les débutants Git, voici quelques liens qui vous permettront de vous familiariser avec cet outil très puissant :
 - Pour apprendre à utiliser Git en ligne de commande , voici [[http://swcarpentry.github.io/git-novice/][le cours proposé par Software Carpentry]], sous forme de TP avec des explications très progressives (cours en anglais).
 - Le livre [[https://git-scm.com/book/fr/v2][Pro Git]] est disponible, gratuitement, légalement. La lecture des deux premiers chapitres vous suffira pour démarrer (livre en français)

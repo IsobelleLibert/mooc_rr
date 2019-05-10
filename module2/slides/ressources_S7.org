@@ -5,7 +5,6 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-* External resources to discover git
 For Git beginners, here are some links that will allow you to familiarize yourself with this very powerful tool:
 - To learn how to use Git with command line, here is the [[http://swcarpentry.github.io/git-novice/][course offered by Software Carpentry]] (in the form of TP with very progressive explanations)
 
