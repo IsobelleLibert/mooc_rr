@@ -5,20 +5,21 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-* Économie: Politiques d'austérité
+* Exemples récents d'études assez discutées
+** Économie: Politiques d'austérité
 - [[https://en.wikipedia.org/wiki/Growth_in_a_Time_of_Debt][Reinhart et Rogoff]]: /Growth in a Time of Debt/
 - Herndon, Ash et Pollin
 - Wray: combining data across centuries, exchange rate regimes,
-* Les IRM fonctionnelles
+** Les IRM fonctionnelles
 - 2010: [[https://www.researchgate.net/publication/255651552_Neural_correlates_of_interspecies_perspective_taking_in_the_post-mortem_Atlantic_Salmon_an_argument_for_multiple_comparisons_correction][Bennett et al.: le saumon mort]] \smiley
 - 2016: [[http://www.pnas.org/content/113/28/7900.abstract][Eklund, Nichols, and Knutsson]]. [[http://www.sciencealert.com/a-bug-in-fmri-software-could-invalidate-decades-of-brain-research-scientists-discover][Un bug dans les logiciels d'IRM
   pourrait invalider 15 années de recherche sur le cerveau]] (/40 000 articles/)
 - 2016: C'est [[https://www.cogneurosociety.org/debunking-the-myth-that-fmri-studies-are-invalid/][plus subtil que ça]]. [[http://blogs.warwick.ac.uk/nichols/entry/bibliometrics_of_cluster/][D'après Nichols, un des auteurs de
   l'article d'origine]], c'est plutôt de l'ordre de /3 600 études qui
   seraient potentiellement impactées/.
-* Les fausses structures de protéines
+** Les fausses structures de protéines
 [[https://people.ligo-wa.caltech.edu/~michael.landry/calibration/S5/getsignright.pdf][A "buggy software"]].
-* Autres domaines
+** Autres domaines
 - [[http://www.nature.com/nrd/journal/v10/n9/full/nrd3439-c1.html?foxtrotcallback=true][Oncologie]]: "/half of published studies, even in prestigious journals,
   can't be reproduced in industrial labs/"
 - [[http://theconversation.com/we-found-only-one-third-of-published-psychology-research-is-reliable-now-what-46596][Psychologie]]: "/attempting to reproduce 100 previously published
