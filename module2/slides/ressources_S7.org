@@ -1,5 +1,5 @@
 # -*- mode: org -*-
-#+TITLE: Additional resources
+#+TITLE:  External resources to discover git
 #+DATE: June, 2018
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
