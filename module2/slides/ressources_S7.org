@@ -1,0 +1,12 @@
+# -*- mode: org -*-
+#+TITLE: Additional resources
+#+DATE: June, 2018
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:t
+#+PROPERTY: header-args :eval never-export
+
+* External resources to discover git
+For Git beginners, here are some links that will allow you to familiarize yourself with this very powerful tool:
+- To learn how to use Git with command line, here is the [[http://swcarpentry.github.io/git-novice/][course offered by Software Carpentry]] (in the form of TP with very progressive explanations)
+
+As part of this Mooc, we have deployed an instance of GitLab but there are many other similar platforms (gitlab.com, github.com, bitbucket.com, framagit.org...). The next two videos illustrate the creation of a project on one of these platforms.
