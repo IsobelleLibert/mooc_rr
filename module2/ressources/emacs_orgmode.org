@@ -1,5 +1,5 @@
 # -*- mode: org -*-
-#+TITLE:     Emacs/org-mode
+#+TITLE:     Emacs/Org-mode : trucs et astuces, Intallation et configuration
 #+DATE: March 2019
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
