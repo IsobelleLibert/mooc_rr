@@ -6,6 +6,13 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
+Quand vous aurez suivi les instructions suivantes, vous
+pourrez ouvrir des notebooks jupyter en tapant une commande shell/DOS
+command:
+#+begin_src shell :results output :exports both
+jupyter notebook
+#+end_src
+
 * Table des matières                                         :TOC:
 - [[#jupyter-trucs-et-astuces][Jupyter : Trucs et astuces]]
   - [[#création-ou-import-dun-notebook][Création ou import d'un notebook]]
