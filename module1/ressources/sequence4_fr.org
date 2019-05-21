@@ -3,7 +3,7 @@
 #+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
 #+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+OPTIONS: timestamp:t title:t toc:t todo:t |:t
-#+TITLE: Ressources pour la séquence 0 du module 4 : « Introduction »
+#+TITLE: Pérénité et évolutivité avec la gestion de version
 #+DATE: <2019-03-26 mar.>
 #+AUTHOR: Christophe Pouzat
 #+EMAIL: christophe.pouzat@parisdescartes.fr

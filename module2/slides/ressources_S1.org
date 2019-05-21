@@ -5,7 +5,7 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-* A few Recent Controversial Studies
+
 ** Economy: Austerity in Fiscal Policy
 - [[https://en.wikipedia.org/wiki/Growth_in_a_Time_of_Debt][Reinhart et Rogoff]]: /Growth in a Time of Debt/
 - Herndon, Ash et Pollin

@@ -5,7 +5,6 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
-* Exemples récents d'études assez discutées
 ** Économie: Politiques d'austérité
 - [[https://en.wikipedia.org/wiki/Growth_in_a_Time_of_Debt][Reinhart et Rogoff]]: /Growth in a Time of Debt/
 - Herndon, Ash et Pollin

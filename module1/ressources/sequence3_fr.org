@@ -3,7 +3,7 @@
 #+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
 #+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+OPTIONS: timestamp:t title:t toc:t todo:t |:t
-#+TITLE: Ressources pour la séquence 3 du module 1
+#+TITLE: Du fichier texte au langage de balisage
 #+DATE: <2019-02-21 jeu.>
 #+AUTHOR: Christophe Pouzat
 #+EMAIL: christophe.pouzat@parisdescartes.fr
