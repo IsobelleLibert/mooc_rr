@@ -6,6 +6,12 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
+Once you will have followed all these installation instructions, you
+will be able to run jupyter notebooks by simply typing in a shell/DOS
+command:
+#+begin_src shell :results output :exports both
+jupyter notebook
+#+end_src
 
 * Table of Contents                                                     :TOC:
 - [[#jupyter-tips-and-tricks][Jupyter tips and tricks]]
