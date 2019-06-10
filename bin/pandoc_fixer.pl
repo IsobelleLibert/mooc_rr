@@ -75,6 +75,7 @@ sub pandoc_export {
 	$line =~ s|href="http|href="%|g;
 	$line =~ s|href="([^%#][^"]*.tgz)"|href="$pages_path_percent/$1"|g; 
 	$line =~ s|href="([^%#][^"]*)"|href="$tree_path/$1"|g; # ?inline=false
+	$line =~ s|href="(#[^"]*)-"|href="$1"|g;
 	$line =~ s|href="%|href="http|g;
 
 	# if($line =~ /img src="([^%][^"]*)"/) {
