@@ -31,7 +31,7 @@ regarder la vidéo [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+sessi
   - [[#étape-3--placez-le-fichier-de-configuration-emacs-au-bon-endroit][Étape 3 : Placez le fichier de configuration Emacs au bon endroit]]
   - [[#étape-4--adapter-la-configuration-à-vos-besoins-spécifiques-si-nécessaire][Étape 4 : Adapter la configuration à vos besoins spécifiques si nécessaire]]
   - [[#etape-5--vérifier-si-linstallation-fonctionne-ou-non][Etape 5 : Vérifier si l'installation fonctionne ou non]]
-  - [[#étape-6--ouvrez-et-commencez-à-utiliser--avec-votre-journal][Étape 6 : Ouvrez et commencez à utiliser  avec votre journal]]
+  - [[#étape-6--ouvrez-et-commencez-à-utiliser-votre-journal][Étape 6 : Ouvrez et commencez à utiliser votre journal]]
 - [[#un-modèle-darticle-réplicable][Un modèle d'article réplicable]]
 - [[#emacs-trucs-et-astuces][Emacs trucs et astuces]]
   - [[#pense-bêtes][Pense-bêtes]]
@@ -274,7 +274,7 @@ principales fonctionnalités d'emacs/org-mode qui vous aideront à tenir
 à jour un journal et à faire de la programmation lettrée. Une liste des
 principales fonctionnalités et des raccourcis est donnée dans le [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org][première
 entrée de votre labbook]]. N'hésitez pas à également suivre [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/b031e4067cf8410c86adbeba2f30c92f][cette ressource]] pour découvrir ces raccourcis.
-** Étape 6 : Ouvrez et commencez à utiliser  avec votre journal
+** Étape 6 : Ouvrez et commencez à utiliser votre journal
 À l'étape 2, nous vous avons demandé de créer un journal dans le
 fichier =~org/journal.org=. C'est dans ce fichier que les notes prises
 avec le raccourci =C-c c= (=Ctrl + c= puis =c=) atterrissent. Nous vous
