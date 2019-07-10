@@ -66,8 +66,9 @@
   (when (not (package-installed-p pkg))
     (package-install pkg)))
 
-(exec-path-from-shell-initialize)
-(exec-path-from-shell-copy-env "PYTHONPATH")
+(unless (memq system-type '(windows-nt ms-dos))
+  (exec-path-from-shell-initialize)
+  (exec-path-from-shell-copy-env "PYTHONPATH"))
 
 (require 'org)
 
