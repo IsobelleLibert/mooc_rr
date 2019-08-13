@@ -18,20 +18,102 @@ finement, passent par l'étape 7 et aller au delà.
 Ayant peu d'expérience avec Docker, je me suis appuyé sur la
 [[https://people.irisa.fr/Anthony.Baire/docker-tutorial.pdf][présentation d'Anthony Baire]] pour préparer cette séquence.
 
-# * Table des matières                                                    :TOC:
-# - [[#automatiser-lexécution-dun-notebook][Automatiser l'exécution d'un notebook]]
-# - [[#identifier-les-dépendances][Identifier les dépendances]]
-#   - [[#sassure-que-docker-est-bien-installé][S'assure que docker est bien installé]]
-#   - [[#récupérer-un-environnement-de-base][Récupérer un environnement de base]]
-#   - [[#exécuter-une-commande-dans-un-conteneur][Exécuter une commande dans un conteneur]]
-#   - [[#docker-en-interactif][Docker en interactif]]
-# - [[#automatiser-la-construction-dun-environnement][Automatiser la construction d'un environnement]]
-# - [[#tester-que-votre-code-sexécute-correctement-ailleurs-que-sur-votre-machine][Tester que votre code s'exécute correctement ailleurs que sur votre machine.]]
-# - [[#améliorer-le-test][Améliorer le test]]
-# - [[#aller-plus-loin][Aller plus loin]]
+* Objectifs et Problématique
+** Problématiques:
+- Alice a son propre environnemnet, Bob a le sien. Le code/notebook
+  qu'Alice exécute ne s'exécute pas sur la machine de Bob et
+  réciproquement.
+- Bob ne peut pas mettre à jour sa machine (pas les droits, risque
+  de casser autre chose, pas le même système d'exploitation, etc.)
+- Le code d'Alice s'exécute bien chez Charles mais il ne donne pas
+  le même résultat.
+- Ce code fonctionnait sur d'anciennes versions mais sur des versions
+  récentes ce n'est plus le cas. 
+** Objectifs
+- Savoir travailler dans un conteneur (*Docker*) pour isoler son travail du reste
+  de sa machine
+- Savoir créer un conteneur pour figer un environnement et le partager
+  (*Packaging* + *DockerFile*)
+- Mettre en place un test pour s'assurer de sa robustesse (*Continuous
+  Integration*) en déportant son exécution dans des environnements
+  controllés
+* Table des matières                                                    :TOC:
+- [[#objectifs-et-problématique][Objectifs et Problématique]]
+  - [[#problématiques][Problématiques:]]
+  - [[#objectifs][Objectifs]]
+- [[#progression][Progression]]
+- [[#automatiser-lexécution-dun-notebook][Automatiser l'exécution d'un notebook]]
+- [[#identifier-les-dépendances][Identifier les dépendances]]
+  - [[#sassurer-que-docker-est-bien-installé][S'assurer que docker est bien installé]]
+  - [[#récupérer-une-image-de-base][Récupérer une image de base]]
+  - [[#exécuter-une-commande-dans-un-conteneur][Exécuter une commande dans un conteneur]]
+  - [[#docker-en-interactif][Docker en interactif]]
+  - [[#installer-tous-les-paquets-dont-on-a-besoin][Installer tous les paquets dont on a besoin]]
+  - [[#gérer-ses-conteneurs-et-figer-un-environnement][Gérer ses conteneurs et figer un environnement]]
+  - [[#exécuter-notre-notebook-dans-ce-nouvel-environnemnt][Exécuter notre notebook dans ce nouvel environnemnt]]
+  - [[#conclusion][Conclusion]]
+- [[#automatiser-la-construction-dun-environnement-et-le-partager][Automatiser la construction d'un environnement et le partager.]]
+  - [[#automatiser-la-construction-de-son-environnement][Automatiser la construction de son environnement]]
+  - [[#mettre-son-image-à-disposition][Mettre son image à disposition]]
+- [[#tester-que-votre-code-sexécute-correctement-ailleurs-que-sur-votre-machine][Tester que votre code s'exécute correctement ailleurs que sur votre machine.]]
+  - [[#création-dun-projet-test-et-mise-en-place-de-lintégration-continue][Création d'un projet test et mise en place de l'intégration continue]]
+  - [[#et-maintenant-jupyter-avec-notre-image-docker][Et maintenant, Jupyter avec notre image docker!]]
+- [[#améliorer-le-test][Améliorer le test]]
+- [[#aller-plus-loin][Aller plus loin]]
+- [[#time-machine][Time machine]]
+  - [[#debian-stretch-with-packages-from-march-2018][Debian Stretch with packages from march 2018]]
+- [[#ressources][Ressources]]
+  - [[#jupyter][Jupyter]]
+  - [[#rstudio][Rstudio]]
+  - [[#emacs][Emacs]]
+  - [[#docker-for-windows][Docker for windows]]
 
+* Progression
+1. Familiarisation avec le principe de conteneur.
+   - Premiers pas avec Docker
+     - S'assurer que docker est bien installé
+     - Récupérer une image de base
+     - Exécuter une commande dans un conteneur
+     - Utiliser docker en interactif (réaliser qu'il n'y a pas d'effet
+       de bord)
+     - Partager un répertoire avec un conteneur
+   - Utiliser docker pour travailler au jour le jour
+     - Lancement de Jupyter/Rstudio/Emacs
+       - (Exécuter un notebook dans un environnement sans interaction)
+   - Limitations:
+     - Instabilité de cet environnement (latest vs. un plus vieux)
+     - Que contient-il vraiment ?
+     - Besoin de choses en plus ? en moins ?
+     - Perméabilité si vous installez des choses dans cet
+       environnement (à moins de le figer)
+     - Bonne pratique: repérer le tag et bien le préciser
+2. Créer son propre environnement, automatiser sa construction et le partage
+   - Récupérer une image de base
+   - Installer tous les paquets dont on a besoin
+   - Gérer ses conteneurs et figer un environnement
+   - Automatiser la construction de son environnement
+   - Mettre son image à disposition
+   - Limitations:
+     - On peut figer son environnement mais on n'a pas expliqué
+       comment le faire. Le dockerfile est un bon point de départ mais
+       s'il s'appuie sur des cibles "mouvantes", ça sera insuffisant
+       dans quelques temps.
+     - Bonne pratique: Indiquer la recette (le Dockerfile), les
+       versions exactes des logiciels utilisés pour permettre à
+       quelqu'un d'autre de facilement en faire une variation
+   - [Optionnel] Exemple de reconstruction d'un environnement tel
+     qu'on aurait pu le faire il y a un an et demi/deux ans.
+3. Mettre en place un test et utiliser l'intégration continue pour
+   s'assurer de la robustesse d'un code. 
 
-* Autre progression
+   Point de départ: un notebook
+   - Exécuter ce notebook dans un conteneur et mettre en place un test
+     (nbconvert, diff)
+   - Activer l'intégration continue pour que ce test soit exécuté à
+     chaque commit dans le conteneur de notre choix
+   - Rajouter un test pour repérer si des environnements plus à jour
+     cassent notre test
+* Autre progression                                                :noexport:
 1. Automatiser l'exécution d'un notebook sur sa machine -> script. Pas
    de contrôle du tout de l'environnement. *Où stoquer le résultat?*
    *Comment indiquer si c'est OK ?*
@@ -232,7 +314,7 @@ différentes ou identiques.
   conteneurs différents pour vérifier si votre programme fonctionne
   toujours bien.
 
-** S'assure que docker est bien installé
+** S'assurer que docker est bien installé
 Je suis sur une machine linux (une debian) et j'ai donc installé
 docker via le paquet =docker.io=. J'ai aussi pris soin de me mettre dans
 le groupe docker pour ne pas avoir à passer root à chaque fois. Voici
@@ -951,7 +1033,7 @@ docker commit debian_mooc debian_stable_jupyter
 #+RESULTS:
 : sha256:2b001b2c02a66a7bf2ab2e7e3d234f3611bc7e6228e2f423ceb7d294cb6bd442
 
-* Automatiser la construction d'un environnement et le parager.
+* Automatiser la construction d'un environnement et le partager.
 Vous remarquerez que dans tout ce qui a précédé, j'ai noté dans mon
 journal de ce que j'ai effectué mais vous n'avez aucune garantie que
 je n'ai rien oublié. De plus, si vous voulez refaire cet environnement
@@ -2608,7 +2690,7 @@ diff notebook_docker.ipynb notebook_docker_dockerfile.ipynb # | sed 's/^/>/'
 : >        "Time:                        09:13:51   Pearson chi2:                    0.236\n",
 
 Ouf, cette fois-ci, il n'y a plus que la date qui ait changé.
-** Mise à disposition de mon image
+** Mettre son image à disposition
 Reste à publier mon image. Je me suis créé un compte sur dockerhub
 afin de pouvoir y publier des images (vous pouvez aussi vous
 authentifier via github). Une fois que vous aurez votre login et votre
@@ -3542,7 +3624,7 @@ wget https://snapshot.debian.org/archive/debian/20170929T215212Z/pool/main/s/sta
 ** Debian Stretch with packages from march 2018
 
 #+begin_src shell :session *docker* :results output :exports both 
-docker run -t -i debian:stretch-slim
+docker run -t -i debian:stretch-slim # or even better: stretch-20170606
 #+end_src
 
 #+RESULTS:
@@ -4006,6 +4088,61 @@ docker commit 3e302c4c2ed7 debian_stretch_20180310_python3_statsmodels
 : sha256:e86b1c50e7a8896bb44686f827a85d5375d192560e25ad2a1533cde7dfac8b1a
 
 * Ressources
+** Jupyter
+See
+- https://hub.docker.com/
+- https://jupyter-docker-stacks.readthedocs.io/en/latest/index.html
+#+begin_src shell :results output :exports both
+docker search jupyter
+#+end_src
+
+#+RESULTS:
+#+begin_example
+NAME                                    DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+jupyter/datascience-notebook            Jupyter Notebook Data Science Stack from h...   525                  
+jupyter/all-spark-notebook              Jupyter Notebook Python, Scala, R, Spark, ...   243                  
+jupyterhub/jupyterhub                   JupyterHub: multi-user Jupyter notebook se...   216                  [OK]
+jupyter/scipy-notebook                  Jupyter Notebook Scientific Python Stack f...   180                  
+jupyter/tensorflow-notebook             Jupyter Notebook Scientific Python Stack w...   160                  
+jupyter/pyspark-notebook                Jupyter Notebook Python, Spark, Mesos Stac...   110                  
+jupyter/minimal-notebook                Minimal Jupyter Notebook Stack from https:...   79                   
+jupyter/base-notebook                   Small base image for Jupyter Notebook stac...   72                   
+jupyter/r-notebook                      Jupyter Notebook R Stack from https://gith...   24                   
+jupyterhub/singleuser                   single-user docker images for use with Jup...   23                   [OK]
+jupyter/nbviewer                        Jupyter Notebook Viewer                         17                   [OK]
+mikebirdgeneau/jupyterlab               Jupyterlab based on python / alpine linux ...   16                   [OK]
+jupyter/demo                            (DEPRECATED) Demo of the IPython/Jupyter N...   14                   
+eboraas/jupyter                         Jupyter Notebook (aka IPython Notebook) wi...   12                   [OK]
+jupyterhub/k8s-hub                                                                      9                    
+jupyterhub/configurable-http-proxy      node-http-proxy + REST API                      5                    [OK]
+jupyterhub/jupyterhub-onbuild           onbuild version of JupyterHub images            2                    
+takaomag/jupyter.notebook               docker image of archlinux (jupyter.noteboo...   2                    [OK]
+jupyter/repo2docker                     Turn git repositories into Jupyter enabled...   2                    
+minrk/jupyterhub-onbuild                onbuild jupyterhub images                       1                    [OK]
+maxmtmn/jupyter-notebook-custom         example how to build jupyter notebook with...   1                    [OK]
+jupyterhub/k8s-network-tools                                                            1                    
+stanfordlegion/jupyter-regent           Regent kernel for Jupyter                       1                    [OK]
+guangie88/jupyter-pyspark-toree-addon   Python dependencies to install over jupyte...   0                    
+idahlke/jupyter                         Ian's flavor of jupyter                         0                    
+#+end_example
+
+- https://hub.docker.com/r/jupyter/base-notebook/ (200M)
+- https://hub.docker.com/r/jupyter/scipy-notebook/ (1G with statsmodels...)
+
+#+begin_src shell :results output :exports both
+docker run -p 8888:8888 jupyter/scipy-notebook
+#+end_src
+
+#+begin_src shell :results output :exports both
+docker run -p 8888:8888 jupyter/scipy-notebook:17aba6048f44 # from the doc
+#+end_src
+
+Ou from https://hub.docker.com/r/jupyter/scipy-notebook/tags/?page=10
+#+begin_src shell :results output :exports both
+docker run -p 8888:8888 jupyter/scipy-notebook:dc6ae8bd8209 # a 3 years old image
+#+end_src
+
+Show 
 ** Rstudio
 https://hub.docker.com/r/rocker/rstudio/
 ** Emacs
