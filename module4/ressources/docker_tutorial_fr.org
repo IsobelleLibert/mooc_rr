@@ -6,36 +6,48 @@
 #+PROPERTY: header-args :eval never-export
 
 
-L'objectif, c'est la reproductibilité et l'explicitation des
-dépendances. L'intégration continue est un moyen d'y arriver mais je
-dirais que notre objectif n'est pas d'en faire des experts de
-développement logiciel et de l'intégration continue.
-
-Ayant peu d'expérience avec Docker, je me suis appuyé sur la
-[[https://people.irisa.fr/Anthony.Baire/docker-tutorial.pdf][présentation d'Anthony Baire]] pour préparer cette séquence.
 
 * Objectifs et Problématique
-** Problématiques:
-- Alice a son propre environnemnet, Bob a le sien. Le code/notebook
-  qu'Alice exécute ne s'exécute pas sur la machine de Bob et
+L'objectif de cette séquence est de vous familiariser avec les notions
+d'*environnement logiciel*, l'importance du contrôle de cet
+environnement, et de vous présenter les outils vous permettant d'y
+arriver. En particulier, nous verrons comment utiliser des *conteneurs*,
+comment utiliser un système de *gestions de paquets* pour construire un
+environnement donné, et même l'outil d'*intégration continue* de gitlab
+pour automatiser un test dans un environnement logiciel spécifique.
+
+Notre objectif n'est pas de faire de vous des experts de chacun de ces
+outils mais de vous familiariser avec chacun d'eux et que vous
+compreniez leur périmètre afin que vous sachiez contrôler et
+expliciter vos dépendances logicielles.
+
+** Problématique
+- Alice a son propre environnement, Bob a le sien. Le code ou le
+  notebook qu'Alice exécute ne s'exécute pas sur la machine de Bob et
   réciproquement.
 - Bob ne peut pas mettre à jour sa machine (pas les droits, risque
   de casser autre chose, pas le même système d'exploitation, etc.)
-- Le code d'Alice s'exécute bien chez Charles mais il ne donne pas
-  le même résultat.
-- Ce code fonctionnait sur d'anciennes versions mais sur des versions
-  récentes ce n'est plus le cas. 
+- Étrangement, le code d'Alice s'exécute bien chez Charles mais il ne
+  donne pas le même résultat.
+- Quelques mois plus tard, avant de faire les mises à jour de sa
+  machine, ce code fonctionnait très bien mais maintenant il ne
+  fonctionne plus.
 ** Objectifs
-- Savoir travailler dans un conteneur (*Docker*) pour isoler son travail du reste
+À l'issue de cette séquence, vous devriez savoir:
+- Travailler dans un conteneur (*Docker*) pour isoler son travail du reste
   de sa machine
-- Savoir créer un conteneur pour figer un environnement et le partager
+- Créer un conteneur pour figer un environnement et le partager
   (*Packaging* + *DockerFile*)
-- Mettre en place un test pour s'assurer de sa robustesse (*Continuous
-  Integration*) en déportant son exécution dans des environnements
-  controllés
+- Mettre en place un test pour s'assurer de la robustesse d'un code
+  (*Continuous Integration*) en déportant son exécution dans des
+  environnements controllés
+
+Nous prendrons comme fil rouge l'exécution d'un notebook jupyter mais
+nous montrerons les commandes équivalentes pour Rstudio et Org-Mode
+mesure.
 * Table des matières et Progression                                     :TOC:
 - [[#objectifs-et-problématique][Objectifs et Problématique]]
-  - [[#problématiques][Problématiques:]]
+  - [[#problématique][Problématique]]
   - [[#objectifs][Objectifs]]
 - [[#séquence-1-familiarisation-avec-le-principe-de-conteneur][Séquence 1: Familiarisation avec le principe de conteneur]]
   - [[#11-premiers-pas-avec-docker][1.1 Premiers pas avec Docker]]
@@ -51,31 +63,611 @@ Ayant peu d'expérience avec Docker, je me suis appuyé sur la
   - [[#25-mettre-son-image-à-disposition][2.5 Mettre son image à disposition]]
   - [[#26-limitations][2.6 Limitations]]
   - [[#27-exemple-de-reconstruction-dun-vieil-environnement-optionnel][2.7 Exemple de reconstruction d'un "vieil" environnement (Optionnel)]]
+  - [[#28-faire-construire-son-image-par-dockerhub-optionnel][2.8 Faire construire son image par dockerhub (Optionnel)]]
 - [[#séquence-3-mettre-en-place-un-test-et-utiliser-lintégration-continue-pour-sassurer-de-la-robustesse-dun-code][Séquence 3: Mettre en place un test et utiliser l'intégration continue pour s'assurer de la robustesse d'un code]]
   - [[#31-exécuter-ce-notebook-dans-un-conteneur-et-mettre-en-place-un-test][3.1 Exécuter ce notebook dans un conteneur et mettre en place un test]]
   - [[#32-activer-lintégration-continue-pour-que-ce-test-soit-exécuté-à-chaque-commit-dans-le-conteneur-de-notre-choix][3.2 Activer l'intégration continue pour que ce test soit exécuté à chaque commit dans le conteneur de notre choix]]
   - [[#33-rajouter-un-test-pour-repérer-si-des-environnements-plus-à-jour-cassent-notre-test][3.3 Rajouter un test pour repérer si des environnements plus à jour cassent notre test]]
   - [[#34-limitations][3.4 Limitations]]
 
-* Séquence 1: Familiarisation avec le principe de conteneur
+* TODO Séquence 1: Familiarisation avec le principe de conteneur
+#+BEGIN_CENTER
+*FIXME*: faire une illustration
+#+END_CENTER
+Docker va vous permettre d'exécuter des programmes dans ce que l'on
+appelle des conteneurs. Un /conteneur/ est une sorte de mini-machine
+virtuelle dont le système de fichier est appelé /image/ et qui va
+exécuter un /programme/. Je pourrai avoir à un instant donné plusieurs
+conteneurs exécutant des programmes différents issus d'images
+différentes ou identiques.
+- Le premier avantage de cette approche est que votre programme sera
+  isolé du reste de votre machine et, quoi que vous fassiez dans ce
+  conteneur, vous n'abimerez pas votre propre machine en installant
+  des bibliothèques plus anciennes ou plus modernes qui seraient
+  incompatibles.
+- Le second avantage est que vous pourrez préparer plusieurs
+  conteneurs différents pour vérifier si votre programme fonctionne
+  toujours bien.
+- Enfin, vous pourrez partager ce conteneur avec d'autres de façons à
+  ce qu'ils puissent exécuter un programme dans les mêmes conditions
+  que celles que vous aviez prévues.
+
+Si ça vous parait abstrait, le plus simple est de vous montrer comment
+ça fonctionne et que vous reveniez sur cette description un peu plus
+tard si besoin.
 ** 1.1 Premiers pas avec Docker
-- S'assurer que docker est bien installé
-- Récupérer une image de base
-- Exécuter une commande dans un conteneur
-- Utiliser docker en interactif (réaliser qu'il n'y a pas d'effet
-  de bord)
-- Partager un répertoire avec un conteneur
+*** TODO S'assurer que docker est bien installé
+
+#+BEGIN_CENTER
+*FIXME*: Faire une partie [[https://docs.docker.com/docker-for-windows/][Docker pour Windows]]  et Docker pour MacOSX
+#+END_CENTER
+
+Je suis sur une machine linux (une debian) et j'ai donc installé
+docker via le paquet =docker.io=. J'ai aussi pris soin de me mettre dans
+le groupe docker pour ne pas avoir à passer root à chaque fois. Voici
+comment j'ai fait.
+#+begin_src shell :results output :exports both :eval never
+sudo apt-get install docker.io
+sudo adduser alegrand docker
+#+end_src
+
+Je peux alors lancer la commande docker et lui demander de quelle
+version il s'agit.
+#+begin_src shell :session *shell* :results output :exports both 
+docker version
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Client:
+ Version:      1.13.1
+ API version:  1.26
+ Go version:   go1.9.3
+ Git commit:   092cba3
+ Built:        Thu Feb  1 09:36:44 2018
+ OS/Arch:      linux/amd64
+
+Server:
+ Version:      1.13.1
+ API version:  1.26 (minimum version 1.12)
+ Go version:   go1.9.3
+ Git commit:   092cba3
+ Built:        Thu Feb  1 09:36:44 2018
+ OS/Arch:      linux/amd64
+ Experimental: false
+#+end_example
+
+*** Récupérer une image de base
+Nous pouvons commencer. L'idée pour bien contrôler son environnement
+va souvent être de partir d'un environnement assez minimaliste et dans
+lequel un notebook jupyter n'aura d'ailleurs aucune chance de
+s'exécuter. Je partirai d'une image debian stable que je vais
+récupérer à l'aide de la commande =docker pull=.
+
+#+begin_src shell :session *shell* :results output :exports both 
+docker pull debian:stable
+#+end_src
+
+#+RESULTS:
+: stable: Pulling from library/debian
+: 
+: 5893bf6f34bb: Pulling fs layer 
+: 5893bf6f34bb: Downloading    507kB/50.38MB
+: 5893bf6f34bb: Verifying Checksum 
+: 5893bf6f34bb: Download complete 
+: 5893bf6f34bb: Extracting  524.3kB/50.38MB
+: 5893bf6f34bb: Pull complete 
+: Digest: sha256:4d28f191a4c9dec569867dd9af1e388c995146057a36d5b3086e599af7c2379b
+: Status: Downloaded newer image for debian:stable
+
+La commande précédente s'est connectée sur le site [[https://hub.docker.com/][DockerHub]] pour y
+télécharger une image officielle debian stable. Je peux la trouver
+listée ici: https://hub.docker.com/_/debian. Que puis-je savoir sur
+cette image ?
+
+#+begin_src shell :session *shell* :results output :exports both 
+docker image list
+#+end_src
+
+#+RESULTS:
+#+begin_example
+REPOSITORY                   TAG                      IMAGE ID            CREATED             SIZE
+debian                       stable                   40e13c3c9aab        12 days ago         114MB
+#+end_example
+
+Mon image apparaît. Elle fait 114MB et a été construite il y a 12
+jours.
+*** Exécuter une commande dans un conteneur
+Grâce à la commande =docker run=, je vais pouvoir exécuter des commandes
+dans le conteneur que je viens de télécharger. Par exemple, comme
+ceci:
+#+begin_src shell :session *shell* :results output :exports both 
+docker run debian:stable ls
+#+end_src
+
+#+RESULTS:
+#+begin_example
+bin
+boot
+dev
+etc
+home
+lib
+lib64
+media
+mnt
+opt
+proc
+root
+run
+sbin
+srv
+sys
+tmp
+usr
+var
+#+end_example
+
+Bon, ok, ce n'est pas très impressionnant mais croyez moi, le =ls= a
+listé ce qu'il y avait dans le conteneur, pas ce qu'il y avait sur mon
+propre système de fichier. Pour preuve, quand je lance cette commande
+sans docker, je trouve les fichiers =initrd.img=, =exports=, et =nix= en plus:
+#+begin_src shell :results output :exports both
+ls /
+#+end_src
+
+#+RESULTS:
+#+begin_example
+bin
+boot
+dev
+etc
+exports
+home
+initrd.img
+initrd.img.old
+lib
+lib32
+lib64
+lost+found
+media
+mnt
+nix
+opt
+proc
+root
+run
+sbin
+srv
+sys
+tmp
+usr
+var
+vmlinuz
+vmlinuz.old
+#+end_example
+
+Essayons avec la commande =hostname= qui me renverra comment s'appelle
+la machine.
+#+begin_src shell :session *shell* :results output :exports both 
+docker run debian:stable hostname
+#+end_src
+
+#+RESULTS:
+: 07193bfee89f
+
+Ah, oui, c'est assez différent de ce que j'obtiens quand je lance
+cette commande directement sur ma machine:
+#+begin_src shell :session *shell* :results output :exports both 
+hostname
+#+end_src
+
+#+RESULTS:
+: icarus
+
+Continuons de comparer. Est-ce que l'on trouve python, python3 ou perl
+dans cet environnement ?
+#+begin_src shell :session *shell* :results output :exports both 
+echo "=== On my machine ==="
+which -a python3 python perl                 # chez moi oui
+echo "=== On debian:stable ==="
+docker run debian:stable which -a python3 python perl # mais pas dans cet environnement
+echo "===================="
+#+end_src
+
+#+RESULTS:
+#+begin_example
+=== On my machine ===
+/usr/bin/X11//python3
+/usr/bin/X11//python3
+/usr/bin/python3
+/usr/bin/X11//python
+/usr/bin/X11//python
+/usr/bin/python
+/usr/bin/X11//perl
+/usr/bin/X11//perl
+/usr/bin/perl
+=== On debian:stable ===
+/usr/bin/perl
+====================
+#+end_example
+
+Non, pas de python dans cette image debian minimaliste, seulement
+perl.  En fait, à chaque fois que je lance une commande avec =docker
+run=, c'est un peu comme si un mini-système d'exploitation démarrait,
+exécutait cette commande et s'éteignait... C'est donc un peu coûteux
+et pénible d'avoir à toujours préfixer par =docker run=, donc une
+solution simple consiste à lancer docker en mode interactif.
+*** Utiliser docker en interactif
+À partir de maintenant, il vous faudra bien faire attention à
+distinguer les commandes qui sont lancées sur mon système de base de
+celles qui sont lancées dans notre conteneur docker. Rentrons dans
+notre conteneur en interactif
+#+begin_src shell :session *docker* :results output :exports both 
+docker run -t -i debian:stable
+#+end_src
+
+#+RESULTS:
+
+Je peux alors exécuter plusieurs séries de commandes facilement dans
+mon environnement:
+#+begin_src shell :session *docker* :results output :exports both 
+hostname; whoami ; python ; 
+ls -la ~/
+#+end_src
+
+#+RESULTS:
+#+begin_example
+hostname; whoami ; python ; 
+aa68f9214de3
+root
+bash: python: command not found
+ls -la ~/
+total 16
+drwx------ 2 root root 4096 Jul  8 03:30 .
+drwxr-xr-x 1 root root 4096 Aug 15 09:36 ..
+-rw-r--r-- 1 root root  570 Jan 31  2010 .bashrc
+-rw-r--r-- 1 root root  148 Aug 17  2015 .profile
+#+end_example
+
+Je suis =root= dans cet environnement, ce qui me permettra d'y installer
+tous les logiciels que je souhaite. Mais nous verrons ça plus tard,
+je vais d'abord illustrer un point lié aux effets de bords. Je vais
+créer un fichier 
+#+begin_src shell :session *docker* :results output :exports both 
+echo "Hello world!" > ~/myfile.txt
+ls -la ~/
+#+end_src
+
+#+RESULTS:
+: 
+: ~/myfile.txt
+: ls -la ~/
+: total 20
+: drwx------ 1 root root 4096 Aug 15 09:41 .
+: drwxr-xr-x 1 root root 4096 Aug 15 09:36 ..
+: -rw-r--r-- 1 root root  570 Jan 31  2010 .bashrc
+: -rw-r--r-- 1 root root  148 Aug 17  2015 .profile
+: -rw-r--r-- 1 root root   13 Aug 15 09:41 myfile.txt
+
+J'ai bien créé un fichier dans le répertoire personnel de
+l'utilisateur =root= de cet environnement. Je vais maintenant quitter
+cet environnement, le redémarrer et y relancer les commandes
+précédentes:
+#+begin_src shell :session *docker* :results output :exports both 
+exit
+#+end_src
+
+#+RESULTS:
+: exit
+
+#+begin_src shell :session *docker* :results output :exports both 
+docker run -t -i debian:stable
+#+end_src
+
+#+RESULTS:
+
+#+begin_src shell :session *docker* :results output :exports both 
+hostname; whoami ; python ; 
+ls -la ~/
+exit
+#+end_src
+
+#+RESULTS:
+#+begin_example
+hostname; whoami ; python ; 
+f8705ae9aeff
+root
+bash: python: command not found
+ls -la ~/
+total 16
+drwx------ 2 root root 4096 Jul  8 03:30 .
+drwxr-xr-x 1 root root 4096 Aug 15 09:44 ..
+-rw-r--r-- 1 root root  570 Jan 31  2010 .bashrc
+-rw-r--r-- 1 root root  148 Aug 17  2015 .profile
+exit
+exit
+#+end_example
+
+Je suis toujours l'utilisateur =root= mais vous remarquerez que le nom
+de la machine a changé (=f8705ae9aeff= au lieu de =aa68f9214de3=) et que
+le fichier =myfile.txt= a disparu. 
+
+En fait lorsque je ferme un conteneur, toutes les modifications que
+j'aurais pu y apporter sont perdues ou plutôt dès que je lance un
+conteneur, il s'agit d'un conteneur vierge des modifications que
+j'aurais pu faire auparavant. Mon conteneur est donc isolé du reste de
+la machine et est "sans mémoire". Même si je fais une erreur et que
+j'efface tout le contenu de mon conteneur, je peux toujours
+recommencer du début et récupérer un environnement tout neuf. C'est
+cette propriété d'immutabilité qui va nous permettre de nous assurer
+que le code que j'exécuterai dans 3 mois s'exécutera dans les mêmes
+conditions logicielles que le code que j'exécute aujourd'hui.
+
+Mais alors comment faire pour récupérer les fichiers et les résultats
+d'un calcul exécuté dans un conteneur ?
+
+*** TODO Partager un répertoire avec un conteneur
+#+BEGIN_CENTER
+*FIXME*: Évoquer le problème des uid à la fin ?
+#+END_CENTER
+
+Le conteneur étant isolé de l'extérieur (sauf via le réseau) et ayant
+son propre système de fichier, le plus simple pour échanger des
+données avec l'extérieur consiste à partager un répertoire entre le
+conteneur et la machine hôte. 
+
+Je peux par exemple partager le répertoire courant dans le répertoire
+=/tmp= du conteneur.
+
+#+begin_src shell :session *shell* :results output :exports both 
+echo "-- Sans partage"
+docker run debian:stable ls /tmp
+#+end_src
+
+#+RESULTS:
+: -- Sans partage
+
+#+begin_src shell :session *shell* :results output :exports both 
+echo "-- Avec partage de" `pwd`
+docker run --volume=`pwd`:/tmp debian:stable ls /tmp
+#+end_src
+
+#+RESULTS:
+#+begin_example
+-- Avec partage de /home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module4/ressources
+Makefile
+docker_tutorial_fr.html
+docker_tutorial_fr.html~
+docker_tutorial_fr.org
+docker_tutorial_fr.org~
+exo1.org
+exo2.org
+exo3.org
+mooc_docker
+mooc_docker_image
+mooc_docker_image_oldoldstable
+resources_environment.org
+resources_environment_fr.org
+resources_refs.org
+resources_refs_fr.org
+test_jupyter
+#+end_example
+
+Ainsi, plutôt que d'aller dans le répertoire =my_work/= pour y
+travailler sans bien contrôler dans quel environnement je travaille,
+je vais lancer un conteneur à l'environnement logiciel contrôlé et à
+qui j'aurai donné accès au répertoire =my_work/=. Je travaillerai alors
+normalement à ceci près que je lancerai toutes mes commandes dans mon
+conteneur docker. Le résultat de mes commandes sera disponible comme
+d'habitude dans le répertoire =my_work/=.
+
+Mettons cela en pratique avec un environnement un peu plus fourni
+qu'une debian minimaliste.
 ** 1.2(A) Utiliser docker pour travailler au jour le jour: Jupyter
-- (Exécuter un notebook dans un environnement sans interaction)
+Tout un tas d'organisation mettent donc à disposition des images
+docker à jour permettant de travailler au mieux. C'est le cas de
+jupyter qui fourni plusieurs images. Voyons ce qui est à notre disposition:
+
+#+begin_src shell :results output :exports both
+docker search jupyter
+#+end_src
+
+#+RESULTS:
+#+begin_example
+NAME                                    DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+jupyter/datascience-notebook            Jupyter Notebook Data Science Stack from h...   525                  
+jupyter/all-spark-notebook              Jupyter Notebook Python, Scala, R, Spark, ...   243                  
+jupyterhub/jupyterhub                   JupyterHub: multi-user Jupyter notebook se...   216                  [OK]
+jupyter/scipy-notebook                  Jupyter Notebook Scientific Python Stack f...   180                  
+jupyter/tensorflow-notebook             Jupyter Notebook Scientific Python Stack w...   160                  
+jupyter/pyspark-notebook                Jupyter Notebook Python, Spark, Mesos Stac...   110                  
+jupyter/minimal-notebook                Minimal Jupyter Notebook Stack from https:...   79                   
+jupyter/base-notebook                   Small base image for Jupyter Notebook stac...   72                   
+jupyter/r-notebook                      Jupyter Notebook R Stack from https://gith...   24                   
+jupyterhub/singleuser                   single-user docker images for use with Jup...   23                   [OK]
+jupyter/nbviewer                        Jupyter Notebook Viewer                         17                   [OK]
+mikebirdgeneau/jupyterlab               Jupyterlab based on python / alpine linux ...   16                   [OK]
+jupyter/demo                            (DEPRECATED) Demo of the IPython/Jupyter N...   14                   
+eboraas/jupyter                         Jupyter Notebook (aka IPython Notebook) wi...   12                   [OK]
+jupyterhub/k8s-hub                                                                      9                    
+jupyterhub/configurable-http-proxy      node-http-proxy + REST API                      5                    [OK]
+jupyterhub/jupyterhub-onbuild           onbuild version of JupyterHub images            2                    
+takaomag/jupyter.notebook               docker image of archlinux (jupyter.noteboo...   2                    [OK]
+jupyter/repo2docker                     Turn git repositories into Jupyter enabled...   2                    
+minrk/jupyterhub-onbuild                onbuild jupyterhub images                       1                    [OK]
+maxmtmn/jupyter-notebook-custom         example how to build jupyter notebook with...   1                    [OK]
+jupyterhub/k8s-network-tools                                                            1                    
+stanfordlegion/jupyter-regent           Regent kernel for Jupyter                       1                    [OK]
+guangie88/jupyter-pyspark-toree-addon   Python dependencies to install over jupyte...   0                    
+idahlke/jupyter                         Ian's flavor of jupyter                         0                    
+#+end_example
+
+Les premières =jupyter/*= sont des images "officielles" de l'équipe de
+développement de Jupyter. Vous trouvez également tout un tas d'images
+faites par des gens comme vous et moi. Vous trouverez un peu plus de
+détail sur les images officielles jupyter dans la [[https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html][documentation
+correspondante]]. La plus petite image disponible permettant d'exécuter
+un notebook s'appelle [[https://hub.docker.com/r/jupyter/base-notebook/][base-notebook]]. Elle pèse environ 200M mais elle
+ne dispose pas de bibliothèques de calcul scientifique comme =pandas=,
+=numpy=, =matplotlib= ou =statsmodels=. Pour ça, il faudra utiliser l'image
+[[https://hub.docker.com/r/jupyter/scipy-notebook/][scipy-notebook]] qui vient avec tout le nécessaire et même pas mal de
+superflu (elle pèse 1G...). S'il vous en faut plus, n'hésitez pas à
+parcourir https://hub.docker.com/jupyter et la [[https://jupyter-docker-stacks.readthedocs.io/][documentation de ces
+image]].
+
+Préparez-vous à ce que l'exécution de la commande qui suit prenne donc
+un peu de temps puisqu'elle commencera par rappatrier la dernière
+image de =jupyter/scipy-notebook= avant de l'exécuter.
+#+begin_src shell :results output :exports both
+docker run -p 8888:8888 jupyter/scipy-notebook
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Executing the command: jupyter notebook
+[I 10:13:54.544 NotebookApp] Writing notebook server cookie secret to /home/jovyan/.local/share/jupyter/runtime/notebook_cookie_secret
+[I 10:13:54.746 NotebookApp] JupyterLab extension loaded from /opt/conda/lib/python3.7/site-packages/jupyterlab
+[I 10:13:54.746 NotebookApp] JupyterLab application directory is /opt/conda/share/jupyter/lab
+[I 10:13:54.748 NotebookApp] Serving notebooks from local directory: /home/jovyan
+[I 10:13:54.748 NotebookApp] The Jupyter Notebook is running at:
+[I 10:13:54.748 NotebookApp] http://b81d06d52acd:8888/?token=cd646696a5adde86ca4cc74b18642010e315e3500c8cc63f
+[I 10:13:54.748 NotebookApp]  or http://127.0.0.1:8888/?token=cd646696a5adde86ca4cc74b18642010e315e3500c8cc63f
+[I 10:13:54.748 NotebookApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 10:13:54.751 NotebookApp] 
+    
+    To access the notebook, open this file in a browser:
+        file:///home/jovyan/.local/share/jupyter/runtime/nbserver-8-open.html
+    Or copy and paste one of these URLs:
+        http://b81d06d52acd:8888/?token=cd646696a5adde86ca4cc74b18642010e315e3500c8cc63f
+     or http://127.0.0.1:8888/?token=cd646696a5adde86ca4cc74b18642010e315e3500c8cc63f
+#+end_example
+
+Si vous prenez votre navigateur et que vous ouvrez la _dernière_ URL
+indiquée
+(=http://127.0.0.1:8888/?token=cd646696a5adde86ca4cc74b18642010e315e3500c8cc63f=
+dans le cas présent) vous verrez que vous avez alors accès à un
+notebook jupyter tout beau tout neuf sans rien avoir eu à installer
+qui puisse perturber votre machine.
+
+Comment ça marche ? Par défaut, le serveur jupyter s'ouvre sur le port
+8888 et il vous indique donc que si vous vous connectez à l'adresse
+=http://127.0.0.1:8888=, vous y trouverez le seveur jupyter que vous
+venez de lancer. Mais ce serveur est dans votre docker et vous n'y
+avez pas accès. le =-p 8888:8888= permet de lier le port 8888 de votre
+propre machine au port 8888 du conteneur. 
+
+Fermons le et relançons le en activant la nouvelle interface de
+jupyter: JupyterLab.
+#+begin_src shell :results output :exports both
+docker run -p 8888:8888 -e JUPYTER_ENABLE_LAB=yes jupyter/scipy-notebook # from the doc
+#+end_src
+
+Dans cette interface, vous avez accès d'un seul coup d'oeil au
+navigateur de fichiers, au notebooks, au terminaux, etc...
+
+Vous pouvez bien sûr y importer les fichiers et les données dont vous
+auriez besoin mais le plus simple pour travailler confortablement est
+de partager un répertoire. Comme vous avez pu le remarquer, dans cette
+image docker, c'est un utilisateur =jovyan= qui est créé et il dispose
+d'un répertoire =work/= vide dans son répertoire personnel. 
+
+C'est ce répertoire =/home/jovyan/work/= que nous allons utiliser mais
+cette fois-ci attention aux effets de bords, vos modifications seront
+faites directement dans votre répertoire. Mais s'il est sous git
+(attention à éviter de ne partager qu'un sous-répertoire d'un git),
+vous ne risquez rien...  Bref, la commande magique à utiliser au
+quotidien devrait être quelque chose du genre:
+
+#+begin_src shell :session *shell* :results output :exports both 
+# First cd into your working directory, then
+docker run --volume=`pwd`:/home/jovyan/work/ -p 8888:8888 -e JUPYTER_ENABLE_LAB=yes jupyter/scipy-notebook
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Executing the command: jupyter lab
+[I 10:37:40.275 LabApp] Writing notebook server cookie secret to /home/jovyan/.local/share/jupyter/runtime/notebook_cookie_secret
+[I 10:37:40.484 LabApp] JupyterLab extension loaded from /opt/conda/lib/python3.7/site-packages/jupyterlab
+[I 10:37:40.485 LabApp] JupyterLab application directory is /opt/conda/share/jupyter/lab
+[I 10:37:40.486 LabApp] Serving notebooks from local directory: /home/jovyan
+[I 10:37:40.486 LabApp] The Jupyter Notebook is running at:
+[I 10:37:40.486 LabApp] http://077a9a5c655f:8888/?token=1c08b68de88811250287057429a429885aa5853ff2cf6c44
+[I 10:37:40.487 LabApp]  or http://127.0.0.1:8888/?token=1c08b68de88811250287057429a429885aa5853ff2cf6c44
+[I 10:37:40.487 LabApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 10:37:40.490 LabApp] 
+    
+    To access the notebook, open this file in a browser:
+        file:///home/jovyan/.local/share/jupyter/runtime/nbserver-8-open.html
+    Or copy and paste one of these URLs:
+        http://077a9a5c655f:8888/?token=1c08b68de88811250287057429a429885aa5853ff2cf6c44
+     or http://127.0.0.1:8888/?token=1c08b68de88811250287057429a429885aa5853ff2cf6c44
+#+end_example
+
+J'attire votre attention sur un dernier point. J'ai préparé ce
+tutoriel, dans le courant de l'été 2019. J'ai récupéré la dernière
+image de =jupyter/scipy-notebook= et il est donc probable que quand vous
+exécuterez ces commandes vous même, vous récupériez une image
+différente... Et oui, si vous ne précisez rien du tout, vous récupérez
+par défaut la dernière image disponible. Celle que j'ai récupérée est
+la =844815ed865e= (cet identifiant est le début d'une clé
+cryptographique identifiant tout le contenu de cette image).
+
+#+begin_src shell :results output :exports both
+docker image list | grep scipy
+#+end_src
+
+#+RESULTS:
+: jupyter/scipy-notebook                        latest                   844815ed865e        4 days ago          3.47GB
+
+Il possible d'accéder à d'anciennes versions en regardant par exemple
+ici: https://hub.docker.com/r/jupyter/scipy-notebook/tags/?page=10. Je
+peux ainsi lancer cette image telle qu'elle a été construite il y a 3 ans:
+
+#+begin_src shell :results output :exports both
+docker run -p 8888:8888 jupyter/scipy-notebook:dc6ae8bd8209 # a 3 years old image
+#+end_src
+
+On y trouve d'anciennes versions de =pandas=, =numpy=, =matplotlib= ou
+=statsmodels= mais ce n'est pas décrit. Vous pouvez accéder à la recette
+de construction, mais vous verrez que plusieurs technologies de
+gestion de paquets ont été utilisées (ubuntu et conda), ce qui ne
+simplifie pas l'identification exacte des versions de chacun des
+paquets utilisés. Si je peux facilement accéder à d'anciennes images,
+il va souvent être difficile de savoir ce qu'elles contiennent
+exactement, comment elles ont été construites et comment en faire une
+variation.
 ** 1.2(B) Utiliser docker pour travailler au jour le jour: Rstudio
 ** 1.2(C) Utiliser docker pour travailler au jour le jour: Emacs
 ** 1.3 Limitations
-- Instabilité de cet environnement (latest vs. un plus vieux)
-- Que contient-il vraiment ?
-- Besoin de choses en plus ? en moins ?
-- Perméabilité si vous installez des choses dans cet
-  environnement (à moins de le figer)
-- Bonne pratique: repérer le tag et bien le préciser
+Utiliser un conteneur est donc assez facile et très pratique car cela
+vous permet de travailler en isolation de votre machine et d'utiliser
+à peu près n'importe quel logiciel et ce quel que soit votre système
+d'exploitation. Il est aussi très facile de partager ces
+environnements avec d'autres via le DockerHub. Néanmoins cette
+facilité vient avec quelques contreparties en terme de transparence
+et de reproductibilité par un tiers:
+
+- L'environnement que vous récupérez est en général le plus récent et
+  donc, à moins que vous ne précisiez exactement via son ID quel
+  environnement vous utilisez, des collègues qui referaient la même
+  manipulation que vous quelques jours plus tard risquent de récupérer
+  un environnement différent du votre.
+- Vous récupérez un environnement sans savoir vraiment ce qu'il
+  contient en terme de logiciels. Quelles versions ? Comment ces
+  logiciels ont-ils été installés ? Y a-t-il vraiment tout ce dont
+  vous avez besoin ? N'y a-t-il pas trop de choses par rapport à vos
+  besoins ?
+- Alors bien sûr, puisque votre environnement a accès à Internet, rien
+  de vous empêche d'y installer ce qui vous manquerait mais dans ce
+  cas, d'un jour sur l'autre, vous prenez le risque de réinstaller des
+  choses différentes et, même si vos collègues sont partis de la même
+  image, ils ne sauront pas où vous en êtes en terme de mises à jour.
+
+Dans la deuxième séquence, nous verrons donc comment créer votre
+propre environnement et le partager avec d'autres. Mais dans tous les
+cas, une bonne pratique consiste à bien repérer l'identifiant de vos
+images et à les spécifier.
 * Séquence 2: Créer son propre environnement, automatiser sa construction et le partage
 ** 2.1 Récupérer une image de base
 ** 2.2 Installer tous les paquets dont on a besoin
@@ -92,6 +684,12 @@ Ayant peu d'expérience avec Docker, je me suis appuyé sur la
   quelqu'un d'autre de facilement en faire une variation
 ** 2.7 Exemple de reconstruction d'un "vieil" environnement (Optionnel)
 (tel qu'on aurait pu le faire il y a un an et demi/deux ans)
+** 2.8 Faire construire son image par dockerhub (Optionnel)
+https://docs.docker.com/docker-hub/builds/
+
+Avantage: garantie de traçabilité et que l'image a bien été construite
+de cette façon.
+
 * Séquence 3: Mettre en place un test et utiliser l'intégration continue pour s'assurer de la robustesse d'un code
 Point de départ: un notebook
 ** 3.1 Exécuter ce notebook dans un conteneur et mettre en place un test
@@ -140,7 +738,7 @@ Connecting to gitlab.inria.fr (gitlab.inria.fr)|128.93.193.8|:443... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 41019 (40K) [text/plain]
 Saving to: 'notebook.ipynb'
-[                    ]       0  --.-KB/s               notebook.ipynb      100%[===================>]  40.06K  --.-KB/s    in 0.09s   
+[                    ]       0  --.-KB/s               notebook.ipynb      100%[===================>]  40.06K  --.-KB/s    in 0.09s   
 
 2019-07-23 09:19:25 (448 KB/s) - 'notebook.ipynb' saved [41019/41019]
 --2019-07-23 09:19:25--  https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-modele/raw/master/module2/exo5/shuttle.csv?inline=false
@@ -149,7 +747,7 @@ Connecting to gitlab.inria.fr (gitlab.inria.fr)|128.93.193.8|:443... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: 485 [text/plain]
 Saving to: 'shuttle.csv'
-[                    ]       0  --.-KB/s               shuttle.csv         100%[===================>]     485  --.-KB/s    in 0s      
+[                    ]       0  --.-KB/s               shuttle.csv         100%[===================>]     485  --.-KB/s    in 0s      
 
 2019-07-23 09:19:25 (4.23 MB/s) - 'shuttle.csv' saved [485/485]
 #+end_example
@@ -646,7 +1244,7 @@ apt-get install -y jupyter-nbconvert python3-ipykernel python3-matplotlib python
 
 #+RESULTS:
 #+BEGIN_EXAMPLE
-apt-get install -y jupyter-nbconvert python3-ipykernel python3-matplotlib python3-pandas  python3-numpy python3-statsmodels
+apt-get install -y jupyter-nbconvert python3-ipykernel python3-matplotlib python3-pandas  python3-numpy python3-statsmodels
 0 upgraded, 247 newly installed, 0 to remove and 0 not upgraded.
 Need to get 204 MB of archives.
 After this operation, 742 MB of additional disk space will be used.
@@ -1064,7 +1662,7 @@ docker build mooc_docker_image
 
 #+RESULTS:
 #+begin_example
-Sending build context to Docker daemon  2.048kB
+Sending build context to Docker daemon  2.048kB
 Step 1/3 : FROM debian:stable
  ---> 40e13c3c9aab
 Step 2/3 : LABEL maintainer "Arnaud Legrand <arnaud.legrand@imag.fr>"
@@ -1493,7 +2091,7 @@ Get:267 http://cdn-fastly.deb.debian.org/debian stable/main amd64 xdg-user-dirs 
 [91mdebconf: delaying package configuration, since apt-utils is not installed
 [0mFetched 212 MB in 2min 56s (1204 kB/s)
 Selecting previously unselected package perl-modules-5.28.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6674 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6674 files and directories currently installed.)
 Preparing to unpack .../0-perl-modules-5.28_5.28.1-6_all.deb ...
 Unpacking perl-modules-5.28 (5.28.1-6) ...
 Selecting previously unselected package libgdbm6:amd64.
@@ -1531,7 +2129,7 @@ Setting up libpython3.7-minimal:amd64 (3.7.3-2) ...
 Setting up libexpat1:amd64 (2.2.6-2) ...
 Setting up python3.7-minimal (3.7.3-2) ...
 Selecting previously unselected package python3-minimal.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 8896 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 8896 files and directories currently installed.)
 Preparing to unpack .../0-python3-minimal_3.7.3-1_amd64.deb ...
 Unpacking python3-minimal (3.7.3-1) ...
 Selecting previously unselected package mime-support.
@@ -1560,7 +2158,7 @@ Preparing to unpack .../8-libpython3-stdlib_3.7.3-1_amd64.deb ...
 Unpacking libpython3-stdlib:amd64 (3.7.3-1) ...
 Setting up python3-minimal (3.7.3-1) ...
 Selecting previously unselected package python3.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 9365 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 9365 files and directories currently installed.)
 Preparing to unpack .../000-python3_3.7.3-1_amd64.deb ...
 Unpacking python3 (3.7.3-1) ...
 Selecting previously unselected package netbase.
@@ -3373,7 +3971,7 @@ done
 
 #+RESULTS:
 #+begin_example
-for i in python3-ipykernel jupyter-nbconvert python3-matplotlib python3- pandas python3-numpy python3-statsmodels ; do
+for i in python3-ipykernel jupyter-nbconvert python3-matplotlib python3- pandas python3-numpy python3-statsmodels ; do
 echo "===== $i =====";
 dpkg -s $i
 done
@@ -3477,7 +4075,7 @@ docker run -t -i debian:stretch-20190708-slim
 : Unable to find image 'debian:stretch-20190708-slim' locally
 : stretch-20190708-slim: Pulling from library/debian
 : 
-: [1A[2K0a4690c5d889: Pulling fs layer [1B[1A[2K0a4690c5d889: Downloading  228.5kB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  457.5kB/22.49MB[1B[1A[2K0a4690c5d889: Downloading    695kB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  920.3kB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   1.15MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  1.379MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  1.617MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   1.85MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  2.079MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  2.309MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  2.538MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  2.768MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  2.997MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  3.226MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  3.456MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  3.685MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  3.919MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  4.148MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  4.373MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  4.603MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  4.832MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  5.061MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  5.291MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  5.524MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  5.754MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  5.991MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  6.221MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   6.45MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  6.675MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  6.905MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  7.134MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  7.372MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  7.601MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  7.826MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   8.06MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  8.289MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  8.518MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  8.748MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  8.973MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  9.202MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  9.432MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  9.665MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  9.891MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  10.12MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  10.35MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  10.58MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  10.82MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  11.05MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  11.27MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   11.5MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  11.73MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  11.96MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  12.19MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  12.42MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  12.65MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  12.88MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  13.11MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  13.34MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  13.57MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   13.8MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  14.03MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  14.26MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  14.49MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  14.72MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  14.95MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  15.17MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   15.4MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  15.63MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  15.86MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   16.1MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  16.33MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  16.56MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  16.79MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  17.02MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  17.25MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  17.48MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  17.71MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  17.94MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  18.17MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  18.39MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  18.62MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  18.85MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  19.08MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  19.31MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  19.54MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  19.77MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading     20MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  20.22MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  20.45MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  20.68MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  20.91MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  21.14MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  21.37MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   21.6MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  21.83MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  22.06MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  22.29MB/22.49MB[1B[1A[2K0a4690c5d889: Verifying Checksum [1B[1A[2K0a4690c5d889: Download complete [1B[1A[2K0a4690c5d889: Extracting  229.4kB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  2.523MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  5.505MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  8.258MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  8.946MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  11.24MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  13.53MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  14.45MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  15.83MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  17.89MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  19.73MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  20.19MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  21.33MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  21.79MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  22.49MB/22.49MB[1B[1A[2K0a4690c5d889: Pull complete [1BDigest: sha256:0c04edb9ae10feb7ac03a659dd41e16c79e04fdb2b10cf93c3cbcef1fd6cc1d5
+: [1A[2K0a4690c5d889: Pulling fs layer [1B[1A[2K0a4690c5d889: Downloading  228.5kB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  457.5kB/22.49MB[1B[1A[2K0a4690c5d889: Downloading    695kB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  920.3kB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   1.15MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  1.379MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  1.617MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   1.85MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  2.079MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  2.309MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  2.538MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  2.768MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  2.997MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  3.226MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  3.456MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  3.685MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  3.919MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  4.148MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  4.373MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  4.603MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  4.832MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  5.061MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  5.291MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  5.524MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  5.754MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  5.991MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  6.221MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   6.45MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  6.675MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  6.905MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  7.134MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  7.372MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  7.601MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  7.826MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   8.06MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  8.289MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  8.518MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  8.748MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  8.973MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  9.202MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  9.432MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  9.665MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  9.891MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  10.12MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  10.35MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  10.58MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  10.82MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  11.05MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  11.27MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   11.5MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  11.73MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  11.96MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  12.19MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  12.42MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  12.65MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  12.88MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  13.11MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  13.34MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  13.57MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   13.8MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  14.03MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  14.26MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  14.49MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  14.72MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  14.95MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  15.17MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   15.4MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  15.63MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  15.86MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   16.1MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  16.33MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  16.56MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  16.79MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  17.02MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  17.25MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  17.48MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  17.71MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  17.94MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  18.17MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  18.39MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  18.62MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  18.85MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  19.08MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  19.31MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  19.54MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  19.77MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading     20MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  20.22MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  20.45MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  20.68MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  20.91MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  21.14MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  21.37MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading   21.6MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  21.83MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  22.06MB/22.49MB[1B[1A[2K0a4690c5d889: Downloading  22.29MB/22.49MB[1B[1A[2K0a4690c5d889: Verifying Checksum [1B[1A[2K0a4690c5d889: Download complete [1B[1A[2K0a4690c5d889: Extracting  229.4kB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  2.523MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  5.505MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  8.258MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  8.946MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  11.24MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  13.53MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  14.45MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  15.83MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  17.89MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  19.73MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  20.19MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  21.33MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  21.79MB/22.49MB[1B[1A[2K0a4690c5d889: Extracting  22.49MB/22.49MB[1B[1A[2K0a4690c5d889: Pull complete [1BDigest: sha256:0c04edb9ae10feb7ac03a659dd41e16c79e04fdb2b10cf93c3cbcef1fd6cc1d5
 : Status: Downloaded newer image for debian:stretch-20190708-slim
 
 #+begin_src shell :session *docker* :results output :exports both 
@@ -3544,7 +4142,7 @@ done
 
 #+RESULTS:
 #+begin_example
-for i in python3-ipykernel jupyter-nbconvert python3-matplotlib python33-pandas python3-numpy python3-statsmodels ; do
+for i in python3-ipykernel jupyter-nbconvert python3-matplotlib python33-pandas python3-numpy python3-statsmodels ; do
 echo $i;
 apt-cache show $i | grep Version ;
 done
@@ -3581,7 +4179,7 @@ done
 
 #+RESULTS:
 #+begin_example
-for i in python3-ipykernel jupyter-nbconvert python3-matplotlib python33-pandas python3-numpy python3-statsmodels ; do
+for i in python3-ipykernel jupyter-nbconvert python3-matplotlib python33-pandas python3-numpy python3-statsmodels ; do
 echo $i;
 apt-cache show $i | grep Version ;
 done
@@ -3638,8 +4236,8 @@ cat /etc/apt/sources.list
 
 #+RESULTS:
 : 
-: echo "deb http://snapshot.debian.org/archive/debian/20170929T215212Z// testing main" > /etc/apt/sources.list
-: echo "deb http://snapshot.debian.org/archive/debian/20180310T130644Z/ ttesting main" > /etc/apt/sources.list
+: echo "deb http://snapshot.debian.org/archive/debian/20170929T215212Z// testing main" > /etc/apt/sources.list
+: echo "deb http://snapshot.debian.org/archive/debian/20180310T130644Z/ ttesting main" > /etc/apt/sources.list
 : cat /etc/apt/sources.list
 : deb http://snapshot.debian.org/archive/debian/20180310T130644Z/ testing main
 
@@ -3658,7 +4256,7 @@ done
 
 #+RESULTS:
 #+begin_example
-for i in python3-ipykernel jupyter-nbconvert python3-matplotlib python33-pandas python3-numpy python3-statsmodels ; do
+for i in python3-ipykernel jupyter-nbconvert python3-matplotlib python33-pandas python3-numpy python3-statsmodels ; do
 echo $i;
 apt-cache show $i | grep Version ;
 done
@@ -4080,6 +4678,8 @@ docker commit 3e302c4c2ed7 debian_stretch_20180310_python3_statsmodels
 See
 - https://hub.docker.com/
 - https://jupyter-docker-stacks.readthedocs.io/en/latest/index.html
+- https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-base-notebook
+
 #+begin_src shell :results output :exports both
 docker search jupyter
 #+end_src
@@ -4123,6 +4723,10 @@ docker run -p 8888:8888 jupyter/scipy-notebook
 
 #+begin_src shell :results output :exports both
 docker run -p 8888:8888 jupyter/scipy-notebook:17aba6048f44 # from the doc
+#+end_src
+
+#+begin_src shell :results output :exports both
+docker run -p 8888:8888 -e JUPYTER_ENABLE_LAB=yes jupyter/scipy-notebook:17aba6048f44 # from the doc
 #+end_src
 
 Ou from https://hub.docker.com/r/jupyter/scipy-notebook/tags/?page=10
