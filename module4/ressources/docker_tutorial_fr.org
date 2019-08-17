@@ -138,11 +138,8 @@ Server:
 #+end_example
 
 *** Récupérer une image de base
-Nous pouvons commencer. L'idée pour bien contrôler son environnement
-va souvent être de partir d'un environnement assez minimaliste et dans
-lequel un notebook jupyter n'aura d'ailleurs aucune chance de
-s'exécuter. Je partirai d'une image debian stable que je vais
-récupérer à l'aide de la commande =docker pull=.
+Nous pouvons commencer. Je partirai d'une image Linux debian stable
+que je vais récupérer à l'aide de la commande =docker pull=.
 
 #+begin_src shell :session *shell* :results output :exports both 
 docker pull debian:stable
@@ -166,7 +163,7 @@ listée ici: https://hub.docker.com/_/debian. Que puis-je savoir sur
 cette image ?
 
 #+begin_src shell :session *shell* :results output :exports both 
-docker image list
+docker images
 #+end_src
 
 #+RESULTS:
@@ -614,7 +611,7 @@ la =844815ed865e= (cet identifiant est le début d'une clé
 cryptographique identifiant tout le contenu de cette image).
 
 #+begin_src shell :results output :exports both
-docker image list | grep scipy
+docker images | grep scipy
 #+end_src
 
 #+RESULTS:
@@ -670,26 +667,1149 @@ cas, une bonne pratique consiste à bien repérer l'identifiant de vos
 images et à les spécifier.
 * Séquence 2: Créer son propre environnement, automatiser sa construction et le partage
 ** 2.1 Récupérer une image de base
+Nous allons créer un environnement "minimal" en terme de dépendances
+et permettant d'exécuter le [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-modele/blob/master/module2/exo5/exo5_fr.ipynb][notebook Jupyter de Challenger]]. 
+
+L'idée pour bien contrôler son environnement va être de partir d'un
+environnement minimaliste, dans lequel notre notebook aura d'ailleurs
+peu de chances de s'exécuter, et d'y installer juste les logiciels
+dont nous aurons besoin. Je partirai d'une image debian stable.
+#+begin_src shell :session *shell* :results output :exports both 
+docker pull debian:stable
+#+end_src
+
+#+RESULTS:
+: stable: Pulling from library/debian
+: 
+: 5893bf6f34bb: Pulling fs layer 
+: 5893bf6f34bb: Downloading    507kB/50.38MB
+: 5893bf6f34bb: Verifying Checksum 
+: 5893bf6f34bb: Download complete 
+: 5893bf6f34bb: Extracting  524.3kB/50.38MB
+: 5893bf6f34bb: Pull complete 
+: Digest: sha256:4d28f191a4c9dec569867dd9af1e388c995146057a36d5b3086e599af7c2379b
+: Status: Downloaded newer image for debian:stable
+
 ** 2.2 Installer tous les paquets dont on a besoin
+Bien, comme nous l'avons vu, cette image ne contient même pas python,
+il va donc falloir l'installer ainsi que =jupyter= et différents paquets
+comme =matplotlib=, =pandas=, =numpy=, =statsmodels=... C'est une image debian
+donc l'installation de paquets se fait à l'aide de la commande =apt-get
+install <nom_du_paquet>=. Comment faire pour trouver le nom du paquet
+debian qui contient ce qui vous intéresse ? Avec la commande =apt-cache
+search "<un truc lié au nom de ce que vous cherchez>"=. Mais comme nous
+partons d'une image minimaliste, il faudra d'abord mettre à jour la
+liste des paquets à l'aide de la commande =apt-get
+update=. Démonstration!
+
+Je rentre dans mon environnement:
+#+begin_src shell :session *docker* :results output :exports both 
+docker run -t -i debian:stable
+#+end_src
+
+#+RESULTS:
+
+Je met à jour la liste des paquets que l'on peut installer:
+#+begin_src shell :session *docker* :results output :exports both 
+apt-get update
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Get:1 http://security-cdn.debian.org/debian-security stable/updates InRelease [39.1 kB]
+Get:2 http://cdn-fastly.deb.debian.org/debian stable InRelease [118 kB]
+Get:4 http://security-cdn.debian.org/debian-security stable/updates/main amd64 Packages [59.8 kB]
+Get:3 http://cdn-fastly.deb.debian.org/debian stable-updates InRelease [49.3 kB]
+Get:5 http://cdn-fastly.deb.debian.org/debian stable/main amd64 Packages [7897 kB]
+Get:6 http://cdn-fastly.deb.debian.org/debian stable-updates/main amd64 Packages [884 B]
+Fetched 8164 kB in 2min 23s (57.1 kB/s)
+Reading package lists... Done
+root@dc33846479d8:/# echo 'org_babel_sh_eoe'
+#+end_example
+
+Et maintenant, je peux chercher tout ce qui a trait à jupyter
+#+begin_src shell :session *docker* :results output :exports both 
+apt-cache search jupyter
+#+end_src
+
+#+RESULTS:
+#+begin_example
+python-ipykernel - IPython kernel for Jupyter (Python 2)
+python3-ipykernel - IPython kernel for Jupyter (Python 3)
+jupyter-nbextension-jupyter-js-widgets - Interactive widgets - Jupyter notebook extension
+python-ipywidgets - Interactive widgets for the Jupyter notebook (Python 2)
+python-ipywidgets-doc - Interactive widgets for the Jupyter notebook (documentation)
+python-widgetsnbextension - Interactive widgets - Jupyter notebook extension (Python 2)
+python3-ipywidgets - Interactive widgets for the Jupyter notebook (Python 3)
+python3-widgetsnbextension - Interactive widgets - Jupyter notebook extension (Python 3)
+jupyter-client - Jupyter protocol client APIs (tools)
+python-jupyter-client - Jupyter protocol client APIs (Python 2)
+python-jupyter-client-doc - Jupyter protocol client APIs (documentation)
+python3-jupyter-client - Jupyter protocol client APIs (Python 3)
+jupyter-console - Jupyter terminal client (script)
+python-jupyter-console - Jupyter terminal client (Python 2)
+python-jupyter-console-doc - Jupyter terminal client (documentation)
+python3-jupyter-console - Jupyter terminal client (Python 3)
+jupyter - Interactive computing environment (metapackage)
+jupyter-core - Core common functionality of Jupyter projects (tools)
+python-jupyter-core - Core common functionality of Jupyter projects for Python 2
+python-jupyter-core-doc - Core common functionality of Jupyter projects (documentation)
+python3-jupyter-core - Core common functionality of Jupyter projects for Python 3
+jupyter-notebook - Jupyter interactive notebook
+python-notebook - Jupyter interactive notebook (Python 2)
+python-notebook-doc - Jupyter interactive notebook (documentation)
+python3-notebook - Jupyter interactive notebook (Python 3)
+jupyter-sphinx-theme-common - Jupyter Sphinx Theme -- common files
+jupyter-sphinx-theme-doc - Jupyter Sphinx Theme -- documentation
+python-jupyter-sphinx-theme - Jupyter Sphinx Theme -- Python
+python3-jupyter-sphinx-theme - Jupyter Sphinx Theme -- Python 3
+jupyter-nbconvert - Jupyter notebook conversion (scripts)
+python-nbconvert - Jupyter notebook conversion (Python 2)
+python-nbconvert-doc - Jupyter notebook conversion (documentation)
+python3-nbconvert - Jupyter notebook conversion (Python 3)
+jupyter-nbformat - Jupyter notebook format (tools)
+python-nbformat - Jupyter notebook format (Python 2)
+python-nbformat-doc - Jupyter notebook format (documentation)
+python3-nbformat - Jupyter notebook format (Python 3)
+python-nbsphinx - Jupyter Notebook Tools for Sphinx -- Python
+python-nbsphinx-doc - Jupyter Notebook Tools for Sphinx -- doc
+python3-nbsphinx - Jupyter Notebook Tools for Sphinx -- Python 3
+jupyter-qtconsole - Jupyter - Qt console (binaries)
+python-qtconsole - Jupyter - Qt console (Python 2)
+python-qtconsole-doc - Jupyter - Qt console (documentation)
+python3-qtconsole - Jupyter - Qt console (Python 3)
+sagemath-jupyter - Open Source Mathematical Software - Jupyter kernel
+python-spyder-kernels - Jupyter kernels for the Spyder console - Python 2
+python3-spyder-kernels - Jupyter kernels for the Spyder console - Python 3
+#+end_example
+
+Aouch! Ça fait beaucoup. Dans le tas, il y a un paquet qui s'appelle
+=jupyter-notebook=. C'est sûrement lui. Vérifions avec la commande
+=apt-cache show=:
+
+#+begin_src shell :session *docker* :results output :exports both 
+apt-cache show jupyter-notebook
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Package: jupyter-notebook
+Version: 5.7.8-1
+Installed-Size: 45
+Architecture: all
+Depends: python3:any, python3-notebook (= 5.7.8-1), jupyter-core
+Description: Jupyter interactive notebook
+Description-md5: a1f300590a1412cd831ab1ad0a2faf40
+Homepage: https://github.com/jupyter/notebook
+Tag: implemented-in::python, interface::web, role::program,
+ science::calculation, science::modelling, science::plotting,
+ science::visualisation, use::analysing, use::calculating, use::editing,
+ use::viewing, works-with::software:source
+Section: science
+Priority: optional
+Filename: pool/main/j/jupyter-notebook/jupyter-notebook_5.7.8-1_all.deb
+Size: 21884
+MD5sum: 16422647575731006fd5dd7d04e92b37
+SHA256: 84792a652e46d8c9236c571eefbcfa9fd4b175a194ebfe7b5eef6dde4c5fa4b0
+
+echo 'org_babel_sh_eoe'
+#+end_example
+
+A priori, en installant ce paquet, j'aurai tout python3, les notebook
+python3. Ça a l'air bon. En faisant la même chose avec =matplotlib=,
+=pandas=, =numpy= et =statsmodels=, je trouverai le nom des paquets dont
+j'ai besoin. Je rajoute le paquet =jupyter-nbconvert= qui permet de
+convertir les notebooks en ligne de commande sans passer par
+l'interface graphique, ça peut toujours servir... Attention, ça va
+faire chauffer votre connexion réseau.
+
+#+begin_src shell :session *docker* :results output :exports both 
+apt-get install -y jupyter-notebook jupyter-nbconvert python3-matplotlib python3-pandas python3-numpy python3-statsmodels
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  binutils binutils-common binutils-x86-64-linux-gnu blt build-essential bzip2
+  ca-certificates cpp cpp-8 dbus dh-python dirmngr dpkg-dev fakeroot file fontconfig-config
+  fonts-font-awesome fonts-glyphicons-halflings fonts-lyx fonts-mathjax g++ g++-8 gcc gcc-8
+  gir1.2-glib-2.0 gnupg gnupg-l10n gnupg-utils gpg gpg-agent gpg-wks-client gpg-wks-server
+  gpgconf gpgsm javascript-common jupyter-core jupyter-nbextension-jupyter-js-widgets
+[...]
+  python3-webencodings python3-wheel python3-widgetsnbextension python3-xdg python3-zmq
+  python3.7 python3.7-dev python3.7-minimal readline-common sensible-utils shared-mime-info
+  tk8.6-blt2.5 ttf-bitstream-vera ucf x11-common xdg-user-dirs xz-utils
+0 upgraded, 294 newly installed, 0 to remove and 1 not upgraded.
+Need to get 223 MB of archives.
+After this operation, 853 MB of additional disk space will be used.
+Get:1 http://security-cdn.debian.org/debian-security stable/updates/main amd64 linux-libc-dev amd64 4.19.37-5+deb10u2 [1186 kB]
+Get:2 http://cdn-fastly.deb.debian.org/debian stable/main amd64 perl-modules-5.28 all 5.28.1-6 [2873 kB]
+Get:3 http://security-cdn.debian.org/debian-security stable/updates/main amd64 patch amd64 2.7.6-3+deb10u1 [126 kB]
+Get:4 http://security-cdn.debian.org/debian-security stable/updates/main amd64 libzmq5 amd64 4.3.1-4+deb10u1 [246 kB]
+[...]
+Setting up jupyter-notebook (5.7.8-1) ...
+Setting up python3-widgetsnbextension (6.0.0-4) ...
+Setting up python3-ipywidgets (6.0.0-4) ...
+Processing triggers for libc-bin (2.28-10) ...
+Processing triggers for ca-certificates (20190110) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+#+end_example
+
+Misère. Donc, 223Mb plus tard... :), je peux enfin vérifier que je
+peux bien lancer python qui importe matplotlib.
+
+#+begin_src shell :session *docker* :results output :exports both 
+python3 -c "import matplotlib"
+#+end_src
+
+#+RESULTS:
+
+Alors que la même chose avec un paquet non existant me renvoie un
+message d'erreur:
+#+begin_src shell :session *shell* :results output :exports both 
+python3 -c "import gnuplot365"
+#+end_src
+
+#+RESULTS:
+: Traceback (most recent call last):
+: ", line 1, in <module>
+: ModuleNotFoundError: No module named 'gnuplot365'
+
+Bon, tout a l'air de très bien marcher. À ce stade j'ai donc un
+environnement docker qui est toujours en train de s'exécuter et dans
+lequel python3 est bien installé mais souvenez vous, toutes ces mises
+à jour disparaîtrons dès que je fermerai le terminal où se trouve mon
+docker interactif...
 ** 2.3 Gérer ses conteneurs et figer un environnement
+*Attention, toutes les commandes qui suivent ne sont pas lancées dans
+mon environnement docker mais sur la machine hôte!!!*
+
+Il est temps que je vous montre comment manipuler ces conteneurs. Tout
+d'abord, la commande =docker ps= me permet de savoir quels sont les
+conteneurs en cours d'exécution (il n'y en a qu'un pour l'instant mais
+je pourrais en avoir plusieurs). 
+
+#+begin_src shell :session *shell* :results output :exports both 
+docker ps
+#+end_src
+
+#+RESULTS:
+: CONTAINER ID        IMAGE                    COMMAND                  CREATED             STATUS              PORTS                    NAMES
+: dc33846479d8        debian:stable            "bash"                   36 minutes ago      Up 36 minutes                                elastic_shannon
+
+Mon conteneur est donc identifié par ce =CONTAINER_ID= et il s'exécute
+depuis une demi-heure. Il a été modifié depuis qu'il a commencé et je
+peux demander à docker ce qui a changé (attention, c'est long alors je
+coupe pour ne montrer que le début):
+
+#+begin_src shell :session *shell* :results output :exports both 
+docker diff dc33846479d8 | head -n 60
+#+end_src
+
+#+RESULTS:
+#+begin_example
+C /bin
+A /bin/bunzip2
+A /bin/bzcat
+A /bin/bzcmp
+A /bin/bzdiff
+A /bin/bzegrep
+A /bin/bzexe
+A /bin/bzfgrep
+A /bin/bzgrep
+A /bin/bzip2
+A /bin/bzip2recover
+A /bin/bzless
+A /bin/bzmore
+A /bin/fuser
+A /bin/kill
+A /bin/ps
+C /etc
+C /etc/.pwd.lock
+D /etc/X11
+A /etc/X11/Xreset
+A /etc/X11/Xreset.d
+A /etc/X11/Xreset.d/README
+A /etc/X11/Xresources
+A /etc/X11/Xresources/x11-common
+A /etc/X11/Xsession
+A /etc/X11/Xsession.d
+A /etc/X11/Xsession.d/20x11-common_process-args
+A /etc/X11/Xsession.d/30x11-common_xresources
+A /etc/X11/Xsession.d/35x11-common_xhost-local
+A /etc/X11/Xsession.d/40x11-common_xsessionrc
+A /etc/X11/Xsession.d/50x11-common_determine-startup
+A /etc/X11/Xsession.d/90gpg-agent
+A /etc/X11/Xsession.d/90x11-common_ssh-agent
+A /etc/X11/Xsession.d/99x11-common_start
+A /etc/X11/Xsession.options
+A /etc/X11/rgb.txt
+C /etc/alternatives
+A /etc/alternatives/c++
+A /etc/alternatives/c89
+A /etc/alternatives/c89.1.gz
+A /etc/alternatives/c99
+A /etc/alternatives/c99.1.gz
+A /etc/alternatives/cc
+A /etc/alternatives/cpp
+A /etc/alternatives/faked.1.gz
+A /etc/alternatives/faked.es.1.gz
+A /etc/alternatives/faked.fr.1.gz
+A /etc/alternatives/faked.sv.1.gz
+A /etc/alternatives/fakeroot
+A /etc/alternatives/fakeroot.1.gz
+A /etc/alternatives/fakeroot.es.1.gz
+A /etc/alternatives/fakeroot.fr.1.gz
+A /etc/alternatives/fakeroot.sv.1.gz
+A /etc/alternatives/jsonschema
+A /etc/alternatives/libblas.so.3-x86_64-linux-gnu
+A /etc/alternatives/liblapack.so.3-x86_64-linux-gnu
+A /etc/alternatives/lzcat
+A /etc/alternatives/lzcat.1.gz
+A /etc/alternatives/lzcmp
+A /etc/alternatives/lzcmp.1.gz
+#+end_example
+
+Je vais sauvegarder cet environnement avec la commande =docker commit=.
+#+begin_src shell :session *shell* :results output :exports both 
+docker commit dc33846479d8 debian_stable_jupyter
+#+end_src
+
+#+RESULTS:
+: sha256:77d862b980da53d23e3278ff607abbc701a44b0ecb7163f1cdede10e73255073
+
+Et voilà! Mon nouvel environnement est maintenant figé et visible sur
+ma machine:
+#+begin_src shell :session *shell* :results output :exports both 
+docker images
+#+end_src
+
+#+RESULTS:
+#+begin_example
+REPOSITORY                                    TAG                      IMAGE ID            CREATED             SIZE
+debian_stable_jupyter                         latest                   77d862b980da        16 seconds ago      1.03GB
+debian                                        stable                   40e13c3c9aab        5 weeks ago         114MB
+#+end_example
+
+Comme vous pouvez le voir, cette image a bien grossi dans la
+bataille puisque je suis passé de 114MB à plus d'1G... Mais ce qui
+compte, c'est que je peux maintenant utiliser cette nouvelle image. 
+
+#+begin_src shell :session *shell* :results output :exports both 
+echo "=== On debian:stable ==="
+docker run debian:stable which -a python3 python perl # pas de python dans cet environnement
+echo "=== On my new debian_stable_jupyter container ==="
+docker run debian_stable_jupyter which -a python3 python perl # par contre, ici, c'est bon
+echo "===================="
+#+end_src
+
+#+RESULTS:
+: === On debian:stable ===
+: /usr/bin/perl
+: === On my new debian_stable_jupyter container ===
+: /usr/bin/python3
+: /usr/bin/perl
+: ====================
+
+Je peux donc maintenant arrêter mon conteneur:
+#+begin_src shell :session *shell* :results output :exports both 
+docker stop dc33846479d8
+#+end_src
+
+#+RESULTS:
+: exit
+: dc33846479d8
+
 ** 2.4 Automatiser la construction de son environnement
+Vous remarquerez que dans tout ce qui a précédé, j'ai noté dans mon
+journal de ce que j'ai effectué mais vous n'avez aucune garantie que
+je n'ai rien oublié. De plus, si vous voulez refaire cet environnement
+vous même, il vous faudra suivre ces instructions scrupuleusement en
+espérant que rien n'aille de travers.
+
+Je vais donc maintenant introduire alors la notion de =dockerfile= qui
+va réaliser la préparation de l'environnement automatiquement à l'aide
+de la commande =docker build= puis je montrerais comment le rendre
+public à l'aide de la commande =docker push=. Vous allez voir que c'est
+bien plus simple que tout ce que je vous ai montré précedémment
+puisque tout est caché!
+
+#+begin_src shell :results output :exports none
+mkdir -p moocrr_debian_stable_jupyter
+#+end_src
+
+#+RESULTS:
+
+Je crée un fichier [[file:moocrr_debian_stable_jupyter/Dockerfile][moocrr_debian_stable_jupyter/Dockerfile]] dont voici
+le contenu. Vous voyez qu'il part d'une image =debian:stable=, la met à
+jour et installe les différents paquets dont il a besoin.
+#+begin_src shell :results output :exports both :tangle moocrr_debian_stable_jupyter/Dockerfile
+FROM debian:stable
+
+LABEL maintainer="Arnaud Legrand <arnaud.legrand@imag.fr>"
+
+RUN apt-get update \
+	&& apt-get install -y jupyter-notebook jupyter-nbconvert \
+		python3-matplotlib python3-pandas python3-numpy python3-statsmodels
+#+end_src
+
+Je peux alors construire l'image correspondante automatiquement avec
+=docker build=. Le =-t alegrand/...= me permet de lui donner petit nom
+#+begin_src shell :session *shell* :results output :exports both 
+docker build -t alegrand/moocrr_debian_stable_jupyter:1.0 moocrr_debian_stable_jupyter/
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Sending build context to Docker daemon  2.048kB
+Step 1/3 : FROM debian:stable
+ ---> 40e13c3c9aab
+Step 2/3 : LABEL maintainer "Arnaud Legrand <arnaud.legrand@imag.fr>"
+ ---> Using cache
+ ---> 0ab85d4f10f5
+Step 3/3 : RUN apt-get update 	&& apt-get install -y jupyter-notebook jupyter-nbconvert 		python3-matplotlib python3-pandas python3-numpy python3-statsmodels
+echo 'org_babel_sh_eoe'
+ ---> Running in 98e738c9c0fa
+Get:2 http://cdn-fastly.deb.debian.org/debian stable InRelease [118 kB]
+Get:1 http://security-cdn.debian.org/debian-security stable/updates InRelease [39.1 kB]
+Get:3 http://cdn-fastly.deb.debian.org/debian stable-updates InRelease [49.3 kB]
+Get:4 http://security-cdn.debian.org/debian-security stable/updates/main amd64 Packages [59.8 kB]
+Get:5 http://cdn-fastly.deb.debian.org/debian stable/main amd64 Packages [7897 kB]
+Get:6 http://cdn-fastly.deb.debian.org/debian stable-updates/main amd64 Packages [884 B]
+Fetched 8164 kB in 51s (161 kB/s)
+Reading package lists...
+[..]
+Need to get 223 MB of archives.
+After this operation, 853 MB of additional disk space will be used.
+Get:1 http://security-cdn.debian.org/debian-security stable/updates/main amd64 linux-libc-dev amd64 4.19.37-5+deb10u2 [1186 kB]
+Get:2 http://cdn-fastly.deb.debian.org/debian stable/main amd64 perl-modules-5.28 all 5.28.1-6 [2873 kB]
+Get:3 http://security-cdn.debian.org/debian-security stable/updates/main amd64 patch amd64 2.7.6-3+deb10u1 [126 kB]
+Get:4 http://security-cdn.debian.org/debian-security stable/updates/main amd64 libzmq5 amd64 4.3.1-4+deb10u1 [246 kB]
+[..]
+Setting up python3-notebook (5.7.8-1) ...
+Setting up jupyter-nbconvert (5.4-2) ...
+Setting up jupyter-nbextension-jupyter-js-widgets (6.0.0-4) ...
+/usr/lib/python3.7/runpy.py:125: RuntimeWarning: 'notebook.nbextensions' found in sys.modules after import of package 'notebook', but prior to execution of 'notebook.nbextensions'; this may result in unpredictable behaviour
+  warn(RuntimeWarning(msg))
+Enabling notebook extension jupyter-js-widgets/extension...
+      - Validating: OK
+Setting up jupyter-notebook (5.7.8-1) ...
+Setting up python3-widgetsnbextension (6.0.0-4) ...
+Setting up python3-ipywidgets (6.0.0-4) ...
+Processing triggers for libc-bin (2.28-10) ...
+Processing triggers for ca-certificates (20190110) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+Removing intermediate container dc360e106b9f
+ ---> 7c2f5181b1cd
+Successfully built 7c2f5181b1cd
+Successfully tagged alegrand/moocrr_debian_stable_jupyter:1.0
+#+end_example
+
+
+#+begin_src shell :results output :exports both
+docker images
+#+end_src
+
+#+RESULTS:
+#+begin_example
+REPOSITORY                                TAG         IMAGE ID            CREATED             SIZE
+alegrand/moocrr_debian_stable_jupyter     1.0         7c2f5181b1cd        About a minute ago  1.03GB
+debian_stable_jupyter                     latest      77d862b980da        2 hours ago         1.03GB
+debian                                    stable      40e13c3c9aab        5 weeks ago         114MB
+#+end_example
+
+Bon, l'environnement ainsi construit n'est pas rigoureusement
+identique à celui que j'ai construit manuellement (ils n'ont pas le
+même Image ID), a priori pas parce que le contenu serait différent (il
+y a peu de chance en si peu de temps), mais a minima parce que j'ai
+indiqué mon email en tant que mainteneur dans le dockerfile...
 ** 2.5 Mettre son image à disposition
+Reste à publier mon image. Je me suis créé un compte sur dockerhub
+afin de pouvoir y publier des images (vous pouvez aussi vous
+authentifier via github mais pas via le compte gitlab que nous vous
+avons créé pour le MOOC). Une fois que vous aurez votre login et votre
+mot de passe, il vous faudra les fournir au docker de votre machine
+via cette commande (pour plus de détails, référez vous à la
+[[https://docs.docker.com/engine/reference/commandline/push/][documentation en ligne]]):
+
+#+begin_src shell :session *shell* :results output :exports both 
+docker login  # login: alegrand38 passwd: XXXXXXXXXXX
+#+end_src
+
+Si vous n'avez pas utilisé un tag canonique, il vous faudra ensuite
+donner à votre image docker le nom qui apparaîtra sur dockerhub. Le
+nom canonique consiste à utiliser son login =/= un nom informatif =:= un
+numéro de version.
+#+begin_src shell :session *shell* :results output :exports both 
+docker tag alegrand/moocrr_debian_stable_jupyter:1.0 alegrand38/moocrr_debian_stable_jupyter:1.0
+#+end_src
+
+#+RESULTS:
+
+Je peux enfin publier mon image (attention, si vous êtes derrière une
+connexion ADSL, c'est long!):
+#+begin_src shell :results output :exports both
+docker push alegrand38/moocrr_debian_stable_jupyter:1.0
+#+end_src
+
+#+RESULTS:
+#+begin_example
+The push refers to a repository [docker.io/alegrand38/moocrr_debian_stable_jupyter]
+4e9ad2840e2d: Pushing [=====================================>             ]  638.8MB/918MB
+61eb2274b1a3: Mounted from library/debian 
+
+1.0: digest: sha256:5cdbbd0953e861f51eebafe3fa9a630e60f91a12c52b4aea30f16fb0055d64cb size: 742
+#+end_example
+
+Vous pouvez remarquer que deux "images" ont été poussées: une petite
+de 200MB et une grosse de 918MB. La seconde correspond à l'image de
+base que nous avons utilisée et la première à ce qui a été
+rajouté/modifié à la suite de notre mise à jour et de l'installation
+de python et de jupyter. Le transfert de la seconde a été instantané car
+cette image de base était déjà présente sur Dockerhub.
+
+Vos collègues peuvent maintenant récupérer cette image sans problème
+et la réutiliser. 
 ** 2.6 Limitations
-- On peut figer son environnement mais on n'a pas expliqué
-  comment le faire. Le dockerfile est un bon point de départ mais
-  s'il s'appuie sur des cibles "mouvantes", ça sera insuffisant
-  dans quelques temps.
-- Bonne pratique: Indiquer la recette (le Dockerfile), les
-  versions exactes des logiciels utilisés pour permettre à
-  quelqu'un d'autre de facilement en faire une variation
+Il est très facile de décrire la recette de construction d'un
+environnement grâce à un [[file:moocrr_debian_stable_jupyter/Dockerfile][Dockerfile]]. Cependant, comme vous pouvez le
+voir dans cette [[file:moocrr_debian_stable_jupyter/Dockerfile][recette]], aucune version n'est spécifiée. Cette recette
+préconise de:
+- prendre une image de debian stable
+- la mettre à jour
+- installer un certain nombre de paquets
+
+Dans un mois, l'image docker de la debian stable aura
+changé. Peut-être même que Debian aura fait une nouvelle release et
+que la stable dont nous parlons aujourd'hui sera devenue obsolète. La
+mise à jour prendra les dernières versions des paquets dans cette
+distribution stable... On a donc une recette qui ne permet pas de
+reconstruire à l'identique notre image car elle s'appuie sur des
+services externes qui sont mis à jour régulièrement... 
+
+Mettre à disposition le dockerfile est une bonne pratique
+indispensable, mais il en est une autre: lister les versions des
+logiciels installées. Dans le cas de mon image debian, cela peut se
+faire de la façon suivante:
+
+#+begin_src shell :results output :exports both
+docker run alegrand38/moocrr_debian_stable_jupyter:1.0 dpkg --list
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name                                   Version                   Architecture Description
++++-======================================-=========================-============-===============================================================================
+ii  adduser                                3.118                     all          add and remove users and groups
+ii  apt                                    1.8.2                     amd64        commandline package manager
+ii  base-files                             10.3                      amd64        Debian base system miscellaneous files
+ii  base-passwd                            3.5.46                    amd64        Debian base system master password and group files
+ii  bash                                   5.0-4                     amd64        GNU Bourne Again SHell
+ii  binutils                               2.31.1-16                 amd64        GNU assembler, linker and binary utilities
+ii  binutils-common:amd64                  2.31.1-16                 amd64        Common files for the GNU assembler, linker and binary utilities
+ii  binutils-x86-64-linux-gnu              2.31.1-16                 amd64        GNU binary utilities, for x86-64-linux-gnu target
+ii  blt                                    2.5.3+dfsg-4              amd64        graphics extension library for Tcl/Tk - run-time
+ii  bsdutils                               1:2.33.1-0.1              amd64        basic utilities from 4.4BSD-Lite
+ii  build-essential                        12.6                      amd64        Informational list of build-essential packages
+ii  bzip2                                  1.0.6-9.1                 amd64        high-quality block-sorting file compressor - utilities
+ii  ca-certificates                        20190110                  all          Common CA certificates
+ii  coreutils                              8.30-3                    amd64        GNU core utilities
+ii  cpp                                    4:8.3.0-1                 amd64        GNU C preprocessor (cpp)
+ii  cpp-8                                  8.3.0-6                   amd64        GNU C preprocessor
+ii  dash                                   0.5.10.2-5                amd64        POSIX-compliant shell
+ii  dbus                                   1.12.16-1                 amd64        simple interprocess messaging system (daemon and utilities)
+ii  debconf                                1.5.71                    all          Debian configuration management system
+ii  debian-archive-keyring                 2019.1                    all          GnuPG archive keys of the Debian archive
+ii  debianutils                            4.8.6.1                   amd64        Miscellaneous utilities specific to Debian
+ii  dh-python                              3.20190308                all          Debian helper tools for packaging Python libraries and applications
+ii  diffutils                              1:3.7-3                   amd64        File comparison utilities
+ii  dirmngr                                2.2.12-1                  amd64        GNU privacy guard - network certificate management service
+ii  dpkg                                   1.19.7                    amd64        Debian package management system
+ii  dpkg-dev                               1.19.7                    all          Debian package development tools
+ii  e2fsprogs                              1.44.5-1                  amd64        ext2/ext3/ext4 file system utilities
+ii  fakeroot                               1.23-1                    amd64        tool for simulating superuser privileges
+ii  fdisk                                  2.33.1-0.1                amd64        collection of partitioning utilities
+ii  file                                   1:5.35-4                  amd64        Recognize the type of data in a file using "magic" numbers
+ii  findutils                              4.6.0+git+20190209-2      amd64        utilities for finding files--find, xargs
+ii  fontconfig-config                      2.13.1-2                  all          generic font configuration library - configuration
+ii  fonts-font-awesome                     5.0.10+really4.7.0~dfsg-1 all          iconic font designed for use with Twitter Bootstrap
+ii  fonts-glyphicons-halflings             1.009~3.4.1+dfsg-1        all          icons made for smaller graphic
+ii  fonts-lyx                              2.3.2-1                   all          TrueType versions of some TeX fonts used by LyX
+ii  fonts-mathjax                          2.7.4+dfsg-1              all          JavaScript display engine for LaTeX and MathML (fonts)
+[....]
+ii  python3-simplejson                     3.16.0-1                  amd64        simple, fast, extensible JSON encoder/decoder for Python 3.x
+ii  python3-six                            1.12.0-1                  all          Python 2 and 3 compatibility library (Python 3 interface)
+ii  python3-soupsieve                      1.8+dfsg-1                all          modern CSS selector implementation for BeautifulSoup (Python 3)
+ii  python3-statsmodels                    0.8.0-9                   all          Python3 module for the estimation of statistical models
+ii  python3-statsmodels-lib                0.8.0-9                   amd64        Python3 low-level implementations and bindings for statsmodels
+ii  python3-tables                         3.4.4-2                   all          hierarchical database for Python3 based on HDF5
+ii  python3-tables-lib                     3.4.4-2                   amd64        hierarchical database for Python3 based on HDF5 (extension)
+ii  python3-terminado                      0.8.1-4                   all          Terminals served to term.js using Tornado websockets (Python 3)
+ii  python3-testpath                       0.4.2+dfsg-1              all          Utilities for Python 3 code working with files and commands
+ii  python3-tk:amd64                       3.7.3-1                   amd64        Tkinter - Writing Tk applications with Python 3.x
+ii  python3-tornado                        5.1.1-4                   amd64        scalable, non-blocking web server and tools - Python 3 package
+ii  python3-traitlets                      4.3.2-1                   all          Lightweight Traits-like package for Python 3
+ii  python3-tz                             2019.1-1                  all          Python3 version of the Olson timezone database
+ii  python3-wcwidth                        0.1.7+dfsg1-3             all          determine printable width of a string on a terminal (Python 3)
+ii  python3-webencodings                   0.5.1-1                   all          Python implementation of the WHATWG Encoding standard
+ii  python3-wheel                          0.32.3-2                  all          built-package format for Python
+ii  python3-widgetsnbextension             6.0.0-4                   all          Interactive widgets - Jupyter notebook extension (Python 3)
+ii  python3-xdg                            0.25-5                    all          Python 3 library to access freedesktop.org standards
+ii  python3-zmq                            17.1.2-2                  amd64        Python3 bindings for 0MQ library
+ii  python3.7                              3.7.3-2                   amd64        Interactive high-level object-oriented language (version 3.7)
+ii  python3.7-dev                          3.7.3-2                   amd64        Header files and a static library for Python (v3.7)
+ii  python3.7-minimal                      3.7.3-2                   amd64        Minimal subset of the Python language (version 3.7)
+ii  readline-common                        7.0-5                     all          GNU readline and history libraries, common files
+ii  sed                                    4.7-1                     amd64        GNU stream editor for filtering/transforming text
+ii  sensible-utils                         0.0.12                    all          Utilities for sensible alternative selection
+ii  shared-mime-info                       1.10-1                    amd64        FreeDesktop.org shared MIME database and spec
+ii  sysvinit-utils                         2.93-8                    amd64        System-V-like utilities
+ii  tar                                    1.30+dfsg-6               amd64        GNU version of the tar archiving utility
+ii  tk8.6-blt2.5                           2.5.3+dfsg-4              amd64        graphics extension library for Tcl/Tk - library
+ii  ttf-bitstream-vera                     1.10-8                    all          The Bitstream Vera family of free TrueType fonts
+ii  tzdata                                 2019a-1                   all          time zone and daylight-saving time data
+ii  ucf                                    3.0038+nmu1               all          Update Configuration File(s): preserve user changes to config files
+ii  util-linux                             2.33.1-0.1                amd64        miscellaneous system utilities
+ii  x11-common                             1:7.7+19                  all          X Window System (X.Org) infrastructure
+ii  xdg-user-dirs                          0.17-2                    amd64        tool to manage well known user directories
+ii  xz-utils                               5.2.4-1                   amd64        XZ-format compression utilities
+ii  zlib1g:amd64                           1:1.2.11.dfsg-1           amd64        compression library - runtime
+#+end_example
+
+Dans ce cas précis, cette information est facile à récupérer car j'ai
+accès à l'image. Si ce n'était pas le cas, c'est exactement les
+informations dont j'aurais besoin pour reconstruire une image
+équivalente.
+
 ** 2.7 Exemple de reconstruction d'un "vieil" environnement (Optionnel)
-(tel qu'on aurait pu le faire il y a un an et demi/deux ans)
+#+BEGIN_CENTER
+Attention, pour public averti!
+#+END_CENTER
+
+Dans notre [[file:moocrr_debian_stable_jupyter/Dockerfile][Dockerfile]] précédent, nous (1) prenions une image debian
+stable à partir de Dockerhub, (2) nous la mettions à jour puis (3)
+nous installions les paquets dont nous avions besoin. Les serveurs
+utilisés pour les deux premières étapes sont des cibles mouvantes mais
+le projet Debian est pionnier dans les questions de reproductibilité
+et de qualité logicielle. Ils ont donc eu l'excellente idée de mettre
+en place https://snapshot.debian.org/ qui donne accès à l'état de
+leurs serveurs à une date donnée. Je vais donc maintenant vous montrer
+comment créer une image docker contenant les paquets debian
+disponibles à une date donnée il y a deux ans.
+
+*** Quelle date ? 
+Comme j'ai besoin de =matplotlib=, =pandas=, =numpy= et de =statsmodels= je
+vais commencer par chercher les paquets correspondants sur
+https://snapshot.debian.org/. Les trois premiers sont dans Debian
+depuis longtemps mais curieusement, statsmodels est plus récent. Si je
+cherche =python3-statsmodels=, je trouve sur
+https://snapshot.debian.org/binary/python3-statsmodels/ que la
+première version disponible est la 0.8.0-4:
+
+#+BEGIN_EXAMPLE
+python3-statsmodels_0.8.0-4_all.deb
+Seen in debian on 2017-09-29 21:52:12 in /pool/main/s/statsmodels. 
+Size: 3005310
+#+END_EXAMPLE
+
+Notre date cible sera donc =20171003T094008Z=. 
+
+Seulement, cette date indique la date à laquelle ce paquet particulier
+a été mis à disposition sur les serveurs de debian et pas la date à
+partir de laquelle il a été inclus dans une distribution. Dans Debian,
+les paquets rentrent d'abord dans la branche =experimental=, puis dans
+=unstable=, et enfin après quelques jours sans problème dans
+=testing=. 
+
+Il faudra donc voir un peu plus tard. Suivons le lien et la date
+indiquée dans
+https://snapshot.debian.org/archive/debian/20170929T215212Z/pool/main/s/statsmodels/.
+On y trouve bien le paquet debian avec la version qui nous
+intéresse. Remontons à
+https://snapshot.debian.org/archive/debian/20171003T094008Z/ et allons
+voir dans le répertoire [[https://snapshot.debian.org/archive/debian/20171003T094008Z/dists/][dists]]. C'est dans ce répertoire que sont
+définis la liste des paquets qui constituent une "release" et qui sera
+donc récupérée par un =apt-get update=. À cette date là, notre paquet
+est disponible sur les serveurs mais pas encore inclue dans une
+release. Si je suis le lien "next change", j'arrive sur la date
+[[https://snapshot.debian.org/archive/debian/20171209T114814Z/dists/][20171209T114814Z]], un mois et demi plus tard, le temps que certaines
+choses se stabilisent. Je ne suis toujours pas sûr que mon paquet y
+soit mais essayons cette date là. 
+
+Ma seconde date cible sera donc =20171209T114814Z=.
+
+Je ferais une image de base datée du 3 octobre 2017 et je la mettrai à
+jour en visant le 9 décembre 2017. On verra bien ce que je
+récupère... C'est *une* façon de faire parmi d'autres. Je pourrais faire
+l'intégralité de la construction au 9 décembre. Je pourrais aussi
+télécharger et installer "à la main" (i.e., sans passer par =apt-get=
+mais directement avec =dpkg=) le paquet d'octobre. Dans tous les cas
+l'approche tout =apt= me semble plus simple à mettre en oeuvre.
+*** Construction d'une image de base d'octobre 2017
+Le processus de construction d'une image de base est un peu technique
+mais il existe un outil fait pour automatiser cette tâche en
+s'appuyant sur https://snapshot.debian.org/. Il s'agit de
+debuerreotype: https://github.com/debuerreotype/debuerreotype
+
+Pour construire une image de ce type, il vous faudra être root (il y a
+peut-être moyen de faire sans mais ça a l'air un peu compliqué et de
+toutes façons, si vous avez =debuerreotype= sur votre machine, ça ne
+devrait pas poser de problème) ou préfixer chacune des commandes
+suivantes par =sudo=. L'ensemble des commandes est assemblé dans [[file:moocrr_debian_snapshot_jupyter/debuerreotype.sh][ce
+script]].
+
+#+begin_src shell :session *shell* :results output :exports both 
+mkdir -p moocrr_debian_snapshot_jupyter
+cd moocrr_debian_snapshot_jupyter
+sudo su -
+#+end_src
+
+#+RESULTS:
+
+Tout d'abord, on construit dans le répertoire =rootfs= une image de base
+de type =testing= en indiquant la date qui nous intéresse.
+
+#+begin_src shell :session *shell* :results output :exports both :tangle moocrr_debian_snapshot_jupyter/debuerreotype.sh
+debuerreotype-init rootfs testing 2017-10-03-T09:40:08Z
+#+end_src
+
+#+RESULTS:
+#+begin_example
+I: Target architecture can be executed
+I: Retrieving InRelease 
+I: Checking Release signature
+I: Valid Release signature (key id 126C0D24BD8A2942CC7DF8AC7638D0442B90D010)
+I: Retrieving Packages 
+I: Validating Packages 
+I: Resolving dependencies of required packages...
+I: Resolving dependencies of base packages...
+I: Checking component main on http://snapshot.debian.org/archive/debian/20171003T094008Z...
+I: Retrieving libacl1 2.2.52-3+b1
+I: Validating libacl1 2.2.52-3+b1
+I: Retrieving adduser 3.116
+I: Validating adduser 3.116
+I: Retrieving apt 1.5
+I: Validating apt 1.5
+I: Retrieving libapt-pkg5.0 1.5
+I: Validating libapt-pkg5.0 1.5
+[..]
+I: Unpacking libidn2-0:amd64...
+I: Unpacking libtasn1-6:amd64...
+I: Unpacking libunistring2:amd64...
+I: Unpacking libhogweed4:amd64...
+I: Unpacking libnettle6:amd64...
+I: Unpacking libp11-kit0:amd64...
+I: Configuring the base system...
+I: Configuring libunistring2:amd64...
+I: Configuring libnettle6:amd64...
+I: Configuring libidn2-0:amd64...
+I: Configuring gpgv...
+I: Configuring libtasn1-6:amd64...
+I: Configuring libgmp10:amd64...
+I: Configuring debian-archive-keyring...
+I: Configuring libstdc++6:amd64...
+I: Configuring libffi6:amd64...
+I: Configuring adduser...
+I: Configuring libapt-pkg5.0:amd64...
+I: Configuring libhogweed4:amd64...
+I: Configuring libp11-kit0:amd64...
+I: Configuring libgnutls30:amd64...
+I: Configuring apt...
+I: Configuring libc-bin...
+I: Base system installed successfully.
+#+end_example
+
+Ensuite, on applique les différentes étapes suggérées dans [[https://github.com/debuerreotype/debuerreotype][la
+documentation de debuerreotype]]:
+#+begin_src shell :results output :exports both :tangle moocrr_debian_snapshot_jupyter/debuerreotype.sh
+debuerreotype-minimizing-config rootfs # apply configuration tweaks to make the rootfs minimal and keep it minimal (especially targeted at Docker images, with comments explicitly describing Docker use cases)
+debuerreotype-apt-get rootfs update -qq # let's update the package list
+debuerreotype-apt-get rootfs dist-upgrade -yqq # let's upgrade any package that would need to be upgraded
+debuerreotype-apt-get rootfs install -yqq --no-install-recommends inetutils-ping iproute2 # useful stuff
+debuerreotype-slimify rootfs # remove files such as documentation to create an even smaller rootfs (used for creating slim variants of the Docker images, for example)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libelf1:amd64.
+(Reading database ... 6373 files and directories currently installed.)
+Preparing to unpack .../libelf1_0.170-0.1_amd64.deb ...
+Unpacking libelf1:amd64 (0.170-0.1) ...
+Selecting previously unselected package libmnl0:amd64.
+Preparing to unpack .../libmnl0_1.0.4-2_amd64.deb ...
+Unpacking libmnl0:amd64 (1.0.4-2) ...
+Selecting previously unselected package iproute2.
+Preparing to unpack .../iproute2_4.9.0-2_amd64.deb ...
+Unpacking iproute2 (4.9.0-2) ...
+Selecting previously unselected package netbase.
+Preparing to unpack .../archives/netbase_5.4_all.deb ...
+Unpacking netbase (5.4) ...
+Selecting previously unselected package inetutils-ping.
+Preparing to unpack .../inetutils-ping_2%3a1.9.4-2+b1_amd64.deb ...
+Unpacking inetutils-ping (2:1.9.4-2+b1) ...
+Setting up libelf1:amd64 (0.170-0.1) ...
+Processing triggers for libc-bin (2.24-17) ...
+Setting up libmnl0:amd64 (1.0.4-2) ...
+Setting up netbase (5.4) ...
+Setting up inetutils-ping (2:1.9.4-2+b1) ...
+Setting up iproute2 (4.9.0-2) ...
+Processing triggers for libc-bin (2.24-17) ...
+#+end_example
+
+Et voilà, notre mini-image Debian de 2017 est prête. La commande
+=debuerreotype-tar= permettra d'en faire une archive que l'on pourra
+examiner, transférer, importer dans docker. La première chose que je
+vais faire, c'est de calculer une clé cryptographique du contenu de
+cette image. C'est un identifiant unique construit à partir du contenu
+de chacun des fichiers ainsi que de leurs dates, de leurs
+propriétaires, etc. Dans cette commande, =debuerreotype-tar= crée une
+archive du répertoire =rootfs= qu'il envoie sur la sortie standard (le
+paramètre "=-="), c'est à dire directement sur l'entrée standard de
+~sha256sum~.
+
+#+begin_src shell :session *shell* :results output :exports both :tangle moocrr_debian_snapshot_jupyter/debuerreotype.sh
+debuerreotype-tar rootfs - | sha256sum
+#+end_src
+
+#+RESULTS:
+: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  -
+
+Si vous effectuez la même manipulation chez vous, vous devriez obtenir
+rigoureusement la même clé. Maintenant, j'importe cette image dans
+docker en lui donnant un "petit nom".
+
+#+begin_src shell :session *shell* :results output :exports both :tangle moocrr_debian_snapshot_jupyter/debuerreotype.sh
+debuerreotype-tar rootfs - | docker import - alegrand/moocrr_debian_snapshot_slim:20171003T094008Z
+#+end_src
+
+#+RESULTS:
+: sha256:996c8b84e30616ecbb3b384983fcbea17f5765f0c4ce1d35c1bc117a5eb1dcec
+
+La clé cryptographique que nous voyons apparaître ici est celle de
+l'image docker qui contient un petit peu plus d'informations (en
+particulier la date de création de l'image docker, la version de
+docker, ...). Ma nouvelle image docker apparaît bien dans les images disponibles:
+
+#+begin_src shell :session *shell* :results output :exports both 
+docker images
+#+end_src
+
+#+RESULTS:
+#+begin_example
+REPOSITORY                                TAG                 IMAGE ID            CREATED              SIZE
+alegrand/moocrr_debian_snapshot_slim      20171003T094008Z    996c8b84e306        About a minute ago   62.9MB
+#+end_example
+*** Installation des paquets python de décembre 2017
+Notre image de base est toute petite (63MB) et il n'y a plus qu'à la
+mettre à jour avec la méthode habituelle du dockerfile.
+#+begin_src shell :results output :exports both :tangle moocrr_debian_snapshot_jupyter/Dockerfile
+FROM alegrand/moocrr_debian_snapshot_slim:20171003T094008Z
+
+LABEL maintainer="Arnaud Legrand <arnaud.legrand@imag.fr>"
+
+RUN sed -i s/20171003T094008Z/20171209T114814Z/ /etc/apt/sources.list
+RUN apt-get -o Acquire::Check-Valid-Until=false update \
+	&& apt-get install -y jupyter-notebook jupyter-nbconvert \
+		python3-matplotlib python3-pandas python3-numpy python3-statsmodels
+
+CMD bash
+#+end_src
+
+Dans la première commande, le premier =RUN= (avec un =sed=) va remplacer
+dans le fichier =/etc/apt/sources.list= où apparaît l'URL de
+https://snapshot.debian.org/ la date du 3 octobre 2017 par celle de 9
+décembre 2017. Dans la seconde commande, on retrouve une mise à jour
+et une installation de paquet Debian classique au "=-o
+Acquire::Check-Valid-Until=false=" prêt qui va indiquer à apt passer
+outre le fait que nous sommes en train d'installer des paquets très
+anciens.
+
+Et maintenant, construisons notre image finale.
+#+begin_src shell :session *shell* :results output :exports both :tangle moocrr_debian_snapshot_jupyter/debuerreotype.sh
+docker build -t alegrand/moocrr_debian_snapshot_jupyter:20171209T114814Z ./
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Sending build context to Docker daemon  105.9MB
+Step 1/5 : FROM alegrand/moocrr_debian_snapshot_slim:20171003T094008Z
+ ---> 996c8b84e306
+Step 2/5 : LABEL maintainer="Arnaud Legrand <arnaud.legrand@imag.fr>"
+ ---> Using cache
+ ---> 8b5a03793fd5
+Step 3/5 : RUN sed -i s/20171003T094008Z/20171209T114814Z/ /etc/apt/sources.list
+ ---> Using cache
+ ---> 5bd0dcf3230a
+Step 4/5 : RUN apt-get -o Acquire::Check-Valid-Until=false update 	&& apt-get install -y jupyter-notebook jupyter-nbconvert 		python3-matplotlib python3-pandas python3-numpy python3-statsmodels
+ ---> Running in 6f4dcd454c0e
+Get:1 http://snapshot.debian.org/archive/debian/20171209T114814Z testing InRelease [142 kB]
+Get:2 http://snapshot.debian.org/archive/debian/20171209T114814Z testing/main amd64 Packages [7313 kB]
+Fetched 7455 kB in 2s (2564 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  binutils binutils-common binutils-x86-64-linux-gnu blt bzip2 ca-certificates
+  cpp cpp-7 dh-python file fontconfig-config fonts-font-awesome fonts-lyx
+  fonts-mathjax g++ g++-7 gcc gcc-7 gcc-7-base javascript-common jupyter-core
+  jupyter-nbextension-jupyter-js-widgets libaec0 libamd2 libasan4 libatomic1
+[..]
+Setting up jupyter-nbextension-jupyter-js-widgets (6.0.0-2) ...
+/usr/lib/python3.6/runpy.py:125: RuntimeWarning: 'notebook.nbextensions' found in sys.modules after import of package 'notebook', but prior to execution of 'notebook.nbextensions'; this may result in unpredictable behaviour
+  warn(RuntimeWarning(msg))
+Enabling notebook extension jupyter-js-widgets/extension...
+      - Validating: OK
+Setting up jupyter-notebook (5.2.1-2) ...
+Setting up python3-ipywidgets (6.0.0-2) ...
+Processing triggers for libc-bin (2.25-3) ...
+Processing triggers for ca-certificates (20170717) ...
+Updating certificates in /etc/ssl/certs...
+0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d...
+done.
+Removing intermediate container 6f4dcd454c0e
+ ---> 310edaab0be5
+Step 5/5 : CMD bash
+ ---> Running in 970aeae6defc
+Removing intermediate container 970aeae6defc
+ ---> 603e047ef55b
+Successfully built 603e047ef55b
+Successfully tagged alegrand/moocrr_debian_snapshot_jupyter:20171209T114814Z
+#+end_example
+
+Regardons si nos images Docker sont bien présentes.
+#+begin_src shell :results output :exports both
+docker images
+#+end_src
+
+#+RESULTS:
+#+begin_example
+REPOSITORY                                    TAG                      IMAGE ID            CREATED             SIZE
+alegrand/moocrr_debian_snapshot_jupyter       20171209T114814Z         cffc98c65d75        4 minutes ago       743MB
+alegrand/moocrr_debian_snapshot_slim          20171003T094008Z         a0a1d1dcf7ce        2 hours ago         62.9MB
+#+end_example
+
+C'est Parfait. Par curiosité, j'ai relancé l'ensemble du script une
+heure plus tard et voilà ce qu'indiquait alors Docker:
+#+begin_src shell :results output :exports both
+docker images
+#+end_src
+
+#+RESULTS:
+#+begin_example
+REPOSITORY                                    TAG                      IMAGE ID            CREATED             SIZE
+alegrand/moocrr_debian_snapshot_jupyter       20171209T114814Z         db368442660f        About an hour ago   743MB
+alegrand/moocrr_debian_snapshot_slim          20171003T094008Z         d1ff0c0a3752        About an hour ago   62.9MB
+#+end_example
+
+Les nouvelles images ont bien la même taille mais pas les mêmes
+identifiants. Et si je lance mon script sur une autre machine,
+j'obtiens ceci:
+#+RESULTS:
+#+begin_example
+REPOSITORY                                TAG                 IMAGE ID            CREATED              SIZE
+alegrand/moocrr_debian_snapshot_jupyter   20171209T114814Z    603e047ef55b        About a minute ago   743MB
+alegrand/moocrr_debian_snapshot_slim      20171003T094008Z    996c8b84e306        44 minutes ago       62.9MB
+#+end_example
+
+Si les clés cryptographiques sont différentes, c'est que les images
+sont différentes. Vous parlez d'une reproductibilité! D'où vient le
+problème ? Est-ce la faute de docker ou de debuerreotype ? En fait, si
+je compare les archives créées par =debuerreotype-tar=, elles sont bien
+identiques quelles que soient la machine ou l'heure de la journée à
+laquelle je les crée:
+
+#+begin_src shell :results output :exports both
+cd moocrr_debian_snapshot_jupyter/
+sudo debuerreotype-tar rootfs - | sha256sum
+#+end_src
+
+#+RESULTS:
+: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  -
+
+#+begin_src shell :results output :exports both
+cd moocrr_debian_snapshot_jupyter2/
+sudo debuerreotype-tar rootfs - | sha256sum
+#+end_src
+
+#+RESULTS:
+: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  -
+
+En revanche, lors de l'import dans docker, docker ajoute des
+informations et notamment des dates. Pour le mettre en évidence, je
+vais utiliser un outil magique, le =diffoscope=. Les deux fichiers tar
+que je compare ont été obtenus à partir des images docker à l'aide de
+la façon suivante (au passage, c'est une autre façon de partager des
+conteneurs sans passer par le dockerhub):
+
+#+begin_src shell :results output :exports both header-args :eval never-export
+docker export alegrand/moocrr_debian_snapshot_slim > 20171003T094008Z.tar
+#+end_src
+
+Et maintenant, comparons:
+#+begin_src shell :session *shell* :results output :exports both 
+diffoscope --text-color never --text - --no-progress 20171003T094008Z.tar moocrr_debian_snapshot_jupyter.old/20171003T094008Z.tar 
+#+end_src
+
+#+RESULTS:
+#+begin_example
+--- 20171003T094008Z.tar
++++ moocrr_debian_snapshot_jupyter.old/20171003T094008Z.tar
+├── file list
+│ @@ -1,6 +1,6 @@
+│ --rw-r--r--   0 root         (0) root         (0)      888 2019-08-16 15:05:15.000000 996c8b84e30616ecbb3b384983fcbea17f5765f0c4ce1d35c1bc117a5eb1dcec.json
+│ -drwxr-xr-x   0 root         (0) root         (0)        0 2019-08-16 15:05:15.000000 a5999282c324e3775b5c96c31b64bb8622042ee2ee5dcecc2601ca5020dd4a47/
+│ --rw-r--r--   0 root         (0) root         (0)        3 2019-08-16 15:05:15.000000 a5999282c324e3775b5c96c31b64bb8622042ee2ee5dcecc2601ca5020dd4a47/VERSION
+│ --rw-r--r--   0 root         (0) root         (0)      761 2019-08-16 15:05:15.000000 a5999282c324e3775b5c96c31b64bb8622042ee2ee5dcecc2601ca5020dd4a47/json
+│ --rw-r--r--   0 root         (0) root         (0) 66160640 2019-08-16 15:05:15.000000 a5999282c324e3775b5c96c31b64bb8622042ee2ee5dcecc2601ca5020dd4a47/layer.tar
+│ --rw-r--r--   0 root         (0) root         (0)      189 1970-01-01 00:00:00.000000 manifest.json
+│ +-rw-r--r--   0        0        0      887 2019-08-16 15:56:19.000000 a0a1d1dcf7ceebe05eeaea15f7d040152400f4d761a45cb230a11ae5445839e5.json
+│ +drwxr-xr-x   0        0        0        0 2019-08-16 15:56:19.000000 c4d3eddad284d66137dd67c02e401a3f924ae4a2899ab965c5bbdd30efbbfb4b/
+│ +-rw-r--r--   0        0        0        3 2019-08-16 15:56:19.000000 c4d3eddad284d66137dd67c02e401a3f924ae4a2899ab965c5bbdd30efbbfb4b/VERSION
+│ +-rw-r--r--   0        0        0      760 2019-08-16 15:56:19.000000 c4d3eddad284d66137dd67c02e401a3f924ae4a2899ab965c5bbdd30efbbfb4b/json
+│ +-rw-r--r--   0        0        0 66160640 2019-08-16 15:56:19.000000 c4d3eddad284d66137dd67c02e401a3f924ae4a2899ab965c5bbdd30efbbfb4b/layer.tar
+│ +-rw-r--r--   0        0        0      189 1970-01-01 00:00:00.000000 manifest.json
+├── manifest.json
+│ │   --- /tmp/diffoscope_fh2unf7p/tmp15u18u0m/0/5.json
+│ ├── +++ /tmp/diffoscope_fh2unf7p/tmpbwc9io0k/0/5.json
+│ │ @@ -1,9 +1,9 @@
+│ │  [
+│ │      {
+│ │ -        "Config": "996c8b84e30616ecbb3b384983fcbea17f5765f0c4ce1d35c1bc117a5eb1dcec.json",
+│ │ +        "Config": "a0a1d1dcf7ceebe05eeaea15f7d040152400f4d761a45cb230a11ae5445839e5.json",
+│ │          "Layers": [
+│ │ -            "a5999282c324e3775b5c96c31b64bb8622042ee2ee5dcecc2601ca5020dd4a47/layer.tar"
+│ │ +            "c4d3eddad284d66137dd67c02e401a3f924ae4a2899ab965c5bbdd30efbbfb4b/layer.tar"
+│ │          ],
+│ │          "RepoTags": null
+│ │      }
+│ │  ]
+│   --- 996c8b84e30616ecbb3b384983fcbea17f5765f0c4ce1d35c1bc117a5eb1dcec.json
+├── +++ a0a1d1dcf7ceebe05eeaea15f7d040152400f4d761a45cb230a11ae5445839e5.json
+│┄ Files similar despite different names (score: 59, lower is more similar)
+│ │   --- /tmp/diffoscope_fh2unf7p/tmp15u18u0m/0/0.json
+│ ├── +++ /tmp/diffoscope_fh2unf7p/tmpbwc9io0k/0/0.json
+│ │┄ Differences: {
+│ │┄   "replace": {
+│ │┄     "architecture": "amd64",
+│ │┄     "comment": "Imported from -",
+│ │┄     "config": {
+│ │┄       "AttachStderr": false,
+│ │┄       "AttachStdin": false,
+│ │┄       "AttachStdout": false,
+│ │┄       "Cmd": null,
+│ │┄       "Domainname": "",
+│ │┄       "Entrypoint": null,
+│ │┄       "Env": null,
+│ │┄       "Hostname": "",
+│ │┄       "Image": "",
+│ │┄       "Labels": null,
+│ │┄       "OnBuild": null,
+│ │┄       "OpenStdin": false,
+│ │┄       "StdinOnce": false,
+│ │┄       "Tty": false,
+│ │┄       "User": "",
+│ │┄       "Volumes": null,
+│ │┄       "WorkingDir": ""
+│ │┄     },
+│ │┄     "container_config": {
+│ │┄       "AttachStderr": false,
+│ │┄       "AttachStdin": false,
+│ │┄       "AttachStdout": false,
+│ │┄       "Cmd": null,
+│ │┄       "Domainname": "",
+│ │┄       "Entrypoint": null,
+│ │┄       "Env": null,
+│ │┄       "Hostname": "",
+│ │┄       "Image": "",
+│ │┄       "Labels": null,
+│ │┄       "OnBuild": null,
+│ │┄       "OpenStdin": false,
+│ │┄       "StdinOnce": false,
+│ │┄       "Tty": false,
+│ │┄       "User": "",
+│ │┄       "Volumes": null,
+│ │┄       "WorkingDir": ""
+│ │┄     },
+│ │┄     "created": "2019-08-16T15:56:19.700804142Z",
+│ │┄     "docker_version": "1.13.1",
+│ │┄     "history": [
+│ │┄       {
+│ │┄         "comment": "Imported from -",
+│ │┄         "created": "2019-08-16T15:56:19.700804142Z"
+│ │┄       }
+│ │┄     ],
+│ │┄     "os": "linux",
+│ │┄     "rootfs": {
+│ │┄       "diff_ids": [
+│ │┄         "sha256:314ed60970330c0c15a02b70ebe632dfc1ccf340af714ae6ea9e149cd00886f1"
+│ │┄       ],
+│ │┄       "type": "layers"
+│ │┄     }
+│ │┄   }
+│ │┄ }
+│ │ @@ -35,20 +35,20 @@
+│ │          "OpenStdin": false,
+│ │          "StdinOnce": false,
+│ │          "Tty": false,
+│ │          "User": "",
+│ │          "Volumes": null,
+│ │          "WorkingDir": ""
+│ │      },
+│ │ -    "created": "2019-08-16T15:05:15.637451511Z",
+│ │ -    "docker_version": "18.09.1",
+│ │ +    "created": "2019-08-16T15:56:19.700804142Z",
+│ │ +    "docker_version": "1.13.1",
+│ │      "history": [
+│ │          {
+│ │              "comment": "Imported from -",
+│ │ -            "created": "2019-08-16T15:05:15.637451511Z"
+│ │ +            "created": "2019-08-16T15:56:19.700804142Z"
+│ │          }
+│ │      ],
+│ │      "os": "linux",
+│ │      "rootfs": {
+│ │          "diff_ids": [
+│ │              "sha256:314ed60970330c0c15a02b70ebe632dfc1ccf340af714ae6ea9e149cd00886f1"
+│ │          ],
+│   --- a5999282c324e3775b5c96c31b64bb8622042ee2ee5dcecc2601ca5020dd4a47/json
+├── +++ c4d3eddad284d66137dd67c02e401a3f924ae4a2899ab965c5bbdd30efbbfb4b/json
+│┄ Files similar despite different names (score: 25, lower is more similar)
+│ @@ -1 +1 @@
+│ -{"id":"a5999282c324e3775b5c96c31b64bb8622042ee2ee5dcecc2601ca5020dd4a47","comment":"Imported from -","created":"2019-08-16T15:05:15.637451511Z","container_config":{"Hostname":"","Domainname":"","User":"","AttachStdin":false,"AttachStdout":false,"AttachStderr":false,"Tty":false,"OpenStdin":false,"StdinOnce":false,"Env":null,"Cmd":null,"Image":"","Volumes":null,"WorkingDir":"","Entrypoint":null,"OnBuild":null,"Labels":null},"docker_version":"18.09.1","config":{"Hostname":"","Domainname":"","User":"","AttachStdin":false,"AttachStdout":false,"AttachStderr":false,"Tty":false,"OpenStdin":false,"StdinOnce":false,"Env":null,"Cmd":null,"Image":"","Volumes":null,"WorkingDir":"","Entrypoint":null,"OnBuild":null,"Labels":null},"architecture":"amd64","os":"linux"}
+│ +{"id":"c4d3eddad284d66137dd67c02e401a3f924ae4a2899ab965c5bbdd30efbbfb4b","comment":"Imported from -","created":"2019-08-16T15:56:19.700804142Z","container_config":{"Hostname":"","Domainname":"","User":"","AttachStdin":false,"AttachStdout":false,"AttachStderr":false,"Tty":false,"OpenStdin":false,"StdinOnce":false,"Env":null,"Cmd":null,"Image":"","Volumes":null,"WorkingDir":"","Entrypoint":null,"OnBuild":null,"Labels":null},"docker_version":"1.13.1","config":{"Hostname":"","Domainname":"","User":"","AttachStdin":false,"AttachStdout":false,"AttachStderr":false,"Tty":false,"OpenStdin":false,"StdinOnce":false,"Env":null,"Cmd":null,"Image":"","Volumes":null,"WorkingDir":"","Entrypoint":null,"OnBuild":null,"Labels":null},"architecture":"amd64","os":"linux"}
+│   --- a5999282c324e3775b5c96c31b64bb8622042ee2ee5dcecc2601ca5020dd4a47/layer.tar
+├── +++ c4d3eddad284d66137dd67c02e401a3f924ae4a2899ab965c5bbdd30efbbfb4b/layer.tar
+│┄ Files identical despite different names
+#+end_example
+
+On peut voir que les seules différences entre ces deux images sont les
+dates de création des conteneurs et la version de docker utilisée... À
+part ça, le reste est rigoureusement identique!
+
 ** 2.8 Faire construire son image par dockerhub (Optionnel)
-https://docs.docker.com/docker-hub/builds/
-
-Avantage: garantie de traçabilité et que l'image a bien été construite
-de cette façon.
-
+Construire les images sur sa machine et faire toutes ces manipulations
+induit des risques d'erreur. L'idéal est de déléguer tout ceci à un
+tiers (un peu comme nous allons faire avec l'intégration continue dans
+la séquence suivante). À l'occasion, je vous invite donc à lire cette
+page https://docs.docker.com/docker-hub/builds/ qui explique comment
+faire en sorte que ce soit directement dockerhub qui construise vos
+images. L'avantage principal est une garantie de traçabilité et que
+l'image a bien été construite de la façon indiquée.
 * Séquence 3: Mettre en place un test et utiliser l'intégration continue pour s'assurer de la robustesse d'un code
 Point de départ: un notebook
 ** 3.1 Exécuter ce notebook dans un conteneur et mettre en place un test
