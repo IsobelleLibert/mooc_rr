@@ -1,0 +1,9 @@
+image: "jupyter/scipy-notebook"
+
+before_script:
+  - python3 --version
+  - jupyter-nbconvert --version
+
+jupyter:
+  script:
+    - sh notebook_test.sh

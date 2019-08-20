@@ -1,0 +1,13 @@
+image: "debian:stable"
+
+before_script:
+  - perl -v
+  - which perl
+
+perl_addition:
+  script:
+    - perl -e "print(3+2);"
+
+perl_multiplication:
+  script:
+    - perl -e "print(3*2);"

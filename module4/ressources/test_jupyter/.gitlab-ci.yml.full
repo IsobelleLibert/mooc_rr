@@ -1,0 +1,24 @@
+jupyter_debian_frozen:
+  image: "alegrand38/moocrr_jupyter"
+  before_script:
+    - python3 --version
+    - jupyter-nbconvert --version
+  script:
+    - sh notebook_test.sh
+
+jupyter_scipy_uptodate:
+  image: "jupyter/scipy-notebook"
+  before_script:
+    - python3 --version
+    - jupyter-nbconvert --version
+  script:
+    - sh notebook_test.sh
+
+jupyter_debian_uptodate:
+  image: "debian:stable"
+  before_script:
+    - apt-get update && apt-get install -y python3 jupyter-nbconvert python3-ipykernel python3-matplotlib python3-pandas python3-numpy python3-statsmodels
+    - python3 --version
+    - jupyter-nbconvert --version
+  script:
+    - sh notebook_test.sh
