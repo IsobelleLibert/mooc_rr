@@ -9,7 +9,8 @@
 Pour utiliser Guix, il faut évidemment l'installer. Il y a deux façons d'y arriver:
 
 1. Installer [[https://guix.gnu.org/manual/en/html_node/System-Installation.html][Guix System]] sur votre ordinateur, à la place d'une distribution Linux plus traditionelle comme Debian ou Ubuntu. Tout votre système est alors géré avec Guix, ce qui a des avantages (notamment la reproductibilité totale de votre configuration), mais aussi des inconvénients (il y a moins que logiciels disponibles pour Guix que pour une vieille distribution genre Debian).
-2. Installer [[https://guix.gnu.org/manual/en/html_node/Binary-Installation.html][le gestionnaire de paquets Guix]] sur un ordinateur qui tourne déjà sous Linux. Vous pouvez alors utiliser Guix en parallèle avec le gestionnaire de paquets de votre distribution, ce qui donne beaucoup de flexibilité, mais il faut bien sûr faire attention à quel paquet est installé comment.
+
+2. Installer [[https://guix.gnu.org/manual/en/html_node/Binary-Installation.html][le gestionnaire de paquets Guix]] sur un ordinateur qui tourne déjà sous Linux. Vous pouvez alors utiliser Guix en parallèle avec le gestionnaire de paquets de votre distribution, ce qui donne beaucoup de flexibilité, mais il faut bien sûr faire attention à quel paquet est installé comment, et éviter des doublons. *Si vous utilisez Guix avec une autre distribution pour suivre ce tutoriel, assurez-vous de n'avoir installé ni Python ni Jupyter par un autre moyen que Guix, sinon des erreurs incomréhensibles sont presque garanties !*
 
 * Séquence 2: Créer son propre environnement, automatiser sa construction et le partage
 ** 2.2 Installer tous les paquets dont on a besoin
@@ -614,7 +615,7 @@ cat moocrr_guix_jupyter/guix-channels.scm
 
 Les deux fichiers dans mon répértoire =moocrr_guix_jupyter= permettent donc de reconstruire mon environnement à l'identique, à tout moment, tant qu'il y aura des ordinateurs avec Guix.
 
-** Reconstruire un environnement
+** 2.6 Reconstruire un environnement
 Maintenant je me place du côté du consommateur. J'ai reçu un notebook Jupyter accompagné d'un répértoire =moocrr_guix_jupyter= contenant un fichier =guix-channels.scm= et un fichier =manifest.scm=. Au travail!
 
 D'abord je demande à Guix de se restorer les définitions des paquets:
