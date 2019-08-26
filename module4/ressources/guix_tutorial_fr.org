@@ -506,6 +506,7 @@ guix install python-nbconvert
 #+RESULTS:
 : 90 packages in profile
 
+
 ** 2.4 Automatiser la construction de son environnement
 Vous remarquerez que dans tout ce qui a précédé, j'ai noté dans mon
 journal de ce que j'ai effectué mais vous n'avez aucune garantie que
@@ -643,3 +644,32 @@ guix package -p ~/.config/guix/current --roll-back
 : switched from generation 25 to 24
 
 J'espère que cette dernière commande vous a fait sursauter. Pourquoi =guix package=? Et pourquoi =-p ~/.config/guix/current=? En fait, Guix gère les générations de la distribution exactement comme les générations des "profils", qui sont des environnements installés de façon plus permanente. Mais dans ce tutoriel, nous ne couvrons pas les profils, ni plein d'autres aspects de Guix. À vous d'explorer!
+** 2.7 Mettre son environnement à disposition sous forme d'une image Docker
+Il reste un problème que vous pouvez rencontrer: vos collègues n'utilisent pas Guix, peut-être même pas Linux. Les deux petits fichiers dans =moocrr_guix_jupyter= ne vont pas leur être utiles. En attendant qu'ils se mettent à installer Guix, vous pouvez leur fournir votre environnement sous forme d'une image Docker. Ce n'est pas compliqué du tout:
+#+begin_src sh :results output :exports both
+guix pack -f docker -m ./moocrr_guix_jupyter/manifest.scm
+#+end_src
+
+#+RESULTS:
+: /gnu/store/kg8sy0x5nyc0j1dak50dmspqmlqqbcnb-docker-pack.tar.gz
+
+La commande nous affiche le nom du fichier qui contient l'image Docker. Il peut paraître un peu bizarre, tout comme le répertoire =/gnu/store= dans lequel le fichier se trouve. Quand on comprend le fonctionnement de Guix un peu mieux, tout ça s'explique facilement mais pour ce tutoriel, je vais me contenter à le copier ailleurs avec un nom plus parlant:
+
+#+begin_src sh :results output :exports both
+cp /gnu/store/kg8sy0x5nyc0j1dak50dmspqmlqqbcnb-docker-pack.tar.gz moocrr-jupyter-docker.tar.gz
+#+end_src
+
+#+RESULTS:
+
+Sur une machine avec Docker installé, l'image est chargée avec
+#+begin_src sh :results output :exports both
+docker load -i moocrr-jupyter-docker.tar.gz
+#+end_src
+
+#+RESULTS:
+: Loaded image: profile:2vv9d6l2m3aj1h216fxisq3agmavy3i5
+
+puis Jupyter est executé avec
+#+begin_src sh :results output :exports both
+docker run -it -p 8888:8888 profile:2vv9d6l2m3aj1h216fxisq3agmavy3i5 jupyter notebook --ip=127.0.0.1 --allow-root
+#+end_src
