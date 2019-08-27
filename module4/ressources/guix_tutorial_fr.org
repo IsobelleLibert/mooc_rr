@@ -481,7 +481,9 @@ guix install jupyter
 #+RESULTS:
 : 85 packages in profile
 
-Pour tester, lançons-le:
+Ceux qui ont l'habitude d'une distribution classique étaient peut-être tentés de rajouter =sudo= devant la commande, parce que l'installation d'un logiciel, ça relève des privilèges d'un administrateur. Ce n'est pas le cas avec Guix. Sous Guix, chaque utilisateur gère ses logiciels de façon autonome. Le =jupyter= que je viens d'installer n'est accessible que pour moi. En fait, l'annonce des "85 paquets dans mon profil" veut dire qu'il y a 85 paquets installés à mon nom, un "profil" étant une collection de paquets installés (et on peut même en avoir plusieurs, mais ça dépasse le cadre de ce tutoriel).
+
+Pour tester, lançons =jupyter=:
 #+begin_src sh :results output :exports both
 jupyter notebook
 #+end_src
@@ -542,9 +544,9 @@ cat moocrr_guix_jupyter/manifest.scm
 :    "python-nbconvert"))
 : 
 
-C'est essentiellement la liste des paquets que j'ai installé à la main auparavant, mais dans un format un peu particulier qu'il faut respecter scrupuleusement. En fait, ce format n'est rien d'autre que le langage de programmation [[https://fr.wikipedia.org/wiki/Scheme][=scheme=]]. Guix est écrit en scheme, et exprimer une liste de paquets en scheme a le grand avantage qu'on peut utiliser des fonctionnalités avancées de Guix pour définir son environnement. Par exemple, je pourrais demander que tous mes paquets, en commençant par Python, soient compilés avec =gcc 7= plutôt qu'avec le compilateur par défaut de Guix, qui est actuellement =gcc 5=.
+C'est essentiellement la liste des paquets que j'ai installé à la main auparavant, mais dans un format un peu particulier qu'il faut respecter scrupuleusement. En fait, ce format n'est rien d'autre que le langage de programmation [[https://fr.wikipedia.org/wiki/Scheme][Scheme]]. Guix est écrit en Scheme, et exprimer une liste de paquets en Scheme a le grand avantage qu'on peut utiliser des fonctionnalités avancées de Guix pour définir son environnement. Par exemple, je pourrais demander que tous mes paquets, en commençant par Python, soient compilés avec =gcc 7= plutôt qu'avec le compilateur par défaut de Guix, qui est actuellement =gcc 5=.
 
-Je peux alors créer un environnement avec ces paquets avec
+Je peux alors créer un environnement contenant ces paquets avec
 #+begin_src sh session *jupyter-env* :results output :exports both
 guix environment -m ./moocrr_guix_jupyter/manifest.scm
 #+end_src
@@ -571,7 +573,7 @@ guix environment –pure -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebo
 Un environnement "pur" ne contient que les paquets définis dans le manifeste, pendant qu'un environnement "standard" contient aussi tout ce qu'on a disponible par défaut par la ligne de commande, donc des utilitaires comme =ls=, =cp=, etc. Avec un environnement pur, on est sûr de n'utiliser rien qui n'est pas listé dans le manifeste, même pas par erreur.
 
 ** 2.5 Mettre son environnement à disposition
-L'environnement étant défini par le manifeste, il suffit de mettre ce petit fichier à disposition de ses collègues pour leur permettre de travailler dans un environnement identique. Sauf que... les versions qu'ils auront ne sont peut-être par les mêmes ! Peu après la publication d'une nouvelle version de Jupyter, Guix adoptera cette nouvelle version, et l'environnement créé par mon manifest ne sera plus le même. Ceci est d'ailleurs voulu: souvent on veut tout juste avoir la dernière version de tout. Mais pour la reproductibilité, on veut tout à l'identique.
+L'environnement étant défini par le manifeste, il suffit de mettre ce petit fichier à disposition de ses collègues pour leur permettre de travailler dans un environnement identique. Sauf que... les versions qu'ils auront ne sont peut-être pas les mêmes ! Peu après la publication d'une nouvelle version de Jupyter, Guix adoptera cette nouvelle version, et l'environnement créé par mon manifest ne sera plus le même. Ceci est d'ailleurs voulu: souvent on veut tout juste avoir la dernière version de tout. Mais pour la reproductibilité, on veut tout à l'identique.
 
 L'information qu'il faut rajouter, c'est la version de Guix à laquelle le manifeste fait référence. On l'obtient avec
 #+begin_src sh :results output :exports both
@@ -599,7 +601,7 @@ guix describe -f channels
 :         (commit
 :           "44881cad93801de9462d469500d582af79b99959")))
 
-Et oui, c'est encore =scheme= comme notation. Un "channel" est une collection de définitions de paquets. Ici nous avons seulement la distribution de base, le canal "guix", mais on peut rajouter des paquets qui viennent d'autres sources, et avec l'option =-f channels= on obtient toujours une description complète et lisible par Guix.
+Et oui, c'est encore Scheme comme notation. Un "channel" est une collection de définitions de paquets. Ici nous avons seulement la distribution de base, le canal "guix", mais on peut rajouter des paquets qui viennent d'autres sources, et avec l'option =-f channels= on obtient toujours une description complète et lisible par Guix.
 
 On va alors mettre cette description dans un fichier:
 #+begin_src sh :results output :exports both
@@ -628,7 +630,7 @@ guix pull -C moocrr_guix_jupyter/guix-channels.scm
 : 1 package in profile
 : 
 
-Normalement, =guix pull= sert à mettre à jour Guix, et la ressemblance avec =git pull= n'est pas un accident. Avec l'option =-C=, je ne mets pas "à jour", mais au commit demandé. Je crée ainsi une nouvelle génération de Guix, mais comme je peux facilement revenir en arrière, pas de souci. Maintenant je peux exécuter Jupyter dans son environnement d'origine, exactement comme on a vu avant:
+Normalement, =guix pull= sert à mettre à jour Guix, et la ressemblance avec =git pull= n'est pas un accident. Avec l'option =-C=, je télécharge aussi l'historique récente de Guix, mais je me place au commit demandé plutôt au dernier, ce qui ressemble plutôt à =git checkout=. Je crée ainsi une nouvelle génération de Guix, mais comme je peux facilement revenir en arrière, pas de souci. Maintenant je peux exécuter Jupyter dans son environnement d'origine, exactement comme on a vu avant:
 #+begin_src sh :results output :exports both
 guix environment –pure -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebook
 #+end_src
