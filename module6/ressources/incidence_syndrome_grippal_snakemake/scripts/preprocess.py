@@ -64,5 +64,6 @@ with open(snakemake.output.errorlog, "a") as errorlog:
 #  2. the incidence estimate for that week
 with open(snakemake.output.data, "w") as csvfile:
     csv_writer = csv.writer(csvfile)
+    csv_writer.writerow(["week_starting", "incidence"])
     for row in converted_data:
         csv_writer.writerow(row)

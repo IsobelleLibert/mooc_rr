@@ -9,7 +9,7 @@ rule preprocess:
         "data/weekly-incidence.csv"
      output:
         data="data/preprocessed-weekly-incidence.csv",
-        errorlog="data/errors-from-preprocessing.csv"
+        errorlog="data/errors-from-preprocessing.txt"
      script:
         "scripts/preprocess.py"
 
