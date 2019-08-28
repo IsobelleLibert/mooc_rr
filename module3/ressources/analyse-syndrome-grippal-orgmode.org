@@ -117,7 +117,7 @@ week = [row[0] for row in valid_table]
 assert week[0] == 'week'
 del week[0]
 inc = [row[2] for row in valid_table]
-assert inc[0] == 'inc
+assert inc[0] == 'inc'
 del inc[0]
 data = list(zip(week, inc))
 #+END_SRC
