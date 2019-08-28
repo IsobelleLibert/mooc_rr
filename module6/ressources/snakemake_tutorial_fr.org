@@ -1,0 +1,13 @@
+# -*- mode: org -*-
+#+TITLE: Gérer un workflow avec snakemake
+#+DATE: August, 2019
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:t
+#+PROPERTY: header-args :eval never-export
+
+* Installer snakemake
+TODO
+* L'analyse de l'incidence du syndrome grippal revisitée
+Nous allons reprendre l'exemple du module 3, l'analyse de l'incidence du syndrome grippal.
+** 1ère étape: le téléchargement des données
+

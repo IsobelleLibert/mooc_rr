@@ -10,3 +10,5 @@
 _minted*
 svg-inkscape*
 *-svg.pdf
+.Rhistory
+.snakemake

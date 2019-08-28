@@ -1,0 +1,39 @@
+rule download:
+     output:
+        "data/weekly-incidence.csv"
+     shell:
+        "wget -O {output} http://www.sentiweb.fr/datasets/incidence-PAY-3.csv"
+
+rule preprocess:
+     input:
+        "data/weekly-incidence.csv"
+     output:
+        data="data/preprocessed-weekly-incidence.csv",
+        errorlog="data/errors-from-preprocessing.csv"
+     script:
+        "scripts/preprocess.py"
+
+rule plot:
+     input:
+        "data/preprocessed-weekly-incidence.csv"
+     output:
+        "data/weekly-incidence-plot.png",
+        "data/weekly-incidence-plot-last-years.png"
+     script:
+        "scripts/incidence-plots.R"
+
+rule annual_incidence:
+     input:
+        "data/preprocessed-weekly-incidence.csv"
+     output:
+        "data/annual-incidence.csv"
+     script:
+        "scripts/annual-incidence.R"
+
+rule histogram:
+     input:
+        "data/annual-incidence.csv"
+     output:
+        "data/annual-incidence-histogram.png"
+     script:
+        "scripts/annual-incidence-histogram.R"
