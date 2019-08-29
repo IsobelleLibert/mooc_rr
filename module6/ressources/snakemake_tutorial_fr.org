@@ -6,7 +6,10 @@
 #+PROPERTY: header-args :eval never-export
 
 * Installer snakemake
-TODO
+** Linux
+par les distributions
+** Mac, Windows
+par Anaconda
 * L'analyse de l'incidence du syndrome grippal revisitée
 Je vais reprendre l'exemple du module 3, l'analyse de l'incidence du syndrome grippal, et je vais refaire exactement la même analyse sous forme d'un workflow par =snakemake=. Ceci veut dire que pour l'instant, nous quittons le monde des documents computationnels que nous vous avons montré dans les modules 2 et 3, pour passer dans l'univers de la ligne de commande. Il y a des bonnes raisons pour cela, que je vous donnerai plus tard. Et vous verrez aussi le retour des documents computationnels à la fin de ce tutoriel, même si ce sera dans un rôle moins central.
 
@@ -502,3 +505,404 @@ Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/m
 
 [[file:incidence_syndrome_grippal_snakemake/data/annual-incidence-histogram.png]]
 
+* Travailler avec un workflow
+Jusqu'ici, j'ai lancé chaque tâche de mon workflow à la main, une par une. Avec le même effort, j'aurais pu lancer directement les divers scripts qui font le travail de fon. Autrement dit, =snakemake= ne m'a rien apporté, autre que sortir les noms des fichiers des scripts, qui devienennt ainsi un peu plus généraux, pour les transférer dans le grand script maître qui est =Snakefile=.
+
+J'ai déjà évoqué un avantage du workflow: les tâches ne sont exécutées qu'en cas de besoin. Par exemple, la commande =snakemake plot= exécute le script =scripts/incidence-plots.R= seulement si l'une des conditions suivantes est satisfaite:
+ 1. Un des deux fichiers =data/weekly-incidence-plot.png= et =data/weekly-incidence-plot-last-years.png= est absent.
+ 2. Un des deux fichiers =data/weekly-incidence-plot.png= et =data/weekly-incidence-plot-last-years.png= a une date de modification antérieure à la date de modification du fichier d'entrée, =data/preprocessed-weekly-incidence.csv=.
+
+Vérifions cela, en demandant en plus à =snakemake= d'expliquer son raisonnement avec l'option =-r=:
+#+begin_src sh :session *snakemake* :results output :exports both
+snakemake -r plot
+#+end_src
+
+#+RESULTS:
+: Building DAG of jobs...
+: Nothing to be done.
+: Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T143441.536916.snakemake.log
+
+Maintenant les plots sont là et à jour. Je vais simuler la modification du fichier d'entrée avec la commande =touch= et relancer:
+#+begin_src sh :session *snakemake* :results output :exports both
+touch data/preprocessed-weekly-incidence.csv
+snakemake -r plot
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	plot
+	1
+
+[Thu Aug 29 14:34:47 2019]
+rule plot:
+    input: data/preprocessed-weekly-incidence.csv
+    output: data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png
+    jobid: 0
+    reason: Updated input files: data/preprocessed-weekly-incidence.csv
+
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+null device 
+          1 
+null device 
+          1 
+[Thu Aug 29 14:34:48 2019]
+Finished job 0.
+) done
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T143447.767368.snakemake.log
+#+end_example
+
+Attention, =snakemake= ne regarde que les fichiers listés sous "input", pas les fichiers listés sous "scripts". Autrement dit, la modification d'un script n'entraîne pas sa ré-exécution !
+#+begin_src sh :session *snakemake* :results output :exports both
+touch scripts/incidence-plots.R
+snakemake -r plot
+#+end_src
+
+#+RESULTS:
+: 
+: Building DAG of jobs...
+: Nothing to be done.
+: Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T143243.100094.snakemake.log
+
+Je considère ceci un défaut de =snakemake=, car le script est une donnée d'entrée du calcul tout comme la séquence de chiffres à plotter. Un petit astuce permet de corriger ce défaut (à condition d'y penser chaque fois qu'on écrit une règle !): on peut rajouter le fichier script à la liste "input":
+#+begin_src :exports both
+rule plot:
+     input:
+        "data/preprocessed-weekly-incidence.csv",
+        "scripts/incidence-plots.R"
+     output:
+        "data/weekly-incidence-plot.png",
+        "data/weekly-incidence-plot-last-years.png"
+     script:
+        "scripts/incidence-plots.R"
+#+end_src
+
+On peut aussi demander à =snakemake= de lancer une tâche même si ceci ne lui semble pas nécessaire, avec l'option =-f= (force):
+#+begin_src sh :session *snakemake* :results output :exports both
+snakemake -f plot
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	plot
+	1
+
+[Thu Aug 29 14:56:24 2019]
+rule plot:
+    input: data/preprocessed-weekly-incidence.csv
+    output: data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png
+    jobid: 0
+
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+null device 
+          1 
+null device 
+          1 
+[Thu Aug 29 14:56:24 2019]
+Finished job 0.
+) done
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T145624.563473.snakemake.log
+#+end_example
+
+Le plus souvent, ce qu'on veut, c'est une mise à jour de tous les résultats suite à une modification. La bonne façon d'y arriver est de rajouter une nouvelle règle, par convention appellée =all=, qui ne fait rien mais demande à l'entrée tous les fichiers créés par toutes les autres tâches :
+#+begin_src :exports both :tangle incidence_syndrome_grippal_snakemake/Snakefile
+rule all:
+     input:
+        "data/weekly-incidence.csv",
+        "data/preprocessed-weekly-incidence.csv",
+        "data/weekly-incidence-plot.png",
+        "data/weekly-incidence-plot-last-years.png",
+        "data/annual-incidence.csv",
+        "data/annual-incidence-histogram.png"
+#+end_src
+
+La mise à jour complète se fait alors avec
+#+begin_src sh :session *snakemake* :results output :exports both
+snakemake all
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	annual_incidence
+	1	histogram
+	1	plot
+	1	preprocess
+	5
+
+[Thu Aug 29 15:09:50 2019]
+rule preprocess:
+    input: data/weekly-incidence.csv
+    output: data/preprocessed-weekly-incidence.csv, data/errors-from-preprocessing.txt
+    jobid: 2
+
+[Thu Aug 29 15:09:50 2019]
+Finished job 2.
+) done
+
+[Thu Aug 29 15:09:50 2019]
+rule annual_incidence:
+    input: data/preprocessed-weekly-incidence.csv
+    output: data/annual-incidence.csv
+    jobid: 4
+
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+[Thu Aug 29 15:09:51 2019]
+Finished job 4.
+) done
+
+[Thu Aug 29 15:09:51 2019]
+rule plot:
+    input: data/preprocessed-weekly-incidence.csv
+    output: data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png
+    jobid: 3
+
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+null device 
+          1 
+null device 
+          1 
+[Thu Aug 29 15:09:51 2019]
+Finished job 3.
+) done
+
+[Thu Aug 29 15:09:51 2019]
+rule histogram:
+    input: data/annual-incidence.csv
+    output: data/annual-incidence-histogram.png
+    jobid: 5
+
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+null device 
+          1 
+[Thu Aug 29 15:09:51 2019]
+Finished job 5.
+) done
+
+[Thu Aug 29 15:09:51 2019]
+localrule all:
+    input: data/weekly-incidence.csv, data/preprocessed-weekly-incidence.csv, data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png, data/annual-incidence.csv, data/annual-incidence-histogram.png
+    jobid: 0
+
+[Thu Aug 29 15:09:51 2019]
+Finished job 0.
+) done
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T150950.572093.snakemake.log
+#+end_example
+
+Pour rédémarrer de zéro, donc exécuter toutes les tâches, on fait:
+#+begin_src sh :session *snakemake* :results output :exports both
+snakemake --forceall all
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	download
+	1
+
+[Thu Aug 29 14:56:31 2019]
+rule download:
+    output: data/weekly-incidence.csv
+    jobid: 0
+
+--2019-08-29 14:56:31--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
+Resolving www.sentiweb.fr (www.sentiweb.fr)... 134.157.220.17
+Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/csv]
+Saving to: 'data/weekly-incidence.csv'
+]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  79.88K  --.-KB/s    in 0.02s   
+
+2019-08-29 14:56:31 (4.82 MB/s) - 'data/weekly-incidence.csv' saved [81800]
+
+[Thu Aug 29 14:56:31 2019]
+Finished job 0.
+) done
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T145631.175661.snakemake.log
+#+end_example
+
+Comme =snakemake= gère bien toutes les dépendances entre les données, il peut même nous en faire un dessin, ce qui est fort utile quand les workflows augmentent en taille:
+#+begin_src sh :session *snakemake* :results output :exports both
+snakemake --forceall --dag all | dot -Tpng > graph.png
+#+end_src
+
+#+RESULTS:
+: Building DAG of jobs...
+
+[[file:incidence_syndrome_grippal_snakemake/graph.png]]
+
+Pour comprendre cette ligne de commande, il faut savoir que =snakemake= produit ce graphe en exécutant les tâches. Voilà pourquoi il faut les arguments =--forceall all= pour être sûr que toutes les tâches seront exécutées. =dot= est un logiciel qui fait partie de la collection [[https://graphviz.org/][Graphviz]], son rôle est de traduire une description textuelle d'un graph en graphique. Le sigle "DAG" veut dire "Directed Acyclic Graph", graphe orienté acyclique. C'est un type de graphe qu'on trouve naturellement dans les descriptions formelles de dépendences parce que "acyclique" veut simplement dire qu'aucun fichier de données produit ne peut avoir soi-même comme dépendence, directement ou indirectement.
+
+En regardant bien ce dessin, vous remarquez peut-être qu'il y a deux branches indépendantes. Une fois qu'on a fait "preprocess", on peut attaquer ou "plot" ou "annual_incidence" suivi de "histogram". Mais ça veut dire aussi qu'on peut exécuter ces deux branches en parallèle et gagner du temps, pourvu qu'on a un ordinateur avec au moins deux processeurs. En fait, =snakemake= s'en charge automatiquement si on lui indique combien de processeurs utiliser:
+
+#+begin_src sh :session *snakemake* :results output :exports both
+snakemake --cores 2 --forceall all 
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 2
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	annual_incidence
+	1	download
+	1	histogram
+	1	plot
+	1	preprocess
+	6
+
+[Thu Aug 29 15:31:30 2019]
+rule download:
+    output: data/weekly-incidence.csv
+    jobid: 1
+
+--2019-08-29 15:31:30--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
+Resolving www.sentiweb.fr (www.sentiweb.fr)... 134.157.220.17
+Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/csv]
+Saving to: 'data/weekly-incidence.csv'
+]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  79.88K  --.-KB/s    in 0.04s   
+
+2019-08-29 15:31:30 (1.78 MB/s) - 'data/weekly-incidence.csv' saved [81800]
+
+[Thu Aug 29 15:31:30 2019]
+Finished job 1.
+) done
+
+[Thu Aug 29 15:31:30 2019]
+rule preprocess:
+    input: data/weekly-incidence.csv
+    output: data/preprocessed-weekly-incidence.csv, data/errors-from-preprocessing.txt
+    jobid: 2
+
+[Thu Aug 29 15:31:30 2019]
+Finished job 2.
+) done
+
+[Thu Aug 29 15:31:30 2019]
+rule plot:
+    input: data/preprocessed-weekly-incidence.csv
+    output: data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png
+    jobid: 3
+
+[Thu Aug 29 15:31:30 2019]
+rule annual_incidence:
+    input: data/preprocessed-weekly-incidence.csv
+    output: data/annual-incidence.csv
+    jobid: 4
+
+During startup - During startup - Warning messages:
+Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Warning message:
+Y-%m-%d", tz = "GMT") :In strptime(xx, f <- "%Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+[Thu Aug 29 15:31:30 2019]
+Finished job 4.
+) done
+
+[Thu Aug 29 15:31:30 2019]
+rule histogram:
+    input: data/annual-incidence.csv
+    output: data/annual-incidence-histogram.png
+    jobid: 5
+
+null device 
+          1 
+null device 
+          1 
+[Thu Aug 29 15:31:30 2019]
+Finished job 3.
+) done
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+null device 
+          1 
+[Thu Aug 29 15:31:31 2019]
+Finished job 5.
+) done
+
+[Thu Aug 29 15:31:31 2019]
+localrule all:
+    input: data/weekly-incidence.csv, data/preprocessed-weekly-incidence.csv, data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png, data/annual-incidence.csv, data/annual-incidence-histogram.png
+    jobid: 0
+
+[Thu Aug 29 15:31:31 2019]
+Finished job 0.
+) done
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T153130.204927.snakemake.log
+#+end_example

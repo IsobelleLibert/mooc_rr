@@ -1,7 +1,6 @@
 # Read in the data and convert the dates
 data = read.csv(snakemake@input[[1]])
-names(data) <- c("date", "incidence")
-data$date <- as.Date(data$date)
+data$week_starting <- as.Date(data$week_starting)
 
 # Plot the complete incidence dataset
 png(filename=snakemake@output[[1]])

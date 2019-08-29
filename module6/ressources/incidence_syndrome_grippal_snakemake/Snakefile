@@ -37,3 +37,12 @@ rule histogram:
         "data/annual-incidence-histogram.png"
      script:
         "scripts/annual-incidence-histogram.R"
+
+rule all:
+     input:
+        "data/weekly-incidence.csv",
+        "data/preprocessed-weekly-incidence.csv",
+        "data/weekly-incidence-plot.png",
+        "data/weekly-incidence-plot-last-years.png",
+        "data/annual-incidence.csv",
+        "data/annual-incidence-histogram.png"
