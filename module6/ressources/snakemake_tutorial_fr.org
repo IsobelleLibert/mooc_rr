@@ -740,6 +740,8 @@ Finished job 0.
 Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T150950.572093.snakemake.log
 #+end_example
 
+Les plus paresseux mettent la règle =all= au début du =Snakefile=, parce qu'en absence de tâche (ou fichier) nommé sur la ligne de commande, =snakemake= utilise la première régle qu'il trouve, et pour la mise à jour total, il suffit de taper =snakemake=.
+
 Pour rédémarrer de zéro, donc exécuter toutes les tâches, on fait:
 #+begin_src sh :session *snakemake* :results output :exports both
 snakemake --forceall all
@@ -906,3 +908,329 @@ Finished job 0.
 ) done
 Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T153130.204927.snakemake.log
 #+end_example
+* Vers la gestion de données plus volumineuses
+Le workflow que je viens de montrer produit 7 fichiers. Ce n'est pas beaucoup. On peut les nommer à la main, un par un, sans difficulté. Dans la vraie vie, par exemple en bioinformatique, un workflow peut facilement gérer des centaines ou milliers de fichiers, par exemple un fichier par séquence d'acides aminés dans une étude de protéomique. Dans une telle situation, il faut définir un schéma pour nommer les fichiers de façon systématique, et introduire des boucles dans le workflow dont les itérations seront idéalement exécutées en parallèle. Je vais illustrer ceci avec une autre décomposition de l'analyse de l'incidence du syndrome grippal.
+
+Dans cette nouvelle décomposition en tâches, je vais calculer l'incidence annuelle pour chaque année séparément. Comme nous avons les données pour 33 ans, ceci fait 33 tâches à la place d'une seule dans la version que j'ai montrée avant. Pour ce calcul trivial, qui fait simplement la somme d'une cinquantaine d'entiers, ça n'a aucun sense. On va même perdre en efficacité, malgré le parallélisme. Mais il est facile d'imaginer un calcul plus compliqué à la place de cette simple sommme. Mon but ici est de montrer les techniques pour définir le workflow, qui serviront aussi pour mieux comprendre comment fonctionne =snakemake=.
+
+Pour cette deuxième version, je crée un nouveau répertoire, et j'y fais une copie du script de pré-traitement, qui reste identique:
+#+begin_src sh :session *snakemake2* :results output :exports both
+mkdir incidence_syndrome_grippal_snakemake_parallele
+cd incidence_syndrome_grippal_snakemake_parallele
+mkdir data
+mkdir scripts
+cp ../incidence_syndrome_grippal_snakemake/scripts/preprocess.py scripts/
+#+end_src
+
+#+RESULTS:
+
+Et puis je vais vous montrer le =Snakefile=, tout de suite en entier, que je vais commenter après.
+#+begin_src :exports both :tangle incidence_syndrome_grippal_snakemake_parallele/Snakefile
+rule all:
+     input:
+        "data/annual-incidence-histogram.png"
+
+rule download:
+     output:
+        "data/weekly-incidence.csv"
+     shell:
+        "wget -O {output} http://www.sentiweb.fr/datasets/incidence-PAY-3.csv"
+
+rule preprocess:
+     input:
+        rules.download.output,
+        "scripts/preprocess.py"
+     output:
+        data="data/preprocessed-weekly-incidence.csv",
+        errorlog="data/errors-from-preprocessing.txt"
+     script:
+        "scripts/preprocess.py"
+
+rule extract_one_year:
+     input:
+        rules.preprocess.output.data,
+        "scripts/extract_one_year.py"
+     params:
+        year="{year}"
+     output:
+        "data/{year}.csv"
+     script:
+        "scripts/extract_one_year.py"
+
+rule annual_incidence:
+     input:
+        "data/{year}.csv",
+        "scripts/annual_incidence.py"
+     output:
+        "data/{year}-incidence.txt"
+     script:
+        "scripts/annual_incidence.py"
+
+rule histogram:
+     input:
+        expand("data/{year}-incidence.txt", year=range(1986, 2019)),
+        "scripts/annual-incidence-histogram.R"
+     output:
+        "data/annual-incidence-histogram.png"
+     script:
+        "scripts/annual-incidence-histogram.R"
+
+#+end_src
+
+Commençons en haut: j'ai mis la règle =all= au début pour pouvoir être paresseux à l'exécution: la simple commande =snakemake= déclenchera l'ensemble des calculs. Et =all=, c'est simplement l'histogramme des incidences annuelles ici. Tous les autres fichiers sont des résultats intermédiaires. Par simplicité, j'ai décidé de ne plus faire les plots de la suite chronologiques - vous l'avez vu assez de fois maintenant. Dans la règle =all=, je n'ai pas écrit le nom du fichier image de l'histgramme, mais à la place j'ai utilisé une référence indirecte, =rules.histogram.output=, ce qui veut dire tous les fichiers de sortie de la règle =histogram=. Ceci évite d'écrire le même nom deux fois, et potentiellement introduire des erreurs en le faisant.
+
+Les deux règles suivantes, =download= et =preprocess=, sont les mêmes qu'avant, à un détail de notation près: dans =preprocess=, j'ai également utilisé la référence indirecte =rules.download.output= à la place du nom du fichier en question. Et j'ai rajouté le fichier du script comme fichier d'entrée pour que =snakemake= refasse le calcul après chaque modification du script.
+
+Les trois règles finales sont la partie vraiment intéressante. Commençons par la dernière, =histogram=. Elle produit un fichier image, comme avant. Elle le fait en appelant un script en R, comme avant. Mais à l'entrée, elle réclame un fichier par an. L'expression =expand(...)= produit une liste de noms de fichier en remplaçant ={year}= dans le modèle donné par les éléments de la liste =range(1986, 2019)=, qui contient les entiers de =1986= à =2018=. Si cela vous rappele le langage Python, vous avez raison - le nom =snakemake= n'est pas une coïncidence, c'est écrit en Python !
+
+La règles =histogram= réclame donc les fichiers =data/1986-incidence.txt=,
+=data/1987-incidence.txt=, =data/1988-incidence.txt=, etc. Comme ces fichiers n'existent pas au départ, Une autre règle doit les produire. Et c'est la règle =annual_incidence=.qui le fait. En fait, elle s'applique à la production de tout fichier dont le nom à la forme =data/{year}-incidence.txt=. Quand =histogram= réclame le fichier =data/1986-incidence.txt=, =snakemake= trouve que la règle =annual_incidence= est applicable si on remplace ={year}= par =1986=. Il faut donc exécuter le script =scripts/annual_incidence.py= avec le fichier d'entrée =data/1986.csv=. Sauf que... ce fichier n'existe pas non plus. Pas grave, car la règle =extract_one_year= peut le produire! Il suffit d'appeler le script =scripts/extract_one_year.py= avec à l'entrée le fichier =rules.preprocess.output.data=, autrement dit le fichier =data/preprocessed-weekly-incidence.csv=, que fournit la règles =preprocess=.
+
+La boucle qui fait le calcul pour chaque année est donc contenue dans la spécification des entrées de la règle =histogram=, qui en consomme le résultat. Et si vous regardez bien, c'est le principe de fonctionnement de =snakemake= partout: on demande un résultat, =snakemake= cherche la règle qui le produit, et applique cette règle après avoir assuré l'existence de ses entrée par exactement le même mécanisme. =snakemake= traite donc le workflow en commençant par la fin, les résultats, et en remontant vers les données d'entrée.
+
+Il ne reste plus qu'à regarder les trois scripts réferencés dans les règles. Le premier, =scripts/extract_one_year.py=, lit le fichier des données pré-traitées et en extrait la part d'une année. Comme expliqué dans le module 3, la part de l'année N va du 1er août de l'année N-1 jusqu'au 31 juillet de l'année N et inclut ainsi le pic de l'année N qui se situe en janvier ou février. L'année est passée comme paramètre, défini dans la section =params= du =Snakefile= et récupéré en Python comme =snakemake.params=.
+
+Un point important est la vérification de l'année. J'ai utilisé le nom suggestif =year= pour la partie variable des noms de fichier dans la règle =extract_one_year=, mais pour =snakemake=, ce n'est qu'un nom. Si je demande =snakemake data/foo.csv=, la même règle va être appliquée avec =foo= comme valeur de =year= ! Il faut donc que le script vérifie la validité du paramètre.
+#+begin_src python :exports both :tangle incidence_syndrome_grippal_snakemake_parallele/scripts/extract_one_year.py
+# Libraries used by this script:
+import csv   # for reading and writing CSV files
+import os    # for filename manipulation
+
+# Read the CSV file into memory
+with open(snakemake.input[0], "r") as csvfile:
+    data = []
+    csv_reader = csv.reader(csvfile)
+    for row in csv_reader:
+        data.append(row)
+assert data[0] == ['week_starting', 'incidence']
+del data[0]
+
+# Get the year from the parameter object.
+# Check that it is a valid year number, i.e. a four-digit integer.
+year = snakemake.params.year
+assert len(year) == 4
+assert str(int(year)) == year
+year = int(year)
+
+# Check that we have data for that year.
+# The dates are in ISO format, meaning that string
+# comparison is equivalent to date comparison.
+# There is thus no need to convert the date string
+# to date objects first!
+start = "%4d-08-01" % (year-1)
+end = "%4d-08-01" % year
+assert start >= data[0][0]
+assert end <= data[-1][0]
+
+# Write a CSV output file for the requested year.
+with open(snakemake.output[0], "w") as csvfile:
+    csv_writer = csv.writer(csvfile)
+    csv_writer.writerow(["week_starting", "incidence"])
+    number_of_weeks = 0
+    for row in data:
+        if row[0] >= start and row[0] < end:
+            csv_writer.writerow(row)
+            number_of_weeks += 1
+assert number_of_weeks in [51, 52, 53]
+#+end_src
+
+Le script =scripts/annual_incidence.py= fonctionnent d'après les mêmes principes. Il n'a pas besoin d'un paramètre pour indiquer l'année, car il n'en a pas besoin. Il lit un fichier CSV et fait la somme des nombres dans la deuxième colonne, c'est tout.
+#+begin_src python :exports both :tangle incidence_syndrome_grippal_snakemake_parallele/scripts/annual_incidence.py
+# Libraries used by this script:
+import csv   # for reading CSV files
+
+# Read the CSV file into memory
+with open(snakemake.input[0], "r") as csvfile:
+    data = []
+    csv_reader = csv.reader(csvfile)
+    for row in csv_reader:
+        data.append(row)
+assert data[0] == ['week_starting', 'incidence']
+del data[0]
+
+# Compute total incidence
+incidence = sum(int(row[1]) for row in data)
+
+# Write the output file
+with open(snakemake.output[0], "w") as output_file:
+    output_file.write(str(incidence))
+    output_file.write("\n")
+#+end_src
+
+Reste le script R qui fait l'histogramme. Rien à signaler, autre que peut-être la façon de lire tous les fichiers d'entrée avec une seule ligne de code avec la fonction =lapply=. A noter que =snakemake@input= est la liste des tous les fichiers d'entrée, y compris le nom du script lui-même, qu'il faut supprimer bien sûr.
+#+begin_src R :exports both :tangle incidence_syndrome_grippal_snakemake_parallele/scripts/annual-incidence-histogram.R
+# Read in the data. The last input file is the name of the script,
+# so it needs to ne removed from the list before reading all the files.
+files = snakemake@input
+datafiles = files[-length(files)]
+data = as.numeric(lapply(datafiles, function(fn) read.table(fn)[[1]]))
+
+# Plot the histogram
+png(filename=snakemake@output[[1]])
+hist(data,
+     breaks=10,
+     xlab="Annual incidence",
+     ylab="Number of observations",
+     main="")
+dev.off()
+#+end_src
+
+Je pourrais maintenant taper =snakemake= et voir une longue liste de calculs défiler devant mes yeux. Je me retiens encore un peu pour illustrer ce que j'ai expliqué avant. En fait, je vais d'abord demander juste l'incidence annuelle de 2008:
+
+#+begin_src sh :session *snakemake2* :results output :exports both
+snakemake data/2008-incidence.txt
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	annual_incidence
+	1	download
+	1	extract_one_year
+	1	preprocess
+	4
+
+[Fri Aug 30 17:58:48 2019]
+rule download:
+    output: data/weekly-incidence.csv
+    jobid: 3
+
+--2019-08-30 17:58:48--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
+Resolving www.sentiweb.fr (www.sentiweb.fr)... 134.157.220.17
+Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/csv]
+Saving to: 'data/weekly-incidence.csv'
+]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  79.88K  --.-KB/s    in 0.04s   
+
+2019-08-30 17:58:48 (1.84 MB/s) - 'data/weekly-incidence.csv' saved [81800]
+
+[Fri Aug 30 17:58:48 2019]
+Finished job 3.
+) done
+
+[Fri Aug 30 17:58:48 2019]
+rule preprocess:
+    input: data/weekly-incidence.csv, scripts/preprocess.py
+    output: data/preprocessed-weekly-incidence.csv, data/errors-from-preprocessing.txt
+    jobid: 2
+
+[Fri Aug 30 17:58:48 2019]
+Finished job 2.
+) done
+
+[Fri Aug 30 17:58:48 2019]
+rule extract_one_year:
+    input: data/preprocessed-weekly-incidence.csv, scripts/extract_one_year.py
+    output: data/2008.csv
+    jobid: 1
+    wildcards: year=2008
+
+[Fri Aug 30 17:58:48 2019]
+Finished job 1.
+) done
+
+[Fri Aug 30 17:58:48 2019]
+rule annual_incidence:
+    input: data/2008.csv, scripts/annual_incidence.py
+    output: data/2008-incidence.txt
+    jobid: 0
+    wildcards: year=2008
+
+[Fri Aug 30 17:58:48 2019]
+Finished job 0.
+) done
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake_parallele/.snakemake/log/2019-08-30T175848.265842.snakemake.log
+#+end_example
+
+On peut bien suivre l'exécution des tâches: d'abord =download=, puis =preprocess=, =extract_one_year=, et =annual_incidence=. Regardons le contenu de ce petit fichier:
+
+#+begin_src sh :session *snakemake2* :results output :exports both
+cat data/2008-incidence.txt
+#+end_src
+
+#+RESULTS:
+: 2975925
+
+Si maintenant je demande une autre année, seulement les tâches =extract_one_year= et =annual_incidence= devraient s'afficher, car les deux première sont déjà faites. Voyons:
+#+begin_src sh :session *snakemake2* :results output :exports both
+snakemake data/1992-incidence.txt
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	annual_incidence
+	1	extract_one_year
+	2
+
+[Fri Aug 30 18:01:41 2019]
+rule extract_one_year:
+    input: data/preprocessed-weekly-incidence.csv, scripts/extract_one_year.py
+    output: data/1992.csv
+    jobid: 1
+    wildcards: year=1992
+
+[Fri Aug 30 18:01:41 2019]
+Finished job 1.
+) done
+
+[Fri Aug 30 18:01:41 2019]
+rule annual_incidence:
+    input: data/1992.csv, scripts/annual_incidence.py
+    output: data/1992-incidence.txt
+    jobid: 0
+    wildcards: year=1992
+
+[Fri Aug 30 18:01:41 2019]
+Finished job 0.
+) done
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake_parallele/.snakemake/log/2019-08-30T180141.597756.snakemake.log
+#+end_example
+
+Ça marche ! Je peux alors attaquer la totale, mais je vais supprimer l'affichage de tous les détails de l'exécution (option =-q=), pour éviter de voir les années défiler devant mes yeux!
+
+#+begin_src sh :session *snakemake2* :results output :exports both
+snakemake -q
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Job counts:
+	count	jobs
+	1	all
+	33	annual_incidence
+	33	extract_one_year
+	1	histogram
+	68
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+null device 
+          1
+#+end_example
+
+Regardons le résultat final, l'histogramme:
+[[file:incidence_syndrome_grippal_snakemake_parallele/data/annual-incidence-histogram.png]]
+
+Enfin, je vais tenter de produire le dessin du graphe des tâches, m'attendant à une graphique un peu disproportionnée à cause du grand nombre de tâches:
+#+begin_src sh :session *snakemake2* :results output :exports both
+snakemake -q --forceall --dag all | dot -Tpng > graph.png
+#+end_src
+
+#+RESULTS:
+
+
+[[file:incidence_syndrome_grippal_snakemake_parallele/graph.png]]
