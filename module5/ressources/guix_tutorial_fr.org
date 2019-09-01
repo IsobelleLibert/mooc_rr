@@ -572,7 +572,841 @@ guix environment –pure -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebo
 
 Un environnement "pur" ne contient que les paquets définis dans le manifeste, pendant qu'un environnement "standard" contient aussi tout ce qu'on a disponible par défaut par la ligne de commande, donc des utilitaires comme =ls=, =cp=, etc. Avec un environnement pur, on est sûr de n'utiliser rien qui n'est pas listé dans le manifeste, même pas par erreur.
 
-** 2.5 Mettre son environnement à disposition
+** 2.5 Mieux connaître son environnement
+J'ai bien choisi les paquets qui seront dans mon environnement, mais je n'ai pas choisi les versions. Contrairement à des gestionnaires de paquet traditionnels, guix peux gérer plusieurs versions d'un même paquet dans la distribution, et c'est à l'utilisateur de choisir laquelle installer. En pratique, Guix contient seulement la version la plus récente de chaque paquet, pour faciliter la maintenance. Une exception est faite pour quelques paquets particulièrement importants dont il y a ses versions différentes qui restent d'actualité. L'exemple typique est =gcc=, la colletion des compilateurs GNU. Dans mon environnement, il n'y a rien de cette catégorie. J'ai donc installé les seules versions définies dans l'état actuel de Guix.
+
+Il est pourtant important de savoir quelles versions on utilise, et il est fortement conseillé d'inclure cette information dans toute publication scientifique. La commande pour accéder à ces informations est =guix package -I=. Pour l'exécuter correctement dans mon environnement, je rentre d'abord dans une shell comme montré ci-dessus:
+#+begin_src sh :session *guix*:results output :exports both
+guix environment -m ./moocrr_guix_jupyter/manifest.scm
+#+end_src
+
+#+RESULTS:
+
+Puis je lance ma requête:
+#+begin_src sh :session *guix*:results output :exports both
+guix package -p $GUIX_ENVIRONMENT -I
+#+end_src
+
+#+RESULTS:
+| python-nbconvert   | 5.0.0b1 | out | /gnu/store/rxhw14ypd8pw2cp977rd343g2z65smmx-python-nbconvert-5.0.0b1 |
+| python-statsmodels |   0.9.0 | out | /gnu/store/rqzrss511rlzby1yr9a0ykprz19njqfq-python-statsmodels-0.9.0 |
+| python-pandas      |  0.24.2 | out | /gnu/store/5idv0zrqhp0xwf7lfayn4qbj9jllzvml-python-pandas-0.24.2     |
+| python-numpy       |  1.15.4 | out | /gnu/store/mk36fvdahkdr1516jak6sm92bc0cyv6k-python-numpy-1.15.4      |
+| python-matplotlib  |   2.2.3 | out | /gnu/store/cg7ji7bk8jldywq993jkafkisc7979jn-python-matplotlib-2.2.3  |
+| jupyter            |   1.0.0 | out | /gnu/store/7zjyybfcck06nd27gbmfkv780x1ddcg0-jupyter-1.0.0            |
+
+
+La derniére colonne montre les répertoires où se trouvent les paquets. Ceci est utile par exemple pour regarder les modules Python qui en font partie.
+
+Reste à comprendre à quoi sert l'argument =-p $GUIX_ENVIRONMENT=. Normalement, l'option =-p= sert à choisir un "profil", ce qui est un environnement permanent. Dnas un environnement temporaire, c'est =$GUIX_ENVIRONMENT= qui pointe vers l'endroit approprié. Dans l'argument =-p $GUIX_ENVIRONMENT=, guix afficherait autant les paquets dans mon profil permanent (le profil par défaut de mon compte) en plus des paquets qui font partie de mon environnement temporaire.
+
+Ma petite liste ci-dessus contient seulement les paquets que j'ai installés explicitement. Chaque paquet dans cette liste a des dépendances, que Guix a rajouté automatiquement. Leurs versions comptent tout autant, car elle peuvent influencer les résultats de mes calculs. Pour ne citer qu'un exemple, =python-statsmodels= dépend de =python-patsy=, qui fournit le cadre pour définir des modèles statistiques. Une erreur dans =python-patsy= peut donc fausser mes résultats. Il faudrait alors idéalement connaître les versions de toutes les dépendances, directes et indirectes.
+
+A ma connaissance, Guix ne propose pas de commande pour récupérer cette liste. Je vais la récupérer par un petit script en langage Guile, le langage de Guix. Je vous le montre sans explication:
+#+begin_src guile :exports both :tangle moocrr_guix_jupyter/installed-dependencies.scm
+(use-modules (guix profiles)
+             (gnu packages)
+             (srfi srfi-1))
+
+(define manifest
+  (specifications->manifest
+   '("jupyter"
+     "python-matplotlib"
+     "python-numpy"
+     "python-pandas"
+     "python-statsmodels"
+     "python-nbconvert")))
+
+(define (manifest-entry-name-and-version entry)
+  (string-append (manifest-entry-name entry)
+                 "@"
+                 (manifest-entry-version entry)
+                 "\n"))
+
+(define transitive-entries
+  (manifest-transitive-entries manifest))
+
+(define transitive-packages
+  (delete-duplicates
+   (stable-sort
+    (map manifest-entry-name-and-version transitive-entries)
+    string<)))
+
+(format #t "~a packages:\n" (length transitive-packages))
+(format #t "~a"
+ (apply string-append transitive-packages))
+#+end_src
+
+Et le résultat est...
+#+begin_src sh :results output :exports both
+export GUILE_LOAD_PATH=/gnu/store/8jm4wi14phc6i85bkcj6vsxgxr9fbv83-guix-module-union/share/guile/site/2.2/
+guile -s moocrr_guix_jupyter/installed-dependencies.scm
+#+end_src
+
+#+RESULTS:
+: 118 packages:
+: cairo@1.16.0
+: expat@2.2.6
+: fontconfig@2.13.1
+: freetype@2.9.1
+: glib@2.56.3
+: gobject-introspection@1.56.1
+: jupyter@1.0.0
+: libffi@3.2.1
+: libpng@1.6.34
+: libpthread-stubs@0.4
+: libx11@1.6.6
+: libxau@1.0.8
+: libxcb@1.13
+: libxdmcp@1.1.2
+: libxext@1.3.3
+: libxrender@0.9.10
+: pcre@8.42
+: pixman@0.36.0
+: python-asn1crypto@0.24.0
+: python-attrs@19.1.0
+: python-automat@0.7.0
+: python-babel@2.7.0
+: python-backcall@0.1.0
+: python-bleach@1.4.3
+: python-cairocffi@0.9.0
+: python-certifi@2019.3.9
+: python-cffi@1.11.5
+: python-chardet@3.0.4
+: python-constantly@15.1.0
+: python-cryptography@2.7
+: python-cycler@0.10.0
+: python-dateutil@2.7.3
+: python-decorator@4.3.0
+: python-docutils@0.14
+: python-entrypoints@0.3
+: python-et-xmlfile@1.0.1
+: python-html5lib@0.999
+: python-hyperlink@19.0.0
+: python-idna@2.8
+: python-imagesize@1.1.0
+: python-incremental@17.5.0
+: python-ipaddress@1.0.22
+: python-ipykernel@5.1.1
+: python-ipython-genutils@0.1.0
+: python-ipython@7.5.0
+: python-ipywidgets@5.2.2
+: python-iso8601@0.1.12
+: python-jdcal@1.4
+: python-jedi@0.13.3
+: python-jinja2@2.10.1
+: python-jsonschema@3.0.1
+: python-jupyter-client@5.2.4
+: python-jupyter-console@6.0.0
+: python-jupyter-core@4.4.0
+: python-kiwisolver@1.0.1
+: python-markupsafe@1.1.1
+: python-matplotlib@2.2.3
+: python-mistune@0.8.4
+: python-nbconvert@5.0.0b1
+: python-nbformat@4.4.0
+: python-notebook@5.7.4
+: python-numpy@1.15.4
+: python-numpydoc@0.8.0
+: python-olefile@0.46
+: python-openpyxl@2.6.2
+: python-packaging@19.0
+: python-pandas@0.24.2
+: python-parso@0.3.1
+: python-patsy@0.4.1
+: python-pexpect@4.6.0
+: python-pickleshare@0.7.5
+: python-pillow@5.4.1
+: python-prometheus-client@0.5.0
+: python-prompt-toolkit@2.0.7
+: python-ptyprocess@0.5.2
+: python-pycairo@1.17.1
+: python-pycparser@2.19
+: python-pygments@2.4.2
+: python-pygobject@3.28.3
+: python-pyhamcrest@1.9.0
+: python-pyopenssl@19.0.0
+: python-pyparsing@2.3.1
+: python-pyrsistent@0.14.11
+: python-pysocks@1.7.0
+: python-pytz@2019.1
+: python-pyzmq@17.1.2
+: python-qtconsole@4.4.3
+: python-requests@2.22.0
+: python-scipy@1.2.2
+: python-send2trash@1.5.0
+: python-simplegeneric@0.8.1
+: python-six@1.11.0
+: python-snowballstemmer@1.2.1
+: python-sphinx-alabaster-theme@0.7.12
+: python-sphinx@2.1.2
+: python-sphinxcontrib-applehelp@1.0.1
+: python-sphinxcontrib-devhelp@1.0.1
+: python-sphinxcontrib-htmlhelp@1.0.2
+: python-sphinxcontrib-jsmath@1.0.1
+: python-sphinxcontrib-qthelp@1.0.2
+: python-sphinxcontrib-serializinghtml@1.1.3
+: python-statsmodels@0.9.0
+: python-terminado@0.8.1
+: python-tornado@5.1.1
+: python-traitlets@4.3.2
+: python-twisted@19.2.1
+: python-urllib3@1.25.3
+: python-wcwidth@0.1.7
+: python-webencodings@0.5.1
+: python-widgetsnbextension@3.4.2
+: python-xcffib@0.6.0
+: python-xlrd@1.0.0
+: python-zope-interface@4.6.0
+: python@3.7.0
+: util-linux@2.32.1
+: util-macros@1.19.2
+: xorgproto@2018.4
+: zlib@1.2.11
+
+Il faut donc 118 paquets en total pour construire mon environnement! Et ce sont seulement les paquets qui doivent être en mémoire pour utiliser l'environnement. D'autres paquets ont été déployés pour construire ces 118 paquets. Par exemple, pour construire le paquet =python= il a fallu un compilateur C. Une erreur dans ce compilateur peut aussi fausser mes résultats, donc je devrais le rajouter à ma liste de paquets dont il faut noter les versions. Alors... encore un petit script pour faire la liste complète !
+
+#+begin_src guile :exports both :tangle moocrr_guix_jupyter/all-dependencies.scm
+(use-modules (guix profiles)
+             (guix packages)
+             (gnu packages)
+             (srfi srfi-1))
+
+(define manifest
+  (specifications->manifest
+   '("jupyter"
+     "python-matplotlib"
+     "python-numpy"
+     "python-pandas"
+     "python-statsmodels"
+     "python-nbconvert")))
+
+(define (manifest-entry->package entry)
+  (car
+   (find-packages-by-name
+    (manifest-entry-name entry)
+    (manifest-entry-version entry))))
+
+(define (package->name-and-version entry)
+  (string-append (package-name entry)
+                 "@"
+                 (package-version entry)
+                 "\n"))
+
+(define packages-in-manifest
+  (map manifest-entry->package (manifest-entries manifest)))
+
+(define closure-of-manifest
+  (package-closure packages-in-manifest))
+
+(define package-names-in-closure
+  (stable-sort
+   (delete-duplicates (map package->name-and-version closure-of-manifest))
+   string<))
+
+(format #t "~a packages:\n" (length package-names-in-closure))
+(format #t "~a"
+ (apply string-append package-names-in-closure))
+#+end_src
+
+Et le résultat est...
+#+begin_src sh :results output :exports both
+export GUILE_LOAD_PATH=/gnu/store/8jm4wi14phc6i85bkcj6vsxgxr9fbv83-guix-module-union/share/guile/site/2.2/
+guile -s moocrr_guix_jupyter/all-dependencies.scm
+#+end_src
+
+#+RESULTS:
+#+begin_example
+586 packages:
+acl@2.2.52
+aspell@0.60.6.1
+at-spi2-atk@2.32.0
+at-spi2-core@2.32.1
+atk@2.32.0
+atkmm@2.24.2
+attr@2.4.47
+autoconf-wrapper@2.69
+autoconf@2.69
+automake@1.16.1
+avahi@0.7
+bash-minimal@4.4.23
+bash-static@4.4.23
+bash@4.4.23
+bc@1.07.1
+bdb@5.3.28
+bdb@6.2.32
+binutils-bootstrap@0
+binutils-cross-boot0@2.31.1
+binutils@2.31.1
+bison@3.0.5
+boost@1.69.0
+bootstrap-binaries@0
+bzip2@1.0.6
+c-ares@1.14.0
+cairo@1.16.0
+cairomm@1.12.2
+cmake@3.13.1
+coreutils@8.30
+cunit@2.1-3
+cups-filters@1.25.1
+cups-minimal@2.2.11
+cups@2.2.11
+curl@7.63.0
+cyrus-sasl@2.1.27
+dblatex@0.3.10
+dbus@1.12.12
+diffutils-boot0@3.6
+diffutils@3.6
+docbook-xml@4.2
+docbook-xml@4.3
+docbook-xml@4.5
+docbook-xsl@1.79.1
+doxygen@1.8.15
+ed@1.14.2
+elfutils@0.176
+eudev@3.2.8
+expat@2.2.6
+fftw@3.3.8
+file-boot0@5.33
+file@5.33
+findutils-boot0@4.6.0
+findutils@4.6.0
+flex@2.6.1
+flex@2.6.4
+font-dejavu@2.37
+fontconfig@2.13.1
+fontforge@20190317
+freeglut@3.0.0
+freetype@2.9.1
+fribidi@1.0.5
+gawk@4.2.1
+gcc-bootstrap@0
+gcc-cross-boot0-wrapped@5.5.0
+gcc-cross-boot0@5.5.0
+gcc@5.5.0
+gcc@7.4.0
+gd@2.2.5
+gdbm@1.18
+gdk-pixbuf+svg@2.38.1
+gdk-pixbuf@2.38.1
+gettext-boot0@0.19.8.1
+gettext-minimal@0.19.8.1
+gfortran@5.5.0
+ghostscript-with-cups@9.26
+ghostscript@9.26
+giflib@5.1.4
+glib@2.56.3
+glibc-bootstrap@0
+glibc-intermediate@2.28
+glibc-utf8-locales@2.28
+glibc@2.28
+glibmm@2.56.0
+glslang@7.11.3214
+glu@9.0.1
+gmp@6.1.2
+gnutls@3.6.5
+gobject-introspection@1.56.1
+gperf@3.1
+graphite2@1.3.12
+graphviz@2.40.1
+grep@3.1
+groff-minimal@1.22.3
+groff@1.22.3
+gs-fonts@8.11
+gsl@2.5
+gss@1.0.3
+gtk+@2.24.32
+gtk+@3.24.10
+gtk-doc@1.28
+gtkmm@2.24.5
+gts@0.7.6
+guile-bootstrap@2.0
+guile@2.0.14
+guile@2.2.4
+gzip@1.9
+harfbuzz@2.2.0
+help2man@1.47.6
+icu4c@63.1
+ijs@9.26
+imagemagick@6.9.10-58
+indent@2.2.10
+inkscape@0.92.4
+intltool@0.51.0
+iproute2@5.2.0
+iptables@1.6.2
+isl@0.18
+isl@0.19
+itstool@2.0.2
+jansson@2.12
+jbig2dec@0.15
+jemalloc@5.1.0
+json-glib@1.4.4
+jupyter@1.0.0
+kmod@26
+lapack@3.7.1
+lcms@2.9
+ld-wrapper-boot0@0
+ld-wrapper-boot3@0
+ld-wrapper@0
+less@530
+libarchive@3.3.2
+libatomic-ops@7.6.6
+libbsd@0.9.1
+libcap@2.25
+libcroco@0.6.12
+libdaemon@0.14
+libdmx@1.1.4
+libdrm@2.4.99
+libelf@0.8.13
+libepoxy@1.5.3
+libev@4.24
+libffi@3.2.1
+libfontenc@1.1.4
+libgc@7.6.6
+libgcrypt@1.8.3
+libgpg-error@1.32
+libgsf@1.14.46
+libice@1.0.9
+libidn2@2.0.5
+libidn@1.35
+libjpeg-turbo@2.0.1
+libjpeg@9c
+libltdl@2.4.6
+libmnl@1.0.4
+libnftnl@1.1.3
+libpaper@1.1.24
+libpciaccess@0.16
+libpipeline@1.5.1
+libpng@1.6.34
+libpthread-stubs@0.4
+librsvg@2.40.20
+libsigc++@2.10.2
+libsigsegv@2.12
+libsm@1.2.2
+libspectre@0.2.8
+libspiro@0.5.20150702
+libssh2@1.8.0
+libstdc++-boot0@4.9.4
+libstdc++@5.5.0
+libtasn1@4.13
+libtiff@4.0.10
+libtool@2.4.6
+libungif@4.1.4
+libuninameslist@20190305
+libunistring@0.9.10
+libuv@1.24.0
+libva-without-mesa@2.5.0
+libvdpau@1.2
+libwebp@1.0.3
+libx11@1.6.6
+libxau@1.0.8
+libxaw@1.0.13
+libxcb@1.13
+libxcomposite@0.4.5
+libxcursor@1.2.0
+libxdamage@1.1.4
+libxdmcp@1.1.2
+libxext@1.3.3
+libxfixes@5.0.3
+libxfont@2.0.3
+libxft@2.3.2
+libxi@1.7.9
+libxinerama@1.1.4
+libxkbcommon@0.8.4
+libxkbfile@1.1.0
+libxml2@2.9.8
+libxmu@1.1.2
+libxpm@3.5.12
+libxrandr@1.5.1
+libxrender@0.9.10
+libxres@1.2.0
+libxshmfence@1.3
+libxslt@1.1.32
+libxt@1.1.5
+libxtst@1.2.3
+libxv@1.0.11
+libxvmc@1.0.11
+libxxf86vm@1.1.4
+linux-libre-headers@4.14.67
+linux-pam@1.2.1
+llvm@8.0.0
+lzip@1.20
+lzo@2.10
+m4@1.4.18
+make-boot0@4.2.1
+make@4.2.1
+makedepend@1.0.6
+man-db@2.8.5
+mesa@19.1.4
+meson-for-build@0.50.0
+mit-krb5@1.16.2
+mpc@1.1.0
+mpfr@4.0.1
+nasm@2.13.03
+ncurses@6.1
+net-base@5.3
+net-tools@1.60-0.479bb4a
+nettle@3.4.1
+nghttp2@1.35.1
+ninja@1.9.0
+openblas@0.3.5
+openjpeg@2.3.0
+openldap@2.4.46
+openssl@1.0.2p
+pango@1.42.4
+pangomm@2.40.1
+patch@2.7.6
+pciutils@3.6.2
+pcre@8.42
+perl-boot0@5.28.0
+perl-xml-parser@2.44
+perl@5.28.0
+pixman@0.36.0
+pkg-config@0.29.2
+poppler@0.72.0
+popt@1.16
+potrace@1.15
+psutils@17
+python-asn1crypto@0.24.0
+python-atomicwrites@1.1.5
+python-attrs-bootstrap@17.4.0
+python-attrs@19.1.0
+python-automat@0.7.0
+python-babel@2.7.0
+python-backcall@0.1.0
+python-beautifulsoup4@4.7.1
+python-bleach@1.4.3
+python-cairocffi@0.9.0
+python-certifi@2019.3.9
+python-cffi@1.11.5
+python-chardet@3.0.4
+python-constantly@15.1.0
+python-coverage@4.4.1
+python-cryptography-vectors@2.7
+python-cryptography@2.7
+python-cycler@0.10.0
+python-cython@0.29.13
+python-dateutil@2.7.3
+python-decorator@4.3.0
+python-docopt@0.6.2
+python-docutils@0.14
+python-entrypoints@0.3
+python-et-xmlfile@1.0.1
+python-flake8@3.5.0
+python-flaky@3.5.3
+python-freezegun@0.3.12
+python-graphviz@0.8.4
+python-html5lib@0.999
+python-html5lib@1.0.1
+python-hyperlink@19.0.0
+python-hypothesis@3.70.3
+python-idna@2.8
+python-imagesize@1.1.0
+python-incremental@17.5.0
+python-ipaddress@1.0.22
+python-ipykernel@5.1.1
+python-ipython-genutils@0.1.0
+python-ipython@7.5.0
+python-ipywidgets@5.2.2
+python-iso8601@0.1.12
+python-jdcal@1.4
+python-jedi@0.13.3
+python-jinja2@2.10.1
+python-jsonschema@3.0.1
+python-jupyter-client@5.2.4
+python-jupyter-console@6.0.0
+python-jupyter-core@4.4.0
+python-kiwisolver@1.0.1
+python-linecache2@1.0.0
+python-lxml@4.2.5
+python-m2r@0.2.1
+python-mako@1.1.0
+python-markupsafe@1.1.1
+python-matplotlib@2.2.3
+python-mccabe@0.6.1
+python-minimal-wrapper@3.7.0
+python-minimal@3.7.0
+python-mistune@0.8.4
+python-mock@2.0.0
+python-more-itertools@4.3.0
+python-nbconvert@5.0.0b1
+python-nbformat@4.4.0
+python-nose@1.3.7
+python-notebook@5.7.4
+python-numpy@1.15.4
+python-numpydoc@0.8.0
+python-olefile@0.46
+python-openpyxl@2.6.2
+python-packaging@19.0
+python-pandas@0.24.2
+python-parso@0.3.1
+python-patsy@0.4.1
+python-pbr-minimal@3.0.1
+python-pexpect@4.6.0
+python-pickleshare@0.7.5
+python-pillow@5.4.1
+python-pluggy@0.7.1
+python-pretend@1.0.9
+python-prometheus-client@0.5.0
+python-prompt-toolkit@2.0.7
+python-ptyprocess@0.5.2
+python-py@1.5.4
+python-pycairo@1.17.1
+python-pycodestyle@2.4.0
+python-pycparser@2.19
+python-pyflakes@2.0.0
+python-pygments@2.4.2
+python-pygobject@3.28.3
+python-pyhamcrest@1.9.0
+python-pympler@0.5
+python-pyopenssl@19.0.0
+python-pyparsing@2.3.1
+python-pyrsistent@0.14.11
+python-pysocks@1.7.0
+python-pytest-bootstrap@3.8.0
+python-pytest-cov@2.6.1
+python-pytest-mock@1.10.1
+python-pytest-runner@4.2
+python-pytest@3.8.0
+python-pytz@2019.1
+python-pyzmq@17.1.2
+python-qtconsole@4.4.3
+python-requests@2.22.0
+python-scipy@1.2.2
+python-send2trash@1.5.0
+python-setuptools-scm@3.1.0
+python-simplegeneric@0.8.1
+python-six-bootstrap@1.11.0
+python-six@1.11.0
+python-snowballstemmer@1.2.1
+python-soupsieve@1.9.2
+python-sphinx-alabaster-theme@0.7.12
+python-sphinx@2.1.2
+python-sphinxcontrib-applehelp@1.0.1
+python-sphinxcontrib-devhelp@1.0.1
+python-sphinxcontrib-htmlhelp@1.0.2
+python-sphinxcontrib-jsmath@1.0.1
+python-sphinxcontrib-qthelp@1.0.2
+python-sphinxcontrib-serializinghtml@1.1.3
+python-statsmodels@0.9.0
+python-terminado@0.8.1
+python-testpath@0.2
+python-tornado@5.1.1
+python-traceback2@1.4.0
+python-traitlets@4.3.2
+python-twisted@19.2.1
+python-unittest2@1.1.0
+python-urllib3@1.25.3
+python-wcwidth@0.1.7
+python-webencodings@0.5.1
+python-widgetsnbextension@3.4.2
+python-wrapper@3.7.0
+python-xcffib@0.6.0
+python-xlrd@1.0.0
+python-zope-event@4.1.0
+python-zope-interface@4.6.0
+python2-atomicwrites@1.1.5
+python2-attrs-bootstrap@17.4.0
+python2-configparser@3.5.0
+python2-coverage@4.4.1
+python2-enum34@1.1.6
+python2-flake8@3.5.0
+python2-fonttools@3.28.0
+python2-funcsigs-bootstrap@1.0.2
+python2-funcsigs@1.0.2
+python2-functools32@3.2.3-2
+python2-hypothesis@3.70.3
+python2-libxml2@2.9.8
+python2-linecache2@1.0.0
+python2-mccabe@0.6.1
+python2-mock@2.0.0
+python2-more-itertools@4.3.0
+python2-nose@1.3.7
+python2-pathlib2-bootstrap@2.3.2
+python2-pathlib2@2.3.2
+python2-pbr-minimal@3.0.1
+python2-pluggy@0.7.1
+python2-py@1.5.4
+python2-pycodestyle@2.4.0
+python2-pyflakes@2.0.0
+python2-pytest-bootstrap@3.8.0
+python2-pytest-runner@4.2
+python2-pytest@3.8.0
+python2-scandir@1.9.0
+python2-setuptools-scm@3.1.0
+python2-six-bootstrap@1.11.0
+python2-six@1.11.0
+python2-traceback2@1.4.0
+python2-unittest2@1.1.0
+python2@2.7.15
+python@3.7.0
+qpdf@8.4.0
+readline@7.0.5
+rhash@1.3.6
+ruby@2.5.3
+sed@4.5
+shared-mime-info@1.9
+shishi@1.0.2
+source-highlight@3.1.8
+sqlite@3.24.0
+swig@3.0.12
+tar@1.30
+tcl@8.6.8
+tcsh@6.20.00
+teckit@2.5.9
+texinfo@6.5
+texlive-amsfonts@49435
+texlive-bin@20180414
+texlive-cm@49435
+texlive-dehyph-exptl@49435
+texlive-docstrip@49435
+texlive-dvips@49435
+texlive-etex@49435
+texlive-fontname@49435
+texlive-fonts-ec@49435
+texlive-fonts-knuth-lib@49435
+texlive-fonts-latex@49435
+texlive-fonts-rsfs@49435
+texlive-fonts-stmaryrd@49435
+texlive-generic-babel-english@49435
+texlive-generic-ifxetex@49435
+texlive-graphics-cfg@49435
+texlive-graphics-def@49435
+texlive-hyph-utf8@49435
+texlive-hyphen-afrikaans@49435
+texlive-hyphen-ancientgreek@49435
+texlive-hyphen-armenian@49435
+texlive-hyphen-base@49435
+texlive-hyphen-basque@49435
+texlive-hyphen-belarusian@49435
+texlive-hyphen-bulgarian@49435
+texlive-hyphen-catalan@49435
+texlive-hyphen-chinese@49435
+texlive-hyphen-churchslavonic@49435
+texlive-hyphen-coptic@49435
+texlive-hyphen-croatian@49435
+texlive-hyphen-czech@49435
+texlive-hyphen-danish@49435
+texlive-hyphen-dutch@49435
+texlive-hyphen-english@49435
+texlive-hyphen-esperanto@49435
+texlive-hyphen-estonian@49435
+texlive-hyphen-ethiopic@49435
+texlive-hyphen-finnish@49435
+texlive-hyphen-french@49435
+texlive-hyphen-friulan@49435
+texlive-hyphen-galician@49435
+texlive-hyphen-georgian@49435
+texlive-hyphen-german@49435
+texlive-hyphen-greek@49435
+texlive-hyphen-hungarian@49435
+texlive-hyphen-icelandic@49435
+texlive-hyphen-indic@49435
+texlive-hyphen-indonesian@49435
+texlive-hyphen-interlingua@49435
+texlive-hyphen-irish@49435
+texlive-hyphen-italian@49435
+texlive-hyphen-kurmanji@49435
+texlive-hyphen-latin@49435
+texlive-hyphen-latvian@49435
+texlive-hyphen-lithuanian@49435
+texlive-hyphen-mongolian@49435
+texlive-hyphen-norwegian@49435
+texlive-hyphen-occitan@49435
+texlive-hyphen-piedmontese@49435
+texlive-hyphen-polish@49435
+texlive-hyphen-portuguese@49435
+texlive-hyphen-romanian@49435
+texlive-hyphen-romansh@49435
+texlive-hyphen-russian@49435
+texlive-hyphen-sanskrit@49435
+texlive-hyphen-serbian@49435
+texlive-hyphen-slovak@49435
+texlive-hyphen-slovenian@49435
+texlive-hyphen-spanish@49435
+texlive-hyphen-swedish@49435
+texlive-hyphen-thai@49435
+texlive-hyphen-turkish@49435
+texlive-hyphen-turkmen@49435
+texlive-hyphen-ukrainian@49435
+texlive-hyphen-uppersorbian@49435
+texlive-hyphen-welsh@49435
+texlive-kpathsea@49435
+texlive-latex-amscls@49435
+texlive-latex-amsmath@49435
+texlive-latex-anysize@49435
+texlive-latex-appendix@49435
+texlive-latex-babel@49435
+texlive-latex-base@49435
+texlive-latex-changebar@49435
+texlive-latex-colortbl@49435
+texlive-latex-cyrillic@49435
+texlive-latex-eepic@49435
+texlive-latex-eso-pic@49435
+texlive-latex-fancybox@49435
+texlive-latex-fancyhdr@49435
+texlive-latex-fancyvrb@49435
+texlive-latex-filecontents@49435
+texlive-latex-float@49435
+texlive-latex-footmisc@49435
+texlive-latex-graphics@49435
+texlive-latex-hyperref@6.84a2
+texlive-latex-jknapltx@49435
+texlive-latex-listings@49435
+texlive-latex-multirow@49435
+texlive-latex-oberdiek@49435
+texlive-latex-overpic@49435
+texlive-latex-pdfpages@49435
+texlive-latex-psnfss@49435
+texlive-latex-subfigure@49435
+texlive-latex-titlesec@49435
+texlive-latex-tools@49435
+texlive-latex-url@49435
+texlive-latex-wasysym@49435
+texlive-latexconfig@49435
+texlive-metafont-base@49435
+texlive-mkpattern@49435
+texlive-ruhyphen@49435
+texlive-tetex@49435
+texlive-tex-fontinst-base@49435
+texlive-tex-ini-files@49435
+texlive-tex-plain@49435
+texlive-ukrhyph@49435
+texlive-unicode-data@49435
+texlive-union@49435
+tk@8.6.8
+tzdata@2018g
+unzip@6.0
+util-linux@2.32.1
+util-macros@1.19.2
+vala@0.40.9
+vulkan-headers@1.1.114
+vulkan-loader@1.1.114
+wayland-protocols@1.17
+wayland@1.17.0
+which@2.21
+xcb-proto@1.13
+xcb-util-image@0.4.0
+xcb-util-keysyms@0.4.0
+xcb-util-renderutil@0.3.9
+xcb-util-wm@0.4.1
+xcb-util@0.4.0
+xinput@1.6.2
+xkbcomp-intermediate@1.4.2
+xkbcomp@1.4.2
+xkeyboard-config@2.27
+xmlto@0.0.28
+xorg-server@1.20.5
+xorgproto@2018.4
+xtrans@1.3.5
+xz@5.2.4
+zeromq@4.0.7
+zip@3.0
+zlib@1.2.11
+zziplib@0.13.69
+#+end_example
+
+** 2.6 Mettre son environnement à disposition
 L'environnement étant défini par le manifeste, il suffit de mettre ce petit fichier à disposition de ses collègues pour leur permettre de travailler dans un environnement identique. Sauf que... les versions qu'ils auront ne sont peut-être pas les mêmes ! Peu après la publication d'une nouvelle version de Jupyter, Guix adoptera cette nouvelle version, et l'environnement créé par mon manifest ne sera plus le même. Ceci est d'ailleurs voulu: souvent on veut tout juste avoir la dernière version de tout. Mais pour la reproductibilité, on veut tout à l'identique.
 
 L'information qu'il faut rajouter, c'est la version de Guix à laquelle le manifeste fait référence. On l'obtient avec
@@ -618,7 +1452,7 @@ cat moocrr_guix_jupyter/guix-channels.scm
 
 Les deux fichiers dans mon répértoire =moocrr_guix_jupyter= permettent donc de reconstruire mon environnement à l'identique, à tout moment, tant qu'il y aura des ordinateurs avec Guix.
 
-** 2.6 Reconstruire un environnement
+** 2.7 Reconstruire un environnement
 Maintenant je me place du côté du consommateur. J'ai reçu un notebook Jupyter accompagné d'un répértoire =moocrr_guix_jupyter= contenant un fichier =guix-channels.scm= et un fichier =manifest.scm=. Au travail!
 
 D'abord je demande à Guix de se restorer les définitions des paquets:
@@ -646,7 +1480,7 @@ guix package -p ~/.config/guix/current --roll-back
 : switched from generation 25 to 24
 
 J'espère que cette dernière commande vous a fait sursauter. Pourquoi =guix package=? Et pourquoi =-p ~/.config/guix/current=? En fait, Guix gère les générations de la distribution exactement comme les générations des "profils", qui sont des environnements installés de façon plus permanente. Mais dans ce tutoriel, nous ne couvrons pas les profils, ni plein d'autres aspects de Guix. À vous d'explorer!
-** 2.7 Mettre son environnement à disposition sous forme d'une image Docker
+** 2.8 Mettre son environnement à disposition sous forme d'une image Docker
 Il reste un problème que vous pouvez rencontrer: vos collègues n'utilisent pas Guix, peut-être même pas Linux. Les deux petits fichiers dans =moocrr_guix_jupyter= ne vont pas leur être utiles. En attendant qu'ils se mettent à installer Guix, vous pouvez leur fournir votre environnement sous forme d'une image Docker. Ce n'est pas compliqué du tout:
 #+begin_src sh :results output :exports both
 guix pack -f docker -m ./moocrr_guix_jupyter/manifest.scm
