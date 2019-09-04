@@ -99,7 +99,13 @@ tard si besoin.
 *** TODO S'assurer que docker est bien installé
 
 #+BEGIN_CENTER
-*FIXME*: Faire une partie [[https://docs.docker.com/docker-for-windows/][Docker pour Windows]]  et Docker pour MacOSX
+*FIXME*: Faire une partie [[https://docs.docker.com/docker-for-windows/][Docker pour Windows]]  et [[https://docs.docker.com/docker-for-mac/install/][Docker pour MacOSX]].
+
+J'ai essayé MacOSX sur la machine de jean-Marc. Mis à part le fait
+qu'il faut s'inscrire sur docker.com pour installer (ridicule!), la
+manip marche très bien. Il faut regarder si le partage d'applications
+X marche bien mais pour ça, voir
+https://github.com/JAremko/docker-emacs (nickel sous linux).
 #+END_CENTER
 
 Je suis sur une machine linux (une debian) et j'ai donc installé
@@ -1120,7 +1126,6 @@ Successfully built 7c2f5181b1cd
 Successfully tagged alegrand/moocrr_debian_stable_jupyter:1.0
 #+end_example
 
-
 #+begin_src shell :results output :exports both
 docker images
 #+end_src
@@ -1138,6 +1143,24 @@ identique à celui que j'ai construit manuellement (ils n'ont pas le
 même Image ID), a priori pas parce que le contenu serait différent (il
 y a peu de chance en si peu de temps), mais a minima parce que j'ai
 indiqué mon email en tant que mainteneur dans le dockerfile...
+
+Vérifions que j'arrive bien à l'utiliser.
+#+begin_src shell :results output :exports both
+docker run -p 8888:8888 alegrand/moocrr_debian_stable_jupyter:1.0 jupyter-notebook
+#+end_src
+
+Ça ne marche pas. Pour des raisons de sécurités, =jupyter= se plaindra
+d'être lancé par root, d'accepters de connexions de n'importe où,
+etc. Les développeurs de l'image =jupyter/scipy-notebook= ont passé du
+temps à la configurer particulièrement proprement. On peut regarder
+dans leur Dockerfile comment ils ont procédé
+https://github.com/jupyter/docker-stacks/tree/master/base-notebook et
+on s'apperçoit que c'est bien plus long que ce que j'ai fait. Mais une
+façon de procéder est la suivante:
+#+begin_src shell :results output :exports both
+docker run -p 8888:8888 alegrand38/moocrr_debian_stable_jupyter:1.0 jupyter-notebook --ip=0.0.0.0 --allow-root
+#+end_src
+
 ** 2.5 Mettre son image à disposition
 Reste à publier mon image. Je me suis créé un compte sur dockerhub
 afin de pouvoir y publier des images (vous pouvez aussi vous
