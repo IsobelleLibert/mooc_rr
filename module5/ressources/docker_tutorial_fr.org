@@ -460,6 +460,31 @@ disponible comme d'habitude dans le répertoire =my_work/=.
 
 Mettons cela en pratique avec un environnement un peu plus fourni
 qu'une debian minimaliste.
+*** TODO Problème d'accès au réseau ?
+Il arrive que les programme dans le conteneur n'arrivent pas à accéder
+au réseau, ce qui est génant si on veut y installer des choses. Le
+problème peut venir de différents endroits: routage, DNS,... Sur une
+vieille ubuntu d'un collègue, par exemple, il y avait un proxy DNS
+local dont docker ne savait pas faire grand chose. Par défaut, docker
+utiliser alors ceux de google mais pas de chance, le réseau sur lequel
+nous étions filtrait ces requêtes et et il a fallu lui indiquer notre
+serveur de nom "local". À toute fin utile, voilà comment nous avons
+fait (la commande =ping= essaye juste d'envoyer un paquet à google.com,
+la partie importante, c'est le ~--dns=...~):
+
+#+begin_src shell :results output :exports both
+# docker run --dns=152.77.1.22 --dns=8.8.8.8 debian:stable cat /etc/resolv.conf
+docker run --dns=152.77.1.22 --dns=8.8.8.8 debian:stable ping -c 1 www.google.com
+#+end_src
+
+#+RESULTS:
+: PING www.google.com (216.58.198.68) 56(84) bytes of data.
+: 64 bytes from mrs09s08-in-f4.1e100.net (216.58.198.68): icmp_seq=1 ttl=47 time=9.04 ms
+: 
+: --- www.google.com ping statistics ---
+: 1 packets transmitted, 1 received, 0% packet loss, time 0ms
+: rtt min/avg/max/mdev = 9.038/9.038/9.038/0.000 ms
+
 ** 1.2(A) Utiliser docker pour travailler au jour le jour: Jupyter
 Tout un tas d'organisation mettent donc à disposition des images
 docker à jour permettant de travailler au mieux. C'est le cas de
@@ -637,6 +662,21 @@ exactement, comment elles ont été construites et comment en faire une
 variation.
 ** TODO 1.2(B) Utiliser docker pour travailler au jour le jour: Rstudio
 https://hub.docker.com/r/rocker/rstudio/
+
+En cas de problème d'installation de paquets R, ça peut être lié au
+fait que le conteneur n'arrive pas à accéder au réseau et je vous
+invite à vous reporter à la section "Problème d'accès au réseau ?" et
+à chercher de l'aide sur le forum. Mais une fois ces difficultés
+dépassées, il vous faudra faire un =docker commit= pour ne pas avoir à
+chaque fois à réinstaller tous ces paquets.
+
+On peut alors lancer rstudio très confortablement avec cet alias:
+#+begin_src shell :results output :exports both
+alias rstudio_docker='docker run -e PASSWORD=toto -p 8787:8787 --volume=`pwd`:/home/rstudio/ rstudio'
+#+end_src
+
+Il suffit alors d'ouvrir http://localhost:8787 dans son navigateur
+préféré.
 
 ** TODO 1.2(C) Utiliser docker pour travailler au jour le jour: Emacs
 https://github.com/JAremko/docker-emacs
