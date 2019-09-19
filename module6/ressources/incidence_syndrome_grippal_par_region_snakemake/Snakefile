@@ -1,0 +1,58 @@
+rule all:
+     input:
+        "data/peak-year-all-regions.txt"
+
+rule download:
+     output:
+        "data/weekly-incidence-all-regions.csv"
+     shell:
+        "wget -O {output} http://www.sentiweb.fr/datasets/incidence-RDD-3.csv"
+
+checkpoint split_by_region:
+     input:
+        "data/weekly-incidence-all-regions.csv"
+     output:
+        directory("data/by-region")
+     script:
+        "scripts/split-by-region.py"
+
+rule preprocess:
+     input:
+        "data/by-region/weekly-incidence-{region}.csv"
+     output:
+        data="data/preprocessed-weekly-incidence-{region}.csv",
+        errorlog="data/errors-from-preprocessing-{region}.txt"
+     script:
+        "scripts/preprocess.py"
+
+rule plot:
+     input:
+        "data/preprocessed-weekly-incidence-{region}.csv"
+     output:
+        "data/weekly-incidence-plot-{region}.png",
+        "data/weekly-incidence-plot-last-years-{region}.png"
+     script:
+        "scripts/incidence-plots.R"
+
+rule annual_incidence:
+     input:
+        "data/preprocessed-weekly-incidence-{region}.csv"
+     output:
+        "data/annual-incidence-{region}.csv"
+     script:
+        "scripts/annual-incidence.R"
+
+def annual_incidence_files(wildcards):
+    directory = checkpoints.split_by_region.get().output[0]
+    pattern = os.path.join(directory, "weekly-incidence-{region}.csv")
+    print("Pattern:", pattern)
+    return expand("data/annual-incidence-{region}.csv",
+                  region=glob_wildcards(pattern).region)
+
+rule peak_years:
+     input:
+        annual_incidence_files
+     output:
+        "data/peak-year-all-regions.txt"
+     script:
+        "scripts/peak-years.py"
