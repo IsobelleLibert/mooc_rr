@@ -1506,3 +1506,39 @@ puis Jupyter est executé avec
 #+begin_src sh :results output :exports both
 docker run -it -p 8888:8888 profile:2vv9d6l2m3aj1h216fxisq3agmavy3i5 jupyter notebook --ip=127.0.0.1 --allow-root
 #+end_src
+
+** 2.9 Modifier son environnement
+Je vous ai montré comment vous pouvez installer des logiciels avec Guix avec toutes leurs dépendances, et comment archiver et reconstruire un tel environnement. Ceci couvre une grande partie des opérations nécessaires pour pratiquer la recherche reproductible. Mais comment faire si vous voulez (ou devez) modifier un environnement donné, que ce soit le vôtre ou un environnement récupéré sous forme d'un manifeste ?
+
+Commençons avec la situation la plus simple: vous voulez mettre à jour tous les logiciels à la dernière version. Pour cela il suffit un simple
+#+begin_src sh :results output :exports both
+guix pull
+#+end_src
+et la prochaine fois que vous faites
+#+begin_src sh session *jupyter-env* :results output :exports both
+guix environment -m ./moocrr_guix_jupyter/manifest.scm
+#+end_src
+vous utilisez les versions indiquées dans la toute dernière version de Guix. Mais que faire s'il vous faut une combinaison de versions qui ne se trouve nulle part dans l'historique de Guix? Par exemple, pour chercher la cause d'un bug introduit récement par un changement dans votre environnement, vous voulez combiner la dernière version de =python-statsmodels= avec une version plus ancienne de =python-pandas=.
+
+Avant de passer à l'acte, il faut bien comprendre que ce genre de modification est risqué. Rien ne promet que la combinaison de versions que vous envisagez est installable, et encore moins qu'elle fonctionne. Vous pouvez rencontrer un grand nombre de problèmes sur votre chemin, et c'est à vous de trouver une solution. Dans la vaste majorité des "petites" modifications, ou on remplace une version rélativement stable d'un logiciel avec une version proche dans l'historique, la procédure que je vais montrer fonctionne sans difficulté, mais on n'est jamais à l'abri de mauvaises surprises!
+
+Guix propose plusieurs façons d'introduire des modifications. Je vais vous montrer la façon la plus générale, et aussi celle qui vous apprend le plus sur le fonctionnement interne de Guix. En appliquant cette méthode, vous pouvez aussi contribuer vos modifications aux versions grand public de Guix! Mais sachez qu'il y a quelques raccourcis, notamment pour les développeurs qui travaillent sur leur propre code en l'intégrant régulièrement dans Guix.
+
+Pour démarrer, je vais télécharger le code source de Guix dans un nouveau répertoire:
+#+begin_src sh :results output :exports both
+cd $HOME
+mkdir guix
+cd guix
+git clone https://git.savannah.gnu.org/git/guix.git
+#+end_src
+
+Pour travailler avec ce code source, il me faut un environnement qui contient toutes les dépendances de Guix, et aussi tous les outils nécessaires pour travailler avec Guix (compilateurs etc.). On les trouve... dans Guix! Tout ce qu'il faut c'est
+#+begin_src sh :results output :exports both
+guix environment guix
+#+end_src
+
+Nous avons déjà vu =guix environment=, mais ici l'environnement n'est pas défini par un manifeste. A sa place, il y a juste le nom =guix=. Ceci veut dire l'environnement pour le développement de Guix, donc l'environnement défini par les dépendances et les outils de construction du paquet =guix=. Cette commande donne un avant-goût de la difficulté principale de ce qui va suivre: maintenir une vue claire de que le nom =guix= veut dire à chaque instant. A gauche, =guix= est un outil exécutable sur votre ordinateur. A droite, =guix= est le nom d'un paquet. Le contenu du paquet est bien sûr l'outil, mais en générale, le paquet peut définir une autre version que celle que vous avez installée, ce qui est source de confusion.
+
+
+https://guix.gnu.org/manual/en/guix.html#Building-from-Git
+
