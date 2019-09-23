@@ -639,7 +639,6 @@ A ma connaissance, Guix ne propose pas de commande pour récupérer cette liste.
 
 Et le résultat est...
 #+begin_src sh :results output :exports both
-export GUILE_LOAD_PATH=/gnu/store/8jm4wi14phc6i85bkcj6vsxgxr9fbv83-guix-module-union/share/guile/site/2.2/
 guile -s moocrr_guix_jupyter/installed-dependencies.scm
 #+end_src
 
@@ -811,7 +810,6 @@ Il faut donc 118 paquets en total pour construire mon environnement! Et ce sont 
 
 Et le résultat est...
 #+begin_src sh :results output :exports both
-export GUILE_LOAD_PATH=/gnu/store/8jm4wi14phc6i85bkcj6vsxgxr9fbv83-guix-module-union/share/guile/site/2.2/
 guile -s moocrr_guix_jupyter/all-dependencies.scm
 #+end_src
 
@@ -1473,13 +1471,12 @@ Attention, la première fois que je lance =guix environment= après =guix pull=,
 
 Une fois que j'ai terminé mon exploration, je peux revenir à la version de Guix que j'avais avant:
 #+begin_src sh :results output :exports both
-guix package -p ~/.config/guix/current --roll-back
+guix pull --roll-back
 #+end_src
 
 #+RESULTS:
 : switched from generation 25 to 24
 
-J'espère que cette dernière commande vous a fait sursauter. Pourquoi =guix package=? Et pourquoi =-p ~/.config/guix/current=? En fait, Guix gère les générations de la distribution exactement comme les générations des "profils", qui sont des environnements installés de façon plus permanente. Mais dans ce tutoriel, nous ne couvrons pas les profils, ni plein d'autres aspects de Guix. À vous d'explorer!
 ** 2.8 Mettre son environnement à disposition sous forme d'une image Docker
 Il reste un problème que vous pouvez rencontrer: vos collègues n'utilisent pas Guix, peut-être même pas Linux. Les deux petits fichiers dans =moocrr_guix_jupyter= ne vont pas leur être utiles. En attendant qu'ils se mettent à installer Guix, vous pouvez leur fournir votre environnement sous forme d'une image Docker. Ce n'est pas compliqué du tout:
 #+begin_src sh :results output :exports both
