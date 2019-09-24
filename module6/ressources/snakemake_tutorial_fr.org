@@ -5,6 +5,28 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
+* Préambule 
+Avant de lancer =org-babel-tangle=, il faut créer tous les répertoires qui vont accueillir les fichiers:
+#+begin_src sh :results output :exports both
+for directory in incidence_syndrome_grippal incidence_syndrome_grippal_par_region incidence_syndrome_grippal_par_region_v2
+do
+   rm -rf $directory
+   mkdir $directory
+   mkdir $directory/data
+   mkdir $directory/scripts
+done
+#+end_src
+
+#+RESULTS:
+
+Puis:
+#+begin_src emacs-lisp
+(org-babel-tangle)
+#+end_src
+
+#+RESULTS:
+| incidence_syndrome_grippal/scripts/annual-incidence-histogram.R | incidence_syndrome_grippal/scripts/annual-incidence.R | incidence_syndrome_grippal/scripts/incidence-plots.R | incidence_syndrome_grippal_par_region/scripts/peak-years.py | incidence_syndrome_grippal_par_region/scripts/split-by-region.py | incidence_syndrome_grippal/scripts/preprocess.py | incidence_syndrome_grippal_par_region/Snakefile | incidence_syndrome_grippal/Snakefile |
+
 * Installer snakemake
 ** Linux
 par les distributions
@@ -24,24 +46,12 @@ Il y a beaucoup de liberté dans la décomposition d'un calcul en tâches d'un w
 
 Pour faire les calculs, je vais recycler le code du module 3, sans les commenter de nouveau ici.
 ** Préparation
-Un workflow finit par utiliser beaucoup de fichiers, donc je commence par la création d'un répertoire qui contient tout:
+Un workflow finit par utiliser beaucoup de fichiers, il est donc prudent de les regrouper dans un répertoire, avec des sous-répertoires pour les scripts et les données:
 #+begin_src sh :session *snakemake* :results output :exports both
-mkdir incidence_syndrome_grippal_snakemake
-cd incidence_syndrome_grippal_snakemake
-#+end_src
-
-#+RESULTS:
-
-En plus, je crée un répertoire pour les fichiers de données,
-#+begin_src sh :session *snakemake* :results output :exports both
-mkdir data
-#+end_src
-
-#+RESULTS:
-
-et un autre pour les scripts en Python ou R:
-#+begin_src sh :session *snakemake* :results output :exports both
-mkdir scripts
+# déjà fait: mkdir incidence_syndrome_grippal
+cd incidence_syndrome_grippal
+# déjà fait: mkdir data
+# déjà fait: mkdir scripts
 #+end_src
 
 #+RESULTS:
@@ -53,15 +63,15 @@ wget -O data/weekly-incidence.csv http://www.sentiweb.fr/datasets/incidence-PAY-
 #+end_src
 
 #+RESULTS:
-: --2019-08-28 16:20:33--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
+: --2019-09-24 15:00:23--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
 : Resolving www.sentiweb.fr (www.sentiweb.fr)... 134.157.220.17
 : Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
 : HTTP request sent, awaiting response... 200 OK
 : Length: unspecified [text/csv]
 : Saving to: 'data/weekly-incidence.csv'
-: ]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  79.88K  --.-KB/s    in 0.05s   
+: ]       0  --.-KB/s               data/weekly-incidence.c     [ <=>                         ]  80.00K  --.-KB/s    in 0.06s   
 : 
-: 2019-08-28 16:20:34 (1.48 MB/s) - 'data/weekly-incidence.csv' saved [81800]
+: 2019-09-24 15:00:24 (1.38 MB/s) - 'data/weekly-incidence.csv' saved [81916]
 
 fait ce qu'il faut, et dépose les données dans le fichier =data/weekly-incidence.csv=. Je le supprime parce que je veux faire le téléchargement dans mon workflow!
 #+begin_src sh :session *snakemake* ::results output :exports both
@@ -71,7 +81,7 @@ rm data/weekly-incidence.csv
 #+RESULTS:
 
 Je vais commencer la rédaction du =Snakefile=, le fichier qui déinit mon workflow:
-#+begin_src :exports both :tangle incidence_syndrome_grippal_snakemake/Snakefile
+#+begin_src :exports both :tangle incidence_syndrome_grippal/Snakefile
 rule download:
      output:
         "data/weekly-incidence.csv"
@@ -86,40 +96,35 @@ snakemake download
 #+end_src
 
 #+RESULTS:
-| Building     | DAG                       | of                                                                                                                                                                             | jobs...             |                |                             |            |         |          |    |       |
-| Using        | shell:                    | /bin/bash                                                                                                                                                                      |                     |                |                             |            |         |          |    |       |
-| Provided     | cores:                    | 1                                                                                                                                                                              |                     |                |                             |            |         |          |    |       |
-| Rules        | claiming                  | more                                                                                                                                                                           | threads             | will           | be                          | scaled     | down.   |          |    |       |
-| Job          | counts:                   |                                                                                                                                                                                |                     |                |                             |            |         |          |    |       |
-|              | count                     | jobs                                                                                                                                                                           |                     |                |                             |            |         |          |    |       |
-|              | 1                         | download                                                                                                                                                                       |                     |                |                             |            |         |          |    |       |
-|              | 1                         |                                                                                                                                                                                |                     |                |                             |            |         |          |    |       |
-| [Wed         | Aug                       | 28                                                                                                                                                                             | 16:38:03            | 2019]          |                             |            |         |          |    |       |
-| rule         | download:                 |                                                                                                                                                                                |                     |                |                             |            |         |          |    |       |
-| output:      | data/weekly-incidence.csv |                                                                                                                                                                                |                     |                |                             |            |         |          |    |       |
-| jobid:       | 0                         |                                                                                                                                                                                |                     |                |                             |            |         |          |    |       |
-| --2019-08-28 | 16:38:03--                | http://www.sentiweb.fr/datasets/incidence-PAY-3.csv                                                                                                                            |                     |                |                             |            |         |          |    |       |
-| Resolving    | www.sentiweb.fr           | (www.sentiweb.fr)...                                                                                                                                                           | 134.157.220.17      |                |                             |            |         |          |    |       |
-| Connecting   | to                        | www.sentiweb.fr                                                                                                                                                                | (www.sentiweb.fr)   | 134.157.220.17 | :80...                      | connected. |         |          |    |       |
-| HTTP         | request                   | sent,                                                                                                                                                                          | awaiting            | response...    | 200                         | OK         |         |          |    |       |
-| Length:      | unspecified               | [text/csv]                                                                                                                                                                     |                     |                |                             |            |         |          |    |       |
-| Saving       | to:                       | 'data/weekly-incidence.csv'                                                                                                                                                    |                     |                |                             |            |         |          |    |       |
-| ]            | 0                         | --.-KB/s                                                                                                                                                                       | data/weekly-inciden | [              | <=>                         | ]          | 79.88K  | --.-KB/s | in | 0.02s |
-| 2019-08-28   | 16:38:03                  | (3.71                                                                                                                                                                          | MB/s)               | 0              | 'data/weekly-incidence.csv' | saved      | [81800] |          |    |       |
-| [Wed         | Aug                       | 28                                                                                                                                                                             | 16:38:03            | 2019]          |                             |            |         |          |    |       |
-| Finished     | job                       | 0                                                                                                                                                                              |                     |                |                             |            |         |          |    |       |
-| )            | done                      |                                                                                                                                                                                |                     |                |                             |            |         |          |    |       |
-| Complete     | log:                      | /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-28T163803.322303.snakemake.log |                     |                |                             |            |         |          |    |       |
+#+begin_example
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	download
+	1
 
-ou encore on peut lui demander de produire le résultat souhaité:
-#+begin_src sh :session *snakemake* ::results output :exports both
-snakemake data/weekly-incidence.csv
-#+end_src
+[Tue Sep 24 15:00:41 2019]
+rule download:
+    output: data/weekly-incidence.csv
+    jobid: 0
 
-#+RESULTS:
-| Building | DAG  | of                                                                                                                                                                             | jobs... |
-| Nothing  | to   | be                                                                                                                                                                             | done.   |
-| Complete | log: | /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-28T163822.540694.snakemake.log |         |
+--2019-09-24 15:00:41--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
+Resolving www.sentiweb.fr (www.sentiweb.fr)... 134.157.220.17
+Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/csv]
+Saving to: 'data/weekly-incidence.csv'
+
+2019-09-24 15:00:41 (1.08 MB/s) - 'data/weekly-incidence.csv' saved [81916]
+
+[Tue Sep 24 15:00:41 2019]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T150041.026347.snakemake.log
+#+end_example
 
 En regardant bien ce que =snakemake= dit au deuxième tour, il s'est rendu compte qu'il n'y a rien à faire, parce que le fichier souhaité existe déjà. Voici un premier avantage important d'un workflow: une tâche n'est exécutée que s'il est nécessaire. Quand une tâche met deux heures à exécuter, c'est appréciable.
 
@@ -127,7 +132,7 @@ En regardant bien ce que =snakemake= dit au deuxième tour, il s'est rendu compt
 La deuxième tâche est le pré-traitement: en partant du fichier téléchargé du Réseau Sentinelle, il faut extraire juste les éléments nécessaires, et il faut vérifier s'il y a des données manquantes ou des erreurs. Dans un document computationnel, j'avais procédé pas par pas, en inspectant les résultats à chaque étape. Dans mon workflow, le pré-traitement devient une seule tâche, exécutée en bloc.
 
 Il faut donc bien réfléchir à ce qu'on attend comme résultat. En fait, il faut deux fichiers de sortie: un qui contient les données qui seront analysées par la suite, et un autre qui contient les éventuels messages d'erreur. Avec ça, la deuxième règle s'écrit assez vite:
-#+begin_src :exports both :tangle incidence_syndrome_grippal_snakemake/Snakefile
+#+begin_src :exports both :tangle incidence_syndrome_grippal/Snakefile
 rule preprocess:
      input:
         "data/weekly-incidence.csv"
@@ -140,7 +145,7 @@ rule preprocess:
 Il y a donc un fichier d'entrée, qui est le résultat de la tâche /download/. Et il y a les deux fichiers de sortie, un pour les résultats et un pour les messages d'erreur. Enfin, pour faire le travail, j'ai opté pour un script Python cette fois. =snakemake= reconnaît le langage par l'extension =.py=.
 
 Le contenu de ce script est presque un copier-coller d'un document computationnel du module 3, plus précisément du document que j'ai montré dans le parcours Emacs/Org-Mode:
-#+begin_src python :exports both :tangle incidence_syndrome_grippal_snakemake/scripts/preprocess.py
+#+begin_src python :exports both :tangle incidence_syndrome_grippal/scripts/preprocess.py
 # Libraries used by this script:
 import datetime  # for date conversion
 import csv       # for writing output to a CSV file
@@ -232,16 +237,16 @@ Job counts:
 	1	preprocess
 	1
 
-[Wed Aug 28 18:38:33 2019]
+[Tue Sep 24 15:02:32 2019]
 rule preprocess:
     input: data/weekly-incidence.csv
     output: data/preprocessed-weekly-incidence.csv, data/errors-from-preprocessing.txt
     jobid: 0
 
-[Wed Aug 28 18:38:34 2019]
+[Tue Sep 24 15:02:33 2019]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-28T183833.807546.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T150232.768339.snakemake.log
 #+end_example
 
 Voyons s'il y a eu des problèmes:
@@ -276,7 +281,7 @@ week_starting,incidence
 Ça a l'air pas mal!
 ** 3ème tâche: préparer les plots
 La règle pour faire les plots ne présente plus aucune surprise:
-#+begin_src :exports both :tangle incidence_syndrome_grippal_snakemake/Snakefile
+#+begin_src :exports both :tangle incidence_syndrome_grippal/Snakefile
 rule plot:
      input:
         "data/preprocessed-weekly-incidence.csv"
@@ -287,7 +292,7 @@ rule plot:
         "scripts/incidence-plots.R"
 #+end_src
 Il y a les données pré-traitées à l'entrée, et deux fichiers image à la sortie, créées par un script, cette fois en langage R:
-#+begin_src R :exports both :tangle incidence_syndrome_grippal_snakemake/scripts/incidence-plots.R
+#+begin_src R :exports both :tangle incidence_syndrome_grippal/scripts/incidence-plots.R
 # Read in the data and convert the dates
 data = read.csv(snakemake@input[[1]])
 data$week_starting <- as.Date(data$week_starting)
@@ -320,7 +325,7 @@ Job counts:
 	1	plot
 	1
 
-[Wed Aug 28 19:43:42 2019]
+[Tue Sep 24 15:03:17 2019]
 rule plot:
     input: data/preprocessed-weekly-incidence.csv
     output: data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png
@@ -338,21 +343,21 @@ null device
           1 
 null device 
           1 
-[Wed Aug 28 19:43:43 2019]
+[Tue Sep 24 15:03:18 2019]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-28T194342.688492.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T150317.752684.snakemake.log
 #+end_example
 
 Voici les deux plots:
 
-[[file:incidence_syndrome_grippal_snakemake/data/weekly-incidence-plot.png]]
+[[file:incidence_syndrome_grippal/data/weekly-incidence-plot.png]]
 
-[[file:incidence_syndrome_grippal_snakemake/data/weekly-incidence-plot-last-years.png]]
+[[file:incidence_syndrome_grippal/data/weekly-incidence-plot-last-years.png]]
 
 ** 4ème tâche: calculer l'incidence annuelle
 Écrire les règles pour =snakemake= devient vite une routine:
-#+begin_src :exports both :tangle incidence_syndrome_grippal_snakemake/Snakefile
+#+begin_src :exports both :tangle incidence_syndrome_grippal/Snakefile
 rule annual_incidence:
      input:
         "data/preprocessed-weekly-incidence.csv"
@@ -362,7 +367,7 @@ rule annual_incidence:
         "scripts/annual-incidence.R"
 #+end_src
 Et le script en langage R ressemble fortement au code du module 3:
-#+begin_src R :exports both :tangle incidence_syndrome_grippal_snakemake/scripts/annual-incidence.R
+#+begin_src R :exports both :tangle incidence_syndrome_grippal/scripts/annual-incidence.R
 # Read in the data and convert the dates
 data = read.csv(snakemake@input[[1]])
 names(data) <- c("date", "incidence")
@@ -404,7 +409,7 @@ Job counts:
 	1	annual_incidence
 	1
 
-[Wed Aug 28 19:51:26 2019]
+[Tue Sep 24 15:03:37 2019]
 rule annual_incidence:
     input: data/preprocessed-weekly-incidence.csv
     output: data/annual-incidence.csv
@@ -418,10 +423,10 @@ During startup - Warning messages:
 Warning message:
 Y-%m-%d", tz = "GMT") :
   unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
-[Wed Aug 28 19:51:26 2019]
+[Tue Sep 24 15:03:37 2019]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-28T195126.602879.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T150337.607638.snakemake.log
 #+end_example
 
 Voyons le début du résultat:
@@ -445,7 +450,7 @@ head -10 data/annual-incidence.csv
 
 ** 5ème tâche: l'histogramme
 Et pour finir, encore un petit script en R:
-#+begin_src :exports both :tangle incidence_syndrome_grippal_snakemake/Snakefile
+#+begin_src :exports both :tangle incidence_syndrome_grippal/Snakefile
 rule histogram:
      input:
         "data/annual-incidence.csv"
@@ -455,7 +460,7 @@ rule histogram:
         "scripts/annual-incidence-histogram.R"
 #+end_src
 
-#+begin_src R :exports both :tangle incidence_syndrome_grippal_snakemake/scripts/annual-incidence-histogram.R
+#+begin_src R :exports both :tangle incidence_syndrome_grippal/scripts/annual-incidence-histogram.R
 # Read in the data and convert the dates
 data = read.csv(snakemake@input[[1]])
 
@@ -484,7 +489,7 @@ Job counts:
 	1	histogram
 	1
 
-[Wed Aug 28 19:54:24 2019]
+[Tue Sep 24 15:03:55 2019]
 rule histogram:
     input: data/annual-incidence.csv
     output: data/annual-incidence-histogram.png
@@ -497,13 +502,13 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 null device 
           1 
-[Wed Aug 28 19:54:24 2019]
+[Tue Sep 24 15:03:55 2019]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-28T195424.640999.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T150355.592895.snakemake.log
 #+end_example
 
-[[file:incidence_syndrome_grippal_snakemake/data/annual-incidence-histogram.png]]
+[[file:incidence_syndrome_grippal/data/annual-incidence-histogram.png]]
 
 * Travailler avec un workflow
 Jusqu'ici, j'ai lancé chaque tâche de mon workflow à la main, une par une. Avec le même effort, j'aurais pu lancer directement les divers scripts qui font le travail de fon. Autrement dit, =snakemake= ne m'a rien apporté, autre que sortir les noms des fichiers des scripts, qui devienennt ainsi un peu plus généraux, pour les transférer dans le grand script maître qui est =Snakefile=.
@@ -520,7 +525,7 @@ snakemake -r plot
 #+RESULTS:
 : Building DAG of jobs...
 : Nothing to be done.
-: Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T143441.536916.snakemake.log
+: Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T150412.176683.snakemake.log
 
 Maintenant les plots sont là et à jour. Je vais simuler la modification du fichier d'entrée avec la commande =touch= et relancer:
 #+begin_src sh :session *snakemake* :results output :exports both
@@ -540,7 +545,7 @@ Job counts:
 	1	plot
 	1
 
-[Thu Aug 29 14:34:47 2019]
+[Tue Sep 24 15:04:19 2019]
 rule plot:
     input: data/preprocessed-weekly-incidence.csv
     output: data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png
@@ -559,10 +564,10 @@ null device
           1 
 null device 
           1 
-[Thu Aug 29 14:34:48 2019]
+[Tue Sep 24 15:04:19 2019]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T143447.767368.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T150419.657205.snakemake.log
 #+end_example
 
 Attention, =snakemake= ne regarde que les fichiers listés sous "input", pas les fichiers listés sous "scripts". Autrement dit, la modification d'un script n'entraîne pas sa ré-exécution !
@@ -575,7 +580,7 @@ snakemake -r plot
 : 
 : Building DAG of jobs...
 : Nothing to be done.
-: Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T143243.100094.snakemake.log
+: Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T150429.536212.snakemake.log
 
 Je considère ceci un défaut de =snakemake=, car le script est une donnée d'entrée du calcul tout comme la séquence de chiffres à plotter. Un petit astuce permet de corriger ce défaut (à condition d'y penser chaque fois qu'on écrit une règle !): on peut rajouter le fichier script à la liste "input":
 #+begin_src :exports both
@@ -606,7 +611,7 @@ Job counts:
 	1	plot
 	1
 
-[Thu Aug 29 14:56:24 2019]
+[Tue Sep 24 15:04:41 2019]
 rule plot:
     input: data/preprocessed-weekly-incidence.csv
     output: data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png
@@ -624,14 +629,14 @@ null device
           1 
 null device 
           1 
-[Thu Aug 29 14:56:24 2019]
+[Tue Sep 24 15:04:41 2019]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T145624.563473.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T150441.339904.snakemake.log
 #+end_example
 
 Le plus souvent, ce qu'on veut, c'est une mise à jour de tous les résultats suite à une modification. La bonne façon d'y arriver est de rajouter une nouvelle règle, par convention appellée =all=, qui ne fait rien mais demande à l'entrée tous les fichiers créés par toutes les autres tâches :
-#+begin_src :exports both :tangle incidence_syndrome_grippal_snakemake/Snakefile
+#+begin_src :exports both :tangle incidence_syndrome_grippal/Snakefile
 rule all:
      input:
         "data/weekly-incidence.csv",
@@ -658,21 +663,9 @@ Job counts:
 	1	all
 	1	annual_incidence
 	1	histogram
-	1	plot
-	1	preprocess
-	5
+	3
 
-[Thu Aug 29 15:09:50 2019]
-rule preprocess:
-    input: data/weekly-incidence.csv
-    output: data/preprocessed-weekly-incidence.csv, data/errors-from-preprocessing.txt
-    jobid: 2
-
-[Thu Aug 29 15:09:50 2019]
-Finished job 2.
-) done
-
-[Thu Aug 29 15:09:50 2019]
+[Tue Sep 24 15:04:52 2019]
 rule annual_incidence:
     input: data/preprocessed-weekly-incidence.csv
     output: data/annual-incidence.csv
@@ -686,33 +679,11 @@ During startup - Warning messages:
 Warning message:
 Y-%m-%d", tz = "GMT") :
   unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
-[Thu Aug 29 15:09:51 2019]
+[Tue Sep 24 15:04:52 2019]
 Finished job 4.
 ) done
 
-[Thu Aug 29 15:09:51 2019]
-rule plot:
-    input: data/preprocessed-weekly-incidence.csv
-    output: data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png
-    jobid: 3
-
-During startup - Warning messages:
-1: Setting LC_COLLATE failed, using "C" 
-2: Setting LC_TIME failed, using "C" 
-3: Setting LC_MESSAGES failed, using "C" 
-4: Setting LC_MONETARY failed, using "C" 
-Warning message:
-Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
-null device 
-          1 
-null device 
-          1 
-[Thu Aug 29 15:09:51 2019]
-Finished job 3.
-) done
-
-[Thu Aug 29 15:09:51 2019]
+[Tue Sep 24 15:04:52 2019]
 rule histogram:
     input: data/annual-incidence.csv
     output: data/annual-incidence-histogram.png
@@ -725,19 +696,19 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 null device 
           1 
-[Thu Aug 29 15:09:51 2019]
+[Tue Sep 24 15:04:52 2019]
 Finished job 5.
 ) done
 
-[Thu Aug 29 15:09:51 2019]
+[Tue Sep 24 15:04:52 2019]
 localrule all:
     input: data/weekly-incidence.csv, data/preprocessed-weekly-incidence.csv, data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png, data/annual-incidence.csv, data/annual-incidence-histogram.png
     jobid: 0
 
-[Thu Aug 29 15:09:51 2019]
+[Tue Sep 24 15:04:52 2019]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T150950.572093.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T150452.405932.snakemake.log
 #+end_example
 
 Les plus paresseux mettent la règle =all= au début du =Snakefile=, parce qu'en absence de tâche (ou fichier) nommé sur la ligne de commande, =snakemake= utilise la première régle qu'il trouve, et pour la mise à jour total, il suffit de taper =snakemake=.
@@ -755,28 +726,109 @@ Provided cores: 1
 Rules claiming more threads will be scaled down.
 Job counts:
 	count	jobs
+	1	all
+	1	annual_incidence
 	1	download
-	1
+	1	histogram
+	1	plot
+	1	preprocess
+	6
 
-[Thu Aug 29 14:56:31 2019]
+[Tue Sep 24 15:05:03 2019]
 rule download:
     output: data/weekly-incidence.csv
-    jobid: 0
+    jobid: 1
 
---2019-08-29 14:56:31--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
+--2019-09-24 15:05:03--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
 Resolving www.sentiweb.fr (www.sentiweb.fr)... 134.157.220.17
 Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: unspecified [text/csv]
 Saving to: 'data/weekly-incidence.csv'
-]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  79.88K  --.-KB/s    in 0.02s   
+]       0  --.-KB/s               data/weekly-incidence.c     [ <=>                         ]  80.00K  --.-KB/s    in 0.02s   
 
-2019-08-29 14:56:31 (4.82 MB/s) - 'data/weekly-incidence.csv' saved [81800]
+2019-09-24 15:05:04 (3.55 MB/s) - 'data/weekly-incidence.csv' saved [81916]
 
-[Thu Aug 29 14:56:31 2019]
+[Tue Sep 24 15:05:04 2019]
+Finished job 1.
+) done
+
+[Tue Sep 24 15:05:04 2019]
+rule preprocess:
+    input: data/weekly-incidence.csv
+    output: data/preprocessed-weekly-incidence.csv, data/errors-from-preprocessing.txt
+    jobid: 2
+
+[Tue Sep 24 15:05:04 2019]
+Finished job 2.
+) done
+
+[Tue Sep 24 15:05:04 2019]
+rule annual_incidence:
+    input: data/preprocessed-weekly-incidence.csv
+    output: data/annual-incidence.csv
+    jobid: 4
+
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+[Tue Sep 24 15:05:04 2019]
+Finished job 4.
+) done
+
+[Tue Sep 24 15:05:04 2019]
+rule plot:
+    input: data/preprocessed-weekly-incidence.csv
+    output: data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png
+    jobid: 3
+
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+null device 
+          1 
+null device 
+          1 
+[Tue Sep 24 15:05:04 2019]
+Finished job 3.
+) done
+
+[Tue Sep 24 15:05:04 2019]
+rule histogram:
+    input: data/annual-incidence.csv
+    output: data/annual-incidence-histogram.png
+    jobid: 5
+
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+null device 
+          1 
+[Tue Sep 24 15:05:04 2019]
+Finished job 5.
+) done
+
+[Tue Sep 24 15:05:04 2019]
+localrule all:
+    input: data/weekly-incidence.csv, data/preprocessed-weekly-incidence.csv, data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png, data/annual-incidence.csv, data/annual-incidence-histogram.png
+    jobid: 0
+
+[Tue Sep 24 15:05:04 2019]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T145631.175661.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T150503.912061.snakemake.log
 #+end_example
 
 Comme =snakemake= gère bien toutes les dépendances entre les données, il peut même nous en faire un dessin, ce qui est fort utile quand les workflows augmentent en taille:
@@ -787,7 +839,7 @@ snakemake --forceall --dag all | dot -Tpng > graph.png
 #+RESULTS:
 : Building DAG of jobs...
 
-[[file:incidence_syndrome_grippal_snakemake/graph.png]]
+[[file:incidence_syndrome_grippal/graph.png]]
 
 Pour comprendre cette ligne de commande, il faut savoir que =snakemake= produit ce graphe en exécutant les tâches. Voilà pourquoi il faut les arguments =--forceall all= pour être sûr que toutes les tâches seront exécutées. =dot= est un logiciel qui fait partie de la collection [[https://graphviz.org/][Graphviz]], son rôle est de traduire une description textuelle d'un graph en graphique. Le sigle "DAG" veut dire "Directed Acyclic Graph", graphe orienté acyclique. C'est un type de graphe qu'on trouve naturellement dans les descriptions formelles de dépendences parce que "acyclique" veut simplement dire qu'aucun fichier de données produit ne peut avoir soi-même comme dépendence, directement ou indirectement.
 
@@ -813,68 +865,68 @@ Job counts:
 	1	preprocess
 	6
 
-[Thu Aug 29 15:31:30 2019]
+[Tue Sep 24 15:05:25 2019]
 rule download:
     output: data/weekly-incidence.csv
     jobid: 1
 
---2019-08-29 15:31:30--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
+--2019-09-24 15:05:25--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
 Resolving www.sentiweb.fr (www.sentiweb.fr)... 134.157.220.17
 Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: unspecified [text/csv]
 Saving to: 'data/weekly-incidence.csv'
-]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  79.88K  --.-KB/s    in 0.04s   
+]       0  --.-KB/s               data/weekly-incidence.c     [ <=>                         ]  80.00K  --.-KB/s    in 0.02s   
 
-2019-08-29 15:31:30 (1.78 MB/s) - 'data/weekly-incidence.csv' saved [81800]
+2019-09-24 15:05:25 (4.87 MB/s) - 'data/weekly-incidence.csv' saved [81916]
 
-[Thu Aug 29 15:31:30 2019]
+[Tue Sep 24 15:05:25 2019]
 Finished job 1.
 ) done
 
-[Thu Aug 29 15:31:30 2019]
+[Tue Sep 24 15:05:25 2019]
 rule preprocess:
     input: data/weekly-incidence.csv
     output: data/preprocessed-weekly-incidence.csv, data/errors-from-preprocessing.txt
     jobid: 2
 
-[Thu Aug 29 15:31:30 2019]
+[Tue Sep 24 15:05:25 2019]
 Finished job 2.
 ) done
 
-[Thu Aug 29 15:31:30 2019]
+[Tue Sep 24 15:05:25 2019]
 rule plot:
     input: data/preprocessed-weekly-incidence.csv
     output: data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png
     jobid: 3
 
-[Thu Aug 29 15:31:30 2019]
+[Tue Sep 24 15:05:25 2019]
 rule annual_incidence:
     input: data/preprocessed-weekly-incidence.csv
     output: data/annual-incidence.csv
     jobid: 4
 
-During startup - During startup - Warning messages:
-Warning messages:
-1: Setting LC_COLLATE failed, using "C" 
+During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
 3: Setting LC_MESSAGES failed, using "C" 
-3: Setting LC_MESSAGES failed, using "C" 
-4: Setting LC_MONETARY failed, using "C" 
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
 Warning message:
-Y-%m-%d", tz = "GMT") :In strptime(xx, f <- "%Y-%m-%d", tz = "GMT") :
+Y-%m-%d", tz = "GMT") :
   unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
-
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
-[Thu Aug 29 15:31:30 2019]
+[Tue Sep 24 15:05:26 2019]
 Finished job 4.
 ) done
 
-[Thu Aug 29 15:31:30 2019]
+[Tue Sep 24 15:05:26 2019]
 rule histogram:
     input: data/annual-incidence.csv
     output: data/annual-incidence-histogram.png
@@ -884,7 +936,7 @@ null device
           1 
 null device 
           1 
-[Thu Aug 29 15:31:30 2019]
+[Tue Sep 24 15:05:26 2019]
 Finished job 3.
 ) done
 During startup - Warning messages:
@@ -894,35 +946,38 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 null device 
           1 
-[Thu Aug 29 15:31:31 2019]
+[Tue Sep 24 15:05:26 2019]
 Finished job 5.
 ) done
 
-[Thu Aug 29 15:31:31 2019]
+[Tue Sep 24 15:05:26 2019]
 localrule all:
     input: data/weekly-incidence.csv, data/preprocessed-weekly-incidence.csv, data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png, data/annual-incidence.csv, data/annual-incidence-histogram.png
     jobid: 0
 
-[Thu Aug 29 15:31:31 2019]
+[Tue Sep 24 15:05:26 2019]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_snakemake/.snakemake/log/2019-08-29T153130.204927.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T150525.566515.snakemake.log
 #+end_example
 * Vers la gestion de données plus volumineuses
 Le workflow que je viens de montrer produit 7 fichiers. Ce n'est pas beaucoup. On peut les nommer à la main, un par un, sans difficulté. Dans la vraie vie, par exemple en bioinformatique, un workflow peut facilement gérer des centaines ou milliers de fichiers, par exemple un fichier par séquence d'acides aminés dans une étude de protéomique. Dans une telle situation, il faut définir un schéma pour nommer les fichiers de façon systématique, et introduire des boucles dans le workflow dont les itérations seront idéalement exécutées en parallèle. Je vais illustrer ceci avec une variante de l'analyse de l'incidence du syndrome grippal. Elle utilise une forme plus détaillée des données brutes dans laquelle les incidence sont repertoriées par région plutôt que pour la France entière. Il faut donc répéter le calcul de l'incidence annuelle 13 fois, une fois pour chaque région. Pour simplifier un peu, le résultat principal de ce nouveau workflow sera un fichier qui contient, pour chaque région, l'année dans laquelle l'incidence était la plus élevée. Il n'y a donc pas d'histogramme.
 
-Pour cette deuxième version, je crée un nouveau répertoire, et j'y fais une copie de tous les scripts, car la plupart ne nécessite pas de modification:
+Pour cette deuxième version, je crée un nouveau répertoire, et j'y fais une copie des scripts qui seront réutilisés sans modification:
 #+begin_src sh :session *snakemake2* :results output :exports both
-mkdir incidence_syndrome_grippal_par_region_snakemake
-cd incidence_syndrome_grippal_par_region_snakemake
-mkdir data
-cp -r ../incidence_syndrome_grippal_snakemake/scripts .
+# déjà fait: mkdir incidence_syndrome_grippal_par_region
+cd incidence_syndrome_grippal_par_region
+# déjà fait: mkdir data
+# déjà fait: mkdir scripts
+cp -r ../incidence_syndrome_grippal/scripts/preprocess.py ./scripts/
+cp -r ../incidence_syndrome_grippal/scripts/annual-incidence.R ./scripts/
+cp -r ../incidence_syndrome_grippal/scripts/incidence-plots.R ./scripts/
 #+end_src
 
 #+RESULTS:
 
 Et puis je vais vous montrer le =Snakefile=, tout de suite en entier, que je vais commenter après.
-#+begin_src :exports both :tangle incidence_syndrome_grippal_par_region_snakemake/Snakefile
+#+begin_src :exports both :tangle incidence_syndrome_grippal_par_region/Snakefile
 rule all:
      input:
         "data/peak-year-all-regions.txt"
@@ -997,7 +1052,7 @@ Commençons en haut: j'ai mis la règle =all= au début pour pouvoir être pares
 Dans la règle =download=, seul le nom du fichier de données a changé par rapport à avant. J'ai trouvé le nom du fichier "par région" sur le site Web du Réseau Sentinelles. C'est après qu'il y a le plus grand changement: la définition d'une variable =REGIONS=, qui est une liste des 13 régions administratives, dont les noms sont écrits exactement comme dans le fichier des données. On devrait récupérer cette liste du fichier de façon automatique, et je montrerai plus tard comment faire. Pour l'instant, je préfère copier la liste manuellement dans le =Snakefile= afin de ne pas introduire trop de nouveautés d'aun seul coup. La variable =REGIONS= est utilisée immédiatement après, pour définir les fichiers de sortie de la règle =split_by_region=. La fonction =expand= produit une liste des noms de fichier en insérant le nom de la région au bon endroit dans le modèle.
 
 Le rôle de la règle =split_by_region= est de découper les données téléchargées en un fichier par région, afin de pouvoir traiter les régions en parallèle et avec les même scripts que nous avons déjà. Le script appliqué par la règle est assez simple:
-#+begin_src python :exports both :tangle incidence_syndrome_grippal_par_region_snakemake/scripts/split-by-region.py
+#+begin_src python :exports both :tangle incidence_syndrome_grippal_par_region/scripts/split-by-region.py
 import os
 
 # Read the CSV file into memory
@@ -1050,35 +1105,34 @@ Job counts:
 	1	split_by_region
 	2
 
-[Tue Sep 24 12:13:37 2019]
+[Tue Sep 24 15:11:23 2019]
 rule download:
     output: data/weekly-incidence-all-regions.csv
     jobid: 1
 
---2019-09-24 12:13:37--  http://www.sentiweb.fr/datasets/incidence-RDD-3.csv
+--2019-09-24 15:11:23--  http://www.sentiweb.fr/datasets/incidence-RDD-3.csv
 Resolving www.sentiweb.fr (www.sentiweb.fr)... 134.157.220.17
 Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: unspecified [text/csv]
 Saving to: 'data/weekly-incidence-all-regions.csv'
-]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]   1.06M  --.-KB/s    in 0.09s   
 
-2019-09-24 12:13:44 (11.3 MB/s) - 'data/weekly-incidence-all-regions.csv' saved [1112021]
+2019-09-24 15:11:23 (10.3 MB/s) - 'data/weekly-incidence-all-regions.csv' saved [1112021]
 
-[Tue Sep 24 12:13:44 2019]
+[Tue Sep 24 15:11:23 2019]
 Finished job 1.
 ) done
 
-[Tue Sep 24 12:13:44 2019]
+[Tue Sep 24 15:11:23 2019]
 rule split_by_region:
     input: data/weekly-incidence-all-regions.csv
     output: data/weekly-incidence-AUVERGNE-RHONE-ALPES.csv, data/weekly-incidence-BOURGOGNE-FRANCHE-COMTE.csv, data/weekly-incidence-BRETAGNE.csv, data/weekly-incidence-CENTRE-VAL-DE-LOIRE.csv, data/weekly-incidence-CORSE.csv, data/weekly-incidence-GRAND EST.csv, data/weekly-incidence-HAUTS-DE-FRANCE.csv, data/weekly-incidence-ILE-DE-FRANCE.csv, data/weekly-incidence-NORMANDIE.csv, data/weekly-incidence-NOUVELLE-AQUITAINE.csv, data/weekly-incidence-OCCITANIE.csv, data/weekly-incidence-PAYS-DE-LA-LOIRE.csv, data/weekly-incidence-PROVENCE-ALPES-COTE-D-AZUR.csv
     jobid: 0
 
-[Tue Sep 24 12:13:44 2019]
+[Tue Sep 24 15:11:23 2019]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region_snakemake/.snakemake/log/2019-09-24T121337.313929.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region/.snakemake/log/2019-09-24T151123.361735.snakemake.log
 #+end_example
 
 Et les fichiers sont bien là où il faut:
@@ -1121,17 +1175,17 @@ Job counts:
 	1	preprocess
 	1
 
-[Tue Sep 24 12:14:02 2019]
+[Tue Sep 24 15:11:55 2019]
 rule preprocess:
     input: data/weekly-incidence-CORSE.csv
     output: data/preprocessed-weekly-incidence-CORSE.csv, data/errors-from-preprocessing-CORSE.txt
     jobid: 0
     wildcards: region=CORSE
 
-[Tue Sep 24 12:14:02 2019]
+[Tue Sep 24 15:11:55 2019]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region_snakemake/.snakemake/log/2019-09-24T121402.098618.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region/.snakemake/log/2019-09-24T151155.206496.snakemake.log
 #+end_example
 
 #+begin_src sh :session *snakemake2* :results output :exports both
@@ -1159,7 +1213,7 @@ Job counts:
 	1	annual_incidence
 	1
 
-[Tue Sep 24 12:14:13 2019]
+[Tue Sep 24 15:12:03 2019]
 rule annual_incidence:
     input: data/preprocessed-weekly-incidence-CORSE.csv
     output: data/annual-incidence-CORSE.csv
@@ -1174,16 +1228,16 @@ During startup - Warning messages:
 Warning message:
 Y-%m-%d", tz = "GMT") :
   unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
-[Tue Sep 24 12:14:13 2019]
+[Tue Sep 24 15:12:04 2019]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region_snakemake/.snakemake/log/2019-09-24T121413.475153.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region/.snakemake/log/2019-09-24T151203.779223.snakemake.log
 #+end_example
 
 Snakemake nous dit d'ailleurs explicitement quelle règle a été appliquée (=annual_incidence=), avec quel fichier d'entrée (=data/preprocessed-weekly-incidence-CORSE.csv=), et avec quel fichier de sortie (=data/annual-incidence-CORSE.csv=).
 
 A la fin du workflow, il y a une nouvelle règle, =peak_years=, qui extrait l'année du pic maximal de chaque fichier d'incience annuelle, et produit un fichier résumant ces années par région. Sa seule particularité est la spécification des fichiers d'entrée, qui utilise la fonction =expand= exactement comme on l'a vu pour les fichiers résultats de la règle =split_by_region=. Le script Python associé est assez simple:
-#+begin_src python :exports both :tangle incidence_syndrome_grippal_par_region_snakemake/scripts/peak-years.py
+#+begin_src python :exports both :tangle incidence_syndrome_grippal_par_region/scripts/peak-years.py
 # Libraries used by this script:
 import csv       # for reading CSV files
 import os        # for path manipulations
@@ -1359,7 +1413,7 @@ Job counts:
 	1	plot
 	1
 
-[Tue Sep 24 12:20:52 2019]
+[Tue Sep 24 15:12:46 2019]
 rule plot:
     input: data/preprocessed-weekly-incidence-CORSE.csv
     output: data/weekly-incidence-plot-CORSE.png, data/weekly-incidence-plot-last-years-CORSE.png
@@ -1378,13 +1432,13 @@ null device
           1 
 null device 
           1 
-[Tue Sep 24 12:20:52 2019]
+[Tue Sep 24 15:12:47 2019]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region_snakemake/.snakemake/log/2019-09-24T122052.352596.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region/.snakemake/log/2019-09-24T151246.742101.snakemake.log
 #+end_example
 
-[[file:incidence_syndrome_grippal_par_region_snakemake/data/weekly-incidence-plot-last-years-CORSE.png]]
+[[file:incidence_syndrome_grippal_par_region/data/weekly-incidence-plot-last-years-CORSE.png]]
 
 
 Enfin, je vais tenter de produire le dessin du graphe des tâches, comme je l'ai fait avant pour un workflow nettement plus simple. Voyons...
@@ -1394,8 +1448,7 @@ snakemake -q --forceall --dag all | dot -Tpng > graph.png
 
 #+RESULTS:
 
-file:incidence_syndrome_grippal_par_region_snakemake/graph.png
-
+[[file:incidence_syndrome_grippal_par_region/graph.png]]
 On voit bien la structure du calcul, y compris le traitement des régions en parallèle.
 * Cherchez l'erreur!
 Il y a un point très important que j'ai laissé de côté jusqu'à maintenant pour me concentrer sur la partie technique: comment écrire et exécuter un workflow. Ce point est plutôt de nature méthodologique: il s'agit de la surveillance de possibles erreurs.
@@ -2933,4 +2986,3 @@ Missing data in record
 Sans inspecter ces messages, auriez-vous soupçonné qu'il manquent tant de données pour la Corse, par exemple? Et si je n'avais pas fait attention à les rendre faciles à inspecter, l'auriez-vous fait quand-même?
 
 On peut d'ailleurs se demander comment il est possible d'avoir tant de points manquants dans les données régionales, mais un seul point manquant dans les données nationales qui devraient, en théorie, être simplement la somme sur les régions. Mais c'est une question que seul le Réseau Sentinelles peut répondre.
-
