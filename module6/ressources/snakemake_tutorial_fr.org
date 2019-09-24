@@ -1397,3 +1397,1540 @@ snakemake -q --forceall --dag all | dot -Tpng > graph.png
 file:incidence_syndrome_grippal_par_region_snakemake/graph.png
 
 On voit bien la structure du calcul, y compris le traitement des régions en parallèle.
+* Cherchez l'erreur!
+Il y a un point très important que j'ai laissé de côté jusqu'à maintenant pour me concentrer sur la partie technique: comment écrire et exécuter un workflow. Ce point est plutôt de nature méthodologique: il s'agit de la surveillance de possibles erreurs.
+
+Dans les documents computationnels du module 3, nous avons exécuté des petits bouts de code à la main et regardé les résultats. Nous l'avons fait pour bien comprendre ce qui se passe, et pour décider comment procéder. Dans un workflow, tout est automatisé, et tous les résultats finissent dans des fichiers que nous pourrions regarder, mais la plupart du temps nous ne les regardons pas. Regarder un plot d'une incidence hebodamadaire sur quelques décennies, c'est intéressant. En regarder 13 qui se ressemblent devient une corvée. Mais si nous ne regardons jamais les résultats, nous pouvons facilement passer à côté d'erreurs insoupçonnées. Et oui, ça arrive dans la vraie vie, même à des chercheurs expérimentés.
+
+Il est donc primordial d'introduire des vérifications dans un workflow, et de faciliter l'inspection manuelle des possibles erreurs. Dans ma règle =preprocess=, j'ai écrit les messages d'erreur dans des fichiers spécifiques, sans les melanger avec les résultats comme on ferait dans un document computationnel. Alors regardons-les!
+
+#+begin_src sh :session *snakemake2* :results output :exports both
+for file in data/error*
+do
+   echo $file
+   cat "$file"
+   echo " "
+done
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+data/errors-from-preprocessing-AUVERGNE-RHONE-ALPES.txt
+Missing data in record
+['198919', '3', '0', '', '', '0', '', '', '84', 'AUVERGNE-RHONE-ALPES']
+14 days, 0:00:00 between 1989-05-01 and 1989-05-15
+ 
+data/errors-from-preprocessing-BOURGOGNE-FRANCHE-COMTE.txt
+Missing data in record
+['200632', '3', '0', '', '', '0', '', '', '27', 'BOURGOGNE-FRANCHE-COMTE']
+Missing data in record
+['200232', '3', '0', '', '', '0', '', '', '27', 'BOURGOGNE-FRANCHE-COMTE']
+Missing data in record
+['200227', '3', '0', '', '', '0', '', '', '27', 'BOURGOGNE-FRANCHE-COMTE']
+Missing data in record
+['200132', '3', '0', '', '', '0', '', '', '27', 'BOURGOGNE-FRANCHE-COMTE']
+Missing data in record
+['200131', '3', '0', '', '', '0', '', '', '27', 'BOURGOGNE-FRANCHE-COMTE']
+Missing data in record
+['198919', '3', '0', '', '', '0', '', '', '27', 'BOURGOGNE-FRANCHE-COMTE']
+Missing data in record
+['198752', '3', '0', '', '', '0', '', '', '27', 'BOURGOGNE-FRANCHE-COMTE']
+14 days, 0:00:00 between 1987-12-14 and 1987-12-28
+14 days, 0:00:00 between 1989-05-01 and 1989-05-15
+21 days, 0:00:00 between 2001-07-23 and 2001-08-13
+14 days, 0:00:00 between 2002-06-24 and 2002-07-08
+14 days, 0:00:00 between 2002-07-29 and 2002-08-12
+14 days, 0:00:00 between 2006-07-31 and 2006-08-14
+ 
+data/errors-from-preprocessing-BRETAGNE.txt
+Missing data in record
+['198919', '3', '0', '', '', '0', '', '', '53', 'BRETAGNE']
+Missing data in record
+['198752', '3', '0', '', '', '0', '', '', '53', 'BRETAGNE']
+14 days, 0:00:00 between 1987-12-14 and 1987-12-28
+14 days, 0:00:00 between 1989-05-01 and 1989-05-15
+ 
+data/errors-from-preprocessing-CENTRE-VAL-DE-LOIRE.txt
+Missing data in record
+['200729', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['200728', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['200628', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['200330', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['200329', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['200227', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['200137', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['200136', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['200135', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['200134', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['200133', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['200132', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['200131', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['200130', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['200129', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['199037', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['199036', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['199025', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['199024', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['199023', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['199022', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['199013', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['199012', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['199005', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['199004', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+Missing data in record
+['198919', '3', '0', '', '', '0', '', '', '24', 'CENTRE-VAL-DE-LOIRE']
+14 days, 0:00:00 between 1989-05-01 and 1989-05-15
+21 days, 0:00:00 between 1990-01-15 and 1990-02-05
+21 days, 0:00:00 between 1990-03-12 and 1990-04-02
+35 days, 0:00:00 between 1990-05-21 and 1990-06-25
+21 days, 0:00:00 between 1990-08-27 and 1990-09-17
+70 days, 0:00:00 between 2001-07-09 and 2001-09-17
+14 days, 0:00:00 between 2002-06-24 and 2002-07-08
+21 days, 0:00:00 between 2003-07-07 and 2003-07-28
+14 days, 0:00:00 between 2006-07-03 and 2006-07-17
+21 days, 0:00:00 between 2007-07-02 and 2007-07-23
+ 
+data/errors-from-preprocessing-CORSE.txt
+Missing data in record
+['200544', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200543', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200542', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200541', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200540', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200539', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200538', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200537', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200536', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200535', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200534', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200533', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200532', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200531', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200530', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200529', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200528', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200527', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200526', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200525', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200524', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200523', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200522', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200521', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200520', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200519', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200518', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200517', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200516', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200515', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200514', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200513', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200512', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200511', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200510', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200509', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200508', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200507', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200506', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200505', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200504', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200503', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200502', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200501', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200453', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200452', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200451', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200450', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200449', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200448', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200447', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200446', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200445', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200444', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200443', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200442', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200441', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200440', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200439', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200438', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200437', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200436', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200435', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200434', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200433', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200432', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200431', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200430', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200429', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200428', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200427', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200426', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200425', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200424', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200423', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200422', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200421', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200420', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200419', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200418', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200417', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200416', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200415', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200414', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200413', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200412', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200411', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200410', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200409', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200401', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200352', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200344', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200343', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200342', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200341', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200340', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200339', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200338', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200337', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200336', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200335', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200334', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200333', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200332', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200331', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200330', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200329', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200328', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200327', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200326', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200325', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200324', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200323', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200322', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200321', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200320', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200319', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200318', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200317', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200316', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200315', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200314', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200313', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200312', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200311', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200310', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200309', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200308', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200307', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200306', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200305', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200304', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200303', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200302', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200301', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200252', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200251', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200250', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200249', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200248', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200247', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200246', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200245', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200244', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200243', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200242', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200241', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200240', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200239', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200238', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200237', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200236', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200235', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200234', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200233', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200232', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200231', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200230', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200229', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200228', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200227', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200226', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200225', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200224', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200223', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200222', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200221', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200220', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200219', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200218', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200217', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200216', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200215', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200214', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200213', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200212', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200211', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200210', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200209', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200208', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200207', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200206', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200205', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200204', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200203', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200202', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200201', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200152', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200151', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200150', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200149', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200148', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200147', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200146', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200145', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200144', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200143', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200142', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200141', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200140', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200139', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200138', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200137', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200136', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200135', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200134', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200133', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200132', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200131', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200130', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200129', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200128', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200127', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200126', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200125', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200124', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200123', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200122', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200121', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200120', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200119', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200118', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200117', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200116', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200115', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200114', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200113', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200112', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200111', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200110', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200109', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200108', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200107', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200106', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200105', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200104', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200103', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200102', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200101', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200052', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200051', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200050', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200049', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200048', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200047', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200046', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200045', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200044', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200043', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200042', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200041', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200040', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200039', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200038', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200037', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200036', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200035', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200034', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200033', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200032', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200031', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200030', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200029', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200028', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200027', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200026', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200025', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200024', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200023', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200022', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200021', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200020', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200019', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200018', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200017', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200016', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200015', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200014', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200013', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200012', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200011', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200010', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200009', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200008', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200007', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200006', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200005', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200004', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200003', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200002', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['200001', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199952', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199951', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199950', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199949', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199948', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199947', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199946', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199945', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199944', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199943', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199942', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199941', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199940', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199939', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199938', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199937', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199936', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199935', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199934', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199933', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199932', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199931', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199930', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199929', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199928', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199927', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199926', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199925', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199924', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199923', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199922', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199921', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199920', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199919', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199918', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199917', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199916', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199915', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199914', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199913', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199912', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199911', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199910', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199909', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199908', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199907', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199906', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199905', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199904', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199903', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199902', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199901', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199853', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199852', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199851', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199850', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199849', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199848', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199847', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199846', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199845', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199844', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199843', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199842', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199841', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199840', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199839', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199838', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199837', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199836', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199835', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199834', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199833', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199832', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199831', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199830', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199829', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199828', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199827', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199826', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199825', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199824', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199823', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199822', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199821', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199820', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199819', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199818', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199817', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199816', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199815', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199814', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199813', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199812', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199811', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199810', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199809', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199808', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199807', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199806', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199805', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199804', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199803', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199802', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199801', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199752', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199751', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199750', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199749', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199748', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199747', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199746', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199745', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199744', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199743', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199742', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199741', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199740', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199739', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199738', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199737', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199736', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199735', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199734', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199733', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199732', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199731', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199730', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199729', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199728', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199727', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199726', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199725', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199724', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199723', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199722', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199721', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199720', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199719', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199718', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199717', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199716', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199715', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199714', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199713', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199712', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199711', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199710', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199709', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199708', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199707', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199706', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199705', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199704', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199646', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199645', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199644', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199643', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199642', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199641', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199640', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199639', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199638', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199637', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199636', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199635', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199634', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199633', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199632', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199631', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199630', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199629', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199628', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199627', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199626', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199625', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199624', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199623', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199622', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199621', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199620', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199619', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199618', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199617', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199616', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199615', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199612', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199611', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199607', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199606', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199605', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199552', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199544', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199543', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199540', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199539', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199538', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199537', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199536', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199535', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199534', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199533', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199532', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199531', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199530', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199529', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199528', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199527', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199526', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199525', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199502', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199441', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199423', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199422', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199330', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199329', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199328', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199327', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199326', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199323', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199322', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199321', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199320', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199241', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199228', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199210', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199209', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199208', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199207', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199142', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199141', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199140', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199135', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199110', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199109', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199101', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199048', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199045', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199044', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199040', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199039', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199038', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199035', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199034', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199033', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199021', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199020', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['199019', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198943', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198935', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198934', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198933', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198927', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198919', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198918', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198836', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198816', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198814', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198752', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198751', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198748', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198747', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198746', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198745', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198744', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198743', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198739', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198738', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198737', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198736', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198735', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198734', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198728', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198727', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198726', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198725', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198724', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198723', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198722', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198721', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198720', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198719', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198718', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198717', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198716', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198715', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198712', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198709', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198706', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198703', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198702', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198701', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198652', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198638', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198637', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198636', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198635', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198632', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198631', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198630', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198629', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198628', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198627', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198626', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198625', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198624', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198623', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198622', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198621', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198620', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198619', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198618', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198617', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198616', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198615', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198614', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198613', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198612', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198611', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198610', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198609', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198608', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198607', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198606', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198605', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198604', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198603', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198602', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198601', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198552', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198551', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198550', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198549', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198536', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198535', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198534', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198533', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198532', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198515', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198514', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198513', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198503', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198502', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198501', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198452', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198451', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198450', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198449', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198448', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198447', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198446', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198445', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+Missing data in record
+['198444', '3', '0', '', '', '0', '', '', '94', 'CORSE']
+28 days, 0:00:00 between 1985-03-18 and 1985-04-15
+42 days, 0:00:00 between 1985-07-29 and 1985-09-09
+259 days, 0:00:00 between 1985-11-25 and 1986-08-11
+35 days, 0:00:00 between 1986-08-18 and 1986-09-22
+35 days, 0:00:00 between 1986-12-15 and 1987-01-19
+14 days, 0:00:00 between 1987-01-26 and 1987-02-09
+14 days, 0:00:00 between 1987-02-16 and 1987-03-02
+14 days, 0:00:00 between 1987-03-09 and 1987-03-23
+105 days, 0:00:00 between 1987-03-30 and 1987-07-13
+49 days, 0:00:00 between 1987-08-10 and 1987-09-28
+49 days, 0:00:00 between 1987-10-12 and 1987-11-30
+21 days, 0:00:00 between 1987-12-07 and 1987-12-28
+14 days, 0:00:00 between 1988-03-28 and 1988-04-11
+14 days, 0:00:00 between 1988-04-11 and 1988-04-25
+14 days, 0:00:00 between 1988-08-29 and 1988-09-12
+21 days, 0:00:00 between 1989-04-24 and 1989-05-15
+14 days, 0:00:00 between 1989-06-26 and 1989-07-10
+28 days, 0:00:00 between 1989-08-07 and 1989-09-04
+14 days, 0:00:00 between 1989-10-16 and 1989-10-30
+28 days, 0:00:00 between 1990-04-30 and 1990-05-28
+28 days, 0:00:00 between 1990-08-06 and 1990-09-03
+28 days, 0:00:00 between 1990-09-10 and 1990-10-08
+21 days, 0:00:00 between 1990-10-22 and 1990-11-12
+14 days, 0:00:00 between 1990-11-19 and 1990-12-03
+14 days, 0:00:00 between 1990-12-24 and 1991-01-07
+21 days, 0:00:00 between 1991-02-18 and 1991-03-11
+14 days, 0:00:00 between 1991-08-19 and 1991-09-02
+28 days, 0:00:00 between 1991-09-23 and 1991-10-21
+35 days, 0:00:00 between 1992-02-03 and 1992-03-09
+14 days, 0:00:00 between 1992-06-29 and 1992-07-13
+14 days, 0:00:00 between 1992-09-28 and 1992-10-12
+35 days, 0:00:00 between 1993-05-10 and 1993-06-14
+42 days, 0:00:00 between 1993-06-21 and 1993-08-02
+21 days, 0:00:00 between 1994-05-23 and 1994-06-13
+14 days, 0:00:00 between 1994-10-03 and 1994-10-17
+14 days, 0:00:00 between 1995-01-02 and 1995-01-16
+119 days, 0:00:00 between 1995-06-12 and 1995-10-09
+21 days, 0:00:00 between 1995-10-16 and 1995-11-06
+14 days, 0:00:00 between 1995-12-18 and 1996-01-01
+28 days, 0:00:00 between 1996-01-22 and 1996-02-19
+21 days, 0:00:00 between 1996-03-04 and 1996-03-25
+231 days, 0:00:00 between 1996-04-01 and 1996-11-18
+2485 days, 0:00:00 between 1997-01-13 and 2003-11-03
+21 days, 0:00:00 between 2003-12-15 and 2004-01-05
+630 days, 0:00:00 between 2004-02-16 and 2005-11-07
+ 
+data/errors-from-preprocessing-GRAND EST.txt
+Missing data in record
+['200352', '3', '0', '', '', '0', '', '', '44', 'GRAND EST']
+Missing data in record
+['198919', '3', '0', '', '', '0', '', '', '44', 'GRAND EST']
+14 days, 0:00:00 between 1989-05-01 and 1989-05-15
+14 days, 0:00:00 between 2003-12-15 and 2003-12-29
+ 
+data/errors-from-preprocessing-HAUTS-DE-FRANCE.txt
+Missing data in record
+['200631', '3', '0', '', '', '0', '', '', '32', 'HAUTS-DE-FRANCE']
+Missing data in record
+['198919', '3', '0', '', '', '0', '', '', '32', 'HAUTS-DE-FRANCE']
+Missing data in record
+['198444', '3', '0', '', '', '0', '', '', '32', 'HAUTS-DE-FRANCE']
+14 days, 0:00:00 between 1989-05-01 and 1989-05-15
+14 days, 0:00:00 between 2006-07-24 and 2006-08-07
+ 
+data/errors-from-preprocessing-ILE-DE-FRANCE.txt
+Missing data in record
+['198919', '3', '0', '', '', '0', '', '', '11', 'ILE-DE-FRANCE']
+14 days, 0:00:00 between 1989-05-01 and 1989-05-15
+ 
+data/errors-from-preprocessing-NORMANDIE.txt
+Missing data in record
+['198919', '3', '0', '', '', '0', '', '', '28', 'NORMANDIE']
+Missing data in record
+['198752', '3', '0', '', '', '0', '', '', '28', 'NORMANDIE']
+14 days, 0:00:00 between 1987-12-14 and 1987-12-28
+14 days, 0:00:00 between 1989-05-01 and 1989-05-15
+ 
+data/errors-from-preprocessing-NOUVELLE-AQUITAINE.txt
+Missing data in record
+['198919', '3', '0', '', '', '0', '', '', '75', 'NOUVELLE-AQUITAINE']
+14 days, 0:00:00 between 1989-05-01 and 1989-05-15
+ 
+data/errors-from-preprocessing-OCCITANIE.txt
+Missing data in record
+['200352', '3', '0', '', '', '0', '', '', '76', 'OCCITANIE']
+Missing data in record
+['198919', '3', '0', '', '', '0', '', '', '76', 'OCCITANIE']
+14 days, 0:00:00 between 1989-05-01 and 1989-05-15
+14 days, 0:00:00 between 2003-12-15 and 2003-12-29
+ 
+data/errors-from-preprocessing-PAYS-DE-LA-LOIRE.txt
+Missing data in record
+['200632', '3', '0', '', '', '0', '', '', '52', 'PAYS-DE-LA-LOIRE']
+Missing data in record
+['200534', '3', '0', '', '', '0', '', '', '52', 'PAYS-DE-LA-LOIRE']
+Missing data in record
+['200533', '3', '0', '', '', '0', '', '', '52', 'PAYS-DE-LA-LOIRE']
+Missing data in record
+['200336', '3', '0', '', '', '0', '', '', '52', 'PAYS-DE-LA-LOIRE']
+Missing data in record
+['200335', '3', '0', '', '', '0', '', '', '52', 'PAYS-DE-LA-LOIRE']
+Missing data in record
+['200329', '3', '0', '', '', '0', '', '', '52', 'PAYS-DE-LA-LOIRE']
+Missing data in record
+['200328', '3', '0', '', '', '0', '', '', '52', 'PAYS-DE-LA-LOIRE']
+Missing data in record
+['200238', '3', '0', '', '', '0', '', '', '52', 'PAYS-DE-LA-LOIRE']
+Missing data in record
+['200237', '3', '0', '', '', '0', '', '', '52', 'PAYS-DE-LA-LOIRE']
+Missing data in record
+['198919', '3', '0', '', '', '0', '', '', '52', 'PAYS-DE-LA-LOIRE']
+14 days, 0:00:00 between 1989-05-01 and 1989-05-15
+21 days, 0:00:00 between 2002-09-02 and 2002-09-23
+21 days, 0:00:00 between 2003-06-30 and 2003-07-21
+21 days, 0:00:00 between 2003-08-18 and 2003-09-08
+21 days, 0:00:00 between 2005-08-08 and 2005-08-29
+14 days, 0:00:00 between 2006-07-31 and 2006-08-14
+ 
+data/errors-from-preprocessing-PROVENCE-ALPES-COTE-D-AZUR.txt
+Missing data in record
+['198919', '3', '0', '', '', '0', '', '', '93', 'PROVENCE-ALPES-COTE-D-AZUR']
+Missing data in record
+['198444', '3', '0', '', '', '0', '', '', '93', 'PROVENCE-ALPES-COTE-D-AZUR']
+14 days, 0:00:00 between 1989-05-01 and 1989-05-15
+#+end_example
+
+Sans inspecter ces messages, auriez-vous soupçonné qu'il manquent tant de données pour la Corse, par exemple? Et si je n'avais pas fait attention à les rendre faciles à inspecter, l'auriez-vous fait quand-même?
+
+On peut d'ailleurs se demander comment il est possible d'avoir tant de points manquants dans les données régionales, mais un seul point manquant dans les données nationales qui devraient, en théorie, être simplement la somme sur les régions. Mais c'est une question que seul le Réseau Sentinelles peut répondre.
+
