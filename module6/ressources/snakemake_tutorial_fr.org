@@ -25,7 +25,7 @@ Puis:
 #+end_src
 
 #+RESULTS:
-| incidence_syndrome_grippal/scripts/annual-incidence-histogram.R | incidence_syndrome_grippal/scripts/annual-incidence.R | incidence_syndrome_grippal/scripts/incidence-plots.R | incidence_syndrome_grippal_par_region/scripts/peak-years.py | incidence_syndrome_grippal_par_region/scripts/split-by-region.py | incidence_syndrome_grippal/scripts/preprocess.py | incidence_syndrome_grippal_par_region/Snakefile | incidence_syndrome_grippal/Snakefile |
+| incidence_syndrome_grippal/scripts/annual-incidence-histogram.R | incidence_syndrome_grippal/scripts/annual-incidence.R | incidence_syndrome_grippal/scripts/incidence-plots.R | incidence_syndrome_grippal_par_region_v2/scripts/split-by-region.py | incidence_syndrome_grippal_par_region/scripts/peak-years.py | incidence_syndrome_grippal_par_region/scripts/split-by-region.py | incidence_syndrome_grippal/scripts/preprocess.py | incidence_syndrome_grippal_par_region_v2/Snakefile | incidence_syndrome_grippal_par_region/Snakefile | incidence_syndrome_grippal/Snakefile |
 
 * Installer snakemake
 ** Linux
@@ -2986,3 +2986,290 @@ Missing data in record
 Sans inspecter ces messages, auriez-vous soupçonné qu'il manquent tant de données pour la Corse, par exemple? Et si je n'avais pas fait attention à les rendre faciles à inspecter, l'auriez-vous fait quand-même?
 
 On peut d'ailleurs se demander comment il est possible d'avoir tant de points manquants dans les données régionales, mais un seul point manquant dans les données nationales qui devraient, en théorie, être simplement la somme sur les régions. Mais c'est une question que seul le Réseau Sentinelles peut répondre.
+* Les limites des workflows pilotés par les fichiers
+Snakemake fait partie d'une grande famille de gestionnaires de workflow dont l'ancêtre commun est l'outil =make= qui date de 1976. Le principe de fonctionnement de cette famille est que l'exécution des tâches est pilotée par les noms et les dates de modification des fichiers qui contiennent les données. C'est un principe simple qui permet beaucoup de fléxibilité dans son application, comme par exemple la parallélisation automatique. Mais ce principe a aussi des limitations, et nous en avons rencontré une: la nécessité de fournir une liste explicite des régions dans notre =Snakefile=.
+
+À priori, la fichier de données téléchargé contient la liste exhaustive des régions qu'il faut traiter. On s'attend donc à pouvoir simplement dire "je veux appliquer mes règles à toutes les régions réferencées dans ce fichier". On s'attend bien sûr aussi à devoir fournir du code pour extraire la liste des région dudit fichier. Mais le problème est plus fondamental. Snakemake utilise le =Snakefile= et les fichiers de données réferencées par celui-ci pour déduire quelles tâches il faut exécuter et dans quel ordre. La liste des tâches ne peut donc pas dépendre du /contenu/ d'un tel fichier, et encore moins du contenu d'un fichier qui n'est même pas disponible avant l'exécution de la toute première tâche qui est =download=! Autrement dit, la limitation fondamentale de snakemake est le fait que le graphe de dépendance des tâches est établi avant toute exécution.
+
+Les versions récentes de Snakemake proposent une façon de contourner cette limitation, et je vais vous la montrer. Le principe est qu'il faut dire à Snakemake de reconstruire le graphe des tâches après en avoir exécuté certaines.
+
+Je vais d'abord créer un nouveau repertoire pour ce troisième workflow, et copier les scripts du deuxième qui ne seront pas modifiés:
+#+begin_src sh :session *snakemake3* :results output :exports both
+# déjà fait: mkdir incidence_syndrome_grippal_par_region_v2
+cd incidence_syndrome_grippal_par_region_v2
+# déjà fait: mkdir data
+# déjà fait: mkdir scripts
+cp -r ../incidence_syndrome_grippal_par_region/scripts/*.R ./scripts/
+cp -r ../incidence_syndrome_grippal_par_region/scripts/preprocess.py ./scripts/
+cp -r ../incidence_syndrome_grippal_par_region/scripts/peak-years.py ./scripts/
+#+end_src
+
+#+RESULTS:
+
+Le =Snakefile= commence avec deux règles non modifiées:
+#+begin_src :exports both :tangle incidence_syndrome_grippal_par_region_v2/Snakefile
+rule all:
+     input:
+        "data/peak-year-all-regions.txt"
+
+rule download:
+     output:
+        "data/weekly-incidence-all-regions.csv"
+     shell:
+        "wget -O {output} http://www.sentiweb.fr/datasets/incidence-RDD-3.csv"
+#+end_src
+
+La règle =split_by_region= devient un "checkpoint", ce qui veut dire que Snakemake reconstruit son graphe de tâches /après/ son exécution:
+#+begin_src :exports both :tangle incidence_syndrome_grippal_par_region_v2/Snakefile
+checkpoint split_by_region:
+     input:
+        "data/weekly-incidence-all-regions.csv"
+     output:
+        directory("data/weekly-incidence-by-region")
+     script:
+        "scripts/split-by-region.py"
+#+end_src
+La particularité d'un checkpoint est que ses fichiers de sortie ne sont pas connus d'avance. On donne donc seulement le nom d'un répertoire. C'est le répertoire entier qui est consideré le résultat de la tâche. C'est donc le script qui doit le créer:
+#+begin_src python :exports both :tangle incidence_syndrome_grippal_par_region_v2/scripts/split-by-region.py
+import os
+
+# Read the CSV file into memory
+data = open(snakemake.input[0], 'rb').read()
+# Decode the Latin-1 character set,
+# remove white space at both ends,
+# and split into lines.
+lines = data.decode('latin-1') \
+         .strip() \
+         .split('\n')
+
+# Separate header from data table
+comment = lines[0]
+header = lines[1]
+table = [line.split(',') for line in lines[2:]]
+
+# Find all the regions mentioned in the table
+regions = set(record[-1] for record in table)
+
+# Create the output directory
+directory = snakemake.output[0]
+if not os.path.exists(directory):
+    os.makedirs(directory)
+
+# Write CSV files for each region
+for region in regions:
+    filename = os.path.join(directory, region + '.csv')
+    with open(filename, 'w') as output_file:
+        # The other scripts expect a comment in the first line,
+        # so write a minimal one to make them happy.
+        output_file.write('#\n')
+        output_file.write(header)
+        output_file.write('\n')
+        for record in table:
+            # Write only the records for right region
+            if record[-1] == region:
+                output_file.write(','.join(record))
+                output_file.write('\n')
+#+end_src
+
+Cette réorganisation des fichiers nécessite une petite modification des entrées de la règle =preprocess=:
+#+begin_src :exports both :tangle incidence_syndrome_grippal_par_region_v2/Snakefile
+rule preprocess:
+     input:
+        "data/weekly-incidence-by-region/{region}.csv"
+     output:
+        data="data/preprocessed-weekly-incidence-{region}.csv",
+        errorlog="data/errors-from-preprocessing-{region}.txt"
+     script:
+        "scripts/preprocess.py"
+#+end_src
+
+Mais rien ne change pour les deux règles suivantes:
+#+begin_src :exports both :tangle incidence_syndrome_grippal_par_region_v2/Snakefile
+rule plot:
+     input:
+        "data/preprocessed-weekly-incidence-{region}.csv"
+     output:
+        "data/weekly-incidence-plot-{region}.png",
+        "data/weekly-incidence-plot-last-years-{region}.png"
+     script:
+        "scripts/incidence-plots.R"
+
+rule annual_incidence:
+     input:
+        "data/preprocessed-weekly-incidence-{region}.csv"
+     output:
+        "data/annual-incidence-{region}.csv"
+     script:
+        "scripts/annual-incidence.R"
+#+end_src
+
+Enfin, c'est la règle =peak_years= qui doit changer parce qu'elle doit construire la liste des fichiers d'entrées à partir des sorties du checkpoint =split_by_regions=. Ceci nécessite du code, mais snakemake permet de définir des fonctions Python dans le =Snakefile=:
+#+begin_src :exports both :tangle incidence_syndrome_grippal_par_region_v2/Snakefile
+def annual_incidence_files(wildcards):
+    directory = checkpoints.split_by_region.get().output[0]
+    pattern = os.path.join(directory, "{region}.csv")
+    return expand("data/annual-incidence-{region}.csv",
+                  region=glob_wildcards(pattern).region)
+
+rule peak_years:
+     input:
+        annual_incidence_files
+     output:
+        "data/peak-year-all-regions.txt"
+     script:
+        "scripts/peak-years.py"
+#+end_src
+Ceci nécessite quelques explications. Sous "input", j'ai donné le nom d'une fonction à la place d'une liste de fichiers. Cette fonction retourne la liste dont snakemake a besoin. Pour construire la liste, elle utilise =expand= que nous avons déjà vu avant. Mais la liste des noms de région n'est plus une constante définie dans le =Snakefile=. Elle est le résultat d'une recherche de fichiers qui correspondent à "{region}.csv", dans le répertoire peuplé par la règle =split_by_region=.
+
+Nous voyons donc que le prix à payer pour laisser le workflow trouver la liste des régions est une plus grande complexité du workflow. Il faut décider au cas par cas si c'est réellement avantageux.
+
+Pour terminer, lançons ce troisième workflow et comparons s'il donne les mêmes résultats que le deuxième!
+
+#+begin_src sh :session *snakemake3* :results output :exports both
+snakemake -q
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Job counts:
+	count	jobs
+	1	all
+	1	download
+	1	peak_years
+	1	split_by_region
+	4
+--2019-09-24 15:55:01--  http://www.sentiweb.fr/datasets/incidence-RDD-3.csv
+Resolving www.sentiweb.fr (www.sentiweb.fr)... 134.157.220.17
+Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/csv]
+Saving to: 'data/weekly-incidence-all-regions.csv'
+
+2019-09-24 15:55:01 (8.35 MB/s) - 'data/weekly-incidence-all-regions.csv' saved [1112021]
+
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+#+end_example
+
+#+begin_src sh :session *snakemake3* :results output :exports both
+cat data/peak-year-all-regions.txt
+#+end_src
+
+#+RESULTS:
+#+begin_example
+NORMANDIE, 1990
+BRETAGNE, 1996
+GRAND EST, 2000
+NOUVELLE-AQUITAINE, 1989
+OCCITANIE, 2013
+CORSE, 1989
+PAYS-DE-LA-LOIRE, 1989
+HAUTS-DE-FRANCE, 2013
+BOURGOGNE-FRANCHE-COMTE, 1986
+AUVERGNE-RHONE-ALPES, 2009
+CENTRE-VAL-DE-LOIRE, 1996
+ILE-DE-FRANCE, 1989
+PROVENCE-ALPES-COTE-D-AZUR, 1986
+#+end_example
