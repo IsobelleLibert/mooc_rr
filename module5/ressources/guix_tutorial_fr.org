@@ -547,14 +547,14 @@ cat moocrr_guix_jupyter/manifest.scm
 C'est essentiellement la liste des paquets que j'ai installé à la main auparavant, mais dans un format un peu particulier qu'il faut respecter scrupuleusement. En fait, ce format n'est rien d'autre que le langage de programmation [[https://fr.wikipedia.org/wiki/Scheme][Scheme]]. Guix est écrit en Scheme, et exprimer une liste de paquets en Scheme a le grand avantage qu'on peut utiliser des fonctionnalités avancées de Guix pour définir son environnement. Par exemple, je pourrais demander que tous mes paquets, en commençant par Python, soient compilés avec =gcc 7= plutôt qu'avec le compilateur par défaut de Guix, qui est actuellement =gcc 5=.
 
 Je peux alors créer un environnement contenant ces paquets avec
-#+begin_src sh session *jupyter-env* :results output :exports both
+#+begin_src sh :session *jupyter-env* :results output :exports both
 guix environment -m ./moocrr_guix_jupyter/manifest.scm
 #+end_src
 
 #+RESULTS:
 
 Ceci me lance une shell (=bash=, plus précisement) de laquelle Jupyter est accessible et configuré avec tous les modules Python demandés:
-#+begin_src sh session *jupyter-env* :results output :exports both
+#+begin_src sh :session *jupyter-env* :results output :exports both
 jupyter notebook
 #+end_src
 
@@ -1515,7 +1515,7 @@ Commençons avec la situation la plus simple: vous voulez mettre à jour tous le
 guix pull
 #+end_src
 et la prochaine fois que vous faites
-#+begin_src sh session *jupyter-env* :results output :exports both
+#+begin_src sh :session *jupyter-env* :results output :exports both
 guix environment -m ./moocrr_guix_jupyter/manifest.scm
 #+end_src
 vous utilisez les versions indiquées dans la toute dernière version de Guix. Mais que faire s'il vous faut une combinaison de versions qui ne se trouve nulle part dans l'historique de Guix? Par exemple, pour chercher la cause d'un bug introduit récement par un changement dans votre environnement, vous voulez combiner la dernière version de =python-statsmodels= avec une version plus ancienne de =python-pandas=.
