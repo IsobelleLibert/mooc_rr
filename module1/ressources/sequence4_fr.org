@@ -50,8 +50,8 @@ type d'environnement.
   [[file:gitlab_images/password_retrieval.png]]
   #+END_CENTER
 
-- Il est possible de modifier ce mot de passe dans `Account /
-  Paramètres / Mot de passe`. Mais nous vous déconseillons de le faire
+- Il est possible de modifier ce mot de passe dans "Account /
+  Paramètres / Mot de passe". Mais nous vous déconseillons de le faire
   car cela vous empêchera d'utiliser les notebook Jupyter du MOOC.
   #+BEGIN_CENTER
   [[file:gitlab_images/password.png]]

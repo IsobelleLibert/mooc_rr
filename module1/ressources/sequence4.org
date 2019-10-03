@@ -12,7 +12,7 @@
 #+CREATOR: Emacs 26.1 (Org mode 9.1.9)
 #+STARTUP: indent
 
-* Table of contents :TOC:
+* Table of contents                                                     :TOC:
 - [[#version-control-with-gitlab-and-git-in-the-Reproducible-research-mooc][Version control with GitLab and Git]]
 - [[#version-control-with-libreoffice-or-dokuwiki][Version control with LibreOffice or DokuWiki]]
 
@@ -43,8 +43,8 @@ This section describes the successive steps involved. The following [[https://ww
   [[file:gitlab_images/password_retrieval.png]]
   #+END_CENTER
 
-- You can change this password in `Account /
-  Paramètres / Mot de passe`. We do not recommend doing it since that will block you from using the Jupyter notebooks of this MOOC.
+- You can change this password in "Account /
+  Paramètres / Mot de passe". We do not recommend doing it since that will block you from using the Jupyter notebooks of this MOOC.
   #+BEGIN_CENTER
   [[file:gitlab_images/password.png]]
   #+END_CENTER
