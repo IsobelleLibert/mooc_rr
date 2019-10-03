@@ -11,10 +11,9 @@
 #+EXCLUDE_TAGS: noexport
 #+CREATOR: Emacs 26.1 (Org mode 9.1.9)
 #+STARTUP: indent
-                                           :TOC:
+
 - [[#version-control-with-gitlab-and-git-in-the-Reproducible-research-mooc][Version control with GitLab and Git]]
 - [[#version-control-with-libreoffice-or-dokuwiki][Version control with LibreOffice or DokuWiki]]
-
 * Essai pour tester les liens relatifs
 - Lien relatif [[/jump_to_id/5571950188c946e790f06d4bc90fb5f6#InterfaceGitlab][video]] shows how to use GitLab. We strongly recommend that you watch it if you've never used GitLab before.
 - Autre essai lien relatif : [[./jump_to_id/5571950188c946e790f06d4bc90fb5f6#InterfaceGitlab][video]]
