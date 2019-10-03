@@ -20,12 +20,12 @@
 * Gestion de version avec GitLab et Git dans le MOOC "Recherche reproductible"
 Nous avons déployé un GitLab spécialement pour ce MOOC afin que vous
 puissiez vous familiariser en douceur avec la gestion de
-version. Cette section décrit étape par étape comment y accéder. [[/jump_to_id/5571950188c946e790f06d4bc90fb5f6#InterfaceGitlab][Cette
+version. Cette section décrit étape par étape comment y accéder. [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/5571950188c946e790f06d4bc90fb5f6#InterfaceGitlab][Cette
 vidéo]] illustre ces étapes ainsi que comment utiliser GitLab. Nous vous
 incitons vivement à la regarder si vous n'êtes pas familiers avec ce
 type d'environnement.
 
-- Accéder à [[/jump_to_id/5571950188c946e790f06d4bc90fb5f6#FormAccesGitlab][GitLab]] depuis la plateforme FUN (cliquez sur *Accédez à
+- Accéder à [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/5571950188c946e790f06d4bc90fb5f6#FormAccesGitlab][GitLab]] depuis la plateforme FUN (cliquez sur *Accédez à
   Gitlab / Access to Gitlab*)
 - Vous arrivez sur le formulaire suivant :
   #+BEGIN_CENTER
