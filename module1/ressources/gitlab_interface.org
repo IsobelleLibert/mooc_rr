@@ -62,5 +62,5 @@ solve any problems, please give us your LTI identifier (external
 identifier automatically assigned for GitLab and Jupyter) 
 that you can find on your GitLab account (see capture below).
 #+BEGIN_CENTER
- [[File:gitlab_images/gitlab_id_lti.jpg]]
+ [[file:gitlab_images/gitlab_id_lti.jpg]]
 #+END_CENTER
