@@ -13,7 +13,7 @@
 #+CREATOR: Emacs 26.1 (Org mode 9.1.9)
 #+STARTUP: indent
 
-* Accéder à son espace Gitlab
+** Accéder à son espace Gitlab
 Cette section décrit étape par étape comment accéder à votre espace Gitlab depuis la
 plateforme FUN après avoir cliqué sur le bouton "*Accéder à Gitlab / Access to Gitlab*".
 
@@ -37,7 +37,7 @@ plateforme FUN après avoir cliqué sur le bouton "*Accéder à Gitlab / Access 
     [[file:gitlab_images/erreur405.png]]
     #+END_CENTER
 
-* Récupérer son mot de passe
+** Récupérer son mot de passe
 Pour récupérer le mot de passe prédéfini, il faut utiliser le [[https://app-learninglab.inria.fr/jupyterhub/services/password][Gitlab
   credentials retrieval tool]]. On retrouve alors le login et le mot de
   passe.
@@ -45,14 +45,14 @@ Pour récupérer le mot de passe prédéfini, il faut utiliser le [[https://app-
   [[file:gitlab_images/password_retrieval.png]]
   #+END_CENTER
 
-* Modifier son mot de passe
+** Modifier son mot de passe
 Il est possible de modifier ce mot de passe dans "Account / Paramètres / Mot de passe". Mais nous vous déconseillons de le faire
   car cela vous empêchera d'utiliser les notebook Jupyter du MOOC.
   #+BEGIN_CENTER
   [[file:gitlab_images/password.png]]
   #+END_CENTER
 
-* En savoir plus sur git/Gitlab
+** En savoir plus sur git/Gitlab
 Enfin, pour ceux qui veulent aller plus plus loin et en savoir plus
 sur l'outil de gestion de version git sur lequel s'appuie GitLab,
 quelques vidéos de démonstration sur git et Gitlab sont proposées dans
