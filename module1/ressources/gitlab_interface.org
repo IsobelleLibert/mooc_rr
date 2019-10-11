@@ -30,9 +30,9 @@ button "*Accéder à Gitlab / Access to Gitlab*".
   [[file:gitlab_images/projects.png]]
   #+END_CENTER
 
-  The long string replaced here by =xxx= is the login you will have to use in Git to synchronize with GitLab.
-
-  *NB* : You must reach GitLab from the FUN platform. You are likely to get a "405 error" if you are using the following address: https://app-learninglab.inria.fr/gitlab/users/sign_in.
+  The long string replaced here by =xxx= is the login you will have to
+  use in Git to synchronize with GitLab.
+-  *NB* : You must reach GitLab from the FUN platform. You are likely to get a "405 error" if you are using the following address: https://app-learninglab.inria.fr/gitlab/users/sign_in.
 
     #+BEGIN_CENTER
     [[file:gitlab_images/erreur405.png]]
@@ -56,3 +56,11 @@ To recover a predefined password you must use [[https://app-learninglab.inria.fr
 ** To go learn more about git/Gitlab
 If you want to go further, few tutorial videos are gathered in [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85][sequence "7. Installations, configurations, references" of module 2]]
 of this MOOC.
+** In case of problems with Gitlab
+In case of problem, contact us via the forum. In order to help you
+solve any problems, please give us your LTI identifier (external
+identifier automatically assigned for GitLab and Jupyter) 
+that you can find on your GitLab account (see capture below).
+#+BEGIN_CENTER
+ [[File:gitlab_images/gitlab_id_lti.jpg]]
+#+END_CENTER
