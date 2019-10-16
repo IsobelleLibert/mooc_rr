@@ -1,0 +1,85 @@
+# -*- mode: org -*-
+#+TITLE:     Rstudio: installating and documentation
+#+DATE: June, 2018
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:t
+
+* Table of Contents                                                     :TOC:
+- [[#installing-rstudio][Installing RStudio]]
+  - [[#linux-debian-ubuntu][Linux (debian, ubuntu)]]
+  - [[#mac-osx-and-windows][Mac OSX and Windows]]
+- [[#rstudio-documentation][RStudio documentation]]
+
+* Installing RStudio
+** Linux (debian, ubuntu)
+We provide here only instructions for Debian-based distributions. Feel
+free to contribute to this document to provide up-to-date information
+for other distributions (e.g., RedHat, Fedora).
+
+Today, the stable versions of the most common distributions provide
+recent enough versions of R:
+- Debian (stretch) ships with [[https://packages.debian.org/stretch/r-base][R 3.3.3-1]], [[https://packages.debian.org/stretch/r-cran-knitr][knitr 1.15.1]], and  [[https://packages.debian.org/stretch/r-cran-ggplot2][ggplot 2.2.1]]
+- Ubuntu (bionic 18.04) ships with [[https://packages.ubuntu.com/bionic/r-base][R 3.4.4]], and [[https://packages.ubuntu.com/bionic/r-cran-knitr][knitr 1.17]], and [[https://packages.ubuntu.com/bionic/r-cran-ggplot2][ggplot 2.2.1]]
+- Ubuntu (artful 17.04) ships with [[https://packages.ubuntu.com/artful/r-base][R 3.4.2]], and [[https://packages.ubuntu.com/artful/r-cran-knitr][knitr 1.15]], and [[https://packages.ubuntu.com/artful/r-cran-ggplot2][ggplot 2.2.1]]
+If your distribution is older than this, well, it may be a good time
+for upgrading...
+
+*** Installing R
+First, you need to install the R language and convenient packages
+by running (as root):
+#+BEGIN_SRC shell
+apt-get update ; sudo apt-get install r-base r-cran-knitr r-cran-ggplot2 
+#+END_SRC
+
+Alternatively, if the installation of =r-cran-gplot2= or =r-cran-knitr=
+fails, you may want to install them locally (through the R packaging
+system) and manually by running the following commands in R (or
+RStudio):
+#+BEGIN_SRC R
+install.packages("knitr")
+install.packages("ggplot2")
+#+END_SRC
+
+If you plan to export pdf documents with LaTeX, you probably also want
+to run (as root):
+#+begin_src sh :results output :exports both
+apt-get update ; apt-get install texlive-base
+#+end_src
+
+*** Installing RStudio
+RStudio is unfortunately not packaged within Debian so the easiest is
+to download the corresponding Debian package on the [[https://www.rstudio.com/products/rstudio/download/#download][RStudio webpage]]
+and then to install it manually (you may have to adjust the version number in the following example). Here is how to install it:
+
+#+BEGIN_SRC shell
+cd /tmp/
+wget https://download1.rstudio.org/rstudio-xenial-1.1.453-amd64.deb
+sudo dpkg -i rstudio-xenial-1.1.453-amd64.deb
+sudo apt-get update ; sudo apt-get -f install # to fix possibly missing dependencies
+#+END_SRC
+** Mac OSX and Windows
+- Install R and Python following the instructions given in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/19c2b1de7766484bae73f3ab133463c6][separate resource]].
+- Download and install RStudio from the [[https://www.rstudio.com/products/rstudio/download/#download][RStudio webpage]] by choosing the right operating system.
+- Download and install MiKTeX from the [[https://miktex.org/download][MiKTeX webpage]] by choosing the right operating system. You will be prompted to install some specific packages when exporting to pdf.
+- Open RStudio and type the following commands in the console to install =knitr= and =ggplot2=:
+#+BEGIN_SRC R
+install.packages("knitr", dep=TRUE)
+install.packages("ggplot2", dep=TRUE)
+#+END_SRC
+* RStudio documentation
+The RStudio team has created a lot of very good material and
+tutorials. You should definitively look at the [[https://www.rstudio.com/resources/cheatsheets/][Cheat sheets
+webpage]]. In particular you may want to have look at the following
+ones:
+- [[https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf][The RStudio IDE]],
+- [[https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf][R Markdown]] (here is also a [[https://rmarkdown.rstudio.com/][nice step-by-step presentation of Rmarkdown]]),
+- The [[https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf][R Markdown Reference guide]],
+- [[https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf][Data visualization with ggplot2]],
+- [[https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf][Data transformation with dplyr]]
+In case it helps, here are some (sometimes outdated) French versions
+of these documents: 
+- [[https://github.com/rstudio/cheatsheets/raw/master/translations/french/rstudio-IDE-cheatsheet.pdf][L'IDE RStudio]]
+- [[https://github.com/rstudio/cheatsheets/raw/master/translations/french/ggplot2-french-cheatsheet.pdf][Visualisation de données avec ggplot2]]
+- [[https://github.com/rstudio/cheatsheets/raw/master/translations/french/data-wrangling-french.pdf][Transformation de données avec dplyr]]
+- [[https://www.fun-mooc.fr/c4x/UPSUD/42001S02/asset/RMarkdown.pdf][Un court document sur R Markdown]]
+
