@@ -1,0 +1,58 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t broken-links:nil c:nil creator:nil
+#+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+OPTIONS: timestamp:t title:t toc:t todo:t |:t
+#+TITLE: Notes (and codes) that are archived but can evolve with version control systems
+#+AUTHOR: Christophe Pouzat
+#+EMAIL: christophe.pouzat@parisdescartes.fr
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 26.1 (Org mode 9.1.9)
+#+STARTUP: indent
+
+* Table of contents                                                     :TOC:
+- [[#version-control-with-gitlab-and-git-in-the-Reproducible-research-mooc][Version control with GitLab and Git]]
+- [[#version-control-with-libreoffice-or-dokuwiki][Version control with LibreOffice or DokuWiki]]
+
+* Version control with GitLab and Git in the "Reproducible research" MOOC
+We have created a GitLab server especially for this MOOC so that you can smoothly learn how to implement version control. 
+This section describes the successive steps involved. The following [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/5571950188c946e790f06d4bc90fb5f6#InterfaceGitlab][video]] shows how to use GitLab. We strongly recommend that you watch it if you've never used GitLab before.
+
+- Go to [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/5571950188c946e790f06d4bc90fb5f6#FormAccesGitlab][GitLab]] from the FUN platform (click on *Accédez à
+  Gitlab / Access to Gitlab*)
+- You reach the following form :
+  #+BEGIN_CENTER
+  [[file:gitlab_images/sign_in.png]]
+  #+END_CENTER
+  - NB : You must reach GitLab from the FUN platform. You are likely to get a "405 error" if you are using the following address: https://app-learninglab.inria.fr/gitlab/users/sign_in.
+    #+BEGIN_CENTER
+    [[file:gitlab_images/erreur405.png]]
+    #+END_CENTER
+- Click on **Sign in**. Authentication is automatic at that stage.
+  #+BEGIN_CENTER
+  [[file:gitlab_images/projects.png]]
+  #+END_CENTER
+
+  The long string replaced here by =xxx= is the login you will have to use in Git to synchronize with GitLab.
+
+- To recover a predefined password you must use [[https://app-learninglab.inria.fr/jupyterhub/services/password][Gitlab
+  credentials retrieval tool]]. One gets then the login and password.
+  #+BEGIN_CENTER
+  [[file:gitlab_images/password_retrieval.png]]
+  #+END_CENTER
+
+- You can change this password in "Account /
+  Paramètres / Mot de passe". We do not recommend doing it since that will block you from using the Jupyter notebooks of this MOOC.
+  #+BEGIN_CENTER
+  [[file:gitlab_images/password.png]]
+  #+END_CENTER
+
+If you want to go further, few tutorial videos are gathered in [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85][sequence "7. Installations, configurations, references" of module 2]]
+of this MOOC.
+
+* Version control with LibreOffice or DokuWiki
+Modification tracking in files generated and managed by =LibreOffice= is briefly described on the [[https://help.libreoffice.org/Common/Recording_Changes][wiki page]] of this software. A [[https://help.libreoffice.org/Common/Navigating_Changes][table of contents]] of the pages dedicated to this subject is available.
+
+For DoKuWiki, the best is to check the [[https://www.dokuwiki.org/start?id=dokuwiki][wiki]].

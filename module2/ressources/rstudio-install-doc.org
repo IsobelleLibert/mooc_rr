@@ -1,5 +1,5 @@
 # -*- mode: org -*-
-#+TITLE:     Rstudio: installating and documentation
+#+TITLE:     Rstudio: installation and documentation
 #+DATE: June, 2018
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
