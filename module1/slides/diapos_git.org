@@ -1,0 +1,915 @@
+#+TITLE: Démystifions Git, Github, Gitlab
+#+AUTHOR: @@latex:{\large Arnaud Legrand} \\ \vspace{0.2cm}Grenoble Alpes University and CNRS\\ \vspace{0.2cm} \texttt{arnaud.legrand@imag.fr}@@
+#+OPTIONS: H:2 tags:nil
+#+EXCLUDE_TAGS: noexport
+#+LANGUAGE: fr
+#+SELECT_TAGS: export
+#+LATEX_COMPILER: lualatex
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [presentation,bigger]
+#+LATEX_HEADER: \usepackage[normalem]{ulem}
+
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usetikzlibrary{babel}
+#+LATEX_HEADER: \usetikzlibrary{positioning}
+#+LATEX_HEADER: \usetikzlibrary{fit}
+#+LATEX_HEADER: \usepackage{gitdags}
+
+#+LATEX_HEADER:\usepackage[strict=true,french=guillemets]{csquotes}
+
+# #+LATEX_HEADER: \usetikzlibrary{arrows}
+# #+LATEX_HEADER: \usetikzlibrary{graphs}
+# #+LATEX_HEADER: \usetikzlibrary{trees}
+# #+LATEX_HEADER: \usetikzlibrary{graphdrawing}
+# #+LATEX_HEADER: \usegdlibrary{layered}
+# #+LATEX_HEADER: \usetikzlibrary{arrows, graphs, graphs.standard, trees, graphdrawing, quotes, positioning, shadows, shapes, mindmap}
+#+BEAMER_HEADER: \setbeamercovered{invisible}
+#+BEAMER_HEADER: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Où en sommes nous ?}\tableofcontents[currentsection]\end{frame}}
+#+BEAMER_HEADER: \beamertemplatenavigationsymbolsempty
+#+STARTUP: beamer
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
+#+STARTUP: indent
+#+PROPERTY: header-args :eval no-export
+
+#+LaTeX: \newcommand<>\gd[1]{\only#2{\gitDAG[grow up=1, branch right=1]{#1}};}
+#+LaTeX: \newcommand<>\gc[2]{\only#3{\gitcontent{#1}{#2}}}
+#+LaTeX: \newcommand<>\ga[2]{\only#3{\node[DAGref,fill = white, align=center, font = \normalsize, #2] () {#1};}}
+
+* Contexte
+** Aaah... l'informatique
+*** Problème
+#+ATTR_BEAMER: :overlay <+->
+- Mon ordinateur a planté!
+- Ce document était bien mieux hier!
+- Vous n'avez pas travaillé sur la bonne version du document. Comment fusionner?
+- Mais qui a écrit ça ? Et pourquoi ?
+*** Solution ?
+#+ATTR_BEAMER: :overlay <+->
+- Sauvegarde régulière avec une notion d'historique\smallskip
+
+  #+BEGIN_EXPORT latex
+  \footnotesize\enquote{\texttt{SE15\_PPT\_16x9\_Template\_Arial\only<+->{\_FINAL\only<+->{\_FINAL\only<+->{\_0925}}}.pptx}}
+  #+END_EXPORT
+- Travailler tout seul!
+- Passer son temps à (s')envoyer des mails!
+** Gestionnaire de versions
+Les gestionnaires de version datent du début des années 70
+*** Fonctionnalités essentielles
+- Conserve un historique des modifications sans dupliquer les dossiers
+  de sauvegardes
+- Sauvegarde les données (avec l’historique) sur des ordinateurs
+  distants
+- Fusion "automatique" des fichiers édités par plusieurs personnes.
+*** \includegraphics[height=.6cm]{img_git/Logo_Git.pdf}
+#+LaTeX: \begin{columns}
+#+LaTeX:   \begin{column}{.8\linewidth}
+- 2005: créé pour le développement du noyau Linux par Linus Torvalds
+  - $> 20$ millions de lignes de code
+  - $\approx 14\,000$ developeurs
+    # #+ATTR_LaTeX: :width .3\linewidth
+    # file:img_git/Logo_Git.pdf
+# #+BEGIN_QUOTE
+# Only wimps use tape backup: _real_ men just upload their important stuff on
+# ftp, and let the rest of the world mirror it ;)\flushright
+#                                  -- Linus Torvalds
+# #+END_QUOTE
+#+LaTeX:   \end{column}
+#+LaTeX:   \begin{column}{.2\linewidth}
+#+ATTR_LaTeX: :width \linewidth
+file:img_git/linus.jpg
+#+LaTeX:   \end{column}
+#+LaTeX: \end{columns}
+** Objectif de cet exposé
+  #+BEGIN_EXPORT latex
+  \begin{overlayarea}{\linewidth}{0cm}
+    \begin{flushright}
+    \null\vspace{-2.0cm}%
+    \includegraphics[height=0.55\paperheight]{img_git/Git_Xkcd.png}
+    \end{flushright}
+  \end{overlayarea}
+  #+END_EXPORT
+- +Apprendre à utiliser =git=+ \vspace{.8cm} \pause
+
+  =git= est "explicite" (à la différence \newline de dropbox et
+  autres)\newline
+  Heureusement, il y a des interfaces \vspace{1.2cm}
+- Notions essentielles pour utiliser les interfaces à =git=
+  - Historique distribué
+  - Branche
+  - Conflit et fusion
+  - L'écosystème
+    #+LaTeX: \raisebox{-.3em}{\includegraphics[height=.5cm]{img_git/Logo_Git.pdf}}\smallskip
+
+    #+BEGIN_EXPORT latex
+    \includegraphics[height=.5cm]{img_git/Logo_GitHub.pdf}
+    \includegraphics[height=.5cm]{img_git/Octocat.jpg} \quad
+    \resizebox{!}{.5cm}{GitLab} \includegraphics[height=.5cm]{img_git/Logo_GitLab.png}
+    #+END_EXPORT
+#+LaTeX: \vfill
+* L'historique quand on est tout seul
+** Son propre projet
+Accès à un certain nombre de fichiers.
+- Temps continu
+- Checkpoint/snapshot: conserver les moments clés du projet pour
+  pouvoir y revenir
+  - \bgroup\tt git \textbf{add}\egroup pour indiquer quelles modifications ont souhaite conserver
+  - \bgroup\tt git \textbf{commit}\egroup pour faire le checkpoint (date, commentaire)
+
+** Une histoire simple
+#+BEGIN_EXPORT latex
+\begin{overlayarea}{\linewidth}{8cm}
+\begin{tikzpicture}
+  \useasboundingbox (0,0) rectangle (5,8);
+  % \draw (current bounding box.north east) -- (current bounding box.north west) -- (current bounding box.south west) -- (current bounding box.south east) -- cycle;
+  \tikzset{DAGcommit/.append style={minimum height = 1em, minimum width=1em},
+    DAGedge/.append style={thin},
+    DAGrefedge/.append style={thin},
+    special commit/.style={DAGcommit,fill= solarized-red!20}}
+  \node[anchor=south west](simple) at (.5,0) {\tikz{
+%    \node[DAGcommit, at (3,0)] (v0) {v0};
+    \gd<+>{ v0 }
+    \gc<.->{article.md img/fig1.jpg}{left=of v0}
+    \gd<+>{ v0 -- v1 }
+    \gc<.->{article.md}{left=of v1}
+    \gd<+>{ v0 -- v1 -- v2 }
+    \gc<.->{article.md img/fig2.jpg}{left=of v2}
+    \gd<+>{ v0 -- v1 -- v2 -- v3 }
+    \gc<.->{article.md}{left=of v3}
+    \gd<+>{ v0 -- v1 -- v2 --v3 -- v4 -- v5}
+    \gc<.->{article.md img/me.jpg}{left=of v4}
+    \gc<.>{article.md}{left=of v5}
+    \gd<+>{ v0 -- v1 -- v2 --v3 -- v4 -- {{[nodes=unreachable] v5}}}
+    \only<.>{\draw[->,-Latex] (v5) to[out=0,in=0] (v4);}
+    \gd<+>{ v0 -- v1 -- v2 --v3 -- v4 -- {{[nodes=unreachable] v5}, v5'}}
+    \gd<+->{ v0 -- v1 -- v2 --v3 -- v4 -- {{[nodes=unreachable] v5}, v5' -- v6 -- v7}}
+    \ga<+>{git {\bf add} ... ; git {\bf commit}}{right=of v0}
+    \ga<.>{Chaque version du projet\\ (appelée \emph{commit} ou \emph{révision})\\ est identifiée par un SHA1}{right=of v3} %text width=3cm, 
+    \ga<.>{Un \textbf{historique} \\à la granularité\\ du \sout{fichier} projet}{right=of v6} %text width=3cm, 
+    \only<+>{\draw[<->,Latex-Latex, dashed] (v7) to[out=0,in=0] (v3);}
+    \ga<.>{git {\bf diff} v3..v7}{right=of v6}
+    \only<+>{\draw[->,-Latex] (v7) to[out=0,in=0] (v5');}
+    \ga<.>{git {\bf checkout} v5'}{right=of v6}
+    \ga<+>{Tout ce qui a été commité\\est sauvegardé et accessible}{right=of v3}
+    \ga<.>{Cet historique est\\ \textbf{local}!}{right=of v1}
+  }};
+  % % HEAD reference
+  % \gitHEAD
+  % {left=of master}
+  % {master}
+\end{tikzpicture}
+\end{overlayarea}
+#+END_EXPORT
+# https://tikzit.github.io/
+# dot2tex... bof
+# https://pdfs.semanticscholar.org/bb76/d0dc3b4a38a15dcf5c4572a5cf9f121fef7e.pdf
+# /usr/share/doc/texlive-doc/generic/pgf/pgfmanual.pdf 
+#     - 5. Tutorial: Diagrams as Simple Graphs 
+** Backup sur un server distant
+#+BEGIN_EXPORT latex
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\begin{overlayarea}{\linewidth}{5cm}
+\begin{tikzpicture}
+  \useasboundingbox (0,0) rectangle (6cm,5cm);
+%  \draw (current bounding box.north east) -- (current bounding box.north west) -- (current bounding box.south west) -- (current bounding box.south east) -- cycle;
+  \tikzset{DAGcommit/.append style={minimum height = 1em, minimum width=1em},
+    DAGedge/.append style={thin},
+    DAGrefedge/.append style={thin},
+    special commit/.style={DAGcommit,fill= solarized-red!20},
+    every node/.style={transform shape}}
+
+%  \tikzset{res/.style={ellipse,draw,minimum height=0.5cm,minimum width=0.8cm}}
+%  \tikzset{literal/.style={rectangle,draw,minimum height=0.5cm,minimum width=0.8cm,text width = 1.2 cm, align = center}}
+  \tikzset{hfit/.style={rounded rectangle, inner xsep=0pt},
+           vfit/.style={rounded corners}}
+
+
+  \begin{scope}[scale = .5]
+    \gd<1>{ v0 }
+    \ga<1>{\LARGE git {\bf clone}}{right=of v0}
+    \begin{pgfonlayer}{background}
+      \node<1>[fit=(v0), fill=green!30, ellipse, opacity=.8] {};
+    \end{pgfonlayer}
+    \gd<2-3>{ v0 -- v1 -- v2 --v3 }
+    \ga<2>{\Large Alice working locally}{right=of v0}
+    \ga<3>{\LARGE git {\bf push}}{right=of v0}
+    \begin{pgfonlayer}{background}
+      \node<3>[fit=(v0)(v3), fill=green!30, ellipse] {};
+    \end{pgfonlayer}
+    \gd<4-6>{ v0 -- v1 -- v2 --v3 -- v4 -- {{[nodes=unreachable] v5}, v5' -- v6 -- v7}}
+    \ga<4>{\Large Alice working locally}{right=of v0}
+    \ga<5>{\LARGE git {\bf push}}{right=of v0}
+    \begin{pgfonlayer}{background}
+      \node<5>[fit=(v4)(v7), fill=green!30,ellipse,rotate=-30] {};
+    \end{pgfonlayer}
+    \node[DAGref,fill = white, below=of v0,remember picture] (alice) {\includegraphics[width=2cm]{img_git/alice.jpg}};    
+  \end{scope}
+  
+  \begin{scope}[scale = .5, xshift = 8cm, yshift = 3cm, every node/.style={transform shape}]
+    \gd<1-2>{ v0 }
+    \begin{pgfonlayer}{background}
+      \node<1>[fit=(v0), fill=green!30, ellipse] {};
+    \end{pgfonlayer}
+    \gd<3-4>{ v0 -- v1 -- v2 --v3 }
+    \begin{pgfonlayer}{background}
+      \node<3>[fit=(v0)(v3), fill=green!30, ellipse] {};
+    \end{pgfonlayer}
+    \gd<5-6>{ v0 -- v1 -- v2 --v3 -- v4 -- v5' -- v6 -- v7}
+    \begin{pgfonlayer}{background}
+      \node<5>[fit=(v4)(v7), fill=green!30, ellipse, opacity=.8] {};
+%      \filldraw<5>[fill=green!20!white, draw=green!50!black] v4.east -- v7 -- (-1,-3) -- cycle;
+    \end{pgfonlayer}
+    \node[DAGref,fill = white, below=of v0, remember picture] (gitlab) {\includegraphics[width=2cm]{img_git/Logo_GitLab.png}};
+  \end{scope}
+
+  \only<1>{\draw[->,-Latex] (gitlab) to[out=180,in=0] (alice);}
+  \only<3>{\draw[->,-Latex] (alice) to[out=0,in=180] (gitlab);}
+  \only<5>{\draw[->,-Latex] (alice) to[out=0,in=180] (gitlab);}
+
+  \ga<6>{On synchronise des \textbf{branches}\\ en échangeant \\des morceaux d'historiques}{right=of v6}
+
+  \ga<6>{Changer l'ellipse d'Alice}{right=of v0}
+  % % HEAD reference
+  % \gitHEAD
+  % {left=of master}
+  % {master}
+\end{tikzpicture}
+\end{overlayarea}
+#+END_EXPORT
+*** cruft                                                        :noexport:
+#+BEGIN_EXPORT latex
+
+\begin{tikzpicture}[
+    rotate=180,
+    nodes={
+      text height=.7em,
+      text depth=.2em,
+      draw=black!20,
+      thick, 
+      fill=white, 
+      font=\footnotesize
+    },
+    >=stealth',
+    rounded corners,
+    semithick
+  ] 
+  \graph [
+%    simple necklace layout, % circular
+%    spring layout, % force
+    layered layout, % layered
+%    tree layout, % trees
+%   binary tree layout, % trees
+    level distance=1cm,
+    sibling sep=.5em,
+    sibling distance=1cm
+  ] {
+%    AA -- {BB -- {CC, CC3 -- {DD1, DD2}},AAA};
+    "merge" -> {head -- v0,b} -- c -- d;
+  };
+\end{tikzpicture}
+
+\begin{tikzpicture}
+%    \usegdlibrary{layered}
+% Commit DAG
+\graph[layered layout,grow up sep = 2em]{
+   AA -- {BB -- {CC, CC3 -- {DD1, DD2}},AAA};
+   merge <- {head -- v0,b} -- c -- d;
+   A  -- B -- { 
+      C,
+      D -- E,
+   };
+ };
+
+ \draw[red, dashed] (1, 0.5) -- (1, -5);
+
+\end{tikzpicture}
+
+#+END_EXPORT
+
+* Travailler à plusieurs
+** Collaborer = gérer un historique distribué                     :noexport:
+#+BEGIN_EXPORT latex
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\begin{overlayarea}{\linewidth}{5cm}
+\begin{tikzpicture}
+  \useasboundingbox (0,0) rectangle (6cm,5cm);
+%  \draw (current bounding box.north east) -- (current bounding box.north west) -- (current bounding box.south west) -- (current bounding box.south east) -- cycle;
+  \tikzset{DAGcommit/.append style={minimum height = 1em, minimum width=1em},
+    DAGedge/.append style={thin},
+    DAGrefedge/.append style={thin},
+    special commit/.style={DAGcommit,fill= solarized-red!20},
+    every node/.style={transform shape}}
+
+%  \tikzset{res/.style={ellipse,draw,minimum height=0.5cm,minimum width=0.8cm}}
+%  \tikzset{literal/.style={rectangle,draw,minimum height=0.5cm,minimum width=0.8cm,text width = 1.2 cm, align = center}}
+  \tikzset{hfit/.style={rounded rectangle, inner xsep=0pt},
+           vfit/.style={rounded corners}}
+
+  \begin{scope}[scale = .5]
+    \gd<1>{ v0 }
+    \ga<1>{\LARGE git {\bf clone}}{right=of v0}
+    \begin{pgfonlayer}{background}
+      \node<1>[fit=(v0), fill=green!30, ellipse, opacity=.8] {};
+    \end{pgfonlayer}
+    \gd<2-3>{ v0 -- v1 -- v2 --v3 }
+    \ga<2>{\Large Alice working locally}{right=of v0}
+    \ga<3>{\LARGE git {\bf push}}{right=of v0}
+    \begin{pgfonlayer}{background}
+      \node<3>[fit=(v0)(v3), fill=green!30, ellipse] {};
+    \end{pgfonlayer}
+    \gd<4-5>{ v0 -- v1 -- v2 --v3 -- v4 -- {{[nodes=unreachable] v5}, v5' -- v6 -- v7}}
+    \ga<4>{\Large Alice working locally}{right=of v0}
+    \ga<5>{\LARGE git {\bf push}}{right=of v0}
+    \begin{pgfonlayer}{background}
+      \node<5>[fit=(v4)(v7), fill=green!30,ellipse,rotate=-30] {};
+    \end{pgfonlayer}
+    \node[DAGref,fill = white, below=of v0,remember picture] (linus) {\includegraphics[width=2cm]{img_git/alice.jpg}};    
+  \end{scope}
+  
+  \begin{scope}[scale = .5, xshift = 5cm, yshift = 5cm, every node/.style={transform shape}]
+    \gd<1-2>{ v0 }
+    \begin{pgfonlayer}{background}
+      \node<1>[fit=(v0), fill=green!30, ellipse] {};
+    \end{pgfonlayer}
+    \gd<3-4>{ v0 -- v1 -- v2 --v3 }
+    \begin{pgfonlayer}{background}
+      \node<3>[fit=(v0)(v3), fill=green!30, ellipse] {};
+    \end{pgfonlayer}
+    \gd<5->{ v0 -- v1 -- v2 --v3 -- {
+                      v4 -- v5' -- v6 ,
+                      v4'' -- v5''} 
+               -- {Merge}
+           }
+    \begin{pgfonlayer}{background}
+      \node<5>[fit=(v4)(v7), fill=green!30, ellipse, opacity=.8] {};
+%      \filldraw<5>[fill=green!20!white, draw=green!50!black] v4.east -- v7 -- (-1,-3) -- cycle;
+    \end{pgfonlayer}
+    \node[DAGref,fill = white, below=of v0, remember picture] (gitlab) {\includegraphics[width=2cm]{img_git/Logo_GitLab.png}};
+  \end{scope}
+
+  \begin{scope}[scale = .5, xshift = 10cm, yshift = 0cm, every node/.style={transform shape}]
+    \gd<1-2>{ v0 }
+    \begin{pgfonlayer}{background}
+      \node<1>[fit=(v0), fill=green!30, ellipse] {};
+    \end{pgfonlayer}
+    \gd<3-4>{ v0 -- v1 -- v2 --v3 }
+    \begin{pgfonlayer}{background}
+      \node<3>[fit=(v0)(v3), fill=green!30, ellipse] {};
+    \end{pgfonlayer}
+    \gd<5->{ v0 -- v1 -- v2 --v3 -- { v4''[fill=blue]  -- v5''}}
+    \begin{pgfonlayer}{background}
+%      \node<5>[fit=(v4)(v7), fill=green!30, ellipse, opacity=.8] {};
+%      \filldraw<5>[fill=green!20!white, draw=green!50!black] v4.east -- v7 -- (-1,-3) -- cycle;
+    \end{pgfonlayer}
+    \node[DAGref,fill = white, below=of v0, remember picture] (baby) {\includegraphics[width=2cm]{img_git/baby1.jpg}};
+  \end{scope}
+
+  \only<1>{\draw[->,-Latex] (gitlab) to[out=0,in=0] (linus);}
+  \only<3>{\draw[->,-Latex] (linus) to[out=0,in=0] (gitlab);}
+  \only<5>{\draw[->,-Latex] (linus) to[out=0,in=0] (gitlab);}
+  % % HEAD reference
+  % \gitHEAD
+  % {left=of master}
+  % {master}
+\end{tikzpicture}
+\end{overlayarea}
+#+END_EXPORT
+** Collaborer = gérer un historique distribué
+#+BEGIN_EXPORT latex
+\scalebox{.75}{
+    \begin{tikzpicture}[remember picture]
+      \tikzset{DAGcommit/.append style={minimum height = 1em, minimum width=1em},
+          DAGedge/.append style={thin},
+          DAGrefedge/.append style={thin},
+          special commit/.style={DAGcommit,fill= solarized-red!20}}
+
+      % Chloé
+      \node (historique de Chloe) at (0,0) {\tikz[remember picture]{
+              % Commit DAG
+              \onslide<1-3>{
+                  \gitDAG[grow up=0.75, branch left=0.75]{
+                      A -- B -- C
+                  };
+                  % Branch
+                  \gitbranch
+                  {master}
+                  {left=of C}
+                  {C}
+                  % HEAD reference
+                  \gitHEAD
+                  {left=of master}
+                  {master}
+              }
+              \onslide<4>{
+                  \gitDAG[grow up=0.75, branch left=0.75]{
+                      A -- B -- C -- D -- E
+                  };
+                  % Branch
+                  \gitbranch
+                  {master}
+                  {left=of E}
+                  {E}
+                  % HEAD reference
+                  \gitHEAD
+                  {left=of master}
+                  {master}
+              }
+              \onslide<5-8>{
+                  \gitDAG[grow up=0.75, branch left=0.75]{
+                      A -- B -- C -- D -- E -- F1[as=F]
+                  };
+                  % Branch
+                  \gitbranch
+                  {master}
+                  {left=of F1}
+                  {F1}
+                  % HEAD reference
+                  \gitHEAD
+                  {left=of master}
+                  {master}
+              }
+              \onslide<9>{
+                  \gitDAG[grow up=0.75, branch left=0.75]{
+                      A -- B -- C -- D -- E -- {
+                          G,
+                          F,
+                      } -- H
+                  };
+                  % Branch
+                  \gitbranch
+                  {master}
+                  {left=of H}
+                  {H}
+                  % HEAD reference
+                  \gitHEAD
+                  {left=of master}
+                  {master}
+              }
+              % Tag reference
+              \gittag
+              [v0p1]
+              {v0.1}
+              {left=of A}
+              {A}
+
+              \node[DAGref,fill = white, below= of A] {\includegraphics[height=10mm]{img_git/alice.jpg}};
+          }
+      };
+
+      % Origin/master commun
+      \onslide<1-2>{
+          % Remote branch
+          \gitremotebranch
+          [origmaster1]
+          {origin/master}
+          {right=of C}
+          {C}
+      }
+      \onslide<3>{
+          % Remote branch
+          \gitremotebranch
+          [origmaster1]
+          {origin/master}
+          {right=of C,opacity=0.5}
+          {C}
+      }
+      \onslide<4-5>{
+          % Remote branch
+          \gitremotebranch
+          [origmaster2]
+          {origin/master}
+          {right=of E}
+          {E}
+      }
+      \onslide<6-7>{
+          % Remote branch
+          \gitremotebranch
+          [origmaster]
+          {origin/master}
+          {right=of F1}
+          {F1}
+      }
+      \onslide<8>{
+          % Remote branch
+          \gitremotebranch
+          [origmaster]
+          {origin/master}
+          {right=of F1,opacity=0.5}
+          {F1}
+      }
+      \onslide<9>{
+          % Remote branch
+          \gitremotebranch
+          [origmaster3]
+          {origin/master}
+          {right=of H}
+          {H}
+      }
+
+      % Benoît
+      \node[right=2.25 of historique de Chloe.south east,anchor=south west] (historique de Benoit) {\tikz[remember picture]{
+              % Commit DAG
+              \onslide<1>{
+                  \gitDAG[grow up=0.75, branch right=0.75]{
+                      A -- B -- C
+                  };
+                  % Branch
+                  \gitbranch
+                  {master}
+                  {right=of C}
+                  {C}
+                  % HEAD reference
+                  \gitHEAD
+                  {right=of master}
+                  {master}
+              }
+              \onslide<2-4>{
+                  \gitDAG[grow up=0.75, branch right=0.75]{
+                      A -- B -- C -- D -- E
+                  };
+                  % Branch
+                  \gitbranch
+                  {master}
+                  {right=of E}
+                  {E}
+                  % HEAD reference
+                  \gitHEAD
+                  {right=of master}
+                  {master}
+              }
+              \onslide<5-6>{
+                  \gitDAG[grow up=0.75, branch right=0.75]{
+                      A -- B -- C -- D -- E -- G
+                  };
+                  % Branch
+                  \gitbranch
+                  {master}
+                  {right=of G}
+                  {G}
+                  % HEAD reference
+                  \gitHEAD
+                  {right=of master}
+                  {master}
+              }
+              \onslide<7-9>{
+                  \gitDAG[grow up=0.75, branch right=0.75]{
+                      A -- B -- C -- D -- E -- {
+                          G,
+                          F,
+                      } -- H
+                  };
+                  % Branch
+                  \gitbranch
+                  {master}
+                  {right=of H}
+                  {H}
+                  % HEAD reference
+                  \gitHEAD
+                  {right=of master}
+                  {master}
+              }
+              % Tag reference
+              \gittag
+              [v0p1]
+              {v0.1}
+              {right=of A}
+              {A}
+              % 
+              \node[DAGref,fill = white, below= of A] {\includegraphics[height=10mm]{img_git/bob.jpg}};
+          }
+      };
+
+      % Liens de Benoît avec Origin/master
+      \draw<1-2>[DAGrefedge] (C) -- (origmaster1);
+      \draw<4-5>[DAGrefedge] (E) -- (origmaster2);
+      \draw<9>[DAGrefedge] (H) -- (origmaster3);
+
+      % Dépôt origin
+      \node[font=\fontfamily{lmtt}\selectfont\small, above=0.35 of current bounding box.north,above] (origin) {\tikz[scale = .3, every node/.style={transform shape}, remember picture]{
+         % Commit DAG
+              \onslide<1-3>{
+                  \gitDAG[grow up=0.75, branch left=0.75]{
+                      A -- B -- C
+                  };
+                  % Branch
+                  \gitbranch
+                  {master}
+                  {left=of C}
+                  {C}
+                  % HEAD reference
+                  \gitHEAD
+                  {left=of master}
+                  {master}
+              }
+              \onslide<4>{
+                  \gitDAG[grow up=0.75, branch left=0.75]{
+                      A -- B -- C -- D -- E
+                  };
+                  % Branch
+                  \gitbranch
+                  {master}
+                  {left=of E}
+                  {E}
+                  % HEAD reference
+                  \gitHEAD
+                  {left=of master}
+                  {master}
+              }
+              \onslide<5-8>{
+                  \gitDAG[grow up=0.75, branch left=0.75]{
+                      A -- B -- C -- D -- E -- F1[as=F]
+                  };
+                  % Branch
+                  \gitbranch
+                  {master}
+                  {left=of F1}
+                  {F1}
+                  % HEAD reference
+                  \gitHEAD
+                  {left=of master}
+                  {master}
+              }
+              \onslide<9>{
+                  \gitDAG[grow up=0.75, branch left=0.75]{
+                      A -- B -- C -- D -- E -- {
+                          G,
+                          F,
+                      } -- H
+                  };
+                  % Branch
+                  \gitbranch
+                  {master}
+                  {left=of H}
+                  {H}
+                  % HEAD reference
+                  \gitHEAD
+                  {left=of master}
+                  {master}
+              }
+              % Tag reference
+              \gittag
+              [v0p1]
+              {v0.1}
+              {left=of A}
+              {A}
+
+              \node[DAGref,fill = white, below= of A] {\includegraphics[height=2cm]{img_git/Logo_GitLab.png}};
+          }}
+
+      % Actions
+      % Push de Benoît
+      \draw<3>[->,-Latex] (historique de Benoit) to[out=90,in=0] node[midway,font=\scriptsize,above right]{\texttt{git push}} (origin);
+      \onslide<3>{
+          % Remote branch
+          \gitremotebranch
+          [origmaster]
+          {origin/master}
+          {left=of E}
+          {E}
+      }
+
+      % Pull de Chloé
+      \draw<4>[->,-Latex] (origin) to[out=180,in=90] node[midway,font=\scriptsize,above left]{\texttt{git pull}} (historique de Chloe);
+
+      % Push de Chloé
+      \draw<6>[->,-Latex] (historique de Chloe) to[out=90,in=180] node[midway,font=\scriptsize,above left]{\texttt{git push}} (origin);
+      \onslide<6>{
+          % Remote branch
+          \gitremotebranch
+          [origmaster]
+          {origin/master}
+          {left=of E,opacity=0.5}
+          {E}
+      }
+
+      % Pull de Benoît
+      \draw<7>[->,-Latex] (origin) to[out=0,in=90] node[midway,font=\scriptsize,above right]{\texttt{git pull}} (historique de Benoit);
+      \onslide<7>{
+          % Remote branch
+          \gitremotebranch
+          [origmaster]
+          {origin/master}
+          {right=of F}
+          {F}
+      }
+
+      % Push de Benoît
+      \draw<8>[->,-Latex] (historique de Benoit) to[out=90,in=0] node[midway,font=\scriptsize,above right]{\texttt{git push}} (origin);
+      \onslide<8>{
+          % Remote branch
+          \gitremotebranch
+          [origmaster]
+          {origin/master}
+          {left=of H}
+          {H}
+      }
+
+      % Pull de Chloé
+      \draw<9>[->,-Latex] (origin) to[out=180,in=90] node[midway,font=\scriptsize,above left]{\texttt{git pull}} (historique de Chloe);
+    \end{tikzpicture}}
+#+END_EXPORT
+** À RAJOUTER
+- Git push interdit si pas à jour, pas cohérent
+- Au fait, le serveur de backup ne sert à rien, Alice et Bob
+  pourraient échanger directement leur historique. Git est
+  complètemnet décentralisé, chacun a une copie complète de tout
+  l'historique du projet (et pas juste de la dernière version...).
+  - Très résilient. 
+** Le conflit
+Au moment du pull, il se peut que le merge ne soit pas possible et
+qu'un conflit apparaisse.
+
+- Rien de grave, ne pas paniquer. Rien n'est perdu, tout est dans
+  votre historique local!
+
+
+- Git travaille à la granularité du fichier et de la ligne
+  - \to modulariser si possible
+- Il y aura conflit dans un fichier si la même ligne a été modifiée
+  de chaque côté
+  - La modification peut sembler sans importance (des espaces ou un
+    nouveau saut de ligne au milieu d'un ligne...)
+  - Réindenter un texte peut conduire à de véritables cauchemards
+  - \to Bien séparer dans ses commits les modifications de fonds et
+    celle de forme
+- Les fichier binaires n'ont pas de lignes... La fusion est souvent
+  impossible et il faudrat choisir.
+  - \to Préférer le format texte
+
+#+BEGIN_CENTER
+Démonstration !
+#+END_CENTER
+** En conclusion, git:
+- Ça versionne !
+- Ça facilite le travail collaboratif (fusion) !
+- Ça permet de stocker ses modifications localement (« commit ») !
+- Ça permet de partager ses modifications quand on le souhaite (« push ») !
+
+Mais alors, comment mettre ça en place ?
+* L'écosystème
+** Collaborative development platforms
+- GitHub, GitLab, et les autres!
+  - Hébergement
+  - Interfaces web (navigation, preview, édition en ligne)
+  - Gestion des permissions (lecture/écriture, public/privé) et des utilisateurs
+- Un réseau social des développeurs
+  - Issues et revue de code
+  - Statistiques, émulation, gestion de communauté
+  - Le "fork" et la "pull request"
+- Des tas de fonctionnalités incroyables
+  - Intégration Continue \hfill[\to MOOC RR advanced]
+  - Déversement vers des archives (Zenodo, SWH) \hfill[\to MOOC RR advanced]
+** Interfaces graphiques
+- Jupyterlab
+- Rstudio
+- GitTruc
+** Managing large files (dans le module de RR2)
+- Refer to zenodo of figshare from the beginning
+- git annex and git lfs (deployed on github, bitbucket, and recent
+  versions of gitlab) \hfill[\to MOOC RR advanced]
+- Push to Zenodo ?
+
+* Tikz                                                             :noexport:
+** From the doc                                                   :noexport:
+#+BEGIN_EXPORT latex
+\scalebox{.8}{\begin{tikzpicture}[nodes={text height=.7em, text depth=.2em,
+  draw=black!20, thick, fill=white, font=\footnotesize},
+  >=spaced stealth', rounded corners, semithick]
+  \graph[layered layout, level distance=1cm, sibling sep=.5em, sibling distance=1cm] {
+    "5th Edition" -> { "6th Edition", "PWB 1.0" };
+    "6th Edition" -> { "LSX" [>child anchor=45], "1 BSD", "Mini Unix", "Wollongong", "Interdata" };
+    "Interdata" -> { "Unix/TS 3.0", "PWB 2.0", "7th Edition" };
+    "7th Edition" -> { "8th Edition", "32V", "V7M", "Ultrix-11", "Xenix", "UniPlus+" };
+    "V7M" -> "Ultrix-11";
+    "8th Edition" -> "9th Edition";
+    "1 BSD" -> "2 BSD" -> "2.8 BSD" -> { "Ultrix-11", "2.9 BSD" };
+    "32V" -> "3 BSD" -> "4 BSD" -> "4.1 BSD" -> { "4.2 BSD", "2.8 BSD", "8th Edition" };
+    "4.2 BSD" -> { "4.3 BSD", "Ultrix-32" };
+    "PWB 1.0" -> { "PWB 1.2" -> "PWB 2.0", "USG 1.0" -> { "CB Unix 1", "USG 2.0" }};
+    "CB Unix 1" -> "CB Unix 2" -> "CB Unix 3" -> { "Unix/TS++", "PDP-11 Sys V" };
+    { "USG 2.0" -> "USG 3.0", "PWB 2.0", "Unix/TS 1.0" } -> "Unix/TS 3.0";
+    { "Unix/TS++", "CB Unix 3", "Unix/TS 3.0" } -> "TS 4.0" -> "System V.0" -> "System V.2" -> "System V.3";
+  };  
+\end{tikzpicture}}
+#+END_EXPORT
+
+** Historiques
+#+BEGIN_EXPORT latex
+    \centering
+    \begin{tikzpicture}
+      % Commit DAG
+      \gitDAG[grow right sep = 2em]{
+        A -- B -- { 
+          C,
+          D -- E,
+        }
+      };
+      % Tag reference
+      \gittag
+        [v0p1]       % node name
+        {v0.1}       % node text
+        {above=of A} % node placement
+        {A}          % target
+      % Remote branch
+      \gitremotebranch
+        [origmaster]    % node name
+        {origin/master} % node text
+        {above=of C}    % node placement
+        {C}             % target
+      % Branch
+      \gitbranch
+        {master}     % node name and text 
+        {above=of E} % node placement
+        {E}          % target
+      % HEAD reference
+      \gitHEAD
+        {above=of master} % node placement
+        {master}          % target
+    \end{tikzpicture}
+
+    \begin{tikzpicture}
+      \gitDAG[grow right sep = 2em]{
+        A -- B -- { 
+          C -- D' -- E',
+          {[nodes=unreachable] D -- E },
+        }
+      };
+      % Tag reference
+      \gittag
+        [v0p1]       % node name
+        {v0.1}       % node text
+        {above=of A} % node placement
+        {A}          % target
+      % Remote branch
+      \gitremotebranch
+        [origmaster]    % node name
+        {origin/master} % node text
+        {above=of C}    % node placement
+        {C}             % target
+      % Branch
+      \gitbranch
+        {master}      % node name and text 
+        {above=of E'} % node placement
+        {E'}          % target
+      % HEAD reference
+      \gitHEAD
+        {above=of master} % node placement
+        {master}          % target
+    \end{tikzpicture}
+#+END_EXPORT
+** Historiques
+#+BEGIN_EXPORT latex
+    \centering
+    \begin{tikzpicture}
+      % Commit DAG
+      \gitDAG[grow up sep = 2em, branch right = 4em]{
+        A -- B -- { 
+           C
+           \onslide<2>{,D -- E}
+        }
+      };
+      % Tag reference
+      \gittag
+        [v0p1]       % node name
+        {v0.1}       % node text
+        {right=of A} % node placement
+        {A}          % target
+      % Remote branch
+      \gitremotebranch
+        [origmaster]    % node name
+        {origin/master} % node text
+        {left=of C}    % node placement
+        {C}             % target
+      % Branch
+\onslide<2>{
+      \gitbranch
+        {master}     % node name and text 
+        {right=of E} % node placement
+        {E}          % target
+      % HEAD reference
+      \gitHEAD
+        {right=of master} % node placement
+        {master}          % target
+}
+    \end{tikzpicture}
+#+END_EXPORT
+
+** Historiques
+# http://www.texample.net/media/tikz/examples/TEX/beamer-arrows.tex
+#+BEGIN_EXPORT latex
+    \centering
+    \begin{tikzpicture}
+      % Commit DAG
+      \gitDAG[grow up sep = 2em, branch right = 4em]{
+        "" -- A -- B -- C -- {[nodes=unreachable] D};
+        {[nodes=placeholder] "" -- NAA -- NBB -- NCC } --[draw opacity = 0,fill opacity = 0] E -- F;
+        C -- E;
+      };
+      % Tag reference
+    \end{tikzpicture}
+#+END_EXPORT
