@@ -10,14 +10,17 @@
 #+LATEX_CLASS_OPTIONS: [presentation,bigger]
 #+LATEX_HEADER: \usepackage[normalem]{ulem}
 
+#+LATEX_HEADER: \usedescriptionitemofwidthas{}
+
 #+LATEX_HEADER: \usepackage{tikz}
 #+LATEX_HEADER: \usetikzlibrary{babel}
 #+LATEX_HEADER: \usetikzlibrary{positioning}
 #+LATEX_HEADER: \usetikzlibrary{fit}
 #+LATEX_HEADER: \usepackage{gitdags}
-
 #+LATEX_HEADER:\usepackage[strict=true,french=guillemets]{csquotes}
 
+
+#+LATEX_HEADER: \setbeamertemplate{itemize items}{$\bullet$}
 # #+LATEX_HEADER: \usetikzlibrary{arrows}
 # #+LATEX_HEADER: \usetikzlibrary{graphs}
 # #+LATEX_HEADER: \usetikzlibrary{trees}
@@ -388,12 +391,13 @@ Accès à un certain nombre de fichiers.
 \end{tikzpicture}
 \end{overlayarea}
 #+END_EXPORT
-** 
+**  
 :PROPERTIES:
 :BEAMER_OPT: fragile
 :END:
 *** Header                                                         :ignore:
 #+BEGIN_EXPORT latex
+\null\vspace{-8mm}
 \scalebox{.75}{
     \begin{tikzpicture}[remember picture]
       \tikzset{DAGcommit/.append style={minimum height = 1em, minimum width=1em},
@@ -749,62 +753,118 @@ Accès à un certain nombre de fichiers.
 #+BEGIN_EXPORT latex
     \end{tikzpicture}}
 #+END_EXPORT
-** À RAJOUTER                                                     :noexport:
-- Git push interdit si pas à jour, pas cohérent
-- Au fait, le serveur de backup ne sert à rien, Alice et Bob
-  pourraient échanger directement leur historique. Git est
-  complètemnet décentralisé, chacun a une copie complète de tout
-  l'historique du projet (et pas juste de la dernière version...).
-  - Très résilient. 
+** À retenir
+- Collaborer = gérer un historique distribué\bigskip
+
+- Le serveur ne sert à rien: Alice et Bob pourraient échanger
+  directement leurs historiques \bigskip
+#   Git est complètemnet décentralisé, chacun a une copie complète de
+#   tout l'historique du projet (et pas juste de la dernière
+#   version...).
+
+- Chacun a tout l'historique $\leadsto$ très résilient
+** Org-mode: how to modify an Item                                :noexport:
+https://emacs.stackexchange.com/questions/35976/how-to-change-the-appearance-of-list-bullets-in-latex-beamer-exports/35985#35985
+
+    - [@123] will set the counter of enumerations (or "ordered lists") to 123.
+    - [$Rightarrow$] :: bla will generate a "description".
+
+Both do not really yield the flexibility that I was hoping for in my question, but it seems that this is as far as one can get.
+
+EDIT:
+
+I've stumbled over a not so obvious way to gain full flexiblity:
+
+    - @@latex:[$\Rightarrow$]@@ will be exported as \item[$\Rightarrow$]
+
+Notice that @@beamer:[$\Rightarrow$]@@ does not effect this.
+** La Démo                                                        :noexport:
+#+begin_src shell :results output :exports both
+cd /tmp/
+git clone git@gitlab.inria.fr:learninglab/mooc-rr/mooc-rr-modele.git
+cd mooc-rr-modele
+sed -i 's/rebase = true/rebase = false/g' .git/config
+git reset --hard f186adfdddfd0986ab3af38187b8e5f949f9bcf3
+git checkout master
+sed -i "s/= logmodel.predict/=  logmodel.predict/" module2/exo5/exo5_python_fr.org
+git commit -a -m "Carelessly adding space"
+git pull
+jed module2/exo5/exo5_python_fr.org
+git status
+git add module2/exo5/exo5_python_fr.org
+git commit
+#+end_src
 ** Le conflit
 Au moment du pull, il se peut que le merge ne soit pas possible et
-qu'un conflit apparaisse.
+qu'un conflit apparaisse. Pas de panique!
 
-- Rien de grave, ne pas paniquer. Rien n'est perdu, tout est dans
-  votre historique local!
-
-
+# - Rien de grave, ne pas paniquer. Rien n'est perdu, tout est dans
+#   votre historique local!
+  #+BEGIN_CENTER
+    \bf Démonstration !\pause
+  #+END_CENTER
 - Git travaille à la granularité du fichier et de la ligne
-  - \to modulariser si possible
+  - @@latex:[$\Rightarrow$]@@  Modularisez autant que possible\pause
 - Il y aura conflit dans un fichier si la même ligne a été modifiée
-  de chaque côté
-  - La modification peut sembler sans importance (des espaces ou un
-    nouveau saut de ligne au milieu d'un ligne...)
-  - Réindenter un texte peut conduire à de véritables cauchemards
-  - \to Bien séparer dans ses commits les modifications de fonds et
-    celle de forme
-- Les fichier binaires n'ont pas de lignes... La fusion est souvent
-  impossible et il faudrat choisir.
-  - \to Préférer le format texte
+  de chaque côté (même un espace)
+  - @@latex:[$\Rightarrow$]@@ Ne réindentez pas votre texte pour rien!
+  - @@latex:[$\Rightarrow$]@@ Faites des commits différents pour les modifications de fonds et de forme
+  - @@latex:[$\Rightarrow$]@@ Faites de petits commits\pause
+- Les fichier binaires n'ont pas de lignes... la fusion est souvent
+  impossible
+  - @@latex:[$\Rightarrow$]@@ Préférer le format texte
 
-#+BEGIN_CENTER
-Démonstration !
-#+END_CENTER
 ** En conclusion, git:
 - Ça versionne !
 - Ça facilite le travail collaboratif (fusion) !
-- Ça permet de stocker ses modifications localement (« commit ») !
-- Ça permet de partager ses modifications quand on le souhaite (« push ») !
+- Ça permet de stocker ses modifications localement (« commit ») !
+- Ça permet de partager ses modifications quand on le souhaite (« pull/push ») !
 
-Mais alors, comment mettre ça en place ?
-* L'écosystème
-** Collaborative development platforms
-- GitHub, GitLab, et les autres!
-  - Hébergement
+Mais comment mettre ça en place ? 
+- Comment avoir un serveur de backup ?
+- Comment gérer qui peut lire/écrire ?
+* L'écosystème Git
+** \large Les plates-formes de développement collaboratif \small (1/2)
+#+LaTeX: \begin{overlayarea}{\linewidth}{8cm}
+- GitHub, GitLab, et les autres! ::  
+  - Hébergement gratuit de projets publics
   - Interfaces web (navigation, preview, édition en ligne)
-  - Gestion des permissions (lecture/écriture, public/privé) et des utilisateurs
-- Un réseau social des développeurs
-  - Issues et revue de code
+  - Gestion des permissions (lecture/écriture, public/privé) et des utilisateurs\medskip\pause
+- Un réseau social des développeurs ::  
   - Statistiques, émulation, gestion de communauté
-  - Le "fork" et la "pull request"
-- Des tas de fonctionnalités incroyables
-  - Intégration Continue \hfill[\to MOOC RR advanced]
-  - Déversement vers des archives (Zenodo, SWH) \hfill[\to MOOC RR advanced]
+  - /Issues/, correction de bugs, revue de code
+  - Le /fork/ et la /pull request/\medskip\pause
+- Des tas de fonctionnalités incroyables ::  
+  - Intégration Continue \hfill[\to MOOC RR avancé]
+  - Déversement vers des archives\hfill[\to MOOC RR avancé]\newline
+    (Zenodo, SWH)
+#+LaTeX: \end{overlayarea}
+** \large Les plates-formes de développement collaboratif \small (2/2)
+#+LaTeX: \begin{overlayarea}{\linewidth}{8cm}
+- GitHub, GitLab, et les autres! ::  
+  - Hébergement _*gratuit*_ de projets publiques ?!? \pause
+
+- Github :: Leaders du marché mais logiciel propriétaire
+  - Projets privés:
+    - gratuit pour étudiants/académiques
+    - payant pour les autres\pause
+- GitLab :: Logiciel libre
+  - Instance =gitlab.com= similaire à GitHub
+  - Compagnies: déploiement d'instances, support avancé\pause
+- GitLab de votre université, institut, etc. ::  
+  - Projets privés ou publiques
+  - Confidentialité des données
+- Alternatives :: FramaGit, BitBucket, SourceForge
+#+LaTeX: \end{overlayarea}
 ** Interfaces graphiques
-- Jupyterlab
+- JupyterLab-git
 - Rstudio
-- GitTruc
-** Managing large files (dans le module de RR2)
+- Emacs Magit\bigskip
+
+- GitHub Desktop
+- GitKraken
+- SmartGit
+** Managing large files (dans le module de RR2)                   :noexport:
 - Refer to zenodo of figshare from the beginning
 - git annex and git lfs (deployed on github, bitbucket, and recent
   versions of gitlab) \hfill[\to MOOC RR advanced]
