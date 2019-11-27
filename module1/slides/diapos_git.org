@@ -1,10 +1,10 @@
 #+TITLE: Démystifions Git, Github, Gitlab
 #+AUTHOR: @@latex:{\large Arnaud Legrand} \\ \vspace{0.2cm}Grenoble Alpes University and CNRS\\ \vspace{0.2cm} \texttt{arnaud.legrand@imag.fr}@@
 #+OPTIONS: H:2 tags:nil
-#+EXCLUDE_TAGS: noexport
 #+LANGUAGE: fr
+#+EXCLUDE_TAGS: noexport
 #+SELECT_TAGS: export
-#+TAGS: noexport(n) 
+#+TAGS: noexport(n) ignore(i) 
 #+LATEX_COMPILER: lualatex
 #+LATEX_CLASS: beamer
 #+LATEX_CLASS_OPTIONS: [presentation,bigger]
@@ -388,7 +388,11 @@ Accès à un certain nombre de fichiers.
 \end{tikzpicture}
 \end{overlayarea}
 #+END_EXPORT
-** Collaborer = gérer un historique distribué
+** 
+:PROPERTIES:
+:BEAMER_OPT: fragile
+:END:
+*** Header                                                         :ignore:
 #+BEGIN_EXPORT latex
 \scalebox{.75}{
     \begin{tikzpicture}[remember picture]
@@ -396,7 +400,10 @@ Accès à un certain nombre de fichiers.
           DAGedge/.append style={thin},
           DAGrefedge/.append style={thin},
           special commit/.style={DAGcommit,fill= solarized-red!20}}
+#+END_EXPORT
 
+*** Chloé                                                          :ignore:
+#+BEGIN_EXPORT latex
       % Chloé
       \node (historique de Chloe) at (0,0) {\tikz[remember picture]{
               % Commit DAG
@@ -470,6 +477,9 @@ Accès à un certain nombre de fichiers.
           }
       };
 
+#+END_EXPORT
+*** Origin/master between Chloé and Benoît                         :ignore:
+#+BEGIN_EXPORT latex
       % Origin/master commun
       \onslide<1-2>{
           % Remote branch
@@ -519,7 +529,9 @@ Accès à un certain nombre de fichiers.
           {right=of H}
           {H}
       }
-
+#+END_EXPORT
+*** Benoît                                                         :ignore:
+#+BEGIN_EXPORT latex
       % Benoît
       \node[right=2.25 of historique de Chloe.south east,anchor=south west] (historique de Benoit) {\tikz[remember picture]{
               % Commit DAG
@@ -592,16 +604,20 @@ Accès à un certain nombre de fichiers.
               \node[DAGref,fill = white, below= of A] {\includegraphics[height=10mm]{img_git/bob.jpg}};
           }
       };
-
+#+END_EXPORT
+*** Origin/master between Chloé and Benoît                         :ignore:
+#+BEGIN_EXPORT latex
       % Liens de Benoît avec Origin/master
       \draw<1-2>[DAGrefedge] (C) -- (origmaster1);
       \draw<4-5>[DAGrefedge] (E) -- (origmaster2);
       \draw<9>[DAGrefedge] (H) -- (origmaster3);
-
+#+END_EXPORT
+*** Gitlab                                                         :ignore:
+#+BEGIN_EXPORT latex
       % Dépôt origin
-      \node[font=\fontfamily{lmtt}\selectfont\small, above=0.35 of current bounding box.north,above] (origin) {\tikz[scale = .3, every node/.style={transform shape}, remember picture]{
+      \node[font=\fontfamily{lmtt}\selectfont\small, above=0.35 of current bounding box.north,above] (origin) {\tikz[scale = .5, every node/.style={transform shape}, remember picture]{
          % Commit DAG
-              \onslide<1-3>{
+              \onslide<1-2>{
                   \gitDAG[grow up=0.75, branch left=0.75]{
                       A -- B -- C
                   };
@@ -615,7 +631,7 @@ Accès à un certain nombre de fichiers.
                   {left=of master}
                   {master}
               }
-              \onslide<4>{
+              \onslide<3-5>{
                   \gitDAG[grow up=0.75, branch left=0.75]{
                       A -- B -- C -- D -- E
                   };
@@ -629,7 +645,7 @@ Accès à un certain nombre de fichiers.
                   {left=of master}
                   {master}
               }
-              \onslide<5-8>{
+              \onslide<6-7>{
                   \gitDAG[grow up=0.75, branch left=0.75]{
                       A -- B -- C -- D -- E -- F1[as=F]
                   };
@@ -643,7 +659,7 @@ Accès à un certain nombre de fichiers.
                   {left=of master}
                   {master}
               }
-              \onslide<9>{
+              \onslide<8>{
                   \gitDAG[grow up=0.75, branch left=0.75]{
                       A -- B -- C -- D -- E -- {
                           G,
@@ -668,8 +684,11 @@ Accès à un certain nombre de fichiers.
               {A}
 
               \node[DAGref,fill = white, below= of A] {\includegraphics[height=2cm]{img_git/Logo_GitLab.png}};
-          }}
-
+          }
+      };
+#+END_EXPORT
+*** Actions                                                        :ignore:
+#+BEGIN_EXPORT latex
       % Actions
       % Push de Benoît
       \draw<3>[->,-Latex] (historique de Benoit) to[out=90,in=0] node[midway,font=\scriptsize,above right]{\texttt{git push}} (origin);
@@ -678,7 +697,7 @@ Accès à un certain nombre de fichiers.
           \gitremotebranch
           [origmaster]
           {origin/master}
-          {left=of E}
+          {right=of E}
           {E}
       }
 
@@ -692,8 +711,8 @@ Accès à un certain nombre de fichiers.
           \gitremotebranch
           [origmaster]
           {origin/master}
-          {left=of E,opacity=0.5}
-          {E}
+          {left=of F1}
+          {F1}
       }
 
       % Pull de Benoît
@@ -709,20 +728,25 @@ Accès à un certain nombre de fichiers.
 
       % Push de Benoît
       \draw<8>[->,-Latex] (historique de Benoit) to[out=90,in=0] node[midway,font=\scriptsize,above right]{\texttt{git push}} (origin);
-      \onslide<8>{
+      \onslide<8-9>{
           % Remote branch
           \gitremotebranch
           [origmaster]
           {origin/master}
-          {left=of H}
+          {right=of H}
           {H}
       }
 
       % Pull de Chloé
-      \draw<9>[->,-Latex] (origin) to[out=180,in=90] node[midway,font=\scriptsize,above left]{\texttt{git pull}} (historique de Chloe);
+      \draw<9>[->,-Latex] (origin) to[out=180,in=90]
+      node[midway,font=\scriptsize,above left]{\texttt{git pull}}
+      (historique de Chloe);
+#+END_EXPORT
+*** Footer                                                         :ignore:
+#+BEGIN_EXPORT latex
     \end{tikzpicture}}
 #+END_EXPORT
-** À RAJOUTER
+** À RAJOUTER                                                     :noexport:
 - Git push interdit si pas à jour, pas cohérent
 - Au fait, le serveur de backup ne sert à rien, Alice et Bob
   pourraient échanger directement leur historique. Git est
@@ -922,3 +946,15 @@ Mais alors, comment mettre ça en place ?
       % Tag reference
     \end{tikzpicture}
 #+END_EXPORT
+* Emacs Setup                                                      :noexport:
+This document has local variables in its postembule, which should
+allow Org-mode (9) to work seamlessly without any setup. If you're
+uncomfortable using such variables, you can safely ignore them at
+startup. Exporting may require that you copy them in your .emacs.
+
+# ###############################
+# Local Variables:
+# eval: (setq my-utils-file "ox-extra.el")
+# eval: (load-file (expand-file-name my-utils-file (file-name-directory (buffer-file-name))))
+# eval: (ox-extras-activate '(ignore-headlines))
+# End:
