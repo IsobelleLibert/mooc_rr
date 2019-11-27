@@ -4,6 +4,7 @@
 #+EXCLUDE_TAGS: noexport
 #+LANGUAGE: fr
 #+SELECT_TAGS: export
+#+TAGS: noexport(n) 
 #+LATEX_COMPILER: lualatex
 #+LATEX_CLASS: beamer
 #+LATEX_CLASS_OPTIONS: [presentation,bigger]
@@ -59,7 +60,7 @@ Les gestionnaires de version datent du début des années 70
   de sauvegardes
 - Sauvegarde les données (avec l’historique) sur des ordinateurs
   distants
-- Fusion "automatique" des fichiers édités par plusieurs personnes.
+- Fusion "automatique" des fichiers édités par plusieurs personnes
 *** \includegraphics[height=.6cm]{img_git/Logo_Git.pdf}
 #+LaTeX: \begin{columns}
 #+LaTeX:   \begin{column}{.8\linewidth}
@@ -82,16 +83,16 @@ file:img_git/linus.jpg
 ** Objectif de cet exposé
   #+BEGIN_EXPORT latex
   \begin{overlayarea}{\linewidth}{0cm}
-    \begin{flushright}
+%    \begin{flushright}
     \null\vspace{-2.0cm}%
-    \includegraphics[height=0.55\paperheight]{img_git/Git_Xkcd.png}
-    \end{flushright}
+    \hbox{\hspace{8cm}\includegraphics[height=0.6\paperheight]{img_git/Git_Xkcd.png}}
+%    \end{flushright}
   \end{overlayarea}
   #+END_EXPORT
-- +Apprendre à utiliser =git=+ \vspace{.8cm} \pause
+- +Apprendre à utiliser =git=+ \vspace{.6cm} \pause
 
   =git= est "explicite" (à la différence \newline de dropbox et
-  autres)\newline
+  autres)\medskip\newline
   Heureusement, il y a des interfaces \vspace{1.2cm}
 - Notions essentielles pour utiliser les interfaces à =git=
   - Historique distribué
@@ -108,13 +109,21 @@ file:img_git/linus.jpg
 #+LaTeX: \vfill
 * L'historique quand on est tout seul
 ** Son propre projet
+#+LaTeX: \begin{columns}
+#+LaTeX:   \begin{column}{.13\linewidth}
+#+LaTeX:      \includegraphics<1>[width=\linewidth]{img_git/continuous_history_1.pdf}%
+#+LaTeX:      \includegraphics<2->[width=\linewidth]{img_git/continuous_history_2.pdf}
+#+LaTeX:   \end{column}
+#+LaTeX:   \begin{column}{.8\linewidth}
 Accès à un certain nombre de fichiers.
+#+ATTR_BEAMER: :overlay <+->
 - Temps continu
 - Checkpoint/snapshot: conserver les moments clés du projet pour
   pouvoir y revenir
   - \bgroup\tt git \textbf{add}\egroup pour indiquer quelles modifications ont souhaite conserver
   - \bgroup\tt git \textbf{commit}\egroup pour faire le checkpoint (date, commentaire)
-
+#+LaTeX:   \end{column}
+#+LaTeX: \end{columns}
 ** Une histoire simple
 #+BEGIN_EXPORT latex
 \begin{overlayarea}{\linewidth}{8cm}
@@ -230,7 +239,7 @@ Accès à un certain nombre de fichiers.
 
   \ga<6>{On synchronise des \textbf{branches}\\ en échangeant \\des morceaux d'historiques}{right=of v6}
 
-  \ga<6>{Changer l'ellipse d'Alice}{right=of v0}
+  % \ga<6>{Changer l'ellipse d'Alice}{right=of v0}
   % % HEAD reference
   % \gitHEAD
   % {left=of master}
