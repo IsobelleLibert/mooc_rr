@@ -842,7 +842,7 @@ Mais comment mettre ça en place ?
 ** \large Les plates-formes de développement collaboratif \small (2/2)
 #+LaTeX: \begin{overlayarea}{\linewidth}{8cm}
 - GitHub, GitLab, et les autres! ::  
-  - Hébergement _*gratuit*_ de projets publiques ?!? \pause
+  - Hébergement _*gratuit*_ de projets publics ?!? \pause
 
 - Github :: Leaders du marché mais logiciel propriétaire
   - Projets privés:
