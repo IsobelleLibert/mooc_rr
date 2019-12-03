@@ -41,7 +41,7 @@ Python 3, mais produisent des résultats différents en raison du
 changement de comportement de la division entière.
 
 [[https://en.wikipedia.org/wiki/R_(programming_language)][R]], en comparaison, est beaucoup plus proche (en termes de communauté
-de développeurs) de langages comme [[https://en.wikipedia.org/wiki/SAS_(logiciel)][SAS]], très utilisé dans l'industrie
+de développeurs) de langages comme [[https://fr.wikipedia.org/wiki/SAS_(langage)][SAS]], très utilisé dans l'industrie
 pharmaceutique où les procédures statistiques doivent être
 standardisées et stables/solides. R n’est évidemment pas à l’abri des
 évolutions qui cassent les anciennes versions et gênent la
