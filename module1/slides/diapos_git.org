@@ -123,7 +123,7 @@ Accès à un certain nombre de fichiers.
 - Temps continu
 - Checkpoint/snapshot: conserver les moments clés du projet pour
   pouvoir y revenir
-  - \bgroup\tt git \textbf{add}\egroup pour indiquer quelles modifications ont souhaite conserver
+  - \bgroup\tt git \textbf{add}\egroup pour indiquer quelles modifications on souhaite conserver
   - \bgroup\tt git \textbf{commit}\egroup pour faire le checkpoint (date, commentaire)
 #+LaTeX:   \end{column}
 #+LaTeX: \end{columns}
