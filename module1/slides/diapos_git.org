@@ -24,7 +24,7 @@
 
 #+LATEX_HEADER: \setbeamertemplate{itemize items}{$\bullet$}
 #+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
-#+LATEX_HEADER: \useinnertheme{circles}
+#+LATEX_HEADER: %\useinnertheme{circles}
 
 # #+LATEX_HEADER: \usetikzlibrary{arrows}
 # #+LATEX_HEADER: \usetikzlibrary{graphs}
