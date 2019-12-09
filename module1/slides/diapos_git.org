@@ -874,15 +874,26 @@ Mais comment mettre ça en place ?
 
 - Github :: Leaders du marché mais logiciel propriétaire
   - Projets privés:
+    #    #+LaTeX: \hfill\llap{\includegraphics[height=.5cm]{img_git/Logo_GitHub.pdf}\includegraphics[height=.9cm]{img_git/Octocat.jpg}\hspace{-1cm}}
     - gratuit pour étudiants/académiques
-    - payant pour les autres\pause
-- GitLab :: Logiciel libre
+    - payant pour les autres
+  #+BEGIN_EXPORT latex
+  \begin{overlayarea}{\linewidth}{0cm}
+     \vspace{-2.3cm}\hfill\llap{\includegraphics<2-3>[height=1.8cm]{img_git/github_interactions.pdf}}
+  \end{overlayarea}\vspace{-1\baselineskip}\pause
+  #+END_EXPORT
+- GitLab :: Logiciel libre, plusieurs instances
   - Instance =gitlab.com= similaire à GitHub
-  - Compagnies: déploiement d'instances, support avancé\pause
-- GitLab de votre université, institut, etc. ::  
+  - Compagnies, institutions: support avancé
+  #+BEGIN_EXPORT latex
+  \begin{overlayarea}{\linewidth}{0cm}
+     \vspace{-.7cm}\centerline{\includegraphics<3>[height=1.8cm]{img_git/gitlab_interactions.pdf}}
+  \end{overlayarea}\vspace{-1\baselineskip}\pause
+  #+END_EXPORT
+- Lequel choisir ? :: (+ FramaGit, BitBucket, SourceForge, ...)
+  - Visibilité/pérénité
   - Projets privés ou publiques
   - Confidentialité des données
-- Alternatives :: FramaGit, BitBucket, SourceForge
 #+LaTeX: \end{overlayarea}
 ** Interfaces graphiques
 - JupyterLab-git
