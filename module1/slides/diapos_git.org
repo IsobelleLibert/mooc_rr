@@ -12,6 +12,7 @@
 
 #+LATEX_HEADER: \usedescriptionitemofwidthas{}
 
+#+LATEX_HEADER: \usepackage[francais]{babel}
 #+LATEX_HEADER: \usepackage{tikz}
 #+LATEX_HEADER: \usetikzlibrary{babel}
 #+LATEX_HEADER: \usetikzlibrary{positioning}
@@ -38,6 +39,7 @@
 #+LaTeX: \newcommand<>\gd[1]{\only#2{\gitDAG[grow up=1, branch right=1]{#1}};}
 #+LaTeX: \newcommand<>\gc[2]{\only#3{\gitcontent{#1}{#2}}}
 #+LaTeX: \newcommand<>\ga[2]{\only#3{\node[DAGref,fill = white, align=center, font = \normalsize, #2] () {#1};}}
+#+LaTeX: \let\alert=\textbf
 
 * Contexte
 ** Aaah... l'informatique
@@ -154,13 +156,13 @@ Accès à un certain nombre de fichiers.
     \only<.>{\draw[->,-Latex] (v5) to[out=0,in=0] (v4);}
     \gd<+>{ v0 -- v1 -- v2 --v3 -- v4 -- {{[nodes=unreachable] v5}, v5'}}
     \gd<+->{ v0 -- v1 -- v2 --v3 -- v4 -- {{[nodes=unreachable] v5}, v5' -- v6 -- v7}}
-    \ga<+>{git {\bf add} ... ; git {\bf commit}}{right=of v0}
-    \ga<.>{Chaque version du projet\\ (appelée \emph{commit} ou \emph{révision})\\ est identifiée par un SHA1}{right=of v3} %text width=3cm, 
+    \ga<+>{git \textbf{add} ...  \\git \textbf{commit}}{right=of v0, yshift=+1.6ex}
+    \ga<.>{Chaque version du projet\\ (appelée \emph{commit} ou \emph{révision})\\ est identifiée par un SHA1\\\scalebox{.6}{\texttt{4fd4d17f73d4c024fb3ef69fb336cc10f2cd9b26}}}{right=of v3} %text width=3cm, 
     \ga<.>{Un \textbf{historique} \\à la granularité\\ du \sout{fichier} projet}{right=of v6} %text width=3cm, 
     \only<+>{\draw[<->,Latex-Latex, dashed] (v7) to[out=0,in=0] (v3);}
-    \ga<.>{git {\bf diff} v3..v7}{right=of v6}
+    \ga<.>{git \textbf{diff} v3..v7}{right=of v6}
     \only<+>{\draw[->,-Latex] (v7) to[out=0,in=0] (v5');}
-    \ga<.>{git {\bf checkout} v5'}{right=of v6}
+    \ga<.>{git \textbf{checkout} v5'}{right=of v6}
     \ga<+>{Tout ce qui a été commité\\est sauvegardé et accessible}{right=of v3}
     \ga<.>{Cet historique est\\ \textbf{local}!}{right=of v1}
   }};
@@ -408,78 +410,78 @@ Accès à un certain nombre de fichiers.
 
 *** Chloé                                                          :ignore:
 #+BEGIN_EXPORT latex
-      % Chloé
-      \node (historique de Chloe) at (0,0) {\tikz[remember picture]{
-              % Commit DAG
-              \onslide<1-3>{
-                  \gitDAG[grow up=0.75, branch left=0.75]{
-                      A -- B -- C
-                  };
-                  % Branch
-                  \gitbranch
-                  {master}
-                  {left=of C}
-                  {C}
-                  % HEAD reference
-                  \gitHEAD
-                  {left=of master}
-                  {master}
-              }
-              \onslide<4>{
-                  \gitDAG[grow up=0.75, branch left=0.75]{
-                      A -- B -- C -- D -- E
-                  };
-                  % Branch
-                  \gitbranch
-                  {master}
-                  {left=of E}
-                  {E}
-                  % HEAD reference
-                  \gitHEAD
-                  {left=of master}
-                  {master}
-              }
-              \onslide<5-9>{
-                  \gitDAG[grow up=0.75, branch left=0.75]{
-                      A -- B -- C -- D -- E -- F1[as=F]
-                  };
-                  % Branch
-                  \gitbranch
-                  {master}
-                  {left=of F1}
-                  {F1}
-                  % HEAD reference
-                  \gitHEAD
-                  {left=of master}
-                  {master}
-              }
-              \onslide<10>{
-                  \gitDAG[grow up=0.75, branch left=0.75]{
-                      A -- B -- C -- D -- E -- {
-                          G,
-                          F,
-                      } -- H
-                  };
-                  % Branch
-                  \gitbranch
-                  {master}
-                  {left=of H}
-                  {H}
-                  % HEAD reference
-                  \gitHEAD
-                  {left=of master}
-                  {master}
-              }
-              % Tag reference
-              \gittag
-              [v0p1]
-              {v0.1}
-              {left=of A}
-              {A}
+% Chloé
+\node (historique de Chloe) at (0,0) {\tikz[remember picture]{
+        % Commit DAG
+        \onslide<1-3>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C
+            };
+            % Branch
+            \gitbranch
+            {master}
+            {left=of C}
+            {C}
+            % HEAD reference
+            \gitHEAD
+            {left=of master}
+            {master}
+        }
+        \onslide<4>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C -- D -- E
+            };
+            % Branch
+            \gitbranch
+            {master}
+            {left=of E}
+            {E}
+            % HEAD reference
+            \gitHEAD
+            {left=of master}
+            {master}
+        }
+        \onslide<5-9>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C -- D -- E -- F1[as=F]
+            };
+            % Branch
+            \gitbranch
+            {master}
+            {left=of F1}
+            {F1}
+            % HEAD reference
+            \gitHEAD
+            {left=of master}
+            {master}
+        }
+        \onslide<10>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C -- D -- E -- {
+                    G,
+                    F,
+                } -- H
+            };
+            % Branch
+            \gitbranch
+            {master}
+            {left=of H}
+            {H}
+            % HEAD reference
+            \gitHEAD
+            {left=of master}
+            {master}
+        }
+        % % Tag reference
+        % \gittag
+        % [v0p1]
+        % {v0.1}
+        % {left=of A}
+        % {A}
 
-              \node[DAGref,fill = white, below= of A] {\includegraphics[height=10mm]{img_git/alice.jpg}};
-          }
-      };
+        \node[DAGref,fill = white, below= of A] {\includegraphics[height=10mm]{img_git/alice.jpg}};
+    }
+};
 
 #+END_EXPORT
 *** Origin/master between Chloé and Benoît                         :ignore:
@@ -536,78 +538,78 @@ Accès à un certain nombre de fichiers.
 #+END_EXPORT
 *** Benoît                                                         :ignore:
 #+BEGIN_EXPORT latex
-      % Benoît
-      \node[right=2.25 of historique de Chloe.south east,anchor=south west] (historique de Benoit) {\tikz[remember picture]{
-              % Commit DAG
-              \onslide<1>{
-                  \gitDAG[grow up=0.75, branch right=0.75]{
-                      A -- B -- C
-                  };
-                  % Branch
-                  \gitbranch
-                  {master}
-                  {right=of C}
-                  {C}
-                  % HEAD reference
-                  \gitHEAD
-                  {right=of master}
-                  {master}
-              }
-              \onslide<2-4>{
-                  \gitDAG[grow up=0.75, branch right=0.75]{
-                      A -- B -- C -- D -- E
-                  };
-                  % Branch
-                  \gitbranch
-                  {master}
-                  {right=of E}
-                  {E}
-                  % HEAD reference
-                  \gitHEAD
-                  {right=of master}
-                  {master}
-              }
-              \onslide<5-7>{
-                  \gitDAG[grow up=0.75, branch right=0.75]{
-                      A -- B -- C -- D -- E -- G
-                  };
-                  % Branch
-                  \gitbranch
-                  {master}
-                  {right=of G}
-                  {G}
-                  % HEAD reference
-                  \gitHEAD
-                  {right=of master}
-                  {master}
-              }
-              \onslide<8-10>{
-                  \gitDAG[grow up=0.75, branch right=0.75]{
-                      A -- B -- C -- D -- E -- {
-                          G,
-                          F,
-                      } -- H
-                  };
-                  % Branch
-                  \gitbranch
-                  {master}
-                  {right=of H}
-                  {H}
-                  % HEAD reference
-                  \gitHEAD
-                  {right=of master}
-                  {master}
-              }
-              % Tag reference
-              \gittag
-              [v0p1]
-              {v0.1}
-              {right=of A}
-              {A}
-              % 
-              \node[DAGref,fill = white, below= of A] {\includegraphics[height=10mm]{img_git/bob.jpg}};
-          }
-      };
+% Benoît
+\node[right=2.25 of historique de Chloe.south east,anchor=south west] (historique de Benoit) {\tikz[remember picture]{
+        % Commit DAG
+        \onslide<1>{
+            \gitDAG[grow up=0.75, branch right=0.75]{
+                A -- B -- C
+            };
+            % Branch
+            \gitbranch
+            {master}
+            {right=of C}
+            {C}
+            % HEAD reference
+            \gitHEAD
+            {right=of master}
+            {master}
+        }
+        \onslide<2-4>{
+            \gitDAG[grow up=0.75, branch right=0.75]{
+                A -- B -- C -- D -- E
+            };
+            % Branch
+            \gitbranch
+            {master}
+            {right=of E}
+            {E}
+            % HEAD reference
+            \gitHEAD
+            {right=of master}
+            {master}
+        }
+        \onslide<5-7>{
+            \gitDAG[grow up=0.75, branch right=0.75]{
+                A -- B -- C -- D -- E -- G
+            };
+            % Branch
+            \gitbranch
+            {master}
+            {right=of G}
+            {G}
+            % HEAD reference
+            \gitHEAD
+            {right=of master}
+            {master}
+        }
+        \onslide<8-10>{
+            \gitDAG[grow up=0.75, branch right=0.75]{
+                A -- B -- C -- D -- E -- {
+                    G,
+                    F,
+                } -- H
+            };
+            % Branch
+            \gitbranch
+            {master}
+            {right=of H}
+            {H}
+            % HEAD reference
+            \gitHEAD
+            {right=of master}
+            {master}
+        }
+        % % Tag reference
+        % \gittag
+        % [v0p1]
+        % {v0.1}
+        % {right=of A}
+        % {A}
+        % 
+        \node[DAGref,fill = white, below= of A] {\includegraphics[height=10mm]{img_git/bob.jpg}};
+    }
+};
 #+END_EXPORT
 *** Origin/master between Chloé and Benoît                         :ignore:
 #+BEGIN_EXPORT latex
@@ -643,78 +645,78 @@ Accès à un certain nombre de fichiers.
 #+END_EXPORT
 *** Gitlab                                                         :ignore:
 #+BEGIN_EXPORT latex
-      % Dépôt origin
-      \node[font=\fontfamily{lmtt}\selectfont\small, above=0.35 of current bounding box.north,above] (origin) {\tikz[scale = .5, every node/.style={transform shape}, remember picture]{
-         % Commit DAG
-              \onslide<1-2>{
-                  \gitDAG[grow up=0.75, branch left=0.75]{
-                      A -- B -- C
-                  };
-                  % Branch
-                  \gitbranch
-                  {master}
-                  {left=of C}
-                  {C}
-                  % HEAD reference
-                  \gitHEAD
-                  {left=of master}
-                  {master}
-              }
-              \onslide<3-5>{
-                  \gitDAG[grow up=0.75, branch left=0.75]{
-                      A -- B -- C -- D -- E
-                  };
-                  % Branch
-                  \gitbranch
-                  {master}
-                  {left=of E}
-                  {E}
-                  % HEAD reference
-                  \gitHEAD
-                  {left=of master}
-                  {master}
-              }
-              \onslide<6-8>{
-                  \gitDAG[grow up=0.75, branch left=0.75]{
-                      A -- B -- C -- D -- E -- F1[as=F]
-                  };
-                  % Branch
-                  \gitbranch
-                  {master}
-                  {left=of F1}
-                  {F1}
-                  % HEAD reference
-                  \gitHEAD
-                  {left=of master}
-                  {master}
-              }
-              \onslide<9-10>{
-                  \gitDAG[grow up=0.75, branch left=0.75]{
-                      A -- B -- C -- D -- E -- {
-                          G,
-                          F,
-                      } -- H
-                  };
-                  % Branch
-                  \gitbranch
-                  {master}
-                  {left=of H}
-                  {H}
-                  % HEAD reference
-                  \gitHEAD
-                  {left=of master}
-                  {master}
-              }
-              % Tag reference
-              \gittag
-              [v0p1]
-              {v0.1}
-              {left=of A}
-              {A}
+% Dépôt origin
+\node[font=\fontfamily{lmtt}\selectfont\small, above=0.35 of current bounding box.north,above] (origin) {\tikz[scale = .5, every node/.style={transform shape}, remember picture]{
+   % Commit DAG
+        \onslide<1-2>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C
+            };
+            % Branch
+            \gitbranch
+            {master}
+            {left=of C}
+            {C}
+            % % HEAD reference
+            % \gitHEAD
+            % {left=of master}
+            % {master}
+        }
+        \onslide<3-5>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C -- D -- E
+            };
+            % Branch
+            \gitbranch
+            {master}
+            {left=of E}
+            {E}
+            % % HEAD reference
+            % \gitHEAD
+            % {left=of master}
+            % {master}
+        }
+        \onslide<6-8>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C -- D -- E -- F
+            };
+            % Branch
+            \gitbranch
+            {master}
+            {left=of F}
+            {F}
+            % % HEAD reference
+            % \gitHEAD
+            % {left=of master}
+            % {master}
+        }
+        \onslide<9-10>{
+            \gitDAG[grow up=0.75, branch left=0.75]{
+                A -- B -- C -- D -- E -- {
+                    G,
+                    F,
+                } -- H
+            };
+            % Branch
+            \gitbranch
+            {master}
+            {left=of H}
+            {H}
+            % % HEAD reference
+            % \gitHEAD
+            % {left=of master}
+            % {master}
+        }
+        % % Tag reference
+        % \gittag
+        % [v0p1]
+        % {v0.1}
+        % {left=of A}
+        % {A}
 
-              \node[DAGref,fill = white, below= of A] {\includegraphics[height=2cm]{img_git/Logo_GitLab.png}};
-          }
-      };
+        \node[DAGref,fill = white, below= of A] {\includegraphics[height=2cm]{img_git/Logo_GitLab.png}};
+    }
+};
 #+END_EXPORT
 *** Actions                                                        :ignore:
 #+BEGIN_EXPORT latex
@@ -833,10 +835,11 @@ qu'un conflit apparaisse. Pas de panique!
 - Il y aura conflit dans un fichier si la même ligne a été modifiée
   de chaque côté (même un espace)
   - @@latex:[$\Rightarrow$]@@ Ne réindentez pas votre texte pour rien!
-  - @@latex:[$\Rightarrow$]@@ Faites des commits différents pour les modifications de fonds et de forme
-  - @@latex:[$\Rightarrow$]@@ Faites de petits commits\pause
-- Les fichier binaires n'ont pas de lignes... la fusion est souvent
-  impossible
+  - @@latex:[$\Rightarrow$]@@ Faites des commits différents pour les
+    modifications de fonds, de forme (git *status*; git *diff*; git *add*)
+  - @@latex:[$\Rightarrow$]@@ Faites de *petits* commits *logiques* (+=git commit -a=+)\pause
+- Les fichier binaires n'ont pas de lignes... le diff et la fusion sont souvent
+  impossibles
   - @@latex:[$\Rightarrow$]@@ Préférer le format texte
 
 ** En conclusion, git:
