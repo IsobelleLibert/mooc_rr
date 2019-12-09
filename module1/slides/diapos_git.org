@@ -864,12 +864,22 @@ Mais comment mettre ça en place ?
   - Gestion des permissions (lecture/écriture, public/privé) et des utilisateurs\medskip\pause
 - Un réseau social des développeurs ::  
   - Statistiques, émulation, gestion de communauté
-  - /Issues/, correction de bugs, revue de code
-  - Le /fork/ et la /pull request/\medskip\pause
-- Des tas de fonctionnalités incroyables ::  
-  - Intégration Continue \hfill[\to MOOC RR avancé]
-  - Déversement vers des archives\hfill[\to MOOC RR avancé]\newline
-    (Zenodo, SWH)
+  - /Issues/, correction de bugs, revue de code\pause
+  - Le /fork/ et la /pull request/\medskip
+  #+BEGIN_EXPORT latex
+  \begin{overlayarea}{\linewidth}{0cm}\vspace{-1.6cm}
+     \hfill\llap{%
+        \includegraphics<3>[height=3.6cm]{img_git/github_pull_request_1.pdf}%
+        \includegraphics<4>[height=3.6cm]{img_git/github_pull_request_2.pdf}%
+        \includegraphics<5>[height=3.6cm]{img_git/github_pull_request_3.pdf}%
+        \hspace{-1cm}
+        }
+  \end{overlayarea}\vspace{-1\baselineskip}\pause\pause\pause
+  #+END_EXPORT
+
+- Des tas de fonctionnalités incroyables ::  \hfill[\to MOOC RR avancé]
+  - Intégration continue 
+  - Déversement vers des archives (Zenodo, SWH)
 #+LaTeX: \end{overlayarea}
 ** \large Les plates-formes de développement collaboratif \small (2/2)
 #+LaTeX: \begin{overlayarea}{\linewidth}{8cm}
