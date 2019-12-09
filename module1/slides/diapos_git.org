@@ -7,10 +7,11 @@
 #+TAGS: noexport(n) ignore(i) 
 #+LATEX_COMPILER: lualatex
 #+LATEX_CLASS: beamer
-#+LATEX_CLASS_OPTIONS: [presentation,bigger]
+#+LATEX_CLASS_OPTIONS: [presentation,xcolor=dvipsnames,bigger]
 #+LATEX_HEADER: \usepackage[normalem]{ulem}
 
 #+LATEX_HEADER: \usedescriptionitemofwidthas{}
+
 
 #+LATEX_HEADER: \usepackage[francais]{babel}
 #+LATEX_HEADER: \usepackage{tikz}
@@ -22,6 +23,9 @@
 
 
 #+LATEX_HEADER: \setbeamertemplate{itemize items}{$\bullet$}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER: \useinnertheme{circles}
+
 # #+LATEX_HEADER: \usetikzlibrary{arrows}
 # #+LATEX_HEADER: \usetikzlibrary{graphs}
 # #+LATEX_HEADER: \usetikzlibrary{trees}
