@@ -161,7 +161,7 @@ Accès à un certain nombre de fichiers.
     \gd<+>{ v0 -- v1 -- v2 --v3 -- v4 -- {{[nodes=unreachable] v5}, v5'}}
     \gd<+->{ v0 -- v1 -- v2 --v3 -- v4 -- {{[nodes=unreachable] v5}, v5' -- v6 -- v7}}
     \ga<+>{git \textbf{add} ...  \\git \textbf{commit}}{right=of v0, yshift=+1.6ex}
-    \ga<.>{Chaque version du projet\\ (appelée \emph{commit} ou \emph{révision})\\ est identifiée par un SHA1\\\scalebox{.6}{\texttt{4fd4d17f73d4c024fb3ef69fb336cc10f2cd9b26}}}{right=of v3} %text width=3cm, 
+    \ga<.>{Chaque version du projet\\ (appelée \emph{commit} ou \emph{révision})\\ est identifiée par un SHA1\\\scalebox{.55}{\texttt{4fd4d17f73d4c024fb3ef69fb336cc10f2cd9b26}}}{right=of v3} %text width=3cm, 
     \ga<.>{Un \textbf{historique} \\à la granularité\\ du \sout{fichier} projet}{right=of v6} %text width=3cm, 
     \only<+>{\draw[<->,Latex-Latex, dashed] (v7) to[out=0,in=0] (v3);}
     \ga<.>{git \textbf{diff} v3..v7}{right=of v6}
