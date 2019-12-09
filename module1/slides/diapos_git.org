@@ -847,10 +847,20 @@ qu'un conflit apparaisse. Pas de panique!
   - @@latex:[$\Rightarrow$]@@ Préférer le format texte
 
 ** En conclusion, git:
-- Ça versionne !
-- Ça facilite le travail collaboratif (fusion) !
-- Ça permet de stocker ses modifications localement (« commit ») !
-- Ça permet de partager ses modifications quand on le souhaite (« pull/push ») !
+#+BEGIN_EXPORT latex
+  \begin{overlayarea}{\linewidth}{0cm}\vspace{-.3cm}
+     \hfill\llap{%
+        \includegraphics[height=3.8cm]{img_git/git_tree.png}%
+        \hspace{-1cm}
+        }
+  \end{overlayarea}\vspace{-1\baselineskip}
+#+END_EXPORT
+#+LaTeX: \begin{minipage}[t]{.6\linewidth}
+- Ça versionne ! (« hist »)\medskip
+- Ça facilite le travail collaboratif (« merge ») !\medskip
+- Ça permet de stocker ses modifications localement (« commit ») !\medskip
+#+LaTeX: \end{minipage}
+- Ça permet de partager ses modifications quand on le souhaite (« pull/push ») !\medskip\pause
 
 Mais comment mettre ça en place ? 
 - Comment avoir un serveur de backup ?
