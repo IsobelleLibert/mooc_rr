@@ -150,31 +150,31 @@ Accès à un certain nombre de fichiers.
     DAGrefedge/.append style={thin},
     special commit/.style={DAGcommit,fill= solarized-red!20}}
   \node[anchor=south west](simple) at (.5,0) {\tikz{
-%    \node[DAGcommit, at (3,0)] (v0) {v0};
-    \gd<+>{ v0 }
-    \gc<.->{article.md img/fig1.jpg}{left=of v0}
-    \gd<+>{ v0 -- v1 }
-    \gc<.->{article.md}{left=of v1}
-    \gd<+>{ v0 -- v1 -- v2 }
-    \gc<.->{article.md img/fig2.jpg}{left=of v2}
-    \gd<+>{ v0 -- v1 -- v2 -- v3 }
-    \gc<.->{article.md}{left=of v3}
-    \gd<+>{ v0 -- v1 -- v2 --v3 -- v4 -- v5}
-    \gc<.->{article.md img/me.jpg}{left=of v4}
-    \gc<.>{article.md}{left=of v5}
-    \gd<+>{ v0 -- v1 -- v2 --v3 -- v4 -- {{[nodes=unreachable] v5}}}
-    \only<.>{\draw[->,-Latex] (v5) to[out=0,in=0] (v4);}
-    \gd<+>{ v0 -- v1 -- v2 --v3 -- v4 -- {{[nodes=unreachable] v5}, v5'}}
-    \gd<+->{ v0 -- v1 -- v2 --v3 -- v4 -- {{[nodes=unreachable] v5}, v5' -- v6 -- v7}}
-    \ga<+>{git \textbf{add} ...  \\git \textbf{commit}}{right=of v0, yshift=+1.6ex}
-    \ga<.>{Chaque version du projet\\ (appelée \emph{commit} ou \emph{révision})\\ est identifiée par un SHA1\\\scalebox{.55}{\texttt{4fd4d17f73d4c024fb3ef69fb336cc10f2cd9b26}}}{right=of v3} %text width=3cm, 
-    \ga<.>{Un \textbf{historique} \\à la granularité\\ du \sout{fichier} projet}{right=of v6} %text width=3cm, 
-    \only<+>{\draw[<->,Latex-Latex, dashed] (v7) to[out=0,in=0] (v3);}
-    \ga<.>{git \textbf{diff} v3..v7}{right=of v6}
-    \only<+>{\draw[->,-Latex] (v7) to[out=0,in=0] (v5');}
-    \ga<.>{git \textbf{checkout} v5'}{right=of v6}
-    \ga<+>{Tout ce qui a été commité\\est sauvegardé et accessible}{right=of v3}
-    \ga<.>{Cet historique est\\ \textbf{local}!}{right=of v1}
+%    \node[DAGcommit, at (3,0)] (v1) {v1};
+    \gd<+>{ v1 }
+    \gc<.->{article.md img/fig1.jpg}{left=of v1}
+    \gd<+>{ v1 -- v2 }
+    \gc<.->{article.md}{left=of v2}
+    \gd<+>{ v1 -- v2 -- v3 }
+    \gc<.->{article.md img/fig2.jpg}{left=of v3}
+    \gd<+>{ v1 -- v2 -- v3 -- v4 }
+    \gc<.->{article.md}{left=of v4}
+    \gd<+>{ v1 -- v2 -- v3 --v4 -- v5 -- v6}
+    \gc<.->{article.md img/me.jpg}{left=of v5}
+    \gc<.>{article.md}{left=of v6}
+    \gd<+>{ v1 -- v2 -- v3 --v4 -- v5 -- {{[nodes=unreachable] v6}}}
+    \only<.>{\draw[->,-Latex] (v6) to[out=0,in=0] (v5);}
+    \gd<+>{ v1 -- v2 -- v3 --v4 -- v5 -- {{[nodes=unreachable] v6}, v6'}}
+    \gd<+->{ v1 -- v2 -- v3 --v4 -- v5 -- {{[nodes=unreachable] v6}, v6' -- v7 -- v8}}
+    \ga<+>{git \textbf{add} ...  \\git \textbf{commit}}{right=of v1, yshift=+1.6ex}
+    \ga<.>{Chaque version du projet\\ (appelée \emph{commit} ou \emph{révision})\\ est identifiée par un SHA1\\\scalebox{.55}{\texttt{4fd4d17f73d4c024fb3ef69fb336cc10f2cd9b26}}}{right=of v4} %text width=3cm, 
+    \ga<.>{Un \textbf{historique} \\à la granularité\\ du \sout{fichier} projet}{right=of v7} %text width=3cm, 
+    \only<+>{\draw[<->,Latex-Latex, dashed] (v8) to[out=0,in=0] (v4);}
+    \ga<.>{git \textbf{diff} v4..v8}{right=of v7}
+    \only<+>{\draw[->,-Latex] (v8) to[out=0,in=0] (v6');}
+    \ga<.>{git \textbf{checkout} v6'}{right=of v7}
+    \ga<+>{Tout ce qui a été commité\\est sauvegardé et accessible}{right=of v4}
+    \ga<.>{Cet historique est\\ \textbf{local}!}{right=of v2}
   }};
   % % HEAD reference
   % \gitHEAD
@@ -211,50 +211,50 @@ Accès à un certain nombre de fichiers.
 
 
   \begin{scope}[scale = .5]
-    \gd<1>{ v0 }
-    \ga<1>{\LARGE git {\bf clone}}{right=of v0}
+    \gd<1>{ v1 }
+    \ga<1>{\LARGE git {\bf clone}}{right=of v1}
     \begin{pgfonlayer}{background}
-      \node<1>[fit=(v0), fill=green!30, ellipse, opacity=.8] {};
+      \node<1>[fit=(v1), fill=green!30, ellipse, opacity=.8] {};
     \end{pgfonlayer}
-    \gd<2-3>{ v0 -- v1 -- v2 --v3 }
-    \ga<2>{\Large Alice travaille en local}{right=of v0}
-    \ga<3>{\LARGE git {\bf push}}{right=of v0}
+    \gd<2-3>{ v1 -- v2 -- v3 --v4 }
+    \ga<2>{\Large Alice travaille en local}{right=of v1}
+    \ga<3>{\LARGE git {\bf push}}{right=of v1}
     \begin{pgfonlayer}{background}
-      \node<3>[fit=(v0)(v3), fill=green!30, ellipse] {};
+      \node<3>[fit=(v1)(v4), fill=green!30, ellipse] {};
     \end{pgfonlayer}
-    \gd<4-6>{ v0 -- v1 -- v2 --v3 -- v4 -- {{[nodes=unreachable] v5}, v5' -- v6 -- v7}}
-    \ga<4>{\Large Alice travaille en local}{right=of v0}
-    \ga<5>{\LARGE git {\bf push}}{right=of v0}
+    \gd<4-6>{ v1 -- v2 -- v3 --v4 -- v5 -- {{[nodes=unreachable] v6}, v6' -- v7 -- v8}}
+    \ga<4>{\Large Alice travaille en local}{right=of v1}
+    \ga<5>{\LARGE git {\bf push}}{right=of v1}
     \begin{pgfonlayer}{background}
-      \node<5>[fit=(v4)(v7), fill=green!30,ellipse,rotate=-30] {};
+      \node<5>[fit=(v5)(v8), fill=green!30,ellipse,rotate=-30] {};
     \end{pgfonlayer}
-    \node[DAGref,fill = white, below=of v0,remember picture] (alice) {\includegraphics[width=2cm]{img_git/alice.jpg}};    
+    \node[DAGref,fill = white, below=of v1,remember picture] (alice) {\includegraphics[width=2cm]{img_git/alice.jpg}};    
   \end{scope}
   
   \begin{scope}[scale = .5, xshift = 8cm, yshift = 3cm, every node/.style={transform shape}]
-    \gd<1-2>{ v0 }
+    \gd<1-2>{ v1 }
     \begin{pgfonlayer}{background}
-      \node<1>[fit=(v0), fill=green!30, ellipse] {};
+      \node<1>[fit=(v1), fill=green!30, ellipse] {};
     \end{pgfonlayer}
-    \gd<3-4>{ v0 -- v1 -- v2 --v3 }
+    \gd<3-4>{ v1 -- v2 -- v3 --v4 }
     \begin{pgfonlayer}{background}
-      \node<3>[fit=(v0)(v3), fill=green!30, ellipse] {};
+      \node<3>[fit=(v1)(v4), fill=green!30, ellipse] {};
     \end{pgfonlayer}
-    \gd<5-6>{ v0 -- v1 -- v2 --v3 -- v4 -- v5' -- v6 -- v7}
+    \gd<5-6>{ v1 -- v2 -- v3 --v4 -- v5 -- v6' -- v7 -- v8}
     \begin{pgfonlayer}{background}
-      \node<5>[fit=(v4)(v7), fill=green!30, ellipse, opacity=.8] {};
-%      \filldraw<5>[fill=green!20!white, draw=green!50!black] v4.east -- v7 -- (-1,-3) -- cycle;
+      \node<5>[fit=(v5)(v8), fill=green!30, ellipse, opacity=.8] {};
+%      \filldraw<5>[fill=green!20!white, draw=green!50!black] v5.east -- v8 -- (-1,-3) -- cycle;
     \end{pgfonlayer}
-    \node[DAGref,fill = white, below=of v0, remember picture] (gitlab) {\includegraphics[width=2cm]{img_git/Logo_GitLab.png}};
+    \node[DAGref,fill = white, below=of v1, remember picture] (gitlab) {\includegraphics[width=2cm]{img_git/Logo_GitLab.png}};
   \end{scope}
 
   \only<1>{\draw[->,-Latex] (gitlab) to[out=180,in=0] (alice);}
   \only<3>{\draw[->,-Latex] (alice) to[out=0,in=180] (gitlab);}
   \only<5>{\draw[->,-Latex] (alice) to[out=0,in=180] (gitlab);}
 
-  \ga<6>{On synchronise des \textbf{branches}\\ en échangeant \\des morceaux d'historiques}{right=of v6}
+  \ga<6>{On synchronise des \textbf{branches}\\ en échangeant \\des morceaux d'historiques}{right=of v7}
 
-  % \ga<6>{Changer l'ellipse d'Alice}{right=of v0}
+  % \ga<6>{Changer l'ellipse d'Alice}{right=of v1}
   % % HEAD reference
   % \gitHEAD
   % {left=of master}
@@ -290,7 +290,7 @@ Accès à un certain nombre de fichiers.
     sibling distance=1cm
   ] {
 %    AA -- {BB -- {CC, CC3 -- {DD1, DD2}},AAA};
-    "merge" -> {head -- v0,b} -- c -- d;
+    "merge" -> {head -- v1,b} -- c -- d;
   };
 \end{tikzpicture}
 
@@ -299,7 +299,7 @@ Accès à un certain nombre de fichiers.
 % Commit DAG
 \graph[layered layout,grow up sep = 2em]{
    AA -- {BB -- {CC, CC3 -- {DD1, DD2}},AAA};
-   merge <- {head -- v0,b} -- c -- d;
+   merge <- {head -- v1,b} -- c -- d;
    A  -- B -- { 
       C,
       D -- E,
@@ -335,62 +335,62 @@ Accès à un certain nombre de fichiers.
            vfit/.style={rounded corners}}
 
   \begin{scope}[scale = .5]
-    \gd<1>{ v0 }
-    \ga<1>{\LARGE git {\bf clone}}{right=of v0}
+    \gd<1>{ v1 }
+    \ga<1>{\LARGE git {\bf clone}}{right=of v1}
     \begin{pgfonlayer}{background}
-      \node<1>[fit=(v0), fill=green!30, ellipse, opacity=.8] {};
+      \node<1>[fit=(v1), fill=green!30, ellipse, opacity=.8] {};
     \end{pgfonlayer}
-    \gd<2-3>{ v0 -- v1 -- v2 --v3 }
-    \ga<2>{\Large Alice working locally}{right=of v0}
-    \ga<3>{\LARGE git {\bf push}}{right=of v0}
+    \gd<2-3>{ v1 -- v2 -- v3 --v4 }
+    \ga<2>{\Large Alice working locally}{right=of v1}
+    \ga<3>{\LARGE git {\bf push}}{right=of v1}
     \begin{pgfonlayer}{background}
-      \node<3>[fit=(v0)(v3), fill=green!30, ellipse] {};
+      \node<3>[fit=(v1)(v4), fill=green!30, ellipse] {};
     \end{pgfonlayer}
-    \gd<4-5>{ v0 -- v1 -- v2 --v3 -- v4 -- {{[nodes=unreachable] v5}, v5' -- v6 -- v7}}
-    \ga<4>{\Large Alice working locally}{right=of v0}
-    \ga<5>{\LARGE git {\bf push}}{right=of v0}
+    \gd<4-5>{ v1 -- v2 -- v3 --v4 -- v5 -- {{[nodes=unreachable] v6}, v6' -- v7 -- v8}}
+    \ga<4>{\Large Alice working locally}{right=of v1}
+    \ga<5>{\LARGE git {\bf push}}{right=of v1}
     \begin{pgfonlayer}{background}
-      \node<5>[fit=(v4)(v7), fill=green!30,ellipse,rotate=-30] {};
+      \node<5>[fit=(v5)(v8), fill=green!30,ellipse,rotate=-30] {};
     \end{pgfonlayer}
-    \node[DAGref,fill = white, below=of v0,remember picture] (linus) {\includegraphics[width=2cm]{img_git/alice.jpg}};    
+    \node[DAGref,fill = white, below=of v1,remember picture] (linus) {\includegraphics[width=2cm]{img_git/alice.jpg}};    
   \end{scope}
   
   \begin{scope}[scale = .5, xshift = 5cm, yshift = 5cm, every node/.style={transform shape}]
-    \gd<1-2>{ v0 }
+    \gd<1-2>{ v1 }
     \begin{pgfonlayer}{background}
-      \node<1>[fit=(v0), fill=green!30, ellipse] {};
+      \node<1>[fit=(v1), fill=green!30, ellipse] {};
     \end{pgfonlayer}
-    \gd<3-4>{ v0 -- v1 -- v2 --v3 }
+    \gd<3-4>{ v1 -- v2 -- v3 --v4 }
     \begin{pgfonlayer}{background}
-      \node<3>[fit=(v0)(v3), fill=green!30, ellipse] {};
+      \node<3>[fit=(v1)(v4), fill=green!30, ellipse] {};
     \end{pgfonlayer}
-    \gd<5->{ v0 -- v1 -- v2 --v3 -- {
-                      v4 -- v5' -- v6 ,
-                      v4'' -- v5''} 
+    \gd<5->{ v1 -- v2 -- v3 --v4 -- {
+                      v5 -- v6' -- v7 ,
+                      v5'' -- v6''} 
                -- {Merge}
            }
     \begin{pgfonlayer}{background}
-      \node<5>[fit=(v4)(v7), fill=green!30, ellipse, opacity=.8] {};
-%      \filldraw<5>[fill=green!20!white, draw=green!50!black] v4.east -- v7 -- (-1,-3) -- cycle;
+      \node<5>[fit=(v5)(v8), fill=green!30, ellipse, opacity=.8] {};
+%      \filldraw<5>[fill=green!20!white, draw=green!50!black] v5.east -- v8 -- (-1,-3) -- cycle;
     \end{pgfonlayer}
-    \node[DAGref,fill = white, below=of v0, remember picture] (gitlab) {\includegraphics[width=2cm]{img_git/Logo_GitLab.png}};
+    \node[DAGref,fill = white, below=of v1, remember picture] (gitlab) {\includegraphics[width=2cm]{img_git/Logo_GitLab.png}};
   \end{scope}
 
   \begin{scope}[scale = .5, xshift = 10cm, yshift = 0cm, every node/.style={transform shape}]
-    \gd<1-2>{ v0 }
+    \gd<1-2>{ v1 }
     \begin{pgfonlayer}{background}
-      \node<1>[fit=(v0), fill=green!30, ellipse] {};
+      \node<1>[fit=(v1), fill=green!30, ellipse] {};
     \end{pgfonlayer}
-    \gd<3-4>{ v0 -- v1 -- v2 --v3 }
+    \gd<3-4>{ v1 -- v2 -- v3 --v4 }
     \begin{pgfonlayer}{background}
-      \node<3>[fit=(v0)(v3), fill=green!30, ellipse] {};
+      \node<3>[fit=(v1)(v4), fill=green!30, ellipse] {};
     \end{pgfonlayer}
-    \gd<5->{ v0 -- v1 -- v2 --v3 -- { v4''[fill=blue]  -- v5''}}
+    \gd<5->{ v1 -- v2 -- v3 --v4 -- { v5''[fill=blue]  -- v6''}}
     \begin{pgfonlayer}{background}
-%      \node<5>[fit=(v4)(v7), fill=green!30, ellipse, opacity=.8] {};
-%      \filldraw<5>[fill=green!20!white, draw=green!50!black] v4.east -- v7 -- (-1,-3) -- cycle;
+%      \node<5>[fit=(v5)(v8), fill=green!30, ellipse, opacity=.8] {};
+%      \filldraw<5>[fill=green!20!white, draw=green!50!black] v5.east -- v8 -- (-1,-3) -- cycle;
     \end{pgfonlayer}
-    \node[DAGref,fill = white, below=of v0, remember picture] (baby) {\includegraphics[width=2cm]{img_git/baby1.jpg}};
+    \node[DAGref,fill = white, below=of v1, remember picture] (baby) {\includegraphics[width=2cm]{img_git/baby1.jpg}};
   \end{scope}
 
   \only<1>{\draw[->,-Latex] (gitlab) to[out=0,in=0] (linus);}
