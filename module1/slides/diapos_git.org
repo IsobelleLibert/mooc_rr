@@ -122,7 +122,7 @@ file:img_git/linus.jpg
     \resizebox{!}{.5cm}{GitLab} \includegraphics[height=.5cm]{img_git/Logo_GitLab.png}
     #+END_EXPORT
 #+LaTeX: \vfill
-* L'historique quand on est tout seul
+# * L'historique quand on est tout seul
 ** Son propre projet
 #+LaTeX: \begin{columns}
 #+LaTeX:   \begin{column}{.13\linewidth}
