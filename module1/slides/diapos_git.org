@@ -58,16 +58,15 @@
 #+ATTR_BEAMER: :overlay <+->
 - Mon ordinateur a planté!
 - Ce document était bien mieux hier!
-- Vous n'avez pas travaillé sur la bonne version du document. Comment fusionner?
-- Mais qui a écrit ça ? Et pourquoi ?
+- Vous n'avez pas travaillé sur la bonne version du document.
+  - Comment fusionner?
+  - Mais qui a écrit ça ? Et pourquoi ?
 *** Solution ?
 #+ATTR_BEAMER: :overlay <+->
 - Sauvegarde régulière avec une notion d'historique\smallskip
-
   #+BEGIN_EXPORT latex
   \footnotesize\enquote{\texttt{SE15\_PPT\_16x9\_Template\_Arial\only<+->{\_FINAL\only<+->{\_FINAL\only<+->{\_0925}}}.pptx}}
   #+END_EXPORT
-- Travailler tout seul!
 - Passer son temps à (s')envoyer des mails!
 ** Gestionnaire de versions
 Les gestionnaires de version datent du début des années 70
@@ -105,11 +104,11 @@ file:img_git/linus.jpg
 %    \end{flushright}
   \end{overlayarea}
   #+END_EXPORT
-- +Apprendre à utiliser =git=+ \vspace{.6cm} \pause
+- +Apprendre à utiliser =git= en ligne de\newline commande+ \vspace{.6cm} \pause
 
   =git= est "explicite" (à la différence \newline de dropbox et
   autres)\medskip\newline
-  Heureusement, il y a des interfaces \vspace{1.2cm}
+  Heureusement, il y a des interfaces \vspace{.8cm}
 - Notions essentielles pour utiliser les interfaces à =git=
   - Historique distribué
   - Branche
