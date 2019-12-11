@@ -1,6 +1,8 @@
 #+TITLE: Démystifions Git, Github, Gitlab
-#+AUTHOR: @@latex:{\large Arnaud Legrand} \\ \vspace{0.2cm}Grenoble Alpes University and CNRS\\ \vspace{0.2cm} \texttt{arnaud.legrand@imag.fr}@@
-#+OPTIONS: H:2 tags:nil
+#+AUTHOR:  
+# @@latex:{\large Arnaud Legrand} \\ \vspace{0.2cm}Grenoble Alpes University and CNRS\\ \vspace{0.2cm} \texttt{arnaud.legrand@imag.fr}@@
+#+DATE:  
+#+OPTIONS: H:2 tags:nil toc:nil
 #+LANGUAGE: fr
 #+EXCLUDE_TAGS: noexport
 #+SELECT_TAGS: export
@@ -32,8 +34,9 @@
 # #+LATEX_HEADER: \usetikzlibrary{graphdrawing}
 # #+LATEX_HEADER: \usegdlibrary{layered}
 # #+LATEX_HEADER: \usetikzlibrary{arrows, graphs, graphs.standard, trees, graphdrawing, quotes, positioning, shadows, shapes, mindmap}
+#+LATEX_HEADER: \let\maketitlesave=\maketitle
+#+LATEX_HEADER: \def\maketitle{}
 #+BEAMER_HEADER: \setbeamercovered{invisible}
-#+BEAMER_HEADER: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Où en sommes nous ?}\tableofcontents[currentsection]\end{frame}}
 #+BEAMER_HEADER: \beamertemplatenavigationsymbolsempty
 #+STARTUP: beamer
 #+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
@@ -45,7 +48,11 @@
 #+LaTeX: \newcommand<>\ga[2]{\only#3{\node[DAGref,fill = white, align=center, font = \normalsize, #2] () {#1};}}
 #+LaTeX: \let\alert=\textbf
 
-* Contexte
+
+#+LaTeX: \begin{frame}\frametitle{}\centerline{\LARGE \textcolor{BrickRed}{Démystifions Git, Github, Gitlab}}\tableofcontents\end{frame}
+
+* Notion d'historique 
+#+LaTeX: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{}\centerline{\LARGE \textcolor{BrickRed}{Démystifions Git, Github, Gitlab}}\tableofcontents[currentsection]\end{frame}}
 ** Aaah... l'informatique
 *** Problème
 #+ATTR_BEAMER: :overlay <+->
