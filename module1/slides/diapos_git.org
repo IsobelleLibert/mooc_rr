@@ -135,8 +135,8 @@ Accès à un certain nombre de fichiers.
 - Temps continu
 - Checkpoint/snapshot: conserver les moments clés du projet pour
   pouvoir y revenir
-  - \bgroup\tt git \textbf{add}\egroup pour indiquer quelles modifications on souhaite conserver
-  - \bgroup\tt git \textbf{commit}\egroup pour faire le checkpoint (date, commentaire)
+  - git *add* pour indiquer quelles modifications on souhaite conserver
+  - git *commit* pour faire le checkpoint (date, commentaire)
 #+LaTeX:   \end{column}
 #+LaTeX: \end{columns}
 ** Une histoire simple
@@ -862,11 +862,11 @@ qu'un conflit apparaisse. Pas de panique!
   \end{overlayarea}\vspace{-1\baselineskip}
 #+END_EXPORT
 #+LaTeX: \begin{minipage}[t]{.6\linewidth}
-- Ça versionne ! (« hist »)\medskip
-- Ça facilite le travail collaboratif (« merge ») !\medskip
-- Ça permet de stocker ses modifications localement (« commit ») !\medskip
+- Ça versionne ! (git *hist*)\medskip
+- Ça facilite le travail collaboratif\newline (git *merge*) !\medskip
+- Ça permet de stocker ses modifications localement\newline (git *commit*) !\medskip
 #+LaTeX: \end{minipage}
-- Ça permet de partager ses modifications quand on le souhaite (« pull/push ») !\medskip\pause
+- Ça permet de partager ses modifications quand on le souhaite (git *pull/push*) !\medskip\pause
 
 Mais comment mettre ça en place ? 
 - Comment avoir un serveur de backup ?
