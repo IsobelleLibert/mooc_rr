@@ -14,7 +14,6 @@
 
 #+LATEX_HEADER: \usedescriptionitemofwidthas{}
 
-
 #+LATEX_HEADER: \usepackage[francais]{babel}
 #+LATEX_HEADER: \usepackage{tikz}
 #+LATEX_HEADER: \usetikzlibrary{babel}
@@ -64,8 +63,9 @@
 *** Solution ?
 #+ATTR_BEAMER: :overlay <+->
 - Sauvegarde régulière avec une notion d'historique\smallskip
+
   #+BEGIN_EXPORT latex
-  \footnotesize\enquote{\texttt{SE15\_PPT\_16x9\_Template\_Arial\only<+->{\_FINAL\only<+->{\_FINAL\only<+->{\_0925}}}.pptx}}
+  \footnotesize\enquote{\texttt{my_presentation_Arial\only<+->{\_FINAL\only<+->{\_FINAL\only<+->{\_0925}}}.pptx}}
   #+END_EXPORT
 - Passer son temps à (s')envoyer des mails!
 ** Gestionnaire de versions
@@ -822,6 +822,8 @@ git clone git@gitlab.inria.fr:learninglab/mooc-rr/mooc-rr-modele.git
 cd mooc-rr-modele
 sed -i 's/rebase = true/rebase = false/g' .git/config
 git reset --hard f186adfdddfd0986ab3af38187b8e5f949f9bcf3
+# git reset --hard 64844e0894095f7a8cd9609218bcad3d9b4b24ea
+# 64844e0894095f7a8cd9609218bcad3d9b4b24ea
 git checkout master
 sed -i "s/= logmodel.predict/=  logmodel.predict/" module2/exo5/exo5_python_fr.org
 git commit -a -m "Carelessly adding space"
@@ -1090,3 +1092,4 @@ startup. Exporting may require that you copy them in your .emacs.
 # eval: (load-file (expand-file-name my-utils-file (file-name-directory (buffer-file-name))))
 # eval: (ox-extras-activate '(ignore-headlines))
 # End:
+
