@@ -65,7 +65,7 @@
 - Sauvegarde régulière avec une notion d'historique\smallskip
 
   #+BEGIN_EXPORT latex
-  \footnotesize\enquote{\texttt{my_presentation_Arial\only<+->{\_FINAL\only<+->{\_FINAL\only<+->{\_0925}}}.pptx}}
+  \footnotesize\enquote{\texttt{thesis\_slides\_16x9\_Template\_Arial\only<+->{\_FINAL\only<+->{\_FINAL\only<+->{\_0925}}}.pptx}}
   #+END_EXPORT
 - Passer son temps à (s')envoyer des mails!
 ** Gestionnaire de versions
