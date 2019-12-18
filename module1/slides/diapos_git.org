@@ -864,7 +864,7 @@ qu'un conflit apparaisse. Pas de panique!
   \end{overlayarea}\vspace{-1\baselineskip}
 #+END_EXPORT
 #+LaTeX: \begin{minipage}[t]{.6\linewidth}
-- Ça versionne ! (git *hist*)\medskip
+- Ça versionne ! (git *log* / *hist*)\medskip
 - Ça facilite le travail collaboratif\newline (git *merge*) !\medskip
 - Ça permet de stocker ses modifications localement\newline (git *commit*) !\medskip
 #+LaTeX: \end{minipage}
