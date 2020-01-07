@@ -91,7 +91,7 @@ Les gestionnaires de version datent du début des années 70
 # #+END_QUOTE
 #+LaTeX:   \end{column}
 #+LaTeX:   \begin{column}{.2\linewidth}
-#+ATTR_LaTeX: :width \linewidth
+#+ATTR_LaTeX: :width .55\linewidth
 file:img_git/linus.jpg
 #+LaTeX:   \end{column}
 #+LaTeX: \end{columns}
