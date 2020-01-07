@@ -312,6 +312,14 @@ Accès à un certain nombre de fichiers.
 
 #+END_EXPORT
 
+** Crédits
+- A cropped and rotated version of an image of Linus Torvalds speaking at the LinuxCon Europe 2014 in Düsseldorf. CC BY-SA 4.0. https://fr.wikipedia.org/wiki/Linus_Torvalds#/media/Fichier:LinuxCon_Europe_Linus_Torvalds_03_(cropped).jpg
+- Git. XKCD, A webcomic of romance, sarcasm, math, and language. CC BY-NC 2.5. Permanent link to this comic: https://xkcd.com/1597/
+- Un grand remerciement à Benoît Vinot qui m'a fourni deux
+  présentations en beamer + tikz déjà très proches de ce que je
+  souhaitais présenter.
+- Merci à Vincent Danjean pour avoir repéré les nombreuses petites
+  incohérences qui trainaient dans les noms de branches.
 * Travailler à plusieurs
 ** Collaborer = gérer un historique distribué                     :noexport:
 #+BEGIN_EXPORT latex
@@ -873,6 +881,12 @@ qu'un conflit apparaisse. Pas de panique!
 Mais comment mettre ça en place ? 
 - Comment avoir un serveur de backup ?
 - Comment gérer qui peut lire/écrire ?
+** Crédits
+- Un grand remerciement à Benoît Vinot qui m'a fourni deux
+  présentations en beamer + tikz déjà très proches de ce que je
+  souhaitais présenter.
+- Merci à Vincent Danjean pour avoir repéré les nombreuses petites
+  incohérences qui trainaient dans les noms de branches.
 * L'écosystème Git
 ** \large Les plates-formes de développement collaboratif \small (1/2)
 #+LaTeX: \begin{overlayarea}{\linewidth}{8cm}
@@ -935,6 +949,11 @@ Mais comment mettre ça en place ?
 - GitHub Desktop
 - GitKraken
 - SmartGit
+** Crédits
+- A cropped and rotated version of an image of Linus Torvalds speaking at the LinuxCon Europe 2014 in Düsseldorf. CC BY-SA 4.0. https://fr.wikipedia.org/wiki/Linus_Torvalds#/media/Fichier:LinuxCon_Europe_Linus_Torvalds_03_(cropped).jpg
+- Un grand remerciement à Benoît Vinot qui m'a fourni deux
+  présentations en beamer + tikz déjà très proches de ce que je
+  souhaitais présenter.
 ** Managing large files (dans le module de RR2)                   :noexport:
 - Refer to zenodo of figshare from the beginning
 - git annex and git lfs (deployed on github, bitbucket, and recent
