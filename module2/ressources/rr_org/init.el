@@ -57,16 +57,21 @@
 		 '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (add-to-list 'package-archives
 		 '("melpa" . "http://melpa.org/packages/"))
-(package-refresh-contents)
 (setq package-archive-priorities '(("gnu" . 100)
                                    ("melpa-stable" . 10)))
 
-(dolist (pkg '(ess
-               auctex
-               htmlize
-               exec-path-from-shell))
-  (when (not (package-installed-p pkg))
-    (package-install pkg)))
+(let* ((required-packages
+        '(ess
+          auctex
+          htmlize
+          exec-path-from-shell))
+       (missing-packages (remove-if #'package-installed-p required-packages)))
+  (when missing-packages
+    (message "Missing packages: %s" missing-packages)
+    (package-refresh-contents)
+    (dolist (pkg missing-packages)
+      (package-install pkg)
+      (message "Package %s has been installed" pkg))))
 
 (unless (memq system-type '(windows-nt ms-dos))
   (exec-path-from-shell-initialize)
