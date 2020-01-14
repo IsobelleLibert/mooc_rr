@@ -60,6 +60,7 @@
 (setq package-archive-priorities '(("gnu" . 100)
                                    ("melpa-stable" . 10)))
 
+(require 'cl)
 (let* ((required-packages
         '(ess
           auctex

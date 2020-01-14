@@ -85,6 +85,7 @@ document, simply =M-x org-babel-tangle=.
 #+END_SRC
 * Install packages
 #+begin_src emacs-lisp :tangle init.el
+(require 'cl)
 (let* ((required-packages
         '(ess
           auctex
