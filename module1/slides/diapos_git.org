@@ -960,6 +960,300 @@ Mais comment mettre ça en place ?
   versions of gitlab) \hfill[\to MOOC RR advanced]
 - Push to Zenodo ?
 
+* Export png                                                       :noexport:
+#+begin_src shell :results output :exports both
+for i in `seq 1 69`; do
+    pdftk diapos_git.pdf cat $i output diapos_git-$i.pdf
+     inkscape --without-gui diapos_git-$i.pdf -e diapos_git-$i.png -d 285.8 
+done
+#+end_src
+
+#+RESULTS:
+#+begin_example
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-1.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-2.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-3.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-4.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-5.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-6.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-7.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-8.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-9.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-10.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-11.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-12.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-13.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-14.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-15.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-16.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-17.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-18.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-19.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-20.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-21.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-22.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-23.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-24.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-25.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-26.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-27.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-28.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-29.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-30.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-31.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-32.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-33.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-34.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-35.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-36.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-37.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-38.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-39.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-40.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-41.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-42.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-43.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-44.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-45.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-46.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-47.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-48.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-49.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-50.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-51.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-52.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-53.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-54.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-55.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-56.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-57.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-58.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-59.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-60.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-61.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-62.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-63.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-64.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-65.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-66.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-67.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-68.png
+DPI: 285.8
+Background RRGGBBAA: ffffff00
+Area 0:0:483.78:362.835 exported to 1440 x 1080 pixels (285.8 dpi)
+Bitmap saved as: diapos_git-69.png
+#+end_example
+
+#+begin_src shell :results output :exports both
+pdftoppm diapos_git.pdf diapos_git -png -r 285.6
+#+end_src
+
+#+RESULTS:
+
 * Tikz                                                             :noexport:
 ** From the doc                                                   :noexport:
 #+BEGIN_EXPORT latex
