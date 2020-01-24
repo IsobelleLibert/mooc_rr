@@ -1,30 +1,33 @@
-# Interview Joël Zaffran, chercheur en sociologie
+#+TITLE: Interview de Joël Zaffran, chercheur en sociologie
+#+Date: <déc 2019>
+#+Author: Joël Zaffran
+#+LANGUAGE: fr
 
-### Quel est votre domaine de recherche? Quelles méthodes utilisez-vous pour traiter vos données ? 
+** Quel est votre domaine de recherche? Quelles méthodes utilisez-vous pour traiter vos données ? 
 Je me présente. Je suis Joël Zaffran, professeur de sociologie à l’université de Bordeaux et chercheur au Centre Emile Durkheim qui est une UMR dont la particularité est de regrouper des chercheurs en science politique et en sociologie. Mes domaines de recherche sont d’une part l’école et la jeunesse, d’autre part le handicap. 
 Sur le plan méthodologique, j’utilise aussi bien des approches quantitatives que des approches qualitatives. Souvent, j’essaie d’articuler les deux approches pour faire en sorte que la mixed method éclaire sous plusieurs angles l’objet de recherche. C’est dans ce cadre que j’utilise plusieurs logiciels, parfois simultanément.
 
-### Sur quels types de données travaillez-vous (ex. données d’enquête, etc.) et quelles sont les contraintes associées à ce type de données (ex. confidentialité)? Comment gérez-vous ces contraintes? 
+** Sur quels types de données travaillez-vous (ex. données d’enquête, etc.) et quelles sont les contraintes associées à ce type de données (ex. confidentialité)? Comment gérez-vous ces contraintes? 
 Les données quantitatives sur lesquelles je travaille soit sont issues d’un questionnaire *ad hoc* que j’élabore en fonction de mes hypothèses puis je diffuse généralement sous Sphinx, soit sont issues d’une analyse secondaire. Dans les deux cas, le problème de la confidentialité se pose conjointement avec la contrainte de la CNIL. 
 
 Cela suppose donc d’une part une autorisation préalable de la CNIL après qu’une demande a été déposée sur leur site, d’autre part d’une anonymisation des individus lors de la production des résultats. A cela s’ajoute que le fait d’utiliser Sphinx me permet de déposer mes données sur le serveur de l’université, ce qui a l’avantage de bénéficier d’une sécurisation d’accès à ces données.
 
-### Dans votre domaine, quelles ont été les évolutions majeures en termes de traitement de données? il peut s’agir de méthodes (ex. new statistics) comme d’outils (ex. utilisation plus massive de R, etc.)
+** Dans votre domaine, quelles ont été les évolutions majeures en termes de traitement de données? il peut s’agir de méthodes (ex. new statistics) comme d’outils (ex. utilisation plus massive de R, etc.)
 L’évolution majeure pour ce qui me concerne a été de passer de SPSS à R. Ce passage a été contraint puisqu’il est dû à des restrictions budgétaires de l’université. Or, j'enseignais SPSS à mes étudiants, et il a fallu que je passe à R (qui a l’avantage d’être un logiciel libre) pour assurer la continuité de mes enseignements. Cela étant, j’ai une licence SPSS sur mon ordinateur privé. De sorte qu’il n’est pas rare que je passe de Sphinx à SPSS, et de SPSS à R lorsque j’exploite les données de mes enquêtes. 
 
 Cette manière de faire présente plusieurs avantages. Tout d’abord, R me permet de passer d’une analyse statistique des données quantitatives à une analyse statistique des données lexicales (ce que permet de faire iramuteq). Ensuite, j’ai dû faire récemment une analyse de survie pour des données de parcours. Or, SPSS ne fournit (du moins à ma connaissance) ni la table des “Hazard ratio” ni les graphiques du Schoenfeld test, alors qu’il existe un script R pour cela.
 
-### Comment se traduit la question de la transparence dans votre domaine de recherche ? Quels sont les points critiques dans votre discipline? Toutes les données n’ont pas vocation à être partagées, mais comment gérez-vous le fait de pouvoir retracer votre processus de recherche? Quelles pratiques avez-vous adoptées ?
+** Comment se traduit la question de la transparence dans votre domaine de recherche ? Quels sont les points critiques dans votre discipline? Toutes les données n’ont pas vocation à être partagées, mais comment gérez-vous le fait de pouvoir retracer votre processus de recherche? Quelles pratiques avez-vous adoptées ?
 Comme je l’ai dit, mon champ est les sciences humaines et sociales, plus précisément la sociologie. Dans ce domaine, la question de la transparence ne se pose pas dans des termes identiques aux sciences dures, où les enjeux scientifiques et académiques sont différents. **En revanche, le problème de la capacité à retracer le processus de recherche est le même, quelle que soit la discipline.** Pour ce qui me concerne, il s’agit surtout de **garder une trace des scripts et des tableaux construits avant de publier les résultats sous la forme d’un article**. 
 
 Je dois dire que ce n’est pas une mince affaire puisque l’on sait bien qu’**un article reflète mal le processus de recherche en amont de sa publication**. 
 
 J’ai deux manières de faire : la première est de préciser l’approche et la méthode dans un **encart méthodologique** figurant dans le corps de l’article, la deuxième est de toujours **nommer chaque tableau ou script avant de l’enregistrer**. Cela permet de s’y retrouver dans la masse des fichiers créés. 
 
-### Quels outils utilisez-vous ? par exemple, le recours aux logiciels propriétaires (SAS, SPSS, etc.) soulève de nombreuses difficultés dans une perspective de recherche reproductible car le code source n’est pas disponible. 
+** Quels outils utilisez-vous ? par exemple, le recours aux logiciels propriétaires (SAS, SPSS, etc.) soulève de nombreuses difficultés dans une perspective de recherche reproductible car le code source n’est pas disponible. 
 Sur le plan de la traçabilité, **le recours à R est plus aisé dans la mesure où tous les scripts utilisés sont enregistrés chronologiquement**, et qu’il suffit d’attribuer un titre à chacun d’eux (en veillant au préalable à bien mettre le signe #). Cela est plus difficile avec SPSS. C’est la raison pour laquelle, comme je le disais, j’ai opté avec SPSS pour des enregistrements pas à pas du listing des résultats. 
 
-### Pourriez-vous décrire une histoire d'horreur ? i.e. un gros raté (ex. : données non disponibles ; impossibilité de reproduire une figure en obtenant le même résultat, impossibilité de fournir des données à un reviewer, etc.)
+** Pourriez-vous décrire une histoire d'horreur ? i.e. un gros raté (ex. : données non disponibles ; impossibilité de reproduire une figure en obtenant le même résultat, impossibilité de fournir des données à un reviewer, etc.)
 Mon plus grand raté est lorsqu’il s’est agi de **refaire un modèle de régression à la demande de reviewers**. Le drame est que j’ai été dans **l’impossibilité de retrouver les variables qui furent recodées et l’horreur a été de refaire tous les recodages**, puis de refaire tous les tableaux avant de pouvoir refaire l’analyse dans le sens attendu par les reviewers. 
 Ma plus grande déception a été de voir que les résultats initialement présentés ne furent guère différents des résultats produits après avoir retravaillé les données dans le sens indiqué par les reviewers. 
 
