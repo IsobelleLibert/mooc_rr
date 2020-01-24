@@ -94,7 +94,7 @@ Côté formations, il serait nécessaire de mieux former les chercheurs - les je
 
 Les journaux ont aussi un rôle à jouer en montant en exigences concernant la vérification de la reproductibilité à partir des données et codes fournis (avec un referee spécialiste ou en sollicitant des tiers comme CASCAD), et aussi en donnant les moyens de progresser (proposer un repository interne à la revue ou en suggérant un externe). 
 
-Évidemment, le point crucial reste celui des données confidentielles, mais avec de bonnes métadonnées, un DOI et [l’arrivée récente de CASCAD, une plateforme de certification de la reproductibilité](https://www.cascad.tech/), la reproductibilité avance là aussi.
+Évidemment, le point crucial reste celui des données confidentielles, mais avec de bonnes métadonnées, un DOI et [l’arrivée récente de CASCAD, une [[https://www.cascad.tech/][plateforme de certification de la reproductibilité]], la reproductibilité avance là aussi.
 
 *** Pourriez-vous décrire une histoire d'horreur ? i.e. un gros raté (ex. : données non disponibles ; impossibilité de reproduire une figure en obtenant le même résultat, impossibilité de fournir des données à un referee, etc.)
 **Nous vivons dans un film d’horreur !** “Nos” chercheurs, à de rares exceptions près, ne sont pas des programmeurs et n’ont pas (encore) de trop fortes incitations à publier et diffuser leurs programmes. 

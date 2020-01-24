@@ -29,7 +29,7 @@ Tu peux très bien **auditer un processus sans regarder *in concreto* les donné
 Il est également possible de **tester le processus avec des données synthétiques**, afin d'en vérifier la conformité des résultats attendus, par rapport aux caractéristiques des jeux de données qui ont été générées.
 
 *** Compléments
-Site web de la CNIL : ["Comprendre le RGPD"](https://www.cnil.fr/fr/comprendre-le-rgpd)
+Site web de la CNIL :[[https://www.cnil.fr/fr/comprendre-le-rgpd]["Comprendre le RGPD"]]
 
 Nguyen, Benjamin. 2019. ‘Anonymization Techniques : Theory and Practice’. presented at the Cinquième École d’Hiver é-EGC, sur le thème «Privacy Preserving, Reasoning, Explaining», Metz, January 21. https://egc2019.sciencesconf.org/resource/page/id/12.
 
