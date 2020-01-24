@@ -6,7 +6,8 @@
 
 
 *** Présentez-vous : votre identité, votre domaine de recherche et vos centres d’intérêts scientifiques hors discipline (ex. R, Python, etc.) ?
-Nous travaillons à la croisée de deux mondes: celui des **mathématiques (statistique)** et celui de l’**économie**, en particulier l’économie de l’alimentation et de l’environnement.  
+Nous travaillons à la croisée de deux mondes: celui des **mathématiques
+(statistique)** et celui de l'**économie**, en particulier l’économie de l’alimentation et de l’environnement.  
 
 En tant qu’ingénieurs-économètres, nous sommes appelés à collaborer sur des projets scientifiques, et agissons comme des interfaces entre ces deux mondes. Nous devons donc interpréter les notions économiques très formalisées pour les tester en pratique sur des jeux de données. 
 

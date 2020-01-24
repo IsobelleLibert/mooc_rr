@@ -4,7 +4,7 @@
 #+LANGUAGE: fr
 
 *** Quel est votre domaine de recherche? Quelles méthodes utilisez-vous pour traiter vos données ? 
-Je me présente. Je suis Joël Zaffran, professeur de sociologie à l’université de Bordeaux et chercheur au Centre Emile Durkheim qui est une UMR dont la particularité est de regrouper des chercheurs en science politique et en sociologie. Mes domaines de recherche sont d’une part l’école et la jeunesse, d’autre part le handicap. 
+Je me présente. Je suis *Joël Zaffran*, professeur de sociologie à l’université de Bordeaux et chercheur au Centre Emile Durkheim qui est une UMR dont la particularité est de regrouper des chercheurs en science politique et en sociologie. Mes domaines de recherche sont d’une part l’école et la jeunesse, d’autre part le handicap. 
 Sur le plan méthodologique, j’utilise aussi bien des approches quantitatives que des approches qualitatives. Souvent, j’essaie d’articuler les deux approches pour faire en sorte que la mixed method éclaire sous plusieurs angles l’objet de recherche. C’est dans ce cadre que j’utilise plusieurs logiciels, parfois simultanément.
 
 *** Sur quels types de données travaillez-vous (ex. données d’enquête, etc.) et quelles sont les contraintes associées à ce type de données (ex. confidentialité)? Comment gérez-vous ces contraintes? 
