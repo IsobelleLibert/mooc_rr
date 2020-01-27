@@ -4,7 +4,7 @@
 #+Author: Valérie Orozco et Christophe Bontemps
 #+Language: fr
 
-*** Biographie
+** Biographie
 *Valérie Orozco* est ingénieure en statistique/économétrie à l’INRAE
 depuis 2004 et membre du groupe Industrial Organization de TSE
 (Toulouse School of Economics à Toulouse).  Elle participe principalement aux travaux de recherche sur l’économie des firmes agro-alimentaires, et les relations alimentation et santé.
@@ -15,6 +15,7 @@ groupe Food Economics and Policy dans TSE
 recherche sur l’économie des firmes agro-alimentaires, l’environnement
 et les relations alimentation et santé.
 
+** Interview
 *** Pourriez-vous vous présenter : votre identité, votre domaine de recherche et vos centres d’intérêts scientifiques hors discipline (ex. R, Python, etc.) ?
 Nous travaillons à la croisée de deux mondes: celui des **mathématiques
 (statistique)** et celui de l'**économie**, en particulier l’économie de l’alimentation et de l’environnement.  
