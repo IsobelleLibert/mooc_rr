@@ -1,0 +1,53 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+
+#+TITLE:       Gallerie de Notebooks
+#+AUTHOR:      Laurence Farhi
+#+STARTUP: overview indent inlineimages logdrawer
+#+LANGUAGE:    fr
+
+* Table of Contents                                                     :TOC:
+- [[#notebooks-jupyter][Notebooks Jupyter]]
+- [[#notebooks-rstudio][Notebooks RStudio]]
+- [[#notebooks-org-mode][Notebooks Org-mode]]
+- [[#autres-liens-intéressants-avec-des-notebooks][Autres liens intéressants avec des notebooks]]
+
+Voici un document qui recense quelques documents computationnels
+"remarquables" dans toutes les disciplines et tous les domaines.
+
+N'hésitez pas à proposer d'autres documents compatutionnels à ajouter
+dans cette galerie en faisant
+des issues depuis l'entrepôt Gitlab [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/issues][mooc-rr-ressources]].
+
+* Notebooks Jupyter
+- [[https://github.com/norvig/pytudes/blob/master/ipynb/Economics.ipynb][Simulation d'un marché économique]],  Peter Norvig (github @norvig)
+- [[https://github.com/mikhailklassen/Mining-the-Social-Web-3rd-Edition][Un complément exécutable (Python/Jupyter) pour le livre "Mining the Social Web", (O'Reilly, 2019)]], Mikhail Klassen (github @mikhailklassen)
+- [[http://darribas.org/gds19][Des supports de cours ("Geographic Data Science") avec des notebooks Jupyter, (voir sous "labs")]], Dr. Dani Arribas-Bel, Automne 2019 à l'Université de Liverpool.
+
+* Notebooks RStudio
+- [[http://rpubs.com/alegrand/46031][Images Panini]], Arnaud Legrand
+- [[http://rpubs.com/alegrand/224732][Les yeux bleus]], Arnaud Legrand
+- [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/tree/master/TriDesPA][Enregistrements extracellulaires et le tri des potentiel d'action : supports de cours et les codes associés]], Christophe Pouzat (github @c_pouzat)
+- [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/tree/master/FluoCalcium][Mesures de concentrations calciques au moyen de sondes fluorescentes : supports de cours et les codes associés]], Christophe Pouzat (gitlab @c_pouzat)
+- [[https://github.com/christophe-pouzat/YRLS2017][YRLS2017: R for statistics and reproducible research in the life sciences]], Christophe Pouzat (github @christophe-pouzat)
+
+* Notebooks Org-mode. 
+
+- [[https://github.com/jkitchin/dft-book][Un livre de chimie théorique écrit en Org-Mode]], John Kitchin (github @jkitchin) 
+- [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/tree/master/module2/ressources/sequence6_examples][Les documents montrés en exemple dans les vidéos du MOOC]]
+- [[https://plmlab.math.cnrs.fr/xtof/interacting_neurons_with_stp][A system of interacting neurons with short term plasticity (org avec du C, gnuplot, shell)]], Christophe Pouzat
+- [[][Supplementary Material for: Homogeneity and identity
+tests for unidimensional Poisson processes with an
+application to neurophysiological peri-stimulus time
+histograms--R version (org avec R)]], Christophe Pouzat --> LIEN à renseigner
+- [[][Supplementary Material for: Homogeneity and identity
+tests for unidimensional Poisson processes with an
+application to neurophysiological peri-stimulus time
+histograms--Python version (org avec Python, mais les
+mêmes calculs que le précédent)]], Christophe Pouzat LIEN à renseigner
+
+* Autres liens intéressants avec des notebooks
+- [[https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks][A-gallery-of-interesting-Jupyter-Notebooks]] :
+  un entrepôt github qui regroupe plein de notebooks Jupyter
+  intéressants
+ 
