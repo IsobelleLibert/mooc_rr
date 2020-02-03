@@ -1,0 +1,114 @@
+*** Exploiter des textes avec la TEI
+    :PROPERTIES:
+    :CUSTOM_ID: exploiter-des-textes-avec-la-tei
+    :END:
+
+La question de la reproductibilité, pour soi comme pour les autres,
+soulève entre autres celle de la pérennité de l'information
+scientifique. Or, les données produites avec des logiciels propriétaires
+et/ou sous des formats spécifiques à un outil offrent encore moins de
+garantie d'accessibilité sur le long terme. La Text Encoding Initiative
+(TEI) constitue un exemple de format de balisage standard.
+
+**** A quels besoins de recherche la TEI répond-elle ?
+     :PROPERTIES:
+     :CUSTOM_ID: a-quels-besoins-de-recherche-la-tei-répond-elle
+     :END:
+
+Si vous utilisez des textes (littéraires, législatifs, archives,
+/etc/.), une technique de balisage de données peut vous permettre
+d'aller au-delà du seul décompte brut d'occurrences : la Text Encoding
+Initiative (TEI). Lou Burnard, l'un des fondateurs de la TEI, prend
+l'exemple du mot "Paris" : s'agit-il de la ville du Texas, de la
+capitale fraçaise, voire du prénom d'une héritière américaine ? Si trier
+manuellement le bon grain de l'ivraie est possible - mais non sans
+risque d'erreur - à l'échelle d'un petit /corpus/, il s'avère nettement
+plus complexe de travailler sur *une masse de documents plus importante
+et/ou plus hétérogène*. La TEI permet de résoudre ce problème.
+
+Dans ce cas, /quid/ des /corpus/ peu volumineux ? *Le balisage en TEI
+permet de rendre vos données textuelles "intelligentes"*: il est
+possible de *baliser des personnages, des langues de citation, des
+catégories grammaticales, des passages barrés*, /etc/. Qui peut le plus
+peut le moins : s'il existe plus de 500 éléments combinables entre eux,
+il est possible de travailler avec un jeu de balises réduit. Pour
+traiter un roman, 5 ou 6 balises peuvent suffire.
+
+**** Quelles garanties de pérennité ?
+     :PROPERTIES:
+     :CUSTOM_ID: quelles-garanties-de-pérennité
+     :END:
+
+L'encodage des données en TEI permet de concevoir des /corpus/ à très
+forte valeur ajoutée. Dès lors se posent les questions de l'*accès*, de
+la *conservation* voire du *partage* de cette plus-value. Si le recours
+à certains logiciels proposant des outils d'encodage de données est
+commode, sur le long terme, leur utilisation peut nuire à la
+reproductibilité de vos travaux. En effet, l'un des avantages de la TEI
+est d'offrir un *codage standard, affranchissant ainsi ses utilisateurs
+de toute dépendance logicielle*.
+
+Si certains logiciels intègrent le codage en TEI, d'autres reposent sur
+des codages qui leur sont propres (ex. Alceste, Lexico3, /etc/.) ainsi
+que le souligne Burnard : "Si vous souhaitez partager les ressources
+textuelles que vous créez avec d'autres personnes (ou avec vous-même à
+quelques décennies de distance), vous devriez vous préoccuper de la
+tendance de nombreux systèmes informatiques à appliquer leur propre
+façon de stocker l'information" (Burnard 2014).
+
+*Normalisation n'est pas synonyme de fermeture* : l'un des enjeux de la
+TEI est d'offrir un système de balise évolutif grâce à son
+extensibilité.
+
+**** La TEI en pratique
+     :PROPERTIES:
+     :CUSTOM_ID: la-tei-en-pratique
+     :END:
+
+Bernard et Bohet définissent ainsi la TEI (Bernard and Bohet 2017) : "Il
+s'agit d'un balisage s'appuyant sur le langage XML et qui se présente
+comme un dictionnaire de balises couvrant à peu près toutes les
+situations". Il s'agit de permettre à une machine de lire ces données.
+
+La TEI permet d'*introduire dans le texte des informations allant bien
+au-delà des éléments formels* comme le montre
+[[https://fr.wikipedia.org/wiki/Text_Encoding_Initiative][ce comparatif
+tiré de Wikipédia]] entre d'une part, un encodage en HTML, où l'on prend
+en compte uniquement les aspects de présentation, et d'autre part, un
+encodage en TEI, où l'on peut introduire des informations sur les
+personnages, la versification des éléments.
+
+Le travail s'effectue sur des données numériques ; si les données sont
+issues d'une numérisation, elles doivent au préalable être traitées avec
+un logiciel de reconnaissance optique des caractères (OCR) (Humanum
+2015).
+
+Il existe des *éditeurs* tels que
+[[https://framalibre.org/content/xml-copy-editor][XML Copy Editor]].
+Certains logiciels incluent un *convertisseur* ; on peut citer : * le
+[[http://textometrie.ens-lyon.fr/spip.php?rubrique96][logiciel TXM]] *
+le
+[[http://obvil.sorbonne-universite.site/developpements/odette][logiciel
+Odette]] permet de passer d'un document en traitement de texte à des
+données en XML/TEI
+
+Exemple de texte encodé : Oscar Wilde. /The Importance of Being Earnest/
+[[https://teibyexample.org/examples/TBED05v00.htm?target=wilde][disponible
+sur le site web TEI by example]]
+
+**** Sources
+     :PROPERTIES:
+     :CUSTOM_ID: sources
+     :END:
+
+Bernard, Michel, and Baptiste Bohet. 2017. Littérométrie: outils
+numériques pour l'analyse des textes littéraires. Paris, France: Presses
+Sorbonne nouvelle.
+
+Burnard, Lou. 2014. What Is the Text Encoding Initiative? : How to Add
+Intelligent Markup to Digital Resources. Encyclopédie Numérique.
+Marseille: OpenEdition Press. http://books.openedition.org/oep/426.
+
+Humanum. 2015. 'Le Guide Des Bonnes Pratiques Numériques'. TGIR des
+humanités numériques.
+https://www.huma-num.fr/ressources/guide-des-bonnes-pratiques-numeriques.

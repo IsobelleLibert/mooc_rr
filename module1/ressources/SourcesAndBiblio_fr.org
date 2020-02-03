@@ -1,0 +1,271 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+
+#+TITLE:       Les références bibliographiques, un autre vecteur de transparence
+#+AUTHOR:      Sabrina Granger
+#+STARTUP: overview indent inlineimages logdrawer
+#+LANGUAGE:    fr
+
+* Introduction
+Il ne s'agit pas ici de traiter des questions de normes de présentation
+bibliographique : chaque discipline, voire chaque revue possède ses
+critères formels.
+
+En outre, le degré de formalisme des références bibliographiques diffère
+selon les pratiques disciplinaires : dans certains domaines, il faut
+citer la pagination, voire le paragraphe concerné alors que dans
+d'autres champs, cette précision n'est pas requise. En fonction du degré
+de précision requis dans sa discipline, on adaptera ses modalités de
+prise de notes pour retrouver les informations requises lors de la
+rédaction.
+
+* En quoi la question des références bibliographiques a-t-elle trait à
+la question de la reproductibilité ?
+   :PROPERTIES:
+   :CUSTOM_ID: en-quoi-la-question-des-références-bibliographiques-a-t-elle-trait-à-la-question-de-la-reproductibilité
+   :END:
+
+Une gestion rigoureuse de l'appareil bibliographique constitue un gage
+majeur de transparence, qu'on travaille en sciences dites dures comme en
+lettres, langues, sciences humaines et sociales.
+
+Dans la perspective des sciences humaines et plus particulièrement des
+disciplines recourant à des méthodes qualitatives ou reposant
+essentiellement sur de l'interprétation de textes, l'enjeu principal est
+moins de reproduire des résultats que de donner à d'autres
+chercheurs.euses la possibilité d'étayer comme de réfuter le propos
+défendu. Or, les références bibliographiques donnent à voir les étapes
+de la construction du raisonnement et des hypothèses.
+
+La bibliographie constitue donc un faisceau d'indices de transparence
+pour un lectorat de chercheurs.euses : *la liste des sources est-elle
+exhaustive et représentative de l'ensemble des points de vue sur la
+question ou au contraire, présente-t-elle d'importants biais de
+sélection ?*
+
+* Gérer de la manière la plus systématique possible ses sources
+participe à réduire les erreurs de /reporting/
+   :PROPERTIES:
+   :CUSTOM_ID: gérer-de-la-manière-la-plus-systématique-possible-ses-sources-participe-à-réduire-les-erreurs-de-reporting
+   :END:
+
+Par erreur de /reporting/, on n'entend pas le fait d'aboutir à des
+conclusions différentes voire divergentes de celles de l'auteur.e de la
+référence citée. Il est question ici d'une erreur d'interprétation du
+propos initial. La pratique des citations dites de seconde main (ou
+citations secondaires) peut ainsi induire l'auteur.e en erreur dans la
+mesure où le texte cité n'est pas appréhendé dans son contexte original,
+mais à travers le filtre d'un.e autre auteur.e.
+
+/Quid/ du cas où *le texte original s'avère inaccessible* ? Votre
+lectorat doit disposer des références précises de la source citant le
+passage que vous reprenez. Par exemple : (Brown, 2010 cité par Jamison,
+2012). Afin de ne pas laisser entendre de manière erronée que vous avez
+consulté directement la source : 
+- soit la bibliographie mentionne
+uniquement le document citant la source 
+- soit la référence est incluse
+dans la bibliographie dans une liste séparée ou signalée comme source
+non consultée au moyen d'un signe distinctif (un astérisque par ex.)
+
+*Le respect d'un formalisme dans la rédaction de la citation et de la
+bibliographie offre ainsi des repères à votre lectorat*. En cas
+d'impossibilité d'accéder à la source, une bonne connaissance de
+l'auteur.e citant le passage que vous souhaitez reprendre vous permet
+d'évaluer le degré de fiabilité de la référence utilisée.
+
+* Adopter un style bibliographique pour identifier plus facilement les
+sources citées
+   :PROPERTIES:
+   :CUSTOM_ID: adopter-un-style-bibliographique-pour-identifier-plus-facilement-les-sources-citées
+   :END:
+
+Que votre document fasse quatre ou mille pages, appliquer un style
+bibliographique vous permet d'éviter d'oublier de mentionner des
+éléments nécessaires à l'identification d'un document. Un style
+bibliographique fournit en effet une trame des informations à compléter
+en fonction des types de documents cités : article de revue
+scientifique, monographie, billet de blog, article d'encyclopédie,
+présentation, /etc/. Certains champs sont facultatifs. La
+[[http://www.sudoc.fr/146773233][norme ISO 690]] vous permet
+d'identifier les éléments à mentionner obligatoirement selon le type de
+document cité. En effet, même si l'import du descriptif dans votre
+gestionnaire de références est automatisé, la notice obtenue peut
+s'avérer inexploitable. Tout va dépendre de la qualité du gisement
+d'informations consulté pour importer la notice. Ci-dessous, nous
+pouvons constater que pour une même référence, la qualité des
+descriptions varie selon le type d'outil consulté (moteur de recherche
+généraliste vs catalogue de bibliothèque). [[./comparatif-biblio.png]]
+
+Dans l'exemple ci-dessus, la mention de l'édition est une donnée
+importante pour identifier le document cité. Enfin, il est plus facile
+pour votre lectorat d'appréhender les références bibliographiques
+lorsque leur présentation est standardisée. Les gestionnaires de
+références bibliographiques permettent d'appliquer des éléments formels
+de manière homogène et automatisée.
+
+* Automatiser la gestion de ses références : qu'en attendre ou pas ?
+   :PROPERTIES:
+   :CUSTOM_ID: automatiser-la-gestion-de-ses-références-quen-attendre-ou-pas
+   :END:
+
+Il existe plusieurs solutions. Parmi elles,
+[[https://www.zotero.org/][Zotero]] constitue une solution gratuite et
+/open source/ utilisée par une communauté d'utilisateurs grandissante et
+dynamique. Les fonctionnalités décrites ci-dessous reprennent grandement
+celles de Zotero.
+
+Un gestionnaire de références bibliographiques permet entre autres
+de :
+
+- *importer des descriptions bibliographiques* depuis des catalogues,
+des moteurs de recherche, des sites web, des plateformes d'éditeurs 
+- centraliser* les références collectées et constituer ainsi sa base de
+données personnelle, à la différence des outils proposés dans les
+traitement de texte. Word permet par exemple de créer une base de
+données de références bibliographiques, mais celle-ci est propre à un
+document. Ainsi, pour citer dans plusieurs documents une même référence,
+je dois la créer dans chaque document. 
+- *exporter des références
+bibliographiques sous différents formats* : .html, .ris, .rtf 
+- *partager ses références* soit de manière récurrente en créant des
+bibliothèques de groupes, soit de manière ponctuelle en exportant des
+références 
+- *citer* des sources dans du texte en leur appliquant un
+style donné 
+- éditer les descriptions collectées pour les corriger et
+les améliorer * *annoter les références bibliographiques* : vous pouvez
+par exemple associer à une description des passages que vous trouvez
+particulièrement intéressants ; les notes prises sur des supports
+extérieurs à votre gestionnaire (cahiers, fichiers, etc.) peuvent ainsi
+être associées au descriptif du document. Ces notes sont à usage
+internes et non visibles lors de la citation de la référence. 
+- *organiser* des volumes importants de données ; vous pouvez créer des
+dossiers et des sous-dossiers ; classer les descriptifs dans plusieurs
+dossiers sans pour autant occasionner de doublons ; étiquetter des
+références pour indiquer celles que vous jugez fondamentales ou signaler
+les références en attente de lecture ; faire des renvois de références
+internes à sa bibliothèque ; créer des dossiers "dynamiques" : en
+sauvegardant une requête, vous créez un dossier où seront
+automatiquement classées toutes les références répondant aux critères
+enregistrés, indépendamment du classement manuel effectué. La liste
+n'est pas exhaustive. 
+- *dédoublonner* les références ; on parle ici des
+descriptifs importés plusieurs fois et pas des références classées dans
+plusieurs dossiers 
+- *naviguer dans ses références* grâce aux outils
+d'interrogation 
+- travailler sur plusieurs postes sans problème de
+synchronisation de la base de références bibliographiques
+
+Un outil comme Zotero dispose même
+d'[[https://www.zotero.org/blog/retracted-item-notifications/][un plugin
+dédié au suivi des articles rétractés]].
+
+Les gestionnaires de références bibliographiques automatisent la plupart
+des tâches, mais resteront toujours à la charge de l'utilisateur :
+
+- une étape d'*amélioration et de correction des données importées* : la
+  qualité des sorties dépend en premier lieu de la qualité des données
+  d'entrée. Or, si le gestionnaire peut identifier quelles sont les
+  données importables dans une page web, il n'est pas en mesure
+  d'évaluer leur qualité descriptive. Le problème peut être d'ordre
+  quantitatif (i.e.: tous les champs obligatoires ne sont pas
+  complétés), comme qualitatif (i.e.: les données comportent des
+  inexactitudes, on constate des problèmes de graphie). Les pages de
+  résultats d'un moteur de recherche généraliste offrent par exemple des
+  descriptifs d'une qualité inférieure à celles d'un catalogue de
+  bibliothèque et pour le lecteur, il peut être difficile d'identifier
+  précisément la source citée.\\
+- une *méthode de tri et d'organisation des données* ; ex. : il s'agit
+  de prévoir régulièrement un nettoyage de sa base en dédoublonnant les
+  références, revoir l'arborescence de ses dossiers, /etc/. Certes, les
+  gestionnaires de références disposent de fonctionnalités de recherche,
+  mais le problème des doublons reste par exemple entier sans nettoyage
+  régulier. La difficulté est majeure : comme évoqué ci-dessus, la
+  qualité des notices descriptives peut varier fortement. Or, si des
+  doublons d'une même référence sont présents dans la base, tantôt vous
+  utiliserez la notice A, tantôt la notice A' pour renvoyer à une même
+  source. Or, ces 2 notices peuvent ne pas être équivalentes du tout :
+  certes, elles sont censées renvoyer vers un même document, mais leur
+  niveau d'information peut varier. Enfin, au moment de créer la
+  bibliographie qui recense l'ensemble des références citées dans le
+  texte, les notices A et A' apparaîtront toutes les deux alors qu'elles
+  renvoient à la même source car le gestionnaire de références considère
+  qu'il s'agit de 2 notices.
+- l'*enrichissement des informations /via/ l'annotation des notices* :
+  on pourrait considérer cette étape comme facultative. Techniquement,
+  rien n'empêche en effet de citer une source même si sa notice n'est
+  pas accompagnée d'annotations. Mais retrouver facilement les extraits
+  majeurs d'une source /via/ les annotations participe à fiabiliser
+  votre gestion des références : descriptifs bibliographiques et
+  extraits citables sont ainsi associés et les risques d'attribuer à
+  tort une citation à une source s'amoindrissent. Ce type d'erreur est
+  d'autant plus présent si vous vous appuyez sur plusieurs références
+  d'un même auteur. Enfin, en annotant vos notices /via/ le gestionnaire
+  de références, vous pouvez facilement retrouver les extraits
+  sélectionnés grâce aux fonctionnalités de recherche.
+  [[https://github.com/jkitchin/org-ref][Si vous travaillez avec Emacs,
+  org-ref vous permet d'annoter vos références]].
+
+La puissance et la facilité d'utilisation d'un gestionnaire de
+références constituent une arme à double tranchant : encore plus
+rapidement qu'avec une méthode manuelle, l'utilisateur.rice est
+confronté.e à une masse importante de références potentielles. L'étape
+de revue de littérature peut dès lors devenir envahissante dans le
+processus de recherche, surtout dans le cadre d'un travail de thèse.
+Analyser sa bibliothèque de références à la lumière de sa question de
+recherche constitue une méthode de tri non automatisable, mais plus
+efficace que la mise en place de filtres.
+
+* /Quid/ du texte intégral ?
+   :PROPERTIES:
+   :CUSTOM_ID: quid-du-texte-intégral
+   :END:
+
+Quand on interroge une plateforme d'éditeur, il est aussi possible de
+collecter le texte intégral des articles (sous réserve des abonnements
+aux revues souscrits par votre institution) au moment où l'on charge son
+descriptif bibliographique dans son gestionnaire. Mais ces imports
+soulèvent rapidement la question du quota de stockage gratuit pour
+l'utilisateur.
+
+Sans entrer dans le détail des alternatives, vous êtes invité.e à
+considérer cette fonctionnalité avant tout comme une option de confort
+car la pertinence des gestionnaires de références réside avant tout dans
+l'aide qu'ils apportent dans la gestion et la citation des références
+bibliographiques. En d'autres termes, *mieux vaut un descriptif complet
+sans texte intégral plutôt qu'une référence lacunaire accompagnée de son
+texte intégral* : lors de l'étape de la citation, c'est le descriptif et
+non pas le fichier joint qui est exploité.
+
+* Compléments
+   :PROPERTIES:
+   :CUSTOM_ID: compléments
+   :END:
+
+Le [[https://zotero.hypotheses.org/][blog Zotero francophone]] pour des
+conseils, l'actualité des développements
+
+Le [[https://www.zotero.org/][site Zotero]] comporte de la documentation
+et des [[https://forums.zotero.org/discussions][forums]]
+
+L'[[https://www.zotero.org/styles][entrepôt des styles Zotero]],
+gratuitement téléchargeables
+
+Les usages de la communauté des *juristes francophones* présentent des
+spécificités jusqu'à présent peu ou mal gérées par les styles existant
+dans l'entrepôt Zotero. L'exemple du style conçu pour l'école doctorale
+"Droit" de l'Université de Bordeaux apporte des pistes de réflexion :
+Flamerie de Lachapelle, Frédérique. 2019. 'Créer un style pour Zotero
+correspondant à une norme bibliographique juridique : retour
+d'expérience bordelais. Billet invité'. Billet. UrfistInfo (blog). 2
+July 2019. https://urfistinfo.hypotheses.org/3305.
+
+Muller, Caroline. 2018. 'Cinq ans d'usage de Zotero, un bilan'. Billet.
+Acquis de conscience (blog). 9 March 2018.
+https://consciences.hypotheses.org/1184.
+
+Sergiadis, Ashley. 2019. 'Evaluating Zotero, SHERPA/RoMEO, and Unpaywall
+in an Institutional Repository Workflow'. Journal of Electronic
+Resources Librarianship, September. https://dc.etsu.edu/etsu-works/4739.
