@@ -6,7 +6,7 @@
 #+STARTUP: overview indent inlineimages logdrawer
 #+LANGUAGE:    fr
 
-* Introduction
+** Introduction
 Il ne s'agit pas ici de traiter des questions de normes de présentation
 bibliographique : chaque discipline, voire chaque revue possède ses
 critères formels.
@@ -19,7 +19,7 @@ de précision requis dans sa discipline, on adaptera ses modalités de
 prise de notes pour retrouver les informations requises lors de la
 rédaction.
 
-* En quoi la question des références bibliographiques a-t-elle trait à la question de la reproductibilité ?
+** En quoi la question des références bibliographiques a-t-elle trait à la question de la reproductibilité ?
    :PROPERTIES:
    :CUSTOM_ID: en-quoi-la-question-des-références-bibliographiques-a-t-elle-trait-à-la-question-de-la-reproductibilité
    :END:
@@ -40,7 +40,7 @@ La bibliographie constitue donc un faisceau d'indices de transparence
 pour un lectorat de chercheurs.euses : *la liste des sources est-elle
 exhaustive et représentative de l'ensemble des points de vue sur la question ou au contraire, présente-t-elle d'importants biais de sélection ?*
 
-* Gérer de la manière la plus systématique possible ses sources participe à réduire les erreurs de /reporting/
+** Gérer de la manière la plus systématique possible ses sources participe à réduire les erreurs de /reporting/
    :PROPERTIES:
    :CUSTOM_ID: gérer-de-la-manière-la-plus-systématique-possible-ses-sources-participe-à-réduire-les-erreurs-de-reporting
    :END:
@@ -68,7 +68,7 @@ d'impossibilité d'accéder à la source, une bonne connaissance de
 l'auteur.e citant le passage que vous souhaitez reprendre vous permet
 d'évaluer le degré de fiabilité de la référence utilisée.
 
-* Adopter un style bibliographique pour identifier plus facilement les sources citées
+** Adopter un style bibliographique pour identifier plus facilement les sources citées
 
 Que votre document fasse quatre ou mille pages, appliquer un style
 bibliographique vous permet d'éviter d'oublier de mentionner des
@@ -96,7 +96,7 @@ lorsque leur présentation est standardisée. Les gestionnaires de
 références bibliographiques permettent d'appliquer des éléments formels
 de manière homogène et automatisée.
 
-* Automatiser la gestion de ses références : qu'en attendre ou pas ?
+** Automatiser la gestion de ses références : qu'en attendre ou pas ?
    :PROPERTIES:
    :CUSTOM_ID: automatiser-la-gestion-de-ses-références-quen-attendre-ou-pas
    :END:
@@ -204,7 +204,7 @@ Analyser sa bibliothèque de références à la lumière de sa question de
 recherche constitue une méthode de tri non automatisable, mais plus
 efficace que la mise en place de filtres.
 
-* /Quid/ du texte intégral ?
+** /Quid/ du texte intégral ?
    :PROPERTIES:
    :CUSTOM_ID: quid-du-texte-intégral
    :END:
@@ -225,7 +225,7 @@ sans texte intégral plutôt qu'une référence lacunaire accompagnée de son
 texte intégral* : lors de l'étape de la citation, c'est le descriptif et
 non pas le fichier joint qui est exploité.
 
-* Compléments
+** Compléments
    :PROPERTIES:
    :CUSTOM_ID: compléments
    :END:

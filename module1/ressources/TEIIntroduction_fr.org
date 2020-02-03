@@ -2,10 +2,10 @@
 # -*- mode: org -*-
 
 #+TITLE:       Exploiter des textes avec la TEI
-#+AUTHOR:      Sabrina Granger
+#+Author:      Sabrina Granger
 #+STARTUP: overview indent inlineimages logdrawer
 #+LANGUAGE:    fr
-* Introduction
+** Introduction
 
 La question de la reproductibilité, pour soi comme pour les autres,
 soulève entre autres celle de la pérennité de l'information
@@ -14,7 +14,7 @@ et/ou sous des formats spécifiques à un outil offrent encore moins de
 garantie d'accessibilité sur le long terme. La Text Encoding Initiative
 (TEI) constitue un exemple de format de balisage standard.
 
-* A quels besoins de recherche la TEI répond-elle ?
+** A quels besoins de recherche la TEI répond-elle ?
 
 Si vous utilisez des textes (littéraires, législatifs, archives,
 /etc/.), une technique de balisage de données peut vous permettre
@@ -35,7 +35,7 @@ peut le moins : s'il existe plus de 500 éléments combinables entre eux,
 il est possible de travailler avec un jeu de balises réduit. Pour
 traiter un roman, 5 ou 6 balises peuvent suffire.
 
-* Quelles garanties de pérennité ?
+** Quelles garanties de pérennité ?
 
 L'encodage des données en TEI permet de concevoir des /corpus/ à très
 forte valeur ajoutée. Dès lors se posent les questions de l'*accès*, de
@@ -58,7 +58,7 @@ façon de stocker l'information" (Burnard 2014).
 TEI est d'offrir un système de balise évolutif grâce à son
 extensibilité.
 
-* La TEI en pratique
+** La TEI en pratique
 
 Bernard et Bohet définissent ainsi la TEI (Bernard and Bohet 2017) : "Il
 s'agit d'un balisage s'appuyant sur le langage XML et qui se présente
@@ -89,7 +89,7 @@ Exemple de texte encodé : Oscar Wilde. /The Importance of Being Earnest/
 [[https://teibyexample.org/examples/TBED05v00.htm?target=wilde][disponible
 sur le site web TEI by example]]
 
-* Sources
+** Sources
 
 Bernard, Michel, and Baptiste Bohet. 2017. Littérométrie: outils
 numériques pour l'analyse des textes littéraires. Paris, France: Presses
