@@ -19,16 +19,19 @@ les *enjeux de transparence* qui prédominent. Janz distingue 3 types de
 transparence (Janz 2018). Les objectifs à atteindre dans chaque domaine
 vont se traduire différemment selon que l'on travaille avec des méthodes
 quantitatives ou qualitatives : 
-- /data transparency/ : "/Providing full access to data itself/" ; il s'agit là de fournir les jeux de données
-sur lesquels se fonde l'analyse, mais Janz précise que la mise à disposition ne peut être que partielle si on utilise des transcriptions
-d'entretiens, des vidéos. 
-- /analytic transparency/ : "/Information about data analysis/"; il peut s'agir de fournir les codes informatiques
-mais aussi d'indiquer précisement sur quelles sources l'analyse
-s'appuie ou encore d'apporter des commentaires complémentaires à l'analyse. 
-- /production transparency/ : "/Process of data collection/" ; il peut s'agir de fournir ou de décrire les données brutes, de documenter les
-variables. Mais l'objectif de transparence peut aussi consister à expliquer selon quels protocoles les données ont été collectées. On peut
-par exemple détailler les critères de sélection des participants à une
-étude.
+- /data transparency/ : "/Providing full access to data itself/" ; il
+  s'agit là de fournir les jeux de données sur lesquels se fonde
+  l'analyse, mais Janz précise que la mise à disposition ne peut être
+  que partielle si on utilise des transcriptions d'entretiens, des vidéos. 
+- /analytic transparency/ : "/Information about data analysis/"; il peut
+  s'agir de fournir les codes informatiques mais aussi d'indiquer
+  précisement sur quelles sources l'analyse s'appuie ou encore d'apporter des commentaires complémentaires à l'analyse. 
+- /production transparency/ : "/Process of data collection/" ; il peut
+  s'agir de fournir ou de décrire les données brutes, de documenter
+  les variables. Mais l'objectif de transparence peut aussi consister
+  à expliquer selon quels protocoles les données ont été
+  collectées. On peut par exemple détailler les critères de sélection
+  des participants à une étude.
 
 *Toutes les techniques de reproductibilité n'auront donc pas la même
 importance en fonction des disciplines et des méthodes employées*.
