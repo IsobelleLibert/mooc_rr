@@ -8,9 +8,6 @@
 
 
 * Introduction
-  :PROPERTIES:
-  :CUSTOM_ID: au-delà-de-la-reproductibilité-la-transparence-de-la-recherche
-  :END:
 
 Si l'on définit la reproductibilité comme le fait d'aboutir à des
 résultats similaires à partir des mêmes données et des mêmes méthodes

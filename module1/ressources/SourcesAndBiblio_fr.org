@@ -19,8 +19,7 @@ de précision requis dans sa discipline, on adaptera ses modalités de
 prise de notes pour retrouver les informations requises lors de la
 rédaction.
 
-* En quoi la question des références bibliographiques a-t-elle trait à
-la question de la reproductibilité ?
+* En quoi la question des références bibliographiques a-t-elle trait à la question de la reproductibilité ?
    :PROPERTIES:
    :CUSTOM_ID: en-quoi-la-question-des-références-bibliographiques-a-t-elle-trait-à-la-question-de-la-reproductibilité
    :END:
@@ -39,9 +38,7 @@ de la construction du raisonnement et des hypothèses.
 
 La bibliographie constitue donc un faisceau d'indices de transparence
 pour un lectorat de chercheurs.euses : *la liste des sources est-elle
-exhaustive et représentative de l'ensemble des points de vue sur la
-question ou au contraire, présente-t-elle d'importants biais de
-sélection ?*
+exhaustive et représentative de l'ensemble des points de vue sur la question ou au contraire, présente-t-elle d'importants biais de sélection ?*
 
 * Gérer de la manière la plus systématique possible ses sources
 participe à réduire les erreurs de /reporting/
@@ -62,11 +59,9 @@ lectorat doit disposer des références précises de la source citant le
 passage que vous reprenez. Par exemple : (Brown, 2010 cité par Jamison,
 2012). Afin de ne pas laisser entendre de manière erronée que vous avez
 consulté directement la source : 
-- soit la bibliographie mentionne
-uniquement le document citant la source 
-- soit la référence est incluse
-dans la bibliographie dans une liste séparée ou signalée comme source
-non consultée au moyen d'un signe distinctif (un astérisque par ex.)
+- soit la bibliographie mentionne uniquement le document citant la source 
+- soit la référence est incluse dans la bibliographie dans une liste
+  séparée ou signalée comme source non consultée au moyen d'un signe distinctif (un astérisque par ex.)
 
 *Le respect d'un formalisme dans la rédaction de la citation et de la
 bibliographie offre ainsi des repères à votre lectorat*. En cas
@@ -74,11 +69,8 @@ d'impossibilité d'accéder à la source, une bonne connaissance de
 l'auteur.e citant le passage que vous souhaitez reprendre vous permet
 d'évaluer le degré de fiabilité de la référence utilisée.
 
-* Adopter un style bibliographique pour identifier plus facilement les
-sources citées
-   :PROPERTIES:
-   :CUSTOM_ID: adopter-un-style-bibliographique-pour-identifier-plus-facilement-les-sources-citées
-   :END:
+* Adopter un style bibliographique pour identifier plus facilement les sources citées
+
 
 Que votre document fasse quatre ou mille pages, appliquer un style
 bibliographique vous permet d'éviter d'oublier de mentionner des
@@ -95,7 +87,9 @@ s'avérer inexploitable. Tout va dépendre de la qualité du gisement
 d'informations consulté pour importer la notice. Ci-dessous, nous
 pouvons constater que pour une même référence, la qualité des
 descriptions varie selon le type d'outil consulté (moteur de recherche
-généraliste vs catalogue de bibliothèque). [[./comparatif-biblio.png]]
+généraliste vs catalogue de bibliothèque).
+
+ [[./comparatif-biblio.png]]
 
 Dans l'exemple ci-dessus, la mention de l'édition est une donnée
 importante pour identifier le document cité. Enfin, il est plus facile
@@ -118,45 +112,38 @@ celles de Zotero.
 Un gestionnaire de références bibliographiques permet entre autres
 de :
 
-- *importer des descriptions bibliographiques* depuis des catalogues,
-des moteurs de recherche, des sites web, des plateformes d'éditeurs 
-- centraliser* les références collectées et constituer ainsi sa base de
-données personnelle, à la différence des outils proposés dans les
-traitement de texte. Word permet par exemple de créer une base de
-données de références bibliographiques, mais celle-ci est propre à un
-document. Ainsi, pour citer dans plusieurs documents une même référence,
-je dois la créer dans chaque document. 
-- *exporter des références
-bibliographiques sous différents formats* : .html, .ris, .rtf 
+- *importer des descriptions bibliographiques* depuis des catalogues, des moteurs de recherche, des sites web, des plateformes d'éditeurs 
+- centraliser* les références collectées et constituer ainsi sa base
+  de données personnelle, à la différence des outils proposés dans les
+  traitement de texte. Word permet par exemple de créer une base de données de références bibliographiques, mais celle-ci est propre à un
+document. Ainsi, pour citer dans plusieurs documents une même
+référence, je dois la créer dans chaque document. 
+- *exporter des références bibliographiques sous différents formats* : .html, .ris, .rtf 
 - *partager ses références* soit de manière récurrente en créant des
-bibliothèques de groupes, soit de manière ponctuelle en exportant des
-références 
-- *citer* des sources dans du texte en leur appliquant un
-style donné 
-- éditer les descriptions collectées pour les corriger et
-les améliorer * *annoter les références bibliographiques* : vous pouvez
-par exemple associer à une description des passages que vous trouvez
-particulièrement intéressants ; les notes prises sur des supports
-extérieurs à votre gestionnaire (cahiers, fichiers, etc.) peuvent ainsi
-être associées au descriptif du document. Ces notes sont à usage
-internes et non visibles lors de la citation de la référence. 
+  bibliothèques de groupes, soit de manière ponctuelle en exportant
+  des références 
+- *citer* des sources dans du texte en leur appliquant un style donné 
+- éditer les descriptions collectées pour les corriger et les
+  améliorer * *annoter les références bibliographiques* : vous pouvez
+  par exemple associer à une description des passages que vous trouvez
+  particulièrement intéressants ; les notes prises sur des supports
+  extérieurs à votre gestionnaire (cahiers, fichiers, etc.) peuvent
+  ainsi être associées au descriptif du document. Ces notes sont à
+  usage internes et non visibles lors de la citation de la référence. 
 - *organiser* des volumes importants de données ; vous pouvez créer des
-dossiers et des sous-dossiers ; classer les descriptifs dans plusieurs
-dossiers sans pour autant occasionner de doublons ; étiquetter des
-références pour indiquer celles que vous jugez fondamentales ou signaler
-les références en attente de lecture ; faire des renvois de références
-internes à sa bibliothèque ; créer des dossiers "dynamiques" : en
+  dossiers et des sous-dossiers ; classer les descriptifs dans
+  plusieurs dossiers sans pour autant occasionner de doublons ;
+  étiquetter des références pour indiquer celles que vous jugez
+  fondamentales ou signaler les références en attente de lecture ;
+  faire des renvois de références internes à sa bibliothèque ; créer des dossiers "dynamiques" : en
 sauvegardant une requête, vous créez un dossier où seront
 automatiquement classées toutes les références répondant aux critères
-enregistrés, indépendamment du classement manuel effectué. La liste
-n'est pas exhaustive. 
-- *dédoublonner* les références ; on parle ici des
-descriptifs importés plusieurs fois et pas des références classées dans
-plusieurs dossiers 
-- *naviguer dans ses références* grâce aux outils
-d'interrogation 
-- travailler sur plusieurs postes sans problème de
-synchronisation de la base de références bibliographiques
+enregistrés, indépendamment du classement manuel effectué. La liste n'est pas exhaustive. 
+- *dédoublonner* les références ; on parle ici des descriptifs importés
+  plusieurs fois et pas des références classées dans plusieurs
+  dossiers 
+- *naviguer dans ses références* grâce aux outils d'interrogation 
+- travailler sur plusieurs postes sans problème de synchronisation de la base de références bibliographiques
 
 Un outil comme Zotero dispose même
 d'[[https://www.zotero.org/blog/retracted-item-notifications/][un plugin

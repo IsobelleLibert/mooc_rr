@@ -1,7 +1,11 @@
-*** Exploiter des textes avec la TEI
-    :PROPERTIES:
-    :CUSTOM_ID: exploiter-des-textes-avec-la-tei
-    :END:
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+
+#+TITLE:       Exploiter des textes avec la TEI
+#+AUTHOR:      Sabrina Granger
+#+STARTUP: overview indent inlineimages logdrawer
+#+LANGUAGE:    fr
+* Introduction
 
 La question de la reproductibilité, pour soi comme pour les autres,
 soulève entre autres celle de la pérennité de l'information
@@ -10,10 +14,7 @@ et/ou sous des formats spécifiques à un outil offrent encore moins de
 garantie d'accessibilité sur le long terme. La Text Encoding Initiative
 (TEI) constitue un exemple de format de balisage standard.
 
-**** A quels besoins de recherche la TEI répond-elle ?
-     :PROPERTIES:
-     :CUSTOM_ID: a-quels-besoins-de-recherche-la-tei-répond-elle
-     :END:
+* A quels besoins de recherche la TEI répond-elle ?
 
 Si vous utilisez des textes (littéraires, législatifs, archives,
 /etc/.), une technique de balisage de données peut vous permettre
@@ -34,10 +35,7 @@ peut le moins : s'il existe plus de 500 éléments combinables entre eux,
 il est possible de travailler avec un jeu de balises réduit. Pour
 traiter un roman, 5 ou 6 balises peuvent suffire.
 
-**** Quelles garanties de pérennité ?
-     :PROPERTIES:
-     :CUSTOM_ID: quelles-garanties-de-pérennité
-     :END:
+* Quelles garanties de pérennité ?
 
 L'encodage des données en TEI permet de concevoir des /corpus/ à très
 forte valeur ajoutée. Dès lors se posent les questions de l'*accès*, de
@@ -60,10 +58,7 @@ façon de stocker l'information" (Burnard 2014).
 TEI est d'offrir un système de balise évolutif grâce à son
 extensibilité.
 
-**** La TEI en pratique
-     :PROPERTIES:
-     :CUSTOM_ID: la-tei-en-pratique
-     :END:
+* La TEI en pratique
 
 Bernard et Bohet définissent ainsi la TEI (Bernard and Bohet 2017) : "Il
 s'agit d'un balisage s'appuyant sur le langage XML et qui se présente
@@ -85,21 +80,16 @@ un logiciel de reconnaissance optique des caractères (OCR) (Humanum
 
 Il existe des *éditeurs* tels que
 [[https://framalibre.org/content/xml-copy-editor][XML Copy Editor]].
-Certains logiciels incluent un *convertisseur* ; on peut citer : * le
-[[http://textometrie.ens-lyon.fr/spip.php?rubrique96][logiciel TXM]] *
-le
-[[http://obvil.sorbonne-universite.site/developpements/odette][logiciel
-Odette]] permet de passer d'un document en traitement de texte à des
+Certains logiciels incluent un *convertisseur* ; on peut citer : 
+- le [[http://textometrie.ens-lyon.fr/spip.php?rubrique96][logiciel TXM]] 
+- le [[http://obvil.sorbonne-universite.site/developpements/odette][logiciel Odette]] permet de passer d'un document en traitement de texte à des
 données en XML/TEI
 
 Exemple de texte encodé : Oscar Wilde. /The Importance of Being Earnest/
 [[https://teibyexample.org/examples/TBED05v00.htm?target=wilde][disponible
 sur le site web TEI by example]]
 
-**** Sources
-     :PROPERTIES:
-     :CUSTOM_ID: sources
-     :END:
+* Sources
 
 Bernard, Michel, and Baptiste Bohet. 2017. Littérométrie: outils
 numériques pour l'analyse des textes littéraires. Paris, France: Presses
