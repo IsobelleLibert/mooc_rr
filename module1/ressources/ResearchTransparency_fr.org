@@ -7,7 +7,7 @@
 #+LANGUAGE:    fr
 
 
-* Introduction
+** Introduction
 
 Si l'on définit la reproductibilité comme le fait d'aboutir à des
 résultats similaires à partir des mêmes données et des mêmes méthodes
@@ -36,7 +36,7 @@ quantitatives ou qualitatives :
 *Toutes les techniques de reproductibilité n'auront donc pas la même
 importance en fonction des disciplines et des méthodes employées*.
 
-* Quelques exemples de pratiques favorables à une recherche reproductible ...
+** Quelques exemples de pratiques favorables à une recherche reproductible ...
    :PROPERTIES:
    :CUSTOM_ID: quelques-exemples-de-pratiques-favorables-à-une-recherche-reproductible
    :END:
@@ -72,7 +72,7 @@ Mais il existe également de nombreux cas où aucune de ces techniques ne
 s'applique (donnée ne pouvant être partagées, absence de dimension
 calculatoire ou informatique, etc.).
 
-* ... qui appellent d'autres réponses : la transparence, une notion centrale de la recherche reproductible. Mais de quoi parle-t-on alors ?
+** ... qui appellent d'autres réponses : la transparence, une notion centrale de la recherche reproductible. Mais de quoi parle-t-on alors ?
    :PROPERTIES:
    :CUSTOM_ID: qui-appellent-dautres-réponses-la-transparence-une-notion-centrale-de-la-recherche-reproductible.-mais-de-quoi-parle-t-on-alors
    :END:
@@ -171,7 +171,7 @@ statisticien.ne.s des équipes de recherche peuvent vous aider à
 appréhender ces aspects techniques, mais aussi culturels car les
 logiciels naissent dans un environnement épistémologique donné.
 
-* Le /codebook/, un exemple d'outil pour les méthodes qualitatives
+** Le /codebook/, un exemple d'outil pour les méthodes qualitatives
    :PROPERTIES:
    :CUSTOM_ID: le-codebook-un-exemple-doutil-pour-les-méthodes-qualitatives
    :END:
@@ -246,7 +246,7 @@ codebook improved the potential for inter-coder agreement and
 reliability testing and ensured an accurate description of analyses/."
 (Roberts, Dowell, and Nie 2019)
 
-* /Quid/ des aspects non computationnels de la recherche ?
+** /Quid/ des aspects non computationnels de la recherche ?
    :PROPERTIES:
    :CUSTOM_ID: quid-des-aspects-non-computationnels-de-la-recherche
    :END:
@@ -270,7 +270,7 @@ logiciel de forge tel que Gitlab n'est par exemple pas seulement utile à
 des développeurs : il peut aider à gérer tout type de contenu, pas
 seulement du code.
 
-* Sources et compléments
+** Sources et compléments
    :PROPERTIES:
    :CUSTOM_ID: sources-et-compléments
    :END:
