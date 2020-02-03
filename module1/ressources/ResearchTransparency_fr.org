@@ -19,27 +19,21 @@ les *enjeux de transparence* qui prédominent. Janz distingue 3 types de
 transparence (Janz 2018). Les objectifs à atteindre dans chaque domaine
 vont se traduire différemment selon que l'on travaille avec des méthodes
 quantitatives ou qualitatives : 
-- /data transparency/ : "/Providing full
-access to data itself/" ; il s'agit là de fournir les jeux de données
-sur lesquels se fonde l'analyse, mais Janz précise que la mise à
-disposition ne peut être que partielle si on utilise des transcriptions
+- /data transparency/ : "/Providing full access to data itself/" ; il s'agit là de fournir les jeux de données
+sur lesquels se fonde l'analyse, mais Janz précise que la mise à disposition ne peut être que partielle si on utilise des transcriptions
 d'entretiens, des vidéos. 
-- /analytic transparency/ : "/Information
-about data analysis/"; il peut s'agir de fournir les codes informatiques
-mais aussi d'indiquer précisement sur quelles sources l'analyse s'appuie
-ou encore d'apporter des commentaires complémentaires à l'analyse. 
-- /production transparency/ : "/Process of data collection/" ; il peut
-s'agir de fournir ou de décrire les données brutes, de documenter les
-variables. Mais l'objectif de transparence peut aussi consister à
-expliquer selon quels protocoles les données ont été collectées. On peut
+- /analytic transparency/ : "/Information about data analysis/"; il peut s'agir de fournir les codes informatiques
+mais aussi d'indiquer précisement sur quelles sources l'analyse
+s'appuie ou encore d'apporter des commentaires complémentaires à l'analyse. 
+- /production transparency/ : "/Process of data collection/" ; il peut s'agir de fournir ou de décrire les données brutes, de documenter les
+variables. Mais l'objectif de transparence peut aussi consister à expliquer selon quels protocoles les données ont été collectées. On peut
 par exemple détailler les critères de sélection des participants à une
 étude.
 
 *Toutes les techniques de reproductibilité n'auront donc pas la même
 importance en fonction des disciplines et des méthodes employées*.
 
-* Quelques exemples de pratiques favorables à une recherche
-reproductible ...
+* Quelques exemples de pratiques favorables à une recherche reproductible ...
    :PROPERTIES:
    :CUSTOM_ID: quelques-exemples-de-pratiques-favorables-à-une-recherche-reproductible
    :END:
@@ -75,8 +69,7 @@ Mais il existe également de nombreux cas où aucune de ces techniques ne
 s'applique (donnée ne pouvant être partagées, absence de dimension
 calculatoire ou informatique, etc.).
 
-* ... qui appellent d'autres réponses : la transparence, une notion
-centrale de la recherche reproductible. Mais de quoi parle-t-on alors ?
+* ... qui appellent d'autres réponses : la transparence, une notion centrale de la recherche reproductible. Mais de quoi parle-t-on alors ?
    :PROPERTIES:
    :CUSTOM_ID: qui-appellent-dautres-réponses-la-transparence-une-notion-centrale-de-la-recherche-reproductible.-mais-de-quoi-parle-t-on-alors
    :END:
@@ -132,8 +125,7 @@ mal : recherche des sources et analyse de la littérature ; saisie et
 traitement des données ; constitution des /corpus/ ; présentation des
 résultats ; rédaction.
 
-Par ailleurs, *nul besoin de travailler avec des bases de données, des
-données d'enquêtes ou encore des jeux de données massifs pour être
+Par ailleurs, *nul besoin de travailler avec des bases de données, des données d'enquêtes ou encore des jeux de données massifs pour être
 concerné.e par ces problématiques*. Par exemple, il peut être difficile
 pour un.e chercheur.euse d'évaluer la robustesse d'une hypothèse de
 recherche fondée sur la présence d'une expression donnée dans un
@@ -166,12 +158,10 @@ vérification. De fait, se pose la question du degré de contrôle possible
 de ces outils : *sous quelles conditions est-il raisonnable de s'en
 remettre à des traitements automatisés dès lors qu'on veut s'assurer
 d'une recherche transparente* ? Autant que faire se peut, le recours à
-des *logiciels /open source/* constitue une première étape dans ce sens
-: le code source des logiciels commerciaux demeure en effet
-inaccessible. Ensuite, acquérir progressivement un socle de compétences
+des *logiciels /open source/* constitue une première étape dans ce
+sens : le code source des logiciels commerciaux demeure en effet inaccessible. Ensuite, acquérir progressivement un socle de compétences
 techniques permet d'appréhender le fonctionnement général d'un logiciel.
-*Il ne s'agit pas forcément d'en comprendre le paramétrage dans le
-détail, mais d'avoir suffisamment de notions pour comprendre ce qu'on
+*Il ne s'agit pas forcément d'en comprendre le paramétrage dans le détail, mais d'avoir suffisamment de notions pour comprendre ce qu'on
 obtient en sortie et le crédit qu'on peut lui apporter*. Les
 ingénieur.e.s en traitement et analyse de données et les
 statisticien.ne.s des équipes de recherche peuvent vous aider à
@@ -207,13 +197,14 @@ and reclassification of coded data into different and even new
 categories./" (Saldaña 2016) Par ailleurs, non seulement les codes
 évoluent au fil de l'analyse, mais leur nombre peut aussi augmenter. La
 figure ci-dessous illustre le cycle de conception des codes (Roberts,
-Dowell, and Nie 2019). [[file:ROBERTS-cycle-codebook.png]]
+Dowell, and Nie 2019).
+
+ [[file:ROBERTS-cycle-codebook.png]]
 
 De fait, la nécessité de suivre ces évolutions s'impose tout du long du
 processus de recherche. Un /codebook/ peut répondre au besoin de suivi
-des évolutions puisqu'il s'agit d'*un document permettant d'une part, de
-recenser tous les codes appliqués, d'autre part, de consigner ses choix
-et de suivre leur évolution*. Ainsi, un /codebook/ représente plus qu'un
+des évolutions puisqu'il s'agit d'*un document permettant d'une part, de recenser tous les codes appliqués, d'autre part, de consigner ses
+choix et de suivre leur évolution*. Ainsi, un /codebook/ représente plus qu'un
 simple index. Il existe différents types de /codebooks/ : certains se
 focalisent sur la description des données. Le /codebook/ constitue un
 outil de suivi au service de la dimension interprétative du travail
@@ -307,8 +298,7 @@ contemporaine n° 58-4bis (5): 70--89.
 
 Janz, Nicole. 2018. 'Research Reproducibility in Political Science'.
 presented at the NCRM Research Methods Festival, University of Bath,
-July 5.
-https://www.ukdataservice.ac.uk/media/622140/janz\_rmf\_qualtransperency\_bath2018.pdf.
+July 5. https://www.ukdataservice.ac.uk/media/622140/janz_rmf_qualtransperency_bath2018.pdf.
 
 Nosek, Brian A., Charles R. Ebersole, Alexander DeHaven, and David
 Mellor. 2017. 'The Preregistration Revolution'. Open Science Framework,
@@ -339,18 +329,16 @@ diverse and inclusive community of editors, writers, and readers."
 gestion, partage*
 
 Andreassen, Helene N. 2019. 'How to Share Research Data'. University
-Library : The Arctic University of Norway, November 5.
-http://site.uit.no/rdmtraining/files/2019/11/En\_share\_2019-11-05.pdf.
+Library : The Arctic University of Norway, November 5. http://site.uit.no/rdmtraining/files/2019/11/En_share_2019-11-05.pdf.
 
 Andreassen, Helene N., and Erik Axel Vollan. 2018. 'Research Data
 Management Part 2: (Qualitative) Data Containing Personal/Sensitive
 Information'. University Library : The Arctic University of Norway,
 October 11.
-http://site.uit.no/rdmtraining/files/2018/10/TakeControlResearchData\_PART\_2\_Qualitative.pdf.
+ http://site.uit.no/rdmtraining/files/2018/10/TakeControlResearchData_PART_2_Qualitative.pdf.
 
-Beagrie, Neil. 2019. 'What to Keep : A Jisc Research Data Study'. JISC.
-https://repository.jisc.ac.uk/7262/1/JR0100\_WHAT\_RESEARCH\_DATA\_TO\_KEEP\_FEB2019\_v5\_WEB.pdf.
-
+Beagrie, Neil. 2019. 'What to Keep : A Jisc Research Data
+Study'. JISC.  https://repository.jisc.ac.uk/7262/1/JR0100_WHAT_RESEARCH_DATA_TO_KEEP_FEB2019_v5_WEB.pdf.
 Boistel, Romain, Frédérique Bordignon, and Lionel Maurel. 2019. 'Aspects
 Juridiques de La Gestion et Du Partage Des Données'. In Journées
 Nationales de La Science Ouverte 2019. Paris, France.
