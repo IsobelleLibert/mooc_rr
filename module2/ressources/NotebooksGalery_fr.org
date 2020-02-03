@@ -28,22 +28,29 @@ Voici un document qui recense quelques documents computationnels
 * Notebooks RStudio
 - [[http://rpubs.com/alegrand/46031][Images Panini]], Arnaud Legrand
 - [[http://rpubs.com/alegrand/224732][Les yeux bleus]], Arnaud Legrand
-- [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/TriDesPA][Enregistrements extracellulaires et le tri des potentiel d'action : supports de cours et les codes associés]], Christophe Pouzat (github @c_pouzat). [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/TriDesPA/Pouzat_TriDesPA_20190128.pdf][Pdf]]
-- [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/FluoCalcium][Mesures de concentrations calciques au moyen de sondes fluorescentes : supports de cours et les codes associés]], Christophe Pouzat (gitlab @c_pouzat)[[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/FluoCalcium/Pouzat_FluoCalcium_20180309.pdf][Pdf]]
-- [[https://github.com/christophe-pouzat/YRLS2017][YRLS2017: R for statistics and reproducible research in the life sciences]], Christophe Pouzat (github @christophe-pouzat). [[http://htmlpreview.github.io/?https://github.com/christophe-pouzat/YRLS2017/blob/master/Pouzat_YRLS_RR_20170516.html][Html]]
+- [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/TriDesPA][Enregistrements extracellulaires et le tri des potentiel d'action :
+  supports de cours et les codes associés]] ([[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/TriDesPA/Pouzat_TriDesPA_20190128.pdf][Pdf]]), Christophe Pouzat (github @c_pouzat)
+- [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/FluoCalcium][Mesures de concentrations calciques au moyen de sondes
+  fluorescentes : supports de cours et les codes associés]] ([[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/FluoCalcium/Pouzat_FluoCalcium_20180309.pdf][Pdf]]), Christophe
+  Pouzat (gitlab @c_pouzat)
+- [[https://github.com/christophe-pouzat/YRLS2017][YRLS2017: R for statistics and reproducible research in the life
+  sciences]] ([[http://htmlpreview.github.io/?https://github.com/christophe-pouzat/YRLS2017/blob/master/Pouzat_YRLS_RR_20170516.html][Html]]), Christophe Pouzat (github @christophe-pouzat)
 
 
 * Notebooks Org-mode
 
-- [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/TriDesPA/Pouzat_TriDesPA_20190128.org][Enregistrements extracellulaires et le tri des potentiel d'action : supports de cours et les codes associés]], Christophe Pouzat (github @c_pouzat). [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/TriDesPA/Pouzat_TriDesPA_20190128.pdf][Pdf]]
-- [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/FluoCalcium/Pouzat_FluoCalcium_20180309.org][Mesures de concentrations calciques au moyen de sondes fluorescentes : supports de cours et les codes associés]], Christophe Pouzat (gitlab @c_pouzat)[[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/FluoCalcium/Pouzat_FluoCalcium_20180309.pdf][Pdf]]
-- [[https://github.com/jkitchin/dft-book][Un livre de chimie théorique écrit en Org-Mode]], John Kitchin (github @jkitchin). [[https://github.com/jkitchin/dft-book/raw/master/dft.pdf][Pdf version of the book]] 
-- [[https://plmlab.math.cnrs.fr/xtof/interacting_neurons_with_stp/blob/master/interacting_neurons_with_stp.org][A system of interacting neurons with short term plasticity]],  (org avec du C, gnuplot, shell) Christophe Pouzat. [[https://plmlab.math.cnrs.fr/xtof/interacting_neurons_with_stp/blob/master/interacting_neurons_with_stp.Pdf][Pdf]]
+- [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/TriDesPA/Pouzat_TriDesPA_20190128.org][Enregistrements extracellulaires et le tri des potentiel d'action :
+  supports de cours et les codes associés]] ([[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/TriDesPA/Pouzat_TriDesPA_20190128.pdf][Pdf]]), Christophe Pouzat (github @c_pouzat)
+- [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/FluoCalcium/Pouzat_FluoCalcium_20180309.org][Mesures de concentrations calciques au moyen de sondes
+  fluorescentes : supports de cours et les codes associés]] ([[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/FluoCalcium/Pouzat_FluoCalcium_20180309.pdf][Pdf]]), Christophe
+  Pouzat (gitlab @c_pouzat)
+- [[https://github.com/jkitchin/dft-book][Un livre de chimie théorique écrit en Org-Mode]] ([[https://github.com/jkitchin/dft-book/raw/master/dft.pdf][Pdf version of the book]]), John Kitchin (github @jkitchin). 
+- [[https://plmlab.math.cnrs.fr/xtof/interacting_neurons_with_stp/blob/master/interacting_neurons_with_stp.org][A system of interacting neurons with short term plasticity]], (org
+  avec du C, gnuplot, shell) ([[https://plmlab.math.cnrs.fr/xtof/interacting_neurons_with_stp/blob/master/interacting_neurons_with_stp.Pdf][Pdf]]), Christophe Pouzat
 - [[https://hal.archives-ouvertes.fr/hal-01224765][Supplementary Material for: Homogeneity and identity tests for unidimensional Poisson processes with an application to  neurophysiological peri-stimulus time histograms--R version]], (org
-  avec R) Christophe Pouzat. [[https://hal.archives-ouvertes.fr/hal-01224765/document][Pdf]]
+  avec R), ([[https://hal.archives-ouvertes.fr/hal-01224765/document][Pdf]]), Christophe Pouzat
 - [[https://hal.archives-ouvertes.fr/hal-01224764][Supplementary  Material for: Homogeneity and identity tests for unidimensional Poisson processes with an application to neurophysiological peri-stimulus time histograms--Python version]],
-  (org avec Python, mais les mêmes calculs que le précédent),
-  Christophe Pouzat. [[https://hal.archives-ouvertes.fr/hal-01224764/document][Pdf]]
+  (org avec Python, mais les mêmes calculs que le précédent),([[https://hal.archives-ouvertes.fr/hal-01224764/document][Pdf]]), Christophe Pouzat
 - [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/tree/master/module2/ressources/sequence6_examples][Les documents montrés en exemple dans les vidéos du MOOC]]
 
  
