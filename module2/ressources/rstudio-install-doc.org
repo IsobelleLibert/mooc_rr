@@ -58,7 +58,7 @@ sudo dpkg -i rstudio-xenial-1.1.453-amd64.deb
 sudo apt-get update ; sudo apt-get -f install # to fix possibly missing dependencies
 #+END_SRC
 ** Mac OSX and Windows
-- Install R and Python following the instructions given in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/19c2b1de7766484bae73f3ab133463c6][separate resource]].
+- Install R and Python following the instructions given in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/19c2b1de7766484bae73f3ab133463c6][separate resource]].
 - Download and install RStudio from the [[https://www.rstudio.com/products/rstudio/download/#download][RStudio webpage]] by choosing the right operating system.
 - Download and install MiKTeX from the [[https://miktex.org/download][MiKTeX webpage]] by choosing the right operating system. You will be prompted to install some specific packages when exporting to pdf.
 - Open RStudio and type the following commands in the console to install =knitr= and =ggplot2=:

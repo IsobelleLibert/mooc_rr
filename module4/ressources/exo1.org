@@ -45,7 +45,7 @@ faire à deux niveaux :
    logistique, il suffit de bien inspecter les sorties produites et de
    vérifier qu'elles correspondent bien aux valeurs attendues. Pour
    ceux qui ré-exécuteraient le notebook Python dans l'environnement
-   Jupyter du MOOC, n'hésitez pas à consulter [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/4ab5bb42ca1e45c8b0f349751b96d405][les ressources de la
+   Jupyter du MOOC, n'hésitez pas à consulter [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/4ab5bb42ca1e45c8b0f349751b96d405][les ressources de la
    section 4A du module 2]] qui expliquent comment y importer un
    notebook.
 2. un niveau plus difficile pour ceux qui souhaiteront le réécrire
@@ -127,7 +127,7 @@ You will find there our replications of the computations by Dallal /et
 al./ (in R), one in Python and one in R (very similar to what you have
 used in module 2). This exercise can be done at two levels:
 
-1. an easy level at which you start from the code in the language that you did not use initially, and content yourself with re-executin it. This doesn't require mastering logistic regression, it is sufficien to inspect the outputs produced and check that they correspond to the expected values. For those who want to re-execute the Python notebook in our MOOC's Jupyter environment, check [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/4ab5bb42ca1e45c8b0f349751b96d405][the resources for sequence 4A of module 2]] that explain how to import a notebook.
+1. an easy level at which you start from the code in the language that you did not use initially, and content yourself with re-executin it. This doesn't require mastering logistic regression, it is sufficien to inspect the outputs produced and check that they correspond to the expected values. For those who want to re-execute the Python notebook in our MOOC's Jupyter environment, check [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/4ab5bb42ca1e45c8b0f349751b96d405][the resources for sequence 4A of module 2]] that explain how to import a notebook.
 2. a more difficult level at which you rewrite the analysis completely, possibly in a different language than Python or R, which makes the exercise more interesting because we have not tested such variants. If logistic regression is not already implemented for your language, you will need a good understanding of it in order to write the code yourself, which of course makes the exercise even more instructive.
 
 You can discuss your successes or failures on the forum, after following these instructions:

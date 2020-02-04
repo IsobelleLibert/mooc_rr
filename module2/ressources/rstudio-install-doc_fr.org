@@ -59,7 +59,7 @@ sudo dpkg -i rstudio-xenial-1.1.453-amd64.deb
 sudo apt-get update ; sudo apt-get -f install # to fix possibly missing dependencies
 #+END_SRC
 ** Mac OSX and Windows
-- Installer R et Python en suivant les instruction dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/19c2b1de7766484bae73f3ab133463c6][ressource spécifique]].
+- Installer R et Python en suivant les instruction dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/19c2b1de7766484bae73f3ab133463c6][ressource spécifique]].
 - Télécharger et installer RStudio depuis le [[https://www.rstudio.com/products/rstudio/download/#download][site RStudio]] en
   choisissant le bon système d'exploitation. 
 - Télécharger et installer MiKTeX depuis le [[https://miktex.org/download][site MiKTeX]] en choisissant le bon

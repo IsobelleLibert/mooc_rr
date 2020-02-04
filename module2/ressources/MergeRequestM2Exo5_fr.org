@@ -10,7 +10,7 @@
 Ce document vous explique comment récupérer dans votre entrepôt GitLab les modifications des ressources nécessaires pour l'exercice5 du module 2.
 Pour cela, nous vous demandons de valider une demande de "Merge request"  avec toutes les modifications effectuées par Konrad, en suivant la procédure ci-dessous.
 
-Rendez-vous sur votre espace Gitlab, depuis la page [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/5571950188c946e790f06d4bc90fb5f6]["Votre espace Gitlab"]]
+Rendez-vous sur votre espace Gitlab, depuis la page [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/5571950188c946e790f06d4bc90fb5f6]["Votre espace Gitlab"]]
 
 Suivez les indications ci dessous.
 
@@ -32,7 +32,7 @@ Si vous allez sur mooc-rr/module2/exo5, vous devez voir que 4 fichiers ont été
 
 Ensuite, si vous suivez le parcours Jupyter, il faut aussi répercuter les modifications dans votre espace Jupyter.
 
-Pour cela, rendez-vous sur votre espace Jupyter, depuis [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/5310b948b605466d95b47e0676cf1069]["l'exercice 5 du Module 2"]] 
+Pour cela, rendez-vous sur votre espace Jupyter, depuis [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/5310b948b605466d95b47e0676cf1069]["l'exercice 5 du Module 2"]] 
  (bouton "Lire l'analyse").
 
 Faites un "Git pull" pour mettre à jour votre espace Jupiter.

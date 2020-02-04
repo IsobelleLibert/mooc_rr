@@ -6,7 +6,7 @@
 #+PROPERTY: header-args :eval never-export
 
 
-This document assumes you have installed emacs as explained [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/954f94ce4f9a4d858d47b41793cc96c8][here]].  All
+This document assumes you have installed emacs as explained [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/954f94ce4f9a4d858d47b41793cc96c8][here]].  All
 the screenshots in this demo are done under the Windows operating
 system but similar results should be obtained on any OS.
 

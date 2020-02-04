@@ -12,11 +12,11 @@ cet environnement.
 *Attention:* Les sections [[#une-configuration-emacs-adaptée-à-la-recherche-reproductible][Une configuration Emacs adaptée à la
 "recherche reproductible"]] et [[#un-mod%C3%A8le-darticle-r%C3%A9plicable][Un modèle d'article réplicable]]
 expliquent comment configurer Emacs/Org-Mode pour ce MOOC. Ce sont donc
-des sections très *importantes* qui sont *illustrées dans [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][deux des trois
+des sections très *importantes* qui sont *illustrées dans [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][deux des trois
 tutoriels vidéo de cette page]]*. *Nous vous encourageons vivement à
 suivre attentivement ces sections* *et ces vidéos avant de vous lancer
 dans les exercices*. De même, nous vous encourageons vivement à
-regarder la vidéo [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4]["utilisation Emacs/git" disponible sur la même page]].
+regarder la vidéo [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4]["utilisation Emacs/git" disponible sur la même page]].
 
 * Table des matières                                           :TOC:
 - [[#installation-demacs][Installation d'Emacs]]
@@ -145,12 +145,12 @@ matplotlib.matplotlib_fname()
 Ouvrez le fichier =matplotlibrc=, localisez la ligne commençant par =backend= et transformez là en =backend : Agg=.
 
 * Python, R et LaTeX
-Les documents computationnels contiennent du code, et en particulier dans le cas de notre MOOC du code utilisant les langages Python et R. Vous devrez donc installer Python et R en plus d'Emacs, sauf s'ils sont déjà installés sur votre ordinateur. Puisque Python et R sont aussi utilisés dans les autres parcours de notre MOOC, nous expliquons leur installation dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/19c2b1de7766484bae73f3ab133463c6][ressource séparée]].
+Les documents computationnels contiennent du code, et en particulier dans le cas de notre MOOC du code utilisant les langages Python et R. Vous devrez donc installer Python et R en plus d'Emacs, sauf s'ils sont déjà installés sur votre ordinateur. Puisque Python et R sont aussi utilisés dans les autres parcours de notre MOOC, nous expliquons leur installation dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/19c2b1de7766484bae73f3ab133463c6][ressource séparée]].
 
-Cette même ressource explique également comment installer LaTeX, dont vous devrez disposer si vous voulez produire des versions PDF de documents org-mode. Par exemple, si vous voulez travailler avec modèle d'article réplicable (montré dans [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4#tuto3][la vidéo "écrire un article réplicable avec Emacs/Org-mode"]]), il vous faudra installer LaTeX. Cependant, comme il s'agit d'un logiciel assez volumineux (plusieurs Go), vous pouvez préférer ne pas l'installer. Ce n'est pas indispensable.
+Cette même ressource explique également comment installer LaTeX, dont vous devrez disposer si vous voulez produire des versions PDF de documents org-mode. Par exemple, si vous voulez travailler avec modèle d'article réplicable (montré dans [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4#tuto3][la vidéo "écrire un article réplicable avec Emacs/Org-mode"]]), il vous faudra installer LaTeX. Cependant, comme il s'agit d'un logiciel assez volumineux (plusieurs Go), vous pouvez préférer ne pas l'installer. Ce n'est pas indispensable.
 
 * Une configuration Emacs adaptée à la "recherche reproductible"
-Cette section est illustrée dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][vidéo de démonstration]] (/Mise en place en place Emacs/Orgmode/). Nous vous suggérons de la regarder avant de suivre les instructions données dans cette section.
+Cette section est illustrée dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][vidéo de démonstration]] (/Mise en place en place Emacs/Orgmode/). Nous vous suggérons de la regarder avant de suivre les instructions données dans cette section.
 
 Emacs s'installe avec une configuration par défaut très basique que
 chacun va donc vouloir personnaliser. Compte tenu de la flexibilité
@@ -273,7 +273,7 @@ Dans la vidéo, nous avons déjà fait une petite démonstration des
 principales fonctionnalités d'emacs/org-mode qui vous aideront à tenir
 à jour un journal et à faire de la programmation lettrée. Une liste des
 principales fonctionnalités et des raccourcis est donnée dans le [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/rr_org/journal.org][première
-entrée de votre labbook]]. N'hésitez pas à également suivre [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/b031e4067cf8410c86adbeba2f30c92f][cette ressource]] pour découvrir ces raccourcis.
+entrée de votre labbook]]. N'hésitez pas à également suivre [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/b031e4067cf8410c86adbeba2f30c92f][cette ressource]] pour découvrir ces raccourcis.
 ** Étape 6 : Ouvrez et commencez à utiliser votre journal
 À l'étape 2, nous vous avons demandé de créer un journal dans le
 fichier =~org/journal.org=. C'est dans ce fichier que les notes prises
@@ -283,7 +283,7 @@ un système de contrôle de version comme git. Nous vous laissons la
 responsabilité de mettre tout ceci en place mais si vous avez des
 problèmes, n'hésitez pas à poser des questions sur le forum du MOOC.
 * Un modèle d'article réplicable
-Cette section est illustrée dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4#tuto3][vidéo]] (/"Écrire un article
+Cette section est illustrée dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4#tuto3][vidéo]] (/"Écrire un article
 réplicable avec Emacs/Orgmode"/). Nous vous suggérons de la regarder avant de suivre les instructions données dans cette section.
 
 Pour travailler avec ce modèle d'article, vous aurez besoin d'installations fonctionnelles de LaTeX, R, et Python. Si vous ne pouvez pas ouvrir un terminal et exécuter les commandes =R=, =pdflatex=, et =python3=, vous ne pourrez pas générer ce document.
@@ -336,7 +336,7 @@ Il offre des capacités de complétion intelligente (et pas uniquement syntaxiqu
 page Web officielle : [[http://company-mode.github.io/][http://company-mode.github.io/]].
 *** Magit
 [[https://magit.vc/][Magit]] est une interface Emacs pour Git. Son utilisation est brièvement
-illustrée dans le contexte de ce MOOC dans un [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][tutoriel vidéo]].
+illustrée dans le contexte de ce MOOC dans un [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][tutoriel vidéo]].
 ("/Utilisation Emacs/git/").
 
 C'est un outil vraiment très puissant et nous l'utilisons quotidiennement mais il est nécessaire de 

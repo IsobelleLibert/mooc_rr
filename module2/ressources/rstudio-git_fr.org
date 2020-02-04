@@ -12,11 +12,11 @@
 * Avant de commencer
 La première chose à faire est de configurer Git sur votre
 ordinateur. Pour ce faire, vous pouvez suivre la vidéo
-[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85][configurer Git pour Gitlab]] et le document
+[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85][configurer Git pour Gitlab]] et le document
 [[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module2/ressources/gitlab_fr.org][Git et Gitlab]] correspondant.
 
 Vous pourrez alors utiliser Git avec RStudio. Pour ce faire, vous
-pouvez suivre la vidéo [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/d132a854b0464ad29085cedaded23136][RStudio - Gitlab]] dont les étapes
+pouvez suivre la vidéo [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/d132a854b0464ad29085cedaded23136][RStudio - Gitlab]] dont les étapes
 sont reprises ci-dessous.
 
 /(Nous vous signalons aussi cette/ [[https://www.youtube.com/embed/uHYcDQDbMY8][vidéo]] /(en anglais) ainsi que le/ [[https://swcarpentry.github.io/git-novice/14-supplemental-rstudio/index.html][tuto
@@ -42,7 +42,7 @@ Ouvrir RStudio et procéder comme suit :
   [[file:rstudio_images/clone.png]]
   #+END_CENTER
 - Si vous êtes derrière un proxy, il faut le définir dans Git (voir le
-  paragraphe "Gérer les proxy" de la page sur [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85][Git et Gitlab]]).
+  paragraphe "Gérer les proxy" de la page sur [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85][Git et Gitlab]]).
 - Git se connecte à Gitlab et récupère une copie complète du dépôt.
 - RStudio redémarre dans un mode lié à Git :
   #+BEGIN_CENTER

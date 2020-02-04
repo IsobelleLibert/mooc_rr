@@ -61,7 +61,7 @@ sudo dpkg -i rstudio-xenial-1.1.453-amd64.deb
 sudo apt-get update ; sudo apt-get -f install # to fix possibly missing dependencies
 #+END_SRC
 ** Mac OSX and Windows
-- Install R and Python following the instructions given in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/19c2b1de7766484bae73f3ab133463c6][separate resource]].
+- Install R and Python following the instructions given in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/19c2b1de7766484bae73f3ab133463c6][separate resource]].
 - Download and install RStudio from the [[https://www.rstudio.com/products/rstudio/download/#download][RStudio webpage]] by choosing the right operating system.
 - Download and install MiKTeX from the [[https://miktex.org/download][MiKTeX webpage]] by choosing the right operating system. You will be prompted to install some specific packages when exporting to pdf.
 - Open RStudio and type the following commands in the console to install =knitr= and =ggplot2=:
@@ -88,9 +88,9 @@ of these documents:
 
 * Using Git from RStudio
 If you have never used git with RStudio, *we strongly advise that you
-follow [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/d132a854b0464ad29085cedaded23136][our tutorial on using git from RStudio]]* (/"RStudio et Gitlab"/
+follow [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/d132a854b0464ad29085cedaded23136][our tutorial on using git from RStudio]]* (/"RStudio et Gitlab"/
 ). Before proceeding, make sure you also have followed the
-*[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85]["git/GitLab configuration" tutorial]]*.
+*[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85]["git/GitLab configuration" tutorial]]*.
 
 Alternatively, you may want to watch [[https://www.youtube.com/embed/uHYcDQDbMY8][this video]] (in English). If you
 do not like videos, you should have a look at the [[https://swcarpentry.github.io/git-novice/14-supplemental-rstudio/index.html][step-by-step
@@ -116,7 +116,7 @@ Open RStudio and do the following steps:
   [[file:rstudio_images/clone.png]]
   #+END_CENTER
 - If you're behind a proxy, git should be configured
-  accordingly. Check the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85]["Dealing with proxies" section]].
+  accordingly. Check the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85]["Dealing with proxies" section]].
 - Git will then connect to Gitlab and fetch a whole copy of the
   repository.
 - RStudio should restart in a mode related to Git:

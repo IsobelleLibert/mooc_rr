@@ -62,7 +62,7 @@ devraient vous permettre de décider la méthode la plus adaptée à votre propr
    juste pour avoir accès à Python, R, et LaTeX.
 
 2. Anaconda (c'est 
-   [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/8dcce91be83c4ece834abfa98b8bbfb1][la méthode que nous recommendons]] 
+   [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/8dcce91be83c4ece834abfa98b8bbfb1][la méthode que nous recommendons]] 
    si vous souhaitez installer exactement la même version que celle que nous 
    avons déployée sur nos serveurs pour ce MOOC)
 
@@ -74,7 +74,7 @@ devraient vous permettre de décider la méthode la plus adaptée à votre propr
    Anaconda est particulièrement adapté à ceux qui ont l'intention d'utiliser 
    Python régulièrement puisque c'est actuellement la méthode la plus pratique 
    pour gérer des environnements Python. C'est également 
-   [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/8dcce91be83c4ece834abfa98b8bbfb1][la méthode que nous recommendons pour installer Jupyter]].
+   [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/8dcce91be83c4ece834abfa98b8bbfb1][la méthode que nous recommendons pour installer Jupyter]].
 
 3. Suivre les instructions proposées par les développeurs de chaque langage.
 

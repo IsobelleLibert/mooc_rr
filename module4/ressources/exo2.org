@@ -16,7 +16,7 @@ sera peut-être également votre cas !
 1. Pour ceux qui ont suivi le parcours Jupyter, recréez
    l'environnement du MOOC sur votre propre machine en suivant les
    instructions données 
-   [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/4ab5bb42ca1e45c8b0f349751b96d405][dans les ressources de la section 4A du module 2]].
+   [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/4ab5bb42ca1e45c8b0f349751b96d405][dans les ressources de la section 4A du module 2]].
 2. Vérifiez si vous obtenez bien les mêmes résultats que ceux
    attendus.
 3. Mettez à jour (vers le haut ou vers la bas) cet environnement et
@@ -33,7 +33,7 @@ on the Jupyter environment that we had installed for the MOOC. Maybe
 that will happen to you as well!
 
 1. For those you followed the Jupyter path, re-create the MOOC's Jupyter environment on your own computer by following the instructions given
-   [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/4ab5bb42ca1e45c8b0f349751b96d405][in the resource section of sequence 4A of module 2]].
+   [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/4ab5bb42ca1e45c8b0f349751b96d405][in the resource section of sequence 4A of module 2]].
 2. Check if you get the same results as in the MOOC environment.
 3. Update this environment, increasing or decreasing some package's version numbers, and check if the results are still the same.
 

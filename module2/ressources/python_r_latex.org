@@ -27,9 +27,9 @@ There are many ways to install Python, R, and LaTeX. Worse, there are good reaso
 
    *macOS* users who already use one of the package managers for macOS, i.e. one of [[https://brew.sh/][Homebrew]], [[https://www.macports.org/][MacPorts]], or [[http://www.finkproject.org/][fink]], should also look for Python and R in their distributions. However, it's probably not worth installing any of these package managers just for Python, R, or LaTeX.
 
-2. Anaconda (this is [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/8dcce91be83c4ece834abfa98b8bbfb1][the method we recommand]] if you want to install the exact same version as the one we deployed on our servers for this MOOC)
+2. Anaconda (this is [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/8dcce91be83c4ece834abfa98b8bbfb1][the method we recommand]] if you want to install the exact same version as the one we deployed on our servers for this MOOC)
 
-   Users of *Windows*, as well as *Linux* and *macOS* users who don't find sufficiently recent versions in their package manager's distributions, should consider the [[https://www.anaconda.com/distribution/][Anaconda distribution]] that contains both Python and R plus a huge collection of add-on packages for both languages. Anaconda is particularly recommended for those who plan to use Python more regularly, as it is the most convenient approach to managing Python environments. It is also [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/8dcce91be83c4ece834abfa98b8bbfb1][the method we recommend for a local installation of Jupyter]].
+   Users of *Windows*, as well as *Linux* and *macOS* users who don't find sufficiently recent versions in their package manager's distributions, should consider the [[https://www.anaconda.com/distribution/][Anaconda distribution]] that contains both Python and R plus a huge collection of add-on packages for both languages. Anaconda is particularly recommended for those who plan to use Python more regularly, as it is the most convenient approach to managing Python environments. It is also [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/8dcce91be83c4ece834abfa98b8bbfb1][the method we recommend for a local installation of Jupyter]].
 
 3. Follow the instructions proposed by each language's developers
 

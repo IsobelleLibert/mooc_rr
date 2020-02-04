@@ -18,9 +18,9 @@
 
 * Version control with GitLab and Git in the "Reproducible research" MOOC
 We have created a GitLab server especially for this MOOC so that you can smoothly learn how to implement version control. 
-This section describes the successive steps involved. The following [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/5571950188c946e790f06d4bc90fb5f6#InterfaceGitlab][video]] shows how to use GitLab. We strongly recommend that you watch it if you've never used GitLab before.
+This section describes the successive steps involved. The following [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/5571950188c946e790f06d4bc90fb5f6#InterfaceGitlab][video]] shows how to use GitLab. We strongly recommend that you watch it if you've never used GitLab before.
 
-- Go to [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/5571950188c946e790f06d4bc90fb5f6#FormAccesGitlab][GitLab]] from the FUN platform (click on *Accédez à
+- Go to [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/5571950188c946e790f06d4bc90fb5f6#FormAccesGitlab][GitLab]] from the FUN platform (click on *Accédez à
   Gitlab / Access to Gitlab*)
 - You reach the following form :
   #+BEGIN_CENTER
@@ -49,7 +49,7 @@ This section describes the successive steps involved. The following [[https://ww
   [[file:gitlab_images/password.png]]
   #+END_CENTER
 
-If you want to go further, few tutorial videos are gathered in [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85][sequence "7. Installations, configurations, references" of module 2]]
+If you want to go further, few tutorial videos are gathered in [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85][sequence "7. Installations, configurations, references" of module 2]]
 of this MOOC.
 
 * Version control with LibreOffice or DokuWiki

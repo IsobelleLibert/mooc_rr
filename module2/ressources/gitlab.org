@@ -23,7 +23,7 @@ GitLab.
 
 This document describes the software you need to have installed on
 your machine and how to handle authentication.  The "Configuring Git"
-section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85][video tutorial]] (in French).
+section is illustrated in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85][video tutorial]] (in French).
 
 Please read all these instructions carefully, in particular the one on
 "Configuring your password on GitLab".
@@ -108,7 +108,7 @@ step of changing your =~/.git-credentials= in the Jupyter environment
 (possibly several times).
 
 1. Get your default password using the [[https://app-learninglab.inria.fr/jupyterhub/services/password][Gitlab credentials retrieval
-   tool]] as described on the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85][corresponding resource]].
+   tool]] as described on the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85][corresponding resource]].
    #+BEGIN_CENTER
    [[file:gitlab_images/password_retrieval.png]]
    #+END_CENTER
@@ -126,7 +126,7 @@ step of changing your =~/.git-credentials= in the Jupyter environment
    #+BEGIN_CENTER
    [[file:gitlab_images/erreur405.png]]
    #+END_CENTER
-2. Access [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/5571950188c946e790f06d4bc90fb5f6][GitLab]] from the FUN plateform (click on "Accédez à Gitlab / Access to Gitlab" Button). 
+2. Access [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/5571950188c946e790f06d4bc90fb5f6][GitLab]] from the FUN plateform (click on "Accédez à Gitlab / Access to Gitlab" Button). 
 
    /Note: Again, you have to access Gitlab from the FUN platform
    otherwise you may get a 405 error/ /when trying to direcly open

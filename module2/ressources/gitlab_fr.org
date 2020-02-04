@@ -23,7 +23,7 @@ synchroniser votre copie locale avec celle de GitLab. Vous devrez
 
 Ce document décrit le logiciel que vous devez installer sur votre
 ordinateur et comment gérer l'authentification. La section
-"Configuration de Git" est illustrée dans un [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85][tutoriel vidéo]] (en
+"Configuration de Git" est illustrée dans un [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85][tutoriel vidéo]] (en
 français). 
 
 Veuillez lire attentivement toutes ces instructions, en particulier
@@ -117,7 +117,7 @@ supplémentaire de modification de votre =~/.git-credentials= dans
 l’environnement Jupyter (éventuellement plusieurs fois).  
 
 1. Récupérer votre mot de passe par défaut en utilisant l'outil [[https://app-learninglab.inria.fr/jupyterhub/services/password][Gitlab
-   credentials retrieval]] comme décrit dans la [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/7508aece244548349424dfd61ee3ba85][ressource correspondante]].
+   credentials retrieval]] comme décrit dans la [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85][ressource correspondante]].
    #+BEGIN_CENTER
    [[file:gitlab_images/password_retrieval.png]]
    #+END_CENTER
@@ -250,10 +250,10 @@ Cette section décrit un moyen générique (par lignes de commandes) de
 synchroniser vos fichiers locaux avec Gitlab. Vous n'en aurez pas
 besoin si vous suivez le parcours Jupyter. Si vous suivez le parcours
 RStudio, toutes ces opérations peuvent être effectuées via RStudio et
-vous voudrez peut-être lire [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/1a4f58a1efed437c93a9f5c5f15df428][les instructions correspondantes]]. Si vous
+vous voudrez peut-être lire [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/1a4f58a1efed437c93a9f5c5f15df428][les instructions correspondantes]]. Si vous
 suivez le chemin Org-Mode, toutes ces opérations peuvent être
 effectuées via Magit et vous voudrez peut-être lire
-[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+session02/jump_to_id/508299f7373449a3939faa5b11462bc4][les instructions correspondantes]].
+[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/508299f7373449a3939faa5b11462bc4][les instructions correspondantes]].
 
 
 Voici d'autres moyens d'apprendre Git par lignes de commandes :

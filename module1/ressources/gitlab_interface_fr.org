@@ -56,7 +56,7 @@ Il est possible de modifier ce mot de passe dans "Account / Paramètres / Mot de
 Enfin, pour ceux qui veulent aller plus plus loin et en savoir plus
 sur l'outil de gestion de version git sur lequel s'appuie GitLab,
 quelques vidéos de démonstration sur git et Gitlab sont proposées dans
-la [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85][séquence "7. Installations, configurations, references" du module 2]
+la [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85][séquence "7. Installations, configurations, references" du module 2]]
 de ce Mooc ainsi que des ressources pour apprivoiser git en ligne de commandes.
 
 ** Que faire en cas de problème
