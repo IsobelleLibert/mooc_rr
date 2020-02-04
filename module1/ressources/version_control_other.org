@@ -3,7 +3,7 @@
 #+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
 #+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+OPTIONS: timestamp:t title:t toc:t todo:t |:t
-#+TITLE: Notes (and codes) that are archived but can evolve with version control systems
+#+TITLE: Version control with LibreOffice or DokuWiki
 #+AUTHOR: Christophe Pouzat
 #+EMAIL: christophe.pouzat@parisdescartes.fr
 #+LANGUAGE: en
@@ -12,10 +12,6 @@
 #+CREATOR: Emacs 26.1 (Org mode 9.1.9)
 #+STARTUP: indent
 
-* Table of contents                                                     :TOC:
-- [[#version-control-with-libreoffice-or-dokuwiki][Version control with LibreOffice or DokuWiki]]
-
-* Version control with LibreOffice or DokuWiki
 Modification tracking in files generated and managed by =LibreOffice= is briefly described on the [[https://help.libreoffice.org/Common/Recording_Changes][wiki page]] of this software. A [[https://help.libreoffice.org/Common/Navigating_Changes][table of contents]] of the pages dedicated to this subject is available.
 
 For DoKuWiki, the best is to check the [[https://www.dokuwiki.org/start?id=dokuwiki][wiki]].
