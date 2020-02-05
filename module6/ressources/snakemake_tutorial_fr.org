@@ -311,8 +311,8 @@ week_starting,incidence
 #+end_example
 
 Ça a l'air pas mal!
-** 3ème tâche: préparer les plots
-La règle pour faire les plots ne présente plus aucune surprise:
+** 3ème tâche: préparer les graphiques
+La règle pour faire les graphiques ne présente plus aucune surprise:
 #+begin_src :exports code :tangle incidence_syndrome_grippal/Snakefile :mkdirp yes :eval no
 rule plot:
      input:
@@ -543,7 +543,7 @@ Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressource
 [[file:incidence_syndrome_grippal/data/annual-incidence-histogram.png]]
 
 * Travailler avec un workflow
-Jusqu'ici, j'ai lancé chaque tâche de mon workflow à la main, une par une. Avec le même effort, j'aurais pu lancer directement les divers scripts qui font le travail de fon. Autrement dit, =snakemake= ne m'a rien apporté, autre que sortir les noms des fichiers des scripts, qui devienennt ainsi un peu plus généraux, pour les transférer dans le grand script maître qui est =Snakefile=.
+Jusqu'ici, j'ai lancé chaque tâche de mon workflow à la main, une par une. Avec le même effort, j'aurais pu lancer directement les divers scripts qui font le travail de fond. Autrement dit, =snakemake= ne m'a rien apporté d'autre que de sortir les noms des fichiers des scripts, qui deviennent ainsi un peu plus généraux, pour les transférer dans le grand script maître qu'est le =Snakefile=.
 
 J'ai déjà évoqué un avantage du workflow: les tâches ne sont exécutées qu'en cas de besoin. Par exemple, la commande =snakemake plot= exécute le script =scripts/incidence-plots.R= seulement si l'une des conditions suivantes est satisfaite:
  1. Un des deux fichiers =data/weekly-incidence-plot.png= et =data/weekly-incidence-plot-last-years.png= est absent.
@@ -627,7 +627,7 @@ rule plot:
         "scripts/incidence-plots.R"
 #+end_src
 
-On peut aussi demander à =snakemake= de lancer une tâche même si ceci ne lui semble pas nécessaire, avec l'option =-f= (force):
+On peut aussi demander à =snakemake= de lancer une tâche spécifique même si ceci ne lui semble pas nécessaire, avec l'option =-f= (force):
 #+begin_src sh :session *snakemake1* :results output :exports both
 snakemake -f plot
 #+end_src
@@ -667,7 +667,7 @@ Finished job 0.
 Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160222.648384.snakemake.log
 #+end_example
 
-Le plus souvent, ce qu'on veut, c'est une mise à jour de tous les résultats suite à une modification. La bonne façon d'y arriver est de rajouter une nouvelle règle, par convention appellée =all=, qui ne fait rien mais demande à l'entrée tous les fichiers créés par toutes les autres tâches :
+Le plus souvent, ce qu'on veut, c'est une mise à jour de tous les résultats suite à une modification. La bonne façon d'y arriver est de rajouter une nouvelle règle, par convention appellée =all=, qui ne fait rien mais demande en entrée tous les fichiers créés par toutes les autres tâches :
 #+begin_src :exports code :tangle incidence_syndrome_grippal/Snakefile :mkdirp yes :eval no
 rule all:
      input:
