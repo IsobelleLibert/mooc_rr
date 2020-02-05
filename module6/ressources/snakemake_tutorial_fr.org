@@ -84,18 +84,18 @@ wget -O data/weekly-incidence.csv http://www.sentiweb.fr/datasets/incidence-PAY-
 #+end_src
 
 #+RESULTS:
-: --2019-09-24 16:47:03--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
+: --2020-02-05 16:02:18--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
 : Resolving www.sentiweb.fr (www.sentiweb.fr)... 134.157.220.17
 : Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
 : HTTP request sent, awaiting response... 200 OK
 : Length: unspecified [text/csv]
 : Saving to: 'data/weekly-incidence.csv'
-: ]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  80.00K  --.-KB/s    in 0.008s  
+: ]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  80.88K  --.-KB/s    in 0.01s   
 : 
-: 2019-09-24 16:47:03 (9.70 MB/s) - 'data/weekly-incidence.csv' saved [81916]
+: 2020-02-05 16:02:18 (5.48 MB/s) - 'data/weekly-incidence.csv' saved [82825]
 
 fait ce qu'il faut, et dépose les données dans le fichier =data/weekly-incidence.csv=. Je le supprime parce que je veux faire le téléchargement dans mon workflow!
-#+begin_src sh :session *snakemake1* ::results output :exports both
+#+begin_src sh :session *snakemake1* :results output :exports both
 rm data/weekly-incidence.csv
 #+end_src
 
@@ -112,45 +112,51 @@ rule download:
 Un =Snakefile= consiste de /règles/ qui définissent les tâches. Chaque règle a un nom, ici j'ai choisi /download/. Une règle liste aussi les fichiers d'entrée (aucun dans ce cas) et de sortie (notre fichier de données). Enfin, il faut dire ce qui est à faire pour exécuter la tâche, ce qui est ici la commande =wget=.
 
 Pour exécuter cette tâche, il y a deux façons de faire: on peut demander à =snakemake= d'exécuter la règle =download=:
-#+begin_src sh :session *snakemake1* ::results output :exports both
+#+begin_src sh :session *snakemake1* :results output :exports both
 snakemake download
 #+end_src
 
 #+RESULTS:
-| Building     | DAG                       | of                                                                                                                                                                   | jobs...             |                |                             |            |         |          |    |        |
-| Using        | shell:                    | /bin/bash                                                                                                                                                            |                     |                |                             |            |         |          |    |        |
-| Provided     | cores:                    | 1                                                                                                                                                                    |                     |                |                             |            |         |          |    |        |
-| Rules        | claiming                  | more                                                                                                                                                                 | threads             | will           | be                          | scaled     | down.   |          |    |        |
-| Job          | counts:                   |                                                                                                                                                                      |                     |                |                             |            |         |          |    |        |
-|              | count                     | jobs                                                                                                                                                                 |                     |                |                             |            |         |          |    |        |
-|              | 1                         | download                                                                                                                                                             |                     |                |                             |            |         |          |    |        |
-|              | 1                         |                                                                                                                                                                      |                     |                |                             |            |         |          |    |        |
-| [Tue         | Sep                       | 24                                                                                                                                                                   | 16:47:03            | 2019]          |                             |            |         |          |    |        |
-| rule         | download:                 |                                                                                                                                                                      |                     |                |                             |            |         |          |    |        |
-| output:      | data/weekly-incidence.csv |                                                                                                                                                                      |                     |                |                             |            |         |          |    |        |
-| jobid:       | 0                         |                                                                                                                                                                      |                     |                |                             |            |         |          |    |        |
-| --2019-09-24 | 16:47:03--                | http://www.sentiweb.fr/datasets/incidence-PAY-3.csv                                                                                                                  |                     |                |                             |            |         |          |    |        |
-| Resolving    | www.sentiweb.fr           | (www.sentiweb.fr)...                                                                                                                                                 | 134.157.220.17      |                |                             |            |         |          |    |        |
-| Connecting   | to                        | www.sentiweb.fr                                                                                                                                                      | (www.sentiweb.fr)   | 134.157.220.17 | :80...                      | connected. |         |          |    |        |
-| HTTP         | request                   | sent,                                                                                                                                                                | awaiting            | response...    | 200                         | OK         |         |          |    |        |
-| Length:      | unspecified               | [text/csv]                                                                                                                                                           |                     |                |                             |            |         |          |    |        |
-| Saving       | to:                       | 'data/weekly-incidence.csv'                                                                                                                                          |                     |                |                             |            |         |          |    |        |
-| ]            | 0                         | --.-KB/s                                                                                                                                                             | data/weekly-inciden | [              | <=>                         | ]          | 80.00K  | --.-KB/s | in | 0.007s |
-| 2019-09-24   | 16:47:03                  | (11.3                                                                                                                                                                | MB/s)               | 0              | 'data/weekly-incidence.csv' | saved      | [81916] |          |    |        |
-| [Tue         | Sep                       | 24                                                                                                                                                                   | 16:47:03            | 2019]          |                             |            |         |          |    |        |
-| Finished     | job                       | 0                                                                                                                                                                    |                     |                |                             |            |         |          |    |        |
-| )            | done                      |                                                                                                                                                                      |                     |                |                             |            |         |          |    |        |
-| Complete     | log:                      | /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T164703.270308.snakemake.log |                     |                |                             |            |         |          |    |        |
+#+begin_example
+Building DAG of jobs...
+Using shell: /bin/bash
+Provided cores: 1
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	download
+	1
+
+[Wed Feb  5 16:02:18 2020]
+rule download:
+    output: data/weekly-incidence.csv
+    jobid: 0
+
+--2020-02-05 16:02:18--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
+Resolving www.sentiweb.fr (www.sentiweb.fr)... 134.157.220.17
+Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/csv]
+Saving to: 'data/weekly-incidence.csv'
+]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  80.88K  --.-KB/s    in 0.02s   
+
+2020-02-05 16:02:19 (4.77 MB/s) - 'data/weekly-incidence.csv' saved [82825]
+
+[Wed Feb  5 16:02:19 2020]
+Finished job 0.
+) done
+Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160218.869841.snakemake.log
+#+end_example
 
 Ou on peut demander de faire ce qu'il faut pour produire un fichier:
-#+begin_src sh :session *snakemake1* ::results output :exports both
+#+begin_src sh :session *snakemake1* :results output :exports both
 snakemake data/weekly-incidence.csv
 #+end_src
 
 #+RESULTS:
-| Building | DAG  | of                                                                                                                                                                   | jobs... |
-| Nothing  | to   | be                                                                                                                                                                   | done.   |
-| Complete | log: | /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T164703.728869.snakemake.log |         |
+: Building DAG of jobs...
+: Nothing to be done.
+: Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160219.236301.snakemake.log
 
 En regardant bien ce que =snakemake= dit au deuxième tour, il s'est rendu compte qu'il n'y a rien à faire, parce que le fichier souhaité existe déjà. Voici un premier avantage important d'un workflow: une tâche n'est exécutée que s'il est nécessaire. Quand une tâche met deux heures à exécuter, c'est appréciable.
 
@@ -263,16 +269,16 @@ Job counts:
 	1	preprocess
 	1
 
-[Tue Sep 24 16:47:04 2019]
+[Wed Feb  5 16:02:19 2020]
 rule preprocess:
     input: data/weekly-incidence.csv
     output: data/preprocessed-weekly-incidence.csv, data/errors-from-preprocessing.txt
     jobid: 0
 
-[Tue Sep 24 16:47:04 2019]
+[Wed Feb  5 16:02:19 2020]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T164704.070541.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160219.462758.snakemake.log
 #+end_example
 
 Voyons s'il y a eu des problèmes:
@@ -351,7 +357,7 @@ Job counts:
 	1	plot
 	1
 
-[Tue Sep 24 16:47:04 2019]
+[Wed Feb  5 16:02:20 2020]
 rule plot:
     input: data/preprocessed-weekly-incidence.csv
     output: data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png
@@ -364,15 +370,15 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 null device 
           1 
 null device 
           1 
-[Tue Sep 24 16:47:04 2019]
+[Wed Feb  5 16:02:20 2020]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T164704.544441.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160219.997969.snakemake.log
 #+end_example
 
 Voici les deux plots:
@@ -435,7 +441,7 @@ Job counts:
 	1	annual_incidence
 	1
 
-[Tue Sep 24 16:47:05 2019]
+[Wed Feb  5 16:02:20 2020]
 rule annual_incidence:
     input: data/preprocessed-weekly-incidence.csv
     output: data/annual-incidence.csv
@@ -448,11 +454,11 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
-[Tue Sep 24 16:47:05 2019]
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
+[Wed Feb  5 16:02:20 2020]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T164705.013803.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160220.672051.snakemake.log
 #+end_example
 
 Voyons le début du résultat:
@@ -515,7 +521,7 @@ Job counts:
 	1	histogram
 	1
 
-[Tue Sep 24 16:47:05 2019]
+[Wed Feb  5 16:02:21 2020]
 rule histogram:
     input: data/annual-incidence.csv
     output: data/annual-incidence-histogram.png
@@ -528,10 +534,10 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 null device 
           1 
-[Tue Sep 24 16:47:05 2019]
+[Wed Feb  5 16:02:21 2020]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T164705.511192.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160221.248955.snakemake.log
 #+end_example
 
 [[file:incidence_syndrome_grippal/data/annual-incidence-histogram.png]]
@@ -551,7 +557,7 @@ snakemake -r plot
 #+RESULTS:
 : Building DAG of jobs...
 : Nothing to be done.
-: Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T164705.931030.snakemake.log
+: Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160221.693263.snakemake.log
 
 Maintenant les plots sont là et à jour. Je vais simuler la modification du fichier d'entrée avec la commande =touch= et relancer:
 #+begin_src sh :session *snakemake1* :results output :exports both
@@ -571,7 +577,7 @@ Job counts:
 	1	plot
 	1
 
-[Tue Sep 24 16:47:06 2019]
+[Wed Feb  5 16:02:21 2020]
 rule plot:
     input: data/preprocessed-weekly-incidence.csv
     output: data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png
@@ -585,15 +591,15 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 null device 
           1 
 null device 
           1 
-[Tue Sep 24 16:47:06 2019]
+[Wed Feb  5 16:02:22 2020]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T164706.146173.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160221.915849.snakemake.log
 #+end_example
 
 Attention, =snakemake= ne regarde que les fichiers listés sous "input", pas les fichiers listés sous "scripts". Autrement dit, la modification d'un script n'entraîne pas sa ré-exécution !
@@ -606,7 +612,7 @@ snakemake -r plot
 : 
 : Building DAG of jobs...
 : Nothing to be done.
-: Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T164706.765748.snakemake.log
+: Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160222.398153.snakemake.log
 
 Je considère ceci un défaut de =snakemake=, car le script est une donnée d'entrée du calcul tout comme la séquence de chiffres à plotter. Un petit astuce permet de corriger ce défaut (à condition d'y penser chaque fois qu'on écrit une règle !): on peut rajouter le fichier script à la liste "input":
 #+begin_src :exports code :eval no
@@ -637,7 +643,7 @@ Job counts:
 	1	plot
 	1
 
-[Tue Sep 24 16:47:07 2019]
+[Wed Feb  5 16:02:22 2020]
 rule plot:
     input: data/preprocessed-weekly-incidence.csv
     output: data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png
@@ -650,15 +656,15 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 null device 
           1 
 null device 
           1 
-[Tue Sep 24 16:47:07 2019]
+[Wed Feb  5 16:02:22 2020]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T164707.014705.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160222.648384.snakemake.log
 #+end_example
 
 Le plus souvent, ce qu'on veut, c'est une mise à jour de tous les résultats suite à une modification. La bonne façon d'y arriver est de rajouter une nouvelle règle, par convention appellée =all=, qui ne fait rien mais demande à l'entrée tous les fichiers créés par toutes les autres tâches :
@@ -691,7 +697,7 @@ Job counts:
 	1	histogram
 	3
 
-[Tue Sep 24 16:47:07 2019]
+[Wed Feb  5 16:02:23 2020]
 rule annual_incidence:
     input: data/preprocessed-weekly-incidence.csv
     output: data/annual-incidence.csv
@@ -704,12 +710,12 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
-[Tue Sep 24 16:47:07 2019]
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
+[Wed Feb  5 16:02:23 2020]
 Finished job 4.
 ) done
 
-[Tue Sep 24 16:47:07 2019]
+[Wed Feb  5 16:02:23 2020]
 rule histogram:
     input: data/annual-incidence.csv
     output: data/annual-incidence-histogram.png
@@ -722,19 +728,19 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 null device 
           1 
-[Tue Sep 24 16:47:08 2019]
+[Wed Feb  5 16:02:23 2020]
 Finished job 5.
 ) done
 
-[Tue Sep 24 16:47:08 2019]
+[Wed Feb  5 16:02:23 2020]
 localrule all:
     input: data/weekly-incidence.csv, data/preprocessed-weekly-incidence.csv, data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png, data/annual-incidence.csv, data/annual-incidence-histogram.png
     jobid: 0
 
-[Tue Sep 24 16:47:08 2019]
+[Wed Feb  5 16:02:23 2020]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T164707.515256.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160223.134687.snakemake.log
 #+end_example
 
 Les plus paresseux mettent la règle =all= au début du =Snakefile=, parce qu'en absence de tâche (ou fichier) nommé sur la ligne de commande, =snakemake= utilise la première régle qu'il trouve, et pour la mise à jour total, il suffit de taper =snakemake=.
@@ -760,54 +766,36 @@ Job counts:
 	1	preprocess
 	6
 
-[Tue Sep 24 16:47:08 2019]
+[Wed Feb  5 16:02:23 2020]
 rule download:
     output: data/weekly-incidence.csv
     jobid: 1
 
---2019-09-24 16:47:08--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
+--2020-02-05 16:02:23--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
 Resolving www.sentiweb.fr (www.sentiweb.fr)... 134.157.220.17
 Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: unspecified [text/csv]
 Saving to: 'data/weekly-incidence.csv'
-]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  80.00K  --.-KB/s    in 0.009s  
+]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  80.88K  --.-KB/s    in 0.02s   
 
-2019-09-24 16:47:08 (8.41 MB/s) - 'data/weekly-incidence.csv' saved [81916]
+2020-02-05 16:02:24 (4.19 MB/s) - 'data/weekly-incidence.csv' saved [82825]
 
-[Tue Sep 24 16:47:08 2019]
+[Wed Feb  5 16:02:24 2020]
 Finished job 1.
 ) done
 
-[Tue Sep 24 16:47:08 2019]
+[Wed Feb  5 16:02:24 2020]
 rule preprocess:
     input: data/weekly-incidence.csv
     output: data/preprocessed-weekly-incidence.csv, data/errors-from-preprocessing.txt
     jobid: 2
 
-[Tue Sep 24 16:47:08 2019]
+[Wed Feb  5 16:02:24 2020]
 Finished job 2.
 ) done
 
-[Tue Sep 24 16:47:08 2019]
-rule annual_incidence:
-    input: data/preprocessed-weekly-incidence.csv
-    output: data/annual-incidence.csv
-    jobid: 4
-
-During startup - Warning messages:
-1: Setting LC_COLLATE failed, using "C" 
-2: Setting LC_TIME failed, using "C" 
-3: Setting LC_MESSAGES failed, using "C" 
-4: Setting LC_MONETARY failed, using "C" 
-Warning message:
-Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
-[Tue Sep 24 16:47:09 2019]
-Finished job 4.
-) done
-
-[Tue Sep 24 16:47:09 2019]
+[Wed Feb  5 16:02:24 2020]
 rule plot:
     input: data/preprocessed-weekly-incidence.csv
     output: data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png
@@ -820,16 +808,34 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 null device 
           1 
 null device 
           1 
-[Tue Sep 24 16:47:09 2019]
+[Wed Feb  5 16:02:24 2020]
 Finished job 3.
 ) done
 
-[Tue Sep 24 16:47:09 2019]
+[Wed Feb  5 16:02:24 2020]
+rule annual_incidence:
+    input: data/preprocessed-weekly-incidence.csv
+    output: data/annual-incidence.csv
+    jobid: 4
+
+During startup - Warning messages:
+1: Setting LC_COLLATE failed, using "C" 
+2: Setting LC_TIME failed, using "C" 
+3: Setting LC_MESSAGES failed, using "C" 
+4: Setting LC_MONETARY failed, using "C" 
+Warning message:
+Y-%m-%d", tz = "GMT") :
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
+[Wed Feb  5 16:02:24 2020]
+Finished job 4.
+) done
+
+[Wed Feb  5 16:02:24 2020]
 rule histogram:
     input: data/annual-incidence.csv
     output: data/annual-incidence-histogram.png
@@ -842,19 +848,19 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 null device 
           1 
-[Tue Sep 24 16:47:10 2019]
+[Wed Feb  5 16:02:24 2020]
 Finished job 5.
 ) done
 
-[Tue Sep 24 16:47:10 2019]
+[Wed Feb  5 16:02:24 2020]
 localrule all:
     input: data/weekly-incidence.csv, data/preprocessed-weekly-incidence.csv, data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png, data/annual-incidence.csv, data/annual-incidence-histogram.png
     jobid: 0
 
-[Tue Sep 24 16:47:10 2019]
+[Wed Feb  5 16:02:24 2020]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T164708.211954.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160223.879360.snakemake.log
 #+end_example
 
 Comme =snakemake= gère bien toutes les dépendances entre les données, il peut même nous en faire un dessin, ce qui est fort utile quand les workflows augmentent en taille:
@@ -891,43 +897,42 @@ Job counts:
 	1	preprocess
 	6
 
-[Tue Sep 24 16:47:12 2019]
+[Wed Feb  5 16:02:25 2020]
 rule download:
     output: data/weekly-incidence.csv
     jobid: 1
 
---2019-09-24 16:47:12--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
+--2020-02-05 16:02:25--  http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
 Resolving www.sentiweb.fr (www.sentiweb.fr)... 134.157.220.17
 Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: unspecified [text/csv]
 Saving to: 'data/weekly-incidence.csv'
-]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  80.00K  --.-KB/s    in 0.008s  
+]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  80.88K  --.-KB/s    in 0.02s   
 
-2019-09-24 16:47:12 (9.87 MB/s) - 'data/weekly-incidence.csv' saved [81916]
+2020-02-05 16:02:25 (3.24 MB/s) - 'data/weekly-incidence.csv' saved [82825]
 
-[Tue Sep 24 16:47:12 2019]
+[Wed Feb  5 16:02:25 2020]
 Finished job 1.
 ) done
 
-[Tue Sep 24 16:47:12 2019]
+[Wed Feb  5 16:02:25 2020]
 rule preprocess:
     input: data/weekly-incidence.csv
     output: data/preprocessed-weekly-incidence.csv, data/errors-from-preprocessing.txt
     jobid: 2
 
-[Tue Sep 24 16:47:13 2019]
+[Wed Feb  5 16:02:26 2020]
 Finished job 2.
 ) done
 
-[Tue Sep 24 16:47:13 2019]
+[Wed Feb  5 16:02:26 2020]
 rule annual_incidence:
     input: data/preprocessed-weekly-incidence.csv
     output: data/annual-incidence.csv
     jobid: 4
 
-
-[Tue Sep 24 16:47:13 2019]
+[Wed Feb  5 16:02:26 2020]
 rule plot:
     input: data/preprocessed-weekly-incidence.csv
     output: data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png
@@ -945,15 +950,15 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
-[Tue Sep 24 16:47:13 2019]
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
+[Wed Feb  5 16:02:26 2020]
 Finished job 4.
 ) done
 
-[Tue Sep 24 16:47:13 2019]
+[Wed Feb  5 16:02:26 2020]
 rule histogram:
     input: data/annual-incidence.csv
     output: data/annual-incidence-histogram.png
@@ -963,7 +968,7 @@ null device
           1 
 null device 
           1 
-[Tue Sep 24 16:47:14 2019]
+[Wed Feb  5 16:02:26 2020]
 Finished job 3.
 ) done
 During startup - Warning messages:
@@ -973,19 +978,19 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 null device 
           1 
-[Tue Sep 24 16:47:14 2019]
+[Wed Feb  5 16:02:26 2020]
 Finished job 5.
 ) done
 
-[Tue Sep 24 16:47:14 2019]
+[Wed Feb  5 16:02:26 2020]
 localrule all:
     input: data/weekly-incidence.csv, data/preprocessed-weekly-incidence.csv, data/weekly-incidence-plot.png, data/weekly-incidence-plot-last-years.png, data/annual-incidence.csv, data/annual-incidence-histogram.png
     jobid: 0
 
-[Tue Sep 24 16:47:14 2019]
+[Wed Feb  5 16:02:26 2020]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2019-09-24T164712.622402.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160225.819605.snakemake.log
 #+end_example
 
 * Vers la gestion de données plus volumineuses
@@ -1135,35 +1140,35 @@ Job counts:
 	1	split_by_region
 	2
 
-[Tue Sep 24 16:47:14 2019]
+[Wed Feb  5 16:02:27 2020]
 rule download:
     output: data/weekly-incidence-all-regions.csv
     jobid: 1
 
---2019-09-24 16:47:14--  http://www.sentiweb.fr/datasets/incidence-RDD-3.csv
+--2020-02-05 16:02:27--  http://www.sentiweb.fr/datasets/incidence-RDD-3.csv
 Resolving www.sentiweb.fr (www.sentiweb.fr)... 134.157.220.17
 Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: unspecified [text/csv]
 Saving to: 'data/weekly-incidence-all-regions.csv'
-]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]   1.06M  --.-KB/s    in 0.07s   
+]       0  --.-KB/s                        data/weekl     [ <=>                ]   1.01M  5.05MB/s               data/weekly-inciden     [  <=>               ]   1.07M  5.09MB/s    in 0.2s    
 
-2019-09-24 16:47:14 (15.1 MB/s) - 'data/weekly-incidence-all-regions.csv' saved [1112021]
+2020-02-05 16:02:34 (5.09 MB/s) - 'data/weekly-incidence-all-regions.csv' saved [1124737]
 
-[Tue Sep 24 16:47:15 2019]
+[Wed Feb  5 16:02:34 2020]
 Finished job 1.
 ) done
 
-[Tue Sep 24 16:47:15 2019]
+[Wed Feb  5 16:02:34 2020]
 rule split_by_region:
     input: data/weekly-incidence-all-regions.csv
     output: data/weekly-incidence-AUVERGNE-RHONE-ALPES.csv, data/weekly-incidence-BOURGOGNE-FRANCHE-COMTE.csv, data/weekly-incidence-BRETAGNE.csv, data/weekly-incidence-CENTRE-VAL-DE-LOIRE.csv, data/weekly-incidence-CORSE.csv, data/weekly-incidence-GRAND EST.csv, data/weekly-incidence-HAUTS-DE-FRANCE.csv, data/weekly-incidence-ILE-DE-FRANCE.csv, data/weekly-incidence-NORMANDIE.csv, data/weekly-incidence-NOUVELLE-AQUITAINE.csv, data/weekly-incidence-OCCITANIE.csv, data/weekly-incidence-PAYS-DE-LA-LOIRE.csv, data/weekly-incidence-PROVENCE-ALPES-COTE-D-AZUR.csv
     jobid: 0
 
-[Tue Sep 24 16:47:15 2019]
+[Wed Feb  5 16:02:35 2020]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region/.snakemake/log/2019-09-24T164714.854719.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region/.snakemake/log/2020-02-05T160227.043869.snakemake.log
 #+end_example
 
 Et les fichiers sont bien là où il faut:
@@ -1206,17 +1211,17 @@ Job counts:
 	1	preprocess
 	1
 
-[Tue Sep 24 16:47:15 2019]
+[Wed Feb  5 16:02:35 2020]
 rule preprocess:
     input: data/weekly-incidence-CORSE.csv
     output: data/preprocessed-weekly-incidence-CORSE.csv, data/errors-from-preprocessing-CORSE.txt
     jobid: 0
     wildcards: region=CORSE
 
-[Tue Sep 24 16:47:15 2019]
+[Wed Feb  5 16:02:35 2020]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region/.snakemake/log/2019-09-24T164715.541253.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region/.snakemake/log/2020-02-05T160235.271733.snakemake.log
 #+end_example
 
 #+begin_src sh :session *snakemake2* :results output :exports both
@@ -1244,7 +1249,7 @@ Job counts:
 	1	annual_incidence
 	1
 
-[Tue Sep 24 16:47:16 2019]
+[Wed Feb  5 16:02:35 2020]
 rule annual_incidence:
     input: data/preprocessed-weekly-incidence-CORSE.csv
     output: data/annual-incidence-CORSE.csv
@@ -1258,11 +1263,11 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
-[Tue Sep 24 16:47:16 2019]
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
+[Wed Feb  5 16:02:36 2020]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region/.snakemake/log/2019-09-24T164716.191026.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region/.snakemake/log/2020-02-05T160235.781728.snakemake.log
 #+end_example
 
 Snakemake nous dit d'ailleurs explicitement quelle règle a été appliquée (=annual_incidence=), avec quel fichier d'entrée (=data/preprocessed-weekly-incidence-CORSE.csv=), et avec quel fichier de sortie (=data/annual-incidence-CORSE.csv=).
@@ -1315,7 +1320,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -1323,7 +1328,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -1331,7 +1336,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -1339,7 +1344,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -1347,7 +1352,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -1355,7 +1360,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -1363,7 +1368,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -1371,7 +1376,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -1379,7 +1384,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -1387,7 +1392,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -1395,7 +1400,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -1403,7 +1408,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 #+end_example
 
 En regardant bien le début du rapport que snakemake a fourni, on voit que =preprocess= et =annual_incidence= sont comptés 12 fois: une fois par région, moins la Corse que j'ai déjà traitée à la main. Une fois =all= et =peak_years=, ça a l'air bon. Et le résultat est là:
@@ -1444,7 +1449,7 @@ Job counts:
 	1	plot
 	1
 
-[Tue Sep 24 16:47:22 2019]
+[Wed Feb  5 16:02:41 2020]
 rule plot:
     input: data/preprocessed-weekly-incidence-CORSE.csv
     output: data/weekly-incidence-plot-CORSE.png, data/weekly-incidence-plot-last-years-CORSE.png
@@ -1458,15 +1463,15 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 null device 
           1 
 null device 
           1 
-[Tue Sep 24 16:47:22 2019]
+[Wed Feb  5 16:02:41 2020]
 Finished job 0.
 ) done
-Complete log: /home/hinsen/projects/RR_MOOC/repos-session02/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region/.snakemake/log/2019-09-24T164722.038464.snakemake.log
+Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region/.snakemake/log/2020-02-05T160241.538814.snakemake.log
 #+end_example
 
 [[file:incidence_syndrome_grippal_par_region/data/weekly-incidence-plot-last-years-CORSE.png]]
@@ -3169,15 +3174,15 @@ Job counts:
 	1	peak_years
 	1	split_by_region
 	4
---2019-09-24 16:47:23--  http://www.sentiweb.fr/datasets/incidence-RDD-3.csv
+--2020-02-05 16:02:43--  http://www.sentiweb.fr/datasets/incidence-RDD-3.csv
 Resolving www.sentiweb.fr (www.sentiweb.fr)... 134.157.220.17
 Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: unspecified [text/csv]
 Saving to: 'data/weekly-incidence-all-regions.csv'
-]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]   1.06M  --.-KB/s    in 0.08s   
+]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]   1.07M  6.65MB/s    in 0.2s    
 
-2019-09-24 16:47:23 (14.0 MB/s) - 'data/weekly-incidence-all-regions.csv' saved [1112021]
+2020-02-05 16:02:43 (6.65 MB/s) - 'data/weekly-incidence-all-regions.csv' saved [1124737]
 
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
@@ -3186,7 +3191,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -3194,7 +3199,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -3202,7 +3207,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -3210,7 +3215,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -3218,7 +3223,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -3226,7 +3231,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -3234,7 +3239,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -3242,7 +3247,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -3250,7 +3255,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -3258,7 +3263,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -3266,7 +3271,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -3274,7 +3279,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 During startup - Warning messages:
 1: Setting LC_COLLATE failed, using "C" 
 2: Setting LC_TIME failed, using "C" 
@@ -3282,7 +3287,7 @@ During startup - Warning messages:
 4: Setting LC_MONETARY failed, using "C" 
 Warning message:
 Y-%m-%d", tz = "GMT") :
-  unknown timezone 'zone/tz/2019b.1.0/zoneinfo/Europe/Paris'
+  unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 #+end_example
 
 #+begin_src sh :session *snakemake3* :results output :exports both
@@ -3291,17 +3296,17 @@ cat data/peak-year-all-regions.txt
 
 #+RESULTS:
 #+begin_example
+AUVERGNE-RHONE-ALPES, 2009
+OCCITANIE, 2013
+CENTRE-VAL-DE-LOIRE, 1996
+PAYS-DE-LA-LOIRE, 1989
+BOURGOGNE-FRANCHE-COMTE, 1986
+GRAND EST, 2000
+PROVENCE-ALPES-COTE-D-AZUR, 1986
+NORMANDIE, 1990
+ILE-DE-FRANCE, 1989
+CORSE, 1989
 NOUVELLE-AQUITAINE, 1989
 BRETAGNE, 1996
-GRAND EST, 2000
-NORMANDIE, 1990
-CENTRE-VAL-DE-LOIRE, 1996
-OCCITANIE, 2013
-PROVENCE-ALPES-COTE-D-AZUR, 1986
-CORSE, 1989
-AUVERGNE-RHONE-ALPES, 2009
-BOURGOGNE-FRANCHE-COMTE, 1986
-PAYS-DE-LA-LOIRE, 1989
 HAUTS-DE-FRANCE, 2013
-ILE-DE-FRANCE, 1989
 #+end_example
