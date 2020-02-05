@@ -63,7 +63,7 @@ mesure.
   - [[#25-mettre-son-image-à-disposition][2.5 Mettre son image à disposition]]
   - [[#26-limitations][2.6 Limitations]]
   - [[#27-exemple-de-reconstruction-dun-vieil-environnement-optionnel][2.7 Exemple de reconstruction d'un "vieil" environnement (Optionnel)]]
-  - [[#28-faire-construire-son-image-par-dockerhub-optionnel][2.8 Faire construire son image par dockerhub (Optionnel)]]
+  - [[#28-faire-construire-son-image-par-dockerhub-optionnel][2.8 Faire construire son image par DockerHub (Optionnel)]]
 - [[#séquence-3-mettre-en-place-un-test-et-utiliser-lintégration-continue-pour-sassurer-de-la-robustesse-dun-code][Séquence 3: Mettre en place un test et utiliser l'intégration continue pour s'assurer de la robustesse d'un code]]
   - [[#30-mise-en-place][3.0 Mise en place]]
   - [[#31-exécuter-ce-notebook-dans-un-conteneur-et-mettre-en-place-un-test][3.1 Exécuter ce notebook dans un conteneur et mettre en place un test]]
@@ -1202,7 +1202,7 @@ docker run -p 8888:8888 alegrand38/moocrr_debian_stable_jupyter:1.0 jupyter-note
 #+end_src
 
 ** 2.5 Mettre son image à disposition
-Reste à publier mon image. Je me suis créé un compte sur dockerhub
+Reste à publier mon image. Je me suis créé un compte sur DockerHub
 afin de pouvoir y publier des images (vous pouvez aussi vous
 authentifier via github mais pas via le compte gitlab que nous vous
 avons créé pour le MOOC). Une fois que vous aurez votre login et votre
@@ -1215,7 +1215,7 @@ docker login  # login: alegrand38 passwd: XXXXXXXXXXX
 #+end_src
 
 Si vous n'avez pas utilisé un tag canonique, il vous faudra ensuite
-donner à votre image docker le nom qui apparaîtra sur dockerhub. Le
+donner à votre image docker le nom qui apparaîtra sur DockerHub. Le
 nom canonique consiste à utiliser son login =/= un nom informatif =:= un
 numéro de version.
 #+begin_src shell :session *shell* :results output :exports both 
@@ -1244,7 +1244,7 @@ de 200MB et une grosse de 918MB. La seconde correspond à l'image de
 base que nous avons utilisée et la première à ce qui a été
 rajouté/modifié à la suite de notre mise à jour et de l'installation
 de python et de jupyter. Le transfert de la seconde a été instantané car
-cette image de base était déjà présente sur Dockerhub.
+cette image de base était déjà présente sur DockerHub.
 
 Vos collègues peuvent maintenant récupérer cette image sans problème
 et la réutiliser. 
@@ -1368,7 +1368,7 @@ Attention, pour public averti!
 #+END_CENTER
 
 Dans notre [[file:moocrr_debian_stable_jupyter/Dockerfile][Dockerfile]] précédent, nous (1) prenions une image debian
-stable à partir de Dockerhub, (2) nous la mettions à jour puis (3)
+stable à partir de DockerHub, (2) nous la mettions à jour puis (3)
 nous installions les paquets dont nous avions besoin. Les serveurs
 utilisés pour les deux premières étapes sont des cibles mouvantes mais
 le projet Debian est pionnier dans les questions de reproductibilité
@@ -1723,7 +1723,7 @@ informations et notamment des dates. Pour le mettre en évidence, je
 vais utiliser un outil magique, le =diffoscope=. Les deux fichiers tar
 que je compare ont été obtenus à partir des images docker à l'aide de
 la façon suivante (au passage, c'est une autre façon de partager des
-conteneurs sans passer par le dockerhub):
+conteneurs sans passer par le DockerHub):
 
 #+begin_src shell :results output :exports both header-args :eval never-export
 docker export alegrand/moocrr_debian_snapshot_slim > 20171003T094008Z.tar
@@ -1870,13 +1870,13 @@ On peut voir que les seules différences entre ces deux images sont les
 dates de création des conteneurs et la version de docker utilisée... À
 part ça, le reste est rigoureusement identique!
 
-** 2.8 Faire construire son image par dockerhub (Optionnel)
+** 2.8 Faire construire son image par DockerHub (Optionnel)
 Construire les images sur sa machine et faire toutes ces manipulations
 induit des risques d'erreur. L'idéal est de déléguer tout ceci à un
 tiers (un peu comme nous allons faire avec l'intégration continue dans
 la séquence suivante). À l'occasion, je vous invite donc à lire cette
 page https://docs.docker.com/docker-hub/builds/ qui explique comment
-faire en sorte que ce soit directement dockerhub qui construise vos
+faire en sorte que ce soit directement DockerHub qui construise vos
 images. L'avantage principal est une garantie de traçabilité et que
 l'image a bien été construite de la façon indiquée.
 * Séquence 3: Mettre en place un test et utiliser l'intégration continue pour s'assurer de la robustesse d'un code
