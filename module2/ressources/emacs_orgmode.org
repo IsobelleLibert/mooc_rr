@@ -244,12 +244,23 @@ There are two situations in which it might be necessary to modify
 1. Your network environment forces you to use a proxy for access
    to Web sites (HTTP(S) protocol).
 2. You have multiple installations of Python or R on your computer,
-   or they are in unusual places and not fully configured.
-   If you can run 
-      - =python3= and =R= under Linux and macOS
-      - =Python= and =R= under Windows
-   in a terminal without getting an error message, then you should
-   not have to do anything.
+   or they are in unusual places and not fully configured. *Note that this will be
+   the case if you followed our recommendation to use the Anaconda distribution.*
+
+For diagnosing your installation, do the following:
+1. Open a new terminal, and try to run the following commands:
+   - =python3= and =R= under Linux and macOS
+   - =Python= and =R= under Windows
+   If you get no error message, all is gine. You should
+   not have to do anything to access Python and R from Emacs.
+2. If you got an error message, you will have to track down where exactly
+   you installed Python and/or R. What you have to insert into =init.el= is the
+   complete path to each executable. For example, if you have installed Anaconda
+   under =/opt=, and if you have installed Python and/or R in Anaconda's default
+   environment, then the paths are =/opt/anaconda3/bin/python3= and
+   =/opt/anaconda3/bin/R=. If they are installed in an environment called
+   =mooc_rr=, the paths are =/opt/anaconda3/envs/mooc_rr/bin/python3= and
+   =/opt/anaconda3/envs/mooc_rr/bin/R=.
 
 If you do have to modify =init.el=, check the comments at the
 beginning of the file for instructions.

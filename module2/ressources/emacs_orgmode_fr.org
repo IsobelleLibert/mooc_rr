@@ -241,12 +241,14 @@ Créez le répertoire =~/.emacs.d/= et copiez =rr_org/init.el= dedans.
 Il y a deux situations dans lesquelles il peut être nécessaire de modifier
 =init.el= :
 1. Votre environnement réseau vous oblige à utiliser un proxy accéder à internet (protocole HTTP(S)).
-2. Vous avez plusieurs installations de Python ou R sur votre ordinateur, ou bien elles se trouvent dans des endroits inhabituels ou ne sont pas entièrement configurées.
-   Si vous pouvez exécuter dans un terminal
+2. Vous avez plusieurs installations de Python ou R sur votre ordinateur, ou bien elles se trouvent dans des endroits inhabituels ou ne sont pas entièrement configurées. *Ceci est notamment le cas si vous avez utilisé Anaconda pour installer Python et/ou R, comme nous le recommandons.*
+
+Voici comment évaluer votre installation :
+1. Ouvrez un nouveau terminal, et essayez d'exécuter les commandes suivantes:
    - =python3= et =R= sous Linux et macOS
    - =Python= et =R= sous Windows
-   sans obtenir un message d'erreur, alors vous ne devriez pas avoir à
-   faire quoi que ce soit.
+   Si vous n'obtenez pas de message d'erreur, tout va bien et vous ne devriez pas avoir à faire quoi que ce soit pour accéder à Python et R sous Emacs.
+2. Si vous avez eu un message d'erreur, il va falloir trouver où vous avez installé Python et/où R. Notez le chemin complet à chaque exécutable - c'est ce qu'il faut insérer dans votre =init.el=. Par exemple, si vous avez installé Anaconda sous =/opt=, et si par la suite vous avez mis Python et R dans l'environnment par défaut, vos exécutables sont à =/opt/anaconda3/bin/python3= et =/opt/anaconda3/bin/R=. S'ils sont dans un environnment qui s'appelle =mooc_rr=, les chemins sont =/opt/anaconda3/envs/mooc_rr/bin/python3= et =/opt/anaconda3/envs/mooc_rr/bin/R=.
 
 Si vous devez modifier =init.el=, regardez bien les commentaires dans le fichier =init.org= pour comprendre comment ça marche.
 ** Etape 5 : Vérifier si l'installation fonctionne ou non
