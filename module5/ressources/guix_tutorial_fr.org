@@ -1,6 +1,6 @@
 # -*- mode: org -*-
 #+TITLE: Contrôler un environnement logiciel avec Guix
-#+DATE: August, 2019
+#+DATE: Février 2020
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
@@ -28,21 +28,23 @@ guix search jupyter
 
 #+RESULTS:
 #+begin_example
+
 name: jupyter
 version: 1.0.0
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: python-ipykernel@5.1.1 python-ipywidgets@5.2.2
+systems: x86_64-linux i686-linux
+dependencies: python-ipykernel@5.1.3 python-ipywidgets@5.2.2
 + python-jupyter-console@6.0.0 python-nbconvert@5.0.0b1 python-notebook@5.7.4
 + python-qtconsole@4.4.3
-location: gnu/packages/python-xyz.scm:7899:2
+location: gnu/packages/python-xyz.scm:8070:2
 homepage: https://jupyter.org
 license: Modified BSD
 synopsis: Web application for interactive documents  
-description: The Jupyter Notebook is a web application that allows you to create and
-+ share documents that contain live code, equations, visualizations and explanatory text.
-+ Uses include: data cleaning and transformation, numerical simulation, statistical
-+ modeling, machine learning and much more.
+description: The Jupyter Notebook is a web application that allows you
++ to create and share documents that contain live code, equations,
++ visualizations and explanatory text.  Uses include: data cleaning and
++ transformation, numerical simulation, statistical modeling, machine
++ learning and much more.
 relevance: 22
 
 hint: Run `guix search ... | less' to view all the results.
@@ -59,126 +61,223 @@ guix search jupyter | cat
 name: jupyter
 version: 1.0.0
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: python-ipykernel@5.1.1 python-ipywidgets@5.2.2
+systems: x86_64-linux i686-linux
+dependencies: python-ipykernel@5.1.3 python-ipywidgets@5.2.2
 + python-jupyter-console@6.0.0 python-nbconvert@5.0.0b1 python-notebook@5.7.4
 + python-qtconsole@4.4.3
-location: gnu/packages/python-xyz.scm:7899:2
+location: gnu/packages/python-xyz.scm:8070:2
 homepage: https://jupyter.org
 license: Modified BSD
 synopsis: Web application for interactive documents  
-description: The Jupyter Notebook is a web application that allows you to
-+ create and share documents that contain live code, equations, visualizations
-+ and explanatory text.  Uses include: data cleaning and transformation,
-+ numerical simulation, statistical modeling, machine learning and much more.
+description: The Jupyter Notebook is a web application that allows you
++ to create and share documents that contain live code, equations,
++ visualizations and explanatory text.  Uses include: data cleaning and
++ transformation, numerical simulation, statistical modeling, machine
++ learning and much more.
 relevance: 22
+
+name: python-jupyter-kernel-test
+version: 0.3
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-jsonschema@3.0.1 python-jupyter-kernel-mgmt@0.4.0
++ python-jupyter-protocol@0.1.1
+location: gnu/packages/jupyter.scm:98:2
+homepage: https://github.com/jupyter/jupyter_kernel_test
+license: Modified BSD
+synopsis: Test Jupyter kernels  
+description: `jupyter_kernel_test' is a tool for testing Jupyter
++ kernels.  It tests kernels for successful code execution and conformance
++ with the Jupyter Messaging Protocol
++ (https://jupyter-client.readthedocs.io/en/latest/messaging.html).
+relevance: 20
+
+name: xeus
+version: 0.23.2
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: cppzmq@4.2.2-0.d9f0f01 googletest@1.10.0 json-modern-cxx@3.7.3
++ openssl@1.1.1c pkg-config@0.29.2 python-jupyter-client@5.2.4
++ python-jupyter-kernel-test@0.3 python-pytest@4.4.2 python@3.7.4
++ util-linux@2.34 xtl@0.6.8 zeromq@4.3.2
+location: gnu/packages/jupyter.scm:142:2
+homepage: https://quantstack.net/xeus
+license: Modified BSD
+synopsis: C++ implementation of the Jupyter Kernel protocol  
+description: `xeus' is a library meant to facilitate the implementation
++ of kernels for Jupyter.  It takes the burden of implementing the Jupyter
++ Kernel protocol so developers can focus on implementing the interpreter
++ part of the kernel.
++ 
++ Several Jupyter kernels are built upon `xeus', such as `xeus-cling', a
++ kernel for the C++ programming language, and `xeus-python', an
++ alternative Python kernel for Jupyter.
+relevance: 16
+
+name: python-jupyter-protocol
+version: 0.1.1
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-dateutil@2.8.0 python-ipykernel@5.1.3
++ python-ipython@7.9.0 python-jupyter-core@4.4.0 python-mock@2.0.0
++ python-pytest@4.4.2 python-pyzmq@17.1.2 python-traitlets@4.3.3
+location: gnu/packages/jupyter.scm:37:2
+homepage: https://jupyter.org
+license: Modified BSD
+synopsis: Jupyter protocol implementation  
+description: This Python library is an experimental implementation of
++ the Jupyter protocol
++ (https://jupyter-client.readthedocs.io/en/latest/messaging.html) to be
++ used by both clients and kernels.
+relevance: 16
 
 name: python2-jupyter-client
 version: 5.2.4
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: iproute2@5.2.0 python2-jupyter-core@4.4.0 python2-pyzmq@17.1.2
-+ python2-traitlets@4.3.2
-location: gnu/packages/python-xyz.scm:5121:2
+systems: x86_64-linux i686-linux
+dependencies: iproute2@5.5.0 python2-jupyter-core@4.4.0 python2-pyzmq@17.1.2
++ python2-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:5302:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter protocol implementation and client libraries  
 description: The `jupyter_client' package contains the reference
-+ implementation of the Jupyter protocol.  It also provides client and kernel
-+ management APIs for working with kernels, and the `jupyter kernelspec'
-+ entrypoint for installing `kernelspec's for use with Jupyter frontends.
++ implementation of the Jupyter protocol.  It also provides client and
++ kernel management APIs for working with kernels, and the `jupyter
++ kernelspec' entrypoint for installing `kernelspec's for use with Jupyter
++ frontends.
 relevance: 15
 
 name: python-jupyter-client
 version: 5.2.4
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: iproute2@5.2.0 python-jupyter-core@4.4.0 python-pyzmq@17.1.2
-+ python-traitlets@4.3.2
-location: gnu/packages/python-xyz.scm:5121:2
+systems: x86_64-linux i686-linux
+dependencies: iproute2@5.5.0 python-jupyter-core@4.4.0 python-pyzmq@17.1.2
++ python-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:5302:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter protocol implementation and client libraries  
 description: The `jupyter_client' package contains the reference
-+ implementation of the Jupyter protocol.  It also provides client and kernel
-+ management APIs for working with kernels, and the `jupyter kernelspec'
-+ entrypoint for installing `kernelspec's for use with Jupyter frontends.
++ implementation of the Jupyter protocol.  It also provides client and
++ kernel management APIs for working with kernels, and the `jupyter
++ kernelspec' entrypoint for installing `kernelspec's for use with Jupyter
++ frontends.
 relevance: 15
+
+name: python-jupyter-kernel-mgmt
+version: 0.4.0
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-dateutil@2.8.0 python-entrypoints@0.3
++ python-ipykernel@5.1.3 python-ipython@7.9.0 python-jupyter-core@4.4.0
++ python-jupyter-protocol@0.1.1 python-mock@2.0.0 python-pytest@4.4.2
++ python-pyzmq@17.1.2 python-traitlets@4.3.3
+location: gnu/packages/jupyter.scm:67:2
+homepage: https://jupyter.org
+license: Modified BSD
+synopsis: Discover, launch, and communicate with Jupyter kernels  
+description: This package is an experimental refactoring of the
++ machinery for launching and using Jupyter kernels.
+relevance: 14
+
+name: guix-jupyter
+version: 0.1.0
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: autoconf@2.69 automake@1.16.1 guile-gcrypt@0.2.1
++ guile-json@3.2.0 guile-simple-zmq@0.0.0-3.68bedb6 guile@2.2.6
++ guix@1.0.1-13.50299ad jupyter@1.0.0 pkg-config@0.29.2 python-ipykernel@5.1.3
++ python-ipython@7.9.0
+location: gnu/packages/package-management.scm:820:2
+homepage: https://gitlab.inria.fr/guix-hpc/guix-kernel
+license: GPL 3+
+synopsis: Guix kernel for Jupyter  
+description: Guix-Jupyter is a Jupyter kernel.  It allows you to
++ annotate notebooks with information about their software dependencies,
++ such that code is executed in the right software environment.
++ Guix-Jupyter spawns the actual kernels such as `python-ipykernel' on
++ behalf of the notebook user and runs them in an isolated environment, in
++ separate namespaces.
+relevance: 13
 
 name: python2-jupyter-core
 version: 4.4.0
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: python2-traitlets@4.3.2
-location: gnu/packages/python-xyz.scm:5096:2
+systems: x86_64-linux i686-linux
+dependencies: python2-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:5277:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter base package  
-description: Jupyter core is the base package on which Jupyter projects rely.
+description: Jupyter core is the base package on which Jupyter projects
++ rely.
 relevance: 11
 
 name: python2-jupyter-console
 version: 5.2.0
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
+systems: x86_64-linux i686-linux
 dependencies: python2-ipykernel@5.1.0 python2-jupyter-client@5.2.4
-+ python2-nose@1.3.7 python2-prompt-toolkit@1.0.15 python2-pygments@2.4.2
-location: gnu/packages/python-xyz.scm:7809:2
++ python2-nose@1.3.7 python2-prompt-toolkit@1.0.15 python2-pygments@2.5.2
+location: gnu/packages/python-xyz.scm:7941:2
 homepage: https://jupyter.org
 license: Modified BSD
 synopsis: Jupyter terminal console  
 description: This package provides a terminal-based console frontend for
-+ Jupyter kernels.  It also allows for console-based interaction with non-Python
-+ Jupyter kernels such as IJulia and IRKernel.
++ Jupyter kernels.  It also allows for console-based interaction with
++ non-Python Jupyter kernels such as IJulia and IRKernel.
 relevance: 11
 
 name: python-jupyter-core
 version: 4.4.0
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: python-traitlets@4.3.2
-location: gnu/packages/python-xyz.scm:5096:2
+systems: x86_64-linux i686-linux
+dependencies: python-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:5277:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter base package  
-description: Jupyter core is the base package on which Jupyter projects rely.
+description: Jupyter core is the base package on which Jupyter projects
++ rely.
 relevance: 11
 
 name: python-jupyter-console
 version: 6.0.0
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: python-ipykernel@5.1.1 python-jupyter-client@5.2.4
-+ python-nose@1.3.7 python-prompt-toolkit@2.0.7 python-pygments@2.4.2
-location: gnu/packages/python-xyz.scm:7783:2
+systems: x86_64-linux i686-linux
+dependencies: python-ipykernel@5.1.3 python-jupyter-client@5.2.4
++ python-nose@1.3.7 python-prompt-toolkit@2.0.7 python-pygments@2.5.2
+location: gnu/packages/python-xyz.scm:7915:2
 homepage: https://jupyter.org
 license: Modified BSD
 synopsis: Jupyter terminal console  
 description: This package provides a terminal-based console frontend for
-+ Jupyter kernels.  It also allows for console-based interaction with non-Python
-+ Jupyter kernels such as IJulia and IRKernel.
++ Jupyter kernels.  It also allows for console-based interaction with
++ non-Python Jupyter kernels such as IJulia and IRKernel.
 relevance: 11
 
 name: jupyter-guile-kernel
 version: 0.0.0-1.a7db924
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: guile-json@1.2.0 guile-simple-zmq@0.0.0-3.68bedb6 guile@2.2.4
-+ openssl@1.0.2p
-location: gnu/packages/guile-xyz.scm:770:4
+systems: x86_64-linux i686-linux
+dependencies: guile-json@1.2.0 guile-simple-zmq@0.0.0-3.68bedb6 guile@2.2.6
++ openssl@1.1.1c
+location: gnu/packages/guile-xyz.scm:859:4
 homepage: https://github.com/jerry40/guile-kernel
 license: GPL 3+
 synopsis: Guile kernel for the Jupyter Notebook  
 description: This package provides a Guile 2.x kernel for the Jupyter
-+ Notebook.  It allows users to interact with the Guile REPL through Jupyter.
++ Notebook.  It allows users to interact with the Guile REPL through
++ Jupyter.
 relevance: 11
 
 name: python-pari-jupyter
 version: 1.3.2
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: pari-gp@2.11.2 python-ipykernel@5.1.1 readline@7.0.5
-location: gnu/packages/python-xyz.scm:5241:2
+systems: x86_64-linux i686-linux
+dependencies: pari-gp@2.11.2 python-ipykernel@5.1.3 readline@8.0
+location: gnu/packages/python-xyz.scm:5423:2
 homepage: https://github.com/jdemeyer/pari_jupyter
 license: GPL 3+
 synopsis: A Jupyter kernel for PARI/GP  
@@ -186,56 +285,57 @@ description: The package provides a PARI/GP kernel for Jupyter.
 relevance: 9
 
 name: r-irkernel
-version: 1.0.2
+version: 1.1
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: jupyter@1.0.0 r-crayon@1.3.4 r-digest@0.6.20 r-evaluate@0.14
-+ r-irdisplay@0.7.0 r-jsonlite@1.6 r-pbdzmq@0.3-3 r-repr@1.0.1 r-uuid@0.1-2
-location: gnu/packages/cran.scm:12125:2
+systems: x86_64-linux i686-linux
+dependencies: jupyter@1.0.0 r-crayon@1.3.4 r-digest@0.6.23 r-evaluate@0.14
++ r-irdisplay@0.7.0 r-jsonlite@1.6 r-minimal@3.6.2 r-pbdzmq@0.3-3 r-repr@1.0.2
++ r-uuid@0.1-2
+location: gnu/packages/cran.scm:12543:2
 homepage: https://cran.r-project.org/web/packages/IRkernel/
 license: Expat
 synopsis: Native R kernel for Jupyter  
-description: The R kernel for the Jupyter environment executes R code which
-+ the front-end (Jupyter Notebook or other front-ends) submits to the kernel via
-+ the network.
+description: The R kernel for the Jupyter environment executes R code
++ which the front-end (Jupyter Notebook or other front-ends) submits to
++ the kernel via the network.
 relevance: 7
 
 name: r-irdisplay
 version: 0.7.0
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: r-repr@1.0.1
-location: gnu/packages/cran.scm:12102:2
+systems: x86_64-linux i686-linux
+dependencies: r-repr@1.0.2
+location: gnu/packages/cran.scm:12520:2
 homepage: https://cran.r-project.org/web/packages/IRdisplay/
 license: Expat
 synopsis: Jupyter display machinery  
 description: This package provides an interface to the rich display
-+ capabilities of Jupyter front-ends (e.g.  Jupyter Notebook).  It is designed
-+ to be used from a running IRkernel session.
++ capabilities of Jupyter front-ends (e.g.  Jupyter Notebook).  It is
++ designed to be used from a running IRkernel session.
 relevance: 7
 
 name: ruby-iruby
 version: 0.3
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: python-ipython@7.5.0 ruby-bond@0.5.1 ruby-cztop@0.12.2
-+ ruby-data_uri@0.1.0 ruby-mimemagic@0.3.2 ruby-multi-json@1.13.1
+systems: x86_64-linux i686-linux
+dependencies: python-ipython@7.9.0 ruby-bond@0.5.1 ruby-cztop@0.12.2
++ ruby-data_uri@0.1.0 ruby-mimemagic@0.3.3 ruby-multi-json@1.13.1
 + ruby-pry@0.11.3
-location: gnu/packages/ruby.scm:394:2
+location: gnu/packages/ruby.scm:397:2
 homepage: https://github.com/SciRuby/iruby
 license: Expat
 synopsis: Ruby kernel for Jupyter/IPython  
-description: This package provides a Ruby kernel for Jupyter/IPython frontends
-+ (e.g.  notebook).
+description: This package provides a Ruby kernel for Jupyter/IPython
++ frontends (e.g.  notebook).
 relevance: 5
 
 name: python2-widgetsnbextension
 version: 3.4.2
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: python2-certifi@2019.3.9 python2-ipykernel@5.1.1
+systems: x86_64-linux i686-linux
+dependencies: python2-certifi@2019.3.9 python2-ipykernel@5.1.3
 + python2-nose@1.3.7 python2-notebook@5.7.4
-location: gnu/packages/python-xyz.scm:7726:2
+location: gnu/packages/python-xyz.scm:7858:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
@@ -246,26 +346,26 @@ relevance: 5
 name: python2-nbformat
 version: 4.4.0
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
+systems: x86_64-linux i686-linux
 dependencies: python2-ipython-genutils@0.1.0 python2-jsonschema@3.0.1
-+ python2-jupyter-core@4.4.0 python2-traitlets@4.3.2
-location: gnu/packages/python-xyz.scm:7517:2
++ python2-jupyter-core@4.4.0 python2-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:7648:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Jupyter Notebook format  
-description: This package provides the reference implementation of the Jupyter
-+ Notebook format and Python APIs for working with notebooks.
+description: This package provides the reference implementation of the
++ Jupyter Notebook format and Python APIs for working with notebooks.
 relevance: 5
 
 name: python2-nbconvert
 version: 5.0.0b1
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: python2-bleach@1.4.3 python2-entrypoints@0.3
+systems: x86_64-linux i686-linux
+dependencies: python2-bleach@3.1.0 python2-entrypoints@0.3
 + python2-jinja2@2.10.1 python2-jupyter-core@4.4.0 python2-mistune@0.8.4
-+ python2-nbformat@4.4.0 python2-pygments@2.4.2 python2-pytest@3.8.0
-+ python2-traitlets@4.3.2
-location: gnu/packages/python-xyz.scm:7607:2
++ python2-nbformat@4.4.0 python2-pygments@2.5.2 python2-pytest@4.4.2
++ python2-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:7739:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Converting Jupyter Notebooks  
@@ -275,25 +375,26 @@ relevance: 5
 name: python2-ipywidgets
 version: 5.2.2
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: python2-ipython@7.5.0 python2-nose@1.3.7 python2-pytest@3.8.0
-+ python2-traitlets@4.3.2 python2-widgetsnbextension@3.4.2
-location: gnu/packages/python-xyz.scm:7753:2
+systems: x86_64-linux i686-linux
+dependencies: python2-ipython@7.9.0 python2-nose@1.3.7 python2-pytest@4.4.2
++ python2-traitlets@4.3.3 python2-widgetsnbextension@3.4.2
+location: gnu/packages/python-xyz.scm:7885:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
-description: Ipywidgets are interactive HTML widgets for Jupyter notebooks and
-+ the IPython kernel.  Notebooks come alive when interactive widgets are used.
-+ Users gain control of their data and can visualize changes in the data.
+description: Ipywidgets are interactive HTML widgets for Jupyter
++ notebooks and the IPython kernel.  Notebooks come alive when interactive
++ widgets are used.  Users gain control of their data and can visualize
++ changes in the data.
 relevance: 5
 
 name: python2-ipykernel
 version: 5.1.0
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
+systems: x86_64-linux i686-linux
 dependencies: python2-ipython@5.8.0 python2-jupyter-client@5.2.4
-+ python2-nose@1.3.7 python2-pytest@3.8.0
-location: gnu/packages/python-xyz.scm:5208:2
++ python2-nose@1.3.7 python2-pytest@4.4.2
+location: gnu/packages/python-xyz.scm:5390:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython Kernel for Jupyter  
@@ -303,10 +404,10 @@ relevance: 5
 name: python-widgetsnbextension
 version: 3.4.2
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: python-certifi@2019.3.9 python-ipykernel@5.1.1 python-nose@1.3.7
+systems: x86_64-linux i686-linux
+dependencies: python-certifi@2019.3.9 python-ipykernel@5.1.3 python-nose@1.3.7
 + python-notebook@5.7.4
-location: gnu/packages/python-xyz.scm:7726:2
+location: gnu/packages/python-xyz.scm:7858:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
@@ -317,57 +418,57 @@ relevance: 5
 name: python-slurm-magic
 version: 0.0-0.73dd1a2
 outputs: out
-systems: x86_64-linux i686-linux aarch64-linux mips64el-linux
-dependencies: python-ipython@7.5.0 python-pandas@0.24.2 slurm@17.11.3
-location: gnu/packages/parallel.scm:199:4
+systems: x86_64-linux i686-linux
+dependencies: python-ipython@7.9.0 python-pandas@0.25.2 slurm@19.05.3-2
+location: gnu/packages/parallel.scm:222:4
 homepage: https://github.com/NERSC/slurm-magic
 license: Modified BSD
 synopsis: Control the SLURM batch scheduler from Jupyter Notebook  
 description: This package implements Jupyter/IPython magic commands
 + (http://ipython.readthedocs.io/en/stable/interactive/magics.html) for
 + interacting with the SLURM workload manager.  SLURM magic simply wraps
-+ command-line executables and the commands themselves should look like their
-+ command-line counterparts.  Commands are spawned via `subprocess' and output
-+ captured in the notebook.  Whatever arguments are accepted by a SLURM command
-+ line executable are also accepted by the corresponding magic command---e.g.,
-+ `%salloc', `%sbatch', etc.
++ command-line executables and the commands themselves should look like
++ their command-line counterparts.  Commands are spawned via `subprocess'
++ and output captured in the notebook.  Whatever arguments are accepted by
++ a SLURM command line executable are also accepted by the corresponding
++ magic command---e.g., `%salloc', `%sbatch', etc.
 relevance: 5
 
 name: python-qtconsole
 version: 4.4.3
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: python-ipykernel@5.1.1 python-ipython@7.5.0 python-pytest@3.8.0
-location: gnu/packages/python-xyz.scm:7863:2
+systems: x86_64-linux i686-linux
+dependencies: python-ipykernel@5.1.3 python-ipython@7.9.0 python-pytest@4.4.2
+location: gnu/packages/python-xyz.scm:7995:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Jupyter Qt console  
-description: This package provides a Qt-based console for Jupyter with support
-+ for rich media output.
+description: This package provides a Qt-based console for Jupyter with
++ support for rich media output.
 relevance: 5
 
 name: python-nbformat
 version: 4.4.0
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
+systems: x86_64-linux i686-linux
 dependencies: python-ipython-genutils@0.1.0 python-jsonschema@3.0.1
-+ python-jupyter-core@4.4.0 python-traitlets@4.3.2
-location: gnu/packages/python-xyz.scm:7517:2
++ python-jupyter-core@4.4.0 python-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:7648:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Jupyter Notebook format  
-description: This package provides the reference implementation of the Jupyter
-+ Notebook format and Python APIs for working with notebooks.
+description: This package provides the reference implementation of the
++ Jupyter Notebook format and Python APIs for working with notebooks.
 relevance: 5
 
 name: python-nbconvert
 version: 5.0.0b1
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: python-bleach@1.4.3 python-entrypoints@0.3 python-jinja2@2.10.1
+systems: x86_64-linux i686-linux
+dependencies: python-bleach@3.1.0 python-entrypoints@0.3 python-jinja2@2.10.1
 + python-jupyter-core@4.4.0 python-mistune@0.8.4 python-nbformat@4.4.0
-+ python-pygments@2.4.2 python-pytest@3.8.0 python-traitlets@4.3.2
-location: gnu/packages/python-xyz.scm:7607:2
++ python-pygments@2.5.2 python-pytest@4.4.2 python-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:7739:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Converting Jupyter Notebooks  
@@ -377,95 +478,115 @@ relevance: 5
 name: python-ipywidgets
 version: 5.2.2
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: python-ipython@7.5.0 python-nose@1.3.7 python-pytest@3.8.0
-+ python-traitlets@4.3.2 python-widgetsnbextension@3.4.2
-location: gnu/packages/python-xyz.scm:7753:2
+systems: x86_64-linux i686-linux
+dependencies: python-ipython@7.9.0 python-nose@1.3.7 python-pytest@4.4.2
++ python-traitlets@4.3.3 python-widgetsnbextension@3.4.2
+location: gnu/packages/python-xyz.scm:7885:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
-description: Ipywidgets are interactive HTML widgets for Jupyter notebooks and
-+ the IPython kernel.  Notebooks come alive when interactive widgets are used.
-+ Users gain control of their data and can visualize changes in the data.
+description: Ipywidgets are interactive HTML widgets for Jupyter
++ notebooks and the IPython kernel.  Notebooks come alive when interactive
++ widgets are used.  Users gain control of their data and can visualize
++ changes in the data.
 relevance: 5
 
 name: python-ipykernel
-version: 5.1.1
+version: 5.1.3
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
-dependencies: python-ipython@7.5.0 python-jupyter-client@5.2.4
-+ python-nose@1.3.7 python-pytest@3.8.0
-location: gnu/packages/python-xyz.scm:5165:2
+systems: x86_64-linux i686-linux
+dependencies: python-flaky@3.5.3 python-ipython@7.9.0
++ python-jupyter-client@5.2.4 python-nose@1.3.7 python-pytest@4.4.2
+location: gnu/packages/python-xyz.scm:5346:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython Kernel for Jupyter  
 description: This package provides the IPython kernel for Jupyter.
 relevance: 5
 
+name: ghc-ipynb
+version: 0.1
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: ghc-aeson-diff@1.1.0.7 ghc-aeson@1.4.5.0
++ ghc-base64-bytestring@1.0.0.2 ghc-microlens-aeson@2.3.0.4 ghc-microlens@0.4.10
++ ghc-semigroups@0.18.5 ghc-tasty-hunit@0.10.0.2 ghc-tasty@1.2.3
++ ghc-unordered-containers@0.2.10.0 ghc-vector@0.12.0.3
+location: gnu/packages/haskell-xyz.scm:6170:2
+homepage: https://hackage.haskell.org/package/ipynb
+license: Modified BSD
+synopsis: Data structure for working with Jupyter notebooks  
+description: This library defines a data structure for representing
++ Jupyter notebooks, along with `ToJSON' and `FromJSON' instances for
++ conversion to and from JSON .ipynb files.
+relevance: 5
+
 name: python2-ipython-genutils
 version: 0.1.0
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
+systems: x86_64-linux i686-linux
 dependencies: 
-location: gnu/packages/python-xyz.scm:5028:2
+location: gnu/packages/python-xyz.scm:5209:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: Vestigial utilities from IPython  
 description: This package provides retired utilities from IPython.  No
 + packages outside IPython/Jupyter should depend on it.
 + 
-+ This package shouldn't exist.  It contains some common utilities shared by
-+ Jupyter and IPython projects during The Big Split.  As soon as possible, those
-+ packages will remove their dependency on this, and this package will go away.
++ This package shouldn't exist.  It contains some common utilities shared
++ by Jupyter and IPython projects during The Big Split.  As soon as
++ possible, those packages will remove their dependency on this, and this
++ package will go away.
 relevance: 4
 
 name: python-ipython-genutils
 version: 0.1.0
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
+systems: x86_64-linux i686-linux
 dependencies: 
-location: gnu/packages/python-xyz.scm:5028:2
+location: gnu/packages/python-xyz.scm:5209:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: Vestigial utilities from IPython  
 description: This package provides retired utilities from IPython.  No
 + packages outside IPython/Jupyter should depend on it.
 + 
-+ This package shouldn't exist.  It contains some common utilities shared by
-+ Jupyter and IPython projects during The Big Split.  As soon as possible, those
-+ packages will remove their dependency on this, and this package will go away.
++ This package shouldn't exist.  It contains some common utilities shared
++ by Jupyter and IPython projects during The Big Split.  As soon as
++ possible, those packages will remove their dependency on this, and this
++ package will go away.
 relevance: 4
 
 name: python2-notebook
 version: 5.7.4
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
+systems: x86_64-linux i686-linux
 dependencies: python2-jupyter-core@4.4.0 python2-mock@2.0.0
 + python2-nbconvert@5.0.0b1 python2-nbformat@4.4.0 python2-nose@1.3.7
 + python2-prometheus-client@0.5.0 python2-requests@2.22.0
 + python2-send2trash@1.5.0 python2-sphinx@1.7.7 python2-terminado@0.8.1
-location: gnu/packages/python-xyz.scm:7708:4
+location: gnu/packages/python-xyz.scm:7840:4
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Web-based notebook environment for interactive computing  
-description: The Jupyter HTML notebook is a web-based notebook environment for
-+ interactive computing.
+description: The Jupyter HTML notebook is a web-based notebook
++ environment for interactive computing.
 relevance: 2
 
 name: python-notebook
 version: 5.7.4
 outputs: out
-systems: x86_64-linux i686-linux armhf-linux aarch64-linux mips64el-linux
+systems: x86_64-linux i686-linux
 dependencies: python-jupyter-core@4.4.0 python-nbconvert@5.0.0b1
 + python-nbformat@4.4.0 python-nose@1.3.7 python-prometheus-client@0.5.0
-+ python-requests@2.22.0 python-send2trash@1.5.0 python-sphinx@2.1.2
++ python-requests@2.22.0 python-send2trash@1.5.0 python-sphinx@2.3.1
 + python-terminado@0.8.1
-location: gnu/packages/python-xyz.scm:7661:2
+location: gnu/packages/python-xyz.scm:7793:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Web-based notebook environment for interactive computing  
-description: The Jupyter HTML notebook is a web-based notebook environment for
-+ interactive computing.
+description: The Jupyter HTML notebook is a web-based notebook
++ environment for interactive computing.
 relevance: 2
 
 #+end_example
@@ -479,12 +600,12 @@ guix install jupyter
 #+end_src
 
 #+RESULTS:
-: 85 packages in profile
+: 84 packages in profile
 
-Ceux qui ont l'habitude d'une distribution classique étaient peut-être tentés de rajouter =sudo= devant la commande, parce que l'installation d'un logiciel, ça relève des privilèges d'un administrateur. Ce n'est pas le cas avec Guix. Sous Guix, chaque utilisateur gère ses logiciels de façon autonome. Le =jupyter= que je viens d'installer n'est accessible que pour moi. En fait, l'annonce des "85 paquets dans mon profil" veut dire qu'il y a 85 paquets installés à mon nom, un "profil" étant une collection de paquets installés (et on peut même en avoir plusieurs, mais ça dépasse le cadre de ce tutoriel).
+Ceux qui ont l'habitude d'une distribution classique étaient peut-être tentés de rajouter =sudo= devant la commande, parce que l'installation d'un logiciel, ça relève des privilèges d'un administrateur. Ce n'est pas le cas avec Guix. Sous Guix, chaque utilisateur gère ses logiciels de façon autonome. Le =jupyter= que je viens d'installer n'est accessible que pour moi. En fait, l'annonce des "84 paquets dans mon profil" veut dire qu'il y a 84 paquets installés à mon nom, un "profil" étant une collection de paquets installés (et on peut même en avoir plusieurs, mais ça dépasse le cadre de ce tutoriel).
 
 Pour tester, lançons =jupyter=:
-#+begin_src sh :results output :exports both
+#+begin_src sh :results none :exports code
 jupyter notebook
 #+end_src
 Un essai rapide confirme que tout est là pour créer un notebook en langage Python 3, donc tout va bien.
@@ -496,7 +617,7 @@ guix install python-matplotlib python-numpy python-pandas python-statsmodels
 #+end_src
 
 #+RESULTS:
-: 89 packages in profile
+: 88 packages in profile
 
 Je rajoute le paquet =python-nbconvert= qui permet de
 convertir les notebooks en ligne de commande sans passer par
@@ -506,7 +627,7 @@ guix install python-nbconvert
 #+end_src
 
 #+RESULTS:
-: 90 packages in profile
+: 89 packages in profile
 
 
 ** 2.4 Automatiser la construction de son environnement
@@ -548,7 +669,7 @@ C'est essentiellement la liste des paquets que j'ai installé à la main auparav
 
 Je peux alors créer un environnement contenant ces paquets avec
 #+begin_src sh :session *jupyter-env* :results output :exports both
-guix environment -m ./moocrr_guix_jupyter/manifest.scm
+guix environment --pure -m ./moocrr_guix_jupyter/manifest.scm
 #+end_src
 
 #+RESULTS:
@@ -573,32 +694,32 @@ guix environment –pure -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebo
 Un environnement "pur" ne contient que les paquets définis dans le manifeste, pendant qu'un environnement "standard" contient aussi tout ce qu'on a disponible par défaut par la ligne de commande, donc des utilitaires comme =ls=, =cp=, etc. Avec un environnement pur, on est sûr de n'utiliser rien qui n'est pas listé dans le manifeste, même pas par erreur.
 
 ** 2.5 Mieux connaître son environnement
-J'ai bien choisi les paquets qui seront dans mon environnement, mais je n'ai pas choisi les versions. Contrairement à des gestionnaires de paquet traditionnels, Guix peux gérer plusieurs versions d'un même paquet dans la distribution, et c'est à l'utilisateur de choisir laquelle installer. En pratique, Guix contient seulement la version la plus récente de chaque paquet, pour faciliter la maintenance. Une exception est faite pour quelques paquets particulièrement importants dont il y a ses versions différentes qui restent d'actualité. L'exemple typique est =gcc=, la collection des compilateurs GNU. Dans mon environnement, il n'y a rien de cette catégorie. J'ai donc installé les seules versions définies dans l'état actuel de Guix.
+J'ai bien choisi les paquets qui seront dans mon environnement, mais je n'ai pas choisi les versions. Contrairement à des gestionnaires de paquet traditionnels, Guix peux gérer plusieurs versions d'un même paquet dans la distribution, et c'est à l'utilisateur de choisir laquelle installer. En pratique, Guix contient seulement la version la plus récente de chaque paquet, pour faciliter la maintenance. Une exception est faite pour quelques paquets particulièrement importants dont il y a des versions différentes qui restent d'actualité. L'exemple typique est =gcc=, la collection des compilateurs GNU. Dans mon environnement, il n'y a rien de cette catégorie. J'ai donc installé les seules versions définies dans l'état actuel de Guix.
 
 Il est pourtant important de savoir quelles versions on utilise, et il est fortement conseillé d'inclure cette information dans toute publication scientifique. La commande pour accéder à ces informations est =guix package -I=. Pour l'exécuter correctement dans mon environnement, je rentre d'abord dans une shell comme montré ci-dessus:
-#+begin_src sh :session *guix*:results output :exports both
+#+begin_src sh :session *guix* :results output :exports both
 guix environment -m ./moocrr_guix_jupyter/manifest.scm
 #+end_src
 
 #+RESULTS:
 
 Puis je lance ma requête:
-#+begin_src sh :session *guix*:results output :exports both
+#+begin_src sh :session *guix* :results output :exports both
 guix package -p $GUIX_ENVIRONMENT -I
 #+end_src
 
 #+RESULTS:
-| python-nbconvert   | 5.0.0b1 | out | /gnu/store/rxhw14ypd8pw2cp977rd343g2z65smmx-python-nbconvert-5.0.0b1 |
-| python-statsmodels |   0.9.0 | out | /gnu/store/rqzrss511rlzby1yr9a0ykprz19njqfq-python-statsmodels-0.9.0 |
-| python-pandas      |  0.24.2 | out | /gnu/store/5idv0zrqhp0xwf7lfayn4qbj9jllzvml-python-pandas-0.24.2     |
-| python-numpy       |  1.15.4 | out | /gnu/store/mk36fvdahkdr1516jak6sm92bc0cyv6k-python-numpy-1.15.4      |
-| python-matplotlib  |   2.2.3 | out | /gnu/store/cg7ji7bk8jldywq993jkafkisc7979jn-python-matplotlib-2.2.3  |
-| jupyter            |   1.0.0 | out | /gnu/store/7zjyybfcck06nd27gbmfkv780x1ddcg0-jupyter-1.0.0            |
+| python-nbconvert   | 5.0.0b1 | out | /gnu/store/5m8mdhj6wpgsxll5c45bc7ha2sl8n1gf-python-nbconvert-5.0.0b1 |
+| python-statsmodels |   0.9.0 | out | /gnu/store/zl3p1kzbg0fgdys4vk420g5q0vb4fa5q-python-statsmodels-0.9.0 |
+| python-pandas      |  0.25.2 | out | /gnu/store/wxq7g1mfn66xhf9iz8sgccnp4bb1bsi0-python-pandas-0.25.2     |
+| python-numpy       |  1.17.3 | out | /gnu/store/h7g276fj8n0ns1r2lz4rjzxbkp9wnrnr-python-numpy-1.17.3      |
+| python-matplotlib  |   3.1.2 | out | /gnu/store/n8x2rygfi70g594yc02r7ww6hxady5vb-python-matplotlib-3.1.2  |
+| jupyter            |   1.0.0 | out | /gnu/store/kwf1gzgk7f0l1sz84d0frrfvlqysnbz7-jupyter-1.0.0            |
 
 
 La dernière colonne montre les répertoires où se trouvent les paquets. Ceci est utile par exemple pour regarder les modules Python qui en font partie.
 
-Reste à comprendre à quoi sert l'argument =-p $GUIX_ENVIRONMENT=. Normalement, l'option =-p= sert à choisir un "profil", ce qui est un environnement permanent. Dans un environnement temporaire, c'est =$GUIX_ENVIRONMENT= qui pointe vers l'endroit approprié. Dans l'argument =-p $GUIX_ENVIRONMENT=, guix afficherait autant les paquets dans mon profil permanent (le profil par défaut de mon compte) en plus des paquets qui font partie de mon environnement temporaire.
+Reste à comprendre à quoi sert l'argument =-p $GUIX_ENVIRONMENT=. Normalement, l'option =-p= sert à choisir un "profil", ce qui est un environnement permanent. Dans un environnement temporaire, c'est =$GUIX_ENVIRONMENT= qui pointe vers l'endroit approprié. Sans l'argument =-p $GUIX_ENVIRONMENT=, guix afficherait autant les paquets dans mon profil permanent (le profil par défaut de mon compte) en plus des paquets qui font partie de mon environnement temporaire.
 
 Ma petite liste ci-dessus contient seulement les paquets que j'ai installés explicitement. Chaque paquet dans cette liste a des dépendances, que Guix a rajouté automatiquement. Leurs versions comptent tout autant, car elle peuvent influencer les résultats de mes calculs. Pour ne citer qu'un exemple, =python-statsmodels= dépend de =python-patsy=, qui fournit le cadre pour définir des modèles statistiques. Une erreur dans =python-patsy= peut donc fausser mes résultats. Il faudrait alors idéalement connaître les versions de toutes les dépendances, directes et indirectes.
 
@@ -643,127 +764,130 @@ guile -s moocrr_guix_jupyter/installed-dependencies.scm
 #+end_src
 
 #+RESULTS:
-: 118 packages:
-: cairo@1.16.0
-: expat@2.2.6
-: fontconfig@2.13.1
-: freetype@2.9.1
-: glib@2.56.3
-: gobject-introspection@1.56.1
-: jupyter@1.0.0
-: libffi@3.2.1
-: libpng@1.6.34
-: libpthread-stubs@0.4
-: libx11@1.6.6
-: libxau@1.0.8
-: libxcb@1.13
-: libxdmcp@1.1.2
-: libxext@1.3.3
-: libxrender@0.9.10
-: pcre@8.42
-: pixman@0.36.0
-: python-asn1crypto@0.24.0
-: python-attrs@19.1.0
-: python-automat@0.7.0
-: python-babel@2.7.0
-: python-backcall@0.1.0
-: python-bleach@1.4.3
-: python-cairocffi@0.9.0
-: python-certifi@2019.3.9
-: python-cffi@1.11.5
-: python-chardet@3.0.4
-: python-constantly@15.1.0
-: python-cryptography@2.7
-: python-cycler@0.10.0
-: python-dateutil@2.7.3
-: python-decorator@4.3.0
-: python-docutils@0.14
-: python-entrypoints@0.3
-: python-et-xmlfile@1.0.1
-: python-html5lib@0.999
-: python-hyperlink@19.0.0
-: python-idna@2.8
-: python-imagesize@1.1.0
-: python-incremental@17.5.0
-: python-ipaddress@1.0.22
-: python-ipykernel@5.1.1
-: python-ipython-genutils@0.1.0
-: python-ipython@7.5.0
-: python-ipywidgets@5.2.2
-: python-iso8601@0.1.12
-: python-jdcal@1.4
-: python-jedi@0.13.3
-: python-jinja2@2.10.1
-: python-jsonschema@3.0.1
-: python-jupyter-client@5.2.4
-: python-jupyter-console@6.0.0
-: python-jupyter-core@4.4.0
-: python-kiwisolver@1.0.1
-: python-markupsafe@1.1.1
-: python-matplotlib@2.2.3
-: python-mistune@0.8.4
-: python-nbconvert@5.0.0b1
-: python-nbformat@4.4.0
-: python-notebook@5.7.4
-: python-numpy@1.15.4
-: python-numpydoc@0.8.0
-: python-olefile@0.46
-: python-openpyxl@2.6.2
-: python-packaging@19.0
-: python-pandas@0.24.2
-: python-parso@0.3.1
-: python-patsy@0.4.1
-: python-pexpect@4.6.0
-: python-pickleshare@0.7.5
-: python-pillow@5.4.1
-: python-prometheus-client@0.5.0
-: python-prompt-toolkit@2.0.7
-: python-ptyprocess@0.5.2
-: python-pycairo@1.17.1
-: python-pycparser@2.19
-: python-pygments@2.4.2
-: python-pygobject@3.28.3
-: python-pyhamcrest@1.9.0
-: python-pyopenssl@19.0.0
-: python-pyparsing@2.3.1
-: python-pyrsistent@0.14.11
-: python-pysocks@1.7.0
-: python-pytz@2019.1
-: python-pyzmq@17.1.2
-: python-qtconsole@4.4.3
-: python-requests@2.22.0
-: python-scipy@1.2.2
-: python-send2trash@1.5.0
-: python-simplegeneric@0.8.1
-: python-six@1.11.0
-: python-snowballstemmer@1.2.1
-: python-sphinx-alabaster-theme@0.7.12
-: python-sphinx@2.1.2
-: python-sphinxcontrib-applehelp@1.0.1
-: python-sphinxcontrib-devhelp@1.0.1
-: python-sphinxcontrib-htmlhelp@1.0.2
-: python-sphinxcontrib-jsmath@1.0.1
-: python-sphinxcontrib-qthelp@1.0.2
-: python-sphinxcontrib-serializinghtml@1.1.3
-: python-statsmodels@0.9.0
-: python-terminado@0.8.1
-: python-tornado@5.1.1
-: python-traitlets@4.3.2
-: python-twisted@19.2.1
-: python-urllib3@1.25.3
-: python-wcwidth@0.1.7
-: python-webencodings@0.5.1
-: python-widgetsnbextension@3.4.2
-: python-xcffib@0.6.0
-: python-xlrd@1.0.0
-: python-zope-interface@4.6.0
-: python@3.7.0
-: util-linux@2.32.1
-: util-macros@1.19.2
-: xorgproto@2018.4
-: zlib@1.2.11
+#+begin_example
+119 packages:
+cairo@1.16.0
+expat@2.2.7
+fontconfig@2.13.1
+freetype@2.10.1
+glib@2.60.6
+gobject-introspection@1.60.2
+jupyter@1.0.0
+libffi@3.2.1
+libpng@1.6.37
+libpthread-stubs@0.4
+libselinux@2.7
+libsepol@2.7
+libx11@1.6.8
+libxau@1.0.9
+libxcb@1.13
+libxdmcp@1.1.3
+libxext@1.3.4
+libxrender@0.9.10
+pcre@8.43
+pixman@0.38.4
+python-asn1crypto@0.24.0
+python-attrs@19.1.0
+python-automat@0.7.0
+python-babel@2.7.0
+python-backcall@0.1.0
+python-bleach@3.1.0
+python-cairocffi@0.9.0
+python-certifi@2019.3.9
+python-cffi@1.11.5
+python-chardet@3.0.4
+python-constantly@15.1.0
+python-cryptography@2.7
+python-cycler@0.10.0
+python-dateutil@2.8.0
+python-decorator@4.3.0
+python-docutils@0.14
+python-entrypoints@0.3
+python-et-xmlfile@1.0.1
+python-hyperlink@19.0.0
+python-idna@2.8
+python-imagesize@1.1.0
+python-incremental@17.5.0
+python-ipaddress@1.0.22
+python-ipykernel@5.1.3
+python-ipython-genutils@0.1.0
+python-ipython@7.9.0
+python-ipywidgets@5.2.2
+python-iso8601@0.1.12
+python-jdcal@1.4
+python-jedi@0.15.1
+python-jinja2@2.10.1
+python-jsonschema@3.0.1
+python-jupyter-client@5.2.4
+python-jupyter-console@6.0.0
+python-jupyter-core@4.4.0
+python-kiwisolver@1.0.1
+python-markupsafe@1.1.1
+python-matplotlib@3.1.2
+python-mistune@0.8.4
+python-nbconvert@5.0.0b1
+python-nbformat@4.4.0
+python-notebook@5.7.4
+python-numpy@1.17.3
+python-numpydoc@0.8.0
+python-olefile@0.46
+python-openpyxl@2.6.2
+python-packaging@20.0
+python-pandas@0.25.2
+python-parso@0.5.1
+python-patsy@0.5.1
+python-pexpect@4.6.0
+python-pickleshare@0.7.5
+python-pillow@6.2.1
+python-prometheus-client@0.5.0
+python-prompt-toolkit@2.0.7
+python-ptyprocess@0.5.2
+python-pycairo@1.17.1
+python-pycparser@2.19
+python-pygments@2.4.2
+python-pygobject@3.28.3
+python-pyhamcrest@1.9.0-0.25fdc5f
+python-pyopenssl@19.0.0
+python-pyparsing@2.3.1
+python-pyrsistent@0.14.11
+python-pysocks@1.7.0
+python-pytz@2019.1
+python-pyzmq@17.1.2
+python-qtconsole@4.4.3
+python-requests@2.22.0
+python-scipy@1.3.2
+python-send2trash@1.5.0
+python-simplegeneric@0.8.1
+python-six@1.12.0
+python-snowballstemmer@1.2.1
+python-sphinx-alabaster-theme@0.7.12
+python-sphinx@2.3.1
+python-sphinxcontrib-applehelp@1.0.1
+python-sphinxcontrib-devhelp@1.0.1
+python-sphinxcontrib-htmlhelp@1.0.2
+python-sphinxcontrib-jsmath@1.0.1
+python-sphinxcontrib-qthelp@1.0.2
+python-sphinxcontrib-serializinghtml@1.1.3
+python-statsmodels@0.9.0
+python-terminado@0.8.1
+python-tornado@5.1.1
+python-traitlets@4.3.3
+python-twisted@19.7.0
+python-urllib3@1.25.3
+python-wcwidth@0.1.8
+python-webencodings@0.5.1
+python-widgetsnbextension@3.4.2
+python-xcffib@0.6.0
+python-xlrd@1.2.0
+python-zope-interface@4.6.0
+python@3.7.4
+util-linux@2.34
+util-macros@1.19.2
+xorgproto@2019.1
+zlib@1.2.11
+#+end_example
 
-Il faut donc 118 paquets en total pour construire mon environnement! Et ce sont seulement les paquets qui doivent être en mémoire pour utiliser l'environnement. D'autres paquets ont été déployés pour construire ces 118 paquets. Par exemple, pour construire le paquet =python= il a fallu un compilateur C. Une erreur dans ce compilateur peut aussi fausser mes résultats, donc je devrais le rajouter à ma liste de paquets dont il faut noter les versions. Alors... encore un petit script pour faire la liste complète !
+Il faut donc 119 paquets en total pour construire mon environnement! Et ce sont seulement les paquets qui doivent être en mémoire pour utiliser l'environnement. D'autres paquets ont été déployés pour construire ces 118 paquets. Par exemple, pour construire le paquet =python= il a fallu un compilateur C. Une erreur dans ce compilateur peut aussi fausser mes résultats, donc je devrais le rajouter à ma liste de paquets dont il faut noter les versions. Alors... encore un petit script pour faire la liste complète !
 
 #+begin_src guile :exports both :tangle moocrr_guix_jupyter/all-dependencies.scm
 (use-modules (guix profiles)
@@ -815,371 +939,386 @@ guile -s moocrr_guix_jupyter/all-dependencies.scm
 
 #+RESULTS:
 #+begin_example
-586 packages:
-acl@2.2.52
+570 packages:
+acl@2.2.53
 aspell@0.60.6.1
-at-spi2-atk@2.32.0
-at-spi2-core@2.32.1
-atk@2.32.0
-atkmm@2.24.2
-attr@2.4.47
+at-spi2-atk@2.34.1
+at-spi2-core@2.34.0
+atk@2.34.1
+atkmm@2.28.0
+attr@2.4.48
 autoconf-wrapper@2.69
 autoconf@2.69
 automake@1.16.1
 avahi@0.7
-bash-minimal@4.4.23
-bash-static@4.4.23
-bash@4.4.23
+bash-minimal@5.0.7
+bash-static@5.0.7
+bash@5.0.7
 bc@1.07.1
 bdb@5.3.28
 bdb@6.2.32
-binutils-bootstrap@0
-binutils-cross-boot0@2.31.1
-binutils@2.31.1
-bison@3.0.5
-boost@1.69.0
+binutils-cross-boot0@2.32
+binutils-mesboot0@2.20.1a
+binutils-mesboot@2.20.1a
+binutils@2.32
+bison@3.4.1
+boost@1.70.0
 bootstrap-binaries@0
+bootstrap-mes@0
+bootstrap-mescc-tools@0.5.2
 bzip2@1.0.6
-c-ares@1.14.0
+c-ares@1.15.0
 cairo@1.16.0
 cairomm@1.12.2
-cmake@3.13.1
-coreutils@8.30
+cmake-minimal@3.15.1
+coreutils@8.31
 cunit@2.1-3
-cups-filters@1.25.1
-cups-minimal@2.2.11
-cups@2.2.11
-curl@7.63.0
+cups-filters@1.25.13
+cups-minimal@2.3.0
+cups@2.3.0
+curl@7.65.3
 cyrus-sasl@2.1.27
 dblatex@0.3.10
-dbus@1.12.12
-diffutils-boot0@3.6
-diffutils@3.6
+dbus@1.12.16
+diffutils-boot0@3.7
+diffutils-mesboot@2.7
+diffutils@3.7
 docbook-xml@4.2
 docbook-xml@4.3
+docbook-xml@4.4
 docbook-xml@4.5
 docbook-xsl@1.79.1
 doxygen@1.8.15
-ed@1.14.2
+ed@1.15
 elfutils@0.176
-eudev@3.2.8
-expat@2.2.6
+eudev@3.2.9
+expat@2.2.7
 fftw@3.3.8
 file-boot0@5.33
 file@5.33
 findutils-boot0@4.6.0
 findutils@4.6.0
-flex@2.6.1
 flex@2.6.4
 font-dejavu@2.37
 fontconfig@2.13.1
-fontforge@20190317
+fontforge@20190801
 freeglut@3.0.0
-freetype@2.9.1
+freetype@2.10.1
 fribidi@1.0.5
-gawk@4.2.1
-gcc-bootstrap@0
-gcc-cross-boot0-wrapped@5.5.0
-gcc-cross-boot0@5.5.0
-gcc@5.5.0
+gawk@5.0.1
+gcc-core-mesboot@2.95.3
+gcc-cross-boot0-wrapped@7.4.0
+gcc-cross-boot0@7.4.0
+gcc-mesboot-wrapper@4.9.4
+gcc-mesboot0@2.95.3
+gcc-mesboot1-wrapper@4.7.4
+gcc-mesboot1@4.7.4
+gcc-mesboot@4.9.4
 gcc@7.4.0
 gd@2.2.5
-gdbm@1.18
-gdk-pixbuf+svg@2.38.1
-gdk-pixbuf@2.38.1
+gdbm@1.18.1
+gdk-pixbuf+svg@2.40.0
+gdk-pixbuf@2.40.0
 gettext-boot0@0.19.8.1
-gettext-minimal@0.19.8.1
-gfortran@5.5.0
-ghostscript-with-cups@9.26
-ghostscript@9.26
+gettext-minimal@0.20.1
+gfortran@7.4.0
+ghostscript-with-cups@9.27
+ghostscript@9.27
 giflib@5.1.4
-glib@2.56.3
-glibc-bootstrap@0
-glibc-intermediate@2.28
-glibc-utf8-locales@2.28
-glibc@2.28
-glibmm@2.56.0
+glib@2.60.6
+glibc-headers-mesboot@2.16.0
+glibc-intermediate@2.29
+glibc-mesboot0@2.2.5
+glibc-mesboot@2.16.0
+glibc-utf8-locales@2.29
+glibc@2.29
+glibmm@2.60.0
 glslang@7.11.3214
 glu@9.0.1
 gmp@6.1.2
-gnutls@3.6.5
-gobject-introspection@1.56.1
+gnutls@3.6.9
+gobject-introspection@1.60.2
 gperf@3.1
-graphite2@1.3.12
+graphite2@1.3.13
 graphviz@2.40.1
-grep@3.1
-groff-minimal@1.22.3
-groff@1.22.3
+grep@3.3
+groff-minimal@1.22.4
+groff@1.22.4
 gs-fonts@8.11
 gsl@2.5
-gss@1.0.3
 gtk+@2.24.32
-gtk+@3.24.10
+gtk+@3.24.13
 gtk-doc@1.28
 gtkmm@2.24.5
 gts@0.7.6
 guile-bootstrap@2.0
 guile@2.0.14
-guile@2.2.4
-gzip@1.9
-harfbuzz@2.2.0
-help2man@1.47.6
-icu4c@63.1
-ijs@9.26
-imagemagick@6.9.10-58
-indent@2.2.10
+guile@2.2.6
+gzip@1.10
+harfbuzz@2.5.3
+help2man@1.47.10
+icu4c@64.2
+ijs@9.27
+imagemagick@6.9.10-78
 inkscape@0.92.4
 intltool@0.51.0
-iproute2@5.2.0
-iptables@1.6.2
-isl@0.18
-isl@0.19
-itstool@2.0.2
+iproute2@5.3.0
+iptables@1.8.4
+isl@0.21
+itstool@2.0.6
 jansson@2.12
-jbig2dec@0.15
-jemalloc@5.1.0
+jbig2dec@0.16
+jemalloc@5.2.0
 json-glib@1.4.4
 jupyter@1.0.0
 kmod@26
-lapack@3.7.1
+lapack@3.9.0
 lcms@2.9
 ld-wrapper-boot0@0
 ld-wrapper-boot3@0
 ld-wrapper@0
-less@530
-libarchive@3.3.2
-libatomic-ops@7.6.6
+less@551
+libarchive@3.4.0
+libatomic-ops@7.6.10
 libbsd@0.9.1
-libcap@2.25
-libcroco@0.6.12
+libcap@2.27
+libcroco@0.6.13
 libdaemon@0.14
 libdmx@1.1.4
-libdrm@2.4.99
+libdrm@2.4.100
 libelf@0.8.13
-libepoxy@1.5.3
-libev@4.24
+libepoxy@1.5.4
+libev@4.25
 libffi@3.2.1
 libfontenc@1.1.4
-libgc@7.6.6
-libgcrypt@1.8.3
-libgpg-error@1.32
+libgc@7.6.12
+libgcrypt@1.8.4
+libgpg-error@1.36
 libgsf@1.14.46
-libice@1.0.9
-libidn2@2.0.5
+libice@1.0.10
+libidn2@2.2.0
 libidn@1.35
-libjpeg-turbo@2.0.1
+libjpeg-turbo@2.0.2
 libjpeg@9c
 libltdl@2.4.6
 libmnl@1.0.4
-libnftnl@1.1.3
+libnftnl@1.1.5
 libpaper@1.1.24
 libpciaccess@0.16
 libpipeline@1.5.1
-libpng@1.6.34
+libpng@1.6.37
 libpthread-stubs@0.4
 librsvg@2.40.20
+libselinux@2.7
+libsepol@2.7
 libsigc++@2.10.2
 libsigsegv@2.12
-libsm@1.2.2
+libsm@1.2.3
 libspectre@0.2.8
 libspiro@0.5.20150702
-libssh2@1.8.0
 libstdc++-boot0@4.9.4
-libstdc++@5.5.0
-libtasn1@4.13
+libstdc++@7.4.0
+libtasn1@4.14
 libtiff@4.0.10
 libtool@2.4.6
 libungif@4.1.4
-libuninameslist@20190305
+libuninameslist@20190701
 libunistring@0.9.10
-libuv@1.24.0
+libuv@1.30.1
 libva-without-mesa@2.5.0
-libvdpau@1.2
+libvdpau@1.3
 libwebp@1.0.3
-libx11@1.6.6
-libxau@1.0.8
+libx11@1.6.8
+libxau@1.0.9
 libxaw@1.0.13
 libxcb@1.13
 libxcomposite@0.4.5
 libxcursor@1.2.0
-libxdamage@1.1.4
-libxdmcp@1.1.2
-libxext@1.3.3
+libxdamage@1.1.5
+libxdmcp@1.1.3
+libxext@1.3.4
 libxfixes@5.0.3
-libxfont@2.0.3
-libxft@2.3.2
-libxi@1.7.9
+libxfont@2.0.4
+libxft@2.3.3
+libxi@1.7.10
 libxinerama@1.1.4
-libxkbcommon@0.8.4
+libxkbcommon@0.9.1
 libxkbfile@1.1.0
-libxml2@2.9.8
-libxmu@1.1.2
+libxml2@2.9.9
+libxmu@1.1.3
 libxpm@3.5.12
-libxrandr@1.5.1
+libxrandr@1.5.2
 libxrender@0.9.10
 libxres@1.2.0
 libxshmfence@1.3
-libxslt@1.1.32
-libxt@1.1.5
+libxslt@1.1.33
+libxt@1.2.0
 libxtst@1.2.3
 libxv@1.0.11
-libxvmc@1.0.11
+libxvmc@1.0.12
 libxxf86vm@1.1.4
-linux-libre-headers@4.14.67
-linux-pam@1.2.1
+linux-libre-headers-bootstrap@0
+linux-libre-headers@4.19.56
 llvm@8.0.0
-lzip@1.20
+lzip@1.21
 lzo@2.10
 m4@1.4.18
 make-boot0@4.2.1
+make-mesboot0@3.80
+make-mesboot@3.82
 make@4.2.1
 makedepend@1.0.6
-man-db@2.8.5
-mesa@19.1.4
-meson-for-build@0.50.0
-mit-krb5@1.16.2
+man-db@2.9.0
+mes-boot@0.19
+mesa@19.2.7
+mesboot-headers@0.19
+meson-for-build@0.50.1
+mit-krb5@1.17
 mpc@1.1.0
-mpfr@4.0.1
-nasm@2.13.03
-ncurses@6.1
+mpfr@4.0.2
+nasm@2.14.02
+ncurses@6.1-20190609
 net-base@5.3
 net-tools@1.60-0.479bb4a
-nettle@3.4.1
-nghttp2@1.35.1
+nettle@3.5.1
+nghttp2@1.39.1
 ninja@1.9.0
-openblas@0.3.5
-openjpeg@2.3.0
-openldap@2.4.46
-openssl@1.0.2p
+openblas@0.3.7
+openjpeg@2.3.1
+openldap@2.4.47
+openssl@1.1.1c
 pango@1.42.4
-pangomm@2.40.1
+pangomm@2.42.0
 patch@2.7.6
 pciutils@3.6.2
-pcre@8.42
-perl-boot0@5.28.0
+pcre@8.43
+perl-boot0@5.30.0
 perl-xml-parser@2.44
-perl@5.28.0
-pixman@0.36.0
+perl@5.30.0
+pixman@0.38.4
 pkg-config@0.29.2
-poppler@0.72.0
+poppler@0.79.0
 popt@1.16
 potrace@1.15
 psutils@17
 python-asn1crypto@0.24.0
-python-atomicwrites@1.1.5
-python-attrs-bootstrap@17.4.0
+python-atomicwrites@1.3.0
+python-attrs-bootstrap@19.1.0
 python-attrs@19.1.0
 python-automat@0.7.0
 python-babel@2.7.0
 python-backcall@0.1.0
 python-beautifulsoup4@4.7.1
-python-bleach@1.4.3
+python-bleach@3.1.0
 python-cairocffi@0.9.0
 python-certifi@2019.3.9
 python-cffi@1.11.5
 python-chardet@3.0.4
 python-constantly@15.1.0
-python-coverage@4.4.1
+python-coverage@4.5.3
 python-cryptography-vectors@2.7
 python-cryptography@2.7
 python-cycler@0.10.0
 python-cython@0.29.13
-python-dateutil@2.7.3
+python-dateutil@2.8.0
 python-decorator@4.3.0
 python-docopt@0.6.2
 python-docutils@0.14
 python-entrypoints@0.3
 python-et-xmlfile@1.0.1
-python-flake8@3.5.0
+python-flake8@3.7.7
 python-flaky@3.5.3
+python-fonttools@3.38.0
 python-freezegun@0.3.12
-python-graphviz@0.8.4
-python-html5lib@0.999
+python-graphviz@0.13.2
 python-html5lib@1.0.1
 python-hyperlink@19.0.0
-python-hypothesis@3.70.3
+python-hypothesis@4.18.3
 python-idna@2.8
 python-imagesize@1.1.0
 python-incremental@17.5.0
 python-ipaddress@1.0.22
-python-ipykernel@5.1.1
+python-ipykernel@5.1.3
 python-ipython-genutils@0.1.0
-python-ipython@7.5.0
+python-ipython@7.9.0
 python-ipywidgets@5.2.2
 python-iso8601@0.1.12
 python-jdcal@1.4
-python-jedi@0.13.3
+python-jedi@0.15.1
 python-jinja2@2.10.1
 python-jsonschema@3.0.1
 python-jupyter-client@5.2.4
 python-jupyter-console@6.0.0
 python-jupyter-core@4.4.0
 python-kiwisolver@1.0.1
+python-libxml2@2.9.9
 python-linecache2@1.0.0
-python-lxml@4.2.5
+python-lxml@4.4.2
 python-m2r@0.2.1
 python-mako@1.1.0
 python-markupsafe@1.1.1
-python-matplotlib@2.2.3
+python-matplotlib@3.1.2
 python-mccabe@0.6.1
-python-minimal-wrapper@3.7.0
-python-minimal@3.7.0
+python-minimal-wrapper@3.7.4
+python-minimal@3.5.7
+python-minimal@3.7.4
 python-mistune@0.8.4
 python-mock@2.0.0
-python-more-itertools@4.3.0
+python-more-itertools@7.1.0
 python-nbconvert@5.0.0b1
 python-nbformat@4.4.0
 python-nose@1.3.7
 python-notebook@5.7.4
-python-numpy@1.15.4
+python-numpy@1.17.3
 python-numpydoc@0.8.0
 python-olefile@0.46
 python-openpyxl@2.6.2
-python-packaging@19.0
-python-pandas@0.24.2
-python-parso@0.3.1
-python-patsy@0.4.1
+python-packaging@20.0
+python-pandas@0.25.2
+python-parso@0.5.1
+python-patsy@0.5.1
 python-pbr-minimal@3.0.1
 python-pexpect@4.6.0
 python-pickleshare@0.7.5
-python-pillow@5.4.1
-python-pluggy@0.7.1
+python-pillow@6.2.1
+python-pluggy@0.11.0
 python-pretend@1.0.9
 python-prometheus-client@0.5.0
 python-prompt-toolkit@2.0.7
 python-ptyprocess@0.5.2
-python-py@1.5.4
+python-py@1.8.0
 python-pycairo@1.17.1
-python-pycodestyle@2.4.0
+python-pycodestyle@2.5.0
 python-pycparser@2.19
-python-pyflakes@2.0.0
+python-pyflakes@2.1.1
 python-pygments@2.4.2
 python-pygobject@3.28.3
-python-pyhamcrest@1.9.0
-python-pympler@0.5
+python-pyhamcrest@1.9.0-0.25fdc5f
+python-pympler@0.7
 python-pyopenssl@19.0.0
 python-pyparsing@2.3.1
 python-pyrsistent@0.14.11
 python-pysocks@1.7.0
-python-pytest-bootstrap@3.8.0
+python-pytest-bootstrap@4.4.2
 python-pytest-cov@2.6.1
 python-pytest-mock@1.10.1
-python-pytest-runner@4.2
-python-pytest@3.8.0
+python-pytest-runner@2.12.2
+python-pytest-runner@4.4
+python-pytest@4.4.2
 python-pytz@2019.1
 python-pyzmq@17.1.2
 python-qtconsole@4.4.3
 python-requests@2.22.0
-python-scipy@1.2.2
+python-scipy@1.3.2
 python-send2trash@1.5.0
-python-setuptools-scm@3.1.0
+python-setuptools-scm@3.2.0
 python-simplegeneric@0.8.1
-python-six-bootstrap@1.11.0
-python-six@1.11.0
+python-six-bootstrap@1.12.0
+python-six@1.12.0
 python-snowballstemmer@1.2.1
-python-soupsieve@1.9.2
+python-soupsieve@1.9.5
 python-sphinx-alabaster-theme@0.7.12
-python-sphinx@2.1.2
+python-sphinx@2.3.1
 python-sphinxcontrib-applehelp@1.0.1
 python-sphinxcontrib-devhelp@1.0.1
 python-sphinxcontrib-htmlhelp@1.0.2
@@ -1191,68 +1330,36 @@ python-terminado@0.8.1
 python-testpath@0.2
 python-tornado@5.1.1
 python-traceback2@1.4.0
-python-traitlets@4.3.2
-python-twisted@19.2.1
+python-traitlets@4.3.3
+python-twisted@19.7.0
 python-unittest2@1.1.0
 python-urllib3@1.25.3
-python-wcwidth@0.1.7
+python-wcwidth@0.1.8
 python-webencodings@0.5.1
 python-widgetsnbextension@3.4.2
-python-wrapper@3.7.0
+python-wrapper@3.7.4
 python-xcffib@0.6.0
-python-xlrd@1.0.0
-python-zope-event@4.1.0
+python-xlrd@1.2.0
+python-zope-event@4.4
 python-zope-interface@4.6.0
-python2-atomicwrites@1.1.5
-python2-attrs-bootstrap@17.4.0
-python2-configparser@3.5.0
-python2-coverage@4.4.1
-python2-enum34@1.1.6
-python2-flake8@3.5.0
-python2-fonttools@3.28.0
-python2-funcsigs-bootstrap@1.0.2
-python2-funcsigs@1.0.2
-python2-functools32@3.2.3-2
-python2-hypothesis@3.70.3
-python2-libxml2@2.9.8
-python2-linecache2@1.0.0
-python2-mccabe@0.6.1
-python2-mock@2.0.0
-python2-more-itertools@4.3.0
-python2-nose@1.3.7
-python2-pathlib2-bootstrap@2.3.2
-python2-pathlib2@2.3.2
-python2-pbr-minimal@3.0.1
-python2-pluggy@0.7.1
-python2-py@1.5.4
-python2-pycodestyle@2.4.0
-python2-pyflakes@2.0.0
-python2-pytest-bootstrap@3.8.0
-python2-pytest-runner@4.2
-python2-pytest@3.8.0
-python2-scandir@1.9.0
-python2-setuptools-scm@3.1.0
-python2-six-bootstrap@1.11.0
-python2-six@1.11.0
-python2-traceback2@1.4.0
-python2-unittest2@1.1.0
-python2@2.7.15
-python@3.7.0
-qpdf@8.4.0
-readline@7.0.5
-rhash@1.3.6
+python2@2.7.16
+python@3.7.4
+qpdf@9.1.0
+readline@8.0
+rhash@1.3.8
 ruby@2.5.3
-sed@4.5
-shared-mime-info@1.9
-shishi@1.0.2
+sed@4.7
+shared-mime-info@1.10
 source-highlight@3.1.8
-sqlite@3.24.0
+sqlite@3.28.0
 swig@3.0.12
-tar@1.30
-tcl@8.6.8
+tar@1.32
+tcc-boot0@0.9.26-6.c004e9a
+tcc-boot@0.9.27
+tcl@8.6.9
 tcsh@6.20.00
 teckit@2.5.9
-texinfo@6.5
+texinfo@6.6
 texlive-amsfonts@49435
 texlive-bin@20180414
 texlive-cm@49435
@@ -1372,15 +1479,13 @@ texlive-tex-plain@49435
 texlive-ukrhyph@49435
 texlive-unicode-data@49435
 texlive-union@49435
-tk@8.6.8
-tzdata@2018g
+tk@8.6.9.1
+tzdata@2019b
 unzip@6.0
-util-linux@2.32.1
+util-linux@2.34
 util-macros@1.19.2
-vala@0.40.9
-vulkan-headers@1.1.114
-vulkan-loader@1.1.114
-wayland-protocols@1.17
+vala@0.44.5
+wayland-protocols@1.18
 wayland@1.17.0
 which@2.21
 xcb-proto@1.13
@@ -1395,12 +1500,15 @@ xkbcomp@1.4.2
 xkeyboard-config@2.27
 xmlto@0.0.28
 xorg-server@1.20.5
-xorgproto@2018.4
-xtrans@1.3.5
+xorgproto@2019.1
+xtrans@1.4.0
 xz@5.2.4
-zeromq@4.0.7
+yelp-tools@3.28.0
+yelp-xsl@3.32.1
+zeromq@4.3.2
 zip@3.0
 zlib@1.2.11
+zstd@1.4.2
 zziplib@0.13.69
 #+end_example
 
@@ -1413,83 +1521,44 @@ guix describe
 #+end_src
 
 #+RESULTS:
-: Generation 24	août 16 2019 10:40:19	(current)
-:   guix 44881ca
+: Generation 20	Feb 10 2020 10:21:15	(current)
+:   guix df931ac
 :     repository URL: https://git.savannah.gnu.org/git/guix.git
 :     branch: master
-:     commit: 44881cad93801de9462d469500d582af79b99959
+:     commit: df931ac39c40ac8a702e37cb434d9a1016606ed7
 
-Ceci me dit d'abord que je suis dans la génération 24 de Guix, ce qui veut dire que j'ai mis à jour Guix 23 fois depuis la première installation. Guix garde une trace de mes mise à jour et me permet de revenir en arrière si je le souhaite. Mais ce qui nous intéresse maintenant, c'est la suite. La version de Guix que j'utilise, c'est la =44881ca=. En tant qu'habitués de =git=, vous devinez peut-être ce que c'est, et vous avez raison: c'est bien un commit. Guix est développé sous git, et on peut donc identifier une version précise par son identifiant de commit. Les trois dernières lignes donnent un peu plus de précision, dont notamment l'URL où on peut récupérer le dépôt.
-
-Pour notre exercice de reproductibilité, il vaut mieux utiliser une petite variante qui affiche les mêmes informations autrement:
-#+begin_src sh :results output :exports both
-guix describe -f channels
-#+end_src
-
-#+RESULTS:
-: (list (channel
-:         (name 'guix)
-:         (url "https://git.savannah.gnu.org/git/guix.git")
-:         (commit
-:           "44881cad93801de9462d469500d582af79b99959")))
-
-Et oui, c'est encore Scheme comme notation. Un "channel" est une collection de définitions de paquets. Ici nous avons seulement la distribution de base, le canal "guix", mais on peut rajouter des paquets qui viennent d'autres sources, et avec l'option =-f channels= on obtient toujours une description complète et lisible par Guix.
-
-On va alors mettre cette description dans un fichier:
-#+begin_src sh :results output :exports both
-guix describe -f channels > moocrr_guix_jupyter/guix-channels.scm
-cat moocrr_guix_jupyter/guix-channels.scm
-#+end_src
-
-#+RESULTS:
-: (list (channel
-:         (name 'guix)
-:         (url "https://git.savannah.gnu.org/git/guix.git")
-:         (commit
-:           "44881cad93801de9462d469500d582af79b99959")))
-
-Les deux fichiers dans mon répértoire =moocrr_guix_jupyter= permettent donc de reconstruire mon environnement à l'identique, à tout moment, tant qu'il y aura des ordinateurs avec Guix.
+Ceci me dit d'abord que je suis dans la génération 20 de Guix, ce qui veut dire que j'ai mis à jour Guix 19 fois depuis la première installation. Guix garde une trace de mes mise à jour et me permet de revenir en arrière si je le souhaite. Mais ce qui nous intéresse maintenant, c'est la suite. La version de Guix que j'utilise, c'est la =df931ac=. En tant qu'habitués de =git=, vous devinez peut-être ce que c'est, et vous avez raison: c'est bien un commit, et vous le voyez dans sa totalité dans la dernière ligne. Guix est développé sous git, et on peut donc identifier une version précise par son identifiant de commit. Les trois dernières lignes donnent un peu plus de précision, dont notamment l'URL où on peut récupérer le dépôt.
 
 ** 2.7 Reconstruire un environnement
-Maintenant je me place du côté du consommateur. J'ai reçu un notebook Jupyter accompagné d'un répértoire =moocrr_guix_jupyter= contenant un fichier =guix-channels.scm= et un fichier =manifest.scm=. Au travail!
+Maintenant je me place du côté du consommateur. J'ai reçu un notebook Jupyter accompagné d'un fichier =manifest.scm= et d'un commit. Que faire?
 
-D'abord je demande à Guix de restaurer les définitions des paquets:
-#+begin_src sh :results output :exports both
-guix pull -C moocrr_guix_jupyter/guix-channels.scm
+La réponse est simple: je fais appel à la machine à voyager dans le temps. Pour lancer Jupyter dans une environnement "pur", la commande était bien:
+#+begin_src sh :results output :exports both :eval no
+guix environment --pure -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebook
 #+end_src
-
-#+RESULTS:
-: 1 package in profile
+Pour faire exactement la même chose plus tard, quand Guix aura avancé, je demande simplement à Guix de se placer sur le commit de sa version antérieure qui m'intéresse:
+#+begin_src sh :session *time-machine* :results output :exports both
+guix time-machine --commit=df931ac39c40ac8a702e37cb434d9a1016606ed7 -- environment --pure -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebook
+#+end_src
 : 
 
-Normalement, =guix pull= sert à mettre à jour Guix, et la ressemblance avec =git pull= n'est pas un accident. Avec l'option =-C=, je télécharge aussi l'historique récente de Guix, mais je me place au commit demandé plutôt au dernier, ce qui ressemble plutôt à =git checkout=. Je crée ainsi une nouvelle génération de Guix, mais comme je peux facilement revenir en arrière, pas de souci. Maintenant je peux exécuter Jupyter dans son environnement d'origine, exactement comme on a vu avant:
-#+begin_src sh :results output :exports both
-guix environment –pure -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebook
-#+end_src
+Attention, la première fois que je lance =guix environment= après =guix pull=, il se peut que Guix se mette à compiler une bonne partie des 570 paques listés ci-dessus. Mieux vaut prévoir du temps!
 
-Attention, la première fois que je lance =guix environment= après =guix pull=, il se peut que Guix se mette à compiler Jupyter. Mieux vaut prévoir du temps!
-
-Une fois que j'ai terminé mon exploration, je peux revenir à la version de Guix que j'avais avant:
-#+begin_src sh :results output :exports both
-guix pull --roll-back
-#+end_src
-
-#+RESULTS:
-: switched from generation 25 to 24
+Avec =guix time-machine=, tout ce qui se passe après le premier =--= est passé à la commande =guix= dans sa version définie par le commit indiqué. On travaille donc à 100% avec le guix historique.
 
 ** 2.8 Mettre son environnement à disposition sous forme d'une image Docker
-Il reste un problème que vous pouvez rencontrer: vos collègues n'utilisent pas Guix, peut-être même pas Linux. Les deux petits fichiers dans =moocrr_guix_jupyter= ne vont pas leur être utiles. En attendant qu'ils se mettent à utiliser Guix, vous pouvez leur fournir votre environnement sous forme d'une image Docker probablement plus simple à utiliser:
+Il reste un problème que vous pouvez rencontrer: vos collègues n'utilisent pas Guix, peut-être même pas Linux. Un manifeste et un commit ne vont pas leur être utiles. En attendant qu'ils se mettent à utiliser Guix, vous pouvez leur fournir votre environnement sous forme d'une image Docker probablement plus simple à utiliser:
 #+begin_src sh :results output :exports both
 guix pack -f docker -m ./moocrr_guix_jupyter/manifest.scm
 #+end_src
 
 #+RESULTS:
-: /gnu/store/kg8sy0x5nyc0j1dak50dmspqmlqqbcnb-docker-pack.tar.gz
+: /gnu/store/hgd89l0r46liqwlz4idhwaymsngrm255-docker-pack.tar.gz
 
 La commande nous affiche le nom du fichier qui contient l'image Docker. Il peut paraître un peu bizarre, tout comme le répertoire =/gnu/store= dans lequel le fichier se trouve. Quand on comprend le fonctionnement de Guix un peu mieux, tout ça s'explique facilement mais pour ce tutoriel, je vais me contenter de le copier ailleurs avec un nom plus parlant:
 
 #+begin_src sh :results output :exports both
-cp /gnu/store/kg8sy0x5nyc0j1dak50dmspqmlqqbcnb-docker-pack.tar.gz moocrr-jupyter-docker.tar.gz
+cp /gnu/store/hgd89l0r46liqwlz4idhwaymsngrm255-docker-pack.tar.gz moocrr-jupyter-docker.tar.gz
 #+end_src
 
 #+RESULTS:
@@ -1500,2529 +1569,130 @@ docker load -i moocrr-jupyter-docker.tar.gz
 #+end_src
 
 #+RESULTS:
-: Loaded image: profile:2vv9d6l2m3aj1h216fxisq3agmavy3i5
+#+begin_example
+850f4083e529: Loading layer   1.64GB/1.64GB
+Loaded image: jupyter-python-matplotlib-python-numpy:latest
+#+end_example
 
 puis Jupyter est exécuté avec
 #+begin_src sh :results output :exports both
-docker run -it -p 8888:8888 profile:2vv9d6l2m3aj1h216fxisq3agmavy3i5 jupyter notebook --ip=127.0.0.1 --allow-root
+docker run -it -p 8888:8888 jupyter-python-matplotlib-python-numpy:latest jupyter notebook --ip=127.0.0.1 --allow-root
 #+end_src
 
-Partager votre environnement sur DockerHub se fait alors simplement avec les commandes suivantes:
-#+begin_src sh :results output :exports both
-docker tag profile:2vv9d6l2m3aj1h216fxisq3agmavy3i5 alegrand38/moocrr_guix_jupyter:1.0
-docker push alegrand38/moocrr_guix_jupyter:1.0
-#+end_src
 ** 2.9 Modifier son environnement
 Je vous ai montré comment vous pouvez installer des logiciels avec Guix avec toutes leurs dépendances, et comment archiver et reconstruire un tel environnement. Ceci couvre une grande partie des opérations nécessaires pour pratiquer la recherche reproductible. Mais comment faire si vous voulez (ou devez) modifier un environnement donné, que ce soit le vôtre ou un environnement récupéré sous forme d'un manifeste ?
 
 Commençons avec la situation la plus simple: vous voulez mettre à jour tous les logiciels à la dernière version. Pour cela il suffit un simple
-#+begin_src sh :results output :exports both
+#+begin_src sh :results output :exports both :eval no
 guix pull
 #+end_src
 et la prochaine fois que vous faites
-#+begin_src sh :session *jupyter-env* :results output :exports both
+#+begin_src sh :session *jupyter-env* :results output :exports both :eval no
 guix environment -m ./moocrr_guix_jupyter/manifest.scm
 #+end_src
-vous utilisez les versions indiquées dans la toute dernière version de Guix. Mais que faire s'il vous faut une combinaison de versions qui ne se trouve nulle part dans l'historique de Guix? Par exemple, pour chercher la cause d'un bug introduit récement par un changement dans votre environnement, vous voulez combiner la dernière version de =python-statsmodels= avec une version plus ancienne de =python-pandas=.
+vous utilisez les versions indiquées dans la toute dernière version de Guix. Mais que faire s'il vous faut une combinaison de versions qui ne se trouve nulle part dans l'historique de Guix? Par exemple, pour chercher la cause d'un bug introduit récemment par un changement dans votre environnement, vous voulez combiner la dernière version de =python-statsmodels= avec une version plus ancienne de =python-pandas=.
 
 Avant de passer à l'acte, il faut bien comprendre que ce genre de modification est risqué. Rien ne promet que la combinaison de versions que vous envisagez est installable, et encore moins qu'elle fonctionne. Vous pouvez rencontrer un grand nombre de problèmes sur votre chemin, et c'est à vous de trouver une solution. Dans la vaste majorité des "petites" modifications, ou on remplace une version relativement stable d'un logiciel avec une version proche dans l'historique, la procédure que je vais montrer fonctionne sans difficulté, mais on n'est jamais à l'abri de mauvaises surprises!
 
-Guix propose plusieurs façons d'introduire des modifications. Je vais vous montrer la façon la plus générale, et aussi celle qui vous apprend le plus sur le fonctionnement interne de Guix. En appliquant cette méthode, vous pouvez aussi contribuer vos modifications aux versions grand public de Guix! Mais sachez qu'il y a quelques raccourcis, notamment pour les développeurs qui travaillent sur leur propre code en l'intégrant régulièrement dans Guix.
+Guix propose plusieurs façons d'introduire des modifications. Il n'est pas facile d'en choisir la meilleure sans avoir une certaine expérience de Guix. Je vous en montre une qui me paraît bien adaptée à la situation: définir un nouveau paquet, localement sur votre ordinateur, qui hérite la plupart des caractéristiques d'un paquet existant. Comme exemple, je vais remplacer la version 0.25.2 de Pandas par la version 0.25.1.
 
-Pour démarrer, je vais cloner le dépôt avec le code source de Guix:
-#+begin_src sh :session *guix-edit* :results output :exports both
-cd /tmp
-git clone https://git.savannah.gnu.org/git/guix.git
+Je commence en regardant la définition du paquet =python-pandas= dans Guix:
+#+begin_src sh :results none :exports code
+guix edit python-pandas
 #+end_src
+Ceci ouvre le fichier =python-science.scm= dans un éditeur de texte avec le curseur sur la définition de =python-pandas=. Il y a deux champs que je vais devoir remplacer: le numéro de version, et la référence au code source. Tout le reste peut rester pareil - j'espère ! Voici le début de ma nouvelle définition:
+#+begin_src guile :exports code :eval no
+(package
+ (inherit python-pandas)
+ (version "0.25.1")
+ (source
+  (origin
+   (method url-fetch)
+   (uri (pypi-uri "pandas" version))
+   (sha256
+    (base32
+     "1xm9dmbngsq46vj836csnb5j0bs88b1d713b0b5vx1q6gdxijbnb")))))
+#+end_src
+Comme annoncé, j'ai modifié la version. Et dans le champ =source=, j'ai changé la somme de contrôle =sha256= qui doit correspondre au fichier téléchargé pour la version 0.25.1. Pour trouver la bonne somme de contrôle, guix m'ai aidé:
+#+begin_src sh :results output :exports both
+guix download https://files.pythonhosted.org/packages/source/p/pandas/pandas-0.25.1.tar.gz
+#+end_src
+mais vous êtes libre de faire appel à toute technique à laquelle vous faites confiance. Le but est d'être sûr que vous récupérez le code source d'un serveur fiable!
 
 #+RESULTS:
+: /gnu/store/52yc31ykwidx0fbmds7r0nz13rvkw2vf-pandas-0.25.1.tar.gz
+: 1xm9dmbngsq46vj836csnb5j0bs88b1d713b0b5vx1q6gdxijbnb
+
+Pour compléter la définition du paquet, qui est en fait du code en langage Guile (comme avant pour le manifeste), il faut importer quelques modules:
+#+begin_src guile :exports both :tangle moocrr_guix_jupyter/pandas.scm
+(use-modules (guix packages)
+             (guix download)
+             (guix build-system python)
+             (gnu packages python-science))
+
+(package
+ (inherit python-pandas)
+ (version "0.25.1")
+ (source
+  (origin
+   (method url-fetch)
+   (uri (pypi-uri "pandas" version))
+   (sha256
+    (base32
+     "1xm9dmbngsq46vj836csnb5j0bs88b1d713b0b5vx1q6gdxijbnb")))))
+#+end_src
+Comment savoir quels modules importer? Le plus simple est =(gnu packages python-science)=, parce que c'est là qu'on a trouvé la définition de =python-pandas=. Sinon, il faut toujours =(guix packages)= et =(guix download)=. Pour finir, pour un paquet Python il faut toujours =(guix build-system python)=. Mais si vous oubliez un paquet, il y a une bonne chance que Guix vous indique le module manquant.
+
+Pour compiler le paquet et exécuter sa batterie de tests, la commande est
+#+begin_src sh :results none :exports code
+guix build -f moocrr_guix_jupyter/pandas.scm
+#+end_src
+Attention, c'est long, et ça produit plus de 60000 lignes de texte diagnostic que je ne vais pas reproduire ici. Les deux dernières lignes sont
 #+begin_example
-Cloning into 'guix'...
-remote: Counting objects: 294785, done.        
-remote: Compressing objects:   0% (1/66394)           echo 'org_babel_sh_eoe'
-remote: Compressing objects: 100% (66394/66394), done.        
-remote: Total 294785 (delta 229497), reused 292377 (delta 227607)        
-Receiving objects: 100% (294785/294785), 103.47 MiB | 4.40 MiB/s, done.
-Resolving deltas: 100% (229497/229497), done.
+successfully built /gnu/store/ab6i60xyinj47wqxd99sc0ih16d0a22p-python-pandas-0.25.1.drv
+/gnu/store/9gswclr3gk7pdgxddznpw3lvgj8yywhl-python-pandas-0.25.1
 #+end_example
+et la toute dernière indique le repertoire où se trouve le nouveau paquet. Reste la question comment l'intégrer dans mon environnement. La réponse n'est pas difficile sur le principe ("il faut modifier le manifeste"), mais les détails techniques sont un peu laborieux - une lecture du manuel de Guix s'impose. Voici le manifeste final:
+#+begin_src guile :exports both :tangle moocrr_guix_jupyter/manifest-with-pandas-0.25.1.scm
+(use-modules (guix packages)
+             (guix download)
+             (guix build-system python)
+             (gnu packages python-science))
 
-Pour travailler avec ce code source, il me faut un environnement qui contient toutes les dépendances de Guix, et aussi tous les outils nécessaires pour travailler avec Guix (compilateurs etc.). On les trouve... dans Guix! Tout ce qu'il faut c'est
-#+begin_src sh :session *guix-edit* :results output :exports both
-guix environment guix
+(define modified-python-pandas
+  (package
+   (inherit python-pandas)
+   (version "0.25.1")
+   (source
+    (origin
+     (method url-fetch)
+     (uri (pypi-uri "pandas" version))
+     (sha256
+      (base32
+       "1xm9dmbngsq46vj836csnb5j0bs88b1d713b0b5vx1q6gdxijbnb"))))))
+
+(define standard-packages
+  (map (compose list specification->package+output)
+       '("jupyter"
+         "python"
+         "python-matplotlib"
+         "python-numpy"
+         "python-pandas"
+         "python-statsmodels"
+         "python-nbconvert")))
+
+(packages->manifest
+ (cons modified-python-pandas
+       standard-packages))
+#+end_src
+
+
+Et voici la preuve que ça marche - on demande à Python d'imprimer le numéro de version de Pandas:
+#+begin_src sh :results output :exports both
+guix environment --pure -m ./moocrr_guix_jupyter/manifest-with-pandas-0.25.1.scm -- python3 -c 'import pandas; print(pandas.__version__)'
 #+end_src
 
 #+RESULTS:
+: 0.25.1
 
-Nous avons déjà vu =guix environment=, mais ici je l'utilise d'une façon différente, plus adaptée au développement logiciel qu'à la recherche reproductible. L'environnement n'est pas défini par un manifeste qui donne la liste des paquets à installer. A sa place, il y a juste le nom =guix=. Ceci veut dire l'environnement pour le développement de Guix, donc l'environnement défini par les dépendances et les outils de construction du paquet =guix=.
-
-Cette commande donne un avant-goût de la difficulté principale de ce qui va suivre: maintenir une vue claire de que le nom =guix= veut dire à chaque instant. Dans la dernière ligne de commande, il y a =guix= à gauche qui est un logiciel exécutable sur votre ordinateur, mais à droite, =guix= est le nom d'un paquet. Le contenu du paquet est bien sûr le logiciel, mais en général, le paquet peut définir une autre version que celle que vous avez installée. Le dépôt que nous venons de cloner, c'est aussi =guix=, ou plus précisément son code source. Ce qui est important de comprendre, c'est que Guix n'est pas un gestionnaire de paquets définis quelque part ailleurs. Guix est le gestionnaire *et* la définition des paquets. Les définitions des paquets, que nous verrons bientôt, se trouvent dans des modules du logiciel Guix.
-
-Pour continuer, je vais suivre [[https://guix.gnu.org/manual/en/guix.html#Building-from-Git][les instructions pour compiler Guix de son code source]]. D'abord quelques préparatifs:
-
-#+begin_src sh :session *guix-edit* :results output :exports both
-cd guix
-./bootstrap
-./configure --localstatedir=/var
-#+end_src
-
-#+RESULTS:
-#+begin_example
-
-++ xargs -n 1 '-I{}' basename '{}' .po
-++ sed -e 's,guix-manual\.,,'
-++ find po/doc -type f -name 'guix-manual*.po'
-+ langs='zh_CN
-es
-ru
-de
-fr'
-{langs}
-+ '[' '!' -e doc/guix.zh_CN.texi ']'
-+ echo '@setfilename guix.zh_CN.info'
-+ echo '@include version-zh_CN.texi'
-+ touch po/doc/guix-manual.zh_CN.po
-{langs}
-+ '[' '!' -e doc/guix.es.texi ']'
-+ echo '@setfilename guix.es.info'
-+ echo '@include version-es.texi'
-+ touch po/doc/guix-manual.es.po
-{langs}
-+ '[' '!' -e doc/guix.ru.texi ']'
-+ echo '@setfilename guix.ru.info'
-+ echo '@include version-ru.texi'
-+ touch po/doc/guix-manual.ru.po
-{langs}
-+ '[' '!' -e doc/guix.de.texi ']'
-+ echo '@setfilename guix.de.info'
-+ echo '@include version-de.texi'
-+ touch po/doc/guix-manual.de.po
-{langs}
-+ '[' '!' -e doc/guix.fr.texi ']'
-+ echo '@setfilename guix.fr.info'
-+ echo '@include version-fr.texi'
-+ touch po/doc/guix-manual.fr.po
-++ xargs -n 1 '-I{}' basename '{}' .po
-++ sed -e 's,guix-manual\.,,'
-++ find po/doc -type f -name 'guix-cookbook*.po'
-+ langs=
-+ exec autoreconf -vfi
-autoreconf: Entering directory `.'
-autoreconf: running: autopoint --force
-Copying file ABOUT-NLS
-Copying file build-aux/config.rpath
-Copying file m4/codeset.m4
-Copying file m4/fcntl-o.m4
-Copying file m4/gettext.m4
-Copying file m4/glibc2.m4
-Copying file m4/glibc21.m4
-Copying file m4/iconv.m4
-Copying file m4/intdiv0.m4
-Copying file m4/intl.m4
-Copying file m4/intldir.m4
-Copying file m4/intlmacosx.m4
-Copying file m4/intmax.m4
-Copying file m4/inttypes-pri.m4
-Copying file m4/inttypes_h.m4
-Copying file m4/lcmessage.m4
-Copying file m4/lib-ld.m4
-Copying file m4/lib-link.m4
-Copying file m4/lib-prefix.m4
-Copying file m4/lock.m4
-Copying file m4/longlong.m4
-Copying file m4/nls.m4
-Copying file m4/po.m4
-Copying file m4/printf-posix.m4
-Copying file m4/progtest.m4
-Copying file m4/size_max.m4
-Copying file m4/stdint_h.m4
-Copying file m4/threadlib.m4
-Copying file m4/uintmax_t.m4
-Copying file m4/visibility.m4
-Copying file m4/wchar_t.m4
-Copying file m4/wint_t.m4
-Copying file m4/xsize.m4
-Copying file po/guix/Makefile.in.in
-Copying file po/packages/Makefile.in.in
-Copying file po/guix/Makevars.template
-Copying file po/packages/Makevars.template
-Copying file po/guix/Rules-quot
-Copying file po/packages/Rules-quot
-Copying file po/guix/boldquot.sed
-Copying file po/packages/boldquot.sed
-Copying file po/guix/en@boldquot.header
-Copying file po/packages/en@boldquot.header
-Copying file po/guix/en@quot.header
-Copying file po/packages/en@quot.header
-Copying file po/guix/insert-header.sin
-Copying file po/packages/insert-header.sin
-Copying file po/guix/quot.sed
-Copying file po/packages/quot.sed
-Copying file po/guix/remove-potcdate.sin
-Copying file po/packages/remove-potcdate.sin
-autoreconf: running: aclocal --force -I m4
-autoreconf: configure.ac: tracing
-autoreconf: configure.ac: not using Libtool
-autoreconf: running: /gnu/store/rfaqi3a9ls7adr4y7bgwvln3iaf69qwj-autoconf-2.69/bin/autoconf --force
-autoreconf: running: /gnu/store/rfaqi3a9ls7adr4y7bgwvln3iaf69qwj-autoconf-2.69/bin/autoheader --force
-autoreconf: running: automake --add-missing --copy --force-missing
-configure.ac:23: warning: The 'AM_PROG_MKDIR_P' macro is deprecated, and its use is discouraged.
-configure.ac:23: You should use the Autoconf-provided 'AC_PROG_MKDIR_P' macro instead,
-(MKDIR_P)' instead of '$(mkdir_p)'in your Makefile.am files.
-config-daemon.ac:8: installing 'build-aux/ar-lib'
-configure.ac:21: installing 'build-aux/compile'
-configure.ac:23: installing 'build-aux/config.guess'
-configure.ac:23: installing 'build-aux/config.sub'
-configure.ac:11: installing 'build-aux/install-sh'
-configure.ac:11: installing 'build-aux/missing'
-Makefile.am: installing './INSTALL'
-Makefile.am:628: warning: AM_GNU_GETTEXT used but 'po' not in SUBDIRS
-Makefile.am: installing 'build-aux/depcomp'
-doc/local.mk:24: installing 'build-aux/mdate-sh'
-Makefile.am:631:   'doc/local.mk' included from here
-doc/local.mk:24: installing 'build-aux/texinfo.tex'
-Makefile.am:631:   'doc/local.mk' included from here
-parallel-tests: installing 'build-aux/test-driver'
-autoreconf: Leaving directory `.'
-checking for a BSD-compatible install... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/install -c
-checking whether build environment is sane... yes
-checking for a thread-safe mkdir -p... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/mkdir -p
-checking for gawk... gawk
-(MAKE)... yes
-checking whether make supports nested variables... yes
-checking whether make supports nested variables... (cached) yes
-checking whether make supports the include directive... yes (GNU style)
-checking for gcc... gcc
-checking whether the C compiler works... yes
-checking for C compiler default output file name... a.out
-checking for suffix of executables... 
-checking whether we are cross compiling... no
-checking for suffix of object files... o
-checking whether we are using the GNU C compiler... yes
-checking whether gcc accepts -g... yes
-checking for gcc option to accept ISO C89... none needed
-checking whether gcc understands -c and -o together... yes
-checking dependency style of gcc... gcc3
-checking how to run the C preprocessor... gcc -E
-checking for grep that handles long lines and -e... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/grep
-checking for egrep... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/grep -E
-checking for ANSI C header files... yes
-checking for sys/types.h... yes
-checking for sys/stat.h... yes
-checking for stdlib.h... yes
-checking for string.h... yes
-checking for memory.h... yes
-checking for strings.h... yes
-checking for inttypes.h... yes
-checking for stdint.h... yes
-checking for unistd.h... yes
-checking minix/config.h usability... no
-checking minix/config.h presence... no
-checking for minix/config.h... no
-checking whether it is safe to define __EXTENSIONS__... yes
-checking whether NLS is requested... yes
-checking for msgfmt... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt
-checking for gmsgfmt... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt
-checking for xgettext... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/xgettext
-checking for msgmerge... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge
-checking build system type... x86_64-pc-linux-gnu
-checking host system type... x86_64-pc-linux-gnu
-checking for ld used by GCC... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/ld
-checking if the linker (/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/ld) is GNU ld... yes
-checking for shared library run path origin... done
-checking for CFPreferencesCopyAppValue... no
-checking for CFLocaleCopyCurrent... no
-checking for GNU gettext in libc... yes
-checking whether to use NLS... yes
-checking where the gettext function comes from... libc
-checking for sed... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/sed
-checking for the Guix system type... x86_64-linux
-checking for the store directory... /gnu/store
-checking the length of the installed socket file name... 30
-checking for unit test root directory... /tmp/guix/test-tmp
-checking the length of the socket file name used in tests... 50
-checking the length of a typical hash bang line... 73
-checking the length of a hash bang line used in tests... 87
-checking for pkg-config... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/pkg-config
-checking pkg-config is at least version 0.9.0... yes
-configure: checking for guile 2.2
-configure: found guile 2.2
-checking for guile-2.2... no
-checking for guile2.2... no
-checking for guile-2... no
-checking for guile2... no
-checking for guile... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/guile
-= 2.2... 2.2.4
-checking for guild... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/guild
-checking for guile-config... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/guile-config
-checking if (gnutls) is available... yes
-checking if (git) is available... yes
-checking whether Guile-JSON is available and recent enough... yes
-checking whether Guile-Sqlite3 is available and recent enough... yes
-checking if (gcrypt hash) is available... yes
-checking if (newt) is available... no
-checking whether /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/guile provides feature 'regex'... yes
-checking whether /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/guile provides feature 'posix'... yes
-checking whether /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/guile provides feature 'socket'... yes
-checking whether /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/guile provides feature 'net-db'... yes
-checking whether /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/guile provides feature 'threads'... yes
-checking whether 'equal?' works for syntax objects... yes
-checking for a sed that does not truncate output... (cached) /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/sed
-checking for gzip... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/gzip
-checking for bzip2... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/bzip2
-checking for xz... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/xz
-checking for nix-hash... no
-checking for Nixpkgs source tree... not found
-checking for libgcrypt-config... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/libgcrypt-config
-checking libgcrypt's library directory... /gnu/store/87fdwmippyfs01870x5hq7v2lcyfczpi-libgcrypt-1.8.3/lib
-checking zlib's library directory... /gnu/store/nq4lsyipmfb0q7g26ra45rwwqrh3x8zw-zlib-1.2.11/lib
-checking for zlib's shared library name... /gnu/store/nq4lsyipmfb0q7g26ra45rwwqrh3x8zw-zlib-1.2.11/lib/libz
-checking lzlib's file name... /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/lib/liblz.so.1
-checking whether Guile-SSH is available and recent enough... yes
-checking whether to build daemon... yes
-checking for g++... g++
-checking whether we are using the GNU C++ compiler... yes
-checking whether g++ accepts -g... yes
-checking dependency style of g++... gcc3
-checking for ar... ar
-checking the archiver (ar) interface... ar
-checking whether g++ supports C++11... yes
-checking for ranlib... ranlib
-checking for special C compiler options needed for large files... no
-checking for _FILE_OFFSET_BITS value needed for large files... no
-checking for gzdopen in -lz... yes
-checking how to run the C++ preprocessor... g++ -E
-checking zlib.h usability... yes
-checking zlib.h presence... yes
-checking for zlib.h... yes
-checking for BZ2_bzWriteOpen in -lbz2... yes
-checking bzlib.h usability... yes
-checking bzlib.h presence... yes
-checking for bzlib.h... yes
-= 3.6.19... yes
-checking for gcry_md_open in -lgcrypt... yes
-checking gcrypt.h usability... yes
-checking gcrypt.h presence... yes
-checking for gcrypt.h... yes
-checking for chroot... yes
-checking for unshare... yes
-checking sched.h usability... yes
-checking sched.h presence... yes
-checking for sched.h... yes
-checking sys/param.h usability... yes
-checking sys/param.h presence... yes
-checking for sys/param.h... yes
-checking sys/mount.h usability... yes
-checking sys/mount.h presence... yes
-checking for sys/mount.h... yes
-checking sys/syscall.h usability... yes
-checking sys/syscall.h presence... yes
-checking for sys/syscall.h... yes
-checking for lutimes... yes
-checking for lchown... yes
-checking for posix_fallocate... yes
-checking for sched_setaffinity... yes
-checking for statvfs... yes
-checking for nanosleep... yes
-checking for strsignal... yes
-checking whether it is possible to create a link to a symlink... yes
-checking locale usability... yes
-checking locale presence... yes
-checking for locale... yes
-checking sys/personality.h usability... yes
-checking sys/personality.h presence... yes
-checking for sys/personality.h... yes
-checking linux/fs.h usability... yes
-checking linux/fs.h presence... yes
-checking for linux/fs.h... yes
-checking for default substitute URLs... https://ci.guix.gnu.org
-checking whether Guile-SSH is available and recent enough... (cached) yes
-checking for unit test root directory... (cached) /tmp/guix/test-tmp
-checking for guile... (cached) /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/guile
-checking the current installation's localstatedir... /var
-checking for emacs... /home/hinsen/.guix-profile/bin/emacs
-checking that generated files are newer than configure... done
-configure: creating ./config.status
-config.status: creating Makefile
-config.status: creating po/guix/Makefile.in
-config.status: creating po/packages/Makefile.in
-config.status: creating etc/guix-daemon.cil
-config.status: creating guix/config.scm
-config.status: creating test-env
-config.status: creating pre-inst-env
-config.status: creating etc/indent-code.el
-config.status: creating nix/config.h
-config.status: executing depfiles commands
-config.status: executing po-directories commands
-config.status: creating po/guix/POTFILES
-config.status: creating po/guix/Makefile
-config.status: creating po/packages/POTFILES
-config.status: creating po/packages/Makefile
-#+end_example
-
-Et la compilation avec l'exécution des tests pour vérifier que tout s'est bien passé. Attention, ça va être long, mais on ne le fait qu'une fois !
-#+begin_src sh :session *guix-edit* :results output :exports both
-make check
-#+end_src
-
-#+RESULTS:
-#+begin_example
-GEN      doc/os-config-bare-bones.texi
-  GEN      doc/os-config-desktop.texi
-  GEN      doc/os-config-lightweight-desktop.texi
-  PO4A doc/contributing.de.texi
-Your input po file po/doc/guix-manual.de.po seems outdated (The amount of entries differ between files: 7994 is not 228
-). Please consider running po4a-updatepo to refresh it.
-  POXREF doc/contributing.de.texi
-mv "doc/contributing.de.texi.tmp" "doc/contributing.de.texi"
-  PO4A doc/guix.de.texi
-Your input po file po/doc/guix-manual.de.po seems outdated (The amount of entries differ between files: 7994 is not 8149
-). Please consider running po4a-updatepo to refresh it.
-(basename "doc/guix.de.texi" | sed 's|texi$|info|')|" "doc/guix.de.texi.tmp"
-  POXREF doc/guix.de.texi
-mv "doc/guix.de.texi.tmp" "doc/guix.de.texi"
-  PO4A doc/contributing.es.texi
-Your input po file po/doc/guix-manual.es.po seems outdated (The amount of entries differ between files: 7994 is not 228
-). Please consider running po4a-updatepo to refresh it.
-  POXREF doc/contributing.es.texi
-mv "doc/contributing.es.texi.tmp" "doc/contributing.es.texi"
-  PO4A doc/guix.es.texi
-Your input po file po/doc/guix-manual.es.po seems outdated (The amount of entries differ between files: 7994 is not 8149
-). Please consider running po4a-updatepo to refresh it.
-(basename "doc/guix.es.texi" | sed 's|texi$|info|')|" "doc/guix.es.texi.tmp"
-  POXREF doc/guix.es.texi
-mv "doc/guix.es.texi.tmp" "doc/guix.es.texi"
-  PO4A doc/contributing.fr.texi
-Your input po file po/doc/guix-manual.fr.po seems outdated (The amount of entries differ between files: 7994 is not 228
-). Please consider running po4a-updatepo to refresh it.
-  POXREF doc/contributing.fr.texi
-mv "doc/contributing.fr.texi.tmp" "doc/contributing.fr.texi"
-  PO4A doc/guix.fr.texi
-Your input po file po/doc/guix-manual.fr.po seems outdated (The amount of entries differ between files: 7994 is not 8149
-). Please consider running po4a-updatepo to refresh it.
-(basename "doc/guix.fr.texi" | sed 's|texi$|info|')|" "doc/guix.fr.texi.tmp"
-  POXREF doc/guix.fr.texi
-mv "doc/guix.fr.texi.tmp" "doc/guix.fr.texi"
-  PO4A doc/contributing.ru.texi
-Your input po file po/doc/guix-manual.ru.po seems outdated (The amount of entries differ between files: 7994 is not 228
-). Please consider running po4a-updatepo to refresh it.
-  POXREF doc/contributing.ru.texi
-mv "doc/contributing.ru.texi.tmp" "doc/contributing.ru.texi"
-  PO4A doc/guix.ru.texi
-Your input po file po/doc/guix-manual.ru.po seems outdated (The amount of entries differ between files: 7994 is not 8149
-). Please consider running po4a-updatepo to refresh it.
-(basename "doc/guix.ru.texi" | sed 's|texi$|info|')|" "doc/guix.ru.texi.tmp"
-  POXREF doc/guix.ru.texi
-mv "doc/guix.ru.texi.tmp" "doc/guix.ru.texi"
-  PO4A doc/contributing.zh_CN.texi
-Your input po file po/doc/guix-manual.zh_CN.po seems outdated (The amount of entries differ between files: 7994 is not 228
-). Please consider running po4a-updatepo to refresh it.
-  POXREF doc/contributing.zh_CN.texi
-mv "doc/contributing.zh_CN.texi.tmp" "doc/contributing.zh_CN.texi"
-  PO4A doc/guix.zh_CN.texi
-Your input po file po/doc/guix-manual.zh_CN.po seems outdated (The amount of entries differ between files: 7994 is not 8149
-). Please consider running po4a-updatepo to refresh it.
-(basename "doc/guix.zh_CN.texi" | sed 's|texi$|info|')|" "doc/guix.zh_CN.texi.tmp"
-  POXREF doc/guix.zh_CN.texi
-mv "doc/guix.zh_CN.texi.tmp" "doc/guix.zh_CN.texi"
-  GEN      nix/libstore/schema.sql.hh
-".version-t" && mv ".version-t" ".version"
-make  check-recursive
-make[1]: Entering directory '/tmp/guix'
-Making check in po/guix
-make[2]: Entering directory '/tmp/guix/po/guix'
-make guix.pot-update
-make[3]: Entering directory '/tmp/guix/po/guix'
-/d' remove-potcdate.sin > t-remove-potcdate.sed
-mv t-remove-potcdate.sed remove-potcdate.sed
-/dev/null | grep -v 'libtool:' >/dev/null; then \
-  package_gnu='GNU '; \
-else \
-  package_gnu=''; \
-fi; \
-if test -n 'ludo@gnu.org' || test 'bug-guix@gnu.org' = '@'PACKAGE_BUGREPORT'@'; then \
-  msgid_bugs_address='ludo@gnu.org'; \
-else \
-  msgid_bugs_address='bug-guix@gnu.org'; \
-fi; \
-case `/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/xgettext --version | sed 1q | sed -e 's,^[^0-9]*,,'` in \
-  '' | 0.[0-9] | 0.[0-9].* | 0.1[0-5] | 0.1[0-5].* | 0.16 | 0.16.[0-1]*) \
-    /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/xgettext --default-domain=guix --directory=../.. \
-      --add-comments=TRANSLATORS: --from-code=UTF-8 --keyword=G_ --keyword=N_:1,2 --keyword=message --keyword=description --keyword=n_  \
-      --files-from=./POTFILES.in \
-      --copyright-holder='Ludovic Courtès' \
-msgid_bugs_address" \
-    ;; \
-  ,*) \
-    /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/xgettext --default-domain=guix --directory=../.. \
-      --add-comments=TRANSLATORS: --from-code=UTF-8 --keyword=G_ --keyword=N_:1,2 --keyword=message --keyword=description --keyword=n_  \
-      --files-from=./POTFILES.in \
-      --copyright-holder='Ludovic Courtès' \
-{package_gnu}guix" \
-      --package-version='1.0.1.3995-2b2f7' \
-msgid_bugs_address" \
-    ;; \
-esac
-test ! -f guix.po || { \
-  if test -f ./guix.pot; then \
-guix.1po && \
-guix.2po && \
-/dev/null 2>&1; then \
-      rm -f guix.1po guix.2po guix.po; \
-    else \
-      rm -f guix.1po guix.2po ./guix.pot && \
-      mv guix.po ./guix.pot; \
-    fi; \
-  else \
-    mv guix.po ./guix.pot; \
-  fi; \
-}
-make[3]: Leaving directory '/tmp/guix/po/guix'
-test ! -f ./guix.pot || \
-  test -z "cs.gmo da.gmo de.gmo en@boldquot.gmo en@quot.gmo eo.gmo es.gmo fr.gmo hu.gmo pl.gmo pt_BR.gmo sr.gmo sv.gmo vi.gmo zh_CN.gmo" || make cs.gmo da.gmo de.gmo en@boldquot.gmo en@quot.gmo eo.gmo es.gmo fr.gmo hu.gmo pl.gmo pt_BR.gmo sr.gmo sv.gmo vi.gmo zh_CN.gmo
-make[3]: Entering directory '/tmp/guix/po/guix'
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=cs cs.po guix.pot
-................................................................................................................................................................................................................. done.
-rm -f cs.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o cs.gmo cs.po
-cs.po: 60 translated messages, 120 fuzzy translations, 736 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=da da.po guix.pot
-............................................................................................................................... done.
-rm -f da.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o da.gmo da.po
-da.po: 741 translated messages, 53 fuzzy translations, 122 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=de de.po guix.pot
-................................................................................................................................. done.
-rm -f de.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o de.gmo de.po
-de.po: 853 translated messages, 37 fuzzy translations, 26 untranslated messages.
-make[4]: Entering directory '/tmp/guix/po/guix'
-make en@boldquot.po-update
-make[5]: Entering directory '/tmp/guix/po/guix'
-/d' -e 's/HEADER/en@boldquot.header/g' ./insert-header.sin > en@boldquot.insert-header
-en@boldquot:
-en@boldquot:
-msgmerge  --lang=en@boldquot en@boldquot.po guix.pot -o en@boldquot.new.po
-............................................................................................ done.
-make[5]: Leaving directory '/tmp/guix/po/guix'
-make[4]: Leaving directory '/tmp/guix/po/guix'
-rm -f en@boldquot.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o en@boldquot.gmo en@boldquot.po
-en@boldquot.po: 916 translated messages.
-make[4]: Entering directory '/tmp/guix/po/guix'
-make en@quot.po-update
-make[5]: Entering directory '/tmp/guix/po/guix'
-/d' -e 's/HEADER/en@quot.header/g' ./insert-header.sin > en@quot.insert-header
-en@quot:
-en@quot:
-msgmerge  --lang=en@quot en@quot.po guix.pot -o en@quot.new.po
-............................................................................................ done.
-make[5]: Leaving directory '/tmp/guix/po/guix'
-make[4]: Leaving directory '/tmp/guix/po/guix'
-rm -f en@quot.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o en@quot.gmo en@quot.po
-en@quot.po: 916 translated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=eo eo.po guix.pot
-........................................................................................................................................................................................................................................................................................................ done.
-eo.po:837: warning: internationalized messages should not contain the '\r' escape sequence
-eo.po:837: warning: internationalized messages should not contain the '\r' escape sequence
-rm -f eo.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o eo.gmo eo.po
-eo.po: 200 translated messages, 204 fuzzy translations, 512 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=es es.po guix.pot
-................................................................................................................................. done.
-rm -f es.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o es.gmo es.po
-es.po: 853 translated messages, 37 fuzzy translations, 26 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=fr fr.po guix.pot
-.................................................................................................................................. done.
-rm -f fr.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o fr.gmo fr.po
-fr.po: 853 translated messages, 38 fuzzy translations, 25 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=hu hu.po guix.pot
-........................................................................................................................................................................................................................................................................................................ done.
-rm -f hu.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o hu.gmo hu.po
-hu.po: 148 translated messages, 204 fuzzy translations, 564 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=pl pl.po guix.pot
-...................................................................................................................................................... done.
-rm -f pl.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o pl.gmo pl.po
-pl.po: 70 translated messages, 60 fuzzy translations, 786 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=pt_BR pt_BR.po guix.pot
-............................................................................................................................................................................................................. done.
-rm -f pt_BR.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o pt_BR.gmo pt_BR.po
-pt_BR.po: 565 translated messages, 113 fuzzy translations, 238 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=sr sr.po guix.pot
-.............................................................................................................................................................................................................................................................................................. done.
-rm -f sr.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o sr.gmo sr.po
-sr.po: 128 translated messages, 203 fuzzy translations, 585 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=sv sv.po guix.pot
-........................................................................................................... done.
-rm -f sv.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o sv.gmo sv.po
-sv.po: 478 translated messages, 15 fuzzy translations, 423 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=vi vi.po guix.pot
-............................................................................................................................................................................................................................................................................................................. done.
-rm -f vi.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o vi.gmo vi.po
-vi.po: 177 translated messages, 209 fuzzy translations, 530 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=zh_CN zh_CN.po guix.pot
-............................................................................................................................................. done.
-rm -f zh_CN.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o zh_CN.gmo zh_CN.po
-zh_CN.po: 79 translated messages, 81 fuzzy translations, 756 untranslated messages.
-make[3]: Leaving directory '/tmp/guix/po/guix'
-touch stamp-po
-make[2]: Leaving directory '/tmp/guix/po/guix'
-Making check in po/packages
-make[2]: Entering directory '/tmp/guix/po/packages'
-make guix-packages.pot-update
-make[3]: Entering directory '/tmp/guix/po/packages'
-/d' remove-potcdate.sin > t-remove-potcdate.sed
-mv t-remove-potcdate.sed remove-potcdate.sed
-/dev/null | grep -v 'libtool:' >/dev/null; then \
-  package_gnu='GNU '; \
-else \
-  package_gnu=''; \
-fi; \
-if test -n 'ludo@gnu.org' || test 'bug-guix@gnu.org' = '@'PACKAGE_BUGREPORT'@'; then \
-  msgid_bugs_address='ludo@gnu.org'; \
-else \
-  msgid_bugs_address='bug-guix@gnu.org'; \
-fi; \
-case `/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/xgettext --version | sed 1q | sed -e 's,^[^0-9]*,,'` in \
-  '' | 0.[0-9] | 0.[0-9].* | 0.1[0-5] | 0.1[0-5].* | 0.16 | 0.16.[0-1]*) \
-    /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/xgettext --default-domain=guix-packages --directory=../.. \
-      --add-comments=TRANSLATORS: --language=Scheme --from-code=UTF-8 --keyword=synopsis --keyword=description  \
-      --files-from=./POTFILES.in \
-      --copyright-holder='Ludovic Courtès' \
-msgid_bugs_address" \
-    ;; \
-  ,*) \
-    /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/xgettext --default-domain=guix-packages --directory=../.. \
-      --add-comments=TRANSLATORS: --language=Scheme --from-code=UTF-8 --keyword=synopsis --keyword=description  \
-      --files-from=./POTFILES.in \
-      --copyright-holder='Ludovic Courtès' \
-{package_gnu}guix" \
-      --package-version='1.0.1.3995-2b2f7' \
-msgid_bugs_address" \
-    ;; \
-esac
-test ! -f guix-packages.po || { \
-  if test -f ./guix-packages.pot; then \
-guix-packages.1po && \
-guix-packages.2po && \
-/dev/null 2>&1; then \
-      rm -f guix-packages.1po guix-packages.2po guix-packages.po; \
-    else \
-      rm -f guix-packages.1po guix-packages.2po ./guix-packages.pot && \
-      mv guix-packages.po ./guix-packages.pot; \
-    fi; \
-  else \
-    mv guix-packages.po ./guix-packages.pot; \
-  fi; \
-}
-make[3]: Leaving directory '/tmp/guix/po/packages'
-test ! -f ./guix-packages.pot || \
-  test -z "da.gmo de.gmo en@boldquot.gmo en@quot.gmo eo.gmo es.gmo fr.gmo hu.gmo pl.gmo pt_BR.gmo sr.gmo vi.gmo zh_CN.gmo" || make da.gmo de.gmo en@boldquot.gmo en@quot.gmo eo.gmo es.gmo fr.gmo hu.gmo pl.gmo pt_BR.gmo sr.gmo vi.gmo zh_CN.gmo
-make[3]: Entering directory '/tmp/guix/po/packages'
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=da da.po guix-packages.pot
-.............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................. done.
-rm -f da.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o da.gmo da.po
-da.po: 652 translated messages, 96 fuzzy translations, 3223 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=de de.po guix-packages.pot
-...................................................................................................................................................................................................................................................................................................................................................................................................................................... done.
-rm -f de.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o de.gmo de.po
-de.po: 25 translated messages, 24 fuzzy translations, 3922 untranslated messages.
-make[4]: Entering directory '/tmp/guix/po/packages'
-make en@boldquot.po-update
-make[5]: Entering directory '/tmp/guix/po/packages'
-/d' -e 's/HEADER/en@boldquot.header/g' ./insert-header.sin > en@boldquot.insert-header
-en@boldquot:
-en@boldquot:
-msgmerge  --lang=en@boldquot en@boldquot.po guix-packages.pot -o en@boldquot.new.po
-.............................................................................................................................................................................................................................................................................................................................................................................................................. done.
-make[5]: Leaving directory '/tmp/guix/po/packages'
-make[4]: Leaving directory '/tmp/guix/po/packages'
-rm -f en@boldquot.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o en@boldquot.gmo en@boldquot.po
-en@boldquot.po: 3971 translated messages.
-make[4]: Entering directory '/tmp/guix/po/packages'
-make en@quot.po-update
-make[5]: Entering directory '/tmp/guix/po/packages'
-/d' -e 's/HEADER/en@quot.header/g' ./insert-header.sin > en@quot.insert-header
-en@quot:
-en@quot:
-msgmerge  --lang=en@quot en@quot.po guix-packages.pot -o en@quot.new.po
-.............................................................................................................................................................................................................................................................................................................................................................................................................. done.
-make[5]: Leaving directory '/tmp/guix/po/packages'
-make[4]: Leaving directory '/tmp/guix/po/packages'
-rm -f en@quot.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o en@quot.gmo en@quot.po
-en@quot.po: 3971 translated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=eo eo.po guix-packages.pot
-......................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................... done.
-rm -f eo.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o eo.gmo eo.po
-eo.po: 173 translated messages, 235 fuzzy translations, 3563 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=es es.po guix-packages.pot
-................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................. done.
-rm -f es.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o es.gmo es.po
-es.po: 900 translated messages, 169 fuzzy translations, 2902 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=fr fr.po guix-packages.pot
-.................................................................................................................................................................................................................................................................................................................................................................................................................................................... done.
-rm -f fr.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o fr.gmo fr.po
-fr.po: 552 translated messages, 38 fuzzy translations, 3381 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=hu hu.po guix-packages.pot
-........................................................................................................................................................................................................................................................................................................................................................................................................................................................................... done.
-rm -f hu.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o hu.gmo hu.po
-hu.po: 243 translated messages, 61 fuzzy translations, 3667 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=pl pl.po guix-packages.pot
-................................................................................................................................................................................................................................................................................................................................................................................................................................................................ done.
-rm -f pl.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o pl.gmo pl.po
-pl.po: 42 translated messages, 50 fuzzy translations, 3879 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=pt_BR pt_BR.po guix-packages.pot
-.................................................................................................................................................................................................................................................................................................................................................................................................................................... done.
-rm -f pt_BR.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o pt_BR.gmo pt_BR.po
-pt_BR.po: 16 translated messages, 22 fuzzy translations, 3933 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=sr sr.po guix-packages.pot
-......................................................................................................................................................................................................................................................................................................................................................................................................................................... done.
-rm -f sr.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o sr.gmo sr.po
-sr.po: 26 translated messages, 27 fuzzy translations, 3918 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=vi vi.po guix-packages.pot
-.................................................................................................................................................................................................................................................................................................................................................................................................................................. done.
-rm -f vi.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o vi.gmo vi.po
-vi.po: 15 translated messages, 20 fuzzy translations, 3936 untranslated messages.
-/gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgmerge --update  --lang=zh_CN zh_CN.po guix-packages.pot
-......................................................................................................................................................................................................................................................................................................................................................................................................................... done.
-rm -f zh_CN.gmo && /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/msgfmt -c --statistics --verbose -o zh_CN.gmo zh_CN.po
-zh_CN.po: 30 translated messages, 11 fuzzy translations, 3930 untranslated messages.
-make[3]: Leaving directory '/tmp/guix/po/packages'
-touch stamp-po
-make[2]: Leaving directory '/tmp/guix/po/packages'
-make[2]: Entering directory '/tmp/guix'
-make[3]: Entering directory '/tmp/guix'
-make[3]: Leaving directory '/tmp/guix'
-Updating ./doc/version.texi
-  MAKEINFO doc/guix.info
-Updating ./doc/version-de.texi
-  MAKEINFO doc/guix.de.info
-Updating ./doc/version-es.texi
-  MAKEINFO doc/guix.es.info
-Updating ./doc/version-fr.texi
-  MAKEINFO doc/guix.fr.info
-Updating ./doc/version-ru.texi
-  MAKEINFO doc/guix.ru.info
-./doc/guix.ru.texi:924: warning: accent command `@,' must not be followed by whitespace
-Wide character in warn at /gnu/store/hzzsmxv7ns6z2znn0fn5aw5mq66w59p7-profile/bin/makeinfo line 720.
-./doc/guix.ru.texi:3940: warning: `.' or `,' must follow @xref, not д
-Updating ./doc/version-zh_CN.texi
-  MAKEINFO doc/guix.zh_CN.info
-  MAKEINFO doc/guix-cookbook.info
-  CXX      nix/nix-daemon/guix_daemon-nix-daemon.o
-  CXX      nix/nix-daemon/guix_daemon-guix-daemon.o
-  CXX      nix/libstore/libstore_a-gc.o
-  CXX      nix/libstore/libstore_a-globals.o
-  CXX      nix/libstore/libstore_a-misc.o
-  CXX      nix/libstore/libstore_a-references.o
-  CXX      nix/libstore/libstore_a-store-api.o
-  CXX      nix/libstore/libstore_a-optimise-store.o
-  CXX      nix/libstore/libstore_a-local-store.o
-  CXX      nix/libstore/libstore_a-build.o
-  CXX      nix/libstore/libstore_a-pathlocks.o
-  CXX      nix/libstore/libstore_a-derivations.o
-  CXX      nix/libstore/libstore_a-builtins.o
-  CXX      nix/libstore/libstore_a-sqlite.o
-  AR       libstore.a
-ar: `u' modifier ignored since `D' is the default (see `U')
-  CXX      nix/libutil/libutil_a-archive.o
-  CXX      nix/libutil/libutil_a-affinity.o
-  CXX      nix/libutil/libutil_a-serialise.o
-  CXX      nix/libutil/libutil_a-util.o
-  CXX      nix/libutil/libutil_a-hash.o
-  CXX      nix/libutil/libutil_a-gcrypt-hash.o
-  AR       libutil.a
-ar: `u' modifier ignored since `D' is the default (see `U')
-  CXX      nix/boost/format/libformat_a-free_funcs.o
-  CXX      nix/boost/format/libformat_a-parsing.o
-  CXX      nix/boost/format/libformat_a-format_implementation.o
-  AR       libformat.a
-ar: `u' modifier ignored since `D' is the default (see `U')
-  CXXLD    guix-daemon
-  GEN      scripts/guix
-Compiling Scheme modules...
-] LOAD     guix/base16.scm
-] LOAD     guix/base32.scm
-] LOAD     guix/base64.scm
-] LOAD     guix/ci.scm
-] LOAD     guix/cpio.scm
-] LOAD     guix/deprecation.scm
-] LOAD     guix/docker.scm
-] LOAD     guix/json.scm
-] LOAD     guix/records.scm
-] LOAD     guix/pki.scm
-] LOAD     guix/progress.scm
-] LOAD     guix/combinators.scm
-] LOAD     guix/memoization.scm
-] LOAD     guix/utils.scm
-] LOAD     guix/sets.scm
-] LOAD     guix/modules.scm
-] LOAD     guix/download.scm
-] LOAD     guix/discovery.scm
-] LOAD     guix/bzr-download.scm
-] LOAD     guix/git-download.scm
-] LOAD     guix/hg-download.scm
-] LOAD     guix/swh.scm
-] LOAD     guix/monads.scm
-] LOAD     guix/monad-repl.scm
-] LOAD     guix/gexp.scm
-] LOAD     guix/profiles.scm
-] LOAD     guix/serialization.scm
-] LOAD     guix/nar.scm
-] LOAD     guix/derivations.scm
-] LOAD     guix/grafts.scm
-] LOAD     guix/repl.scm
-] LOAD     guix/inferior.scm
-] LOAD     guix/describe.scm
-] LOAD     guix/channels.scm
-] LOAD     guix/gnu-maintenance.scm
-] LOAD     guix/self.scm
-] LOAD     guix/upstream.scm
-] LOAD     guix/licenses.scm
-] LOAD     guix/lint.scm
-] LOAD     guix/glob.scm
-] LOAD     guix/git.scm
-] LOAD     guix/graph.scm
-] LOAD     guix/cache.scm
-] LOAD     guix/cve.scm
-] LOAD     guix/workers.scm
-] LOAD     guix/zlib.scm
-] LOAD     guix/lzlib.scm
-] LOAD     guix/build-system.scm
-] LOAD     guix/build-system/android-ndk.scm
-] LOAD     guix/build-system/ant.scm
-] LOAD     guix/build-system/cargo.scm
-] LOAD     guix/build-system/clojure.scm
-] LOAD     guix/build-system/cmake.scm
-] LOAD     guix/build-system/dub.scm
-] LOAD     guix/build-system/dune.scm
-] LOAD     guix/build-system/emacs.scm
-] LOAD     guix/build-system/font.scm
-] LOAD     guix/build-system/go.scm
-] LOAD     guix/build-system/meson.scm
-] LOAD     guix/build-system/minify.scm
-] LOAD     guix/build-system/asdf.scm
-] LOAD     guix/build-system/glib-or-gtk.scm
-] LOAD     guix/build-system/gnu.scm
-] LOAD     guix/build-system/guile.scm
-] LOAD     guix/build-system/haskell.scm
-] LOAD     guix/build-system/julia.scm
-] LOAD     guix/build-system/linux-module.scm
-] LOAD     guix/build-system/node.scm
-] LOAD     guix/build-system/perl.scm
-] LOAD     guix/build-system/python.scm
-] LOAD     guix/build-system/ocaml.scm
-] LOAD     guix/build-system/waf.scm
-] LOAD     guix/build-system/r.scm
-] LOAD     guix/build-system/rakudo.scm
-] LOAD     guix/build-system/ruby.scm
-] LOAD     guix/build-system/scons.scm
-] LOAD     guix/build-system/texlive.scm
-] LOAD     guix/build-system/trivial.scm
-] LOAD     guix/ftp-client.scm
-] LOAD     guix/http-client.scm
-] LOAD     guix/gnupg.scm
-] LOAD     guix/elf.scm
-] LOAD     guix/profiling.scm
-] LOAD     guix/store.scm
-] LOAD     guix/cvs-download.scm
-] LOAD     guix/svn-download.scm
-] LOAD     guix/colors.scm
-] LOAD     guix/i18n.scm
-] LOAD     guix/diagnostics.scm
-] LOAD     guix/ui.scm
-] LOAD     guix/status.scm
-] LOAD     guix/build/android-ndk-build-system.scm
-] LOAD     guix/build/ant-build-system.scm
-] LOAD     guix/build/download.scm
-] LOAD     guix/build/download-nar.scm
-] LOAD     guix/build/cargo-build-system.scm
-] LOAD     guix/build/cargo-utils.scm
-] LOAD     guix/build/cmake-build-system.scm
-] LOAD     guix/build/dub-build-system.scm
-] LOAD     guix/build/dune-build-system.scm
-] LOAD     guix/build/emacs-build-system.scm
-] LOAD     guix/build/meson-build-system.scm
-] LOAD     guix/build/minify-build-system.scm
-] LOAD     guix/build/font-build-system.scm
-] LOAD     guix/build/go-build-system.scm
-] LOAD     guix/build/asdf-build-system.scm
-] LOAD     guix/build/bzr.scm
-] LOAD     guix/build/git.scm
-] LOAD     guix/build/hg.scm
-] LOAD     guix/build/glib-or-gtk-build-system.scm
-] LOAD     guix/build/gnu-build-system.scm
-] LOAD     guix/build/gnu-dist.scm
-] LOAD     guix/build/guile-build-system.scm
-] LOAD     guix/build/node-build-system.scm
-] LOAD     guix/build/perl-build-system.scm
-] LOAD     guix/build/python-build-system.scm
-] LOAD     guix/build/ocaml-build-system.scm
-] LOAD     guix/build/r-build-system.scm
-] LOAD     guix/build/rakudo-build-system.scm
-] LOAD     guix/build/ruby-build-system.scm
-] LOAD     guix/build/scons-build-system.scm
-] LOAD     guix/build/texlive-build-system.scm
-] LOAD     guix/build/waf-build-system.scm
-] LOAD     guix/build/haskell-build-system.scm
-] LOAD     guix/build/julia-build-system.scm
-] LOAD     guix/build/linux-module-build-system.scm
-] LOAD     guix/build/store-copy.scm
-] LOAD     guix/build/json.scm
-] LOAD     guix/build/utils.scm
-] LOAD     guix/build/union.scm
-] LOAD     guix/build/profiles.scm
-] LOAD     guix/build/compile.scm
-] LOAD     guix/build/rpath.scm
-] LOAD     guix/build/cvs.scm
-] LOAD     guix/build/svn.scm
-] LOAD     guix/build/syscalls.scm
-] LOAD     guix/build/gremlin.scm
-] LOAD     guix/build/debug-link.scm
-] LOAD     guix/build/clojure-build-system.scm
-] LOAD     guix/build/clojure-utils.scm
-] LOAD     guix/build/emacs-utils.scm
-] LOAD     guix/build/java-utils.scm
-] LOAD     guix/build/lisp-utils.scm
-] LOAD     guix/build/graft.scm
-] LOAD     guix/build/bournish.scm
-] LOAD     guix/build/qt-utils.scm
-] LOAD     guix/build/make-bootstrap.scm
-] LOAD     guix/search-paths.scm
-] LOAD     guix/packages.scm
-] LOAD     guix/import/cabal.scm
-] LOAD     guix/import/cpan.scm
-] LOAD     guix/import/cran.scm
-] LOAD     guix/import/crate.scm
-] LOAD     guix/import/elpa.scm
-] LOAD     guix/import/gem.scm
-] LOAD     guix/import/github.scm
-] LOAD     guix/import/gnome.scm
-] LOAD     guix/import/gnu.scm
-] LOAD     guix/import/hackage.scm
-] LOAD     guix/import/json.scm
-] LOAD     guix/import/kde.scm
-] LOAD     guix/import/launchpad.scm
-] LOAD     guix/import/opam.scm
-] LOAD     guix/import/print.scm
-] LOAD     guix/import/pypi.scm
-] LOAD     guix/import/snix.scm
-] LOAD     guix/import/stackage.scm
-] LOAD     guix/import/texlive.scm
-] LOAD     guix/import/utils.scm
-] LOAD     guix/scripts.scm
-] LOAD     guix/scripts/download.scm
-] LOAD     guix/scripts/perform-download.scm
-] LOAD     guix/scripts/build.scm
-] LOAD     guix/scripts/archive.scm
-] LOAD     guix/scripts/import.scm
-] LOAD     guix/scripts/package.scm
-] LOAD     guix/scripts/install.scm
-] LOAD     guix/scripts/remove.scm
-] LOAD     guix/scripts/upgrade.scm
-] LOAD     guix/scripts/search.scm
-] LOAD     guix/scripts/show.scm
-] LOAD     guix/scripts/gc.scm
-] LOAD     guix/scripts/hash.scm
-] LOAD     guix/scripts/pack.scm
-] LOAD     guix/scripts/pull.scm
-] LOAD     guix/scripts/processes.scm
-] LOAD     guix/scripts/substitute.scm
-] LOAD     guix/scripts/authenticate.scm
-] LOAD     guix/scripts/refresh.scm
-] LOAD     guix/scripts/repl.scm
-] LOAD     guix/scripts/describe.scm
-] LOAD     guix/scripts/system.scm
-] LOAD     guix/scripts/system/search.scm
-] LOAD     guix/scripts/system/reconfigure.scm
-] LOAD     guix/scripts/lint.scm
-] LOAD     guix/scripts/challenge.scm
-;;; Failed to autoload make-page-map in (charting):
-;;; missing interface for module (charting)
-;;; Failed to autoload make-page-map in (charting):
-;;; missing interface for module (charting)
-] LOAD     guix/scripts/import/crate.scm
-] LOAD     guix/scripts/import/cran.scm
-] LOAD     guix/scripts/import/elpa.scm
-] LOAD     guix/scripts/import/gem.scm
-] LOAD     guix/scripts/import/gnu.scm
-] LOAD     guix/scripts/import/hackage.scm
-] LOAD     guix/scripts/import/json.scm
-] LOAD     guix/scripts/import/nix.scm
-] LOAD     guix/scripts/import/opam.scm
-] LOAD     guix/scripts/import/pypi.scm
-] LOAD     guix/scripts/import/stackage.scm
-] LOAD     guix/scripts/import/texlive.scm
-] LOAD     guix/scripts/environment.scm
-] LOAD     guix/scripts/publish.scm
-] LOAD     guix/scripts/edit.scm
-] LOAD     guix/scripts/size.scm
-] LOAD     guix/scripts/graph.scm
-] LOAD     guix/scripts/weather.scm
-] LOAD     guix/scripts/container.scm
-] LOAD     guix/scripts/container/exec.scm
-] LOAD     guix/scripts/deploy.scm
-] LOAD     guix.scm
-] LOAD     gnu.scm
-] LOAD     gnu/artwork.scm
-] LOAD     gnu/bootloader.scm
-] LOAD     gnu/bootloader/grub.scm
-] LOAD     gnu/bootloader/extlinux.scm
-] LOAD     gnu/bootloader/u-boot.scm
-] LOAD     gnu/bootloader/depthcharge.scm
-] LOAD     gnu/ci.scm
-] LOAD     gnu/packages.scm
-] LOAD     gnu/packages/abduco.scm
-] LOAD     gnu/packages/abiword.scm
-] LOAD     gnu/packages/accessibility.scm
-] LOAD     gnu/packages/acct.scm
-] LOAD     gnu/packages/acl.scm
-] LOAD     gnu/packages/ada.scm
-] LOAD     gnu/packages/admin.scm
-] LOAD     gnu/packages/adns.scm
-] LOAD     gnu/packages/agda.scm
-] LOAD     gnu/packages/algebra.scm
-] LOAD     gnu/packages/aidc.scm
-] LOAD     gnu/packages/android.scm
-] LOAD     gnu/packages/animation.scm
-] LOAD     gnu/packages/anthy.scm
-] LOAD     gnu/packages/antivirus.scm
-] LOAD     gnu/packages/apl.scm
-] LOAD     gnu/packages/apr.scm
-] LOAD     gnu/packages/arcan.scm
-] LOAD     gnu/packages/aspell.scm
-] LOAD     gnu/packages/assembly.scm
-] LOAD     gnu/packages/astronomy.scm
-] LOAD     gnu/packages/attr.scm
-] LOAD     gnu/packages/audio.scm
-] LOAD     gnu/packages/augeas.scm
-] LOAD     gnu/packages/authentication.scm
-] LOAD     gnu/packages/autogen.scm
-] LOAD     gnu/packages/autotools.scm
-] LOAD     gnu/packages/avahi.scm
-] LOAD     gnu/packages/avr.scm
-] LOAD     gnu/packages/axoloti.scm
-] LOAD     gnu/packages/backup.scm
-] LOAD     gnu/packages/base.scm
-] LOAD     gnu/packages/bash.scm
-] LOAD     gnu/packages/batik.scm
-] LOAD     gnu/packages/bdw-gc.scm
-] LOAD     gnu/packages/benchmark.scm
-] LOAD     gnu/packages/bioconductor.scm
-] LOAD     gnu/packages/bioinformatics.scm
-] LOAD     gnu/packages/bittorrent.scm
-] LOAD     gnu/packages/bison.scm
-] LOAD     gnu/packages/boost.scm
-] LOAD     gnu/packages/bootloaders.scm
-] LOAD     gnu/packages/bootstrap.scm
-] LOAD     gnu/packages/build-tools.scm
-] LOAD     gnu/packages/busybox.scm
-] LOAD     gnu/packages/c.scm
-] LOAD     gnu/packages/calcurse.scm
-] LOAD     gnu/packages/ccache.scm
-] LOAD     gnu/packages/cdrom.scm
-] LOAD     gnu/packages/cedille.scm
-] LOAD     gnu/packages/certs.scm
-] LOAD     gnu/packages/check.scm
-] LOAD     gnu/packages/chemistry.scm
-] LOAD     gnu/packages/chez.scm
-] LOAD     gnu/packages/chromium.scm
-] LOAD     gnu/packages/ci.scm
-] LOAD     gnu/packages/cinnamon.scm
-] LOAD     gnu/packages/clojure.scm
-] LOAD     gnu/packages/cluster.scm
-] LOAD     gnu/packages/cmake.scm
-] LOAD     gnu/packages/cobol.scm
-] LOAD     gnu/packages/code.scm
-] LOAD     gnu/packages/commencement.scm
-] LOAD     gnu/packages/compression.scm
-] LOAD     gnu/packages/compton.scm
-] LOAD     gnu/packages/conky.scm
-] LOAD     gnu/packages/connman.scm
-] LOAD     gnu/packages/cook.scm
-] LOAD     gnu/packages/coq.scm
-] LOAD     gnu/packages/cpio.scm
-] LOAD     gnu/packages/cpp.scm
-] LOAD     gnu/packages/cppi.scm
-] LOAD     gnu/packages/cran.scm
-] LOAD     gnu/packages/crates-io.scm
-] LOAD     gnu/packages/cross-base.scm
-] LOAD     gnu/packages/crypto.scm
-] LOAD     gnu/packages/cryptsetup.scm
-] LOAD     gnu/packages/cups.scm
-] LOAD     gnu/packages/curl.scm
-] LOAD     gnu/packages/cvassistant.scm
-] LOAD     gnu/packages/cyrus-sasl.scm
-] LOAD     gnu/packages/databases.scm
-] LOAD     gnu/packages/datamash.scm
-] LOAD     gnu/packages/datastructures.scm
-] LOAD     gnu/packages/dav.scm
-] LOAD     gnu/packages/dbm.scm
-] LOAD     gnu/packages/dc.scm
-] LOAD     gnu/packages/debian.scm
-] LOAD     gnu/packages/debug.scm
-] LOAD     gnu/packages/dejagnu.scm
-] LOAD     gnu/packages/dico.scm
-] LOAD     gnu/packages/dictionaries.scm
-] LOAD     gnu/packages/diffoscope.scm
-] LOAD     gnu/packages/digest.scm
-] LOAD     gnu/packages/direct-connect.scm
-] LOAD     gnu/packages/disk.scm
-] LOAD     gnu/packages/distributed.scm
-] LOAD     gnu/packages/display-managers.scm
-] LOAD     gnu/packages/django.scm
-] LOAD     gnu/packages/djvu.scm
-] LOAD     gnu/packages/dlang.scm
-] LOAD     gnu/packages/dns.scm
-] LOAD     gnu/packages/docbook.scm
-] LOAD     gnu/packages/docker.scm
-] LOAD     gnu/packages/documentation.scm
-] LOAD     gnu/packages/dunst.scm
-] LOAD     gnu/packages/dvtm.scm
-] LOAD     gnu/packages/easyrpg.scm
-] LOAD     gnu/packages/ebook.scm
-] LOAD     gnu/packages/ed.scm
-] LOAD     gnu/packages/education.scm
-] LOAD     gnu/packages/efi.scm
-] LOAD     gnu/packages/electronics.scm
-] LOAD     gnu/packages/elf.scm
-] LOAD     gnu/packages/elixir.scm
-] LOAD     gnu/packages/elm.scm
-] LOAD     gnu/packages/embedded.scm
-] LOAD     gnu/packages/emacs.scm
-] LOAD     gnu/packages/emacs-xyz.scm
-] LOAD     gnu/packages/emulators.scm
-] LOAD     gnu/packages/enchant.scm
-] LOAD     gnu/packages/engineering.scm
-] LOAD     gnu/packages/enlightenment.scm
-] LOAD     gnu/packages/entr.scm
-] LOAD     gnu/packages/erlang.scm
-] LOAD     gnu/packages/fabric-management.scm
-] LOAD     gnu/packages/fcitx.scm
-] LOAD     gnu/packages/figlet.scm
-] LOAD     gnu/packages/file.scm
-] LOAD     gnu/packages/file-systems.scm
-] LOAD     gnu/packages/finance.scm
-] LOAD     gnu/packages/firmware.scm
-] LOAD     gnu/packages/flashing-tools.scm
-] LOAD     gnu/packages/flex.scm
-] LOAD     gnu/packages/fltk.scm
-] LOAD     gnu/packages/fonts.scm
-] LOAD     gnu/packages/fontutils.scm
-] LOAD     gnu/packages/fpga.scm
-] LOAD     gnu/packages/forth.scm
-] LOAD     gnu/packages/freedesktop.scm
-] LOAD     gnu/packages/freeipmi.scm
-] LOAD     gnu/packages/ftp.scm
-] LOAD     gnu/packages/fribidi.scm
-] LOAD     gnu/packages/fvwm.scm
-] LOAD     gnu/packages/game-development.scm
-] LOAD     gnu/packages/games.scm
-] LOAD     gnu/packages/gawk.scm
-] LOAD     gnu/packages/gcal.scm
-] LOAD     gnu/packages/gcc.scm
-] LOAD     gnu/packages/gd.scm
-] LOAD     gnu/packages/gdb.scm
-] LOAD     gnu/packages/genealogy.scm
-] LOAD     gnu/packages/genimage.scm
-] LOAD     gnu/packages/geo.scm
-] LOAD     gnu/packages/gettext.scm
-] LOAD     gnu/packages/ghostscript.scm
-] LOAD     gnu/packages/gimp.scm
-] LOAD     gnu/packages/gkrellm.scm
-] LOAD     gnu/packages/gl.scm
-] LOAD     gnu/packages/glib.scm
-] LOAD     gnu/packages/gnome.scm
-] LOAD     gnu/packages/gnu-doc.scm
-] LOAD     gnu/packages/gnucash.scm
-] LOAD     gnu/packages/gnunet.scm
-] LOAD     gnu/packages/gnupg.scm
-] LOAD     gnu/packages/gnustep.scm
-] LOAD     gnu/packages/gnuzilla.scm
-] LOAD     gnu/packages/gnu-pw-mgr.scm
-] LOAD     gnu/packages/gobby.scm
-] LOAD     gnu/packages/golang.scm
-] LOAD     gnu/packages/gperf.scm
-] LOAD     gnu/packages/gpodder.scm
-] LOAD     gnu/packages/gprolog.scm
-] LOAD     gnu/packages/gps.scm
-] LOAD     gnu/packages/graph.scm
-] LOAD     gnu/packages/graphics.scm
-] LOAD     gnu/packages/graphviz.scm
-] LOAD     gnu/packages/groff.scm
-] LOAD     gnu/packages/groovy.scm
-] LOAD     gnu/packages/gsasl.scm
-] LOAD     gnu/packages/gstreamer.scm
-] LOAD     gnu/packages/gtk.scm
-] LOAD     gnu/packages/guile.scm
-] LOAD     gnu/packages/guile-wm.scm
-] LOAD     gnu/packages/guile-xyz.scm
-] LOAD     gnu/packages/gv.scm
-] LOAD     gnu/packages/gxmessage.scm
-] LOAD     gnu/packages/hardware.scm
-] LOAD     gnu/packages/haskell.scm
-] LOAD     gnu/packages/haskell-apps.scm
-] LOAD     gnu/packages/haskell-check.scm
-] LOAD     gnu/packages/haskell-crypto.scm
-] LOAD     gnu/packages/haskell-web.scm
-] LOAD     gnu/packages/haskell-xyz.scm
-] LOAD     gnu/packages/ham-radio.scm
-] LOAD     gnu/packages/hexedit.scm
-] LOAD     gnu/packages/hugs.scm
-] LOAD     gnu/packages/hurd.scm
-] LOAD     gnu/packages/hyperledger.scm
-] LOAD     gnu/packages/i2p.scm
-] LOAD     gnu/packages/ibus.scm
-] LOAD     gnu/packages/icu4c.scm
-] LOAD     gnu/packages/idris.scm
-] LOAD     gnu/packages/idutils.scm
-] LOAD     gnu/packages/image.scm
-] LOAD     gnu/packages/image-processing.scm
-] LOAD     gnu/packages/image-viewers.scm
-] LOAD     gnu/packages/imagemagick.scm
-] LOAD     gnu/packages/inklingreader.scm
-] LOAD     gnu/packages/inkscape.scm
-] LOAD     gnu/packages/ipfs.scm
-] LOAD     gnu/packages/irc.scm
-] LOAD     gnu/packages/iso-codes.scm
-] LOAD     gnu/packages/java.scm
-] LOAD     gnu/packages/java-compression.scm
-] LOAD     gnu/packages/java-maths.scm
-] LOAD     gnu/packages/javascript.scm
-] LOAD     gnu/packages/jemalloc.scm
-] LOAD     gnu/packages/jrnl.scm
-] LOAD     gnu/packages/jose.scm
-] LOAD     gnu/packages/julia.scm
-] LOAD     gnu/packages/jupyter.scm
-] LOAD     gnu/packages/kawa.scm
-] LOAD     gnu/packages/kde.scm
-] LOAD     gnu/packages/kde-frameworks.scm
-] LOAD     gnu/packages/kde-plasma.scm
-] LOAD     gnu/packages/kerberos.scm
-] LOAD     gnu/packages/key-mon.scm
-] LOAD     gnu/packages/kodi.scm
-] LOAD     gnu/packages/language.scm
-] LOAD     gnu/packages/lego.scm
-] LOAD     gnu/packages/less.scm
-] LOAD     gnu/packages/lesstif.scm
-] LOAD     gnu/packages/libbsd.scm
-] LOAD     gnu/packages/libcanberra.scm
-] LOAD     gnu/packages/libdaemon.scm
-] LOAD     gnu/packages/libedit.scm
-] LOAD     gnu/packages/libevent.scm
-] LOAD     gnu/packages/libffcall.scm
-] LOAD     gnu/packages/libffi.scm
-] LOAD     gnu/packages/libftdi.scm
-] LOAD     gnu/packages/license.scm
-] LOAD     gnu/packages/calendar.scm
-] LOAD     gnu/packages/libidn.scm
-] LOAD     gnu/packages/libphidget.scm
-] LOAD     gnu/packages/libreoffice.scm
-] LOAD     gnu/packages/libsigsegv.scm
-] LOAD     gnu/packages/libunistring.scm
-] LOAD     gnu/packages/libusb.scm
-] LOAD     gnu/packages/libunwind.scm
-] LOAD     gnu/packages/lighting.scm
-] LOAD     gnu/packages/linux.scm
-] LOAD     gnu/packages/lirc.scm
-] LOAD     gnu/packages/lisp.scm
-] LOAD     gnu/packages/llvm.scm
-] LOAD     gnu/packages/lout.scm
-] LOAD     gnu/packages/logging.scm
-] LOAD     gnu/packages/logo.scm
-] LOAD     gnu/packages/lolcode.scm
-] LOAD     gnu/packages/lsof.scm
-] LOAD     gnu/packages/lua.scm
-] LOAD     gnu/packages/lxde.scm
-] LOAD     gnu/packages/lxqt.scm
-] LOAD     gnu/packages/m4.scm
-] LOAD     gnu/packages/machine-learning.scm
-] LOAD     gnu/packages/magic-wormhole.scm
-] LOAD     gnu/packages/man.scm
-] LOAD     gnu/packages/mastodon.scm
-] LOAD     gnu/packages/mail.scm
-] LOAD     gnu/packages/make-bootstrap.scm
-] LOAD     gnu/packages/markup.scm
-] LOAD     gnu/packages/marst.scm
-] LOAD     gnu/packages/mate.scm
-] LOAD     gnu/packages/maths.scm
-] LOAD     gnu/packages/maven.scm
-] LOAD     gnu/packages/mc.scm
-] LOAD     gnu/packages/mcrypt.scm
-] LOAD     gnu/packages/medical.scm
-] LOAD     gnu/packages/mes.scm
-] LOAD     gnu/packages/messaging.scm
-] LOAD     gnu/packages/mingw.scm
-] LOAD     gnu/packages/microcom.scm
-] LOAD     gnu/packages/moe.scm
-] LOAD     gnu/packages/motti.scm
-] LOAD     gnu/packages/monitoring.scm
-] LOAD     gnu/packages/mono.scm
-] LOAD     gnu/packages/moreutils.scm
-] LOAD     gnu/packages/mpd.scm
-] LOAD     gnu/packages/mp3.scm
-] LOAD     gnu/packages/mpi.scm
-] LOAD     gnu/packages/multiprecision.scm
-] LOAD     gnu/packages/music.scm
-] LOAD     gnu/packages/musl.scm
-] LOAD     gnu/packages/mtools.scm
-] LOAD     gnu/packages/nano.scm
-] LOAD     gnu/packages/ncdu.scm
-] LOAD     gnu/packages/ncurses.scm
-] LOAD     gnu/packages/netpbm.scm
-] LOAD     gnu/packages/nettle.scm
-] LOAD     gnu/packages/networking.scm
-] LOAD     gnu/packages/nfs.scm
-] LOAD     gnu/packages/nickle.scm
-] LOAD     gnu/packages/nim.scm
-] LOAD     gnu/packages/ninja.scm
-] LOAD     gnu/packages/node.scm
-] LOAD     gnu/packages/noweb.scm
-] LOAD     gnu/packages/nss.scm
-] LOAD     gnu/packages/ntp.scm
-] LOAD     gnu/packages/nutrition.scm
-] LOAD     gnu/packages/nvi.scm
-] LOAD     gnu/packages/ocaml.scm
-] LOAD     gnu/packages/ocr.scm
-] LOAD     gnu/packages/onc-rpc.scm
-] LOAD     gnu/packages/opencl.scm
-] LOAD     gnu/packages/openbox.scm
-] LOAD     gnu/packages/openldap.scm
-] LOAD     gnu/packages/openstack.scm
-] LOAD     gnu/packages/orpheus.scm
-] LOAD     gnu/packages/ots.scm
-] LOAD     gnu/packages/package-management.scm
-] LOAD     gnu/packages/parallel.scm
-] LOAD     gnu/packages/password-utils.scm
-] LOAD     gnu/packages/patchutils.scm
-] LOAD     gnu/packages/pciutils.scm
-] LOAD     gnu/packages/pcre.scm
-] LOAD     gnu/packages/pdf.scm
-] LOAD     gnu/packages/pem.scm
-] LOAD     gnu/packages/perl.scm
-] LOAD     gnu/packages/perl-check.scm
-] LOAD     gnu/packages/perl-compression.scm
-] LOAD     gnu/packages/perl-web.scm
-] LOAD     gnu/packages/perl6.scm
-] LOAD     gnu/packages/photo.scm
-] LOAD     gnu/packages/phabricator.scm
-] LOAD     gnu/packages/php.scm
-] LOAD     gnu/packages/pkg-config.scm
-] LOAD     gnu/packages/plotutils.scm
-] LOAD     gnu/packages/poedit.scm
-] LOAD     gnu/packages/polkit.scm
-] LOAD     gnu/packages/popt.scm
-] LOAD     gnu/packages/printers.scm
-] LOAD     gnu/packages/profiling.scm
-] LOAD     gnu/packages/pth.scm
-] LOAD     gnu/packages/pulseaudio.scm
-] LOAD     gnu/packages/pumpio.scm
-] LOAD     gnu/packages/pretty-print.scm
-] LOAD     gnu/packages/protobuf.scm
-] LOAD     gnu/packages/pure.scm
-] LOAD     gnu/packages/pv.scm
-] LOAD     gnu/packages/python.scm
-] LOAD     gnu/packages/python-check.scm
-] LOAD     gnu/packages/python-compression.scm
-] LOAD     gnu/packages/python-crypto.scm
-] LOAD     gnu/packages/python-web.scm
-] LOAD     gnu/packages/python-xyz.scm
-] LOAD     gnu/packages/toys.scm
-] LOAD     gnu/packages/tryton.scm
-] LOAD     gnu/packages/qt.scm
-] LOAD     gnu/packages/ragel.scm
-] LOAD     gnu/packages/rails.scm
-] LOAD     gnu/packages/ratpoison.scm
-] LOAD     gnu/packages/rdesktop.scm
-] LOAD     gnu/packages/rdf.scm
-] LOAD     gnu/packages/re2c.scm
-] LOAD     gnu/packages/readline.scm
-] LOAD     gnu/packages/rednotebook.scm
-] LOAD     gnu/packages/regex.scm
-] LOAD     gnu/packages/robotics.scm
-] LOAD     gnu/packages/rrdtool.scm
-] LOAD     gnu/packages/rsync.scm
-] LOAD     gnu/packages/ruby.scm
-] LOAD     gnu/packages/rush.scm
-] LOAD     gnu/packages/rust.scm
-] LOAD     gnu/packages/samba.scm
-] LOAD     gnu/packages/sagemath.scm
-] LOAD     gnu/packages/sawfish.scm
-] LOAD     gnu/packages/scanner.scm
-] LOAD     gnu/packages/scheme.scm
-] LOAD     gnu/packages/screen.scm
-] LOAD     gnu/packages/scribus.scm
-] LOAD     gnu/packages/scsi.scm
-] LOAD     gnu/packages/sdcc.scm
-] LOAD     gnu/packages/sdl.scm
-] LOAD     gnu/packages/search.scm
-] LOAD     gnu/packages/security-token.scm
-] LOAD     gnu/packages/selinux.scm
-] LOAD     gnu/packages/serialization.scm
-] LOAD     gnu/packages/serveez.scm
-] LOAD     gnu/packages/shells.scm
-] LOAD     gnu/packages/shellutils.scm
-] LOAD     gnu/packages/simh.scm
-] LOAD     gnu/packages/simulation.scm
-] LOAD     gnu/packages/skarnet.scm
-] LOAD     gnu/packages/skribilo.scm
-] LOAD     gnu/packages/slang.scm
-] LOAD     gnu/packages/smalltalk.scm
-] LOAD     gnu/packages/sml.scm
-] LOAD     gnu/packages/speech.scm
-] LOAD     gnu/packages/sphinx.scm
-] LOAD     gnu/packages/spice.scm
-] LOAD     gnu/packages/sqlite.scm
-] LOAD     gnu/packages/squirrel.scm
-] LOAD     gnu/packages/ssh.scm
-] LOAD     gnu/packages/sssd.scm
-] LOAD     gnu/packages/stalonetray.scm
-] LOAD     gnu/packages/statistics.scm
-] LOAD     gnu/packages/stb.scm
-] LOAD     gnu/packages/storage.scm
-] LOAD     gnu/packages/suckless.scm
-] LOAD     gnu/packages/swig.scm
-] LOAD     gnu/packages/sync.scm
-] LOAD     gnu/packages/syncthing.scm
-] LOAD     gnu/packages/synergy.scm
-] LOAD     gnu/packages/syndication.scm
-] LOAD     gnu/packages/task-management.scm
-] LOAD     gnu/packages/tbb.scm
-] LOAD     gnu/packages/tcl.scm
-] LOAD     gnu/packages/telephony.scm
-] LOAD     gnu/packages/terminals.scm
-] LOAD     gnu/packages/terraform.scm
-] LOAD     gnu/packages/texinfo.scm
-] LOAD     gnu/packages/tex.scm
-] LOAD     gnu/packages/textutils.scm
-] LOAD     gnu/packages/text-editors.scm
-] LOAD     gnu/packages/tigervnc.scm
-] LOAD     gnu/packages/time.scm
-] LOAD     gnu/packages/tls.scm
-] LOAD     gnu/packages/tmux.scm
-] LOAD     gnu/packages/tor.scm
-] LOAD     gnu/packages/tv.scm
-] LOAD     gnu/packages/uml.scm
-] LOAD     gnu/packages/unrtf.scm
-] LOAD     gnu/packages/upnp.scm
-] LOAD     gnu/packages/usb-modeswitch.scm
-] LOAD     gnu/packages/uucp.scm
-] LOAD     gnu/packages/valgrind.scm
-] LOAD     gnu/packages/version-control.scm
-] LOAD     gnu/packages/video.scm
-] LOAD     gnu/packages/vim.scm
-] LOAD     gnu/packages/virtualization.scm
-] LOAD     gnu/packages/vpn.scm
-] LOAD     gnu/packages/vulkan.scm
-] LOAD     gnu/packages/w3m.scm
-] LOAD     gnu/packages/wdiff.scm
-] LOAD     gnu/packages/web.scm
-] LOAD     gnu/packages/web-browsers.scm
-] LOAD     gnu/packages/webkit.scm
-] LOAD     gnu/packages/wget.scm
-] LOAD     gnu/packages/wicd.scm
-] LOAD     gnu/packages/wine.scm
-] LOAD     gnu/packages/wireservice.scm
-] LOAD     gnu/packages/wm.scm
-] LOAD     gnu/packages/wordnet.scm
-] LOAD     gnu/packages/wv.scm
-] LOAD     gnu/packages/wxwidgets.scm
-] LOAD     gnu/packages/xfig.scm
-] LOAD     gnu/packages/xiph.scm
-] LOAD     gnu/packages/xml.scm
-] LOAD     gnu/packages/xnee.scm
-] LOAD     gnu/packages/xdisorg.scm
-] LOAD     gnu/packages/xorg.scm
-] LOAD     gnu/packages/xfce.scm
-] LOAD     gnu/packages/zile.scm
-] LOAD     gnu/packages/zwave.scm
-] LOAD     gnu/services.scm
-] LOAD     gnu/services/admin.scm
-] LOAD     gnu/services/audio.scm
-] LOAD     gnu/services/auditd.scm
-] LOAD     gnu/services/avahi.scm
-] LOAD     gnu/services/base.scm
-] LOAD     gnu/services/certbot.scm
-] LOAD     gnu/services/cgit.scm
-] LOAD     gnu/services/configuration.scm
-] LOAD     gnu/services/cuirass.scm
-] LOAD     gnu/services/cups.scm
-] LOAD     gnu/services/databases.scm
-] LOAD     gnu/services/dbus.scm
-] LOAD     gnu/services/desktop.scm
-] LOAD     gnu/services/dict.scm
-] LOAD     gnu/services/dns.scm
-] LOAD     gnu/services/docker.scm
-] LOAD     gnu/services/authentication.scm
-] LOAD     gnu/services/games.scm
-] LOAD     gnu/services/getmail.scm
-] LOAD     gnu/services/guix.scm
-] LOAD     gnu/services/kerberos.scm
-] LOAD     gnu/services/lirc.scm
-] LOAD     gnu/services/virtualization.scm
-] LOAD     gnu/services/mail.scm
-] LOAD     gnu/services/mcron.scm
-] LOAD     gnu/services/messaging.scm
-] LOAD     gnu/services/monitoring.scm
-] LOAD     gnu/services/networking.scm
-] LOAD     gnu/services/nix.scm
-] LOAD     gnu/services/nfs.scm
-] LOAD     gnu/services/security-token.scm
-] LOAD     gnu/services/shepherd.scm
-] LOAD     gnu/services/sound.scm
-] LOAD     gnu/services/herd.scm
-] LOAD     gnu/services/pm.scm
-] LOAD     gnu/services/rsync.scm
-] LOAD     gnu/services/sddm.scm
-] LOAD     gnu/services/spice.scm
-] LOAD     gnu/services/ssh.scm
-] LOAD     gnu/services/sysctl.scm
-] LOAD     gnu/services/telephony.scm
-] LOAD     gnu/services/version-control.scm
-] LOAD     gnu/services/vpn.scm
-] LOAD     gnu/services/web.scm
-] LOAD     gnu/services/xorg.scm
-] LOAD     gnu/system.scm
-] LOAD     gnu/system/accounts.scm
-] LOAD     gnu/system/file-systems.scm
-] LOAD     gnu/system/install.scm
-] LOAD     gnu/system/keyboard.scm
-] LOAD     gnu/system/linux-container.scm
-] LOAD     gnu/system/linux-initrd.scm
-] LOAD     gnu/system/locale.scm
-] LOAD     gnu/system/mapped-devices.scm
-] LOAD     gnu/system/nss.scm
-] LOAD     gnu/system/pam.scm
-] LOAD     gnu/system/shadow.scm
-] LOAD     gnu/system/uuid.scm
-] LOAD     gnu/system/vm.scm
-] LOAD     gnu/machine.scm
-] LOAD     gnu/machine/ssh.scm
-] LOAD     gnu/build/accounts.scm
-] LOAD     gnu/build/activation.scm
-] LOAD     gnu/build/bootloader.scm
-] LOAD     gnu/build/cross-toolchain.scm
-] LOAD     gnu/build/file-systems.scm
-] LOAD     gnu/build/install.scm
-] LOAD     gnu/build/linux-boot.scm
-] LOAD     gnu/build/linux-container.scm
-] LOAD     gnu/build/linux-initrd.scm
-] LOAD     gnu/build/linux-modules.scm
-] LOAD     gnu/build/marionette.scm
-] LOAD     gnu/build/vm.scm
-] LOAD     gnu/tests.scm
-] LOAD     gnu/tests/audio.scm
-] LOAD     gnu/tests/base.scm
-] LOAD     gnu/tests/databases.scm
-] LOAD     gnu/tests/desktop.scm
-] LOAD     gnu/tests/dict.scm
-] LOAD     gnu/tests/docker.scm
-random seed for tests: 1570070944
-] LOAD     gnu/tests/guix.scm
-] LOAD     gnu/tests/monitoring.scm
-] LOAD     gnu/tests/nfs.scm
-] LOAD     gnu/tests/install.scm
-] LOAD     gnu/tests/ldap.scm
-] LOAD     gnu/tests/mail.scm
-] LOAD     gnu/tests/messaging.scm
-] LOAD     gnu/tests/networking.scm
-] LOAD     gnu/tests/reconfigure.scm
-] LOAD     gnu/tests/rsync.scm
-] LOAD     gnu/tests/security-token.scm
-] LOAD     gnu/tests/singularity.scm
-] LOAD     gnu/tests/ssh.scm
-] LOAD     gnu/tests/version-control.scm
-] LOAD     gnu/tests/virtualization.scm
-] LOAD     gnu/tests/web.scm
-] LOAD     guix/ssh.scm
-] LOAD     guix/remote.scm
-] LOAD     guix/scripts/copy.scm
-] LOAD     guix/store/ssh.scm
-] LOAD     guix/scripts/offload.scm
-] LOAD     guix/store/database.scm
-] LOAD     guix/store/deduplication.scm
-] LOAD     guix/store/roots.scm
-] LOAD     guix/config.scm
-] LOAD     guix/tests.scm
-] LOAD     guix/tests/http.scm
-] LOAD     guix/tests/git.scm
-] GUILEC   guix/base16.go
-] GUILEC   guix/base32.go
-] GUILEC   guix/base64.go
-] GUILEC   guix/ci.go
-] GUILEC   guix/cpio.go
-] GUILEC   guix/deprecation.go
-] GUILEC   guix/docker.go
-] GUILEC   guix/json.go
-] GUILEC   guix/records.go
-] GUILEC   guix/pki.go
-] GUILEC   guix/progress.go
-] GUILEC   guix/combinators.go
-] GUILEC   guix/memoization.go
-] GUILEC   guix/utils.go
-] GUILEC   guix/sets.go
-] GUILEC   guix/modules.go
-] GUILEC   guix/download.go
-] GUILEC   guix/discovery.go
-] GUILEC   guix/bzr-download.go
-] GUILEC   guix/git-download.go
-] GUILEC   guix/hg-download.go
-] GUILEC   guix/swh.go
-] GUILEC   guix/monads.go
-] GUILEC   guix/monad-repl.go
-] GUILEC   guix/gexp.go
-] GUILEC   guix/profiles.go
-] GUILEC   guix/serialization.go
-] GUILEC   guix/nar.go
-] GUILEC   guix/derivations.go
-] GUILEC   guix/grafts.go
-] GUILEC   guix/repl.go
-] GUILEC   guix/inferior.go
-] GUILEC   guix/describe.go
-] GUILEC   guix/channels.go
-] GUILEC   guix/gnu-maintenance.go
-] GUILEC   guix/self.go
-] GUILEC   guix/upstream.go
-] GUILEC   guix/licenses.go
-] GUILEC   guix/lint.go
-] GUILEC   guix/glob.go
-] GUILEC   guix/git.go
-] GUILEC   guix/graph.go
-] GUILEC   guix/cache.go
-] GUILEC   guix/cve.go
-] GUILEC   guix/workers.go
-] GUILEC   guix/zlib.go
-] GUILEC   guix/lzlib.go
-] GUILEC   guix/build-system.go
-] GUILEC   guix/build-system/android-ndk.go
-] GUILEC   guix/build-system/ant.go
-] GUILEC   guix/build-system/cargo.go
-] GUILEC   guix/build-system/clojure.go
-] GUILEC   guix/build-system/cmake.go
-] GUILEC   guix/build-system/dub.go
-] GUILEC   guix/build-system/dune.go
-] GUILEC   guix/build-system/emacs.go
-] GUILEC   guix/build-system/font.go
-] GUILEC   guix/build-system/go.go
-] GUILEC   guix/build-system/meson.go
-] GUILEC   guix/build-system/minify.go
-] GUILEC   guix/build-system/asdf.go
-] GUILEC   guix/build-system/glib-or-gtk.go
-] GUILEC   guix/build-system/gnu.go
-] GUILEC   guix/build-system/guile.go
-] GUILEC   guix/build-system/haskell.go
-] GUILEC   guix/build-system/julia.go
-] GUILEC   guix/build-system/linux-module.go
-] GUILEC   guix/build-system/node.go
-] GUILEC   guix/build-system/perl.go
-] GUILEC   guix/build-system/python.go
-] GUILEC   guix/build-system/ocaml.go
-] GUILEC   guix/build-system/waf.go
-] GUILEC   guix/build-system/r.go
-] GUILEC   guix/build-system/rakudo.go
-] GUILEC   guix/build-system/ruby.go
-] GUILEC   guix/build-system/scons.go
-] GUILEC   guix/build-system/texlive.go
-] GUILEC   guix/build-system/trivial.go
-] GUILEC   guix/ftp-client.go
-] GUILEC   guix/http-client.go
-] GUILEC   guix/gnupg.go
-] GUILEC   guix/elf.go
-] GUILEC   guix/profiling.go
-] GUILEC   guix/store.go
-] GUILEC   guix/cvs-download.go
-] GUILEC   guix/svn-download.go
-] GUILEC   guix/colors.go
-] GUILEC   guix/i18n.go
-] GUILEC   guix/diagnostics.go
-] GUILEC   guix/ui.go
-] GUILEC   guix/status.go
-] GUILEC   guix/build/android-ndk-build-system.go
-] GUILEC   guix/build/ant-build-system.go
-] GUILEC   guix/build/download.go
-] GUILEC   guix/build/download-nar.go
-] GUILEC   guix/build/cargo-build-system.go
-] GUILEC   guix/build/cargo-utils.go
-] GUILEC   guix/build/cmake-build-system.go
-] GUILEC   guix/build/dub-build-system.go
-] GUILEC   guix/build/dune-build-system.go
-] GUILEC   guix/build/emacs-build-system.go
-] GUILEC   guix/build/meson-build-system.go
-] GUILEC   guix/build/minify-build-system.go
-] GUILEC   guix/build/font-build-system.go
-] GUILEC   guix/build/go-build-system.go
-] GUILEC   guix/build/asdf-build-system.go
-] GUILEC   guix/build/bzr.go
-] GUILEC   guix/build/git.go
-] GUILEC   guix/build/hg.go
-] GUILEC   guix/build/glib-or-gtk-build-system.go
-] GUILEC   guix/build/gnu-build-system.go
-] GUILEC   guix/build/gnu-dist.go
-] GUILEC   guix/build/guile-build-system.go
-] GUILEC   guix/build/node-build-system.go
-] GUILEC   guix/build/perl-build-system.go
-] GUILEC   guix/build/python-build-system.go
-] GUILEC   guix/build/ocaml-build-system.go
-] GUILEC   guix/build/r-build-system.go
-] GUILEC   guix/build/rakudo-build-system.go
-] GUILEC   guix/build/ruby-build-system.go
-] GUILEC   guix/build/scons-build-system.go
-] GUILEC   guix/build/texlive-build-system.go
-] GUILEC   guix/build/waf-build-system.go
-] GUILEC   guix/build/haskell-build-system.go
-] GUILEC   guix/build/julia-build-system.go
-] GUILEC   guix/build/linux-module-build-system.go
-] GUILEC   guix/build/store-copy.go
-] GUILEC   guix/build/json.go
-] GUILEC   guix/build/utils.go
-] GUILEC   guix/build/union.go
-] GUILEC   guix/build/profiles.go
-] GUILEC   guix/build/compile.go
-guix/build/compile.scm:46:14: warning: possibly unbound variable `tree-il-optimizations'
-guix/build/compile.scm:49:14: warning: possibly unbound variable `cps-optimizations'
-] GUILEC   guix/build/rpath.go
-] GUILEC   guix/build/cvs.go
-] GUILEC   guix/build/svn.go
-] GUILEC   guix/build/syscalls.go
-] GUILEC   guix/build/gremlin.go
-] GUILEC   guix/build/debug-link.go
-] GUILEC   guix/build/clojure-build-system.go
-] GUILEC   guix/build/clojure-utils.go
-] GUILEC   guix/build/emacs-utils.go
-] GUILEC   guix/build/java-utils.go
-] GUILEC   guix/build/lisp-utils.go
-] GUILEC   guix/build/graft.go
-] GUILEC   guix/build/bournish.go
-] GUILEC   guix/build/qt-utils.go
-] GUILEC   guix/build/make-bootstrap.go
-] GUILEC   guix/search-paths.go
-] GUILEC   guix/packages.go
-] GUILEC   guix/import/cabal.go
-] GUILEC   guix/import/cpan.go
-] GUILEC   guix/import/cran.go
-] GUILEC   guix/import/crate.go
-] GUILEC   guix/import/elpa.go
-] GUILEC   guix/import/gem.go
-] GUILEC   guix/import/github.go
-] GUILEC   guix/import/gnome.go
-] GUILEC   guix/import/gnu.go
-] GUILEC   guix/import/hackage.go
-] GUILEC   guix/import/json.go
-] GUILEC   guix/import/kde.go
-] GUILEC   guix/import/launchpad.go
-] GUILEC   guix/import/opam.go
-] GUILEC   guix/import/print.go
-] GUILEC   guix/import/pypi.go
-] GUILEC   guix/import/snix.go
-] GUILEC   guix/import/stackage.go
-] GUILEC   guix/import/texlive.go
-] GUILEC   guix/import/utils.go
-] GUILEC   guix/scripts.go
-] GUILEC   guix/scripts/download.go
-] GUILEC   guix/scripts/perform-download.go
-] GUILEC   guix/scripts/build.go
-] GUILEC   guix/scripts/archive.go
-] GUILEC   guix/scripts/import.go
-] GUILEC   guix/scripts/package.go
-] GUILEC   guix/scripts/install.go
-] GUILEC   guix/scripts/remove.go
-] GUILEC   guix/scripts/upgrade.go
-] GUILEC   guix/scripts/search.go
-] GUILEC   guix/scripts/show.go
-] GUILEC   guix/scripts/gc.go
-] GUILEC   guix/scripts/hash.go
-] GUILEC   guix/scripts/pack.go
-] GUILEC   guix/scripts/pull.go
-] GUILEC   guix/scripts/processes.go
-] GUILEC   guix/scripts/substitute.go
-] GUILEC   guix/scripts/authenticate.go
-] GUILEC   guix/scripts/refresh.go
-] GUILEC   guix/scripts/repl.go
-] GUILEC   guix/scripts/describe.go
-] GUILEC   guix/scripts/system.go
-] GUILEC   guix/scripts/system/search.go
-] GUILEC   guix/scripts/system/reconfigure.go
-] GUILEC   guix/scripts/lint.go
-] GUILEC   guix/scripts/challenge.go
-] GUILEC   guix/scripts/import/crate.go
-] GUILEC   guix/scripts/import/cran.go
-] GUILEC   guix/scripts/import/elpa.go
-] GUILEC   guix/scripts/import/gem.go
-] GUILEC   guix/scripts/import/gnu.go
-] GUILEC   guix/scripts/import/hackage.go
-] GUILEC   guix/scripts/import/json.go
-] GUILEC   guix/scripts/import/nix.go
-] GUILEC   guix/scripts/import/opam.go
-] GUILEC   guix/scripts/import/pypi.go
-] GUILEC   guix/scripts/import/stackage.go
-] GUILEC   guix/scripts/import/texlive.go
-] GUILEC   guix/scripts/environment.go
-] GUILEC   guix/scripts/publish.go
-] GUILEC   guix/scripts/edit.go
-] GUILEC   guix/scripts/size.go
-;;; Failed to autoload make-page-map in (charting):
-;;; missing interface for module (charting)
-;;; Failed to autoload make-page-map in (charting):
-;;; missing interface for module (charting)
-;;; Failed to autoload make-page-map in (charting):
-;;; missing interface for module (charting)
-guix/scripts/size.scm:222:2: warning: possibly unbound variable `make-page-map'
-;;; Failed to autoload make-page-map in (charting):
-;;; missing interface for module (charting)
-;;; Failed to autoload make-page-map in (charting):
-;;; missing interface for module (charting)
-] GUILEC   guix/scripts/graph.go
-] GUILEC   guix/scripts/weather.go
-] GUILEC   guix/scripts/container.go
-] GUILEC   guix/scripts/container/exec.go
-] GUILEC   guix/scripts/deploy.go
-] GUILEC   guix.go
-] GUILEC   gnu.go
-] GUILEC   gnu/artwork.go
-] GUILEC   gnu/bootloader.go
-] GUILEC   gnu/bootloader/grub.go
-] GUILEC   gnu/bootloader/extlinux.go
-] GUILEC   gnu/bootloader/u-boot.go
-] GUILEC   gnu/bootloader/depthcharge.go
-] GUILEC   gnu/ci.go
-] GUILEC   gnu/packages.go
-] GUILEC   gnu/packages/abduco.go
-] GUILEC   gnu/packages/abiword.go
-] GUILEC   gnu/packages/accessibility.go
-] GUILEC   gnu/packages/acct.go
-] GUILEC   gnu/packages/acl.go
-] GUILEC   gnu/packages/ada.go
-] GUILEC   gnu/packages/admin.go
-] GUILEC   gnu/packages/adns.go
-] GUILEC   gnu/packages/agda.go
-] GUILEC   gnu/packages/algebra.go
-] GUILEC   gnu/packages/aidc.go
-] GUILEC   gnu/packages/android.go
-] GUILEC   gnu/packages/animation.go
-] GUILEC   gnu/packages/anthy.go
-] GUILEC   gnu/packages/antivirus.go
-] GUILEC   gnu/packages/apl.go
-] GUILEC   gnu/packages/apr.go
-] GUILEC   gnu/packages/arcan.go
-] GUILEC   gnu/packages/aspell.go
-] GUILEC   gnu/packages/assembly.go
-] GUILEC   gnu/packages/astronomy.go
-] GUILEC   gnu/packages/attr.go
-] GUILEC   gnu/packages/audio.go
-] GUILEC   gnu/packages/augeas.go
-] GUILEC   gnu/packages/authentication.go
-] GUILEC   gnu/packages/autogen.go
-] GUILEC   gnu/packages/autotools.go
-] GUILEC   gnu/packages/avahi.go
-] GUILEC   gnu/packages/avr.go
-] GUILEC   gnu/packages/axoloti.go
-] GUILEC   gnu/packages/backup.go
-] GUILEC   gnu/packages/base.go
-] GUILEC   gnu/packages/bash.go
-] GUILEC   gnu/packages/batik.go
-] GUILEC   gnu/packages/bdw-gc.go
-] GUILEC   gnu/packages/benchmark.go
-] GUILEC   gnu/packages/bioconductor.go
-] GUILEC   gnu/packages/bioinformatics.go
-] GUILEC   gnu/packages/bittorrent.go
-] GUILEC   gnu/packages/bison.go
-] GUILEC   gnu/packages/boost.go
-] GUILEC   gnu/packages/bootloaders.go
-] GUILEC   gnu/packages/bootstrap.go
-] GUILEC   gnu/packages/build-tools.go
-] GUILEC   gnu/packages/busybox.go
-] GUILEC   gnu/packages/c.go
-] GUILEC   gnu/packages/calcurse.go
-] GUILEC   gnu/packages/ccache.go
-] GUILEC   gnu/packages/cdrom.go
-] GUILEC   gnu/packages/cedille.go
-] GUILEC   gnu/packages/certs.go
-] GUILEC   gnu/packages/check.go
-] GUILEC   gnu/packages/chemistry.go
-] GUILEC   gnu/packages/chez.go
-] GUILEC   gnu/packages/chromium.go
-] GUILEC   gnu/packages/ci.go
-] GUILEC   gnu/packages/cinnamon.go
-] GUILEC   gnu/packages/clojure.go
-] GUILEC   gnu/packages/cluster.go
-] GUILEC   gnu/packages/cmake.go
-] GUILEC   gnu/packages/cobol.go
-] GUILEC   gnu/packages/code.go
-] GUILEC   gnu/packages/commencement.go
-] GUILEC   gnu/packages/compression.go
-] GUILEC   gnu/packages/compton.go
-] GUILEC   gnu/packages/conky.go
-] GUILEC   gnu/packages/connman.go
-] GUILEC   gnu/packages/cook.go
-] GUILEC   gnu/packages/coq.go
-] GUILEC   gnu/packages/cpio.go
-] GUILEC   gnu/packages/cpp.go
-] GUILEC   gnu/packages/cppi.go
-] GUILEC   gnu/packages/cran.go
-] GUILEC   gnu/packages/crates-io.go
-] GUILEC   gnu/packages/cross-base.go
-] GUILEC   gnu/packages/crypto.go
-] GUILEC   gnu/packages/cryptsetup.go
-] GUILEC   gnu/packages/cups.go
-] GUILEC   gnu/packages/curl.go
-] GUILEC   gnu/packages/cvassistant.go
-] GUILEC   gnu/packages/cyrus-sasl.go
-] GUILEC   gnu/packages/databases.go
-] GUILEC   gnu/packages/datamash.go
-] GUILEC   gnu/packages/datastructures.go
-] GUILEC   gnu/packages/dav.go
-] GUILEC   gnu/packages/dbm.go
-] GUILEC   gnu/packages/dc.go
-] GUILEC   gnu/packages/debian.go
-] GUILEC   gnu/packages/debug.go
-] GUILEC   gnu/packages/dejagnu.go
-] GUILEC   gnu/packages/dico.go
-] GUILEC   gnu/packages/dictionaries.go
-] GUILEC   gnu/packages/diffoscope.go
-] GUILEC   gnu/packages/digest.go
-] GUILEC   gnu/packages/direct-connect.go
-] GUILEC   gnu/packages/disk.go
-] GUILEC   gnu/packages/distributed.go
-] GUILEC   gnu/packages/display-managers.go
-] GUILEC   gnu/packages/django.go
-] GUILEC   gnu/packages/djvu.go
-] GUILEC   gnu/packages/dlang.go
-] GUILEC   gnu/packages/dns.go
-] GUILEC   gnu/packages/docbook.go
-] GUILEC   gnu/packages/docker.go
-] GUILEC   gnu/packages/documentation.go
-] GUILEC   gnu/packages/dunst.go
-] GUILEC   gnu/packages/dvtm.go
-] GUILEC   gnu/packages/easyrpg.go
-] GUILEC   gnu/packages/ebook.go
-] GUILEC   gnu/packages/ed.go
-] GUILEC   gnu/packages/education.go
-] GUILEC   gnu/packages/efi.go
-] GUILEC   gnu/packages/electronics.go
-] GUILEC   gnu/packages/elf.go
-] GUILEC   gnu/packages/elixir.go
-] GUILEC   gnu/packages/elm.go
-] GUILEC   gnu/packages/embedded.go
-] GUILEC   gnu/packages/emacs.go
-] GUILEC   gnu/packages/emacs-xyz.go
-] GUILEC   gnu/packages/emulators.go
-] GUILEC   gnu/packages/enchant.go
-] GUILEC   gnu/packages/engineering.go
-] GUILEC   gnu/packages/enlightenment.go
-] GUILEC   gnu/packages/entr.go
-] GUILEC   gnu/packages/erlang.go
-] GUILEC   gnu/packages/fabric-management.go
-] GUILEC   gnu/packages/fcitx.go
-] GUILEC   gnu/packages/figlet.go
-] GUILEC   gnu/packages/file.go
-] GUILEC   gnu/packages/file-systems.go
-] GUILEC   gnu/packages/finance.go
-] GUILEC   gnu/packages/firmware.go
-] GUILEC   gnu/packages/flashing-tools.go
-] GUILEC   gnu/packages/flex.go
-] GUILEC   gnu/packages/fltk.go
-] GUILEC   gnu/packages/fonts.go
-] GUILEC   gnu/packages/fontutils.go
-] GUILEC   gnu/packages/fpga.go
-] GUILEC   gnu/packages/forth.go
-] GUILEC   gnu/packages/freedesktop.go
-] GUILEC   gnu/packages/freeipmi.go
-] GUILEC   gnu/packages/ftp.go
-] GUILEC   gnu/packages/fribidi.go
-] GUILEC   gnu/packages/fvwm.go
-] GUILEC   gnu/packages/game-development.go
-] GUILEC   gnu/packages/games.go
-] GUILEC   gnu/packages/gawk.go
-] GUILEC   gnu/packages/gcal.go
-] GUILEC   gnu/packages/gcc.go
-] GUILEC   gnu/packages/gd.go
-] GUILEC   gnu/packages/gdb.go
-] GUILEC   gnu/packages/genealogy.go
-] GUILEC   gnu/packages/genimage.go
-] GUILEC   gnu/packages/geo.go
-] GUILEC   gnu/packages/gettext.go
-] GUILEC   gnu/packages/ghostscript.go
-] GUILEC   gnu/packages/gimp.go
-] GUILEC   gnu/packages/gkrellm.go
-] GUILEC   gnu/packages/gl.go
-] GUILEC   gnu/packages/glib.go
-] GUILEC   gnu/packages/gnome.go
-] GUILEC   gnu/packages/gnu-doc.go
-] GUILEC   gnu/packages/gnucash.go
-] GUILEC   gnu/packages/gnunet.go
-] GUILEC   gnu/packages/gnupg.go
-] GUILEC   gnu/packages/gnustep.go
-] GUILEC   gnu/packages/gnuzilla.go
-] GUILEC   gnu/packages/gnu-pw-mgr.go
-] GUILEC   gnu/packages/gobby.go
-] GUILEC   gnu/packages/golang.go
-] GUILEC   gnu/packages/gperf.go
-] GUILEC   gnu/packages/gpodder.go
-] GUILEC   gnu/packages/gprolog.go
-] GUILEC   gnu/packages/gps.go
-] GUILEC   gnu/packages/graph.go
-] GUILEC   gnu/packages/graphics.go
-] GUILEC   gnu/packages/graphviz.go
-] GUILEC   gnu/packages/groff.go
-] GUILEC   gnu/packages/groovy.go
-] GUILEC   gnu/packages/gsasl.go
-] GUILEC   gnu/packages/gstreamer.go
-] GUILEC   gnu/packages/gtk.go
-] GUILEC   gnu/packages/guile.go
-] GUILEC   gnu/packages/guile-wm.go
-] GUILEC   gnu/packages/guile-xyz.go
-] GUILEC   gnu/packages/gv.go
-] GUILEC   gnu/packages/gxmessage.go
-] GUILEC   gnu/packages/hardware.go
-] GUILEC   gnu/packages/haskell.go
-] GUILEC   gnu/packages/haskell-apps.go
-] GUILEC   gnu/packages/haskell-check.go
-] GUILEC   gnu/packages/haskell-crypto.go
-] GUILEC   gnu/packages/haskell-web.go
-] GUILEC   gnu/packages/haskell-xyz.go
-] GUILEC   gnu/packages/ham-radio.go
-] GUILEC   gnu/packages/hexedit.go
-] GUILEC   gnu/packages/hugs.go
-] GUILEC   gnu/packages/hurd.go
-] GUILEC   gnu/packages/hyperledger.go
-] GUILEC   gnu/packages/i2p.go
-] GUILEC   gnu/packages/ibus.go
-] GUILEC   gnu/packages/icu4c.go
-] GUILEC   gnu/packages/idris.go
-] GUILEC   gnu/packages/idutils.go
-] GUILEC   gnu/packages/image.go
-] GUILEC   gnu/packages/image-processing.go
-] GUILEC   gnu/packages/image-viewers.go
-] GUILEC   gnu/packages/imagemagick.go
-] GUILEC   gnu/packages/inklingreader.go
-] GUILEC   gnu/packages/inkscape.go
-] GUILEC   gnu/packages/ipfs.go
-] GUILEC   gnu/packages/irc.go
-] GUILEC   gnu/packages/iso-codes.go
-] GUILEC   gnu/packages/java.go
-] GUILEC   gnu/packages/java-compression.go
-] GUILEC   gnu/packages/java-maths.go
-] GUILEC   gnu/packages/javascript.go
-] GUILEC   gnu/packages/jemalloc.go
-] GUILEC   gnu/packages/jrnl.go
-] GUILEC   gnu/packages/jose.go
-] GUILEC   gnu/packages/julia.go
-] GUILEC   gnu/packages/jupyter.go
-] GUILEC   gnu/packages/kawa.go
-] GUILEC   gnu/packages/kde.go
-] GUILEC   gnu/packages/kde-frameworks.go
-] GUILEC   gnu/packages/kde-plasma.go
-] GUILEC   gnu/packages/kerberos.go
-] GUILEC   gnu/packages/key-mon.go
-] GUILEC   gnu/packages/kodi.go
-] GUILEC   gnu/packages/language.go
-] GUILEC   gnu/packages/lego.go
-] GUILEC   gnu/packages/less.go
-] GUILEC   gnu/packages/lesstif.go
-] GUILEC   gnu/packages/libbsd.go
-] GUILEC   gnu/packages/libcanberra.go
-] GUILEC   gnu/packages/libdaemon.go
-] GUILEC   gnu/packages/libedit.go
-] GUILEC   gnu/packages/libevent.go
-] GUILEC   gnu/packages/libffcall.go
-] GUILEC   gnu/packages/libffi.go
-] GUILEC   gnu/packages/libftdi.go
-] GUILEC   gnu/packages/license.go
-] GUILEC   gnu/packages/calendar.go
-] GUILEC   gnu/packages/libidn.go
-] GUILEC   gnu/packages/libphidget.go
-] GUILEC   gnu/packages/libreoffice.go
-] GUILEC   gnu/packages/libsigsegv.go
-] GUILEC   gnu/packages/libunistring.go
-] GUILEC   gnu/packages/libusb.go
-] GUILEC   gnu/packages/libunwind.go
-] GUILEC   gnu/packages/lighting.go
-] GUILEC   gnu/packages/linux.go
-] GUILEC   gnu/packages/lirc.go
-] GUILEC   gnu/packages/lisp.go
-] GUILEC   gnu/packages/llvm.go
-] GUILEC   gnu/packages/lout.go
-] GUILEC   gnu/packages/logging.go
-] GUILEC   gnu/packages/logo.go
-] GUILEC   gnu/packages/lolcode.go
-] GUILEC   gnu/packages/lsof.go
-] GUILEC   gnu/packages/lua.go
-] GUILEC   gnu/packages/lxde.go
-] GUILEC   gnu/packages/lxqt.go
-] GUILEC   gnu/packages/m4.go
-] GUILEC   gnu/packages/machine-learning.go
-] GUILEC   gnu/packages/magic-wormhole.go
-] GUILEC   gnu/packages/man.go
-] GUILEC   gnu/packages/mastodon.go
-] GUILEC   gnu/packages/mail.go
-] GUILEC   gnu/packages/make-bootstrap.go
-] GUILEC   gnu/packages/markup.go
-] GUILEC   gnu/packages/marst.go
-] GUILEC   gnu/packages/mate.go
-] GUILEC   gnu/packages/maths.go
-] GUILEC   gnu/packages/maven.go
-] GUILEC   gnu/packages/mc.go
-] GUILEC   gnu/packages/mcrypt.go
-] GUILEC   gnu/packages/medical.go
-] GUILEC   gnu/packages/mes.go
-] GUILEC   gnu/packages/messaging.go
-] GUILEC   gnu/packages/mingw.go
-] GUILEC   gnu/packages/microcom.go
-] GUILEC   gnu/packages/moe.go
-] GUILEC   gnu/packages/motti.go
-] GUILEC   gnu/packages/monitoring.go
-] GUILEC   gnu/packages/mono.go
-] GUILEC   gnu/packages/moreutils.go
-] GUILEC   gnu/packages/mpd.go
-] GUILEC   gnu/packages/mp3.go
-] GUILEC   gnu/packages/mpi.go
-] GUILEC   gnu/packages/multiprecision.go
-] GUILEC   gnu/packages/music.go
-] GUILEC   gnu/packages/musl.go
-] GUILEC   gnu/packages/mtools.go
-] GUILEC   gnu/packages/nano.go
-] GUILEC   gnu/packages/ncdu.go
-] GUILEC   gnu/packages/ncurses.go
-] GUILEC   gnu/packages/netpbm.go
-] GUILEC   gnu/packages/nettle.go
-] GUILEC   gnu/packages/networking.go
-] GUILEC   gnu/packages/nfs.go
-] GUILEC   gnu/packages/nickle.go
-] GUILEC   gnu/packages/nim.go
-] GUILEC   gnu/packages/ninja.go
-] GUILEC   gnu/packages/node.go
-] GUILEC   gnu/packages/noweb.go
-] GUILEC   gnu/packages/nss.go
-] GUILEC   gnu/packages/ntp.go
-] GUILEC   gnu/packages/nutrition.go
-] GUILEC   gnu/packages/nvi.go
-] GUILEC   gnu/packages/ocaml.go
-] GUILEC   gnu/packages/ocr.go
-] GUILEC   gnu/packages/onc-rpc.go
-] GUILEC   gnu/packages/opencl.go
-] GUILEC   gnu/packages/openbox.go
-] GUILEC   gnu/packages/openldap.go
-] GUILEC   gnu/packages/openstack.go
-] GUILEC   gnu/packages/orpheus.go
-] GUILEC   gnu/packages/ots.go
-] GUILEC   gnu/packages/package-management.go
-] GUILEC   gnu/packages/parallel.go
-] GUILEC   gnu/packages/password-utils.go
-] GUILEC   gnu/packages/patchutils.go
-] GUILEC   gnu/packages/pciutils.go
-] GUILEC   gnu/packages/pcre.go
-] GUILEC   gnu/packages/pdf.go
-] GUILEC   gnu/packages/pem.go
-] GUILEC   gnu/packages/perl.go
-] GUILEC   gnu/packages/perl-check.go
-] GUILEC   gnu/packages/perl-compression.go
-] GUILEC   gnu/packages/perl-web.go
-] GUILEC   gnu/packages/perl6.go
-] GUILEC   gnu/packages/photo.go
-] GUILEC   gnu/packages/phabricator.go
-] GUILEC   gnu/packages/php.go
-] GUILEC   gnu/packages/pkg-config.go
-] GUILEC   gnu/packages/plotutils.go
-] GUILEC   gnu/packages/poedit.go
-] GUILEC   gnu/packages/polkit.go
-] GUILEC   gnu/packages/popt.go
-] GUILEC   gnu/packages/printers.go
-] GUILEC   gnu/packages/profiling.go
-] GUILEC   gnu/packages/pth.go
-] GUILEC   gnu/packages/pulseaudio.go
-] GUILEC   gnu/packages/pumpio.go
-] GUILEC   gnu/packages/pretty-print.go
-] GUILEC   gnu/packages/protobuf.go
-] GUILEC   gnu/packages/pure.go
-] GUILEC   gnu/packages/pv.go
-] GUILEC   gnu/packages/python.go
-] GUILEC   gnu/packages/python-check.go
-] GUILEC   gnu/packages/python-compression.go
-] GUILEC   gnu/packages/python-crypto.go
-] GUILEC   gnu/packages/python-web.go
-] GUILEC   gnu/packages/python-xyz.go
-] GUILEC   gnu/packages/toys.go
-] GUILEC   gnu/packages/tryton.go
-] GUILEC   gnu/packages/qt.go
-] GUILEC   gnu/packages/ragel.go
-] GUILEC   gnu/packages/rails.go
-] GUILEC   gnu/packages/ratpoison.go
-] GUILEC   gnu/packages/rdesktop.go
-] GUILEC   gnu/packages/rdf.go
-] GUILEC   gnu/packages/re2c.go
-] GUILEC   gnu/packages/readline.go
-] GUILEC   gnu/packages/rednotebook.go
-] GUILEC   gnu/packages/regex.go
-] GUILEC   gnu/packages/robotics.go
-] GUILEC   gnu/packages/rrdtool.go
-] GUILEC   gnu/packages/rsync.go
-] GUILEC   gnu/packages/ruby.go
-] GUILEC   gnu/packages/rush.go
-] GUILEC   gnu/packages/rust.go
-] GUILEC   gnu/packages/samba.go
-] GUILEC   gnu/packages/sagemath.go
-] GUILEC   gnu/packages/sawfish.go
-] GUILEC   gnu/packages/scanner.go
-] GUILEC   gnu/packages/scheme.go
-] GUILEC   gnu/packages/screen.go
-] GUILEC   gnu/packages/scribus.go
-] GUILEC   gnu/packages/scsi.go
-] GUILEC   gnu/packages/sdcc.go
-] GUILEC   gnu/packages/sdl.go
-] GUILEC   gnu/packages/search.go
-] GUILEC   gnu/packages/security-token.go
-] GUILEC   gnu/packages/selinux.go
-] GUILEC   gnu/packages/serialization.go
-] GUILEC   gnu/packages/serveez.go
-] GUILEC   gnu/packages/shells.go
-] GUILEC   gnu/packages/shellutils.go
-] GUILEC   gnu/packages/simh.go
-] GUILEC   gnu/packages/simulation.go
-] GUILEC   gnu/packages/skarnet.go
-] GUILEC   gnu/packages/skribilo.go
-] GUILEC   gnu/packages/slang.go
-] GUILEC   gnu/packages/smalltalk.go
-] GUILEC   gnu/packages/sml.go
-] GUILEC   gnu/packages/speech.go
-] GUILEC   gnu/packages/sphinx.go
-] GUILEC   gnu/packages/spice.go
-] GUILEC   gnu/packages/sqlite.go
-] GUILEC   gnu/packages/squirrel.go
-] GUILEC   gnu/packages/ssh.go
-] GUILEC   gnu/packages/sssd.go
-] GUILEC   gnu/packages/stalonetray.go
-] GUILEC   gnu/packages/statistics.go
-] GUILEC   gnu/packages/stb.go
-] GUILEC   gnu/packages/storage.go
-] GUILEC   gnu/packages/suckless.go
-] GUILEC   gnu/packages/swig.go
-] GUILEC   gnu/packages/sync.go
-] GUILEC   gnu/packages/syncthing.go
-] GUILEC   gnu/packages/synergy.go
-] GUILEC   gnu/packages/syndication.go
-] GUILEC   gnu/packages/task-management.go
-] GUILEC   gnu/packages/tbb.go
-] GUILEC   gnu/packages/tcl.go
-] GUILEC   gnu/packages/telephony.go
-] GUILEC   gnu/packages/terminals.go
-] GUILEC   gnu/packages/terraform.go
-] GUILEC   gnu/packages/texinfo.go
-] GUILEC   gnu/packages/tex.go
-] GUILEC   gnu/packages/textutils.go
-] GUILEC   gnu/packages/text-editors.go
-] GUILEC   gnu/packages/tigervnc.go
-] GUILEC   gnu/packages/time.go
-] GUILEC   gnu/packages/tls.go
-] GUILEC   gnu/packages/tmux.go
-] GUILEC   gnu/packages/tor.go
-] GUILEC   gnu/packages/tv.go
-] GUILEC   gnu/packages/uml.go
-] GUILEC   gnu/packages/unrtf.go
-] GUILEC   gnu/packages/upnp.go
-] GUILEC   gnu/packages/usb-modeswitch.go
-] GUILEC   gnu/packages/uucp.go
-] GUILEC   gnu/packages/valgrind.go
-] GUILEC   gnu/packages/version-control.go
-] GUILEC   gnu/packages/video.go
-] GUILEC   gnu/packages/vim.go
-] GUILEC   gnu/packages/virtualization.go
-] GUILEC   gnu/packages/vpn.go
-] GUILEC   gnu/packages/vulkan.go
-] GUILEC   gnu/packages/w3m.go
-] GUILEC   gnu/packages/wdiff.go
-] GUILEC   gnu/packages/web.go
-] GUILEC   gnu/packages/web-browsers.go
-] GUILEC   gnu/packages/webkit.go
-] GUILEC   gnu/packages/wget.go
-] GUILEC   gnu/packages/wicd.go
-] GUILEC   gnu/packages/wine.go
-] GUILEC   gnu/packages/wireservice.go
-] GUILEC   gnu/packages/wm.go
-] GUILEC   gnu/packages/wordnet.go
-] GUILEC   gnu/packages/wv.go
-] GUILEC   gnu/packages/wxwidgets.go
-] GUILEC   gnu/packages/xfig.go
-] GUILEC   gnu/packages/xiph.go
-] GUILEC   gnu/packages/xml.go
-] GUILEC   gnu/packages/xnee.go
-] GUILEC   gnu/packages/xdisorg.go
-] GUILEC   gnu/packages/xorg.go
-] GUILEC   gnu/packages/xfce.go
-] GUILEC   gnu/packages/zile.go
-] GUILEC   gnu/packages/zwave.go
-] GUILEC   gnu/services.go
-] GUILEC   gnu/services/admin.go
-] GUILEC   gnu/services/audio.go
-] GUILEC   gnu/services/auditd.go
-] GUILEC   gnu/services/avahi.go
-] GUILEC   gnu/services/base.go
-] GUILEC   gnu/services/certbot.go
-] GUILEC   gnu/services/cgit.go
-] GUILEC   gnu/services/configuration.go
-] GUILEC   gnu/services/cuirass.go
-] GUILEC   gnu/services/cups.go
-] GUILEC   gnu/services/databases.go
-] GUILEC   gnu/services/dbus.go
-] GUILEC   gnu/services/desktop.go
-] GUILEC   gnu/services/dict.go
-] GUILEC   gnu/services/dns.go
-] GUILEC   gnu/services/docker.go
-] GUILEC   gnu/services/authentication.go
-] GUILEC   gnu/services/games.go
-] GUILEC   gnu/services/getmail.go
-] GUILEC   gnu/services/guix.go
-] GUILEC   gnu/services/kerberos.go
-] GUILEC   gnu/services/lirc.go
-] GUILEC   gnu/services/virtualization.go
-] GUILEC   gnu/services/mail.go
-] GUILEC   gnu/services/mcron.go
-] GUILEC   gnu/services/messaging.go
-] GUILEC   gnu/services/monitoring.go
-] GUILEC   gnu/services/networking.go
-] GUILEC   gnu/services/nix.go
-] GUILEC   gnu/services/nfs.go
-] GUILEC   gnu/services/security-token.go
-] GUILEC   gnu/services/shepherd.go
-] GUILEC   gnu/services/sound.go
-] GUILEC   gnu/services/herd.go
-] GUILEC   gnu/services/pm.go
-] GUILEC   gnu/services/rsync.go
-] GUILEC   gnu/services/sddm.go
-] GUILEC   gnu/services/spice.go
-] GUILEC   gnu/services/ssh.go
-] GUILEC   gnu/services/sysctl.go
-] GUILEC   gnu/services/telephony.go
-] GUILEC   gnu/services/version-control.go
-] GUILEC   gnu/services/vpn.go
-] GUILEC   gnu/services/web.go
-] GUILEC   gnu/services/xorg.go
-] GUILEC   gnu/system.go
-] GUILEC   gnu/system/accounts.go
-] GUILEC   gnu/system/file-systems.go
-] GUILEC   gnu/system/install.go
-] GUILEC   gnu/system/keyboard.go
-] GUILEC   gnu/system/linux-container.go
-] GUILEC   gnu/system/linux-initrd.go
-] GUILEC   gnu/system/locale.go
-] GUILEC   gnu/system/mapped-devices.go
-] GUILEC   gnu/system/nss.go
-] GUILEC   gnu/system/pam.go
-] GUILEC   gnu/system/shadow.go
-] GUILEC   gnu/system/uuid.go
-] GUILEC   gnu/system/vm.go
-] GUILEC   gnu/machine.go
-] GUILEC   gnu/machine/ssh.go
-] GUILEC   gnu/build/accounts.go
-] GUILEC   gnu/build/activation.go
-] GUILEC   gnu/build/bootloader.go
-] GUILEC   gnu/build/cross-toolchain.go
-] GUILEC   gnu/build/file-systems.go
-] GUILEC   gnu/build/install.go
-] GUILEC   gnu/build/linux-boot.go
-] GUILEC   gnu/build/linux-container.go
-] GUILEC   gnu/build/linux-initrd.go
-] GUILEC   gnu/build/linux-modules.go
-gnu/build/linux-modules.scm:319:13: warning: possibly unbound variable `load-linux-module/fd'
-] GUILEC   gnu/build/marionette.go
-] GUILEC   gnu/build/vm.go
-] GUILEC   gnu/tests.go
-] GUILEC   gnu/tests/audio.go
-] GUILEC   gnu/tests/base.go
-] GUILEC   gnu/tests/databases.go
-] GUILEC   gnu/tests/desktop.go
-] GUILEC   gnu/tests/dict.go
-] GUILEC   gnu/tests/docker.go
-] GUILEC   gnu/tests/guix.go
-] GUILEC   gnu/tests/monitoring.go
-] GUILEC   gnu/tests/nfs.go
-] GUILEC   gnu/tests/install.go
-] GUILEC   gnu/tests/ldap.go
-] GUILEC   gnu/tests/mail.go
-] GUILEC   gnu/tests/messaging.go
-] GUILEC   gnu/tests/networking.go
-] GUILEC   gnu/tests/reconfigure.go
-] GUILEC   gnu/tests/rsync.go
-] GUILEC   gnu/tests/security-token.go
-] GUILEC   gnu/tests/singularity.go
-] GUILEC   gnu/tests/ssh.go
-] GUILEC   gnu/tests/version-control.go
-] GUILEC   gnu/tests/virtualization.go
-] GUILEC   gnu/tests/web.go
-] GUILEC   guix/ssh.go
-] GUILEC   guix/remote.go
-] GUILEC   guix/scripts/copy.go
-] GUILEC   guix/store/ssh.go
-] GUILEC   guix/scripts/offload.go
-] GUILEC   guix/store/database.go
-] GUILEC   guix/store/deduplication.go
-] GUILEC   guix/store/roots.go
-] GUILEC   guix/config.go
-] GUILEC   guix/tests.go
-] GUILEC   guix/tests/http.go
-] GUILEC   guix/tests/git.go
-
-Some deprecated features have been used.  Set the environment
-variable GUILE_WARN_DEPRECATED to "detailed" and rerun the
-program to get more information.  Set it to "no" to suppress
-this message.
-  HELP2MAN doc/guix-archive.1
-  HELP2MAN doc/guix-build.1
-  HELP2MAN doc/guix-challenge.1
-  HELP2MAN doc/guix-download.1
-  HELP2MAN doc/guix-edit.1
-  HELP2MAN doc/guix-environment.1
-  HELP2MAN doc/guix-gc.1
-  HELP2MAN doc/guix-hash.1
-  HELP2MAN doc/guix-import.1
-  HELP2MAN doc/guix-lint.1
-  HELP2MAN doc/guix-package.1
-  HELP2MAN doc/guix-publish.1
-  HELP2MAN doc/guix-pull.1
-  HELP2MAN doc/guix-refresh.1
-  HELP2MAN doc/guix-size.1
-  HELP2MAN doc/guix-system.1
-  HELP2MAN doc/guix.1
-  HELP2MAN doc/guix-daemon.1
-  DOT      doc/images/bootstrap-graph.png
-  DOT      doc/images/bootstrap-packages.png
-  DOT      doc/images/coreutils-graph.png
-  DOT      doc/images/coreutils-bag-graph.png
-  DOT      doc/images/service-graph.png
-  DOT      doc/images/shepherd-graph.png
-  GEN      etc/guix-daemon.service
-  GEN      etc/guix-publish.service
-  GEN      etc/guix-daemon.conf
-  GEN      etc/guix-publish.conf
-make  check-TESTS check-local
-make[3]: Entering directory '/tmp/guix'
-make[4]: Entering directory '/tmp/guix'
-PASS: tests/accounts.scm
-PASS: tests/base16.scm
-SKIP: tests/base32.scm
-PASS: tests/base64.scm
-PASS: tests/bournish.scm
-PASS: tests/builders.scm
-PASS: tests/build-utils.scm
-PASS: tests/cache.scm
-PASS: tests/challenge.scm
-PASS: tests/channels.scm
-PASS: tests/combinators.scm
-PASS: tests/containers.scm
-PASS: tests/cpan.scm
-SKIP: tests/cpio.scm
-PASS: tests/cran.scm
-PASS: tests/crate.scm
-PASS: tests/cve.scm
-PASS: tests/debug-link.scm
-PASS: tests/derivations.scm
-PASS: tests/discovery.scm
-PASS: tests/elpa.scm
-PASS: tests/file-systems.scm
-PASS: tests/gem.scm
-PASS: tests/gexp.scm
-PASS: tests/git.scm
-PASS: tests/glob.scm
-PASS: tests/gnu-maintenance.scm
-PASS: tests/grafts.scm
-PASS: tests/graph.scm
-PASS: tests/gremlin.scm
-SKIP: tests/hackage.scm
-PASS: tests/import-utils.scm
-PASS: tests/inferior.scm
-SKIP: tests/lint.scm
-PASS: tests/lzlib.scm
-PASS: tests/modules.scm
-PASS: tests/monads.scm
-PASS: tests/nar.scm
-PASS: tests/networking.scm
-PASS: tests/opam.scm
-PASS: tests/packages.scm
-PASS: tests/pack.scm
-PASS: tests/pki.scm
-PASS: tests/print.scm
-PASS: tests/processes.scm
-PASS: tests/profiles.scm
-PASS: tests/publish.scm
-SKIP: tests/pypi.scm
-PASS: tests/records.scm
-PASS: tests/scripts.scm
-PASS: tests/scripts-build.scm
-PASS: tests/search-paths.scm
-PASS: tests/services.scm
-PASS: tests/sets.scm
-PASS: tests/size.scm
-SKIP: tests/snix.scm
-PASS: tests/status.scm
-PASS: tests/store-database.scm
-PASS: tests/store-deduplication.scm
-PASS: tests/store-roots.scm
-PASS: tests/store.scm
-PASS: tests/substitute.scm
-PASS: tests/swh.scm
-SKIP: tests/syscalls.scm
-PASS: tests/system.scm
-PASS: tests/texlive.scm
-PASS: tests/ui.scm
-PASS: tests/union.scm
-SKIP: tests/upstream.scm
-PASS: tests/utils.scm
-PASS: tests/uuid.scm
-PASS: tests/workers.scm
-PASS: tests/zlib.scm
-PASS: tests/guix-build.sh
-PASS: tests/guix-build-branch.sh
-PASS: tests/guix-download.sh
-PASS: tests/guix-hash.sh
-PASS: tests/guix-pack.sh
-PASS: tests/guix-pack-localstatedir.sh
-PASS: tests/guix-pack-relocatable.sh
-PASS: tests/guix-package.sh
-PASS: tests/guix-package-aliases.sh
-PASS: tests/guix-package-net.sh
-PASS: tests/guix-system.sh
-PASS: tests/guix-archive.sh
-PASS: tests/guix-authenticate.sh
-PASS: tests/guix-environment.sh
-PASS: tests/guix-environment-container.sh
-PASS: tests/guix-graph.sh
-PASS: tests/guix-describe.sh
-PASS: tests/guix-lint.sh
-PASS: tests/guix-gc.sh
-PASS: tests/guix-daemon.sh
-============================================================================
-Testsuite summary for GNU Guix 1.0.1.3995-2b2f7
-============================================================================
-TOTAL: 966
-PASS:  955
-SKIP:  9
-XFAIL: 2
-FAIL:  0
-XPASS: 0
-ERROR: 0
-============================================================================
-make[4]: Leaving directory '/tmp/guix'
-make[3]: Nothing to be done for 'check-local'.
-make[3]: Leaving directory '/tmp/guix'
-make[2]: Leaving directory '/tmp/guix'
-make[1]: Leaving directory '/tmp/guix'
-#+end_example
-
-
-Maintenant je pourrais installer mon =guix= fraîchement compilé quelque part, mais je préfère le lancer en mode "pré-installation" qui a l'avantage de me permettre de faire des modifications et de le relancer tout de suite. Ceci nécessite de passer par un petit script qui simule une installation:
-#+begin_src sh :session *guix-edit* :results output :exports both
-./pre-inst-env guix describe
-#+end_src
-
-#+RESULTS:
-: Git checkout:
-:   repository: /tmp/guix
-:   branch: master
-:   commit: 2b2f7e5d8cd154c8bbf8d531d2edd6801956d36d
-
-Un simple =guix= sans ce script lance encore la version que j'ai eu dès le début de ce tutoriel:
-#+begin_src sh :session *guix-edit* :results output :exports both
-guix describe
-#+end_src
-
-#+RESULTS:
-: Generation 4	Oct 02 2019 21:00:32	(current)
-:   guix 8ce47c2
-:     repository URL: https://git.savannah.gnu.org/git/guix.git
-:     branch: master
-:     commit: 8ce47c20209ad9b87e1b7595556f22b2b5e2b8a2
-
-Les deux versions partagent, sans aucun conflit, l'espace de stockage sous =/gnu/store=, mais aussi ma collection personnelle de paquets. Je peux donc installer un paquet du guix "standard" suivi d'un autre paquet du guix "personnalisé".
+En fait, si vous comparez bien mon nouveau manifeste avec celui d'origine, vous remarquez que j'ai rajouté =python= qui n'y était pas avant. C'est juste pour pouvoir apporter cette preuve de réussite de l'opération!
