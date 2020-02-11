@@ -1,4 +1,3 @@
-
 #+TITLE: Interview croisée de Valérie Orozco et Christophe Bontemps
 #+Date: <déc 2019>
 #+Author: Valérie Orozco et Christophe Bontemps
@@ -7,7 +6,9 @@
 ** Biographie
 *Valérie Orozco* est ingénieure en statistique/économétrie à l’INRAE
 depuis 2004 et membre du groupe Industrial Organization de TSE
-(Toulouse School of Economics à Toulouse).  Elle participe principalement aux travaux de recherche sur l’économie des firmes agro-alimentaires, et les relations alimentation et santé.
+(Toulouse School of Economics à Toulouse).  Elle participe principalement aux 
+travaux de recherche sur l’économie des firmes agro-alimentaires, et les 
+relations alimentation et santé.
 
 *Christophe Bontemps* est ingénieur économètre à l’INRAE et membre du
 groupe Food Economics and Policy dans TSE
@@ -16,108 +17,225 @@ recherche sur l’économie des firmes agro-alimentaires, l’environnement
 et les relations alimentation et santé.
 
 ** Interview
-*** Pourriez-vous vous présenter : votre identité, votre domaine de recherche et vos centres d’intérêts scientifiques hors discipline (ex. R, Python, etc.) ?
-Nous travaillons à la croisée de deux mondes: celui des **mathématiques
-(statistique)** et celui de l'**économie**, en particulier l’économie de l’alimentation et de l’environnement.  
+*** Pourriez-vous vous présenter : votre identité, votre domaine de recherche et vos centres d’intérêts scientifiques hors discipline (ex. R, Python, etc.) ?
+Nous travaillons à la croisée de deux mondes : celui des *mathématiques (statistique)* 
+et celui de l'*économie*, en particulier l’économie de l’alimentation et de 
+l’environnement.  
 
-En tant qu’ingénieurs-économètres, nous sommes appelés à collaborer sur des projets scientifiques, et agissons comme des interfaces entre ces deux mondes. Nous devons donc interpréter les notions économiques très formalisées pour les tester en pratique sur des jeux de données. 
+En tant qu’ingénieurs-économètres, nous sommes appelés à collaborer sur des 
+projets scientifiques, et agissons comme des interfaces entre ces deux mondes. 
+Nous devons donc interpréter les notions économiques très formalisées pour les 
+tester en pratique sur des jeux de données. 
 
-Nous utilisons donc les outils des deux mondes, nous privilégions l’écriture d’articles en LaTeX et l’utilisation de R, mais nous utilisons également Stata, logiciel propriétaire incontournable en économétrie.     
+Nous utilisons donc les outils des deux mondes, nous privilégions l’écriture 
+d’articles en LaTeX et l’utilisation de R, mais nous utilisons également Stata, 
+logiciel propriétaire incontournable en économétrie.     
 
-*** Comment se traduit la question de la reproductibilité et de la transparence dans votre domaine de recherche ? 
-Les recherches auxquelles nous participons comportent de **fortes parties empiriques**. Le plus souvent, un problème est observé et soulève des questions. Les comportements des acteurs (entreprises, consommateurs, décideurs) sont modélisés à l’aide de la théorie économique, puis une hypothèse est émise qui viendrait expliquer le phénomène observé. 
+*** Comment se traduit la question de la reproductibilité et de la transparence dans votre domaine de recherche ? 
+Les recherches auxquelles nous participons comportent de *fortes parties empiriques*. 
+Le plus souvent, un problème est observé et soulève des questions. Les 
+comportements des acteurs (entreprises, consommateurs, décideurs) sont modélisés 
+à l’aide de la théorie économique, puis une hypothèse est émise qui viendrait 
+expliquer le phénomène observé. 
 
-Cette hypothèse est ensuite confrontée aux données. Si l’hypothèse est vérifiée sur un jeu de données pertinent, des recommandations peuvent être émises et il s’agit là d’un résultat. 
-Les « résultats » correspondent donc pour nous à l’ensemble des éléments illustrant la réponse à la question de recherche et ils s’appuient souvent sur des résultats (au sens outputs) empiriques (statistiques descriptives, estimations de modèles économétriques). 
+Cette hypothèse est ensuite confrontée aux données. Si l’hypothèse est vérifiée 
+sur un jeu de données pertinent, des recommandations peuvent être émises et il 
+s’agit là d’un résultat. Les « résultats » correspondent donc pour nous à 
+l’ensemble des éléments illustrant la réponse à la question de recherche et ils 
+s’appuient souvent sur des résultats (au sens outputs) empiriques (statistiques 
+descriptives, estimations de modèles économétriques). 
 
-Contrairement à d’autres disciplines, **nous ne construisons pas d’expérience pour collecter les données ou répliquer un phénomène**. Nous utilisons des **données observées** (par exemple les achats par des ménages) sur lesquelles **nous testons des hypothèses** et **estimons les paramètres du modèle économique** (par exemple une élasticité-prix). 
+Contrairement à d’autres disciplines, *nous ne construisons pas d’expérience 
+pour collecter les données ou répliquer un phénomène*. Nous utilisons des 
+*données observées* (par exemple les achats par des ménages) sur lesquelles 
+*nous testons des hypothèses* et *estimons les paramètres du modèle économique* 
+(par exemple une élasticité-prix). 
 
-La reproductibilité des résultats peut s’exprimer soit comme la capacité à reproduire tous les résultats depuis les données originales, soit comme la possibilité de retrouver le même type de résultats sur un autre jeu de données. 
+La reproductibilité des résultats peut s’exprimer soit comme la capacité à 
+reproduire tous les résultats depuis les données originales, soit comme la 
+possibilité de retrouver le même type de résultats sur un autre jeu de données. 
 
-Dans le premier cas, la chaîne de traitements assure que le résultat est reproductible dans la lignée d’une démarche qualité, dans le second que le résultat est transposable et généralisable à d’autres situations. 
+Dans le premier cas, la chaîne de traitements assure que le résultat est 
+reproductible dans la lignée d’une démarche qualité, dans le second que le 
+résultat est transposable et généralisable à d’autres situations. 
 
-Le terme « robuste » renvoie plutôt à ce 2ème cas. D’ailleurs, souvent, pour une question de recherche donnée, on teste la robustesse des résultats obtenus soit en testant le modèle sur un autre jeu de données, soit en modifiant une hypothèse du modèle.
+Le terme « robuste » renvoie plutôt à ce 2e cas. D’ailleurs, souvent, pour une 
+question de recherche donnée, on teste la robustesse des résultats obtenus soit 
+en testant le modèle sur un autre jeu de données, soit en modifiant une 
+hypothèse du modèle.
 
-*** Quelles sont vos pratiques de recherche pour qu'elles soient plus reproductibles et plus transparentes ? (quand vous travaillez seul, quand vous travaillez en groupe)
-Le plus important, pour nous, est de **maîtriser l'enchaînement des tâches et des programmes (le workflow)**. Évidemment, cela est plus simple lorsque nous sommes seuls en charge du code et des données (cela signifie que nous collaborons avec d’autres chercheurs, mais que nous sommes « responsables » des codes et données). 
+*** Quelles sont vos pratiques de recherche pour qu'elles soient plus reproductibles et plus transparentes ? (quand vous travaillez seul, quand vous travaillez en groupe)
+Le plus important, pour nous, est de *maîtriser l'enchaînement des tâches et 
+des programmes (le workflow)*. Évidemment, cela est plus simple lorsque nous 
+sommes seuls en charge du code et des données (cela signifie que nous 
+collaborons avec d’autres chercheurs, mais que nous sommes « responsables » 
+des codes et données). 
 
-Nous utilisons alors des outils simples et une organisation structurée en scripts maîtres et sous-programmes. 
-Nous utilisons aussi des makefile et des outils de représentation du workflow comme Graphviz. 
-Évidemment, si le projet et le chercheur s’y prêtent, nous utilisons R (et les notebooks/Markdown) et Git. 
-Pour l’écriture d’articles, nous privilégions Overleaf pour une écriture collaborative et Zotero (ou bibTex/JabRef) pour le partage de bibliographies.  
+Nous utilisons alors des outils simples et une organisation structurée en 
+scripts maîtres et sous-programmes. Nous utilisons aussi des makefile et des 
+outils de représentation du workflow comme Graphviz. Évidemment, si le projet 
+et le chercheur s’y prêtent, nous utilisons R (et les notebooks/Markdown) et 
+git. Pour l’écriture d’articles, nous privilégions Overleaf pour une écriture 
+collaborative et Zotero (ou bibTex/JabRef) pour le partage de bibliographies.  
 
-*** Quels outils utilisez-vous ? 
-Même si nous pouvons mettre en avant les atouts d’un logiciel libre auprès de nos chercheurs, nous ne pouvons pas changer brutalement leurs pratiques. 
+*** Quels outils utilisez-vous ? 
+Même si nous pouvons mettre en avant les atouts d’un logiciel libre auprès de 
+nos chercheurs, nous ne pouvons pas changer brutalement leurs pratiques. 
 
-**En économie, nombreux sont ceux qui utilisent des logiciels propriétaires** (Stata, SAS, Matlab, Mathematica, Gams,…) même si l’utilisation de R se répand. 
+*En économie, nombreux sont ceux qui utilisent des logiciels propriétaires* 
+(Stata, SAS, Matlab, Mathematica, Gams…) même si l’utilisation de R se répand. 
 
-**Nous pensons que l’utilisation de ces logiciels, même si elle freine la réutilisation par quelqu’un d’autre, n’empêche pas de mener une recherche reproductible, à condition d’utiliser de bonnes pratiques**. 
+*Nous pensons que l’utilisation de ces logiciels, même si elle freine la réutilisation par quelqu’un 
+d’autre, n’empêche pas de mener une recherche reproductible, à condition d’utiliser de bonnes pratiques*. 
 
-Lorsque nous utilisons le logiciel Stata, rien ne nous empêche de diffuser un code lisible, et structuré permettant de retrouver toutes les étapes et tous les résultats ! Certes, il faudra une licence Stata pour réutiliser ce code, mais ce n’est pas forcément très compliqué à comprendre ni à lire puisque le code est en format texte.    
+Lorsque nous utilisons le logiciel Stata, rien ne nous empêche de diffuser un 
+code lisible, et structuré permettant de retrouver toutes les étapes et tous 
+les résultats ! Certes, il faudra une licence Stata pour réutiliser ce code, 
+mais ce n’est pas forcément très compliqué à comprendre ni à lire puisque le 
+code est en format texte.    
 
-*** Utilisez-vous des cahiers de notes, des outils de balisage  ? 
-Nous essayons de **documenter le plus possible nos projets** (données, choix de modélisation, pistes abandonnées, hypothèses prises…) et d’améliorer nos pratiques d’échanges d’informations (notamment éviter les mails relatifs aux avancées des projets). 
+*** Utilisez-vous des cahiers de notes, des outils de balisage ? 
+Nous essayons de *documenter le plus possible nos projets* (données, choix de 
+modélisation, pistes abandonnées, hypothèses prises…) et d’améliorer nos 
+pratiques d’échanges d’informations (notamment éviter les mails relatifs aux 
+avancées des projets). 
 
-Nous utilisons par exemple des **outils de TMS (Tasks Management System)** comme Trello. 
+Nous utilisons par exemple des *outils de TMS (Tasks Management System)* comme 
+Trello. 
 
-Concernant Markdown, il s’est clairement imposé dans nos pratiques surtout pour générer des documents reproductibles automatiquement à partir du code (dans R bien sûr, dans Stata également), mais aussi pour les notebooks Jupyter que nous avons testés. 
+Concernant Markdown, il s’est clairement imposé dans nos pratiques surtout pour 
+générer des documents reproductibles automatiquement à partir du code (dans R 
+bien sûr, dans Stata également), mais aussi pour les notebooks Jupyter que nous 
+avons testés. 
 
-*** Quels sont workflows, comment articulez-vous les différents outils que vous utilisez au quotidien ? Quelles étapes de préparation des données (coder, documenter) suivez-vous ? 
-*** Quelles bonnes pratiques de modélisation (packages, fonctions, etc.) avez-vous appris à mettre en oeuvre ? Comment assurez-vous le suivi des versions de vos scripts, de votre code, de vos textes, etc?
-Il faudrait un article entier pour décrire tout cela et d’ailleurs nous en avons co-écrit un à paraître bientôt ! **Les données sont souvent des tables**, que l’on appariera parfois, mais la structure des données est souvent simple chez nous. 
+*** Quels sont workflows, comment articulez-vous les différents outils que vous utilisez au quotidien ? Quelles étapes de préparation des données (codage, documentation) suivez-vous ? 
+*** Quelles bonnes pratiques de modélisation (packages, fonctions, etc.) avez-vous appris à mettre en oeuvre ? Comment assurez-vous le suivi des versions de vos scripts, de votre code, de vos textes, etc. ?
+Il faudrait un article entier pour décrire tout cela et d’ailleurs nous en avons
+co-écrit un à paraître bientôt ! *Les données sont souvent des tables*, que l’on
+appariera parfois, mais la structure des données est souvent simple chez nous. 
 
-On a pris l'habitude d’une **structure de répertoires** bien claire, séparant données originales, programmes, données de travail, et documentation. Nous avons aussi des **conventions de nomenclature pour les fichiers et les variables**, ce qui simplifie la vie. 
+On a pris l'habitude d’une *structure de répertoires* bien claire, séparant 
+données originales, programmes, données de travail, et documentation. Nous 
+avons aussi des *conventions de nomenclature pour les fichiers et les variables*, 
+ce qui simplifie la vie. 
 
-Ensuite, pour être franc, **cela commence souvent par un programme un peu brouillon qui devient trop long pour s’y retrouver**. Alors on prend **un bout de papier sur lequel on écrit un début de workflow, avec des flèches**. Puis on ré-écrit le programme plus proprement en utilisant des fonctions et des sous-programmes. 
-À la suite on modifie le workflow à mesure que le projet avance et on le dessine sous Graphviz. 
+Ensuite, pour être franc, *cela commence souvent par un programme un peu 
+brouillon qui devient trop long pour s’y retrouver*. Alors on prend *un bout de 
+papier sur lequel on écrit un début de workflow, avec des flèches*. Puis on 
+ré-écrit le programme plus proprement en utilisant des fonctions et des 
+sous-programmes. À la suite on modifie le workflow à mesure que le projet avance 
+et on le dessine sous Graphviz. 
 
-**Si on a la chance d’être sous R, on utilise Git/Github pour le suivi des versions des programmes**, sinon, c’est **gérant les versions à la main** (conventions de nommage, documentations au sein des programmes et des données), même si l’on peut aussi se servir de Git/Github pour des programmes Stata.  
+*Si on a la chance d’être sous R, on utilise git/GitHub pour le suivi des 
+versions des programmes*, sinon, c’est *gestion des versions à la main* 
+(conventions de nommage, documentations au sein des programmes et des données), 
+même si l’on peut aussi se servir de git/Github pour des programmes Stata.  
 
-On est tout le temps en train de « penser automatique » notamment pour exporter directement toutes les sorties générées (tables, graphiques) automatiquement et pour insertion directe dans le papier final. 
+On est tout le temps en train de « penser automatique » notamment pour exporter 
+directement toutes les sorties générées (tables, graphiques) automatiquement et 
+pour insertion directe dans le papier final. 
 
-Concernant le partage de l’écriture du papier, Overleaf permet un suivi des versions (version payante). **Au final, c’est beaucoup de bon sens, un peu d’organisation et quelques bons outils** que l’on trouve en restant ouverts à de nouvelles pratiques - et fermés à des outils de type tableurs, MS-word etc. qui sont encore très utilisés en économie. 
+Concernant le partage de l’écriture du papier, Overleaf permet un suivi des 
+versions (version payante). *Au final, c’est beaucoup de bon sens, un peu 
+d’organisation et quelques bons outils* que l’on trouve en restant ouverts à de 
+nouvelles pratiques - et fermés à des outils de type tableurs, MS-Word, etc. 
+qui sont encore très utilisés en économie. 
 
-*** Qu'est-ce que ça a changé dans votre pratique de la publication?
-Cela a surtout changé **notre façon de travailler avec les chercheurs**. À force de montrer des exemples - et des contre-exemples dramatiques - certains chercheurs nous ont laissé la maîtrise des travaux empiriques.  
+*** Qu'est-ce que ça a changé dans votre pratique de la publication ?
+Cela a surtout changé *notre façon de travailler avec les chercheurs*. À force 
+de montrer des exemples - et des contre-exemples dramatiques - certains 
+chercheurs nous ont laissé la maîtrise des travaux empiriques.  
 
-Quel bonheur que de lancer un programme et de voir l’écran clignoter, des graphiques s'afficher furtivement, des lignes défiler dans la console pour enfin retrouver l'ensemble des outputs bien rangés dans leurs dossiers !  
+Quel bonheur que de lancer un programme et de voir l’écran clignoter, des 
+graphiques s'afficher furtivement, des lignes défiler dans la console pour 
+enfin retrouver l'ensemble des outputs bien rangés dans leurs dossiers !  
 
-Nos pratiques ont évoluées au fur et à mesure, en utilisant de nouveaux outils et en maîtrisant l'ensemble du workflow. Après, ce ne sont que des expériences sur des outils de plus en plus performants et utiles, du bon sens et l’envie permanente d’améliorer nos pratiques.
+Nos pratiques ont évolué au fur et à mesure, en utilisant de nouveaux outils et
+en maîtrisant l'ensemble du workflow. Après, ce ne sont que des expériences sur 
+des outils de plus en plus performants et utiles, du bon sens et l’envie 
+permanente d’améliorer nos pratiques.
 
-*** À quel moment vous avez été sensible à cette question ? Quels conseils donneriez-vous aux jeunes étudiants ? (Et aux moins jeunes)? 
-*** Quels seraient vos conseils en termes de formation et d’accompagnement des chercheurs pour une recherche plus transparente ? Quels sont les défis actuels dans votre domaine ?
-Assez tôt (2005) puisque nous manipulons des données que nous achetons régulièrement (une fois par an) pour lesquelles de nouvelles versions peuvent nous être envoyées. **Il a donc été nécessaire de penser automatisation très vite**. Travaillant à 2 ingénieurs sur ces données, il a été nécessaire de penser reproductibilité sur nos 2 PCs puis sur n’importe quel autre. 
+*** À quel moment vous avez été sensible à cette question ? Quels conseils donneriez-vous aux jeunes étudiants ? (Et aux moins jeunes ?) 
+*** Quels seraient vos conseils en termes de formation et d’accompagnement des chercheurs pour une recherche plus transparente ? Quels sont les défis actuels dans votre domaine ?
+Assez tôt (2005) puisque nous manipulons des données que nous achetons 
+régulièrement (une fois par an) pour lesquelles de nouvelles versions peuvent 
+nous être envoyées. *Il a donc été nécessaire de penser automatisation très vite*. 
+Travaillant à 2 ingénieurs sur ces données, il a été nécessaire de penser 
+reproductibilité sur nos 2 PCs puis sur n’importe quel autre. 
 
-Bref, ça a été progressif et le partage de nos pratiques, la confrontation de nos idées et l’évolution des outils ont été de vrais moteurs. 
-L’arrivée de Sweave en 2008, très prôné par J. Racine en visite dans notre laboratoire, a été un nouveau déclencheur. 
+Bref, ça a été progressif et le partage de nos pratiques, la confrontation de 
+nos idées et l’évolution des outils ont été de vrais moteurs. L’arrivée de 
+Sweave en 2008, très prôné par J. Racine en visite dans notre laboratoire, a 
+été un nouveau déclencheur. 
 
-Côté formations, il serait nécessaire de mieux former les chercheurs - les jeunes surtout - si possible pendant leur formation. Évidemment, aujourd’hui on peut citer le MOOC ainsi que plusieurs papiers (Gentzkow et Shapiro 2014, Stodden 2013,…). 
+Côté formations, il serait nécessaire de mieux former les chercheurs - les 
+jeunes surtout - si possible pendant leur formation. Évidemment, aujourd’hui 
+on peut citer le MOOC ainsi que plusieurs papiers (Gentzkow et Shapiro 2014, 
+Stodden 2013…). 
 
-Les journaux ont aussi un rôle à jouer en montant en exigences concernant la vérification de la reproductibilité à partir des données et codes fournis (avec un referee spécialiste ou en sollicitant des tiers comme CASCAD), et aussi en donnant les moyens de progresser (proposer un repository interne à la revue ou en suggérant un externe). 
+Les journaux ont aussi un rôle à jouer en montant en exigences concernant la 
+vérification de la reproductibilité à partir des données et codes fournis (avec 
+un referee spécialiste ou en sollicitant des tiers comme CASCAD), et aussi en 
+donnant les moyens de progresser (en proposant un repository interne à la revue ou 
+en en suggérant un externe). 
 
-Évidemment, le point crucial reste celui des données confidentielles, mais avec de bonnes métadonnées, un DOI et [l’arrivée récente de CASCAD, une [[https://www.cascad.tech/][plateforme de certification de la reproductibilité]], la reproductibilité avance là aussi.
+Évidemment, le point crucial reste celui des données confidentielles, mais avec 
+de bonnes métadonnées, un DOI et l’arrivée récente de CASCAD, une 
+[[https://www.cascad.tech/][plateforme de certification de la reproductibilité]], 
+la reproductibilité avance là aussi.
 
-*** Pourriez-vous décrire une histoire d'horreur ? i.e. un gros raté (ex. : données non disponibles ; impossibilité de reproduire une figure en obtenant le même résultat, impossibilité de fournir des données à un referee, etc.)
-**Nous vivons dans un film d’horreur !** “Nos” chercheurs, à de rares exceptions près, ne sont pas des programmeurs et n’ont pas (encore) de trop fortes incitations à publier et diffuser leurs programmes. 
+*** Pourriez-vous décrire une histoire d'horreur ? i.e. un gros raté (ex. : données non disponibles ; impossibilité de reproduire une figure en obtenant le même résultat, impossibilité de fournir des données à un referee, etc.)
+*Nous vivons dans un film d’horreur !* “Nos” chercheurs, à de rares exceptions 
+près, ne sont pas des programmeurs et n’ont pas (encore) de trop fortes 
+incitations à publier et diffuser leurs programmes. 
 
-En outre, nos données étant très souvent confidentielles, les revues, à de très rares exceptions près, ne demandent pas à tester les programmes même sur des données fictives. 
+En outre, nos données étant très souvent confidentielles, les revues, à de très 
+rares exceptions près, ne demandent pas à tester les programmes même sur des 
+données fictives. 
 
-C’est donc parfois l’horreur absolue lorsqu’un referee demande à refaire une estimation et que le chercheur ne retrouve pas le même résultat et n’est pas complètement sûr des programmes utilisés ! 
+C’est donc parfois l’horreur absolue lorsqu’un referee demande à refaire une 
+estimation et que le chercheur ne retrouve pas le même résultat et n’est pas 
+complètement sûr des programmes utilisés ! 
 
-Il faut dire aussi, que **les estimations économétriques reposent souvent sur la maximisation d’une vraisemblance**, une fonction souvent complexe à maximiser et il arrive qu’un changement de version de logiciel (Stata par exemple, mais une mise à jour d’un package R ou un package R obsolète peuvent aussi réserver de belles surprises) vienne perturber la délicate mécanique mise au point.
+Il faut dire aussi, que *les estimations économétriques reposent souvent sur 
+la maximisation d’une vraisemblance*, une fonction souvent complexe à maximiser 
+et il arrive qu’un changement de version de logiciel (Stata par exemple, mais 
+une mise à jour d’un package R ou un package R obsolète peuvent aussi réserver 
+de belles surprises) vienne perturber la délicate mécanique mise au point.
 
-*** Pourriez-vous donner des cas concrets où des pratiques visant à rendre votre recherche reproductible et transparente vous ont aidé  à résoudre un problème ?
-**Nous avons probablement fait de la recherche reproductible sans le savoir, à nos débuts, en 2003**. Pour un programme de recherche sur l'essor des marques de distributeurs (MDD), nous avons été amenés à répliquer une analyse économétrique effectuée sur une catégorie de produit (les yaourts),sur quelques autres. 
+*** Pourriez-vous donner des cas concrets où des pratiques visant à rendre votre recherche reproductible et transparente vous ont aidé  à résoudre un problème ?
+*Nous avons probablement fait de la recherche reproductible sans le savoir, à 
+nos débuts, en 2003*. Pour un programme de recherche sur l'essor des marques de 
+distributeurs (MDD), nous avons été amenés à répliquer une analyse économétrique
+effectuée sur une catégorie de produit (les yaourts), sur quelques autres. 
 
-Nous avons donc commencé à mettre en place un workflow, puis des sorties automatiques en LaTeX et finalement avons construit une “moulinette” qui prenait n’importe quel produit alimentaire et produisait automatique un document pdf (via LaTeX) avec l’analyse économétrique complète. Le tout était programmé sous Stata, une prouesse !  
+Nous avons donc commencé à mettre en place un workflow, puis des sorties 
+automatiques en LaTeX et finalement avons construit une “moulinette” qui prenait 
+n’importe quel produit alimentaire et produisait automatiquement un document pdf 
+(via LaTeX) avec l’analyse économétrique complète. Le tout était programmé sous 
+Stata, une prouesse !  
 
-Ce processus nous a permis d’envisager l’écriture d’un premier article, suivi d’un second, plus complexe et portant sur plus d’une centaine de produits et de montrer l’impact de l’introduction des MDD sur les prix des marques nationales. Un projet très sympa qui a forgé notre façon de travailler par la suite.
+Ce processus nous a permis d’envisager l’écriture d’un premier article, suivi 
+d’un second, plus complexe et portant sur plus d’une centaine de produits et de 
+montrer l’impact de l’introduction des MDD sur les prix des marques nationales.
+Un projet très sympa qui a forgé notre façon de travailler par la suite.
 
-Un autre exemple très positif est celui récent d’un papier à paraître : **avoir anticipé la demande de la revue de fournir les codes et données et d’avoir ainsi été capable de les fournir en 2 jours (codes propres et commentés, données, workflow documenté, un seul programme à lancer générant une page web avec toutes les sorties du papier)**.
+Un autre exemple très positif est celui récent d’un papier à paraître : 
+*avoir anticipé la demande de la revue de fournir les codes et données et d’avoir ainsi été capable de les fournir en 2 jours (codes 
+propres et commentés, données, workflow documenté, un seul programme à lancer générant une page web avec toutes les sorties du papier)*.
 
-*** Quelle question souhaiteriez-vous ajouter à cette interview? Qu’auriez-vous envie d’évoquer ?
-Il n’est **jamais trop tard pour changer ses pratiques** et **s’organiser différemment**. On nous reproche souvent de vouloir compliquer une organisation bien établie qui a fait ses preuves (de non-reproductibilité). 
+*** Quelle question souhaiteriez-vous ajouter à cette interview ? Qu’auriez-vous envie d’évoquer ?
+Il n’est *jamais trop tard pour changer ses pratiques* et *s’organiser différemment*. 
+On nous reproche souvent de vouloir compliquer une organisation bien établie qui 
+a fait ses preuves (de non-reproductibilité). 
 
-**Pour reprendre des notions économiques, pour certains, les coûts semblent nettement supérieurs aux bénéfices. Cela ne nous semble pas vrai.** Certes tout changement à un coût, surtout à court terme, mais nous restons persuadés que **les bénéfices individuels et collectifs sont grands et que ce coût peut être minime**. 
+*Pour reprendre des notions économiques, pour certains, les coûts semblent 
+nettement supérieurs aux bénéfices. Cela ne nous semble pas vrai.* Certes tout 
+changement à un coût, surtout à court terme, mais nous restons persuadés que 
+*les bénéfices individuels et collectifs sont grands et que ce coût peut être minime*. 
 
-Il y a espoir que ce discours soit donc entendu par des économistes … par contre pour que cela fonctionne, il nous semble important d’**inciter chaque amélioration et de ne pas chercher à modifier toutes les pratiques en même temps**. Certains outils sont plus simples que d’autres et tout dépend du point de départ de chacun.
+Il y a espoir que ce discours soit donc entendu par des économistes… par 
+contre pour que cela fonctionne, il nous semble important *d’inciter chaque
+amélioration et de ne pas chercher à modifier toutes les pratiques en même temps*. 
+Certains outils sont plus simples que d’autres et tout dépend du point de départ
+de chacun.
