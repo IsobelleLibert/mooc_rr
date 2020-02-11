@@ -64,7 +64,7 @@ En cas de problème, contactez-nous via le forum. Afin de pouvoir vous
 aider à résoudre vos problèmes éventuels, 
 merci de nous communiquer votre identifiant LTI (identifiant externe
 attribué automatiquement pour GitLab et Jupyter) que vous pouvez
-retrouvet sur votre compte GitLab (cf. capture ci-dessous).
+retrouver sur votre compte GitLab (cf. capture ci-dessous).
 #+BEGIN_CENTER
  [[file:gitlab_images/gitlab_id_lti.jpg]]
 #+END_CENTER
