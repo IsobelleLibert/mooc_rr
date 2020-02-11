@@ -19,14 +19,15 @@ les *enjeux de transparence* qui prédominent. Janz distingue 3 types de
 transparence (Janz 2018). Les objectifs à atteindre dans chaque domaine
 vont se traduire différemment selon que l'on travaille avec des méthodes
 quantitatives ou qualitatives : 
-- /data transparency/ : "/Providing full access to data itself/" ; il
+- /data transparency/ : "/Providing full access to data itself/" ; il
   s'agit là de fournir les jeux de données sur lesquels se fonde
   l'analyse, mais Janz précise que la mise à disposition ne peut être
   que partielle si on utilise des transcriptions d'entretiens, des vidéos. 
-- /analytic transparency/ : "/Information about data analysis/"; il peut
+- /analytic transparency/ : "/Information about data analysis/" ; il peut
   s'agir de fournir les codes informatiques mais aussi d'indiquer
-  précisement sur quelles sources l'analyse s'appuie ou encore d'apporter des commentaires complémentaires à l'analyse. 
-- /production transparency/ : "/Process of data collection/" ; il peut
+  précisement sur quelles sources l'analyse s'appuie ou encore d'apporter des 
+  commentaires complémentaires à l'analyse. 
+- /production transparency/ : "/Process of data collection/" ; il peut
   s'agir de fournir ou de décrire les données brutes, de documenter
   les variables. Mais l'objectif de transparence peut aussi consister
   à expliquer selon quels protocoles les données ont été
@@ -36,7 +37,7 @@ quantitatives ou qualitatives :
 *Toutes les techniques de reproductibilité n'auront donc pas la même
 importance en fonction des disciplines et des méthodes employées*.
 
-** Quelques exemples de pratiques favorables à une recherche reproductible ...
+** Quelques exemples de pratiques favorables à une recherche reproductible...
    :PROPERTIES:
    :CUSTOM_ID: quelques-exemples-de-pratiques-favorables-à-une-recherche-reproductible
    :END:
@@ -44,7 +45,7 @@ importance en fonction des disciplines et des méthodes employées*.
 La recherche reproductible ne constitue pas un ensemble prédéterminé de
 techniques et de méthodes. Si le *partage de données* et/ou de *code
 informatique* participe à une recherche plus reproductible, la pratique
-émergente de la */pre-registration/* (Nosek et al. 2017) peut également
+émergente de la */pre-registration/* (Nosek /et al./ 2017) peut également
 y concourir. L'une de ses finalités est de prévenir les risques de
 HARKing - /Hypothesizing After the Results are Known/. La
 /pre-registration/ intervient en amont du travail d'analyse. Un.e
@@ -64,12 +65,12 @@ objectifs de la /pre-registration/ est d'aider le.a chercheur.euse à se
 prémunir contre des biais, des erreurs de méthode.
 
 Gardons à l'esprit que *la /pre-registration/ représente au mieux une
-aide* et ne constitue pas un rempart contre la fraude. Par ailleurs, *ce
-type de modalité de travail ne se substitue pas à la maîtrise des
+aide* et ne constitue pas un rempart contre la fraude. Par ailleurs, 
+*ce type de modalité de travail ne se substitue pas à la maîtrise des
 concepts et des méthodes statistiques*.
 
 Mais il existe également de nombreux cas où aucune de ces techniques ne
-s'applique (donnée ne pouvant être partagées, absence de dimension
+s'applique (données ne pouvant être partagées, absence de dimension
 calculatoire ou informatique, etc.).
 
 ** ... qui appellent d'autres réponses : la transparence, une notion centrale de la recherche reproductible. Mais de quoi parle-t-on alors ?
@@ -92,7 +93,7 @@ de collecte, en assurant leur préservation. L'objectif est de conserver
 ces informations pour soi, mais aussi à des fins de réfutabilité par un
 tiers sous réserve de respecter un dispositif juridique précis. On
 s'attachera alors à travailler en gardant à l'esprit que ces travaux
-seront peut-être amenés à être accessible à un plus grand nombre de
+seront peut-être amenés à être accessibles à un plus grand nombre de
 personnes dans le futur. Le *module 4 du Mooc* comporte quelques pistes
 de réflexion sur ce sujet très vaste.
 
@@ -107,11 +108,11 @@ travaux effectués. Nous vous invitons à vous reporter au Sujet 3 du
 illustre pleinement l'importance d'une analyse plus qualitative des
 données (FIXME, ajouter la correction et le lien vers la correction).
 
-*Le terme "transparence" renvoie donc plutôt au fait de rendre accessibles à son lectorat les éléments sur lesquels s'est construit le
-raisonnement* : sources citées, données analysées ou description des
-données, /corpus/, /etc/. La notion de traçabilité occupe donc une place
-centrale. L'accent n'est pas mis sur le fait d'aboutir aux mêmes
-conclusions.
+*Le terme "transparence" renvoie donc plutôt au fait de rendre accessibles 
+à son lectorat les éléments sur lesquels s'est construit le raisonnement* : 
+sources citées, données analysées ou description des données, /corpus/, /etc/. 
+La notion de traçabilité occupe donc une place centrale. L'accent n'est pas 
+mis sur le fait d'aboutir aux mêmes conclusions.
 
 L'importance de *donner accès aux éléments constitutifs de son
 raisonnement* n'est pas une idée nouvelle et réside au cœur de la
@@ -123,18 +124,18 @@ logiciels, /etc/.) et leur fragilité (obsolescence des supports, des
 formats et des logiciels) constituent autant d'*atteintes potentielles à
 la traçabilité de la recherche*.
 
-A tous les stades du travail, l'objectif de transparence peut être mis à
+À tous les stades du travail, l'objectif de transparence peut être mis à
 mal : recherche des sources et analyse de la littérature ; saisie et
 traitement des données ; constitution des /corpus/ ; présentation des
 résultats ; rédaction.
 
-Par ailleurs, *nul besoin de travailler avec des bases de données, des données d'enquêtes ou encore des jeux de données massifs pour être
-concerné.e par ces problématiques*. Par exemple, il peut être difficile
-pour un.e chercheur.euse d'évaluer la robustesse d'une hypothèse de
-recherche fondée sur la présence d'une expression donnée dans un
-/corpus/ si celui-ci n'est pas interrogeable de manière automatisée. On
-s'expose alors à des déconvenues. L'exemple est tiré de l'ouvrage de
-Bernard et Bohet cité dans la bibliographie (Bernard and Bohet 2017) :
+Par ailleurs, *nul besoin de travailler avec des bases de données, des données d'enquêtes   
+ou encore des jeux de données massifs pour être concerné.e par ces problématiques*. 
+Par exemple, il peut être difficile pour un.e chercheur.euse d'évaluer la 
+robustesse d'une hypothèse de recherche fondée sur la présence d'une expression 
+donnée dans un /corpus/ si celui-ci n'est pas interrogeable de manière 
+automatisée. On s'expose alors à des déconvenues. L'exemple est tiré de 
+l'ouvrage de Bernard et Bohet cité dans la bibliographie (Bernard and Bohet 2017) :
 un chercheur affirme qu'il n'y a pas d'occurrence de l'expression
 "illusions perdues" dans le roman éponyme de Balzac. Si l'expression est
 en effet absente du roman, une recherche dans le document permet de
@@ -158,15 +159,15 @@ débusquer et de corriger les erreurs potentielles.
 au service d'un cadre méthodologique*, permettant entre autres de
 limiter les risques d'oubli et d'erreurs, de disposer d'outils de
 vérification. De fait, se pose la question du degré de contrôle possible
-de ces outils : *sous quelles conditions est-il raisonnable de s'en
-remettre à des traitements automatisés dès lors qu'on veut s'assurer
-d'une recherche transparente* ? Autant que faire se peut, le recours à
-des *logiciels /open source/* constitue une première étape dans ce
-sens : le code source des logiciels commerciaux demeure en effet inaccessible. Ensuite, acquérir progressivement un socle de compétences
+de ces outils : *sous quelles conditions est-il raisonnable de s'en remettre à
+des traitements automatisés dès lors qu'on veut s'assurer d'une recherche transparente ?*
+Autant que faire se peut, le recours à des *logiciels /open source/* constitue 
+une première étape dans ce sens : le code source des logiciels commerciaux 
+demeure en effet inaccessible. Ensuite, acquérir progressivement un socle de compétences
 techniques permet d'appréhender le fonctionnement général d'un logiciel.
-*Il ne s'agit pas forcément d'en comprendre le paramétrage dans le détail, mais d'avoir suffisamment de notions pour comprendre ce qu'on
-obtient en sortie et le crédit qu'on peut lui apporter*. Les
-ingénieur.e.s en traitement et analyse de données et les
+*Il ne s'agit pas forcément d'en comprendre le paramétrage dans le détail, mais d'avoir suffisamment
+de notions pour comprendre ce qu'on obtient en sortie et le crédit qu'on peut lui apporter*. 
+Les ingénieur.e.s en traitement et analyse de données et les
 statisticien.ne.s des équipes de recherche peuvent vous aider à
 appréhender ces aspects techniques, mais aussi culturels car les
 logiciels naissent dans un environnement épistémologique donné.
@@ -179,28 +180,19 @@ logiciels naissent dans un environnement épistémologique donné.
 Que l'on décide de partager ou non ce type de données, concevoir un
 */codebook/* (Saldaña 2016) peut être utile aux chercheurs.euses
 recourant aux *méthodes qualitatives*. Le terme "code" s'entend ici de
-la sorte : "/A code in qualitative inquiry is most often a word or short
-phrase that symbolically assigns a summative, salient,
-essence-capturing, and/or evocative attribute for a portion of
-language-based or visual data. The data can consist of interview
-transcripts, participant observation field notes, journals, documents,
-literature,artifacts, photographs, video, websites, e-mail
-correspondence, and so on./" (Saldaña 2016)
+la sorte : "/A code in qualitative inquiry is most often a word or short phrase that symbolically assigns a summative, salient, essence-capturing, and/or evocative attribute for a portion of language-based
+or visual data. The data can consist of interview transcripts, participant observation field notes, journals, documents, literature, artifacts, photographs, video, websites, e-mail correspondence, and so on./" (Saldaña 2016)
 
-*Qu'on code les données à l'aide d'un logiciel CAQDAS (Computer Assisted qualitative Data Analysis Software) ou manuellement, le
-processus de codage ou d'étiquetage des données est itératif* : une première étape
-exploratoire permet d'aboutir à une seconde phase où l'étiquetage
-devient plus sélectif, théorique. L'étape de codage appelle souvent
-plusieurs cycles d'adaptation, ainsi que le rappelle Saldaña : "/As you
-code and recode, expect -- or rather, strive for -- your codes and
-categories to become more refined. Some of your First Cycle codes may be
-later subsumed by other codes, relabeled, or dropped all together. As
-you progress toward Second Cycle coding, there may be some rearrangement
-and reclassification of coded data into different and even new
-categories./" (Saldaña 2016) Par ailleurs, non seulement les codes
-évoluent au fil de l'analyse, mais leur nombre peut aussi augmenter. La
-figure ci-dessous illustre le cycle de conception des codes (Roberts,
-Dowell, and Nie 2019).
+*Que l'on code les données à l'aide d'un logiciel CAQDAS (Computer Assisted qualitative Data Analysis  
+Software) ou manuellement, le processus de codage ou d'étiquetage des données est itératif* : 
+une première étape exploratoire permet d'aboutir à une seconde phase où 
+l'étiquetage devient plus sélectif, théorique. L'étape de codage appelle souvent
+plusieurs cycles d'adaptation, ainsi que le rappelle Saldaña : 
+"/As you code and recode, expect -- or rather, strive for -- your codes and categories to become more refined. Some of your First Cycle codes may be later subsumed by other codes, relabeled, 
+or dropped all together. As you progress toward Second Cycle coding, there may be some rearrangement and reclassification of coded data into different and even new categories./" 
+(Saldaña 2016) Par ailleurs, non seulement les codes évoluent au fil de l'analyse, 
+mais leur nombre peut aussi augmenter. La figure ci-dessous illustre le cycle de 
+conception des codes (Roberts, Dowell, and Nie 2019).
 
  [[file:ROBERTS-cycle-codebook.png]]
 
@@ -241,9 +233,8 @@ collectivement, il peut être utile de désigner un /codebook editor/
 chargé de coordonner les ajouts, les suppressions, les évolutions.
 
 Concevoir et gérer un /codebook/ nécessite du temps, mais cette démarche
-de documentation apporte des garanties : "/It was thought that the
-codebook improved the potential for inter-coder agreement and
-reliability testing and ensured an accurate description of analyses/."
+de documentation apporte des garanties : "/It was thought that the codebook improved the potential 
+for inter-coder agreement and reliability testing and ensured an accurate description of analyses/."
 (Roberts, Dowell, and Nie 2019)
 
 ** /Quid/ des aspects non computationnels de la recherche ?
@@ -261,12 +252,12 @@ d'exploitation du texte. En revanche, la rigueur dans l'utilisation des
 sources bibliographiques (revue de littérature, constitution de
 l'appareil bibliographique, /etc/.) constitue le critère déterminant
 d'une recherche transparente. Dès lors, le recours à un *gestionnaire de
-références bibliographiques* est très adapté. Une autre famille d'outil
+références bibliographiques* est très adapté. Une autre famille d'outils
 peut également devenir utile quand on travaille uniquement sur des
 textes : les *outils de contrôle de versions*. Il peut en effet être
 difficile de garder le suivi des évolutions du texte quand on rédige une
 monographie, une thèse ou lorsque la rédaction est collective. Un
-logiciel de forge tel que Gitlab n'est par exemple pas seulement utile à
+logiciel de forge tel que GitLab n'est par exemple pas seulement utile à
 des développeurs : il peut aider à gérer tout type de contenu, pas
 seulement du code.
 
