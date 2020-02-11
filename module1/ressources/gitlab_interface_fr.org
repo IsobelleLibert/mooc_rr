@@ -3,7 +3,7 @@
 #+OPTIONS: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
 #+OPTIONS: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+OPTIONS: timestamp:t title:t toc:t todo:t |:t
-#+TITLE: Interface de Gitlab dans ce Mooc
+#+TITLE: Interface de GitLab dans ce Mooc
 #+DATE: <2019-03-26 mar.>
 #+AUTHOR: Arnaud Legrand, Laurence Farhi
 #+EMAIL: arnaud.legrand@imag.fr
@@ -13,31 +13,31 @@
 #+CREATOR: Emacs 26.1 (Org mode 9.1.9)
 #+STARTUP: indent
 
-** Accéder à son espace Gitlab
-Cette section décrit étape par étape comment accéder à votre espace Gitlab depuis la
-plateforme FUN après avoir cliqué sur le bouton "*Accéder à Gitlab / Access to Gitlab*".
+** Accéder à son espace GitLab
+Cette section décrit étape par étape comment accéder à votre espace GitLab depuis la
+plateforme FUN après avoir cliqué sur le bouton "*Accéder à GitLab / Access to GitLab*".
 
 - Vous arrivez sur le formulaire suivant :
   #+BEGIN_CENTER
   [[file:gitlab_images/sign_in_gitlab.png]]
   #+END_CENTER
-- Connectez-vous en cliquant sur le bouton "*Sign in"* situé sous
+- Connectez-vous en cliquant sur le bouton "*Sign in*" situé sous
   "*Connexion*". Le cadre "Connexion Admin" est réservé aux
-  administrateurs de l'interface Gitlab. L'authentification est automatique à cette étape.
+  administrateurs de l'interface GitLab. L'authentification est automatique à cette étape.
   #+BEGIN_CENTER
   [[file:gitlab_images/projects.png]]
   #+END_CENTER
 
   La grande chaîne de caractères remplacée ici par =xxx= est le login
-  qu'il faudra utiliser dans Git pour accéder à Gitlab.
-- *NB* : Il faut accéder à Gitlab depuis la plateforme FUN. Vous risquez
-    d'obtenir une erreur 405 en accédant directement à la page https://app-learninglab.inria.fr/gitlab/users/sign_in.
+  qu'il faudra utiliser dans git pour accéder à GitLab.
+- *NB* : Il faut accéder à GitLab depuis la plateforme FUN. Vous risquez
+    d'obtenir une erreur 405 en accédant directement à la page [[https://app-learninglab.inria.fr/gitlab/users/sign_in]].
     #+BEGIN_CENTER
     [[file:gitlab_images/erreur405.png]]
     #+END_CENTER
 
 ** Récupérer son mot de passe
-Pour récupérer le mot de passe prédéfini, il faut utiliser le [[https://app-learninglab.inria.fr/jupyterhub/services/password][Gitlab
+Pour récupérer le mot de passe prédéfini, il faut utiliser le [[https://app-learninglab.inria.fr/jupyterhub/services/password][GitLab
   credentials retrieval tool]]. On retrouve alors le login et le mot de
   passe.
 
@@ -52,10 +52,10 @@ Il est possible de modifier ce mot de passe dans "Account / Paramètres / Mot de
   [[file:gitlab_images/password.png]]
   #+END_CENTER
 
-** En savoir plus sur git/Gitlab
+** En savoir plus sur git/GitLab
 Enfin, pour ceux qui veulent aller plus plus loin et en savoir plus
 sur l'outil de gestion de version git sur lequel s'appuie GitLab,
-quelques vidéos de démonstration sur git et Gitlab sont proposées dans
+quelques vidéos de démonstration sur git et GitLab sont proposées dans
 la [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85][séquence "7. Installations, configurations, references" du module 2]]
 de ce Mooc ainsi que des ressources pour apprivoiser git en ligne de commandes.
 
@@ -64,7 +64,7 @@ En cas de problème, contactez-nous via le forum. Afin de pouvoir vous
 aider à résoudre vos problèmes éventuels, 
 merci de nous communiquer votre identifiant LTI (identifiant externe
 attribué automatiquement pour GitLab et Jupyter) que vous pouvez
-retrouvez sur votre compte GitLab (cf capture ci-dessous).
+retrouvet sur votre compte GitLab (cf. capture ci-dessous).
 #+BEGIN_CENTER
  [[file:gitlab_images/gitlab_id_lti.jpg]]
 #+END_CENTER
