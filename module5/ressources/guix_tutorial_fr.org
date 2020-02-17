@@ -5,29 +5,40 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
+* Plan
+- Point de départ
+- Séquence 2 : Créer son propre environnement, automatiser sa construction et le partage
+ - 2.2 Installer tous les paquets dont on a besoin
+ - 2.4 Automatiser la construction de son environnement
+ - 2.5 Mieux connaître son environnement
+ - 2.6 Mettre son environnement à disposition
+ - 2.7 Reconstruire un environnement
+ - 2.8 Mettre son environnement à disposition sous forme d'une image Docker
+ - 2.9 Modifier son environnement
+
 * Point de départ
-Pour utiliser Guix, il faut évidemment l'installer. Il y a deux façons d'y arriver:
+Pour utiliser Guix, il faut évidemment l'installer. Il y a deux façons d'y arriver :
 
-1. Installer [[https://guix.gnu.org/manual/en/html_node/System-Installation.html][Guix System]] sur votre ordinateur, à la place d'une distribution Linux plus traditionnelle comme Debian ou Ubuntu. Tout votre système est alors géré avec Guix, ce qui a des avantages (notamment la reproductibilité totale de votre configuration), mais aussi des inconvénients (il y a moins que logiciels disponibles pour Guix que pour une vieille distribution genre Debian). Vous pouvez bien sûr installer Guix dans une machine virtuelle.
+1. Installer [[https://guix.gnu.org/manual/en/html_node/System-Installation.html][Guix System]] sur votre ordinateur, à la place d'une distribution Linux plus traditionnelle comme Debian ou Ubuntu. Tout votre système est alors géré avec Guix, ce qui a des avantages (notamment la reproductibilité totale de votre configuration), mais aussi des inconvénients (il y a moins de logiciels disponibles pour Guix que pour une vieille distribution genre Debian). Vous pouvez bien sûr installer Guix dans une machine virtuelle.
 
-2. Installer seulement [[https://guix.gnu.org/manual/en/html_node/Binary-Installation.html][le gestionnaire de paquets Guix]] sur un ordinateur qui tourne déjà sous Linux. Vous pouvez alors utiliser Guix en parallèle avec le gestionnaire de paquets de votre distribution, ce qui donne beaucoup de flexibilité, mais il faut bien sûr faire attention à quel paquet est installé comment, et éviter des doublons. Python est particulièrement problématique, parce que la coexistence de plusieurs installations de Python nécessite quelques précautions (qui n'ont rien à voir avec Guix d'ailleurs). Votre distribution Python a fort probablement déjà une installation Python, et ce tutoriel vous fera travailler avec un Python fourni par Guix, ce qui crée la possibilité d'un conflit. Si vous rencontrez des difficultés que vous ne pouvez pas résoudre (normalement le résultat d'une configuration personnalisée par $PATH et/ou $PYTHONPATH), perséverez : dès que vous arrivez au point ou je commence à utiliser "guix environment", ça devrait fonctionner quand-même (c'est fait pour!).
+2. Installer seulement [[https://guix.gnu.org/manual/en/html_node/Binary-Installation.html][le gestionnaire de paquets Guix]] sur un ordinateur qui tourne déjà sous Linux. Vous pouvez alors utiliser Guix en parallèle avec le gestionnaire de paquets de votre distribution, ce qui donne beaucoup de flexibilité, mais il faut bien sûr faire attention à quel paquet est installé comment, et éviter des doublons. Python est particulièrement problématique, parce que la coexistence de plusieurs installations de Python nécessite quelques précautions (qui n'ont rien à voir avec Guix d'ailleurs). Votre distribution Linux a fort probablement déjà une installation Python, et ce tutoriel vous fera travailler avec un Python fourni par Guix, ce qui crée la possibilité d'un conflit. Si vous rencontrez des difficultés que vous ne pouvez pas résoudre (normalement le résultat d'une configuration personnalisée par $PATH et/ou $PYTHONPATH), perséverez : dès que vous arrivez au point où je commence à utiliser "guix environment", ça devrait fonctionner quand-même (c'est fait pour !).
 
-D'abord, quelques mots sur le fonctionnement de Guix pour les habitués de Linux - si vous ne comprenez pas ces explications, ce n'est pas grave pour la suite. La gestion traditionnelle des logiciels sous Linux est basé sur des conventions définissant l'emplacement des fichiers. Par exemple, les exécutables se trouve sous =/bin=, =/usr/bin=, et =/usr/local/bin=. Ce genre de convention est très contraignant parce qu'elle vous empêche d'installer facilement plusieurs versions d'un même logiciel.
+D'abord, quelques mots sur le fonctionnement de Guix pour les habitués de Linux - si vous ne comprenez pas ces explications, ce n'est pas grave pour la suite. La gestion traditionnelle des logiciels sous Linux est basée sur des conventions définissant l'emplacement des fichiers. Par exemple, les exécutables se trouvent sous =/bin=, =/usr/bin=, et =/usr/local/bin=. Ce genre de conventions sont très contraignantes parce qu'elles vous empêchent d'installer facilement plusieurs versions d'un même logiciel.
 
-Guix fonctionne autrement: il place tous les fichiers sous =/gnu/store=, ou chaque paquet à son sous-répertoire avec un nom très long et très bizarre comme par example =/gnu/store/kwf1gzgk7f0l1sz84d0frrfvlqysnbz7-jupyter-1.0.0=. Les 32 permiers caractères de ces noms de ces sous-répertoires sont en fait une somme de contrôle calculé sur le code source du logiciel et de toutes ses dépendances. Si vous installez Jupyter 1.0.0 avec une autre version de Python, cette somme de contrôle change, et elle change même si vous compilez Python avec une autre version de =gcc=. C'est comme ça que Guix permet la coëxistence de plusieurs versions.
+Guix fonctionne autrement : il place tous les fichiers sous =/gnu/store=, où chaque paquet à son sous-répertoire avec un nom très long et très bizarre comme par example =/gnu/store/kwf1gzgk7f0l1sz84d0frrfvlqysnbz7-jupyter-1.0.0=. Les 32 permiers caractères de ces noms de ces sous-répertoires sont en fait une somme de contrôle calculée sur le code source du logiciel et de toutes ses dépendances. Si vous installez Jupyter 1.0.0 avec une autre version de Python, cette somme de contrôle change, et elle change même si vous compilez Python avec une autre version de =gcc=. C'est comme ça que Guix permet la coexistence de plusieurs versions.
 
-Sur cette base, Guix introduit des /profils/, qui remplacent la collection conventionnelle des répertoires comme =/bin=, =/lib=, =/etc= etc. A l'intérieur d'un profil, vous retrouvez ces répertoires, mais leur contenu ne consiste que de liens symboliques vers les paquets sous =/gnu/store=. Chaque utilisateur a son profil personnel, sous =$HOME/.guix-profile=. C'est comme ça que chaque utilisateur peut gèrer sa propre collection de logiciels, sans dépendre d'un administrateur pour les installer ou mettre à jour. Et comme les profils sont légers, on peut en définir d'autres à volonté (mais je n'en parle pas dans ce tutoriel). On peut aussi travailler avec des profils ephémères qui s'appellent "environnements". C'est cette approche que j'ai choisi pour ce tutoriel.
+Sur cette base, Guix introduit des /profils/, qui remplacent la collection conventionnelle des répertoires comme =/bin=, =/lib=, =/etc=, etc. À l'intérieur d'un profil, vous retrouvez ces répertoires, mais leur contenu ne consiste que de liens symboliques vers les paquets sous =/gnu/store=. Chaque utilisateur a son profil personnel, sous =$HOME/.guix-profile=. C'est comme ça que chaque utilisateur peut gérer sa propre collection de logiciels, sans dépendre d'un administrateur pour les installer ou mettre à jour. Et comme les profils sont légers, on peut en définir d'autres à volonté (mais je n'en parle pas dans ce tutoriel). On peut aussi travailler avec des profils éphémères qui s'appellent "environnements". C'est cette approche que j'ai choisi pour ce tutoriel.
 
-* Séquence 2: Créer son propre environnement, automatiser sa construction et le partage
+* Séquence 2 : Créer son propre environnement, automatiser sa construction et le partage
 ** 2.2 Installer tous les paquets dont on a besoin
-Une installation Guix de base ne contient même pas python,
-il va donc falloir l'installer ainsi que =jupyter= et différents paquets
+Une installation Guix de base ne contient même pas Python,
+il va donc falloir l'installer ainsi que Jupyter et différents paquets
 comme =matplotlib=, =pandas=, =numpy=, =statsmodels=... L'installation
 se fait à l'aide de la commande =guix install <nom_du_paquet>=. Comment
-faire pour trouver le nom du paquet Guix qui contient ce qui vous intéresse ?
-Avec la commande =guix search "<un truc lié au nom de ce que vous cherchez>"=.
+faire pour trouver le nom du paquet Guix qui contient ce qui vous intéresse ?
+Avec la commande =guix search <un truc lié au nom de ce que vous cherchez>=.
 
-D'abord, je cherche tout ce qui a trait à jupyter
+D'abord, je cherche tout ce qui a trait à Jupyter :
 #+begin_src shell :session *docker* :results output :exports both 
 guix search jupyter
 #+end_src
@@ -597,10 +608,10 @@ relevance: 2
 
 #+end_example
 
-Aouch! Ça fait beaucoup. Dans le tas, il y a un paquet qui s'appelle
+Aouch ! Ça fait beaucoup. Dans le tas, il y a un paquet qui s'appelle
 =jupyter=. C'est un bon point de départ. Installons-le et voyons ce qu'on peut faire avec. Attention, ce qui se passe quand vous lancez la commande suivante peut être très variable. Dans le meilleur cas, Guix télécharge une version précompilée de Jupyter. Au pire, Guix compile Jupyter à partir de son code source. Et si vous n'avez vraiment pas de chance, Guix va d'abord compiler juste la bonne version des compilateurs qu'il faut pour compiler Jupyter. Dans ce cas, vous devez attendre longtemps - mais à la fin, vous aurez ce que vous avez demandé.
 
-Alors... allons-y !
+Alors... allons-y !
 #+begin_src sh :results output :exports both
 guix install jupyter
 #+end_src
@@ -616,7 +627,7 @@ jupyter notebook
 #+end_src
 Un essai rapide confirme que tout est là pour créer un notebook en langage Python 3, donc tout va bien.
 
-Il reste à faire la même chose avec =matplotlib=, =pandas=, =numpy= et =statsmodels=. Je trouve les noms des paquets avec =guix search=, et puis j'installe tout avec une seule commande:
+Il reste à faire la même chose avec =matplotlib=, =pandas=, =numpy= et =statsmodels=. Je trouve les noms des paquets avec =guix search=, et puis j'installe tout avec une seule commande :
 
 #+begin_src sh :results output :exports both
 guix install python-matplotlib python-numpy python-pandas python-statsmodels
@@ -627,7 +638,7 @@ guix install python-matplotlib python-numpy python-pandas python-statsmodels
 
 Je rajoute le paquet =python-nbconvert= qui permet de
 convertir les notebooks en ligne de commande sans passer par
-l'interface graphique, ça peut toujours servir:
+l'interface graphique, ça peut toujours servir :
 #+begin_src sh :results output :exports both
 guix install python-nbconvert
 #+end_src
@@ -640,7 +651,7 @@ guix install python-nbconvert
 Vous remarquerez que dans tout ce qui a précédé, j'ai noté dans mon
 journal de ce que j'ai effectué mais vous n'avez aucune garantie que
 je n'ai rien oublié. De plus, si vous voulez refaire cet environnement
-vous même, il vous faudra suivre ces instructions scrupuleusement en
+vous-même, il vous faudra suivre ces instructions scrupuleusement en
 espérant que rien n'aille de travers.
 
 Je vais donc maintenant introduire alors la notion du =manifest= qui
@@ -671,45 +682,45 @@ cat moocrr_guix_jupyter/manifest.scm
 :    "python-nbconvert"))
 : 
 
-C'est essentiellement la liste des paquets que j'ai installé à la main auparavant, mais dans un format un peu particulier qu'il faut respecter scrupuleusement. En fait, ce format n'est rien d'autre que le langage de programmation [[https://fr.wikipedia.org/wiki/Scheme][Scheme]]. Guix est écrit en Scheme, et exprimer une liste de paquets en Scheme a le grand avantage qu'on peut utiliser des fonctionnalités avancées de Guix pour définir son environnement. Par exemple, je pourrais demander que tous mes paquets, en commençant par Python, soient compilés avec =gcc 7= plutôt qu'avec le compilateur par défaut de Guix, qui est actuellement =gcc 5=.
+C'est essentiellement la liste des paquets que j'ai installés à la main auparavant, mais dans un format un peu particulier qu'il faut respecter scrupuleusement. En fait, ce format n'est rien d'autre que le langage de programmation [[https://fr.wikipedia.org/wiki/Scheme][Scheme]]. Guix est écrit en Scheme, et exprimer une liste de paquets en Scheme a le grand avantage qu'on peut utiliser des fonctionnalités avancées de Guix pour définir son environnement. Par exemple, je pourrais demander que tous mes paquets, en commençant par Python, soient compilés avec =gcc 7= plutôt qu'avec le compilateur par défaut de Guix, qui est actuellement =gcc 5=.
 
-Je peux alors créer un environnement contenant ces paquets avec
+Je peux alors créer un environnement contenant ces paquets avec :
 #+begin_src sh :session *jupyter-env* :results output :exports both
 guix environment --pure -m ./moocrr_guix_jupyter/manifest.scm
 #+end_src
 
 #+RESULTS:
 
-Ceci me lance une shell (=bash=, plus précisement) de laquelle Jupyter est accessible et configuré avec tous les modules Python demandés:
+Ceci me lance une shell (=bash=, plus précisement) de laquelle Jupyter est accessible et configuré avec tous les modules Python demandés :
 #+begin_src sh :session *jupyter-env* :results output :exports both
 jupyter notebook
 #+end_src
 
 #+RESULTS:
 
-Mais il est encore plus pratique de lancer directement Jupyter plutôt de passer par une shell::
+Mais il est encore plus pratique de lancer directement Jupyter plutôt de passer par une shell :
 #+begin_src sh :results output :exports both
 guix environment -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebook
 #+end_src
 
-Pour faire encore mieux, rajoutons l'option =–pure=:
+Pour faire encore mieux, rajoutons l'option =–pure= :
 #+begin_src sh :results output :exports both
 guix environment –pure -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebook
 #+end_src
 
-Un environnement "pur" ne contient que les paquets définis dans le manifeste, pendant qu'un environnement "standard" contient aussi tout ce qu'on a disponible par défaut par la ligne de commande, donc des utilitaires comme =ls=, =cp=, etc. Avec un environnement pur, on est sûr de n'utiliser rien qui n'est pas listé dans le manifeste, même pas par erreur.
+Un environnement "pur" ne contient que les paquets définis dans le manifeste, pendant qu'un environnement "standard" contient aussi tout ce qui est disponible par défaut par la ligne de commande, donc des utilitaires comme =ls=, =cp=, etc. Avec un environnement pur, on est sûr de ne pas utiliser une commande qui n'est pas listée dans le manifeste, même pas par erreur.
 
 ** 2.5 Mieux connaître son environnement
-J'ai bien choisi les paquets qui seront dans mon environnement, mais je n'ai pas choisi les versions. Contrairement à des gestionnaires de paquet traditionnels, Guix peux gérer plusieurs versions d'un même paquet dans la distribution, et c'est à l'utilisateur de choisir laquelle installer. En pratique, Guix contient seulement la version la plus récente de chaque paquet, pour faciliter la maintenance. Une exception est faite pour quelques paquets particulièrement importants dont il y a des versions différentes qui restent d'actualité. L'exemple typique est =gcc=, la collection des compilateurs GNU. Dans mon environnement, il n'y a rien de cette catégorie. J'ai donc installé les seules versions définies dans l'état actuel de Guix.
+J'ai bien choisi les paquets qui seront dans mon environnement, mais je n'ai pas choisi les versions. Contrairement à des gestionnaires de paquet traditionnels, Guix peux gérer plusieurs versions d'un même paquet dans la distribution, et c'est à l'utilisateur de choisir laquelle installer. En pratique, Guix contient seulement la version la plus récente de chaque paquet, pour faciliter la maintenance. Une exception est faite pour quelques paquets particulièrement importants pour lesquels plusieurs versions restent d'actualité. L'exemple typique est =gcc=, la collection des compilateurs GNU. Dans mon environnement, il n'y a rien de cette catégorie. J'ai donc installé les seules versions définies dans l'état actuel de Guix.
 
-Il est pourtant important de savoir quelles versions on utilise, et il est fortement conseillé d'inclure cette information dans toute publication scientifique. La commande pour accéder à ces informations est =guix package -I=. Pour l'exécuter correctement dans mon environnement, je rentre d'abord dans une shell comme montré ci-dessus:
+Il est pourtant important de savoir quelles versions on utilise, et il est fortement conseillé d'inclure cette information dans toute publication scientifique. La commande pour accéder à ces informations est =guix package -I=. Pour l'exécuter correctement dans mon environnement, je rentre d'abord dans une shell comme montré ci-dessus :
 #+begin_src sh :session *guix* :results output :exports both
 guix environment -m ./moocrr_guix_jupyter/manifest.scm
 #+end_src
 
 #+RESULTS:
 
-Puis je lance ma requête:
+Puis je lance ma requête :
 #+begin_src sh :session *guix* :results output :exports both
 guix package -p $GUIX_ENVIRONMENT -I
 #+end_src
@@ -725,11 +736,11 @@ guix package -p $GUIX_ENVIRONMENT -I
 
 La dernière colonne montre les répertoires où se trouvent les paquets. Ceci est utile par exemple pour regarder les modules Python qui en font partie.
 
-Reste à comprendre à quoi sert l'argument =-p $GUIX_ENVIRONMENT=. Normalement, l'option =-p= sert à choisir un "profil", ce qui est un environnement permanent. Dans un environnement temporaire, c'est =$GUIX_ENVIRONMENT= qui pointe vers l'endroit approprié. Sans l'argument =-p $GUIX_ENVIRONMENT=, guix afficherait autant les paquets dans mon profil permanent (le profil par défaut de mon compte) en plus des paquets qui font partie de mon environnement temporaire.
+Reste à comprendre à quoi sert l'argument =-p $GUIX_ENVIRONMENT=. Normalement, l'option =-p= sert à choisir un "profil", ce qui est un environnement permanent. Dans un environnement temporaire, c'est =$GUIX_ENVIRONMENT= qui pointe vers l'endroit approprié. Sans l'argument =-p $GUIX_ENVIRONMENT=, Guix afficherait autant les paquets dans mon profil permanent (le profil par défaut de mon compte) en plus des paquets qui font partie de mon environnement temporaire.
 
-Ma petite liste ci-dessus contient seulement les paquets que j'ai installés explicitement. Chaque paquet dans cette liste a des dépendances, que Guix a rajouté automatiquement. Leurs versions comptent tout autant, car elle peuvent influencer les résultats de mes calculs. Pour ne citer qu'un exemple, =python-statsmodels= dépend de =python-patsy=, qui fournit le cadre pour définir des modèles statistiques. Une erreur dans =python-patsy= peut donc fausser mes résultats. Il faudrait alors idéalement connaître les versions de toutes les dépendances, directes et indirectes.
+Ma petite liste ci-dessus contient seulement les paquets que j'ai installés explicitement. Chaque paquet dans cette liste a des dépendances, que Guix a rajoutées automatiquement. Leurs versions comptent tout autant, car elle peuvent influencer les résultats de mes calculs. Pour ne citer qu'un exemple, =python-statsmodels= dépend de =python-patsy=, qui fournit le cadre pour définir des modèles statistiques. Une erreur dans =python-patsy= peut donc fausser mes résultats. Il faudrait alors idéalement connaître les versions de toutes les dépendances, directes et indirectes.
 
-A ma connaissance, Guix ne propose pas de commande pour récupérer cette liste. Je vais la récupérer par un petit script en langage Guile, le langage de Guix. Je vous le montre sans explication:
+À ma connaissance, Guix ne propose pas de commande pour récupérer cette liste. Je vais la récupérer par un petit script en langage Guile, le langage de Guix. Je vous le montre sans explications :
 #+begin_src guile :exports both :tangle moocrr_guix_jupyter/installed-dependencies.scm
 (use-modules (guix profiles)
              (gnu packages)
@@ -893,7 +904,7 @@ xorgproto@2019.1
 zlib@1.2.11
 #+end_example
 
-Il faut donc 119 paquets en total pour construire mon environnement! Et ce sont seulement les paquets qui doivent être en mémoire pour utiliser l'environnement. D'autres paquets ont été déployés pour construire ces 118 paquets. Par exemple, pour construire le paquet =python= il a fallu un compilateur C. Une erreur dans ce compilateur peut aussi fausser mes résultats, donc je devrais le rajouter à ma liste de paquets dont il faut noter les versions. Alors... encore un petit script pour faire la liste complète !
+Il faut donc 119 paquets au total pour construire mon environnement ! Et ce sont seulement les paquets qui doivent être en mémoire pour utiliser l'environnement. D'autres paquets ont été déployés pour construire ces 118 paquets. Par exemple, pour construire le paquet =python= il a fallu un compilateur C. Une erreur dans ce compilateur peut aussi fausser mes résultats, donc je devrais le rajouter à ma liste de paquets dont il faut noter les versions. Alors... encore un petit script pour faire la liste complète !
 
 #+begin_src guile :exports both :tangle moocrr_guix_jupyter/all-dependencies.scm
 (use-modules (guix profiles)
@@ -1519,9 +1530,9 @@ zziplib@0.13.69
 #+end_example
 
 ** 2.6 Mettre son environnement à disposition
-L'environnement étant défini par le manifeste, il suffit de mettre ce petit fichier à disposition de ses collègues pour leur permettre de travailler dans un environnement identique. Sauf que... les versions qu'ils auront ne sont peut-être pas les mêmes ! Peu après la publication d'une nouvelle version de Jupyter, Guix adoptera cette nouvelle version, et l'environnement créé par mon manifest ne sera plus le même. Ceci est d'ailleurs voulu: souvent on veut tout juste avoir la dernière version de tout. Mais pour la reproductibilité, on veut tout à l'identique.
+L'environnement étant défini par le manifeste, il suffit de mettre ce petit fichier à disposition de ses collègues pour leur permettre de travailler dans un environnement identique. Sauf que... les versions qu'ils auront ne sont peut-être pas les mêmes ! Peu après la publication d'une nouvelle version de Jupyter, Guix adoptera cette nouvelle version, et l'environnement créé par mon manifeste ne sera plus le même. Ceci est d'ailleurs voulu : souvent on veut tout juste avoir la dernière version de tout. Mais pour la reproductibilité, on veut tout à l'identique.
 
-L'information qu'il faut rajouter, c'est la version de Guix à laquelle le manifeste fait référence. On l'obtient avec
+L'information qu'il faut rajouter, c'est la version de Guix à laquelle le manifeste fait référence. On l'obtient avec :
 #+begin_src sh :results output :exports both
 guix describe
 #+end_src
@@ -1533,27 +1544,26 @@ guix describe
 :     branch: master
 :     commit: df931ac39c40ac8a702e37cb434d9a1016606ed7
 
-Ceci me dit d'abord que je suis dans la génération 20 de Guix, ce qui veut dire que j'ai mis à jour Guix 19 fois depuis la première installation. Guix garde une trace de mes mise à jour et me permet de revenir en arrière si je le souhaite. Mais ce qui nous intéresse maintenant, c'est la suite. La version de Guix que j'utilise, c'est la =df931ac=. En tant qu'habitués de =git=, vous devinez peut-être ce que c'est, et vous avez raison: c'est bien un commit, et vous le voyez dans sa totalité dans la dernière ligne. Guix est développé sous git, et on peut donc identifier une version précise par son identifiant de commit. Les trois dernières lignes donnent un peu plus de précision, dont notamment l'URL où on peut récupérer le dépôt.
+Ceci me dit d'abord que je suis dans la génération 20 de Guix, ce qui veut dire que j'ai mis à jour Guix 19 fois depuis la première installation. Guix garde une trace de mes mises à jour et me permet de revenir en arrière si je le souhaite. Mais ce qui nous intéresse maintenant, c'est la suite. La version de Guix que j'utilise, c'est la =df931ac=. En tant qu'habitués de =Git=, vous devinez peut-être ce que c'est, et vous avez raison : c'est bien un commit, et vous le voyez dans sa totalité dans la dernière ligne. Guix est développé sous Git, et on peut donc identifier une version précise par son identifiant de commit. Les trois dernières lignes donnent un peu plus de précisions, dont notamment l'URL où on peut récupérer le dépôt.
 
 ** 2.7 Reconstruire un environnement
-Maintenant je me place du côté du consommateur. J'ai reçu un notebook Jupyter accompagné d'un fichier =manifest.scm= et d'un commit. Que faire?
+Maintenant je me place du côté du consommateur. J'ai reçu un notebook Jupyter accompagné d'un fichier =manifest.scm= et d'un commit. Que faire ?
 
-La réponse est simple: je fais appel à la machine à voyager dans le temps. Pour lancer Jupyter dans une environnement "pur", la commande était bien:
+La réponse est simple : je fais appel à la machine à voyager dans le temps. Pour lancer Jupyter dans un environnement "pur", la commande était bien :
 #+begin_src sh :results output :exports both :eval no
 guix environment --pure -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebook
 #+end_src
-Pour faire exactement la même chose plus tard, quand Guix aura avancé, je demande simplement à Guix de se placer sur le commit de sa version antérieure qui m'intéresse:
+Pour faire exactement la même chose plus tard, quand Guix aura avancé, je demande simplement à Guix de se placer sur le commit de sa version antérieure qui m'intéresse :
 #+begin_src sh :session *time-machine* :results output :exports both
 guix time-machine --commit=df931ac39c40ac8a702e37cb434d9a1016606ed7 -- environment --pure -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebook
 #+end_src
-: 
 
-Attention, la première fois que je lance =guix environment= après =guix pull=, il se peut que Guix se mette à compiler une bonne partie des 570 paques listés ci-dessus. Mieux vaut prévoir du temps!
+Attention, la première fois que je lance =guix environment= après =guix pull=, il se peut que Guix se mette à compiler une bonne partie des 570 paquets listés ci-dessus. Mieux vaut prévoir du temps !
 
-Avec =guix time-machine=, tout ce qui se passe après le premier =--= est passé à la commande =guix= dans sa version définie par le commit indiqué. On travaille donc à 100% avec le guix historique.
+Avec =guix time-machine=, tout ce qui se passe après le premier =--= est passé à la commande =guix= dans sa version définie par le commit indiqué. On travaille donc à 100 % avec le Guix historique.
 
 ** 2.8 Mettre son environnement à disposition sous forme d'une image Docker
-Il reste un problème que vous pouvez rencontrer: vos collègues n'utilisent pas Guix, peut-être même pas Linux. Un manifeste et un commit ne vont pas leur être utiles. En attendant qu'ils se mettent à utiliser Guix, vous pouvez leur fournir votre environnement sous forme d'une image Docker probablement plus simple à utiliser:
+Il reste un problème que vous pouvez rencontrer : vos collègues n'utilisent pas Guix, peut-être même pas Linux. Un manifeste et un commit ne vont pas leur être utiles. En attendant qu'ils se mettent à utiliser Guix, vous pouvez leur fournir votre environnement sous forme d'une image Docker probablement plus simple à utiliser :
 #+begin_src sh :results output :exports both
 guix pack -f docker -m ./moocrr_guix_jupyter/manifest.scm
 #+end_src
@@ -1561,7 +1571,7 @@ guix pack -f docker -m ./moocrr_guix_jupyter/manifest.scm
 #+RESULTS:
 : /gnu/store/hgd89l0r46liqwlz4idhwaymsngrm255-docker-pack.tar.gz
 
-La commande nous affiche le nom du fichier qui contient l'image Docker. Il peut paraître un peu bizarre, tout comme le répertoire =/gnu/store= dans lequel le fichier se trouve. Quand on comprend le fonctionnement de Guix un peu mieux, tout ça s'explique facilement mais pour ce tutoriel, je vais me contenter de le copier ailleurs avec un nom plus parlant:
+La commande nous affiche le nom du fichier qui contient l'image Docker. Il peut paraître un peu bizarre, tout comme le répertoire =/gnu/store= dans lequel le fichier se trouve. Quand on comprend le fonctionnement de Guix un peu mieux, tout ça s'explique facilement mais pour ce tutoriel, je vais me contenter de le copier ailleurs avec un nom plus parlant :
 
 #+begin_src sh :results output :exports both
 cp /gnu/store/hgd89l0r46liqwlz4idhwaymsngrm255-docker-pack.tar.gz moocrr-jupyter-docker.tar.gz
@@ -1569,7 +1579,7 @@ cp /gnu/store/hgd89l0r46liqwlz4idhwaymsngrm255-docker-pack.tar.gz moocrr-jupyter
 
 #+RESULTS:
 
-Sur une machine avec Docker installé, l'image est chargée avec
+Sur une machine avec Docker installé, l'image est chargée avec :
 #+begin_src sh :results output :exports both
 docker load -i moocrr-jupyter-docker.tar.gz
 #+end_src
@@ -1580,33 +1590,33 @@ docker load -i moocrr-jupyter-docker.tar.gz
 Loaded image: jupyter-python-matplotlib-python-numpy:latest
 #+end_example
 
-puis Jupyter est exécuté avec
+puis Jupyter est exécuté avec :
 #+begin_src sh :results output :exports both
 docker run -it -p 8888:8888 jupyter-python-matplotlib-python-numpy:latest jupyter notebook --ip=127.0.0.1 --allow-root
 #+end_src
 
 ** 2.9 Modifier son environnement
-Je vous ai montré comment vous pouvez installer des logiciels avec Guix avec toutes leurs dépendances, et comment archiver et reconstruire un tel environnement. Ceci couvre une grande partie des opérations nécessaires pour pratiquer la recherche reproductible. Mais comment faire si vous voulez (ou devez) modifier un environnement donné, que ce soit le vôtre ou un environnement récupéré sous forme d'un manifeste ?
+Je vous ai montré comment vous pouvez installer des logiciels avec Guix avec toutes leurs dépendances, et comment archiver et reconstruire un tel environnement. Ceci couvre une grande partie des opérations nécessaires pour pratiquer la recherche reproductible. Mais comment faire si vous voulez (ou devez) modifier un environnement donné, que ce soit le vôtre ou un environnement récupéré sous forme d'un manifeste ?
 
-Commençons avec la situation la plus simple: vous voulez mettre à jour tous les logiciels à la dernière version. Pour cela il suffit un simple
+Commençons avec la situation la plus simple : vous voulez mettre à jour tous les logiciels à la dernière version. Pour cela un simple =guix pull= suffit :
 #+begin_src sh :results output :exports both :eval no
 guix pull
 #+end_src
-et la prochaine fois que vous faites
+et la prochaine fois que vous faites :
 #+begin_src sh :session *jupyter-env* :results output :exports both :eval no
 guix environment -m ./moocrr_guix_jupyter/manifest.scm
 #+end_src
-vous utilisez les versions indiquées dans la toute dernière version de Guix. Mais que faire s'il vous faut une combinaison de versions qui ne se trouve nulle part dans l'historique de Guix? Par exemple, pour chercher la cause d'un bug introduit récemment par un changement dans votre environnement, vous voulez combiner la dernière version de =python-statsmodels= avec une version plus ancienne de =python-pandas=.
+vous utilisez les versions indiquées dans la toute dernière version de Guix. Mais que faire s'il vous faut une combinaison de versions qui ne se trouve nulle part dans l'historique de Guix ? Par exemple, pour chercher la cause d'un bug introduit récemment par un changement dans votre environnement, vous voulez combiner la dernière version de =python-statsmodels= avec une version plus ancienne de =python-pandas=.
 
-Avant de passer à l'acte, il faut bien comprendre que ce genre de modification est risqué. Rien ne promet que la combinaison de versions que vous envisagez est installable, et encore moins qu'elle fonctionne. Vous pouvez rencontrer un grand nombre de problèmes sur votre chemin, et c'est à vous de trouver une solution. Dans la vaste majorité des "petites" modifications, ou on remplace une version relativement stable d'un logiciel avec une version proche dans l'historique, la procédure que je vais montrer fonctionne sans difficulté, mais on n'est jamais à l'abri de mauvaises surprises!
+Avant de passer à l'acte, il faut bien comprendre que ce genre de modifications est risqué. Rien ne promet que la combinaison de versions que vous envisagez est installable, et encore moins qu'elle fonctionne. Vous pouvez rencontrer un grand nombre de problèmes sur votre chemin, et c'est à vous de trouver une solution. Dans la vaste majorité des "petites" modifications, où on remplace une version relativement stable d'un logiciel par une version proche dans l'historique, la procédure que je vais montrer fonctionne sans difficulté, mais on n'est jamais à l'abri de mauvaises surprises !
 
-Guix propose plusieurs façons d'introduire des modifications. Il n'est pas facile d'en choisir la meilleure sans avoir une certaine expérience de Guix. Je vous en montre une qui me paraît bien adaptée à la situation: définir un nouveau paquet, localement sur votre ordinateur, qui hérite la plupart des caractéristiques d'un paquet existant. Comme exemple, je vais remplacer la version 0.25.2 de Pandas par la version 0.25.1.
+Guix propose plusieurs façons d'introduire des modifications. Il n'est pas facile d'en choisir la meilleure sans avoir une certaine expérience de Guix. Je vous en montre une qui me paraît bien adaptée à la situation : définir un nouveau paquet, localement sur votre ordinateur, qui hérite de la plupart des caractéristiques d'un paquet existant. Comme exemple, je vais remplacer la version 0.25.2 de Pandas par la version 0.25.1.
 
-Je commence en regardant la définition du paquet =python-pandas= dans Guix:
+Je commence en regardant la définition du paquet =python-pandas= dans Guix :
 #+begin_src sh :results none :exports code
 guix edit python-pandas
 #+end_src
-Ceci ouvre le fichier =python-science.scm= dans un éditeur de texte avec le curseur sur la définition de =python-pandas=. Il y a deux champs que je vais devoir remplacer: le numéro de version, et la référence au code source. Tout le reste peut rester pareil - j'espère ! Voici le début de ma nouvelle définition:
+Ceci ouvre le fichier =python-science.scm= dans un éditeur de texte avec le curseur sur la définition de =python-pandas=. Il y a deux champs que je vais devoir remplacer : le numéro de version et la référence au code source. Tout le reste peut rester pareil - j'espère ! Voici le début de ma nouvelle définition :
 #+begin_src guile :exports code :eval no
 (package
  (inherit python-pandas)
@@ -1619,17 +1629,17 @@ Ceci ouvre le fichier =python-science.scm= dans un éditeur de texte avec le cur
     (base32
      "1xm9dmbngsq46vj836csnb5j0bs88b1d713b0b5vx1q6gdxijbnb")))))
 #+end_src
-Comme annoncé, j'ai modifié la version. Et dans le champ =source=, j'ai changé la somme de contrôle =sha256= qui doit correspondre au fichier téléchargé pour la version 0.25.1. Pour trouver la bonne somme de contrôle, guix m'ai aidé:
+Comme annoncé, j'ai modifié la version. Et dans le champ =source=, j'ai changé la somme de contrôle =sha256= qui doit correspondre au fichier téléchargé pour la version 0.25.1. Pour trouver la bonne somme de contrôle, Guix m'a aidé :
 #+begin_src sh :results output :exports both
 guix download https://files.pythonhosted.org/packages/source/p/pandas/pandas-0.25.1.tar.gz
 #+end_src
-mais vous êtes libre de faire appel à toute technique à laquelle vous faites confiance. Le but est d'être sûr que vous récupérez le code source d'un serveur fiable!
+mais vous êtes libre de faire appel à toute technique à laquelle vous faites confiance. Le but est d'être sûr que vous récupérez le code source d'un serveur fiable !
 
 #+RESULTS:
 : /gnu/store/52yc31ykwidx0fbmds7r0nz13rvkw2vf-pandas-0.25.1.tar.gz
 : 1xm9dmbngsq46vj836csnb5j0bs88b1d713b0b5vx1q6gdxijbnb
 
-Pour compléter la définition du paquet, qui est en fait du code en langage Guile (comme avant pour le manifeste), il faut importer quelques modules:
+Pour compléter la définition du paquet, qui est en fait du code en langage Guile (comme avant pour le manifeste), il faut importer quelques modules :
 #+begin_src guile :exports both :tangle moocrr_guix_jupyter/pandas.scm
 (use-modules (guix packages)
              (guix download)
@@ -1647,18 +1657,18 @@ Pour compléter la définition du paquet, qui est en fait du code en langage Gui
     (base32
      "1xm9dmbngsq46vj836csnb5j0bs88b1d713b0b5vx1q6gdxijbnb")))))
 #+end_src
-Comment savoir quels modules importer? Le plus simple est =(gnu packages python-science)=, parce que c'est là qu'on a trouvé la définition de =python-pandas=. Sinon, il faut toujours =(guix packages)= et =(guix download)=. Pour finir, pour un paquet Python il faut toujours =(guix build-system python)=. Mais si vous oubliez un paquet, il y a une bonne chance que Guix vous indique le module manquant.
+Comment savoir quels modules importer ? Le plus simple est =(gnu packages python-science)=, parce que c'est là qu'on a trouvé la définition de =python-pandas=. Sinon, il faut toujours =(guix packages)= et =(guix download)=. Pour finir, pour un paquet Python il faut toujours =(guix build-system python)=. Mais si vous oubliez un paquet, il y a une bonne chance que Guix vous indique le module manquant.
 
-Pour compiler le paquet et exécuter sa batterie de tests, la commande est
+Pour compiler le paquet et exécuter sa batterie de tests, la commande est :
 #+begin_src sh :results none :exports code
 guix build -f moocrr_guix_jupyter/pandas.scm
 #+end_src
-Attention, c'est long, et ça produit plus de 60000 lignes de texte diagnostic que je ne vais pas reproduire ici. Les deux dernières lignes sont
+Attention, c'est long, et ça produit plus de 60 000 lignes de texte diagnostic que je ne vais pas reproduire ici. Les deux dernières lignes sont :
 #+begin_example
 successfully built /gnu/store/ab6i60xyinj47wqxd99sc0ih16d0a22p-python-pandas-0.25.1.drv
 /gnu/store/9gswclr3gk7pdgxddznpw3lvgj8yywhl-python-pandas-0.25.1
 #+end_example
-et la toute dernière indique le repertoire où se trouve le nouveau paquet. Reste la question comment l'intégrer dans mon environnement. La réponse n'est pas difficile sur le principe ("il faut modifier le manifeste"), mais les détails techniques sont un peu laborieux - une lecture du manuel de Guix s'impose. Voici le manifeste final:
+et la toute dernière indique le repertoire où se trouve le nouveau paquet. Reste la question de savoir comment l'intégrer dans mon environnement. La réponse n'est pas difficile sur le principe ("il faut modifier le manifeste"), mais les détails techniques sont un peu laborieux - une lecture du manuel de Guix s'impose. Voici le manifeste final :
 #+begin_src guile :exports both :tangle moocrr_guix_jupyter/manifest-with-pandas-0.25.1.scm
 (use-modules (guix packages)
              (guix download)
@@ -1693,7 +1703,7 @@ et la toute dernière indique le repertoire où se trouve le nouveau paquet. Res
 #+end_src
 
 
-Et voici la preuve que ça marche - on demande à Python d'imprimer le numéro de version de Pandas:
+Et voici la preuve que ça marche - on demande à Python d'imprimer le numéro de version de Pandas :
 #+begin_src sh :results output :exports both
 guix environment --pure -m ./moocrr_guix_jupyter/manifest-with-pandas-0.25.1.scm -- python3 -c 'import pandas; print(pandas.__version__)'
 #+end_src
@@ -1701,4 +1711,4 @@ guix environment --pure -m ./moocrr_guix_jupyter/manifest-with-pandas-0.25.1.scm
 #+RESULTS:
 : 0.25.1
 
-En fait, si vous comparez bien mon nouveau manifeste avec celui d'origine, vous remarquez que j'ai rajouté =python= qui n'y était pas avant. C'est juste pour pouvoir apporter cette preuve de réussite de l'opération!
+En fait, si vous comparez bien mon nouveau manifeste avec celui d'origine, vous remarquez que j'ai rajouté =python= qui n'y était pas avant. C'est juste pour pouvoir apporter cette preuve de réussite de l'opération !

@@ -132,7 +132,7 @@ de :
 - *organiser* des volumes importants de données ; vous pouvez créer des
   dossiers et des sous-dossiers ; classer les descriptifs dans
   plusieurs dossiers sans pour autant occasionner de doublons ;
-  étiquetter des références pour indiquer celles que vous jugez
+  étiqueter des références pour indiquer celles que vous jugez
   fondamentales ou signaler les références en attente de lecture ;
   faire des renvois de références internes à sa bibliothèque ; créer
   des dossiers "dynamiques" : en sauvegardant une requête, vous créez
@@ -156,14 +156,14 @@ des tâches, mais resteront toujours à la charge de l'utilisateur :
   d'entrée. Or, si le gestionnaire peut identifier quelles sont les
   données importables dans une page web, il n'est pas en mesure
   d'évaluer leur qualité descriptive. Le problème peut être d'ordre
-  quantitatif (i.e.: tous les champs obligatoires ne sont pas
-  complétés), comme qualitatif (i.e.: les données comportent des
+  quantitatif (i.e. : tous les champs obligatoires ne sont pas
+  complétés), comme qualitatif (i.e. : les données comportent des
   inexactitudes, on constate des problèmes de graphie). Les pages de
   résultats d'un moteur de recherche généraliste offrent par exemple des
   descriptifs d'une qualité inférieure à celles d'un catalogue de
   bibliothèque et pour le lecteur, il peut être difficile d'identifier
   précisément la source citée.\\
-- une *méthode de tri et d'organisation des données* ; ex. : il s'agit
+- une *méthode de tri et d'organisation des données* ; ex. : il s'agit
   de prévoir régulièrement un nettoyage de sa base en dédoublonnant les
   références, revoir l'arborescence de ses dossiers, /etc/. Certes, les
   gestionnaires de références disposent de fonctionnalités de recherche,
@@ -198,7 +198,7 @@ La puissance et la facilité d'utilisation d'un gestionnaire de
 références constituent une arme à double tranchant : encore plus
 rapidement qu'avec une méthode manuelle, l'utilisateur.rice est
 confronté.e à une masse importante de références potentielles. L'étape
-de revue de littérature peut dès lors devenir envahissante dans le
+de revue de la littérature peut dès lors devenir envahissante dans le
 processus de recherche, surtout dans le cadre d'un travail de thèse.
 Analyser sa bibliothèque de références à la lumière de sa question de
 recherche constitue une méthode de tri non automatisable, mais plus
@@ -216,14 +216,13 @@ descriptif bibliographique dans son gestionnaire. Mais ces imports
 soulèvent rapidement la question du quota de stockage gratuit pour
 l'utilisateur.
 
-Sans entrer dans le détail des alternatives, vous êtes invité.e à
-considérer cette fonctionnalité avant tout comme une option de confort
-car la pertinence des gestionnaires de références réside avant tout dans
-l'aide qu'ils apportent dans la gestion et la citation des références
-bibliographiques. En d'autres termes, *mieux vaut un descriptif complet
-sans texte intégral plutôt qu'une référence lacunaire accompagnée de son
-texte intégral* : lors de l'étape de la citation, c'est le descriptif et
-non pas le fichier joint qui est exploité.
+Sans entrer dans le détail des alternatives, vous êtes invité.e à considérer 
+cette fonctionnalité avant tout comme une option de confort car la pertinence 
+des gestionnaires de références réside avant tout dans l'aide qu'ils apportent 
+dans la gestion et la citation des références bibliographiques. En d'autres 
+termes, *mieux vaut un descriptif complet sans texte intégral plutôt qu'une 
+référence lacunaire accompagnée de son texte intégral* : lors de l'étape de la 
+citation, c'est le descriptif et non pas le fichier joint qui est exploité.
 
 ** Compléments
    :PROPERTIES:
@@ -246,12 +245,12 @@ dans l'entrepôt Zotero. L'exemple du style conçu pour l'école doctorale
 Flamerie de Lachapelle, Frédérique. 2019. 'Créer un style pour Zotero
 correspondant à une norme bibliographique juridique : retour
 d'expérience bordelais. Billet invité'. Billet. UrfistInfo (blog). 2
-July 2019. https://urfistinfo.hypotheses.org/3305.
+July 2019. [[https://urfistinfo.hypotheses.org/3305]].
 
 Muller, Caroline. 2018. 'Cinq ans d'usage de Zotero, un bilan'. Billet.
 Acquis de conscience (blog). 9 March 2018.
-https://consciences.hypotheses.org/1184.
+[[https://consciences.hypotheses.org/1184]].
 
 Sergiadis, Ashley. 2019. 'Evaluating Zotero, SHERPA/RoMEO, and Unpaywall
 in an Institutional Repository Workflow'. Journal of Electronic
-Resources Librarianship, September. https://dc.etsu.edu/etsu-works/4739.
+Resources Librarianship, September. [[https://dc.etsu.edu/etsu-works/4739]].

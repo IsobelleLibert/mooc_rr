@@ -1,4 +1,4 @@
-#+TITLE: Interview de François Pellegrini : recherche reproductible et utilisation de données à caractère personnel
+#+TITLE: Interview de François Pellegrini : recherche reproductible et utilisation de données à caractère personnel
 #+Date: <déc 2019>
 #+Author: François Pellegrini
 #+LANGUAGE: fr
@@ -10,30 +10,48 @@ recherche en informatique1 (LaBRI) et à Inria. Il est l'auteur du
 logiciel [[https://gforge.inria.fr/projects/scotch/][Scotch2]], un logiciel de partitionnement généraliste. 
 Il est commissaire à la Commission nationale de l’informatique et des libertés (CNIL). 
 ** Interview
-*** Comment concilier la logique de transparence inhérente à celle de la recherche reproductible avec le respect de contraintes de confidentialité, dans le cas d'utilisation de données personnelles ?
-La personne ayant collecté les données à caractère personnel acquiert, de par le Règlement Général sur la Protection des Données (RGPD), le statut de "**responsable de traitement**", qui est le "gardien" des données en question. Il est soumis à un **principe de "redevabilité"** (en anglais : "*accountability*") quant aux moyens et procédures qu'il met en place pour administrer le traitement en question. 
+*** Comment concilier la logique de transparence inhérente à celle de la recherche reproductible avec le respect de contraintes de confidentialité, dans le cas d'utilisation de données personnelles ?
+La personne ayant collecté les données à caractère personnel acquiert, de par le 
+Règlement Général sur la Protection des Données (RGPD), le statut de 
+"*responsable de traitement*", qui est le "gardien" des données en question. Il 
+est soumis à un *principe de* "*redevabilité*" (en anglais : "*accountability*") 
+quant aux moyens et procédures qu'il met en place pour administrer le traitement 
+en question. 
 
-De fait, **sauf consentement explicite des personnes lors de la collecte**, il ne peut placer ces données en libre accès pour les personnes inconnues souhaitant reproduire les recherches. 
+De fait, *sauf consentement explicite des personnes lors de la collecte*, il ne 
+peut placer ces données en libre accès pour les personnes inconnues souhaitant 
+reproduire les recherches. 
 
-Il doit leur accorder un **accès au cas par cas**, encadré par des clauses de non   divulgation, afin que les scientifiques en questions puissent mener, sur le site du responsable de traitement (ou, à tout le moins, seulement dans le périmètre de l'Union Européenne), des traitements compatibles avec les finalités de recueil initial. 
+Il doit leur accorder un *accès au cas par cas*, encadré par des clauses de non 
+divulgation, afin que les scientifiques en questions puissent mener, sur le 
+site du responsable de traitement (ou, à tout le moins, seulement dans le 
+périmètre de l'Union Européenne), des traitements compatibles avec les finalités 
+de recueil initial. 
 
-De fait, ils peuvent (tenter de) reproduire les résultats, mais pas mener d'autres recherches qui seraient trop différentes de celles pour lesquelles le consentement des personnes avait été recueilli.
+De fait, ils peuvent (tenter de) reproduire les résultats, mais pas mener 
+d'autres recherches qui seraient trop différentes de celles pour lesquelles le 
+consentement des personnes avait été recueilli.
 
-Dans le cas de **données confidentielles non à caractère personnel**, la situation est somme toute similaire, avec en moins la contrainte du respect strict de la loi "Informatique et Libertés".
+Dans le cas de *données confidentielles non à caractère personnel*, la situation 
+est somme toute similaire, avec en moins la contrainte du respect strict de la 
+loi "Informatique et Libertés".
 
-*** En tant que lecteur.rice d'articles scientifiques, sur quels critères puis-je évaluer la robustesse du protocole de constitution des données si elles sont confidentielles ?
-**Le processus et les données sont deux choses différentes**. 
+*** En tant que lecteur.rice d'articles scientifiques, sur quels critères puis-je évaluer la robustesse du protocole de constitution des données si elles sont confidentielles ?
+*Le processus et les données sont deux choses différentes*. 
 
-Tu peux très bien **auditer un processus sans regarder *in concreto* les données qui y seront soumises**. 
+Tu peux très bien *auditer un processus sans regarder /in concreto/ les données 
+qui y seront soumises*. 
 
-Il est également possible de **tester le processus avec des données synthétiques**, afin d'en vérifier la conformité des résultats attendus, par rapport aux caractéristiques des jeux de données qui ont été générées.
+Il est également possible de *tester le processus avec des données synthétiques*, 
+afin d'en vérifier la conformité des résultats attendus, par rapport aux 
+caractéristiques des jeux de données qui ont été générées.
 
 ** Ressources complémententaires
-Site web de la CNIL :[[https://www.cnil.fr/fr/comprendre-le-rgpd]["Comprendre le RGPD"]]
+Site web de la CNIL : [[https://www.cnil.fr/fr/comprendre-le-rgpd]["Comprendre le RGPD"]]
 
-Nguyen, Benjamin. 2019. ‘Anonymization Techniques : Theory and Practice’. presented at the Cinquième École d’Hiver é-EGC, sur le thème «Privacy Preserving, Reasoning, Explaining», Metz, January 21. https://egc2019.sciencesconf.org/resource/page/id/12.
+Nguyen, Benjamin. 2019. ‘Anonymization Techniques: Theory and Practice’. presented at the Cinquième École d’Hiver é-EGC, sur le thème «Privacy Preserving, Reasoning, Explaining», Metz, January 21. [[https://egc2019.sciencesconf.org/resource/page/id/12]].
 
-Nilsonne, Gustav. 2019. ‘Hack- Finding Value in Anonymized Data: Exploring Scenarios for Secondary Use’, June. https://osf.io/2n8b6/.
+Nilsonne, Gustav. 2019. ‘Hack- Finding Value in Anonymized Data: Exploring Scenarios for Secondary Use’, June. [[https://osf.io/2n8b6/]].
 
 
 

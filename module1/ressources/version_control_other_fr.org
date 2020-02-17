@@ -13,6 +13,16 @@
 #+CREATOR: Emacs 26.1 (Org mode 9.1.9)
 #+STARTUP: indent
 
-L'enregistrement des modifications des fichiers générés et gérés par =LibreOffice= est succinctement décrite sur la [[https://help.libreoffice.org/Common/Recording_Changes/fr][page du Wiki]] de ce logiciel. Une espèce de [[https://help.libreoffice.org/Common/Navigating_Changes/fr][sommaire]] des pages concernant la gestion des modifications est également disponible. Le livre [[https://framabook.org/libreoffice-cest-style/][LibreOffice, c’est stylé !]] téléchargeable gratuitement (et légalement) ne semble pas aborder la question. Sa version source est disponible sur [[https://framagit.org/Framatophe/DWL/][framagit]]= (un autre serveur type GitLab) et est écrite en… =markdown= !
+L'enregistrement des modifications des fichiers générés et gérés par 
+=LibreOffice= est succinctement décrit sur la 
+[[https://help.libreoffice.org/Common/Recording_Changes/fr][page du Wiki]] 
+de ce logiciel. Une espèce de 
+[[https://help.libreoffice.org/Common/Navigating_Changes/fr][sommaire]] 
+des pages concernant la gestion des modifications est également disponible. 
+Le livre [[https://framabook.org/libreoffice-cest-style/][LibreOffice, c’est stylé !]] 
+téléchargeable gratuitement (et légalement) ne semble pas aborder la question. 
+Sa version source est disponible sur [[https://framagit.org/Framatophe/DWL/][Framagit]] 
+(un autre serveur type GitLab) et est écrite en… =Markdown= !
 
-Pour DokuWiki, le plus simple est de consulter le [[https://www.dokuwiki.org/fr:dokuwiki][Wiki]] écrit, cette fois au moins !, en DokuWiki.
+Pour DokuWiki, le plus simple est de consulter le [[https://www.dokuwiki.org/fr:dokuwiki][Wiki]] 
+écrit, cette fois au moins !, en DokuWiki.
