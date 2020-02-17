@@ -1,0 +1,316 @@
+#+TITLE: Interview de Laurent Romary sur l'intérêt de la TEI pour une recherche reproductible
+#+Date: <Février 2020>
+#+Author: Laurent Romary
+#+LANGUAGE: fr
+** Bibliographie
+
+Laurent Romary est Directeur de Recherche au sein de l'équipe ALMAnaCH à
+Inria. Ses travaux portent sur l'informatique computationnelle et la
+modélisation des données à l'interface entre informatique et sciences
+humaines. Il participe ou coordonne des actions de normalisation depuis
+presque 20 ans au sein du comité technique 37 de l'ISO
+([[https://www.iso.org/][Organisation internationale de normalisation]])
+et du consortium TEI ([[https://tei-c.org/][Text Encoding Initiative]]).
+
+** Interview
+
+*** Comment se traduit la question de la reproductibilité et de la transparence en SHS, LSH ? On parle beaucoup de la difficulté de reproduire des expériences, des résultats statistiques.
+  :PROPERTIES:
+  :CUSTOM_ID: comment-se-traduit-la-question-de-la-reproductibilité-et-de-la-transparence-en-shs-lsh-on-parle-beaucoup-de-la-difficulté-de-reproduire-des-expériences-des-résultats-statistiques.
+  :END:
+
+La recherche en sciences humaines repose principalement sur la notion de
+source, correspondant à toute trace humaine écrite, dessinée,
+construite... ou détruite, que l'on analyse pour mieux comprendre le
+fait humain, individuel ou en groupe. Le problème de la reproductibilité
+se pose comme la capacité pour un chercheur de pouvoir vérifier les
+dires de ses collègues par rapport à un jeu de sources qui a servi de
+base à une idée ou une théorie. Comprendre un événement comme la
+bataille d'Antioche[fn:1] (28 juin 1098) nécessite de croiser des traces
+écrites (courriers, chroniques, actes législatifs, registres des décès)
+qui ne sont que partiellement arrivées jusqu'à nous, peuvent bien sûr se
+contredire, et qui surtout sont préservées dans des institutions très
+différentes et éparpillées un peu partout dans le monde. Il peut être
+très difficile pour un chercheur de savoir accéder aux mêmes sources que
+son prédécesseur et donc aux mêmes conclusions.
+
+*** Qu'est-ce qu'un "résultat", qu'est-ce qu'une recherche "robuste" en SHS ?
+  :PROPERTIES:
+  :CUSTOM_ID: quest-ce-quun-résultat-quest-ce-quune-recherche-robuste-en-shs
+  :END:
+
+Un résultat peut prendre des formes très différentes, ce peut être
+l'affirmation d'un fait historique, d'une relation de causalité, de
+l'existence d'une propriété particulière dans une langue ou d'une
+influence sur la création d'une œuvre. Dans tous les cas, contrairement
+à des sciences plus expérimentales, un « résultat » en sciences humaines
+ne va pas être le fruit d'une expérience qu'on saura reproduire, mais
+plus d'une conjonction d'observations que d'autres chercheurs vont
+pouvoir conforter ou infirmer. C'est ce qui va rendre robuste le
+résultat. L'analyse d'une source particulière peut être elle-même un
+résultat quand il s'agit d'en comprendre le contexte, la structure ou le
+sens. C'est ainsi que des travaux scientifiques en sciences humaines
+peuvent porter sur la présentation d'objets résultant d'une fouille
+archéologique, le tableau de maître ou la transcription d'un manuscrit
+médiéval. Dans ce cadre, une partie du travail scientifique porte sur la
+définition précise des modes de représentation de l'objet concerné,
+comme le montre les travaux d'Andrew Dunning à la Bodlean Library[fn:2],
+et qui propose de cadres précis pour la représentation de manuscrits
+médiévaux.
+
+*** Comment se situent tes recherches par rapport à la problématique de reproductibilité et de transparence ?
+  :Properties:
+  :CUSTOM_ID: comment-se-situent-tes-recherches-par-rapport-à-la-problématique-de-reproductibilité-et-de-transparence
+  :END:
+
+Le passage des sciences humaines à l'ère du numérique a bouleversé les
+recherches en sciences humaines car il est maintenant possible de réunir
+des traces rares et éparses en des corpus numériques facilement
+accessibles à d'autres chercheurs. Il est donc potentiellement devenu
+immédiat de vérifier une affirmation d'un de ses collègues pour peu que
+la source ait été traduite dans une forme numérique facilement
+observable et finement interrogeable. Les travaux d'un projet tel que
+/Lettres et Textes/[fn:3] permettent à tous chercheurs intéressés aux
+échanges entre intellectuels à Berlin au début du 19^{ème} d'aller
+consulter en ligne leur correspondance sans aucune restriction. Mes
+recherchent portent sur la définition de modèles de données, en
+particulier en m'appuyant sur les directives de la TEI, permettant à de
+telles sources d'être facilement comparables et donc aux recherches
+correspondantes d'être plus reproductibles.
+
+*** En quoi la TEI aide à être plus transparent dans la recherche ?
+  :PROPERTIES:
+  :CUSTOM_ID: en-quoi-la-tei-aide-à-être-plus-transparent-dans-la-recherche
+  :END:
+
+La TEI est un vocabulaire et un ensemble de spécifications permettant de
+représenter des documents à caractère textuel en utilisant le
+métalangage XML défini par le W3C. En définissant des structures
+adaptées à différentes formes de textes (théâtre, manuscrit,
+correspondance, dictionnaire), mais aussi de composants plus fins
+(bibliographie, métadonnées, structures de traits associées à un
+contenu), la TEI crée un langage commun aux chercheurs travaillant sur
+des sources numériques et leur permettant de facilement mettre en commun
+les résultats de leurs travaux. Ils vont ainsi pouvoir encoder des
+descriptions étymologiques en suivant les mêmes principes, ou confronter
+leurs interprétations d'un passage complexe d'une tablette de
+Vindolanda[fn:4] qu'ils cherchent à déchiffrer. Le fruit de leurs
+recherches et les analyses qu'ils en tirent peuvent être diffusés de
+façon transparentes et lisibles par d'autres collègues partageant le
+même cadre conceptuel[fn:5].
+
+*** Quel est l'Intérêt de mettre un texte au format TEI par rapport au
+format epub par exemple ?
+  :PROPERTIES:
+  :CUSTOM_ID: quel-est-lintérêt-de-mettre-un-texte-au-format-tei-par-rapport-au-format-epub-par-exemple
+  :END:
+
+Alors que la plupart des langages servant à représenter des documents
+textuels mettent l'accent sur l'aspect des éléments (si tel objet est en
+gras, centré ou dans une certaine police), la TEI met l'accent sur la
+sémantique des objets représentés. On indiquera ainsi qu'une séquence
+dans un texte représente le nom d'une personne ou une expression
+d'origine étrangère, et non pas qu'il apparaît en italiques dans le
+document d'origine. De la sorte, quand plusieurs chercheurs mettent en
+commun les travaux menés sur des sources différentes, il sera possible
+d'y retrouver tous les éléments communs, par exemple l'occurrence d'une
+personne de façon transversale à différentes chroniques d'une même
+époque.
+
+*** A quel moment il est intéressant de basculer dans la TEI ? A quel
+stade du travail de recherche dois-je passer à l'encodage ? Est-ce que
+cela vaut la peine si j'ai déjà beaucoup avancé dans mon projet de
+recherche ?
+  :PROPERTIES:
+  :CUSTOM_ID: a-quel-moment-il-est-intéressant-de-basculer-dans-la-tei-a-quel-stade-du-travail-de-recherche-dois-je-passer-à-lencodage-est-ce-que-cela-vaut-la-peine-si-jai-déjà-beaucoup-avancé-dans-mon-projet-de-recherche
+  :END:
+
+Idéalement, il faut commencer à encoder son document même avant de
+l'avoir vraiment observé. La TEI propose ainsi un entête pour chaque
+document, où peuvent être répertoriés tout un ensemble d'informations
+relatives à sa provenance, sa nature physique, etc. Ce même entête,
+correspondant aux métadonnées associées à l'objet numérisé, peut être
+continuellement complété pour y associer différentes informations
+relatives au projet de recherche concerné, aux choix d'échantillonnage
+du contenu, ou encore du niveau et des choix d'annotation. In fine, on
+peut aussi y indiquer les conditions de diffusion et de réutilisation
+(par exemple la licence). En fait, la TEI permet de construire peu à peu
+un représentant numérique (/digital surrogate)/, où la transcription ou
+l'annotation d'un document est mis en contexte de la description précise
+de celui-ci. C'est par ce biais qu'on contribue notamment à conforter
+l'authenticité d'une source et de sa transformation en objet numérique
+réutilisable.
+
+*** Est-ce très compliqué pour un débutant ? quelles sont les compétences
+informatiques : ex. dois-je maîtriser XML ? quels sont les prérequis ?
+  :PROPERTIES:
+  :CUSTOM_ID: est-ce-très-compliqué-pour-un-débutant-quelles-sont-les-compétences-informatiques-ex.-dois-je-maîtriser-xml-quels-sont-les-prérequis
+  :END:
+
+La TEI repose effectivement sur le métalangage XML, mais il est assez
+rapide de s'en approprier les principes comme j'ai pu en faire
+l'expérience au cours de très nombreuses séances d'initiation. Bien que
+reposant sur un vocabulaire de presque 600 éléments et de nombreux
+attributs, on peut très rapidement représenter un texte simple, ou même
+un dictionnaire, sur la base d'un vocabulaire d'une quinzaine
+d'éléments. Il est essentiel d'être guidé dans les premier pas, lors
+d'une formation, ou par un collègue plus avancé, pour qu'immédiatement,
+la logique associée aux éléments utilisés et leurs imbrications soit
+bien comprise. Aucune connaissance préalable en informatique avancée ou
+en programmation n'est nécessaire. Il faut juste être à l'aise avec un
+éditeur de texte et avoir un certain bon sens logique.
+
+*** Comment s'assurer de la qualité de l'encodage ? Quelles sont les
+bonnes pratiques, notamment si on travaille en groupe ?
+  :PROPERTIES:
+  :CUSTOM_ID: comment-sassurer-de-la-qualité-de-lencodage-quelles-sont-les-bonnes-pratiques-notamment-si-on-travaille-en-groupe
+  :END:
+
+Pour ce qui est de la syntaxe de l'encodage, à savoir quels éléments
+utilisés et où, la TEI définit, pour faire court, à un schéma XML. Les
+outils d'éditions XML utilise un tel schéma pour non seulement /valider/
+(c'est le terme technique) l'encodage, mais aussi pour guider l'encodeur
+dans les choix possibles au cours de son travail. Pour juger de la
+qualité de la représentation, on s'appuie sur la documentation en ligne,
+qui contient à la fois une description cohérente et détaillée des
+éléments disponibles pour tel ou tel type de document (par exemple la
+transcription de données orales[fn:6]), et pour chaque élément on accède
+à sa documentation précise donnant ses conditions d'emploi (par exemple
+l'encodage des pauses sonores dans un échange[fn:7]).
+
+Dès lors que l'on travaille en groupe, notamment au sein d'une projet de
+recherche particulier, il est important de se mettre d'accord sur des
+pratiques homogènes, par exemple en termes de finesse de codage ou
+d'utilisation d'éléments particuliers pour annoter des composants
+cruciaux au niveau de la recherche visée. Idéalement, les membres d'un
+projet collaboratif maintiennent un manuel de codage qui est mis à jour
+régulièrement lors de réunions de concertations. Des procédures de
+vérification croisée entre collègues permettent en particulier de
+vérifier que l'on a bien la même compréhension des sources que l'on
+étudie. Au final c'est cette compréhension commune qui font que les
+directives de la TEI sont souvent vues comme l'expression d'une culture
+partagée.
+
+*** Ces techniques d'encodage sont-elles uniquement liées à la question du
+partage de données ou est-ce aussi utile si je travaille en solo ?
+  :PROPERTIES:
+  :CUSTOM_ID: ces-techniques-dencodage-sont-elles-uniquement-liées-à-la-question-du-partage-de-données-ou-est-ce-aussi-utile-si-je-travaille-en-solo
+  :END:
+
+Je pense que comme dans toute discipline on doit penser à la
+reproductibilité d'abord pour soi-même. Il est indispensable de pouvoir
+reprendre un jeu de donnée qu'on a créé, ou un document qu'on a encodé,
+après un certain temps et de toujours en comprendre les attendus et
+savoir en extraire de nouvelles observations. On partage donc les
+données avec soi-même avant de les partager avec les autres. C'est
+particulièrement important en sciences humaines où un chercheur va au
+fil du temps accumuler des observations liées à l'époque, le lieu ou le
+phénomène précis (e.g. les conflits, les migrations, le fait religieux)
+correspondant à sa ou ses thématiques de prédilection. La TEI permet
+ainsi de se construire un patrimoine numérique stable dans le temps.
+
+*** Concrètement, de quoi ai-je besoin pour faire de la TEI ? de quelles
+solutions techniques ?
+  :PROPERTIES:
+  :CUSTOM_ID: concrètement-de-quoi-ai-je-besoin-pour-faire-de-la-tei-de-quelles-solutions-techniques
+  :END:
+
+Au départ, il suffit de disposer d'un éditeur XML un peu convivial, tel
+qu'Oxygen (payant, mais la Rolls dans son domaine), auquel on adjoint le
+schéma des directives de la TEI (ou une customisation de celui-ci). Une
+fois qu'on a commencé à travailler sur quelques documents, il peut être
+utile d'apprendre à les manipuler à l'aide d'un langage tel que XSLT qui
+permet très rapidement d'en produire une version HTML lisible sur un
+navigateur, ce qui est pratique pour avoir une vue d'ensemble, ou tout
+simplement montrer rapidement des résultats à des collègues. A terme,
+comme pour tout jeu de données, il faut réfléchir à un environnement
+d'hébergement qui permette de diffuser des documents. En fonction des
+ressources disponibles, on peut les diffuser sur un serveur génériques
+tel [[https://www.ortolang.fr/][qu'Ortolang]] ou [[https://www.nakala.fr/][Nakala]], un environnement dédié à la TEI tel que [[https://tapasproject.org/][TAPAS]], ou encore développement sa
+plate-forme de diffusion propre.
+
+*** As-tu un exemple de question de recherche que la TEI a permis de faire
+émerger ? Montrer que la TEI va plus loin que le balisage, que c'est
+utile pour de l'analyse exploratoire par exemple.
+  :PROPERTIES:
+  :CUSTOM_ID: as-tu-un-exemple-de-question-de-recherche-que-la-tei-a-permis-de-faire-émerger-montrer-que-la-tei-va-plus-loin-que-le-balisage-que-cest-utile-pour-de-lanalyse-exploratoire-par-exemple.
+  :END:
+
+Dès lors que l'on a un ensemble complexe de sources avec des contenus
+difficiles à analyser à la main, un codage systématique fait très vite
+émerger des tendances ou des corrélations que de simples outils peuvent
+mettre en évidence. Ainsi, dans le cadre du projet mené à Cologne sur la
+mise en place d'une base de textes et d'un dictionnaire du Maya
+classique, les chercheurs ont décuplé leur capacité de trouver de
+nouvelles interprétations de la langue maya écrite qui n'est encore que
+partiellement déchiffrée[fn:8]. Ce projet est d'autant plus intéressant
+puisqu'il combine représentation textuelle en TEI et images pour que
+littéralement chaque glyphe soit associé à un observable (en général
+épigraphique, les colonisateurs espagnols ayant détruit une grande
+partie du patrimoine manuscrit des mayas).
+
+*** Quelle est ta pratique de la TEI ?
+  :PROPERTIES:
+  :CUSTOM_ID: quelle-est-ta-pratique-de-la-tei
+  :END:
+
+Mes recherches portent sur la définition de structures normées associées
+à différents types de documents en sciences humaines. Je suis donc
+constamment dans une situation de dialogue avec des chercheurs dont
+j'essaye de comprendre les objectifs de représentation et de trouver les
+meilleurs encodages qui permettront d'être fidèle à la source comme aux
+analyses du chercheur. La TEI est pour moi un outil de modélisation
+constamment à disposition, et je reçois de nombreux messages de
+collègues me demandant conseil pour des représentations fines sur
+lesquels ils travaillent. Ce faisant, je rencontre régulièrement des
+objets qui résistent à la TEI parce qu'il manque un élément descriptif
+ou une construction qui n'avait pas été anticipée. C'est alors
+l'occasion de contribuer au travail de normalisation en faisant évoluer
+les directives de la TEI. Avec deux versions publiées par an, un espace
+en ligne sur GitHub ou chaque proposition d'évolution est discutée en
+lien avec le conseil technique de la TEI, la TEI est aussi exemplaire
+comme espace ouvert et inclusif de normalisation.
+
+*** Où va la TEI ?
+  :PROPERTIES:
+  :CUSTOM_ID: où-va-la-tei
+  :END:
+
+La TEI est devenue la référence incontournable pour tout projet
+d'édition numérique de sources en sciences humaines, au point d'être
+même recommandée par différentes agences de financement, dont la DFG en
+Allemagne[fn:9]. Il reste encore beaucoup à faire pour mieux diffuser
+une culture numérique solide en sciences humaines, notamment en
+introduisant très tôt des cours méthodologiques dès le niveau Master.
+Par ailleurs, les directives de la TEI doivent encore être améliorées
+pour couvrir plus de champs disciplinaires et offrir des sous-ensemble
+précis et ciblés pour des types de documents toujours plus variés, comme
+par exemple les tweets ou les échanges dans des forums de discussion,
+qui font maintenant l'objet d'études linguistiques ou sociologiques.
+
+[fn:1] Florian BESSON, "Croiser les littératures de la première croisade
+       : l'exemple de la bataille d'Antioche", /in /M. Finck, T.
+       Victoroff, E. Zanin, P. Dethurens, G. Ducrey, Y.-M. Ergal, P.
+       Werly (éd.),/ Littérature et expériences croisées de la guerre,
+       apports comparatistes. Actes du XXXIX^{e} Congrès de la SFLGC/,
+       URL
+       : [[http://sflgc.org/acte/florian-besson-croiser-les-litteratures-de-la-premiere-croisade-lexemple-de-la-bataille-dantioche/][http://sflgc.org/acte/florian-besson-croiser-les-litteratures-de-la-premiere-croisade-lexemple-de-la-bataille-dantioche/]],
+       page consultée le 10 Février 2020.
+
+[fn:2] https://andrewdunning.ca/transcribing-medieval-manuscripts-tei
+
+[fn:3] [[https://www.berliner-intellektuelle.eu][https://www.berliner-intellektuelle.eu]]
+
+[fn:4] [[http://vindolanda.csad.ox.ac.uk][http://vindolanda.csad.ox.ac.uk]]
+
+[fn:5] Terras, M., & Robertson, P. (2004). Downs and acrosses: textual
+       markup on a stroke level. /Literary and linguistic
+       computing/, /19/(3), 397-414.
+
+[fn:6] [[https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/TS.html][https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/TS.html]]
+
+[fn:7] [[https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-pause.html][https://www.tei-c.org/release/doc/tei-p5-doc/fr/html/ref-pause.html]]
+
+[fn:8] https://mayawoerterbuch.de/a-new-logogram-for-hul-to-arrive-implications-for-the-decipherment-of-the-month-name-cumku/
+
+[fn:9] https://www.dfg.de/formulare/12\_151/12\_151\_en.pdf
