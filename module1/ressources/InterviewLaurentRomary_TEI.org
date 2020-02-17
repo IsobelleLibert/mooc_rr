@@ -14,7 +14,7 @@ et du consortium TEI ([[https://tei-c.org/][Text Encoding Initiative]]).
 
 ** Interview
 
-*** Comment se traduit la question de la reproductibilité et de la transparence en SHS, LSH ? On parle beaucoup de la difficulté de reproduire des expériences, des résultats statistiques.
+*** Comment se traduit la question de la reproductibilité et de la transparence en SHS, LSH ?
   :PROPERTIES:
   :CUSTOM_ID: comment-se-traduit-la-question-de-la-reproductibilité-et-de-la-transparence-en-shs-lsh-on-parle-beaucoup-de-la-difficulté-de-reproduire-des-expériences-des-résultats-statistiques.
   :END:
@@ -99,8 +99,7 @@ recherches et les analyses qu'ils en tirent peuvent être diffusés de
 façon transparentes et lisibles par d'autres collègues partageant le
 même cadre conceptuel[fn:5].
 
-*** Quel est l'Intérêt de mettre un texte au format TEI par rapport au
-format epub par exemple ?
+*** Quel est l'Intérêt de mettre un texte au format TEI par rapport au format epub par exemple ?
   :PROPERTIES:
   :CUSTOM_ID: quel-est-lintérêt-de-mettre-un-texte-au-format-tei-par-rapport-au-format-epub-par-exemple
   :END:
@@ -117,10 +116,7 @@ d'y retrouver tous les éléments communs, par exemple l'occurrence d'une
 personne de façon transversale à différentes chroniques d'une même
 époque.
 
-*** A quel moment il est intéressant de basculer dans la TEI ? A quel
-stade du travail de recherche dois-je passer à l'encodage ? Est-ce que
-cela vaut la peine si j'ai déjà beaucoup avancé dans mon projet de
-recherche ?
+*** A quel moment il est intéressant de basculer dans la TEI ? 
   :PROPERTIES:
   :CUSTOM_ID: a-quel-moment-il-est-intéressant-de-basculer-dans-la-tei-a-quel-stade-du-travail-de-recherche-dois-je-passer-à-lencodage-est-ce-que-cela-vaut-la-peine-si-jai-déjà-beaucoup-avancé-dans-mon-projet-de-recherche
   :END:
@@ -141,8 +137,7 @@ de celui-ci. C'est par ce biais qu'on contribue notamment à conforter
 l'authenticité d'une source et de sa transformation en objet numérique
 réutilisable.
 
-*** Est-ce très compliqué pour un débutant ? quelles sont les compétences
-informatiques : ex. dois-je maîtriser XML ? quels sont les prérequis ?
+*** Est-ce très compliqué pour un débutant ? quelles sont les compétences informatiques : ex. dois-je maîtriser XML ?
   :PROPERTIES:
   :CUSTOM_ID: est-ce-très-compliqué-pour-un-débutant-quelles-sont-les-compétences-informatiques-ex.-dois-je-maîtriser-xml-quels-sont-les-prérequis
   :END:
@@ -160,8 +155,7 @@ bien comprise. Aucune connaissance préalable en informatique avancée ou
 en programmation n'est nécessaire. Il faut juste être à l'aise avec un
 éditeur de texte et avoir un certain bon sens logique.
 
-*** Comment s'assurer de la qualité de l'encodage ? Quelles sont les
-bonnes pratiques, notamment si on travaille en groupe ?
+*** Comment s'assurer de la qualité de l'encodage ? Quelles sont les bonnes pratiques, notamment si on travaille en groupe ?
   :PROPERTIES:
   :CUSTOM_ID: comment-sassurer-de-la-qualité-de-lencodage-quelles-sont-les-bonnes-pratiques-notamment-si-on-travaille-en-groupe
   :END:
@@ -191,8 +185,7 @@ vérifier que l'on a bien la même compréhension des sources que l'on
 directives de la TEI sont souvent vues comme l'expression d'une culture
 partagée.
 
-*** Ces techniques d'encodage sont-elles uniquement liées à la question du
-partage de données ou est-ce aussi utile si je travaille en solo ?
+*** Ces techniques d'encodage sont-elles uniquement liées à la question du partage de données ou est-ce aussi utile si je travaille en solo ?
   :PROPERTIES:
   :CUSTOM_ID: ces-techniques-dencodage-sont-elles-uniquement-liées-à-la-question-du-partage-de-données-ou-est-ce-aussi-utile-si-je-travaille-en-solo
   :END:
@@ -209,8 +202,7 @@ phénomène précis (e.g. les conflits, les migrations, le fait religieux)
 correspondant à sa ou ses thématiques de prédilection. La TEI permet
 ainsi de se construire un patrimoine numérique stable dans le temps.
 
-*** Concrètement, de quoi ai-je besoin pour faire de la TEI ? de quelles
-solutions techniques ?
+*** Concrètement, de quoi ai-je besoin pour faire de la TEI ? de quelles solutions techniques ?
   :PROPERTIES:
   :CUSTOM_ID: concrètement-de-quoi-ai-je-besoin-pour-faire-de-la-tei-de-quelles-solutions-techniques
   :END:
@@ -229,9 +221,7 @@ ressources disponibles, on peut les diffuser sur un serveur génériques
 tel [[https://www.ortolang.fr/][qu'Ortolang]] ou [[https://www.nakala.fr/][Nakala]], un environnement dédié à la TEI tel que [[https://tapasproject.org/][TAPAS]], ou encore développement sa
 plate-forme de diffusion propre.
 
-*** As-tu un exemple de question de recherche que la TEI a permis de faire
-émerger ? Montrer que la TEI va plus loin que le balisage, que c'est
-utile pour de l'analyse exploratoire par exemple.
+*** As-tu un exemple de question de recherche que la TEI a permis de faire émerger ?
   :PROPERTIES:
   :CUSTOM_ID: as-tu-un-exemple-de-question-de-recherche-que-la-tei-a-permis-de-faire-émerger-montrer-que-la-tei-va-plus-loin-que-le-balisage-que-cest-utile-pour-de-lanalyse-exploratoire-par-exemple.
   :END:
