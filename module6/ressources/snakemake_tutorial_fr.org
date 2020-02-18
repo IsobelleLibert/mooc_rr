@@ -5,8 +5,23 @@
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
 
+* Plan
+- Préambule 
+- Installer snakemake
+ - Linux
+ - Mac, Windows
+- L'analyse de l'incidence du syndrome grippal revisitée
+ - Préparation
+ - 1re tâche : le téléchargement des données
+ - 2e tâche : le prétraitement des données
+ - 3e tâche : préparer les graphiques
+ - 4e tâche : calculer l'incidence annuelle
+ - 5e tâche : l'histogramme
+- Travailler avec un workflow
+- Vers la gestion de données plus volumineuses
+
 * Préambule 
-Avant de lancer =org-babel-tangle=, il faut créer tous les répertoires qui vont accueillir les fichiers, après en avoir supprimé des versions anciennes:
+Avant de lancer =org-babel-tangle=, il faut créer tous les répertoires qui vont accueillir les fichiers, après en avoir supprimé des versions anciennes :
 #+begin_src sh :results output :exports both
 for directory in incidence_syndrome_grippal incidence_syndrome_grippal_par_region incidence_syndrome_grippal_par_region_v2
 do
@@ -19,7 +34,7 @@ done
 
 #+RESULTS:
 
-Puis:
+Puis :
 #+begin_src emacs-lisp
 (org-babel-tangle)
 #+end_src
@@ -27,7 +42,7 @@ Puis:
 #+RESULTS:
 | incidence_syndrome_grippal/scripts/annual-incidence-histogram.R | incidence_syndrome_grippal/scripts/annual-incidence.R | incidence_syndrome_grippal/scripts/incidence-plots.R | incidence_syndrome_grippal_par_region_v2/scripts/split-by-region.py | incidence_syndrome_grippal_par_region/scripts/peak-years.py | incidence_syndrome_grippal_par_region/scripts/split-by-region.py | incidence_syndrome_grippal/scripts/preprocess.py | incidence_syndrome_grippal_par_region_v2/Snakefile | incidence_syndrome_grippal_par_region/Snakefile | incidence_syndrome_grippal/Snakefile |
 
-L'exécution du fichier bloque à chaque fichier de type Snakefile, malgré le fait qu'ils ont tous =:eval no=. Alors définissions une fonction qui exécute un Snakefile... sans rien faire!
+L'exécution du fichier bloque à chaque fichier de type Snakefile, malgré le fait qu'ils ont tous =:eval no=. Alors définissions une fonction qui exécute un Snakefile... sans rien faire !
 #+begin_src emacs-lisp
 (defun org-babel-execute:snakefile (body params)
   )
@@ -36,7 +51,7 @@ L'exécution du fichier bloque à chaque fichier de type Snakefile, malgré le f
 #+RESULTS:
 : org-babel-execute:snakefile
 
-Enfin, il vaut mieux supprimer les buffers éventuellement restés d'une exécution antérieur:
+Enfin, il vaut mieux supprimer les buffers éventuellement restés d'une exécution antérieure :
 #+begin_src emacs-lisp
 (when (get-buffer "*snakemake1*")
   (kill-buffer "*snakemake1*"))
@@ -54,20 +69,20 @@ par les distributions
 ** Mac, Windows
 par Anaconda
 * L'analyse de l'incidence du syndrome grippal revisitée
-Je vais reprendre l'exemple du module 3, l'analyse de l'incidence du syndrome grippal, et je vais refaire exactement la même analyse sous forme d'un workflow par =snakemake=. Ceci veut dire que pour l'instant, nous quittons le monde des documents computationnels que nous vous avons montré dans les modules 2 et 3, pour passer dans l'univers de la ligne de commande. Il y a des bonnes raisons pour cela, que je vous donnerai plus tard. Et vous verrez aussi le retour des documents computationnels à la fin de ce tutoriel, même si ce sera dans un rôle moins central.
+Je vais reprendre l'exemple du module 3, l'analyse de l'incidence du syndrome grippal, et je vais refaire exactement la même analyse sous forme d'un workflow par =snakemake=. Ceci veut dire que pour l'instant, nous quittons le monde des documents computationnels que nous vous avons montré dans les modules 2 et 3, pour passer dans l'univers de la ligne de commande. Il y a de bonnes raisons pour cela, que je vous donnerai plus tard. Et vous verrez aussi le retour des documents computationnels à la fin de ce tutoriel, même si ce sera dans un rôle moins central.
 
-Un workflow est composé de tâches dont chacun correspond à un bout du calcul total. Une tâche est typiquement l'exécution d'une commande ou d'un script. Les tâches communiques entre eux par des fichiers - au moins dans la vision de =snakemake= (et d'autres descendants de =make=). Pour faire le lien avec la programmation dans un langage comme Python ou R, une tâche est l'appel à une fonction, et les paramètres et les valeurs de retour sont stockés dans des fichiers.
+Un workflow est composé de tâches dont chacune correspond à un bout du calcul total. Une tâche est typiquement l'exécution d'une commande ou d'un script. Les tâches communiquent entre elles par des fichiers - au moins dans la vision de =snakemake= (et d'autres descendants de =make=). Pour faire le lien avec la programmation dans un langage comme Python ou R, une tâche est l'appel à une fonction, et les paramètres et les valeurs de retour sont stockés dans des fichiers.
 
-Il y a beaucoup de liberté dans la décomposition d'un calcul en tâches d'un workflow. Souvent les critères sont plutôt techniques que scientifiques: une tâche peut alors correspondre à l'exécution d'un logiciel, ou à une étape du calcul qui est fait sur un ordinateur précis. Pour mon analyse je propose la décomposition suivante, qui est assez arbitraire :
+Il y a beaucoup de liberté dans la décomposition d'un calcul en tâches d'un workflow. Souvent les critères sont plus techniques que scientifiques : une tâche peut alors correspondre à l'exécution d'un logiciel, ou à une étape du calcul qui est fait sur un ordinateur précis. Pour mon analyse je propose la décomposition suivante, qui est assez arbitraire :
  1. Téléchargement des données du site du Réseau Sentinelles
- 2. Pré-traitement: extraction des données utilisées, vérifications
- 3. Visualisation: génération des plots
+ 2. Prétraitement : extraction des données utilisées, vérifications
+ 3. Visualisation : génération des plots
  4. Calcul des incidences annuelles
  5. Calcul de l'histogramme des incidences annuelles
 
 Pour faire les calculs, je vais recycler le code du module 3, sans les commenter de nouveau ici.
 ** Préparation
-Un workflow finit par utiliser beaucoup de fichiers, il est donc prudent de les regrouper dans un répertoire, avec des sous-répertoires pour les scripts et les données:
+Un workflow finit par utiliser beaucoup de fichiers, il est donc prudent de les regrouper dans un répertoire, avec des sous-répertoires pour les scripts et les données :
 #+begin_src sh :session *snakemake1* :results output :exports both
 # déjà fait: mkdir incidence_syndrome_grippal
 cd incidence_syndrome_grippal
@@ -77,8 +92,8 @@ cd incidence_syndrome_grippal
 
 #+RESULTS:
 
-** 1ère tâche: le téléchargement des données
-Pour télécharger un fichier, inutile d'écrire du code: l'utilitaire =wget= fait ce qu'il faut. La ligne de commande
+** 1re tâche : le téléchargement des données
+Pour télécharger un fichier, inutile d'écrire du code : l'utilitaire =wget= fait ce qu'il faut. La ligne de commande
 #+begin_src sh :session *snakemake1* :results output :exports both
 wget -O data/weekly-incidence.csv http://www.sentiweb.fr/datasets/incidence-PAY-3.csv
 #+end_src
@@ -90,18 +105,19 @@ wget -O data/weekly-incidence.csv http://www.sentiweb.fr/datasets/incidence-PAY-
 : HTTP request sent, awaiting response... 200 OK
 : Length: unspecified [text/csv]
 : Saving to: 'data/weekly-incidence.csv'
-: ]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  80.88K  --.-KB/s    in 0.01s   
+: ]       0  --.-KB/s               
+data/weekly-inciden     [ <=>                ]  80.88K  --.-KB/s    in 0.01s   
 : 
 : 2020-02-05 16:02:18 (5.48 MB/s) - 'data/weekly-incidence.csv' saved [82825]
 
-fait ce qu'il faut, et dépose les données dans le fichier =data/weekly-incidence.csv=. Je le supprime parce que je veux faire le téléchargement dans mon workflow!
+fait ce qu'il faut, et dépose les données dans le fichier =data/weekly-incidence.csv=. Je le supprime parce que je veux faire le téléchargement dans mon workflow !
 #+begin_src sh :session *snakemake1* :results output :exports both
 rm data/weekly-incidence.csv
 #+end_src
 
 #+RESULTS:
 
-Je vais commencer la rédaction du =Snakefile=, le fichier qui déinit mon workflow:
+Je vais commencer la rédaction du =Snakefile=, le fichier qui définit mon workflow :
 #+begin_src snakefile :exports code :tangle incidence_syndrome_grippal/Snakefile :mkdirp yes :eval no
 rule download:
      output:
@@ -111,7 +127,7 @@ rule download:
 #+end_src
 Un =Snakefile= consiste de /règles/ qui définissent les tâches. Chaque règle a un nom, ici j'ai choisi /download/. Une règle liste aussi les fichiers d'entrée (aucun dans ce cas) et de sortie (notre fichier de données). Enfin, il faut dire ce qui est à faire pour exécuter la tâche, ce qui est ici la commande =wget=.
 
-Pour exécuter cette tâche, il y a deux façons de faire: on peut demander à =snakemake= d'exécuter la règle =download=:
+Pour exécuter cette tâche, il y a deux façons de faire : on peut demander à =snakemake= d'exécuter la règle =download= :
 #+begin_src sh :session *snakemake1* :results output :exports both
 snakemake download
 #+end_src
@@ -138,7 +154,8 @@ Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: unspecified [text/csv]
 Saving to: 'data/weekly-incidence.csv'
-]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  80.88K  --.-KB/s    in 0.02s   
+]       0  --.-KB/s               
+data/weekly-inciden     [ <=>                ]  80.88K  --.-KB/s    in 0.02s   
 
 2020-02-05 16:02:19 (4.77 MB/s) - 'data/weekly-incidence.csv' saved [82825]
 
@@ -148,7 +165,7 @@ Finished job 0.
 Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160218.869841.snakemake.log
 #+end_example
 
-Ou on peut demander de faire ce qu'il faut pour produire un fichier:
+Ou on peut demander de faire ce qu'il faut pour produire un fichier :
 #+begin_src sh :session *snakemake1* :results output :exports both
 snakemake data/weekly-incidence.csv
 #+end_src
@@ -158,12 +175,12 @@ snakemake data/weekly-incidence.csv
 : Nothing to be done.
 : Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160219.236301.snakemake.log
 
-En regardant bien ce que =snakemake= dit au deuxième tour, il s'est rendu compte qu'il n'y a rien à faire, parce que le fichier souhaité existe déjà. Voici un premier avantage important d'un workflow: une tâche n'est exécutée que s'il est nécessaire. Quand une tâche met deux heures à exécuter, c'est appréciable.
+En regardant bien ce que =snakemake= dit au deuxième tour, il s'est rendu compte qu'il n'y a rien à faire, parce que le fichier souhaité existe déjà. Voici un premier avantage important d'un workflow : une tâche n'est exécutée que si elle est nécessaire. Quand une tâche met deux heures à exécuter, c'est appréciable.
 
-** 2ème tâche: le pré-traitement des données
-La deuxième tâche est le pré-traitement: en partant du fichier téléchargé du Réseau Sentinelle, il faut extraire juste les éléments nécessaires, et il faut vérifier s'il y a des données manquantes ou des erreurs. Dans un document computationnel, j'avais procédé pas par pas, en inspectant les résultats à chaque étape. Dans mon workflow, le pré-traitement devient une seule tâche, exécutée en bloc.
+** 2e tâche : le prétraitement des données
+La deuxième tâche est le prétraitement : en partant du fichier téléchargé du Réseau Sentinelle, il faut extraire juste les éléments nécessaires, et il faut vérifier s'il y a des données manquantes ou des erreurs. Dans un document computationnel, j'avais procédé pas à pas, en inspectant les résultats à chaque étape. Dans mon workflow, le prétraitement devient une seule tâche, exécutée en bloc.
 
-Il faut donc bien réfléchir à ce qu'on attend comme résultat. En fait, il faut deux fichiers de sortie: un qui contient les données qui seront analysées par la suite, et un autre qui contient les éventuels messages d'erreur. Avec ça, la deuxième règle s'écrit assez vite:
+Il faut donc bien réfléchir à ce qu'on attend comme résultat. En fait, il faut deux fichiers de sortie : un qui contient les données qui seront analysées par la suite, et un autre qui contient les éventuels messages d'erreur. Avec ça, la deuxième règle s'écrit assez vite :
 #+begin_src :exports code :tangle incidence_syndrome_grippal/Snakefile :mkdirp yes :eval no
 rule preprocess:
      input:
@@ -176,7 +193,7 @@ rule preprocess:
 #+end_src
 Il y a donc un fichier d'entrée, qui est le résultat de la tâche /download/. Et il y a les deux fichiers de sortie, un pour les résultats et un pour les messages d'erreur. Enfin, pour faire le travail, j'ai opté pour un script Python cette fois. =snakemake= reconnaît le langage par l'extension =.py=.
 
-Le contenu de ce script est presque un copier-coller d'un document computationnel du module 3, plus précisément du document que j'ai montré dans le parcours Emacs/Org-Mode:
+Le contenu de ce script est presque un copier-coller d'un document computationnel du module 3, plus précisément du document que j'ai montré dans le parcours Emacs/Org-Mode :
 #+begin_src python :exports code :tangle incidence_syndrome_grippal/scripts/preprocess.py :mkdirp yes :eval no
 # Libraries used by this script:
 import datetime  # for date conversion
@@ -249,11 +266,11 @@ with open(snakemake.output.data, "w") as csvfile:
         csv_writer.writerow(row)
 #+end_src
 
-Ce qui saute aux yeux d'abord, c'est =snakemake.input[0]= comme nom de fichier. Le nom =snakemake= semble venir de nulle part: il n'est ni défini dans le script, ni importé d'un module. En fait, c'est bien =snakemake= qui définit ce nom dans l'interprète Python avant de lancer le script. Il permet d'accèder aux définitions du =Snakefile=, et notamment aux noms des fichiers.
+Ce qui saute aux yeux d'abord, c'est =snakemake.input[0]= comme nom de fichier. Le nom =snakemake= semble venir de nulle part : il n'est ni défini dans le script, ni importé d'un module. En fait, c'est bien =snakemake= qui définit ce nom dans l'interprète Python avant de lancer le script. Il permet d'accéder aux définitions du =Snakefile=, et notamment aux noms des fichiers.
 
 Sinon, il y a deux modifications par rapport au code du module 3. Premièrement, les messages d'erreurs sont écrits dans un fichier. Deuxièmement, les données finales sont écrites également dans un fichier, en utilisant le format CSV.
 
-Pour appliquer le pré-traitement, demandons à =snakemake=:
+Pour appliquer le prétraitement, demandons à =snakemake= :
 #+begin_src sh :session *snakemake1* :results output :exports both
 snakemake preprocess
 #+end_src
@@ -281,7 +298,7 @@ Finished job 0.
 Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160219.462758.snakemake.log
 #+end_example
 
-Voyons s'il y a eu des problèmes:
+Voyons s'il y a eu des problèmes :
 #+begin_src sh :session *snakemake1* :results output :exports both
 cat data/errors-from-preprocessing.txt
 #+end_src
@@ -291,7 +308,7 @@ cat data/errors-from-preprocessing.txt
 : ['198919', '3', '0', '', '', '0', '', '', 'FR', 'France']
 : 14 days, 0:00:00 between 1989-05-01 and 1989-05-15
 
-En effet, on avait vu dans le module 3 qu'il y a un point manquant dans ce jeu de données. Quant aux données, je vais afficher juste le début:
+En effet, on avait vu dans le module 3 qu'il y a un point manquant dans ce jeu de données. Quant aux données, je vais afficher juste le début :
 #+begin_src sh :session *snakemake1* :results output :exports both
 head -10 data/preprocessed-weekly-incidence.csv
 #+end_src
@@ -310,9 +327,10 @@ week_starting,incidence
 1984-12-24,84830
 #+end_example
 
-Ça a l'air pas mal!
-** 3ème tâche: préparer les graphiques
-La règle pour faire les graphiques ne présente plus aucune surprise:
+Ça a l'air pas mal !
+
+** 3e tâche : préparer les graphiques
+La règle pour faire les graphiques ne présente plus aucune surprise :
 #+begin_src :exports code :tangle incidence_syndrome_grippal/Snakefile :mkdirp yes :eval no
 rule plot:
      input:
@@ -323,7 +341,7 @@ rule plot:
      script:
         "scripts/incidence-plots.R"
 #+end_src
-Il y a les données pré-traitées à l'entrée, et deux fichiers image à la sortie, créées par un script, cette fois en langage R:
+Il y a les données prétraitées en entrée, et deux fichiers image en sortie, créés par un script, cette fois en langage R :
 #+begin_src R :exports code :tangle incidence_syndrome_grippal/scripts/incidence-plots.R :eval no :mkdirp yes
 # Read in the data and convert the dates
 data = read.csv(snakemake@input[[1]])
@@ -339,9 +357,9 @@ png(filename=snakemake@output[[2]])
 plot(tail(data, 4*52), type="l", xlab="Date", ylab="Weekly incidence")
 dev.off()
 #+end_src
-Comme pour le script Python de l'étape précedente, l'accès aux noms des fichiers se fait par le nom =snakemake= qui est créé par... =snakemake=.
+Comme pour le script Python de l'étape précédente, l'accès aux noms des fichiers se fait par le nom =snakemake= qui est créé par... =snakemake=.
 
-Passons à l'exécution:
+Passons à l'exécution :
 #+begin_src sh :session *snakemake1* :results output :exports both
 snakemake plot
 #+end_src
@@ -381,14 +399,14 @@ Finished job 0.
 Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160219.997969.snakemake.log
 #+end_example
 
-Voici les deux plots:
+Voici les deux plots :
 
 [[file:incidence_syndrome_grippal/data/weekly-incidence-plot.png]]
 
 [[file:incidence_syndrome_grippal/data/weekly-incidence-plot-last-years.png]]
 
-** 4ème tâche: calculer l'incidence annuelle
-Écrire les règles pour =snakemake= devient vite une routine:
+** 4e tâche : calculer l'incidence annuelle
+Écrire les règles pour =snakemake= devient vite une routine :
 #+begin_src :exports code :tangle incidence_syndrome_grippal/Snakefile :mkdirp yes :eval no
 rule annual_incidence:
      input:
@@ -398,7 +416,7 @@ rule annual_incidence:
      script:
         "scripts/annual-incidence.R"
 #+end_src
-Et le script en langage R ressemble fortement au code du module 3:
+Et le script en langage R ressemble fortement au code du module 3 :
 #+begin_src R :exports code :tangle incidence_syndrome_grippal/scripts/annual-incidence.R :mkdirp yes :eval no
 # Read in the data and convert the dates
 data = read.csv(snakemake@input[[1]])
@@ -425,7 +443,7 @@ write.csv(annual_data,
           row.names=FALSE)
 #+end_src
 
-Allons-y!
+Allons-y !
 #+begin_src sh :session *snakemake1* :results output :exports both
 snakemake annual_incidence
 #+end_src
@@ -461,7 +479,7 @@ Finished job 0.
 Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160220.672051.snakemake.log
 #+end_example
 
-Voyons le début du résultat:
+Voyons le début du résultat :
 #+begin_src sh :session *snakemake1* :results output :exports both
 head -10 data/annual-incidence.csv
 #+end_src
@@ -480,8 +498,8 @@ head -10 data/annual-incidence.csv
 1994,3515735
 #+end_example
 
-** 5ème tâche: l'histogramme
-Et pour finir, encore un petit script en R:
+** 5e tâche : l'histogramme
+Et pour finir, encore un petit script en R :
 #+begin_src :exports code :tangle incidence_syndrome_grippal/Snakefile :mkdirp yes :eval no
 rule histogram:
      input:
@@ -545,11 +563,11 @@ Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressource
 * Travailler avec un workflow
 Jusqu'ici, j'ai lancé chaque tâche de mon workflow à la main, une par une. Avec le même effort, j'aurais pu lancer directement les divers scripts qui font le travail de fond. Autrement dit, =snakemake= ne m'a rien apporté d'autre que de sortir les noms des fichiers des scripts, qui deviennent ainsi un peu plus généraux, pour les transférer dans le grand script maître qu'est le =Snakefile=.
 
-J'ai déjà évoqué un avantage du workflow: les tâches ne sont exécutées qu'en cas de besoin. Par exemple, la commande =snakemake plot= exécute le script =scripts/incidence-plots.R= seulement si l'une des conditions suivantes est satisfaite:
+J'ai déjà évoqué un avantage du workflow : les tâches ne sont exécutées que si besoin. Par exemple, la commande =snakemake plot= exécute le script =scripts/incidence-plots.R= seulement si l'une des conditions suivantes est satisfaite :
  1. Un des deux fichiers =data/weekly-incidence-plot.png= et =data/weekly-incidence-plot-last-years.png= est absent.
  2. Un des deux fichiers =data/weekly-incidence-plot.png= et =data/weekly-incidence-plot-last-years.png= a une date de modification antérieure à la date de modification du fichier d'entrée, =data/preprocessed-weekly-incidence.csv=.
 
-Vérifions cela, en demandant en plus à =snakemake= d'expliquer son raisonnement avec l'option =-r=:
+Vérifions cela, en demandant en plus à =snakemake= d'expliquer son raisonnement avec l'option =-r= :
 #+begin_src sh :session *snakemake1* :results output :exports both
 snakemake -r plot
 #+end_src
@@ -559,7 +577,7 @@ snakemake -r plot
 : Nothing to be done.
 : Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160221.693263.snakemake.log
 
-Maintenant les plots sont là et à jour. Je vais simuler la modification du fichier d'entrée avec la commande =touch= et relancer:
+Maintenant les plots sont là et à jour. Je vais simuler la modification du fichier d'entrée avec la commande =touch= et relancer :
 #+begin_src sh :session *snakemake1* :results output :exports both
 touch data/preprocessed-weekly-incidence.csv
 snakemake -r plot
@@ -614,7 +632,7 @@ snakemake -r plot
 : Nothing to be done.
 : Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160222.398153.snakemake.log
 
-Je considère ceci un défaut de =snakemake=, car le script est une donnée d'entrée du calcul tout comme la séquence de chiffres à plotter. Un petit astuce permet de corriger ce défaut (à condition d'y penser chaque fois qu'on écrit une règle !): on peut rajouter le fichier script à la liste "input":
+Je considère ceci un défaut de =snakemake=, car le script est une donnée d'entrée du calcul tout comme la séquence de chiffres à représenter graphiquement. Une petit astuce permet de corriger ce défaut (à condition d'y penser chaque fois qu'on écrit une règle !) : on peut rajouter le fichier script à la liste "input" :
 #+begin_src :exports code :eval no
 rule plot:
      input:
@@ -627,7 +645,7 @@ rule plot:
         "scripts/incidence-plots.R"
 #+end_src
 
-On peut aussi demander à =snakemake= de lancer une tâche spécifique même si ceci ne lui semble pas nécessaire, avec l'option =-f= (force):
+On peut aussi demander à =snakemake= de lancer une tâche spécifique même si ceci ne lui semble pas nécessaire, avec l'option =-f= (force) :
 #+begin_src sh :session *snakemake1* :results output :exports both
 snakemake -f plot
 #+end_src
@@ -667,7 +685,7 @@ Finished job 0.
 Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160222.648384.snakemake.log
 #+end_example
 
-Le plus souvent, ce qu'on veut, c'est une mise à jour de tous les résultats suite à une modification. La bonne façon d'y arriver est de rajouter une nouvelle règle, par convention appellée =all=, qui ne fait rien mais demande en entrée tous les fichiers créés par toutes les autres tâches :
+Le plus souvent, ce qu'on veut, c'est une mise à jour de tous les résultats suite à une modification. La bonne façon d'y arriver est de rajouter une nouvelle règle, par convention appelée =all=, qui ne fait rien mais demande en entrée tous les fichiers créés par toutes les autres tâches :
 #+begin_src :exports code :tangle incidence_syndrome_grippal/Snakefile :mkdirp yes :eval no
 rule all:
      input:
@@ -679,7 +697,7 @@ rule all:
         "data/annual-incidence-histogram.png"
 #+end_src
 
-La mise à jour complète se fait alors avec
+La mise à jour complète se fait alors avec :
 #+begin_src sh :session *snakemake1* :results output :exports both
 snakemake all
 #+end_src
@@ -743,9 +761,9 @@ Finished job 0.
 Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160223.134687.snakemake.log
 #+end_example
 
-Les plus paresseux mettent la règle =all= au début du =Snakefile=, parce qu'en absence de tâche (ou fichier) nommé sur la ligne de commande, =snakemake= utilise la première régle qu'il trouve, et pour la mise à jour total, il suffit de taper =snakemake=.
+Les plus paresseux mettent la règle =all= au début du =Snakefile=, parce qu'en absence de tâche (ou fichier) nommé sur la ligne de commande, =snakemake= utilise la première règle qu'il trouve, et pour la mise à jour total, il suffit de taper =snakemake=.
 
-Pour rédémarrer de zéro, donc exécuter toutes les tâches, on fait:
+Pour redémarrer de zéro, donc exécuter toutes les tâches, on fait :
 #+begin_src sh :session *snakemake1* :results output :exports both
 snakemake --forceall all
 #+end_src
@@ -777,7 +795,8 @@ Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: unspecified [text/csv]
 Saving to: 'data/weekly-incidence.csv'
-]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  80.88K  --.-KB/s    in 0.02s   
+]       0  --.-KB/s               
+data/weekly-inciden     [ <=>                ]  80.88K  --.-KB/s    in 0.02s   
 
 2020-02-05 16:02:24 (4.19 MB/s) - 'data/weekly-incidence.csv' saved [82825]
 
@@ -863,7 +882,7 @@ Finished job 0.
 Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal/.snakemake/log/2020-02-05T160223.879360.snakemake.log
 #+end_example
 
-Comme =snakemake= gère bien toutes les dépendances entre les données, il peut même nous en faire un dessin, ce qui est fort utile quand les workflows augmentent en taille:
+Comme =snakemake= gère bien toutes les dépendances entre les données, il peut même nous en faire un dessin, ce qui est fort utile quand les workflows augmentent en taille :
 #+begin_src sh :session *snakemake1* :results output :exports both
 snakemake --forceall --dag all | dot -Tpng > graph.png
 #+end_src
@@ -873,9 +892,9 @@ snakemake --forceall --dag all | dot -Tpng > graph.png
 
 [[file:incidence_syndrome_grippal/graph.png]]
 
-Pour comprendre cette ligne de commande, il faut savoir que =snakemake= produit ce graphe en exécutant les tâches. Voilà pourquoi il faut les arguments =--forceall all= pour être sûr que toutes les tâches seront exécutées. =dot= est un logiciel qui fait partie de la collection [[https://graphviz.org/][Graphviz]], son rôle est de traduire une description textuelle d'un graph en graphique. Le sigle "DAG" veut dire "Directed Acyclic Graph", graphe orienté acyclique. C'est un type de graphe qu'on trouve naturellement dans les descriptions formelles de dépendences parce que "acyclique" veut simplement dire qu'aucun fichier de données produit ne peut avoir soi-même comme dépendence, directement ou indirectement.
+Pour comprendre cette ligne de commande, il faut savoir que =snakemake= produit ce graphe en exécutant les tâches. Voilà pourquoi il faut les arguments =--forceall all= pour être sûr que toutes les tâches seront exécutées. =dot= est un logiciel qui fait partie de la collection [[https://graphviz.org/][Graphviz]]. Son rôle est de traduire une description textuelle d'un graph en graphique. Le sigle "DAG" veut dire "Directed Acyclic Graph", graphe orienté acyclique. C'est un type de graphe qu'on trouve naturellement dans les descriptions formelles de dépendances parce que "acyclique" veut simplement dire qu'aucun fichier de données produit ne peut avoir soi-même comme dépendance, directement ou indirectement.
 
-En regardant bien ce dessin, vous remarquez peut-être qu'il y a deux branches indépendantes. Une fois qu'on a fait "preprocess", on peut attaquer ou "plot" ou "annual_incidence" suivi de "histogram". Mais ça veut dire aussi qu'on peut exécuter ces deux branches en parallèle et gagner du temps, pourvu qu'on a un ordinateur avec au moins deux processeurs. En fait, =snakemake= s'en charge automatiquement si on lui indique combien de processeurs utiliser:
+En regardant bien ce dessin, vous remarquez peut-être qu'il y a deux branches indépendantes. Une fois qu'on a fait "preprocess", on peut attaquer ou "plot" ou "annual_incidence" suivi de "histogram". Mais ça veut dire aussi qu'on peut exécuter ces deux branches en parallèle et gagner du temps, pourvu qu'on ait un ordinateur avec au moins deux processeurs. En fait, =snakemake= s'en charge automatiquement si on lui indique combien de processeurs utiliser :
 
 #+begin_src sh :session *snakemake1* :results output :exports both
 snakemake --cores 2 --forceall all 
@@ -908,7 +927,8 @@ Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: unspecified [text/csv]
 Saving to: 'data/weekly-incidence.csv'
-]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]  80.88K  --.-KB/s    in 0.02s   
+]       0  --.-KB/s               
+data/weekly-inciden     [ <=>                ]  80.88K  --.-KB/s    in 0.02s   
 
 2020-02-05 16:02:25 (3.24 MB/s) - 'data/weekly-incidence.csv' saved [82825]
 
@@ -994,9 +1014,9 @@ Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressource
 #+end_example
 
 * Vers la gestion de données plus volumineuses
-Le workflow que je viens de montrer produit 7 fichiers. Ce n'est pas beaucoup. On peut les nommer à la main, un par un, sans difficulté. Dans la vraie vie, par exemple en bioinformatique, un workflow peut facilement gérer des centaines ou milliers de fichiers, par exemple un fichier par séquence d'acides aminés dans une étude de protéomique. Dans une telle situation, il faut définir un schéma pour nommer les fichiers de façon systématique, et introduire des boucles dans le workflow dont les itérations seront idéalement exécutées en parallèle. Je vais illustrer ceci avec une variante de l'analyse de l'incidence du syndrome grippal. Elle utilise une forme plus détaillée des données brutes dans laquelle les incidence sont repertoriées par région plutôt que pour la France entière. Il faut donc répéter le calcul de l'incidence annuelle 13 fois, une fois pour chaque région. Pour simplifier un peu, le résultat principal de ce nouveau workflow sera un fichier qui contient, pour chaque région, l'année dans laquelle l'incidence était la plus élevée. Il n'y a donc pas d'histogramme.
+Le workflow que je viens de montrer produit 7 fichiers. Ce n'est pas beaucoup. On peut les nommer à la main, un à un, sans difficulté. Dans la vraie vie, par exemple en bio-informatique, un workflow peut facilement gérer des centaines ou milliers de fichiers, par exemple un fichier par séquence d'acides aminés dans une étude de protéomique. Dans une telle situation, il faut définir un schéma pour nommer les fichiers de façon systématique, et introduire des boucles dans le workflow dont les itérations seront idéalement exécutées en parallèle. Je vais illustrer ceci avec une variante de l'analyse de l'incidence du syndrome grippal. Elle utilise une forme plus détaillée des données brutes dans laquelle les incidences sont répertoriées par région plutôt que pour la France entière. Il faut donc répéter le calcul de l'incidence annuelle 13 fois, une fois pour chaque région. Pour simplifier un peu, le résultat principal de ce nouveau workflow sera un fichier qui contient, pour chaque région, l'année dans laquelle l'incidence était la plus élevée. Il n'y a donc pas d'histogramme.
 
-Pour cette deuxième version, je crée un nouveau répertoire, et j'y fais une copie des scripts qui seront réutilisés sans modification:
+Pour cette deuxième version, je crée un nouveau répertoire, et j'y fais une copie des scripts qui seront réutilisés sans modification :
 #+begin_src sh :session *snakemake2* :results output :exports both
 # déjà fait: mkdir incidence_syndrome_grippal_par_region
 cd incidence_syndrome_grippal_par_region
@@ -1082,11 +1102,11 @@ rule peak_years:
 
 #+RESULTS:
 
-Commençons en haut: j'ai mis la règle =all= au début pour pouvoir être paresseux à l'exécution: la simple commande =snakemake= déclenchera l'ensemble des calculs. Et =all=, c'est simplement le fichier qui résume les années du pic maximal pour chaque région.
+Commençons en haut : j'ai mis la règle =all= au début pour pouvoir être paresseux à l'exécution : la simple commande =snakemake= déclenchera l'ensemble des calculs. Et =all=, c'est simplement le fichier qui résume les années du pic maximal pour chaque région.
 
-Dans la règle =download=, seul le nom du fichier de données a changé par rapport à avant. J'ai trouvé le nom du fichier "par région" sur le site Web du Réseau Sentinelles. C'est après qu'il y a le plus grand changement: la définition d'une variable =REGIONS=, qui est une liste des 13 régions administratives, dont les noms sont écrits exactement comme dans le fichier des données. On devrait récupérer cette liste du fichier de façon automatique, et je montrerai plus tard comment faire. Pour l'instant, je préfère copier la liste manuellement dans le =Snakefile= afin de ne pas introduire trop de nouveautés d'aun seul coup. La variable =REGIONS= est utilisée immédiatement après, pour définir les fichiers de sortie de la règle =split_by_region=. La fonction =expand= produit une liste des noms de fichier en insérant le nom de la région au bon endroit dans le modèle.
+Dans la règle =download=, seul le nom du fichier de données a changé par rapport à avant. J'ai trouvé le nom du fichier "par région" sur le site Web du Réseau Sentinelles. C'est après qu'il y a le plus grand changement : la définition d'une variable =REGIONS=, qui est une liste des 13 régions administratives, dont les noms sont écrits exactement comme dans le fichier de données. On devrait récupérer cette liste du fichier de façon automatique, et je montrerai plus tard comment faire. Pour l'instant, je préfère copier la liste manuellement dans le =Snakefile= afin de ne pas introduire trop de nouveautés d'un seul coup. La variable =REGIONS= est utilisée immédiatement après, pour définir les fichiers de sortie de la règle =split_by_region=. La fonction =expand= produit une liste des noms de fichiers en insérant le nom de la région au bon endroit dans le modèle.
 
-Le rôle de la règle =split_by_region= est de découper les données téléchargées en un fichier par région, afin de pouvoir traiter les régions en parallèle et avec les même scripts que nous avons déjà. Le script appliqué par la règle est assez simple:
+Le rôle de la règle =split_by_region= est de découper les données téléchargées en un fichier par région, afin de pouvoir traiter les régions en parallèle avec les scripts que nous avons déjà. Le script appliqué par la règle est assez simple :
 #+begin_src python :exports code :tangle incidence_syndrome_grippal_par_region/scripts/split-by-region.py :mkdirp yes :eval no
 import os
 
@@ -1123,7 +1143,7 @@ for region in regions:
                 output_file.write('\n')
 #+end_src
 
-Avant de continuer, voyons déjà ce que ça donne:
+Avant de continuer, voyons déjà ce que ça donne :
 #+begin_src sh :session *snakemake2* :results output :exports both
 snakemake split_by_region
 #+end_src
@@ -1151,7 +1171,9 @@ Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: unspecified [text/csv]
 Saving to: 'data/weekly-incidence-all-regions.csv'
-]       0  --.-KB/s                        data/weekl     [ <=>                ]   1.01M  5.05MB/s               data/weekly-inciden     [  <=>               ]   1.07M  5.09MB/s    in 0.2s    
+]       0  --.-KB/s               
+         data/weekl     [ <=>                ]   1.01M  5.05MB/s               
+data/weekly-inciden     [  <=>               ]   1.07M  5.09MB/s    in 0.2s    
 
 2020-02-05 16:02:34 (5.09 MB/s) - 'data/weekly-incidence-all-regions.csv' saved [1124737]
 
@@ -1171,7 +1193,7 @@ Finished job 0.
 Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressources/incidence_syndrome_grippal_par_region/.snakemake/log/2020-02-05T160227.043869.snakemake.log
 #+end_example
 
-Et les fichiers sont bien là où il faut:
+Et les fichiers sont bien là où il faut :
 #+begin_src sh :session *snakemake2* :results output :exports both
 ls data
 #+end_src
@@ -1194,7 +1216,7 @@ weekly-incidence-PROVENCE-ALPES-COTE-D-AZUR.csv
 weekly-incidence-all-regions.csv
 #+end_example
 
-Les trois règles suivantes, =preprocess=, =plot=, et =annual_incidence= sont presques les mêmes qu'avant. Ce qui a changé, c'est la partie =-{region}= dans les noms des fichiers. Il faut interpréter le mot entre les accolades ("region") comme un nom de variable. La règle =preprocess=, par exemple, peut produire tout fichier qui a la forme "data/preprocessed-weekly-incidence-{region}.csv" si on lui donne le fichier "data/weekly-incidence-{region}.csv" avec la même valeur pour ={region}=. Etant donné les fichiers que nous avons obtenu par =split_by_region=, nous pouvons donc demander à snakemake le fichier "data/preprocessed-weekly-incidence-CORSE.csv", et snakemake va appliquer la règle =preprocess= au fichier d'entrée "data/weekly-incidence-CORSE.csv" que nous avons déjà. Faison-le:
+Les trois règles suivantes, =preprocess=, =plot=, et =annual_incidence= sont presque les mêmes qu'avant. Ce qui a changé, c'est la partie =-{region}= dans les noms des fichiers. Il faut interpréter le mot entre accolades ("region") comme un nom de variable. La règle =preprocess=, par exemple, peut produire tout fichier qui a la forme "data/preprocessed-weekly-incidence-{region}.csv" si on lui donne le fichier "data/weekly-incidence-{region}.csv" avec la même valeur pour ={region}=. Étant donné les fichiers que nous avons obtenus par =split_by_region=, nous pouvons donc demander à snakemake le fichier "data/preprocessed-weekly-incidence-CORSE.csv", et snakemake va appliquer la règle =preprocess= au fichier d'entrée "data/weekly-incidence-CORSE.csv" que nous avons déjà. Faisons-le :
 
 #+begin_src sh :session *snakemake2* :results output :exports both
 snakemake data/preprocessed-weekly-incidence-CORSE.csv
@@ -1233,7 +1255,7 @@ ls data/preprocessed*
 
 Le script =preprocess.py= n'a d'ailleurs pas changé du tout. Un workflow permet donc de séparer la logistique de la gestion des données du code qui fait les calculs.
 
-Le même mécanisme permet de demander l'incidence annuelle pour la Corse:
+Le même mécanisme permet de demander l'incidence annuelle pour la Corse :
 #+begin_src sh :session *snakemake2* :results output :exports both
 snakemake data/annual-incidence-CORSE.csv
 #+end_src
@@ -1272,7 +1294,7 @@ Complete log: /home/hinsen/projects/RR_MOOC/mooc-rr-ressources/module6/ressource
 
 Snakemake nous dit d'ailleurs explicitement quelle règle a été appliquée (=annual_incidence=), avec quel fichier d'entrée (=data/preprocessed-weekly-incidence-CORSE.csv=), et avec quel fichier de sortie (=data/annual-incidence-CORSE.csv=).
 
-A la fin du workflow, il y a une nouvelle règle, =peak_years=, qui extrait l'année du pic maximal de chaque fichier d'incience annuelle, et produit un fichier résumant ces années par région. Sa seule particularité est la spécification des fichiers d'entrée, qui utilise la fonction =expand= exactement comme on l'a vu pour les fichiers résultats de la règle =split_by_region=. Le script Python associé est assez simple:
+À la fin du workflow, il y a une nouvelle règle, =peak_years=, qui extrait l'année du pic maximal de chaque fichier d'incidence annuelle, et produit un fichier résumant ces années par région. Sa seule particularité est la spécification des fichiers d'entrée, qui utilise la fonction =expand= exactement comme on l'a vu pour les fichiers résultats de la règle =split_by_region=. Le script Python associé est assez simple :
 #+begin_src python :exports code :tangle incidence_syndrome_grippal_par_region/scripts/peak-years.py :mkdirp yes :eval no
 # Libraries used by this script:
 import csv       # for reading CSV files
@@ -1297,9 +1319,9 @@ with open(snakemake.output[0], 'w') as result_file:
         result_file.write('\n')
 #+end_src
 
-Dans ce workflow, nous avons donc introduit une boucle sur les régions en jouant avec les noms des fichiers. Chaque fichier du workflow précédent a été remplacé par une version "régionalisée", avec le suffix =-{region}= dans le nom. Ce qui déclenche la boucle, c'est la fonction =expand= dans notre =Snakefile=. Le grand avantage d'une telle boucle, par rapport à une boucle standard en Python ou R, est la parallélisation automatique. Sur une machine avec suffisamment de processeurs, toutes les 13 régions seront traitées en même temps. Mon ordinateur portable n'a qu'un processeur à deux coeurs, donc =snakemake= traite seulement deux régions à la foi.
+Dans ce workflow, nous avons donc introduit une boucle sur les régions en jouant avec les noms des fichiers. Chaque fichier du workflow précédent a été remplacé par une version "régionalisée", avec le suffix =-{region}= dans le nom. Ce qui déclenche la boucle, c'est la fonction =expand= dans notre =Snakefile=. Le grand avantage d'une telle boucle, par rapport à une boucle standard en Python ou R, est la parallélisation automatique. Sur une machine avec suffisamment de processeurs, les 13 régions seront traitées en même temps. Mon ordinateur portable n'a qu'un processeur à deux cœurs, donc =snakemake= traite seulement deux régions à la fois.
 
-Je vais maintenant lancer le calcul total - avec une petite précaution, l'option =-q= ("quiet") qui dit à snakemake d'être moins bavard:
+Je vais maintenant lancer le calcul total - avec une petite précaution, l'option =-q= ("quiet") qui dit à snakemake d'être moins bavard :
 #+begin_src sh :session *snakemake2* :results output :exports both
 snakemake -q
 #+end_src
@@ -1411,7 +1433,7 @@ Y-%m-%d", tz = "GMT") :
   unknown timezone 'zone/tz/2019c.1.0/zoneinfo/Europe/Paris'
 #+end_example
 
-En regardant bien le début du rapport que snakemake a fourni, on voit que =preprocess= et =annual_incidence= sont comptés 12 fois: une fois par région, moins la Corse que j'ai déjà traitée à la main. Une fois =all= et =peak_years=, ça a l'air bon. Et le résultat est là:
+En regardant bien le début du rapport que snakemake a fourni, on voit que =preprocess= et =annual_incidence= sont comptés 12 fois : une fois par région, moins la Corse que j'ai déjà traitée à la main. Une fois =all= et =peak_years=, ça a l'air bon. Et le résultat est là :
 #+begin_src sh :session *snakemake2* :results output :exports both
 cat data/peak-year-all-regions.txt
 #+end_src
@@ -1433,7 +1455,7 @@ PAYS-DE-LA-LOIRE, 1989
 PROVENCE-ALPES-COTE-D-AZUR, 1986
 #+end_example
 
-Un dernier détail à noter: la règle =plot= est bien dans mon =Snakefile=, mais elle n'a jamais été appliquée, et il n'y a aucun plot. C'est simplement parce que la règle =all= ne réclame que la production du fichier =data/peak-year-all-regions.txt=. J'aurais pu rajouter les plots, mais je ne l'ai pas fait. Ceci ne m'empêche pas de les demander explicitement:
+Un dernier détail à noter : la règle =plot= est bien dans mon =Snakefile=, mais elle n'a jamais été appliquée, et il n'y a aucun plot. C'est simplement parce que la règle =all= ne réclame que la production du fichier =data/peak-year-all-regions.txt=. J'aurais pu rajouter les plots, mais je ne l'ai pas fait. Ceci ne m'empêche pas de les demander explicitement :
 #+begin_src sh :session *snakemake2* :results output :exports both
 snakemake data/weekly-incidence-plot-last-years-CORSE.png
 #+end_src
@@ -1485,13 +1507,15 @@ snakemake -q --forceall --dag all | dot -Tpng > graph.png
 #+RESULTS:
 
 [[file:incidence_syndrome_grippal_par_region/graph.png]]
+
 On voit bien la structure du calcul, y compris le traitement des régions en parallèle.
-* Cherchez l'erreur!
-Il y a un point très important que j'ai laissé de côté jusqu'à maintenant pour me concentrer sur la partie technique: comment écrire et exécuter un workflow. Ce point est plutôt de nature méthodologique: il s'agit de la surveillance de possibles erreurs.
 
-Dans les documents computationnels du module 3, nous avons exécuté des petits bouts de code à la main et regardé les résultats. Nous l'avons fait pour bien comprendre ce qui se passe, et pour décider comment procéder. Dans un workflow, tout est automatisé, et tous les résultats finissent dans des fichiers que nous pourrions regarder, mais la plupart du temps nous ne les regardons pas. Regarder un plot d'une incidence hebodamadaire sur quelques décennies, c'est intéressant. En regarder 13 qui se ressemblent devient une corvée. Mais si nous ne regardons jamais les résultats, nous pouvons facilement passer à côté d'erreurs insoupçonnées. Et oui, ça arrive dans la vraie vie, même à des chercheurs expérimentés.
+* Cherchez l'erreur !
+Il y a un point très important que j'ai laissé de côté jusqu'à maintenant pour me concentrer sur la partie technique : comment écrire et exécuter un workflow. Ce point est plutôt de nature méthodologique : il s'agit de la surveillance de possibles erreurs.
 
-Il est donc primordial d'introduire des vérifications dans un workflow, et de faciliter l'inspection manuelle des possibles erreurs. Dans ma règle =preprocess=, j'ai écrit les messages d'erreur dans des fichiers spécifiques, sans les melanger avec les résultats comme on ferait dans un document computationnel. Alors regardons-les!
+Dans les documents computationnels du module 3, nous avons exécuté des petits bouts de code à la main et regardé les résultats. Nous l'avons fait pour bien comprendre ce qui se passe, et pour décider comment procéder. Dans un workflow, tout est automatisé, et tous les résultats finissent dans des fichiers que nous pourrions regarder, mais la plupart du temps nous ne les regardons pas. Regarder un plot d'une incidence hebdomadaire sur quelques décennies, c'est intéressant. En regarder 13 qui se ressemblent devient une corvée. Mais si nous ne regardons jamais les résultats, nous pouvons facilement passer à côté d'erreurs insoupçonnées. Et oui, ça arrive dans la vraie vie, même à des chercheurs expérimentés.
+
+Il est donc primordial d'introduire des vérifications dans un workflow, et de faciliter l'inspection manuelle des possibles erreurs. Dans ma règle =preprocess=, j'ai écrit les messages d'erreur dans des fichiers spécifiques, sans les mélanger avec les résultats comme on ferait dans un document computationnel. Alors regardons-les !
 
 #+begin_src sh :session *snakemake2* :results output :exports both
 for file in data/error*
@@ -3019,17 +3043,18 @@ Missing data in record
 14 days, 0:00:00 between 1989-05-01 and 1989-05-15
 #+end_example
 
-Sans inspecter ces messages, auriez-vous soupçonné qu'il manquent tant de données pour la Corse, par exemple? Et si je n'avais pas fait attention à les rendre faciles à inspecter, l'auriez-vous fait quand-même?
+Sans inspecter ces messages, auriez-vous soupçonné qu'il manque tant de données pour la Corse, par exemple ? Et si je n'avais pas fait attention à les rendre faciles à inspecter, l'auriez-vous fait quand-même ?
 
-On peut d'ailleurs se demander comment il est possible d'avoir tant de points manquants dans les données régionales, mais un seul point manquant dans les données nationales qui devraient, en théorie, être simplement la somme sur les régions. Mais c'est une question que seul le Réseau Sentinelles peut répondre.
+On peut d'ailleurs se demander comment il est possible d'avoir tant de points manquants dans les données régionales, mais un seul point manquant dans les données nationales qui devraient, en théorie, être simplement la somme sur les régions. Mais c'est une question à laquelle seul le Réseau Sentinelles peut répondre.
+
 * Les limites des workflows pilotés par les fichiers
-Snakemake fait partie d'une grande famille de gestionnaires de workflow dont l'ancêtre commun est l'outil =make= qui date de 1976. Le principe de fonctionnement de cette famille est que l'exécution des tâches est pilotée par les noms et les dates de modification des fichiers qui contiennent les données. C'est un principe simple qui permet beaucoup de fléxibilité dans son application, comme par exemple la parallélisation automatique. Mais ce principe a aussi des limitations, et nous en avons rencontré une: la nécessité de fournir une liste explicite des régions dans notre =Snakefile=.
+Snakemake fait partie d'une grande famille de gestionnaires de workflow dont l'ancêtre commun est l'outil =make= qui date de 1976. Le principe de fonctionnement de cette famille est que l'exécution des tâches est pilotée par les noms et les dates de modification des fichiers qui contiennent les données. C'est un principe simple qui permet beaucoup de flexibilité dans son application, comme par exemple la parallélisation automatique. Mais ce principe a aussi des limitations, et nous en avons rencontré une : la nécessité de fournir une liste explicite des régions dans notre =Snakefile=.
 
-À priori, la fichier de données téléchargé contient la liste exhaustive des régions qu'il faut traiter. On s'attend donc à pouvoir simplement dire "je veux appliquer mes règles à toutes les régions réferencées dans ce fichier". On s'attend bien sûr aussi à devoir fournir du code pour extraire la liste des région dudit fichier. Mais le problème est plus fondamental. Snakemake utilise le =Snakefile= et les fichiers de données réferencées par celui-ci pour déduire quelles tâches il faut exécuter et dans quel ordre. La liste des tâches ne peut donc pas dépendre du /contenu/ d'un tel fichier, et encore moins du contenu d'un fichier qui n'est même pas disponible avant l'exécution de la toute première tâche qui est =download=! Autrement dit, la limitation fondamentale de snakemake est le fait que le graphe de dépendance des tâches est établi avant toute exécution.
+À priori, le fichier de données téléchargé contient la liste exhaustive des régions qu'il faut traiter. On s'attend donc à pouvoir simplement dire "je veux appliquer mes règles à toutes les régions référencées dans ce fichier". On s'attend bien sûr aussi à devoir fournir du code pour extraire la liste des régions dudit fichier. Mais le problème est plus fondamental. Snakemake utilise le =Snakefile= et les fichiers de données référencés par celui-ci pour déduire quelles tâches il faut exécuter et dans quel ordre. La liste des tâches ne peut donc pas dépendre du /contenu/ d'un tel fichier, et encore moins du contenu d'un fichier qui n'est pas disponible avant l'exécution de la toute première tâche qui est =download= ! Autrement dit, la limitation fondamentale de snakemake est le fait que le graphe de dépendance des tâches est établi avant toute exécution.
 
 Les versions récentes de Snakemake proposent une façon de contourner cette limitation, et je vais vous la montrer. Le principe est qu'il faut dire à Snakemake de reconstruire le graphe des tâches après en avoir exécuté certaines.
 
-Je vais d'abord créer un nouveau repertoire pour ce troisième workflow, et copier les scripts du deuxième qui ne seront pas modifiés:
+Je vais d'abord créer un nouveau répertoire pour ce troisième workflow, et copier les scripts du deuxième qui ne seront pas modifiés :
 #+begin_src sh :session *snakemake3* :results output :exports both
 # déjà fait: mkdir incidence_syndrome_grippal_par_region_v2
 cd incidence_syndrome_grippal_par_region_v2
@@ -3042,7 +3067,7 @@ cp -r ../incidence_syndrome_grippal_par_region/scripts/peak-years.py ./scripts/
 
 #+RESULTS:
 
-Le =Snakefile= commence avec deux règles non modifiées:
+Le =Snakefile= commence avec deux règles non modifiées :
 #+begin_src snakefile :exports code :tangle incidence_syndrome_grippal_par_region_v2/Snakefile :eval no :mkdirp yes
 rule all:
      input:
@@ -3055,7 +3080,7 @@ rule download:
         "wget -O {output} http://www.sentiweb.fr/datasets/incidence-RDD-3.csv"
 #+end_src
 
-La règle =split_by_region= devient un "checkpoint", ce qui veut dire que Snakemake reconstruit son graphe de tâches /après/ son exécution:
+La règle =split_by_region= devient un "checkpoint", ce qui veut dire que Snakemake reconstruit son graphe de tâches /après/ son exécution :
 #+begin_src snakefile :exports code :tangle incidence_syndrome_grippal_par_region_v2/Snakefile :eval no :mkdirp yes
 checkpoint split_by_region:
      input:
@@ -3065,7 +3090,7 @@ checkpoint split_by_region:
      script:
         "scripts/split-by-region.py"
 #+end_src
-La particularité d'un checkpoint est que ses fichiers de sortie ne sont pas connus d'avance. On donne donc seulement le nom d'un répertoire. C'est le répertoire entier qui est consideré le résultat de la tâche. C'est donc le script qui doit le créer:
+La particularité d'un checkpoint est que ses fichiers de sortie ne sont pas connus d'avance. On donne donc seulement le nom d'un répertoire. C'est le répertoire entier qui constitue le résultat de la tâche. C'est donc le script qui doit le créer :
 #+begin_src python :exports code :tangle incidence_syndrome_grippal_par_region_v2/scripts/split-by-region.py :mkdirp yes :eval no
 import os
 
@@ -3107,7 +3132,7 @@ for region in regions:
                 output_file.write('\n')
 #+end_src
 
-Cette réorganisation des fichiers nécessite une petite modification des entrées de la règle =preprocess=:
+Cette réorganisation des fichiers nécessite une petite modification des entrées de la règle =preprocess= :
 #+begin_src snakefile :exports code :tangle incidence_syndrome_grippal_par_region_v2/Snakefile :eval no :mkdirp yes
 rule preprocess:
      input:
@@ -3119,7 +3144,7 @@ rule preprocess:
         "scripts/preprocess.py"
 #+end_src
 
-Mais rien ne change pour les deux règles suivantes:
+Mais rien ne change pour les deux règles suivantes :
 #+begin_src snakefile :exports code :tangle incidence_syndrome_grippal_par_region_v2/Snakefile :eval no :mkdirp yes
 rule plot:
      input:
@@ -3139,7 +3164,7 @@ rule annual_incidence:
         "scripts/annual-incidence.R"
 #+end_src
 
-Enfin, c'est la règle =peak_years= qui doit changer parce qu'elle doit construire la liste des fichiers d'entrées à partir des sorties du checkpoint =split_by_regions=. Ceci nécessite du code, mais snakemake permet de définir des fonctions Python dans le =Snakefile=:
+Enfin, c'est la règle =peak_years= qui doit changer parce qu'elle doit construire la liste des fichiers d'entrées à partir des sorties du checkpoint =split_by_regions=. Ceci nécessite du code, mais snakemake permet de définir des fonctions Python dans le =Snakefile= :
 #+begin_src snakefile :exports code :tangle incidence_syndrome_grippal_par_region_v2/Snakefile :eval no :mkdirp yes
 def annual_incidence_files(wildcards):
     directory = checkpoints.split_by_region.get().output[0]
@@ -3159,7 +3184,7 @@ Ceci nécessite quelques explications. Sous "input", j'ai donné le nom d'une fo
 
 Nous voyons donc que le prix à payer pour laisser le workflow trouver la liste des régions est une plus grande complexité du workflow. Il faut décider au cas par cas si c'est réellement avantageux.
 
-Pour terminer, lançons ce troisième workflow et comparons s'il donne les mêmes résultats que le deuxième!
+Pour terminer, lançons ce troisième workflow et comparons s'il donne les mêmes résultats que le deuxième !
 
 #+begin_src sh :session *snakemake3* :results output :exports both
 snakemake -q
@@ -3180,7 +3205,8 @@ Connecting to www.sentiweb.fr (www.sentiweb.fr)|134.157.220.17|:80... connected.
 HTTP request sent, awaiting response... 200 OK
 Length: unspecified [text/csv]
 Saving to: 'data/weekly-incidence-all-regions.csv'
-]       0  --.-KB/s               data/weekly-inciden     [ <=>                ]   1.07M  6.65MB/s    in 0.2s    
+]       0  --.-KB/s               
+data/weekly-inciden     [ <=>                ]   1.07M  6.65MB/s    in 0.2s    
 
 2020-02-05 16:02:43 (6.65 MB/s) - 'data/weekly-incidence-all-regions.csv' saved [1124737]
 

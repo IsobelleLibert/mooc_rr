@@ -109,7 +109,7 @@ bien sûr, dans Stata également), mais aussi pour les notebooks Jupyter que nou
 avons testés. 
 
 *** Quels sont workflows, comment articulez-vous les différents outils que vous utilisez au quotidien ? Quelles étapes de préparation des données (codage, documentation) suivez-vous ? 
-*** Quelles bonnes pratiques de modélisation (packages, fonctions, etc.) avez-vous appris à mettre en oeuvre ? Comment assurez-vous le suivi des versions de vos scripts, de votre code, de vos textes, etc. ?
+*** Quelles bonnes pratiques de modélisation (packages, fonctions, etc.) avez-vous appris à mettre en œuvre ? Comment assurez-vous le suivi des versions de vos scripts, de votre code, de vos textes, etc. ?
 Il faudrait un article entier pour décrire tout cela et d’ailleurs nous en avons
 co-écrit un à paraître bientôt ! *Les données sont souvent des tables*, que l’on
 appariera parfois, mais la structure des données est souvent simple chez nous. 
@@ -122,7 +122,7 @@ ce qui simplifie la vie.
 Ensuite, pour être franc, *cela commence souvent par un programme un peu 
 brouillon qui devient trop long pour s’y retrouver*. Alors on prend *un bout de 
 papier sur lequel on écrit un début de workflow, avec des flèches*. Puis on 
-ré-écrit le programme plus proprement en utilisant des fonctions et des 
+réécrit le programme plus proprement en utilisant des fonctions et des 
 sous-programmes. À la suite on modifie le workflow à mesure que le projet avance 
 et on le dessine sous Graphviz. 
 
