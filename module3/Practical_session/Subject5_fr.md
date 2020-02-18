@@ -8,11 +8,11 @@ Pour l'Avare de Molière, voici les formats disponibles : [TEI](http://dramacode
 
 Grâce à ces numérisations, il est possible d'écrire des programmes pour réaliser des analyses syntaxiques et sémantiques. Nous vous proposons dans ce sujet de reproduire une étude réalisée par l'OBVIL sur l'étude des dialogues de l'Avare de Molière. 
 
-Nous vous conseillons de réaliser cet exercice en Python plutôt que en R, surtout pour la partie qui traite le texte. 
+Nous vous conseillons de réaliser cet exercice en Python plutôt qu'en R, surtout pour la partie qui traite le texte. 
 
 __Votre mission si vous l'acceptez__ :
 
 1. Classez les personnages selon la quantité de parole grâce à une analyse syntaxique du texte (scènes / répliques / mots). En particulier, quel est celui qui parle le plus ? Quel est celui qui ne parle pas du tout ? Attention, les noms des personnages ne sont pas forcément homogènes (casse et accents par exemple).
-2. Réalisez un graphique qui montrera le nombre de mots que chaque acteur prononce dans chaque scène. Pour cela, vous pouvez vous inspirer de l'[étude de l'Avare de Molière réalisée par l'OBVIL](https://obvil.sorbonne-universite.fr/corpus/moliere/moliere_avare) (graphe de gauche). Dans ce graphique, les lignes sont de longueurs égales et la hauteur représente le nombre de mots prononcés au total dans la scène. La largeur de chaque rectangle indique le pourcentage de la scène qu’un acteur occupe.  
+2. Réalisez un graphique qui montrera le nombre de mots que chaque acteur prononce dans chaque scène. Pour cela, vous pouvez vous inspirer de l'[étude de l'Avare de Molière réalisée par l'OBVIL](https://obvil.sorbonne-universite.fr/corpus/moliere/moliere_avare) (graphe de gauche). Dans ce graphique, les lignes sont de longueur égale et la hauteur représente le nombre de mots prononcés au total dans la scène. La largeur de chaque rectangle indique le pourcentage de la scène qu’un acteur occupe.  
 3. Facultatif : Construisez un graphe d’interlocution permettant de visualiser les échanges entre les personnages. Pour cela, vous pouvez vous inspirer de l'[étude de l'Avare de Molière réalisée par l'OBVIL](https://obvil.sorbonne-universite.fr/corpus/moliere/moliere_avare) (graphe de droite).
-4. Déposer dans FUN votre résultat
+4. Déposer votre résultat dans FUN
