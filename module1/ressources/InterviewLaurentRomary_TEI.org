@@ -14,7 +14,7 @@ et du consortium TEI ([[https://tei-c.org/][Text Encoding Initiative]]).
 
 ** Interview
 
-*** Comment se traduit la question de la reproductibilité et de la transparence en SHS, LSH ?
+*** Comment peut se traduire la question de la reproductibilité et de la transparence en SHS, LSH ?
   :PROPERTIES:
   :CUSTOM_ID: comment-se-traduit-la-question-de-la-reproductibilité-et-de-la-transparence-en-shs-lsh-on-parle-beaucoup-de-la-difficulté-de-reproduire-des-expériences-des-résultats-statistiques.
   :END:
@@ -187,7 +187,7 @@ phénomène précis (e.g. les conflits, les migrations, le fait religieux)
   :END:
 
 Au départ, il suffit de disposer d'*un éditeur XML* un peu convivial, tel
-qu'Oxygen (payant, mais la Rolls dans son domaine), auquel on adjoint le
+qu'Oxygen (logiciel propriétaire, mais la Rolls dans son domaine), auquel on adjoint le
 schéma des directives de la TEI (ou une customisation de celui-ci). Une
 fois qu'on a commencé à travailler sur quelques documents, il peut être
 utile d'apprendre à les *manipuler à l'aide d'un langage tel que XSLT* qui
