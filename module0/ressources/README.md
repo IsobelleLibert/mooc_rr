@@ -2,5 +2,6 @@ Le texte se divise en quatre fichiers correspondant à trois chapitres, précéd
 
 * Le premier chapitre (1complexe.md) présente la notion de reproductibilité telle qu'elle a été abordée en histoire des sciences. On y introduit les notions de tacit knowledge, virtual witness, litterary technology, experimenter's regress.
 * Le deuxième chapitre (2multiforme.md) aborde six catégories de reproductibilité différentes selon les domaines scientifiques selon la typologie de Leonelli et conclue sur le problème de la reproductibilité vue comme un "gold standard" global.  
-* Le troisième chapitre (4crise.md) s'intéresse à la narration de "crise" de la reproductibilité. 
+* Le troisième chapitre (4crise.md) s'intéresse à la narration de "crise" de la reproductibilité.  
+Edit : manquent encore des hyperliens dnas 1complexe.md, 2multiforme.md et 4crise.md et il manque aussi une ersion en anglais
 
