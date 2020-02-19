@@ -21,7 +21,7 @@ Si vous utilisez des textes (littéraires, législatifs, archives,
 d'aller au-delà du seul décompte brut d'occurrences : la Text Encoding
 Initiative (TEI). Lou Burnard, l'un des fondateurs de la TEI, prend
 l'exemple du mot "Paris" : s'agit-il de la ville du Texas, de la
-capitale fraçaise, voire du prénom d'une héritière américaine ? Si trier
+capitale française, voire du prénom d'une héritière américaine ? Si trier
 manuellement le bon grain de l'ivraie est possible - mais non sans
 risque d'erreur - à l'échelle d'un petit /corpus/, il s'avère nettement
 plus complexe de travailler sur *une masse de documents plus importante
