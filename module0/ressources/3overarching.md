@@ -1,0 +1,17 @@
+TL;DR
+-----
+La conclusion de cette typologie en six catégories est que l'exigence de reproductibilité (en tant que moyen d'obtenir la fiabilité) pose problème (et encore plus si elle est définie dans un sens étroit, correspondant à un seul domaine scientifique) pour la vitalité de champs scientifiques différents pour lesquels cette exigence peut être sans objet, voire contre-productive.
+
+
+Ghettoïsation
+-------------
+Certains vont même plus loin et voient dans l'exigence de reproductibilité "one size fits all" une tentative de ghettoïsation des sciences qui ne correspondraient pas à ce standard trop facilement accepté comme universel (Penders et al. 2019). En s'appuyant sur les catégories de Leonelli et en reprenant ses inquiétudes quant à la généralisation abusive, Penders et al. voient dans la focalisation sur la reproductibilité en tant que critère obligatoire, une déligitimation des sciences humaines en général.
+Le point le plus important ici est la disqualification d'une entreprise de définition de la reproductibilité qui se voudrait universelle. Ce désir d'universalité se retrouve par exemple dans les analyses de méta-science, comme par exemple Goodman et al. 2016 qui proposent (dans le but de sortir de la polysémie) trois reproductibilités différentes, inspirées de leur expériences en recherche biomédicale mais qu'ils considèrent sans autre forme de procès comme applicables à tous les domaines scientifiques.
+
+Raw data
+--------
+Problématique dans ce genre de littérature est aussi l'idée de "raw data" : Les données ne sont jamais brutes : elles portent en elles les théories / méthodes / biais / cultures de ceux (humains, instruments et protocoles) qui les ont imaginées / conçues / définies / produites / traitées / échangées ET ce qu'elles portent est redéfini à chaque nouveau contexte, nouvelle expérience. Une vision superficielle de ce qu'est une donnée conduit à une vision superficielle de la reproductibilité.
+
+Norton
+------
+Comme l'énonce le philosophe des sciences John Norton : "*A failure of replication may not impugn a credible experimental result; and a successful replication can fail to vindicate an incredible experimental result. Rather, employing a material approach to inductive inference, the evidential import of successful replication of an experiment is determined by the prevailing background facts. Commonly, these background facts do support successful replication as a good evidential guide and this has fostered the illusion of a deeper, exceptionless principle.*" Ces "backgroud facts" sont spécifiques à chaque domaine scientifique : Les questions de reproductibilité ne se posent pas de la même manière selon les situations expérimentales : Cherche-ton à détecter le signal des ondes gravitationnlles dans le bruit des vibrations de quelques mm d'amplitude sur des bras métalliques de plusieurs km de long ? Cherche-t-on à rendre des populations de souris les plus significatives possibles mais suivent elles le même régime alimentaire que dans l'animalerie d'un autre laboratoire ? Il n'y a absolument rien d'universel dans ces pratiques, et chaque "culture épistémique" construit ses propres critères de légitimité, à l'intérieur desquels la reproductibilité peut trouver une place plus ou moins importante, et surtout, s'y exprime de différentes manières. De fait, la mention de "LA méthode scientifique", comme si elle était unique, en tant que garante des bonnes pratiques comme la reproductibilité "gold standard" universelle est illusoire.
