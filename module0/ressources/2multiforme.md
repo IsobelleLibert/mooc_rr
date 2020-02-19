@@ -1,11 +1,6 @@
+Six catégories de reproductibilité
+----------------------------------
 
-
-TL;DR
------
-La reproductibilité est donc multiiforme et dépendante du contexte mais elle est aussi différente selon les domaines scientifiques. Différente sur comment elle est perçue et est mise en place mais aussi différente sur son importance et sa normativité.
-
-Les catégories de Leonelli
---------------------------
 Sabina Leonelli est une philosophe des sciences qui s'intéresse à la "data-centric biology" (selon sa propre expression, c'est à dire à l'activité scientifique dans les sciences de la vie à l'ère des big data). Elle étudie ce qu'elle appelle les voyages des données. Les données, jamais "brutes", contiennent en elles toutes les théories, conditions, protocoles, biais, cultures qui ont servi à leur production et leur réutilisation se fait toujours dans d'autres conditions, par des chercheurs appartenant à d'autres cultures. Pour ce qui est de la reproductibilité, dans la même veine consistant à tenir compte des différentes cultures épistémiques de différents domaines scientifiques, Leonelli propose six catégories d'activités scientifiques pour lesquelles "reproductibilité" n'a pas forcément le même sens ni la même importance. (Leonelli 2018)
 
 ### 1 Computational Reproducibility
@@ -25,3 +20,5 @@ Les deux dernières catégories concernent les sciences de l'observation : *surv
 
 ### 6 Irreproducible Research: Participant Observation
 Enfin la dernière catégorie traite des activités scientifiques où *the idea of reproducibility has been rejected in favor of an embrace of the subjectivity and unavoidable context-dependence of research outcomes*. En **anthropologie**, la reproductibilité n'a pas de sens : *[Anthropologists]* *cannot rely on reproducibility as an epistemic criterion for data quality and validity. They therefore devote considerable care to documenting data production processes and strategizing about data preservation and dissemination*. Là où la reproductibilité n'a pas de sens, les communautés scientifiques font reposer leur crédibilité sur d'autres vertus épistémiques. La réflexivité, par exemple, (dont de nombreuses sciences pourraient s'inspirer). *Ethnographic work in anthropology, for instance, has developed methods to account for the fact that data are likely to change depending on time, place, subjects as well as researchers’ moods, experiences and interests. Key among such methods is the principle of reflexivity, which requires researchers to give as comprehensive a view of their personal circumstances*
+
+La conclusion de Leonelli est que cette typologie en six catégories est que l'exigence de reproductibilité (en tant que moyen d'obtenir la fiabilité) pose problème (et encore plus si elle est définie dans un sens étroit, correspondant à un seul domaine scientifique) pour la vitalité de champs scientifiques différents pour lesquels cette exigence peut être sans objet, voire contre-productive. Certains vont même plus loin et voient dans l'exigence de reproductibilité "one size fits all" une tentative de ghettoïsation des sciences qui ne correspondraient pas à ce standard trop facilement accepté comme universel (Penders et al. 2019).
