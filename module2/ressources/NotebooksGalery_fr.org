@@ -15,37 +15,37 @@ Voici un document qui recense quelques documents computationnels
 - [[#notebooks-org-mode][Notebooks Org-mode]]
 
 * Notebooks Jupyter
-- [[https://github.com/norvig/pytudes/blob/master/ipynb/Economics.ipynb][Simulation d'un marché économique]],  Peter Norvig (github @norvig)
-- [[https://github.com/mikhailklassen/Mining-the-Social-Web-3rd-Edition][Un complément exécutable (Python/Jupyter) pour le livre "Mining the Social Web", (O'Reilly, 2019)]], Mikhail Klassen (github @mikhailklassen)
+- [[https://github.com/norvig/pytudes/blob/master/ipynb/Economics.ipynb][Simulation d'un marché économique]],  Peter Norvig (GitHub ~@norvig~)
+- [[https://github.com/mikhailklassen/Mining-the-Social-Web-3rd-Edition][Un complément exécutable (Python/Jupyter) pour le livre "Mining the Social Web", (O'Reilly, 2019)]], Mikhail Klassen (GitHub ~@mikhailklassen~)
 - [[http://darribas.org/gds19][Des supports de cours ("Geographic Data Science") avec des notebooks
   Jupyter]], (voir sous "labs"),  Dr. Dani Arribas-Bel, Automne 2019 à
   l'Université de Liverpool.
-- [[https://github.com/lesteve/euroscipy-2019-scikit-learn-tutorial/tree/master/notebooks][EuroSciPy 2019 - scikit-learn tutorial]], Olivier Grisel (github
-  @ogrisel)
+- [[https://github.com/lesteve/euroscipy-2019-scikit-learn-tutorial/tree/master/notebooks][EuroSciPy 2019 - scikit-learn tutorial]], Olivier Grisel (GitHub
+  ~@ogrisel~)
 - [[https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks][A gallery of interesting Jupyter Notebooks]] :
-  un entrepôt github qui regroupe de nombreux notebooks Jupyter tous domaines
+  un entrepôt GitHub qui regroupe de nombreux notebooks Jupyter tous domaines
 - [[https://github.com/christophe-pouzat/ENP2015][Fluorescence Imaging Analysis: The Case of Calcium Transients]] a =GitHub= depository with an actual analysis preented as a Jupyter notebook in file =Pouzat-ENP-2015.ipynb= (github @c_pouzat).
 
 * Notebooks RStudio
-- [[http://rpubs.com/alegrand/46031][Images Panini]], Arnaud Legrand
-- [[http://rpubs.com/alegrand/224732][Les yeux bleus]], Arnaud Legrand
+- [[file:NotebooksGalery_images/CouponCollector.pdf][Devoir sur le /Coupon Collector/]] ([[file:NotebooksGalery_images/CouponCollector.Rmd][sources Rmd]]) Arnaud Legrand
+- [[file:NotebooksGalery_images/YeuxBleus.pdf][Devoir sur les /Yeux Bleus/]] ([[file:NotebooksGalery_images/YeuxBleus.Rmd][sources Rmd]]) Arnaud Legrand
 - [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/TriDesPA][Enregistrements extracellulaires et le tri des potentiel d'action :
-  supports de cours et les codes associés]] ([[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/TriDesPA/Pouzat_TriDesPA_20190128.pdf][Pdf]]), Christophe Pouzat (github @c_pouzat)
+  supports de cours et les codes associés]] ([[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/TriDesPA/Pouzat_TriDesPA_20190128.pdf][Pdf]]), Christophe Pouzat (GitHub ~@c_pouzat~)
 - [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/FluoCalcium][Mesures de concentrations calciques au moyen de sondes
   fluorescentes : supports de cours et les codes associés]] ([[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/FluoCalcium/Pouzat_FluoCalcium_20180309.pdf][Pdf]]), Christophe
-  Pouzat (gitlab @c_pouzat)
+  Pouzat (gitlab ~@c_pouzat~)
 - [[https://github.com/christophe-pouzat/YRLS2017][YRLS2017: R for statistics and reproducible research in the life
-  sciences]] ([[http://htmlpreview.github.io/?https://github.com/christophe-pouzat/YRLS2017/blob/master/Pouzat_YRLS_RR_20170516.html][Html]]), Christophe Pouzat (github @christophe-pouzat)
+  sciences]] ([[http://htmlpreview.github.io/?https://github.com/christophe-pouzat/YRLS2017/blob/master/Pouzat_YRLS_RR_20170516.html][Html]]), Christophe Pouzat (GitHub ~@christophe-pouzat~)
 
 
 * Notebooks Org-mode
 
 - [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/TriDesPA/Pouzat_TriDesPA_20190128.org][Enregistrements extracellulaires et le tri des potentiel d'action :
-  supports de cours et les codes associés]] ([[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/TriDesPA/Pouzat_TriDesPA_20190128.pdf][Pdf]]), Christophe Pouzat (github @c_pouzat)
+  supports de cours et les codes associés]] ([[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/TriDesPA/Pouzat_TriDesPA_20190128.pdf][Pdf]]), Christophe Pouzat (GitHub ~@c_pouzat~)
 - [[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/FluoCalcium/Pouzat_FluoCalcium_20180309.org][Mesures de concentrations calciques au moyen de sondes
   fluorescentes : supports de cours et les codes associés]] ([[https://gitlab.com/c_pouzat/etudes-de-cas-m1/blob/master/FluoCalcium/Pouzat_FluoCalcium_20180309.pdf][Pdf]]), Christophe
-  Pouzat (gitlab @c_pouzat)
-- [[https://github.com/jkitchin/dft-book][Un livre de chimie théorique écrit en Org-Mode]] ([[https://github.com/jkitchin/dft-book/raw/master/dft.pdf][Pdf version of the book]]), John Kitchin (github @jkitchin). 
+  Pouzat (gitlab ~@c_pouzat~)
+- [[https://github.com/jkitchin/dft-book][Un livre de chimie théorique écrit en Org-Mode]] ([[https://github.com/jkitchin/dft-book/raw/master/dft.pdf][Pdf version of the book]]), John Kitchin (GitHub ~@jkitchin~). 
 - [[https://plmlab.math.cnrs.fr/xtof/interacting_neurons_with_stp/blob/master/interacting_neurons_with_stp.org][A system of interacting neurons with short term plasticity]], (org
   avec du C, gnuplot, shell) ([[https://plmlab.math.cnrs.fr/xtof/interacting_neurons_with_stp/blob/master/interacting_neurons_with_stp.Pdf][Pdf]]), Christophe Pouzat
 - [[https://hal.archives-ouvertes.fr/hal-01224765][Supplementary Material for: Homogeneity and identity tests for unidimensional Poisson processes with an application to  neurophysiological peri-stimulus time histograms--R version]], (org
