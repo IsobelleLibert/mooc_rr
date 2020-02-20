@@ -1,0 +1,438 @@
+---
+title: "Corrigé du DM1 RICM4 PS: Les yeux noirs"
+author: "Arnaud Legrand"
+date: "3 novembre 2016"
+output: 
+   pdf_document:
+      toc: yes
+      extra_dependencies:
+        xspace:
+        xcolor: ["usenames","dvipsnames","svgnames","table"]
+   html_document:
+      toc: true
+      theme: cosmo
+      highlight: tango
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(fig.align = "center",
+               fig.width = 10,
+               cache = TRUE,
+               cache.lazy = FALSE)
+```
+
+\let\quoteo=\quote
+\def\quote{\quoteo\it}
+
+\def\Imax{\ensuremath{I_{\max}}\xspace}
+\def\Pop{\color{red!80!black}\mathcal{P}}
+\def\PopI{\ensuremath{\mathcal{P}_0}\xspace}
+\def\MM{{\color{red!80!black}\mathrm{MM}}}
+\def\BB{{\color{red!80!black}\mathrm{BB}}}
+\def\MMI{\ensuremath{\mathrm{MM}_0}\xspace}
+\def\BBI{\ensuremath{\mathrm{BB}_0}\xspace}
+
+```{r}
+set.seed(42)
+```
+
+La couleur des yeux est un caractère héréditaire influencé par
+plusieurs *gènes*. Chaque gène possède deux *allèles*, l'un
+issu du père et l'autre de la mère. Les allèles donnant la couleur
+bleue sont récessifs par rapport aux allèles donnant la couleur
+marron. Ainsi, si un individu possède deux allèles "bleus", ses yeux
+sont bleus mais dès lors qu'un de ses deux allèles est "marron", ses
+yeux sont marrons.
+
+Nous nous intéressons dans ce devoir à l'évolution de la couleur des
+yeux d'une population au fil des générations. Pour simplifier l'étude
+de ce problème nous ferons les hypothèses suivantes:
+- On considère des populations constituées d'exactement $P$ individus.
+  La première population sera notée \PopI (et est donc une donnée du
+  problème). On notera $\Pop_i$ la $i$-ème génération d'individus avec
+  $i$ allant de $1$ à \Imax. $\Pop_i$ est donc le résultat d'un
+  processus aléatoire (d'où la couleur rouge pour ceux qui visualisent
+  le pdf sur un écran...).
+- On notera $\BB_i$ (resp. $\MM_i$) le nombre d'individus dont les
+  deux allèles sont bleus (resp. marrons) dans la population
+  $\Pop_i$. Il y a donc $P-\BB_i-\MM_i$ individus ayant exactement un
+  allèle bleu et un allèle marron. On peut donc noter $\Pop_i =
+  (\BB_i,\MM_i)$.
+- L'évolution des populations est synchrone et stochastique. Autrement
+  dit, chaque population $\Pop_{i+1}$ est obtenue en créant $P$
+  individus à partir de $\Pop_{i}$. On crée chacun des $P$ individus
+  de la population $\Pop_{i+1}$ en sélectionnant au hasard un père et
+  une mère dans $\Pop_i$ (pour simplifier on ne distinguera pas le
+  sexe des parents dans $\Pop_i$) et en sélectionnant au hasard un
+  allèle de chacun de ces deux parents.
+
+Dans la suite, nous allons donc étudier l'évolution du système pour
+différentes valeurs de $P$, de $I$ et différentes populations
+initiales \PopI.
+
+Afin de s'assurer que nous puissions reproduire vos résultats, vous
+prendrez soin de fixer la valeur de la graine du générateur aléatoire
+à l'aide de la fonction `set.seed`.
+
+
+# Q0: Décrire votre intuition
+> Avant de vous lancer dans la programmation, essayer de répondre aux
+> différentes questions, l'une après l'autre (c'est important), en
+> n'utilisant que votre intuition. Dans une première section du
+> document vous indiquerez donc votre intuition sur l'évolution de la
+> composition des populations. Que va-t-il se passer selon vous?
+> Comment va évoluer la proportion de personnes ayant les yeux bleus?
+> 
+> Attention, le fait que cette intuition soit correcte ou pas n'aura
+> aucune importance sur votre note finale. Décrire votre intuition a
+> uniquement pour but que vous commenciez à réfléchir au problème et
+> de réaliser à quel point sa propre intuition peut être correcte ou
+> pas.
+> 
+> Vous analyserez, en fin de DM, cette intuition au vu des résultats
+> statistiques observés.
+
+Mon intuition initiale était que les proportions de chaque type d'individus évoluait très lentement et que tout type de dérive était possible. 
+
+Je me disais néanmoins qu'il était peut-être possible, vu le caractère synchrone de l'évolution, d'avoir des évolutions non continues avec des genres de cycles (une certaine proportion pour les itérations paires et une autre proportion pour les itérations impaires).
+
+Enfin, une extinction d'un des types d'individu me semblait possible mais mon intuition était que c'était très peu probable, surtout si la population est grande.
+
+## Codons gaiement
+Je suis reparti de ce que nous avions écrit en TD la dernière fois.
+```{r}
+new_population = function(P = 10000, bb = 0.1, mm = 0.3) {
+  Pere = sample(size=P, x=c(0,1,2), replace=T, prob=c(mm,1-(bb+mm),bb));
+  Mere = sample(size=P, x=c(0,1,2), replace=T, prob=c(mm,1-(bb+mm),bb));
+  
+  Enfant_P=ifelse(Pere==0,0,
+                  ifelse(Pere==1,sample(size = P,x=c(0,1),replace = T),1));
+  Enfant_M=ifelse(Mere==0,0,
+                  ifelse(Mere==1,sample(size = P,x=c(0,1),replace = T),1));
+  Enfant = Enfant_M + Enfant_P;
+  list(BB=sum(Enfant==2),MM=sum(Enfant==0))
+}
+new_population(); 
+```
+
+Je n'avais alors plus qu'à rajouter une fonction qui génère une trajectoire (et mette le tout dans une "dataframe" car c'est plus propre comme ça):
+```{r}
+population_evolution = function(P=20, Imax=20, bb=0.1, mm=0.3) {
+  df=data.frame(Timestep=0,BB=bb,MM=mm); 
+  for(i in 1:Imax) {
+    res=new_population(P,bb,mm);
+    bb=res$BB/P;mm=res$MM/P;
+    df=rbind(df,data.frame(Timestep=i,BB=bb,MM=mm));
+  }
+  df
+}
+population_evolution(P=20);
+```
+
+Puis la même chose pour générer plusieurs trajectoires:
+```{r}
+population_evolutions = function(P=20, Imax=20, N=10, bb=0.1, mm=0.3) {
+  df=data.frame()
+  for(i in 1:N) {
+    traj=population_evolution(P,Imax,bb,mm);
+    traj$Idx=i;
+    df=rbind(df,traj);
+  }
+  df
+}
+population_evolutions(P=20,Imax=4,N=4);
+```
+
+# Q1 Cas d’une petite population 
+
+> On s'intéresse dans cette question au cas d'une population de taille
+> réduite, c'est-à-dire au cas où $P=20$, à un horizon
+> $\Imax=20$. Vous représenterez graphiquement au moins $N=10$
+> réalisations des trajectoires de $(\BB_i/P, \MM_i/P)$ en partant des
+> populations $\PopI$ initiales suivantes:
+> 
+> - $\PopI = (\BBI,\MMI) = (4,12)$
+> - $\PopI = (\BBI,\MMI) = (12,4)$
+> - $\PopI = (\BBI,\MMI) = (5,5)$
+>
+> Ces configurations sont données à titre d'exemple et vous êtes
+> encouragés à en essayer d'autres (en particulier des horizons $\Imax$
+> plus longs ainsi que d'autres $\PopI$) pour bien comprendre ce qu'il se
+> passe.
+>
+> Vous expliquerez et commenterez de façon pertinente vos observations.
+
+On s’intéresse dans cette question au cas d’une population de taille réduite sur un horizon réduit.
+
+```{r}
+set.seed(2)
+```
+
+## Premiers pas
+Commençons par générer puis visualiser une seule trajectoire:
+```{r}
+pop = population_evolution(P = 20,Imax = 20, bb = 4/20, mm = 12/20);
+```
+
+Alors bien, sûr, on peut utiliser le R de base. 
+```{r}
+xrange = c(min(pop$Timestep),max(pop$Timestep))
+plot(x = NULL, y = NULL, xlim = xrange,ylim = c(0,1), type="o", xlab="Génération i", ylab="Proportion d'individus de chaque type");
+lines(pop$Timestep, pop$BB, type = "o",col = "blue");
+lines(pop$Timestep, pop$MM, type = "o",col = "brown");
+```
+
+Certains m'ont même fait des versions superbes pour bien illustrer les trois types:
+```{r}
+I=max(pop$Timestep);
+plot(c(0,I),c(0,1),type="n",xlab="Generation", ylab="Proportion d'individus de chaque type")
+polygon(c(c(0,I),c(I,0)),c(c(0,0),c(1,1)), col="burlywood")
+polygon(c(0:I,rev(0:I)),c(pop$BB,rep(0,I+1)), col="skyblue")
+polygon(c(0:I,rev(0:I)),c(1-pop$MM,rep(1,I+1)), col="tan4")
+```
+
+Ceci dit, dès qu'on essaye de dessiner plusieurs trajectoires, on va être un peu embêtés et plus y comprendre grand chose. En particulier, on ne saura plus quelle courbe bleue correspond à quelle courbe marron.
+
+Finalement, l'état de la population, a deux coordonnées, pourquoi ne pas représenter les choses dans cet espace là, comme le suggérait l'ennoncé:
+```{r}
+plot(pop$BB,pop$MM, xlim=c(0,1), ylim=c(0,1))
+lines(pop$BB,pop$MM)
+```
+
+Bon, c'est un peu moche aussi et ça ne permet pas de savoir dans quel sens on va mais par contre, je devrais être capable de dessiner plusieurs trajectoires. Essayons avec ggplot2.
+```{r}
+library(ggplot2)
+ggplot(pop,aes(x=BB,y=MM,color=Timestep)) + geom_path() + 
+  xlim(0,1) +  ylim(0,1) + theme_bw() + coord_fixed()
+```
+
+Bon, c'est assez erratique... Voyons si une tendance se dessine en regardant plusieurs trajectoires.
+
+Au fait, voici là représentation ggplot2 "avec le temps en X":
+```{r}
+ggplot(pop,aes(x=Timestep)) + geom_line(aes(y=BB),color="blue") +
+   geom_line(aes(y=MM),color="brown")  + ylim(0,1) + theme_bw()
+```
+
+## Plusieurs trajectoires en partant de (4,12) sur un horizon court
+Commençons par générer nos trajectoires:
+```{r}
+pop = population_evolutions(P = 20,Imax = 20, bb = 4/20, mm = 12/20, N = 20);
+```
+
+Voyons ce que cela donne:
+```{r}
+ggplot(pop,aes(x=BB,y=MM,color=Timestep,group=Idx)) + geom_path() + 
+  xlim(0,1) +  ylim(0,1) + theme_bw() + coord_fixed() 
+```
+
+Wow. C'est illisible et en même temps, il y a une forme assez étrange qui se dessine... On devine une genre de "parabole". Essayons de faire des "facets".
+```{r}
+ggplot(pop,aes(x=BB,y=MM,color=Timestep)) + geom_path() + 
+  xlim(0,1) +  ylim(0,1) + theme_bw() + coord_fixed() + facet_wrap(~Idx)
+```
+
+C'est petit mais c'est déjà un peu plus lisible. Je n'arrive pas à trouver de bonne solution pour les mettre tous sur le même graphique. En tous cas, il est clair que toutes les trajectoires partent bien du même point pour s'éloigner ensuite. Dans certain cas, on a atteint le point de coordonnée (0,1) qui est un état stable du système. 
+
+À tout hasard, voici ce que cela donnerait avec "le temps selon X":
+```{r}
+ggplot(pop,aes(x=Timestep)) + geom_line(aes(y=BB),color="blue") +
+   geom_line(aes(y=MM),color="brown")  + ylim(0,1) + theme_bw() +
+   facet_wrap(~Idx)
+```
+
+Voyons ce que cela donne pour des trajectoires plus longues.
+
+## Plusieurs trajectoires en partant de (4,12) sur un horizon long
+Commençons par générer nos trajectoires:
+```{r}
+pop = population_evolutions(P = 20,Imax = 200, bb = 4/20, mm = 12/20, N = 20);
+```
+
+```{r}
+ggplot(pop,aes(x=Timestep)) + geom_line(aes(y=BB),color="blue") +
+   geom_line(aes(y=MM),color="brown")  + ylim(0,1) + theme_bw() +
+   facet_wrap(~Idx)
+```
+
+Ah, là, on voit parfaitement que toutes nos trajectoires ont été absorbées par (0,1) ou par (1,0).
+```{r}
+ggplot(pop,aes(x=BB,y=MM,color=Timestep)) + geom_path() + 
+  xlim(0,1) +  ylim(0,1) + theme_bw() + coord_fixed() + facet_wrap(~Idx)
+```
+
+Et dans l'espace des (BB,MM), on retrouve des espèces de paraboles très bruités pour les trajectoires qui ne se font pas rapidement absorber.
+
+## Plusieurs trajectoires en partant de (12,4) sur un horizon long
+Bon, ça va faire la même chose en symétrique. J'ai vérifié, ça a peu d'intérêt. Passons au cas du point de départ symétrique.
+
+## Plusieurs trajectoires en partant de (10, 10) sur un horizon long
+Commençons par générer nos trajectoires en partant d'une situation un peu extrême puisqu'on n'a aucun individu de type BM:
+```{r}
+pop = population_evolutions(P = 20,Imax = 200, bb = 10/20, mm = 10/20, N = 20);
+```
+
+```{r}
+ggplot(pop,aes(x=Timestep)) + geom_line(aes(y=BB),color="blue") +
+   geom_line(aes(y=MM),color="brown")  + ylim(0,1) + theme_bw() +
+   facet_wrap(~Idx)
+```
+
+Une fois de plus, toutes nos trajectoires ont été absorbées par (0,1) ou par (1,0). C'est assez logique.
+
+```{r}
+ggplot(pop,aes(x=BB,y=MM,color=Timestep)) + geom_path() + 
+  xlim(0,1) +  ylim(0,1) + theme_bw() + coord_fixed() + facet_wrap(~Idx)
+```
+
+On retrouve des espèces de paraboles très bruités pour les trajectoires qui ne se font pas rapidement absorber.
+On remarque aussi qu'on quitte systématiquement le point de départ de façon assez brutale alors qu'ensuite les évolutions semblent se faire relativement de proche en proche.
+Comme on pouvait s'y attendre, on se fait absorber à peu près aussi souvent par (0,1) que par (1,0).
+
+## Conclusion
+Dans le cas d'une petite population, il semble qu'on évolue systématiquement (et relativement rapidement) vers un des deux états "tous les allèles bleus" ou "tous les allèles marrons". 
+Les trajectoires semblent quitter rapidement leur point de départ pour se déplacer de façon assez erratique et grossière le long d'une parabole. C'est assez vague comme observation.
+
+# Q2: Cas d’une grande population
+> On s'intéresse maintenant au cas $P=2000$ et $\Imax=100$ et on partira
+> de situations $\PopI$ initiales équivalentes:
+> - $\PopI = (400,1200)$
+> - $\PopI = (1200,400)$
+> - $\PopI = (500,500)$
+> 
+> Vous expliquerez et commenterez de façon pertinente vos observations
+> et comparerez le comportement de ce système par rapport au précédent.
+
+## Plusieurs trajectoires en partant de (400,1200) sur un horizon long
+Commençons par générer nos trajectoires:
+```{r}
+pop = population_evolutions(P = 2000, Imax = 100, bb = 400/2000, mm = 1200/2000, N = 20);
+```
+
+```{r}
+ggplot(pop,aes(x=Timestep)) + geom_line(aes(y=BB),color="blue") +
+   geom_line(aes(y=MM),color="brown")  + ylim(0,1) + theme_bw() +
+   facet_wrap(~Idx)
+```
+
+Ah, là, du fait du changement d'échelle, les évolutions sont bien plus lentes et lisses. Quelques individus de plus ou de moins ne changent pas grand chose. On ne voit pas l'absorption vers (0,1) ou (1,0). L'ensemble des trajectoires se ressemble aussi bien plus les unes aux autres.
+
+```{r}
+ggplot(pop,aes(x=BB,y=MM,color=Timestep)) + geom_path() + 
+  xlim(0,1) +  ylim(0,1) + theme_bw() + coord_fixed() + facet_wrap(~Idx)
+```
+
+Cette fois, on voit nettement mieux le décrochement à partir de la population initiale mais moins clairement la "parabole". L'horizon est peut-être trop "court". Essayons sur un horizon plus long et avec plus de trajectoires.
+
+```{r}
+pop = population_evolutions(P = 5000, Imax = 100, bb = 400/2000, mm = 1200/2000, N = 50);
+ggplot(pop,aes(x=BB,y=MM,color=Timestep, group=Idx)) + geom_path(alpha=.3) + 
+  xlim(0,1) +  ylim(0,1) + theme_bw() + coord_fixed() 
+```
+
+C'est donc bien très très lent comme évolution et à part le décrochement rapide au début, on semble restreint à une zone bien particulière.
+
+## Essayons d'autres points de départ
+Je vais prendre des points de départs uniformes sur l'ensemble des configurations possibles.
+```{r}
+df=data.frame();
+for(i in 1:50) {
+  repeat {
+    bb=runif(1);
+    mm=runif(1);
+    if(bb+mm<=1) {break;}
+  }
+  traj=population_evolution(5000,100,bb,mm);
+  traj$Idx=i;
+  df=rbind(df,traj);
+}
+```
+
+```{r}
+ggplot(df,aes(x=BB,y=MM,color=Timestep, group=Idx)) + geom_path(alpha=.3) + 
+  xlim(0,1) +  ylim(0,1) + theme_bw() + coord_fixed() 
+```
+
+Wowww!!! Alors ça c'est classe! :) Il semble que quelque soit le point de départ, on se retrouve rapidement sur une "parabole" et qu'on se balade à proximité... Ça va, je peux allez me coucher tranquille là.
+
+# Q3: Cas d'une petite population avec préservation 
+> On s'intéresse cette fois à nouveau au cas d'une population de taille
+> réduite (i.e., $P=20$) mais à un horizon $\Imax=2000$. On modifie
+> cette fois légèrement la règle d'évolution de façon à ce que l'on ait
+> toujours $\BB_i\geq 1$ et $\MM_i\geq 1$. Pour cela, on ne tire au
+> hasard que $P-2$ individus (selon la règle classique) pour construire
+> $\Pop_i$ et on y ajoute deux individus, l'un ayant deux allèles bleus,
+> et l'autre ayant deux allèles marrons. 
+> 
+> En quoi cette modification modifie-t-elle la dynamique de la question
+> 1. Qu'en pensez-vous ? Le système vous semble-t-il ``stable'',
+> certaines zones semblent-elles plus ``attractrices'' que d'autres ? ...
+
+Il se fait tard mais vous avez compris le principe. Plus d'absorption,
+on va se balader un peu partout. Si on joue le jeu et qu'on regarde où
+on se balade sur une trajectoire très très longue, on verra que
+certaines zones sont plus fréquentes que d'autres. Non ? Grmf... OK,
+je vous montre.
+
+```{r}
+population_evolution_preserved = function(P=20, Imax=20, bb=0.1, mm=0.3) {
+  df=data.frame(Timestep=0,BB=bb,MM=mm); 
+  for(i in 1:Imax) {
+    res=new_population(P-2,bb,mm);
+    bb=(1+res$BB)/P;mm=(1+res$MM)/P;
+    df=rbind(df,data.frame(Timestep=i,BB=bb,MM=mm));
+  }
+  df
+}
+```
+
+Calculons une longue trajectoire:
+```{r}
+pop = population_evolution_preserved(P=20,Imax = 2000);
+```
+
+Voyons ce qu'il se passe au cours du temps.
+
+```{r}
+ggplot(pop,aes(x=Timestep)) + geom_line(aes(y=BB),color="blue") +
+   geom_line(aes(y=MM),color="brown")  + ylim(0,1) + theme_bw()
+```
+
+Bon, ben c'est le bazar. Mais par où passe-t-on ?
+
+```{r}
+ggplot(pop,aes(x=BB,y=MM,color=Timestep)) + geom_path() + 
+  xlim(0,1) +  ylim(0,1) + theme_bw() + coord_fixed()
+```
+
+Mmh, c'est moche, hein ? :) Une possibilité consiste à faire
+l'équivalent d'un histogramme mais en 2d.
+
+```{r}
+ggplot(pop,aes(x=BB,y=MM)) + geom_bin2d(bins = 20) +
+  xlim(0,1) +  ylim(0,1) + theme_bw() + coord_fixed()
+```
+
+Ah, là, on retrouve bien le fait que la zone autour de la parabole est plus probable...
+
+# Q4 Retour sur mes intuitions
+> Au delà des aspects purement techniques de la chose que ce devoir a pu
+> vous apprendre, le résultat de cette étude est-il conforme à votre
+> intuition initiale ? Pensez-vous à d'autres hypothèses que vous
+> pourriez tester ? Si vous deviez modifier le modèle proposé, quelles
+> seraient vos priorités ?
+
+Je ne m'attendais pas du tout à une convergence immédiate vers une zone attractive ni à ce que cette zone attractive ait cette forme là. Ça doit pouvoir se montrer... Il semble que plus on soit sur un grand système plus ça soit "vrai" (d'autant plus que dans ce cas là, la probabilité d'absorption semble d'autant plus faible).
+
+Supposons qu'on a une population "infinie" de proportion $(b,m)$. En une itération, quelle est la nouvelle proportion ?
+
+Un rapide calcul donne après simplification comme fonction d'évolution: $f(b,m) = \left(\left(\frac{1+b-m}{2}\right)^2, \left(\frac{1+m-b}{2}\right)^2\right)$.
+
+Bon, comme ça, ça n'a pas l'air sympa. En même temps, notre expérience nous montre qu'il y a "conservation" de quelque chose. À peu de choses près, il semble qu'on reste sur la même ligne diagonale ascendente d'équation $y=x+c^{te}$, autrement dit, $m-b$ devrait rester constant. Qu'est ce que ça donne si on calcule cette différence pour la seconde génération ?
+
+$\left(\frac{1+b-m}{2}\right)^2 -\left(\frac{1+m-b}{2}\right)^2 = ... = b-m$ Trop fort!
+
+Mais donc, si on part d'une différence de $c$ entre $m$ et $b$, on se retrouve systématiquement en un coup en $((1+c)/2)^2,((1-c)/2)^2$. Et au coup d'après, ben comme la différence entre $m$ et $b$ va encore être de $c$, on reste au même endroit (enfin, à la limite...)!
+
+Bon, mais alors est-ce que l'ensemble de ces points pour $c$ dans $[-1/2,1/2]$ fait bien une parabole ? Oui, il suffit de faire un petit changement de repères (dans le repère $(O,(1,-1),(1,1))$) et on verra que l'équation de cet ensemble devient $c,(c-1/2)(c+1/2)+1/2$. En fait, c'est un bête arc de cercle.
