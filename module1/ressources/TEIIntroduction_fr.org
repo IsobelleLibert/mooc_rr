@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 # -*- mode: org -*-
 
-#+TITLE:       Exploiter des textes avec la TEI
+#+TITLE:       La Text Encoding Initiative, un vocabulaire et des spécifications pour une analyse textuelle transparente
 #+Author:      Sabrina Granger
 #+STARTUP: overview indent inlineimages logdrawer
 #+LANGUAGE:    fr
+La contribution principale à ce texte est de *Sabrina Granger*,
+conservatrice des bibliothèques à l’Urfist (Unité régionale de
+formation à l'information scientifique et technique) de Bordeaux.
 ** Introduction
 
 La question de la reproductibilité, pour soi comme pour les autres,
@@ -14,7 +17,7 @@ et/ou sous des formats spécifiques à un outil offrent encore moins de
 garantie d'accessibilité sur le long terme. La Text Encoding Initiative
 (TEI) constitue un exemple de format de balisage standard.
 
-** A quels besoins de recherche la TEI répond-elle ?
+** Les apports de la TEI dans l'analyse de textes
 
 Si vous utilisez des textes (littéraires, législatifs, archives,
 /etc/.), une technique de balisage de données peut vous permettre
@@ -35,7 +38,7 @@ peut le moins : s'il existe plus de 500 éléments combinables entre eux,
 il est possible de travailler avec un jeu de balises réduit. Pour
 traiter un roman, 5 ou 6 balises peuvent suffire.
 
-** Quelles garanties de pérennité ?
+** Une solution permettant de s'affranchir d'une dépendance logicielle
 
 L'encodage des données en TEI permet de concevoir des /corpus/ à très
 forte valeur ajoutée. Dès lors se posent les questions de l'*accès*, de
