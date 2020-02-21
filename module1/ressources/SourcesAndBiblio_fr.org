@@ -5,6 +5,9 @@
 #+AUTHOR:      Sabrina Granger
 #+STARTUP: overview indent inlineimages logdrawer
 #+LANGUAGE:    fr
+La contribution principale à ce texte est de *Sabrina Granger*,
+conservatrice des bibliothèques à l’Urfist (Unité régionale de
+formation à l'information scientifique et technique) de Bordeaux.
 
 ** Introduction
 Il ne s'agit pas ici de traiter des questions de normes de présentation
