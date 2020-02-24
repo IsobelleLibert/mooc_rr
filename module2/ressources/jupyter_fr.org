@@ -231,7 +231,7 @@ Ces instructions permettent d'obtenir sur votre ordinateur un
 environnement Jupyter similaire à celui que nous avons déployé dans le
 cadre du MOOC.
 
-Téléchargez et installez la [[https://conda.io/miniconda.html][dernière version de Miniconda]]. Miniconda
+Téléchargez d'abord la [[https://conda.io/miniconda.html][dernière version de Miniconda]]. Miniconda
 est une version légère d'Anaconda, une suite logicielle incluant
 Python, Jupyter, R ainsi que les bibliothèques les plus couramment
 utilisées en calcul scientifique et en science des données.
@@ -245,8 +245,8 @@ reconstruction de cet environnement n'est plus possible. Nous vous
 montrons par la suite comment obtenir un environnement équivalent mais
 avec des versions plus récentes de tous les logiciels.
 
-Installez d'abord Miniconda en suivant les instructions
-fournies. Quand le logiciel d'installation vous pose la question
+Installez Miniconda en suivant les instructions fournies. Quand le
+logiciel d'installation vous pose la question
 #+begin_quote
 Do you wish the installer to initialize Miniconda3
 by running conda init? [yes|no]
@@ -255,13 +255,15 @@ acceptez avec =yes=. Puis vous verrez le conseil
 #+begin_quote
 ==> For changes to take effect, close and re-open your current shell. <==
 #+end_quote
-qu'il faut absolument suivre pour que la suite se passe bien. La première commande à lancer est
+qu'il faut absolument suivre pour que la suite se passe bien. La
+première commande à lancer est
 #+begin_src shell :results output :exports both
 conda update -n base -c defaults conda
 #+end_src
 pour mettre à jour tous les logiciels dans la distribution =conda=.
 
-Nous pouvons maintenant créer un environnement =conda= pour le parcours Jupyter de ce MOOC :
+Nous pouvons maintenant créer un environnement =conda= pour le
+parcours Jupyter de ce MOOC :
 #+begin_src shell :results output :exports both
 conda create -n mooc-rr-jupyter
 #+end_src
@@ -269,13 +271,19 @@ et l'activer :
 #+begin_src shell :results output :exports both
 conda activate mooc-rr-jupyter
 #+end_src
-Il n'est pas strictement nécessaire d'activer un environnement pour s'en servir, mais c'est la façon la plus facile qui suscite le moins d'erreurs. *Vous devez répéter cette activation chaque fois que vous ouvrez un nouveau terminal, avant de pouvoir utiliser cet environnement.*
+Il n'est pas strictement nécessaire d'activer un environnement pour
+s'en servir, mais c'est la façon la plus facile qui suscite le moins
+d'erreurs. *Vous devez répéter cette activation chaque fois que vous
+ouvrez un nouveau terminal, avant de pouvoir utiliser cet
+environnement.*
 
-Le prochain pas est l'installation de tous les logiciels dont nous avons besoin et qui font partie de la distribution Miniconda :
+Le prochain pas est l'installation de tous les logiciels dont nous
+avons besoin et qui font partie de la distribution Miniconda :
 #+begin_src shell :results output :exports both
-conda install jupyter python numpy matplotlib pandas r r-irkernel rpy2
+conda install jupyter python numpy matplotlib pandas r r-irkernel rpy2 tzlocal simplegeneric
 #+end_src
-Il restens deux paquets que ne font partie de Miniconda. Nous recupérons le premier de la source indépendante [[https://conda-forge.org/][conda-forge]] :
+Il restent deux paquets que ne font pas partie de Miniconda. Nous
+récupérons le premier de la source indépendante [[https://conda-forge.org/][conda-forge]] :
 #+begin_src shell :results output :exports both
 conda install -c conda-forge r-parsedate
 #+end_src
