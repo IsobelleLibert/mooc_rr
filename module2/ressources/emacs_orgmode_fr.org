@@ -1,6 +1,6 @@
 # -*- mode: org -*-
 #+TITLE:     Emacs/org-mode
-#+DATE: March 2019
+#+DATE: Février 2020
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
@@ -19,11 +19,8 @@ dans les exercices*. De même, nous vous encourageons vivement à
 regarder la vidéo [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4]["utilisation Emacs/git" disponible sur la même page]].
 
 * Table des matières                                           :TOC:
-- [[#installation-demacs][Installation d'Emacs]]
-  - [[#linux-debian-ubuntu][Linux (Debian, Ubuntu)]]
-  - [[#macos][macOS]]
-  - [[#windows][Windows]]
-- [[#python-r-et-latex][Python, R et LaTeX]]
+- Installation d'Emacs, Python, et R
+- LaTeX pour la génération de PDF
 - [[#une-configuration-emacs-adaptée-à-la-recherche-reproductible][Une configuration Emacs adaptée à la "recherche reproductible"]]
   - [[#etape-0--sauvegarder-et-supprimer-votre-configuration-précédente][Etape 0 : Sauvegarder et supprimer votre configuration précédente]]
   - [[#etape-1--télécharger-notre-configuration][Etape 1 : Télécharger notre configuration]]
@@ -39,116 +36,74 @@ regarder la vidéo [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-
   - [[#paquets-emacs-utiles-supplémentaires][Paquets emacs utiles supplémentaires]]
   - [[#autres-ressources][Autres ressources]]
 
-* Installation d'Emacs
-Dans cette section, nous décrivons pour chaque système d'exploitation la procédure d'installation qui nous a semblé la plus simple. Il y a d'autres options qui peuvent être plus adaptées à votre situation particulière donc n'hésitez pas à jeter un œil au [[https://www.gnu.org/software/emacs/download.html][site web officiel d'Emacs]] pour plus de détails. Mais nous vous recommandons néanmoins de d'abord essayer les méthodes décrites ci-dessous.
+* Installation d'Emacs, Python, et R
+Il y a beaucoup de façons différentes pour installer Emacs ainsi que
+les langages Python et R sur votre ordinateur. Celle que nous
+recommandons et décrivons par la suite est basé sur le gestionnaire de
+paquets [[https://conda.io/][conda]]. Elle a l'avantage de fonctionner de façon à peu près
+identique sous Linux, Windows, et macOS. Son deuxième avantage est que
+l'univers conda propose un grand choix de logiciels scientifiques, qui
+pourraient vous être utiles pour vos propres projets. Les aguerris en
+administration système sont bien sûr libres de choisir une autre
+approche, c'est seulement le résultat qui compte !
 
-À la fin de cette installation, vous devriez avoir sur votre machine une des deux configurations suivantes:
+Téléchargez d'abord la [[https://conda.io/miniconda.html][dernière version de Miniconda]]. Miniconda est
+une version légère d'Anaconda, une suite logicielle incluant Python,
+Jupyter, R ainsi que les bibliothèques les plus couramment utilisées
+en calcul scientifique et en science des données.
 
- 1. Emacs 26 (la dernière version)
- 2. Emacs 25 plus Org-Mode 9
-
-Emacs 25 vient avec Org-Mode 8 par défaut, qui est très ancien et n'est plus compatible avec les exemples que nous vous fournissons. Donc si vous utilisez Emacs 25, il vous faudra impérativement installer Org-Mode 9 séparément. Emacs 26 vient avec Org-Mode 9 donc pas de problème de ce coté là.
-
-Les exemples que nous montrons dans notre MOOC nécessitent également quelques paquet Emacs supplémentaires: [[https://ess.r-project.org/][ESS]] (qui signifie /Emacs Speaks Statistics/ et qui permet d'utiliser le langage R) et [[https://www.gnu.org/software/auctex/][AUCTeX]] (pour éditer facilement des documents LaTeX). Si vous utilisez la configuration que nous décrivons dans la section [[#une-configuration-emacs-adaptée-à-la-recherche-reproductible][Une configuration Emacs adaptée à la "recherche reproductible"]], ces paquets seront installés automatiquement la première fois que vous lancerez Emacs. 
-
-** Linux (Debian, Ubuntu)
-Vous ne trouverez dans cette section que les instructions pour les
-distributions de type Debian (Ubuntu par exemple). N'hésitez pas à
-contribuer à ce document pour partager des informations à jour pour
-d'autres distributions (redhat, fedora, ...).
-
-Voici les versions d'Emacs fournies par différentes distributions:
-- Debian (stretch) fourni [[https://packages.debian.org/stretch/emacs25][emacs 25.1]] et [[https://packages.debian.org/stretch/org-mode][org-mode 9.0.3]]
-- Ubuntu (bionic 18.04) fourni [[https://packages.ubuntu.com/bionic/emacs25][emacs 25.2]] et [[https://packages.ubuntu.com/bionic/org-mode][org-mode 9.1.6]]
-- Ubuntu (artful 17.04) fourni [[https://packages.ubuntu.com/artful/emacs25][emacs 25.2]] et [[https://packages.ubuntu.com/artful/org-mode][org-mode 9.0.9]]
-Si votre distribution est plus ancienne que celles-ci, et bien... c'est peut-être le bon moment pour faire une mise à jour.
-
-En tant que root, tapez les commandes suivantes:
-#+begin_src sh :results output :exports both
-apt-get update ; apt-get install emacs25 org-mode
-#+end_src
-
-Puis vérifiez que vous avez bien une version d'Emacs suffisamment récente
-#+begin_src sh :results output :exports both
-emacs --version 2>&1 | head -n 1
-#+end_src
-
-#+RESULTS:
-: GNU Emacs 25.2.2
-
-De même, vérifiez que vous avez bien une version récente d'Org-Mode:
-#+begin_src sh :results output :exports both
-emacs -batch --funcall "org-version" 2>&1 | grep version
-#+end_src
-
-#+RESULTS:
-: Org mode version 9.1.11 (9.1.11-dist @ /usr/share/emacs/25.2/site-lisp/elpa/org-9.1.11/)
-
-Ces numéros de version dépendront de votre distribution mais
-_assurez vous bien que vous n'utilisez pas Org-mode 8_ qui est désormais
-complètement obsolète.
-
-** macOS
-*Note:* macOS est installé par défaut avec une version préhistorique d'emacs, qui ne fonctionne qu'en ligne de commande, qui est située dans =/usr/bin/emacs= et dont il est très difficile de se débarrasser. Il ne faut pas espérer en tirer quoi que ce soit.
-
-Le site  Web https://emacsformacosx.com/ propose des versions pré-compilées d'Emacs pour macOS. Téléchargez la dernière version (celle dont le numéro apparaît en gros sur la page d'accueil) et installez le de la même façon que n'importe quelle autre application  macOS, en copiant =Emacs.app= de la zone de téléchargement vers le répertoire de votre choix sur votre ordinateur.
-
-Si vous aimez travailler avec un terminal (le =Terminal.app= de macOS ou bien une version plus évoluée comme [[https://iterm2.com/][iTerm2]]), la façon standard sous macOS d'ouvrir emacs dans un terminal consiste à taper la commande =open -a Emacs.app /path/to/my/file.txt=. Cela lancera Emacs, à moins qu'il ne soit déjà ouvert, et demandera à Emacs d'ouvrir le fichier =file.txt=. Avec cette approche, il n'y a qu'une seule instance d'Emacs en cours d'exécution. C'est donc légèrement différent de la méthode Unix/Linux qui est illustrée dans les vidéos et où on tape =emacs /path/to/my/file.txt= dans le terminal, ce qui conduit à l'ouverture d'un nouvel emacs à chaque fois.
-
-*** Sujets avancés - non requis pour suivre le MOOC
-Pour les utilisations avancées d'Emacs, comme appeler Emacs à partir d'un Makefile pour automatiser le traitement de documents, il vous faudra adopter l'approche Unix également sous macOS car c'est le seul moyen de fournir des paramètres autres que des noms de fichiers. Il vous faudra alors également spécifier le chemin complet de l'exécutable. En effet, si vous tapez simplement =emacs=, vous utiliserez la version préhistorique en ligne de commande uniquement de =/usr/bin/emacs= fournie par Apple. En supposant que vous avez copié =Emacs.app= vers =/path/to/emacs=, l'exécutable =Emacs= sera situé dans =/path/to/emacs/Emacs.app/Contents/MacOS/Emacs=. Vous pouvez bien sûr rendre l'exécutable Emacs plus facilement accessible en utilisant un =alias= shell, ou en mettant =/path/to/emacs/Emacs.app/Contents/MacOS/= dans votre =$PATH=, par exemple en écrivant =export PATH=/path/to/emacs/Emacs.app/Contents/MacOS/:$PATH= dans votre =~/.bashrc= ou =~/.bash_profile=. Voir le [[https://www.gnu.org/software/bash/manual/bashref.html][bash manual]] pour plus de détails et explications.
-
-Notez bien que l'exécution d'Emacs à la mode Unix implique quelques différences subtiles par rapport à l'exécution d'Emacs à la mode MacOS. En particulier, Emacs héritera des variables d'environnement du shell lorsqu'il est lancé à la mode Unix, alors qu'il héritera des variables d'environnement de la session utilisateur lorsqu'il est lancé à la mode MacOS.
-
-** Windows
-Téléchargez la version précompilée d'Emacs 26, disponible [[https://ftp.gnu.org/gnu/emacs/windows/emacs-26/emacs-26.1-i686.zip][pour les architectures 32 bits]] ou [[https://ftp.gnu.org/gnu/emacs/windows/emacs-26/emacs-26.1-x86_64.zip][pour les architectures 64 bits]]. Le choix dépend de votre machine. Si vous ne savez pas laquelle est la meilleure, essayez la version 64 bits et si elle ne peut pas être démarrée, passez à 32 bits. Décompressez le fichier zip en préservant la structure du répertoire. Si cette approche ne fonctionne pas, suivez les instructions du [[https://www.gnu.org/software/emacs/download.html#windows][site officiel d'Emacs]]. Si cela échoue toujours, n'hésitez pas à poser des questions sur le forum.
-
-Enfin, exécutez =bin\runemacs.exe=. Sinon, créez un raccourci sur le bureau vers =bin\runemacs.exe=, et lancez Emacs en double-cliquant sur l'icône du raccourci. Voir [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Windows-Startup.html][ici]] pour une explication de cette méthode et d'autres méthodes pour lancer Emacs sous Windows. Vous devriez pouvoir obtenir une fenêtre qui ressemble à celle-ci :
-
-#+BEGIN_CENTER
-[[file:emacs_orgmode_images/emacs.png]]
-
-[[file:emacs_orgmode_images/scratch.png]]
-#+END_CENTER
-*** Conventions de nommage des répertoires
-Dans les instructions suivantes, nous faisons référence à votre répertoire personnel via la notation (UNIX) =~/=. Sous Windows, ce répertoire
-devrait être quelque chose du genre =C:\Users\yourname=. Par conséquent,
-chaque fois que nous mentionnons le répertoire =~/org/= (respectivement =~/.emacs.d/=) 
-cela signifie que nous faisons référence à =C:\Users\yourname\org= (respectivement
-=C:\Utilisateurs\votre nom\.emacs.d\=). Notez que le répertoire =C:\Users\yourname\.emacs.d\= devrait être automatiquement créé lors de la première exécution d'emacs. C'est là que la configuration d'emacs ira.
-
-*** Gestion des archives
-Plus loin dans ce document, il vous sera demandé de télécharger de petites archives contenant des fichiers ([[file:rr_org_archive.tgz][rr_org_archive.tgz]] et [[file:réplicable_article.tgz][réplicable_article.tgz]]). Pour décompresser ces archives sur votre ordinateur, vous pouvez utiliser le programme =7z=. Dans ce cas, vous devrez probablement décompresser chaque fichier deux fois.... La première fois, =archive.tgz= sera décompressé dans =archive.tar= et la deuxième fois =archive.tar= créera un répertoire =archive/= comprenant tous les fichiers de l'archive originale.
-*** Rendre R et Python disponible dans une console
-Lors de l'exécution d'une commande, Windows recherchera l'exécutable dans les répertoires indiqués dans la variable d'environnement =PATH=. Si aucun de
-ces répertoires ne contient la commande, Windows s'arrêtera et indiquera que
-la commande n'existe pas. Pour s'assurer que R (qui peut être dans
-quelque chose comme =C:/Program Files/R/R-3.5.1/bin/x64/=) et Python (qui peut être dans quelque chose comme =C:/Program Files/Python/Python/Python37/=) puissent
-s'exécuter facilement à partir d'Emacs, vous devrez donc configurer la variable =PATH= en conséquence.
-
-Cela nécessite de passer par l'éditeur de variables d'environnement comme
-expliqué [[http://sametmax.com/ajouter-un-chemin-a-la-variable-denvironnement-path-sous-windows/][ici]].
-*** Installation et configuration de Matplotlib (bibliothèque graphique python)
-Ouvrez une console DOS et tapez la commande suivante :
+Installez Miniconda en suivant les instructions fournies. Quand le
+logiciel d'installation vous pose la question
+#+begin_quote
+Do you wish the installer to initialize Miniconda3
+by running conda init? [yes|no]
+#+end_quote
+acceptez avec =yes=. Puis vous verrez le conseil
+#+begin_quote
+==> For changes to take effect, close and re-open your current shell. <==
+#+end_quote
+qu'il faut absolument suivre pour que la suite se passe bien. La première commande à lancer est
 #+begin_src shell :results output :exports both
-python -m pip install -U matplotlib
+conda update -n base -c defaults conda
 #+end_src
-[[file:emacs_orgmode_images/install_matplotlib.png]]
+pour mettre à jour tous les logiciels dans la distribution =conda=.
 
-Ensuite, il vous faudra désactiver les tracés interactifs dans matplotlib (pour que l'image apparaisse dans votre emacs et pas dans une fenêtre à côté). Pour cela, il vous faut d'abord déterminer où se trouve la configuration matplotlib. Ouvrez une console python et tapez le code suivant :
-#+begin_src python :results output :exports both
-import matplotlib
-matplotlib.matplotlib_fname()
+Nous pouvons maintenant créer un environnement =conda= pour le parcours Emacs/Org-Mode de ce MOOC :
+#+begin_src shell :results output :exports both
+conda create -n mooc-rr-emacs
 #+end_src
-[[file:emacs_orgmode_images/matplotlib.png]]
+et l'activer :
+#+begin_src shell :results output :exports both
+conda activate mooc-rr-emacs
+#+end_src
+Il n'est pas strictement nécessaire d'activer un environnement pour
+s'en servir, mais c'est la façon la plus facile qui suscite le moins
+d'erreurs. *Vous devez répéter cette activation chaque fois que vous
+ouvrez un nouveau terminal, avant de pouvoir utiliser cet
+environnement.*
 
-Ouvrez le fichier =matplotlibrc=, localisez la ligne commençant par =backend= et transformez là en =backend : Agg=.
+Le prochain pas est l'installation de tous les logiciels dont nous
+avons besoin et qui font partie de la distribution Miniconda :
+#+begin_src shell :results output :exports both
+conda install python r
+#+end_src
+Nous avons également besoin d'un paquet que ne fait pas partie de
+Miniconda. Nous le récupérons de la source indépendante [[https://conda-forge.org/][conda-forge]] :
+#+begin_src shell :results output :exports both
+conda install -c conda-forge emacs r-parsedate
+#+end_src
 
-* Python, R et LaTeX
-Les documents computationnels contiennent du code, et en particulier dans le cas de notre MOOC du code utilisant les langages Python et R. Vous devrez donc installer Python et R en plus d'Emacs, sauf s'ils sont déjà installés sur votre ordinateur. Puisque Python et R sont aussi utilisés dans les autres parcours de notre MOOC, nous expliquons leur installation dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/19c2b1de7766484bae73f3ab133463c6][ressource séparée]].
+Vous pouvez maintenant lancer =emacs= directement de la ligne de
+commande :
+#+begin_src shell :results output :exports both
+emacs
+#+end_src
 
-Cette même ressource explique également comment installer LaTeX, dont vous devrez disposer si vous voulez produire des versions PDF de documents org-mode. Par exemple, si vous voulez travailler avec modèle d'article réplicable (montré dans [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4#tuto3][la vidéo "écrire un article réplicable avec Emacs/Org-mode"]]), il vous faudra installer LaTeX. Cependant, comme il s'agit d'un logiciel assez volumineux (plusieurs Go), vous pouvez préférer ne pas l'installer. Ce n'est pas indispensable.
-
+Sous Windows et macOS, vous êtes peut-être tenté de lancer Emacs directement de l'interface graphique. Il n'est en effet pas difficile de trouver =Emacs.app= dans l'environnement =conda= et de le lancer en direct. Résistez à la tentation. Il faut bien lancer Emacs de la ligne de commande pour qu'il puisse détecter l'environnement que vous avez activé.
+* LaTeX pour la génération de PDF
+Si vous voulez convertir vos notebooks en PDF, vous devez aussi
+installer LaTeX sur votre ordinateur. Nous expliquons cette procédure
+dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/19c2b1de7766484bae73f3ab133463c6][ressource spécifique]].
 * Une configuration Emacs adaptée à la "recherche reproductible"
 Cette section est illustrée dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4][vidéo de démonstration]] (/Mise en place en place Emacs/Orgmode/). Nous vous suggérons de la regarder avant de suivre les instructions données dans cette section.
 
@@ -241,14 +196,14 @@ Créez le répertoire =~/.emacs.d/= et copiez =rr_org/init.el= dedans.
 Il y a deux situations dans lesquelles il peut être nécessaire de modifier
 =init.el= :
 1. Votre environnement réseau vous oblige à utiliser un proxy accéder à internet (protocole HTTP(S)).
-2. Vous avez plusieurs installations de Python ou R sur votre ordinateur, ou bien elles se trouvent dans des endroits inhabituels ou ne sont pas entièrement configurées. *Ceci est notamment le cas si vous avez utilisé Anaconda pour installer Python et/ou R, comme nous le recommandons.*
+2. Vous avez plusieurs installations de Python ou R sur votre ordinateur, ou bien elles se trouvent dans des endroits inhabituels ou ne sont pas entièrement configurées.
 
 Voici comment évaluer votre installation :
-1. Ouvrez un nouveau terminal, et essayez d'exécuter les commandes suivantes:
+1. Ouvrez un nouveau terminal. Si vous utilisez =conda= (comme nous le recommandons), activez l'environnement que vous avez créé pour ce MOOC. Puis essayez d'exécuter les commandes suivantes:
    - =python3= et =R= sous Linux et macOS
    - =Python= et =R= sous Windows
    Si vous n'obtenez pas de message d'erreur, tout va bien et vous ne devriez pas avoir à faire quoi que ce soit pour accéder à Python et R sous Emacs.
-2. Si vous avez eu un message d'erreur, il va falloir trouver où vous avez installé Python et/où R. Notez le chemin complet à chaque exécutable - c'est ce qu'il faut insérer dans votre =init.el=. Par exemple, si vous avez installé Anaconda sous =/opt=, et si par la suite vous avez mis Python et R dans l'environnment par défaut, vos exécutables sont à =/opt/anaconda3/bin/python3= et =/opt/anaconda3/bin/R=. S'ils sont dans un environnment qui s'appelle =mooc_rr=, les chemins sont =/opt/anaconda3/envs/mooc_rr/bin/python3= et =/opt/anaconda3/envs/mooc_rr/bin/R=.
+2. Si vous avez eu un message d'erreur, il va falloir trouver où vous avez installé Python et/où R. Notez le chemin complet à chaque exécutable - c'est ce qu'il faut insérer dans votre =init.el=.
 
 Si vous devez modifier =init.el=, regardez bien les commentaires dans le fichier =init.org= pour comprendre comment ça marche.
 ** Etape 5 : Vérifier si l'installation fonctionne ou non
