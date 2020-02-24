@@ -1,79 +1,86 @@
 # -*- mode: org -*-
 #+TITLE:     Rstudio
-#+DATE: June, 2018
+#+DATE: Février 2020
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
 
 * Table des matières                                           :TOC:
 - [[#installer-rstudio][Installer RStudio]]
-  - [[#linux-debian-ubuntu][Linux (debian, ubuntu)]]
-  - [[#mac-osx-and-windows][Mac OSX and Windows]]
+  - LaTeX pour la génération de PDF
 - [[#documentation-rstudio][Documentation RStudio]]
 - [[#utiliser-git-avec-rstudio][Utiliser Git avec RStudio]]
   - [[#cloner-un-dépôt][Cloner un dépôt]]
   - [[#modifier-un-fichier][Modifier un fichier]]
 
-* Installer RStudio
-** Linux (debian, ubuntu)
-Nous ne fournissons ici que des instructions pour les distributions
-  basées sur Debian. N’hésitez pas à contribuer à ce document en
-  fournissant des informations à jour sur les autres distributions
-  (RedHat, Fedora, par exemple). 
+* Installer RStudio et R
+Il y a beaucoup de façons différentes pour installer R et RStudio sur
+votre ordinateur. Celle que nous recommandons et décrivons par la suite
+est basé sur le gestionnaire de paquets [[https://conda.io/][conda]]. Elle a l'avantage de
+fonctionner de façon à peu près identique sous Linux, Windows, et
+macOS. Son deuxième avantage est que l'univers conda propose un grand
+choix de logiciels scientifiques, qui pourraient vous être utiles pour
+vos propres projets. Les aguerris en administration système sont bien
+sûr libres de choisir une autre approche, c'est seulement le résultat
+qui compte !
 
-Aujourd'hui, les versions stables des distributions les plus courantes
-fournissent des versions assez récentes de R :
-- Debian (stretch) est livré avec [[https://packages.debian.org/stretch/r-base][R 3.3.3-1]], [[https://packages.debian.org/stretch/r-cran-knitr][knitr 1.15.1]], et  [[https://packages.debian.org/stretch/r-cran-ggplot2][ggplot 2.2.1]]
-- Ubuntu (bionic 18.04) est livré avec [[https://packages.ubuntu.com/bionic/r-base][R 3.4.4]], [[https://packages.ubuntu.com/bionic/r-cran-knitr][knitr 1.17]], et [[https://packages.ubuntu.com/bionic/r-cran-ggplot2][ggplot 2.2.1]]
-- Ubuntu (artful 17.04) est livré avec [[https://packages.ubuntu.com/artful/r-base][R 3.4.2]], [[https://packages.ubuntu.com/artful/r-cran-knitr][knitr 1.15]], et [[https://packages.ubuntu.com/artful/r-cran-ggplot2][ggplot 2.2.1]]
-Si votre distribution est plus ancienne, c'est peut-être l'occasion de
-la mettre à jour...
+Téléchargez d'abord la [[https://conda.io/miniconda.html][dernière version de Miniconda]]. Miniconda est
+une version légère d'Anaconda, une suite logicielle incluant Python,
+Jupyter, R ainsi que les bibliothèques les plus couramment utilisées
+en calcul scientifique et en science des données.
 
-*** Installer R
-Pour commencer, vous devez installer le langage R et quelques packages
-en exécutant (à la racine) :
-#+BEGIN_SRC shell
-apt-get update ; sudo apt-get install r-base r-cran-knitr r-cran-ggplot2 
-#+END_SRC
-
-Si l'installation de =r-cran-knitr= ou  =r-cran-gplot2= échoue, vous pouvez
-également installer ces packages manuellement en exécutant les
-commandes suivantes sous R (ou RStudio) : 
-#+BEGIN_SRC R
-install.packages("knitr")
-install.packages("ggplot2")
-#+END_SRC
-
-Si vous envisagez d'exporter des documents pdf avec LaTeX, il faudra
-probablement aussi exécuter (à la racine) : 
+Installez Miniconda en suivant les instructions fournies. Quand le
+logiciel d'installation vous pose la question
+#+begin_quote
+Do you wish the installer to initialize Miniconda3
+by running conda init? [yes|no]
+#+end_quote
+acceptez avec =yes=. Puis vous verrez le conseil
+#+begin_quote
+==> For changes to take effect, close and re-open your current shell. <==
+#+end_quote
+qu'il faut absolument suivre pour que la suite se passe bien. La première commande à lancer est
 #+begin_src shell :results output :exports both
-apt-get update ; apt-get install texlive-base
+conda update -n base -c defaults conda
+#+end_src
+pour mettre à jour tous les logiciels dans la distribution =conda=.
+
+Nous pouvons maintenant créer un environnement =conda= pour le parcours RStudio de ce MOOC :
+#+begin_src shell :results output :exports both
+conda create -n mooc-rr-rstudio
+#+end_src
+et l'activer :
+#+begin_src shell :results output :exports both
+conda activate mooc-rr-rstudio
+#+end_src
+Il n'est pas strictement nécessaire d'activer un environnement pour
+s'en servir, mais c'est la façon la plus facile qui suscite le moins
+d'erreurs. *Vous devez répéter cette activation chaque fois que vous
+ouvrez un nouveau terminal, avant de pouvoir utiliser cet
+environnement.*
+
+Le prochain pas est l'installation de tous les logiciels dont nous
+avons besoin et qui font partie de la distribution Miniconda :
+#+begin_src shell :results output :exports both
+conda install rstudio r r-ggplot2 r-reticulate python
+#+end_src
+Nous avons également besoin d'un paquet que ne fait pas partie de
+Miniconda. Nous le récupérons de la source indépendante [[https://conda-forge.org/][conda-forge]] :
+#+begin_src shell :results output :exports both
+conda install -c conda-forge r-parsedate
 #+end_src
 
-*** Installer RStudio
-RStudio n’est malheureusement pas intégré à Debian. Le plus simple est
- de télécharger le paquet Debian correspondant sur le  [[https://www.rstudio.com/products/rstudio/download/#download][site RStudio]],
- puis de l’installer manuellement (vous devrez peut-être adapter le
- numéro de version) :  
+Vous pouvez maintenant lancer =RStudio= directement de la ligne de
+commande :
+#+begin_src shell :results output :exports both
+rstudio
+#+end_src
 
-#+BEGIN_SRC shell
-cd /tmp/
-wget https://download1.rstudio.org/rstudio-xenial-1.1.453-amd64.deb
-sudo dpkg -i rstudio-xenial-1.1.453-amd64.deb
-sudo apt-get update ; sudo apt-get -f install # to fix possibly missing dependencies
-#+END_SRC
-** Mac OSX and Windows
-- Installer R et Python en suivant les instruction dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/19c2b1de7766484bae73f3ab133463c6][ressource spécifique]].
-- Télécharger et installer RStudio depuis le [[https://www.rstudio.com/products/rstudio/download/#download][site RStudio]] en
-  choisissant le bon système d'exploitation. 
-- Télécharger et installer MiKTeX depuis le [[https://miktex.org/download][site MiKTeX]] en choisissant le bon
-  système d'exploitation. Vous serez amené à installer différents
-  packages lors du premier export pdf. 
-- Ouvrir RStudio et exécuter les commandes suivantes dans la console pour
-  installer =knitr= et =ggplot2= 
-#+BEGIN_SRC R
-install.packages("knitr", dep=TRUE)
-install.packages("ggplot2", dep=TRUE)
-#+END_SRC
+Sous Windows et macOS, vous êtes peut-être tenté de lancer RStudio directement de l'interface graphique. Il n'est en effet pas difficile de trouver =RStudio.app= dans l'environnement =conda= et de le lancer en direct. Résistez à la tentation. Il faut bien lancer RStudio de la ligne de commande pour qu'il puisse détecter l'environnement que vous avez activé.
+** LaTeX pour la génération de PDF
+Si vous voulez convertir vos notebooks en PDF, vous devez aussi
+installer LaTeX sur votre ordinateur. Nous expliquons cette procédure
+dans une [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/19c2b1de7766484bae73f3ab133463c6][ressource spécifique]].
+
 * Documentation RStudio
 L’équipe de RStudio a créé différents matériels et tutoriels très bien
 faits. Nous vous recommandons de consulter les [[https://www.rstudio.com/resources/cheatsheets/][fiches mémo]]. En
