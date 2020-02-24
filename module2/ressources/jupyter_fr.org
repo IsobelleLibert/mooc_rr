@@ -1,7 +1,7 @@
 # -*- mode: org -*-
 #+TITLE:     Jupyter : Trucs et astuces, installation et configuration
 #+AUTHOR:    Arnaud Legrand, Benoit Rospars, Konrad Hinsen
-#+DATE: June, 2018
+#+DATE: Février 2020
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
@@ -18,11 +18,11 @@ jupyter notebook
   - [[#création-ou-import-dun-notebook][Création ou import d'un notebook]]
   - [[#exécuter-du-code-r-et-du-code-python-dans-le-même-notebook][Exécuter du code R et du code Python dans le même notebook]]
   - [[#autres-langages-que-python-et-r][Autres langages que Python et R]]
+  - Améliorer la lisibilité d'un notebook
 - [[#installation-et-configuration-de-jupyter-sur-votre-ordinateur][Installation et configuration de Jupyter sur votre ordinateur]]
   - [[#installation-de-jupyter-et-de-python-r-][Installation de Jupyter (et de Python, R...)]]
-  - [[#sassurer-que-jupyter-vous-permet-dutiliser-r][S'assurer que Jupyter vous permet d'utiliser R]]
   - [[#latex-pour-la-génération-de-pdf][LaTeX pour la génération de PDF]]
-  - [[#conseils-additionnels][Conseils additionnels]]
+  - JupyterLab
   - [[#interaction-avec-gitlab-et-git][Interaction avec GitLab et git]]
 
 * Jupyter : Trucs et astuces
@@ -187,6 +187,40 @@ exemple) se révélera très certainement précieux.
 - Une référence, plus complète, et bien utile en cas de difficultés :
   [[https://sassoftware.github.io/sas_kernel/install.htmlxo]].
 
+** Améliorer la lisibilité d'un notebook
+Lorsque les notebooks s'allongent, ils deviennent vite difficiles à
+lire. Voici quelques extensions qui peuvent vous faciliter un peu la
+vie :
+- Il est possible [[https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook][plier/déplier votre code]] :
+  #+begin_src shell :results output :exports both
+  pip3 install jupyter_contrib_nbextensions
+  # jupyter contrib nbextension install --user # not done yet
+  #+end_src
+- Il est aussi possible de [[https://github.com/kirbs-/hide_code][contrôler la visibilité des cellules]], ce
+  qui peut être très utile si on exporte le notebook :
+  #+begin_src sh :results output :exports both
+  sudo pip3 install hide_code
+  sudo jupyter-nbextension  install --py hide_code
+  jupyter-nbextension  enable --py hide_code
+  jupyter-serverextension enable --py hide_code
+  #+end_src
+  Vous pourrez alors choisir =Hide_code= dans le menu de Jupyter :
+  #+BEGIN_CENTER
+  [[file:jupyter_images/menu_hide_code.png]]
+  #+END_CENTER
+  Cela devrait vous permettre d'obtenir ce genre de panneau de
+  configuration pour chaque cellule :
+  #+BEGIN_CENTER
+  [[file:jupyter_images/hide_code.png]]
+  #+END_CENTER
+  Il vous faudra utiliser les icônes pour faire l'export en pdf ou en
+  html plutôt que de passer par le menu.
+  #+BEGIN_CENTER
+  [[file:jupyter_images/export_hide_code.png]]
+  #+END_CENTER
+  N.B. : Dans la première édition de ce MOOC, certains participants nous
+  ont rapporté avoir eu des difficultés à faire fonctionner cette
+  extension sous Windows.
 * Installation et configuration de Jupyter sur votre ordinateur
 Dans cette section, nous expliquons comment installer, sur votre
 ordinateur, un environnement Jupyter similaire à celui que nous avons
@@ -278,43 +312,8 @@ Pour le lancer :
 #+begin_src shell :results output :exports both
 jupyter lab
 #+end_src
-
-*** • Améliorer la lisibilité d'un notebook
-Lorsque les notebooks s'allongent, ils deviennent vite difficiles à
-lire. Voici quelques extensions qui peuvent vous faciliter un peu la
-vie :
-- Il est possible [[https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook][plier/déplier votre code]] :
-  #+begin_src shell :results output :exports both
-  pip3 install jupyter_contrib_nbextensions
-  # jupyter contrib nbextension install --user # not done yet
-  #+end_src
-- Il est aussi possible de [[https://github.com/kirbs-/hide_code][contrôler la visibilité des cellules]], ce
-  qui peut être très utile si on exporte le notebook :
-  #+begin_src sh :results output :exports both
-  sudo pip3 install hide_code
-  sudo jupyter-nbextension  install --py hide_code
-  jupyter-nbextension  enable --py hide_code
-  jupyter-serverextension enable --py hide_code
-  #+end_src
-  Vous pourrez alors choisir =Hide_code= dans le menu de Jupyter :
-  #+BEGIN_CENTER
-  [[file:jupyter_images/menu_hide_code.png]]
-  #+END_CENTER
-  Cela devrait vous permettre d'obtenir ce genre de panneau de
-  configuration pour chaque cellule :
-  #+BEGIN_CENTER
-  [[file:jupyter_images/hide_code.png]]
-  #+END_CENTER
-  Il vous faudra utiliser les icônes pour faire l'export en pdf ou en
-  html plutôt que de passer par le menu.
-  #+BEGIN_CENTER
-  [[file:jupyter_images/export_hide_code.png]]
-  #+END_CENTER
-  N.B. : Dans la première édition de ce MOOC, certains participants nous
-  ont rapporté avoir eu des difficultés à faire fonctionner cette
-  extension sous Windows.
-** • Interaction avec GitLab et git
-Pour rendre vous simplifier la vie, nous avons rajouté des boutons
+** Interaction avec GitLab et git
+Pour vous simplifier la vie, nous avons rajouté des boutons
 =pull/push= dans Jupyter qui vous permettent de synchroniser vos
 modifications avec GitLab. Ce développement spécifique pour ce MOOC
 s'est inspiré d'une [[https://github.com/Lab41/sunny-side-up][preuve de concept]] précédente mais est vraiment /ad
@@ -345,4 +344,3 @@ qui détaille différentes options.
 Enfin, pour ceux qui utilisent [[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]] plutôt que le Jupyter de
 base, un [[https://github.com/jupyterlab/jupyterlab-git][plugin Git pour JupyterLab]] a été développé et offre des
 fonctionnalités de suivi de version dignes d'un IDE classique.
-
