@@ -1,0 +1,33 @@
+# -*- mode: org -*-
+#+TITLE: LaTeX
+#+DATE: Février 2020
+#+STARTUP: overview indent
+#+OPTIONS: num:nil toc:t
+#+PROPERTY: header-args :eval never-export
+
+LaTeX est un système de composition de documents qui est couramment utilisé 
+pour mettre en page des articles scientifiques. Dans ce MOOC, nous n'utilisons 
+pas directement LaTeX mais il est utilisé par Jupyter, RStudio et Emacs/Orgmode 
+pour produire des documents au format PDF. LaTeX est un relativement gros 
+logiciel (une installation complète prend 1 à 5 Go) donc vous pouvez ne pas 
+souhaiter l'installer. Cela ne vous empêchera pas de suivre le MOOC. Vous ne 
+pourrez juste pas produire de versions PDF de vos documents computationnels.
+
+* Versions recommandées
+LaTeX est assez stable et donc une installation datant de quelques années 
+ne devrait poser aucun problème.
+
+* Installation
+Il y a hélas plusieurs façons d'installer LaTeX. Et le pire, c'est 
+qu'il y a même de très bonnes raisons pour cette disparité : pour chacune de ces 
+méthodes il existe des situations où elle ne convient pas... Les conseils suivant 
+devraient vous permettre de décider la méthode la plus adaptée à votre propre situation.
+** Linux
+Les utilisateurs de *Linux* ont intérêt à commencer par vérifier quels sont 
+les paquets fournis par leur distribution Linux. Elle propose certainement 
+des versions de LaTeX. Le nom exact du ou des paquets à installer varie hélas d'une distribution à l'autre mais ils devraient ressembler à quelque chose comme
+=texlive=.
+** MacOS
+Nous vous conseillons une des deux distributions qui existent depuis longtemps: [[https://www.tug.org/mactex/][MacTeX]] ou [[https://miktex.org/][MiKTeX]].
+** Windows
+Nous vous conseillons une des deux distributions qui existent depuis longtemps: [[https://tug.org/texlive/][TeX Live]] ou [[https://miktex.org/][MiKTeX]].
