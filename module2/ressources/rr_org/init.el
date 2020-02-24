@@ -54,18 +54,19 @@
 (add-to-list 'package-archives
 		 '("gnu" . "https://elpa.gnu.org/packages/"))
 (add-to-list 'package-archives
-		 '("melpa-stable" . "http://stable.melpa.org/packages/"))
+		 '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (add-to-list 'package-archives
-		 '("melpa" . "http://melpa.org/packages/"))
-(setq package-archive-priorities '(("gnu" . 100)
-                                   ("melpa-stable" . 10)))
+		 '("melpa" . "https://melpa.org/packages/"))
+(setq package-archive-priorities '(("melpa-stable" . 100)
+                                   ("melpa" . 50)
+                                   ("gnu" . 10)))
 
 (require 'cl)
 (let* ((required-packages
-        '(ess
-          auctex
+        '(dash
           htmlize
-          exec-path-from-shell))
+          ess
+          auctex))
        (missing-packages (remove-if #'package-installed-p required-packages)))
   (when missing-packages
     (message "Missing packages: %s" missing-packages)
@@ -73,10 +74,6 @@
     (dolist (pkg missing-packages)
       (package-install pkg)
       (message "Package %s has been installed" pkg))))
-
-(unless (memq system-type '(windows-nt ms-dos))
-  (exec-path-from-shell-initialize)
-  (exec-path-from-shell-copy-env "PYTHONPATH"))
 
 (require 'org)
 
@@ -218,6 +215,7 @@ Entered on %U
   (org-babel-do-load-languages
    'org-babel-load-languages
    '(
+     (emacs-lisp . t)
      (shell . t)
      (python . t)
      (R . t)

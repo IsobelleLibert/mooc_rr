@@ -114,11 +114,14 @@ même faire l'objet d'un paquet à part entière (voir par exemple les
 différents Emacs Starter Kits [[https://kieranhealy.org/resources/emacs-starter-kit/][ici]] ou [[https://www.emacswiki.org/emacs/StarterKits][ici]]). Dans le contexte de ce
 MOOC, nous vous proposons une configuration relativement minimaliste
 orientée "/recherche reproductible/" avec Org-Mode. Si vous êtes peu
-familier d'Emacs, nous vous recommandons fortement de l'utiliser et de la modifier le moins possible. Il vous suffira de suivre
-les instructions données dans cette section. Si vous êtes un
-utilisateur Emacs plus expérimenté, vous pouvez vous contenter de
-regarder nos instructions et de ne récupérer que les parties qui vous
-sembleront utiles.
+familier d'Emacs, nous vous recommandons fortement de l'utiliser et de
+la modifier le moins possible. Il vous suffira de suivre les
+instructions données dans cette section. Si vous êtes un utilisateur
+Emacs plus expérimenté, vous pouvez vous contenter de regarder nos
+instructions et de ne récupérer que les parties qui vous sembleront
+utiles.
+
+Quand vous lancez Emacs la première fois avec cette configuration, il téléchargera quelques extensions que nous utilisons dans ce MOOC. Ceci peut prendre un peu de temps (quelques minutes), et peut provoquer des messages d'erreur en cas de difficultés de connexion réseau. En ce cas, il suffit de quitter Emacs et de le relancer. Une fois que tout est correctement installé, Emacs n'affiche plus aucun message d'erreur au démarrage, et n'a plus besoin de connexion réseau.
 
 Il est malheureusement assez probable que certains d'entre vous
 rencontreront des problèmes que nous n'avons pas anticipés. Si c'est
