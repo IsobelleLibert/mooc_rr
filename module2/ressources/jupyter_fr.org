@@ -273,8 +273,7 @@ conda activate mooc-rr-jupyter
 #+end_src
 Il n'est pas strictement nécessaire d'activer un environnement pour
 s'en servir, mais c'est la façon la plus facile qui suscite le moins
-d'erreurs. *Vous devez répéter cette activation chaque fois que vous
-ouvrez un nouveau terminal, avant de pouvoir utiliser cet
+d'erreurs. *Vous devez répéter cette activation chaque fois que vous ouvrez un nouveau terminal, avant de pouvoir utiliser cet
 environnement.*
 
 Le prochain pas est l'installation de tous les logiciels dont nous

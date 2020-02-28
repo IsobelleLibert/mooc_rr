@@ -19,9 +19,9 @@ dans les exercices*. De même, nous vous encourageons vivement à
 regarder la vidéo [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/9cfc7500f0ef46d288d2317ec7b037b4]["utilisation Emacs/git" disponible sur la même page]].
 
 * Table des matières                                           :TOC:
-- Installation d'Emacs, Python, et R
-- LaTeX pour la génération de PDF
-- [[#une-configuration-emacs-adaptée-à-la-recherche-reproductible][Une configuration Emacs adaptée à la "recherche reproductible"]]
+- [[#installation-demacs-python-et-r][Installation d'Emacs, Python et R]]
+- [[#latex-pour-la-génération-de-pdf][LaTeX pour la génération de PDF]]
+- [[#Une-configuration-emacs-adaptée-à-la-recherche-reproductible][Une configuration Emacs adaptée à la "recherche reproductible"]]
   - [[#etape-0--sauvegarder-et-supprimer-votre-configuration-précédente][Etape 0 : Sauvegarder et supprimer votre configuration précédente]]
   - [[#etape-1--télécharger-notre-configuration][Etape 1 : Télécharger notre configuration]]
   - [[#étape-2--préparez-votre-journal][Étape 2 : Préparez votre journal]]
@@ -36,10 +36,10 @@ regarder la vidéo [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-
   - [[#paquets-emacs-utiles-supplémentaires][Paquets emacs utiles supplémentaires]]
   - [[#autres-ressources][Autres ressources]]
 
-* Installation d'Emacs, Python, et R
+* Installation d'Emacs, Python et R
 Il y a beaucoup de façons différentes pour installer Emacs ainsi que
 les langages Python et R sur votre ordinateur. Celle que nous
-recommandons et décrivons par la suite est basé sur le gestionnaire de
+recommandons et décrivons par la suite est basée sur le gestionnaire de
 paquets [[https://conda.io/][conda]]. Elle a l'avantage de fonctionner de façon à peu près
 identique sous Linux, Windows, et macOS. Son deuxième avantage est que
 l'univers conda propose un grand choix de logiciels scientifiques, qui
@@ -78,8 +78,7 @@ conda activate mooc-rr-emacs
 #+end_src
 Il n'est pas strictement nécessaire d'activer un environnement pour
 s'en servir, mais c'est la façon la plus facile qui suscite le moins
-d'erreurs. *Vous devez répéter cette activation chaque fois que vous
-ouvrez un nouveau terminal, avant de pouvoir utiliser cet
+d'erreurs. *Vous devez répéter cette activation chaque fois que vous ouvrez un nouveau terminal, avant de pouvoir utiliser cet
 environnement.*
 
 Le prochain pas est l'installation de tous les logiciels dont nous
