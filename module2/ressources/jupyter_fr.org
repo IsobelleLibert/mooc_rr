@@ -18,12 +18,12 @@ jupyter notebook
   - [[#création-ou-import-dun-notebook][Création ou import d'un notebook]]
   - [[#exécuter-du-code-r-et-du-code-python-dans-le-même-notebook][Exécuter du code R et du code Python dans le même notebook]]
   - [[#autres-langages-que-python-et-r][Autres langages que Python et R]]
-  - Améliorer la lisibilité d'un notebook
+  - [[#améliorer-la-lisibilité-dun-notebook][Améliorer la lisibilité d'un notebook]]
 - [[#installation-et-configuration-de-jupyter-sur-votre-ordinateur][Installation et configuration de Jupyter sur votre ordinateur]]
   - [[#installation-de-jupyter-et-de-python-r-][Installation de Jupyter (et de Python, R...)]]
   - [[#latex-pour-la-génération-de-pdf][LaTeX pour la génération de PDF]]
-  - JupyterLab
-  - [[#interaction-avec-gitlab-et-git][Interaction avec GitLab et git]]
+  - [[#jupyterlab][JupyterLab]]
+  - [[#Interaction-avec-gitlab-et-git][Interaction avec GitLab et git]]
 
 * Jupyter : Trucs et astuces
 Cette [[https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/][page web]] (en anglais) recense un certain nombre d'astuces
