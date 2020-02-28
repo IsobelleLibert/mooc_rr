@@ -13,3 +13,8 @@ svg-inkscape*
 .Rhistory
 .snakemake
 .DS_Store
+#*
+.#*
+module3/ressources/.ipynb_checkpoints
+A_Traduire
+.ipynb_checkpoints
