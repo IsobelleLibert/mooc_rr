@@ -84,7 +84,7 @@ environnement.*
 Le prochain pas est l'installation de tous les logiciels dont nous
 avons besoin et qui font partie de la distribution Miniconda :
 #+begin_src shell :results output :exports both
-conda install python r
+conda install python numpy matplotlib r r-ggplot2 r-dplyr r-hmisc
 #+end_src
 Nous avons également besoin d'un paquet que ne fait pas partie de
 Miniconda. Nous le récupérons de la source indépendante [[https://conda-forge.org/][conda-forge]] :
