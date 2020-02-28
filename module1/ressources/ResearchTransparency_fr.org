@@ -109,8 +109,7 @@ donc très loin d'être suffisante pour garantir une compréhension des
 travaux effectués. Nous vous invitons à vous reporter au Sujet 3 du
 *module 3 du Mooc* ("L'épidémie de choléra à Londres en 1854") car il
 illustre pleinement l'importance d'une analyse plus qualitative des
-données ([[/static/Tufte_Visual_Explanations_Cholera.pdf][Extrait de "Visual Explanations: Images and Quantities,
-Evidence and Narrative" par Edward R. Tufte, ISBN-13 : 978-1930824157]]).
+données ([[https://www.fun-mooc.fr/asset-v1:inria+41016+self-paced+type@asset+block/Tufte_Visual_Explanations_Cholera.pdf][Extrait de "Visual Explanations: Images and Quantities,Evidence and Narrative" par Edward R. Tufte, ISBN-13 : 978-1930824157]]).
 
 *Le terme "transparence" renvoie donc plutôt au fait de rendre accessibles 
 à son lectorat les éléments sur lesquels s'est construit le raisonnement* : 
