@@ -227,10 +227,6 @@ ordinateur, un environnement Jupyter similaire à celui que nous avons
 déployé pour ce MOOC.
 
 ** Installation de Jupyter (et de Python, R...)
-Ces instructions permettent d'obtenir sur votre ordinateur un
-environnement Jupyter similaire à celui que nous avons déployé dans le
-cadre du MOOC.
-
 Téléchargez d'abord la [[https://conda.io/miniconda.html][dernière version de Miniconda]]. Miniconda
 est une version légère d'Anaconda, une suite logicielle incluant
 Python, Jupyter, R ainsi que les bibliothèques les plus couramment
