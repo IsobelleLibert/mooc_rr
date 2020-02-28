@@ -1,7 +1,7 @@
 # -*- mode: org -*-
-#+TITLE:     Jupyter : tips and tricks, installing and configuring
+#+TITLE:     Jupyter: tips and tricks, installing and configuring
 #+AUTHOR:    Arnaud Legrand, Benoit Rospars, Konrad Hinsen
-#+DATE: June, 2018
+#+DATE: February 2020
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
@@ -18,11 +18,11 @@ jupyter notebook
   - [[#creating-or-importing-a-notebook][Creating or importing a notebook]]
   - [[#running-r-and-python-in-the-same-notebook][Running R and Python in the same notebook]]
   - [[#other-languages][Other languages]]
+  - [[#improving-notebook-readability][Improving notebook readability]]
 - [[#installing-and-configuring-jupyter-on-your-computer][Installing and configuring Jupyter on your computer]]
   - [[#installing-jupyter-and-python-r-][Installing Jupyter (and Python, R, ...)]]
-  - [[#making-sure-jupyter-allows-you-to-use-r][Making sure Jupyter allows you to use R]]
   - [[#latex-for-pdf-export][LaTeX for PDF export]]
-  - [[#additional-tips][Additional tips]]
+  - [[#jupyterlab][JupyterLab]]
   - [[#interacting-with-gitlab-and-git][Interacting with GitLab and Git]]
 
 * Jupyter tips and tricks
@@ -161,161 +161,7 @@ environment control will certainly help anyway.
 - Here is a [[file:../../documents/notebooks/notebook_Jupyter_SAS.ipynb][example of SAS notebook]].
 - Useful link: https://sassoftware.github.io/sas_kernel/install.html
 
-* Installing and configuring Jupyter on your computer
-In this section, we explain how to set up a Jupyter environment on
-your own computer similar to the one deployed for this MOOC.
-
-Note that Jupyter notebooks are only a small part of the picture and
-that Jupyter is now part of a bigger project: [[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]], which allows
-you to mix various components (including notebooks) in your
-browser. In the context of this MOOC, our time frame was too short to
-benefit from JupyterLab which was still under active development. You may, however, prefer JupyterLab when doing an installation on your own computer.
-
-** Installing Jupyter (and Python, R, ...)
-Follow these instructions if you wish to have a Jupyter environment on
-your own computer similar to the one we set up for this MOOC.
-
-First, download and install the [[https://conda.io/miniconda.html][latest version of Miniconda]]. We use
-Miniconda version =4.5.4= and Python version =3.6= on our server.
-
-Miniconda is a light version of Anaconda, which includes Python, the Jupyter Notebook, and other commonly used packages for scientific computing and data science.
-
-Then download the [[https://gist.github.com/brospars/4671d9013f0d99e1c961482dab533c57][mooc_rr environment file]] and create the environment using conda:
-#+begin_src shell :results output :exports both
-conda env create -f environment.yml
-
-# Windows activate the environment
-activate mooc_rr
-
-# Linux and MacOS activate the environment
-source activate mooc_rr
-
-# Linux, MacOS and Windows: launch the notebook
-jupyter notebook
-#+end_src
-** Making sure Jupyter allows you to use R
-The environment described in the last section should include R, but if
-you proceeded otherwise and only have Python available in Jupyter, you
-may want to read the following section.
-*** • Installing [[https://github.com/IRkernel/IRkernel][IRKernel]] (R package)
-IRKernel will allow you to manage notebooks using natively R rather
-than python. We assume in this section that you already have a working
-installation of R
-
-*Windows*
-
-On Windows, you are unlikely to have the tools allowing you to compile
-and install the latest version of IRKernel and you should rather
-install the binary version. In an R console (or in Rstudio), type the
-following commands:
-#+begin_src R :results output :session *R* :exports both
-install.packages('IRkernel',dep=TRUE)
-IRkernel::installspec()  # to register the kernel in the current R installation
-#+end_src
-
-Right below, you will find a few explanations on how to use an R
-notebook. 
-
-*Linux or Mac*
-
-To install the latest version of IRkernel, open an R console or
-Rstudio.
-- Install the =devtools= package:
-  #+begin_src R :results output :session *R* :exports both
-  install.packages('devtools',dep=TRUE)
-  #+end_src
-- Define a proxy if needed (this is important if you are working in a
-  company which limits the access to the Internet):
-  #+begin_src R :results output :session *R* :exports both
-  library(httr)
-  set_config(use_proxy(url="proxy", port=80, username="username", password="password")) 
-  #+end_src
-
-- Install the =IRkernel= package:
-  #+begin_src R :results output :session *R* :exports both
-  devtools::install_github('IRkernel/IRkernel')
-  IRkernel::installspec()  # to register the kernel in the current R installation
-  #+end_src
-
-You will then be able to create native R notebooks:
-[[file:jupyter_images/new_notebook.png]]
-
-[[file:jupyter_images/notebook_R.png]]
-
-Note the R icon in the top right
-corner. [[file:../..//documents/notebooks/notebook_Jupyter_R.ipynb][Here
-is an example of R notebook]].
-*** • Installing rpy2 (Python package)
-The =rpy2= package allows python to seamlessly call R and therefore to
-have both languages in the same notebook.
-
-*Linux or Mac*
-
-On Linux, the rpy2 package is available in standard distributions. For
-example on debian or ubuntu:
-#+begin_src shell :results output :exports both
-sudo apt-get install python3-rpy2 python3-tzlocal
-#+end_src
-An alternative (not really recommended if the first one is available)
-consists in going through the python package manager with
-#+begin_src python :results output :exports both
-pip3 install rpy2
-#+end_src
-
-*Windows*
-
-Download the =rpy2= [[https://www.lfd.uci.edu/~gohlke/pythonlibs/#rpy2][binary file]] by choosing the right operating system.
-
-Open a DOS console, move to the /download/ directory and type the following command:
-#+begin_src shell :results output :exports both
-python -m pip install rpy2‑2.9.4‑cp37‑cp37m‑win_amd64.whl # adapt filename
-#+end_src
-
-Install also =tzlocal=:
-#+begin_src shell :results output :exports both
-python -m pip install tzlocal
-#+end_src
-
-If you ever run into troubles, you may want to have a look on
-[[https://stackoverflow.com/questions/14882477/rpy2-install-on-windows-7][StackOverflow]] (NB : when we tried it, there has been no need to define
-the =R_HOME= and =R_USER= environnement variables).
-
-You should be able to run Jupyter and to create a python notebook that runs
-R commands by following the instructions given in the beginning of
-this document (look for =rpy2=).
-** LaTeX for PDF export
-For exporting your notebooks as PDF files, you must also install LaTeX on your system. We describe this process in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/19c2b1de7766484bae73f3ab133463c6][separate resource]].
-** Additional tips
-*** • Exporting a notebook
-Here is what we had to install on a recent Debian computer to make sure
-the notebook export via LaTeX works:
-#+begin_src shell :results output :exports both
-sudo apt-get install texlive-xetex wkhtmltopdf
-#+end_src
-
-Obviously, you can convert to html or pdf using the using the =File > Download as > HTML= (or =PDF=) menu option.  This can also be done from
-the command line with the following command:
-
-#+begin_src sh :results output :exports both
-ipython3 nbconvert --to pdf Untitled.ipynb
-#+end_src
-
-If you want to use a specific style, then the =nbconvert= exporter
-should be customized. This is discussed and demoed [[http://markus-beuckelmann.de/blog/customizing-nbconvert-pdf.html][here]]. We encourage
-you to simply read the [[https://nbconvert.readthedocs.io/en/latest/][doc of nbconvert]]. 
-
-Instead of going directly through LaTeX and playing too much with the
-=nbconvert= exporter, an other option consists in exporting to Markdown
-and playing with [[https://pandoc.org/][pandoc]]. Both approaches work, it's rather a matter of
-taste.
-
-*Windows*
-
-Download and install MiKTeX from the [[https://miktex.org/download][MiKTeX webpage]] by choosing the
-right operating system. You will be prompted to install some specific
-packages when exporting to pdf.
-
-*** • Improving notebook readability
+** Improving notebook readability
 Here are a few extensions that can ease your life:
 - [[https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook][Code folding]] to improve readability when browsing the notebook.
   #+begin_src shell :results output :exports both
@@ -345,7 +191,60 @@ Here are a few extensions that can ease your life:
   #+END_CENTER
   NB: In the first edition of the MOOC some people had issues making
   it work under Windows.
-** • Interacting with GitLab and git
+* Installing and configuring Jupyter on your computer
+In this section, we explain how to set up a Jupyter environment on
+your own computer similar to the one deployed for this MOOC.
+** Installing Jupyter (plus Python, R, ...)
+First, download the [[https://conda.io/miniconda.html][most recent version of Miniconda]]. Miniconda is a lightweight edition of Anaconda, a software distribution that includes Python, R, Jupyter, and many popular libraries for scientific computing and data science.
+
+On our server, we use version =4.5.4= of Miniconda and versio =3.6= of Python. In theory, you could download [[https://gist.github.com/brospars/4671d9013f0d99e1c961482dab533c57][the environment file =mooc_rr=]] and reproduce an identical environment on your own computer. Unfortunately, our server was set up in 2018, and =conda= has changed quite a bit since then. Reconstructing this environment is therefore no longer possible. We will show you in the following how to get an equivalent environment but using more recent versions of all the software.
+
+Install Miniconda following the supplied instructions. When the installer asks you the question
+#+begin_quote
+Do you wish the installer to initialize Miniconda3
+by running conda init? [yes|no]
+#+end_quote
+answer =yes=. You will then see the advice
+#+begin_quote
+==> For changes to take effect, close and re-open your current shell. <==
+#+end_quote
+which you must respect to make sure that the following steps work correctly. The first command to run next is
+#+begin_src shell :results output :exports both
+conda update -n base -c defaults conda
+#+end_src
+which updates all the software in the =conda= distribution.
+
+We can now create a =conda= environment for the RStudio path of out MOOC:
+#+begin_src shell :results output :exports both
+conda create -n mooc-rr-jupyter
+#+end_src
+and activate it:
+#+begin_src shell :results output :exports both
+conda activate mooc-rr-jupyter
+#+end_src
+It is not strictly necessary to activate an environment in order to use it, but doing so makes the use of the environment easier and less error prone. *You have to perform this activation step every time you open a new terminal, before you can work with the environment.*
+
+The next step is the installation of all software packages we need and which are in the Miniconda distribution:
+#+begin_src shell :results output :exports both
+conda install jupyter python numpy matplotlib pandas r r-irkernel rpy2 tzlocal simplegeneric
+#+end_src
+We also need two packages that is not in Miniconda. We request the first one from the independent package source [[https://conda-forge.org/][conda-forge]]:
+#+begin_src shell :results output :exports both
+conda install -c conda-forge r-parsedate
+#+end_src
+and the second one from the main Python code repository, [[https://pypi.org/][PyPI]]:
+#+begin_src shell :results output :exports both
+pip install isoweek
+#+end_src
+
+You can now start Jupyter:
+#+begin_src shell :results output :exports both
+jupyter notebook
+#+end_src
+and work with our examples and exercises.
+** LaTeX for generating PDF files
+For exporting your notebooks as PDF files, you must also install LaTeX on your system. We describe this process in a [[file:latex.org][separate resource]].
+** Interacting with GitLab and git
 To ease your experience, we added pull/push buttons that allow
 you to commit and sync with GitLab. This development was specific to
 the MOOC but inspired from a previous [[https://github.com/Lab41/sunny-side-up][proof of concept]]. We have
