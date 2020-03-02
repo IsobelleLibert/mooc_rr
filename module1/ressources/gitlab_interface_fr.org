@@ -24,12 +24,18 @@ plateforme FUN après avoir cliqué sur le bouton "*Accéder à GitLab / Access 
 - Connectez-vous en cliquant sur le bouton "*Sign in*" situé sous
   "*Connexion*". Le cadre "Connexion Admin" est réservé aux
   administrateurs de l'interface GitLab. L'authentification est automatique à cette étape.
+  
+- Attention, la premère fois que vous vous connectez à votre espace Gitlab, vous avez le message suivant :
+  #+BEGIN_CENTER
+  [[file:gitlab_images/JupyterHubAuthorizeAccess.png]]
+  #+END_CENTER
+- Cliquez sur le bouton "Authorize".
   #+BEGIN_CENTER
   [[file:gitlab_images/projects.png]]
   #+END_CENTER
+  
+    La grande chaîne de caractères remplacée ici par =xxx= est le login qu'il faudra utiliser dans git pour accéder à GitLab.
 
-  La grande chaîne de caractères remplacée ici par =xxx= est le login
-  qu'il faudra utiliser dans git pour accéder à GitLab.
 - *NB* : Il faut accéder à GitLab depuis la plateforme FUN. Vous risquez
     d'obtenir une erreur 405 en accédant directement à la page [[https://app-learninglab.inria.fr/gitlab/users/sign_in]].
     #+BEGIN_CENTER
