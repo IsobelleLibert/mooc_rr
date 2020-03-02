@@ -22,10 +22,14 @@ button "*Accéder à Gitlab / Access to Gitlab*".
   #+BEGIN_CENTER
   [[file:gitlab_images/sign_in_gitlab.png]]
   #+END_CENTER
-- Click on **Sign in**. below "*Connexion*" label. The "Connexion Admin" frame is reserved for
+- Click on *Sign in*. below "*Connexion*" label. The "Connexion Admin" frame is reserved for
   Gitlab interface administrators. Authentication is automatic at that
   stage.
-
+- Attention, the first time you connect to your Gitlab repository, you get the following message:
+  #+BEGIN_CENTER
+  [[file:gitlab_images/JupyterHubAuthorizeAccess.png]]
+  #+END_CENTER
+- Click on **Authorize*.
   #+BEGIN_CENTER
   [[file:gitlab_images/projects.png]]
   #+END_CENTER

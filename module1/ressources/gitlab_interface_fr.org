@@ -29,7 +29,7 @@ plateforme FUN après avoir cliqué sur le bouton "*Accéder à GitLab / Access 
   #+BEGIN_CENTER
   [[file:gitlab_images/JupyterHubAuthorizeAccess.png]]
   #+END_CENTER
-- Cliquez sur le bouton "Authorize".
+- Cliquez sur le bouton *Authorize*.
   #+BEGIN_CENTER
   [[file:gitlab_images/projects.png]]
   #+END_CENTER
