@@ -106,8 +106,8 @@ données) peut jouer un rôle majeur, mais son partage ne fournira qu'un
 niveau d'information limité puisque l'intérêt des travaux réside dans
 leur dimension interprétative. La mise à disposition des données est
 donc très loin d'être suffisante pour garantir une compréhension des
-travaux effectués. Nous vous invitons à vous reporter au Sujet 3 du
-*module 3 du Mooc* ("L'épidémie de choléra à Londres en 1854") car il
+travaux effectués. Nous vous invitons à vous reporter au
+[[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/44b5ae6135284dccba16386681ed51d4][Sujet3 du *module 3 du Mooc* ("L'épidémie de choléra à Londres en 1854")]] car il
 illustre pleinement l'importance d'une analyse plus qualitative des
 données ([[https://www.fun-mooc.fr/asset-v1:inria+41016+self-paced+type@asset+block/Tufte_Visual_Explanations_Cholera.pdf][Extrait de "Visual Explanations: Images and Quantities,Evidence and Narrative" par Edward R. Tufte, ISBN-13 : 978-1930824157]]).
 
