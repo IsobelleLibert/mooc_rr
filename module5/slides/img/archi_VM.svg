@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="133.661mm"
+   height="101.2508mm"
+   viewBox="0 0 133.66099 101.2508"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="archi_process.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.8805668"
+     inkscape:cx="283.01047"
+     inkscape:cy="163.73636"
+     inkscape:document-units="mm"
+     inkscape:current-layer="svg8"
+     showgrid="true"
+     inkscape:window-width="2480"
+     inkscape:window-height="1376"
+     inkscape:window-x="80"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid1303"
+       originx="-8.5866504"
+       originy="-152.13542" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="machine"
+     transform="translate(-8.5866509,-43.613786)">
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart_cpu.png"
+       xlink:href="clipart/clipart_cpu.png"
+       width="18.520834"
+       height="18.520834"
+       preserveAspectRatio="none"
+       id="image1176"
+       x="27.78125"
+       y="126.34375" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart_harddrive.png"
+       xlink:href="clipart/clipart_harddrive.png"
+       width="25.590946"
+       height="18.510784"
+       preserveAspectRatio="none"
+       id="image1238"
+       x="96.572922"
+       y="126.34375" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart_ram.png"
+       xlink:href="clipart/clipart_ram.png"
+       width="27.711964"
+       height="18.52083"
+       preserveAspectRatio="none"
+       id="image1300"
+       x="59.53125"
+       y="126.34375" />
+  </g>
+  <g
+     id="cloud"
+     transform="translate(-3.4425513,-12.941528)">
+    <path
+       id="path817"
+       transform="scale(0.26458333)"
+       d="m 372.36719,52.21875 c -17.68179,0.02457 -34.03392,10.080493 -42.9961,26.441406 -6.11322,-2.752936 -12.67722,-4.172931 -19.30664,-4.175781 -20.55367,0.02343 -38.99527,13.559721 -46.47461,34.109375 -24.38851,3.98619 -42.41406,26.48461 -42.43359,52.96484 0.0295,28.25454 20.47964,51.63667 46.74805,53.44922 9.42368,13.45489 24.18702,21.3785 39.86914,21.39844 13.39938,-0.0189 26.22997,-5.81435 35.60937,-16.08594 8.05988,5.60108 17.45313,8.59012 27.05469,8.60938 8.51006,-1.04681 14.92853,-2.09232 20.02148,-3.56641 a 7.4312629,7.4312629 0 0 0 7.30274,6.07813 7.4312629,7.4312629 0 0 0 7.43164,-7.43164 7.4312629,7.4312629 0 0 0 -2.21875,-5.28711 c 3.76464,-3.54149 6.66583,-8.44096 10.05078,-15.51758 7.43448,4.45801 15.80639,6.80145 24.32227,6.80859 13.12777,-0.008 25.72597,-5.56128 35.06836,-15.46094 25.36909,-2.90761 44.62083,-25.86809 44.65039,-53.2539 -0.0151,-27.8563 -19.90351,-51.060028 -45.76368,-53.396486 -9.24952,-14.95095 -24.85415,-23.942991 -41.57421,-23.957032 -7.28863,0.02041 -14.4852,1.751886 -21.08399,5.074219 C 399.21707,58.305451 386.097,52.230043 372.36719,52.21875 Z m 33.51367,195.24219 a 6.1577441,6.1577441 0 0 0 -6.1582,6.1582 6.1577441,6.1577441 0 0 0 6.1582,6.15625 6.1577441,6.1577441 0 0 0 6.1582,-6.15625 6.1577441,6.1577441 0 0 0 -6.1582,-6.1582 z m -9.91406,34.03515 a 4.9999998,4.9999998 0 0 0 -5,5 4.9999998,4.9999998 0 0 0 5,5 4.9999998,4.9999998 0 0 0 5,-5 4.9999998,4.9999998 0 0 0 -5,-5 z m 1.14453,28.30274 a 4.9999998,4.9999998 0 0 0 -5,5 4.9999998,4.9999998 0 0 0 5,5 4.9999998,4.9999998 0 0 0 5,-5 4.9999998,4.9999998 0 0 0 -5,-5 z m 9.13086,27.80859 a 4.0738043,4.0738043 0 0 0 -4.07422,4.07422 4.0738043,4.0738043 0 0 0 4.07422,4.07422 4.0738043,4.0738043 0 0 0 4.07422,-4.07422 4.0738043,4.0738043 0 0 0 -4.07422,-4.07422 z"
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:0.38800001;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#9afff5;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.24048615;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       inkscape:connector-curvature="0" />
+  </g>
+  <g
+     id="environment"
+     transform="matrix(0.59279531,0,0,0.59279531,51.725975,-17.604161)">
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/logo-chrome.png"
+       xlink:href="clipart/logo-chrome.png"
+       width="11.906249"
+       height="11.906249"
+       preserveAspectRatio="none"
+       id="image1008"
+       x="87.3125"
+       y="40.354176" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/logo-debian.png"
+       xlink:href="clipart/logo-debian.png"
+       width="9.6043777"
+       height="11.906253"
+       preserveAspectRatio="none"
+       id="image1364"
+       x="80.697914"
+       y="56.229176" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/logo-jupyter.png"
+       xlink:href="clipart/logo-jupyter.png"
+       width="10.458191"
+       height="11.906247"
+       preserveAspectRatio="none"
+       id="image1550"
+       x="100.54166"
+       y="62.843754" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/logo-R.png"
+       xlink:href="clipart/logo-R.png"
+       width="12.190698"
+       height="11.906247"
+       preserveAspectRatio="none"
+       id="image1426"
+       x="92.604164"
+       y="73.427094" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/logo-python.png"
+       xlink:href="clipart/logo-python.png"
+       width="11.788363"
+       height="11.906247"
+       preserveAspectRatio="none"
+       id="image1488"
+       x="107.15625"
+       y="73.427094" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/logo-mail.png"
+       xlink:href="clipart/logo-mail.png"
+       width="11.906252"
+       height="11.906252"
+       preserveAspectRatio="none"
+       id="image1070"
+       x="99.21875"
+       y="41.67709" />
+  </g>
+  <g
+     id="files"
+     transform="matrix(0.59279531,0,0,0.59279531,51.725975,-17.604161)">
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-data.png"
+       xlink:href="clipart/clipart-fs-data.png"
+       width="10.397011"
+       height="10.397011"
+       preserveAspectRatio="none"
+       id="image2189"
+       x="54.015995"
+       y="61.7407" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-folder.png"
+       xlink:href="clipart/clipart-fs-folder.png"
+       width="10.397008"
+       height="10.397008"
+       preserveAspectRatio="none"
+       id="image2200"
+       x="26.29064"
+       y="55.964588" />
+    <rect
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:0.80500034;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#ff3051;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.53345203;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="rect946-3"
+       width="8.9266357"
+       height="10.711962"
+       x="32.156757"
+       y="61.243679"
+       ry="1.7538956" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-script.png"
+       xlink:href="clipart/clipart-fs-script.png"
+       width="10.397007"
+       height="10.397007"
+       preserveAspectRatio="none"
+       id="image2211-22-9-6"
+       x="31.657461"
+       y="61.305214" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-text.png"
+       xlink:href="clipart/clipart-fs-text.png"
+       width="10.413674"
+       height="10.413674"
+       preserveAspectRatio="none"
+       id="image2222"
+       x="42.447098"
+       y="61.724037" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-folder.png"
+       xlink:href="clipart/clipart-fs-folder.png"
+       y="71.213524"
+       x="26.29064"
+       id="image2200-0-2"
+       preserveAspectRatio="none"
+       height="10.397008"
+       width="10.397008" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-data.png"
+       xlink:href="clipart/clipart-fs-data.png"
+       y="82.996811"
+       x="59.330021"
+       id="image2189-2"
+       preserveAspectRatio="none"
+       height="10.397011"
+       width="10.397011" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-folder.png"
+       xlink:href="clipart/clipart-fs-folder.png"
+       y="77.220688"
+       x="31.604668"
+       id="image2200-0"
+       preserveAspectRatio="none"
+       height="10.397008"
+       width="10.397008" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-data.png"
+       xlink:href="clipart/clipart-fs-data.png"
+       y="82.996811"
+       x="47.777786"
+       id="image2189-2-7"
+       preserveAspectRatio="none"
+       height="10.397011"
+       width="10.397011"
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-data.png"
+       xlink:href="clipart/clipart-fs-data.png"
+       y="82.996811"
+       x="36.225559"
+       id="image2189-2-7-1"
+       preserveAspectRatio="none"
+       height="10.397011"
+       width="10.397011"
+       style="opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-folder.png"
+       xlink:href="clipart/clipart-fs-folder.png"
+       y="89.00396"
+       x="31.604668"
+       id="image2200-9"
+       preserveAspectRatio="none"
+       height="10.397008"
+       width="10.397008" />
+    <rect
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:0.80500034;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#303bff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.53345203;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="rect946-3-7"
+       width="8.9266357"
+       height="10.711962"
+       x="37.066402"
+       y="94.718552"
+       ry="1.7538956" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-script.png"
+       xlink:href="clipart/clipart-fs-script.png"
+       y="94.780083"
+       x="36.225559"
+       id="image2211-22"
+       preserveAspectRatio="none"
+       height="10.397007"
+       width="10.397007" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-text.png"
+       xlink:href="clipart/clipart-fs-text.png"
+       y="94.763412"
+       x="47.76112"
+       id="image2222-8"
+       preserveAspectRatio="none"
+       height="10.413674"
+       width="10.413674" />
+    <rect
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:0.80500034;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#59c43b;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.53345203;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="rect946-3-5"
+       width="8.9266357"
+       height="10.711962"
+       x="60.27565"
+       y="94.718552"
+       ry="1.7538956" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-script.png"
+       xlink:href="clipart/clipart-fs-script.png"
+       y="94.780083"
+       x="59.330025"
+       id="image2211-22-9"
+       preserveAspectRatio="none"
+       height="10.397007"
+       width="10.397007" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.23104462px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 25.135416,61.971748 h 3.465669 v 0"
+       id="path2477"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.23104462px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 25.135416,76.989655 h 3.465669 v 0"
+       id="path2477-9"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.23104462px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 25.135417,76.989648 V 58.506077"
+       id="path2477-9-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.23104462px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 29.756309,85.07621 h 3.465669 v 0"
+       id="path2477-1"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.23104462px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 29.756309,96.628448 h 3.465669 v 0"
+       id="path2477-9-9"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.23104462px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 29.75631,96.628441 -10e-7,-17.328347"
+       id="path2477-9-3-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+  </g>
+  <g
+     id="kernel"
+     transform="translate(-3.4425513,-12.941528)">
+    <path
+       style="opacity:0.80500034;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ff0202;stroke-width:1.18559062;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 131.11632,90.644414 C 126.14528,90.437227 97.997876,84.82409 71.57883,87.174525 42.182832,89.789813 12.922306,91.074394 7.1399856,89.422302"
+       id="path2550-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csc" />
+    <path
+       sodipodi:nodetypes="csc"
+       inkscape:connector-curvature="0"
+       id="path2550-7-5"
+       d="M 130.58714,76.356914 C 125.6161,76.149727 97.468705,70.53659 71.049662,72.887026 c -29.396,2.615287 -58.656525,3.899868 -64.4388433,2.247776"
+       style="opacity:0.80500034;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ff0202;stroke-width:1.18559062;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       id="text938"
+       y="82.971504"
+       x="57.297565"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.76111126px;line-height:100%;font-family:'Indie Flower';-inkscape-font-specification:'Indie Flower, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.26458332px"
+         y="82.971504"
+         x="57.297565"
+         id="tspan936"
+         sodipodi:role="line">Kernel</tspan></text>
+  </g>
+  <g
+     id="process">
+    <rect
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:0.80500034;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#ff3051;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="rect946-5"
+       width="8.3784723"
+       height="25.135418"
+       x="34.720104"
+       y="6.0008054"
+       ry="1.3011407" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-script.png"
+       xlink:href="clipart/clipart-fs-script.png"
+       y="6.0008054"
+       x="33.337498"
+       id="image2211-6"
+       preserveAspectRatio="none"
+       height="7.8068433"
+       width="7.8068433"
+       style="stroke-width:0.61004168;stroke-miterlimit:4;stroke-dasharray:none" />
+    <rect
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:0.80500034;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#3069ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="rect946-5-9"
+       width="8.3784723"
+       height="25.135418"
+       x="45.362236"
+       y="6.0008054"
+       ry="1.3011407" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-script.png"
+       xlink:href="clipart/clipart-fs-script.png"
+       y="6.0008054"
+       x="44.508801"
+       id="image2211-6-1"
+       preserveAspectRatio="none"
+       height="7.8068433"
+       width="7.8068433"
+       style="stroke-width:0.61004168;stroke-miterlimit:4;stroke-dasharray:none" />
+  </g>
+  <g
+     id="VM">
+    <rect
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:0.80500034;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#acc3ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="rect946-5-9-6"
+       width="27.013613"
+       height="37.041664"
+       x="5.6747365"
+       y="6.2653913"
+       ry="1.9174703" />
+    <rect
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:0.80500034;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#56da59;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="rect946-5-0"
+       width="4.818625"
+       height="14.455875"
+       x="9.0353117"
+       y="12.358854"
+       ry="0.7483117" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-script.png"
+       xlink:href="clipart/clipart-fs-script.png"
+       y="12.358854"
+       x="8.5444822"
+       id="image2211-6-9"
+       preserveAspectRatio="none"
+       height="4.4898701"
+       width="4.4898701"
+       style="stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none" />
+    <rect
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:0.80500034;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#ff3051;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       id="rect946-5-0-6"
+       width="4.818625"
+       height="14.455875"
+       x="15.460143"
+       y="12.358854"
+       ry="0.7483117" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart-fs-script.png"
+       xlink:href="clipart/clipart-fs-script.png"
+       y="12.358854"
+       x="14.969317"
+       id="image2211-6-9-0"
+       preserveAspectRatio="none"
+       height="4.4898701"
+       width="4.4898701"
+       style="stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none" />
+    <text
+       id="text986"
+       y="11.598021"
+       x="8.8686895"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.46356869px;line-height:100%;font-family:'Indie Flower';-inkscape-font-specification:'Indie Flower, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none"
+         y="11.598021"
+         x="8.8686895"
+         id="tspan984"
+         sodipodi:role="line">P3</tspan></text>
+    <text
+       id="text990"
+       y="11.59366"
+       x="15.233619"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.46356869px;line-height:100%;font-family:'Indie Flower';-inkscape-font-specification:'Indie Flower, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none"
+         y="11.59366"
+         x="15.233619"
+         id="tspan988"
+         sodipodi:role="line">P4</tspan></text>
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/logo-virtualbox.png"
+       xlink:href="clipart/logo-virtualbox.png"
+       style="stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none"
+       y="32.723724"
+       x="0.93835306"
+       id="image5459"
+       preserveAspectRatio="none"
+       height="17.208887"
+       width="17.208887" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart_cpu.png"
+       xlink:href="clipart/clipart_cpu.png"
+       style="stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none"
+       y="29.813288"
+       x="7.5529351"
+       id="image1176-5"
+       preserveAspectRatio="none"
+       height="5.3673606"
+       width="5.3673606" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart_harddrive.png"
+       xlink:href="clipart/clipart_harddrive.png"
+       style="stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none"
+       y="29.813288"
+       x="22.62623"
+       id="image1238-3"
+       preserveAspectRatio="none"
+       height="5.3644481"
+       width="7.4162879" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/clipart_ram.png"
+       xlink:href="clipart/clipart_ram.png"
+       style="stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none"
+       y="29.813288"
+       x="13.917602"
+       id="image1300-5"
+       preserveAspectRatio="none"
+       height="5.3673592"
+       width="8.030961" />
+    <path
+       id="path817-2"
+       d="m 25.347091,17.17495 c -0.891345,0.0012 -1.715661,0.508162 -2.167448,1.332921 -0.30817,-0.138776 -0.639063,-0.210359 -0.973255,-0.210503 -1.036117,0.0012 -1.965765,0.683551 -2.342801,1.719466 -1.229433,0.200945 -2.138108,1.335098 -2.139092,2.669976 0.0015,1.424321 1.032386,2.603023 2.356586,2.694394 0.475051,0.678266 1.219276,1.077698 2.009817,1.078703 0.675467,-9.53e-4 1.322262,-0.293104 1.795081,-0.810898 0.406301,0.282352 0.879818,0.433031 1.363836,0.434002 0.428995,-0.05277 0.752552,-0.105475 1.00929,-0.179784 a 0.37461256,0.37461256 0 0 0 0.368134,0.3064 0.37461256,0.37461256 0 0 0 0.374631,-0.374631 0.37461256,0.37461256 0 0 0 -0.111848,-0.266525 c 0.189777,-0.178528 0.336027,-0.425512 0.506663,-0.782247 0.374775,0.22473 0.796806,0.342864 1.226095,0.343224 0.661775,-4.04e-4 1.296855,-0.280346 1.767808,-0.779392 1.278865,-0.146573 2.249352,-1.304019 2.250842,-2.684548 -7.61e-4,-1.404245 -1.003343,-2.573953 -2.306963,-2.691735 -0.466272,-0.753683 -1.252907,-1.206975 -2.095771,-1.207682 -0.367422,0.001 -0.730204,0.08831 -1.062851,0.255793 -0.475242,-0.540101 -1.136629,-0.846364 -1.828754,-0.846934 z m 1.689436,9.842228 a 0.31041404,0.31041404 0 0 0 -0.310437,0.310437 0.31041404,0.31041404 0 0 0 0.310437,0.310338 0.31041404,0.31041404 0 0 0 0.310437,-0.310338 0.31041404,0.31041404 0 0 0 -0.310437,-0.310437 z m -0.499771,1.715723 a 0.25205174,0.25205174 0 0 0 -0.252052,0.252052 0.25205174,0.25205174 0 0 0 0.252052,0.252052 0.25205174,0.25205174 0 0 0 0.252052,-0.252052 0.25205174,0.25205174 0 0 0 -0.252052,-0.252052 z m 0.0577,1.426751 a 0.25205174,0.25205174 0 0 0 -0.252052,0.252052 0.25205174,0.25205174 0 0 0 0.252052,0.252052 0.25205174,0.25205174 0 0 0 0.252052,-0.252052 0.25205174,0.25205174 0 0 0 -0.252052,-0.252052 z m 0.46029,1.401841 a 0.2053619,0.2053619 0 0 0 -0.205383,0.205383 0.2053619,0.2053619 0 0 0 0.205383,0.205383 0.2053619,0.2053619 0 0 0 0.205383,-0.205383 0.2053619,0.2053619 0 0 0 -0.205383,-0.205383 z"
+       style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:0.38800001;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#9afff5;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.40000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+       inkscape:connector-curvature="0" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/logo-ubuntu.png"
+       xlink:href="clipart/logo-ubuntu.png"
+       style="stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none"
+       y="16.742294"
+       x="27.290255"
+       id="image5596"
+       preserveAspectRatio="none"
+       height="5.398097"
+       width="5.398097" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/logo-R.png"
+       xlink:href="clipart/logo-R.png"
+       style="stroke-width:0.40000001;stroke-miterlimit:4;stroke-dasharray:none"
+       width="4.0147767"
+       height="3.9210987"
+       preserveAspectRatio="none"
+       id="image1426-6"
+       x="20.471489"
+       y="19.277626" />
+    <image
+       sodipodi:absref="/home/alegrand/Work/Documents/Enseignements/RR_MOOC/gitlab-inria/mooc-rr-ressources/module5/slides/img/clipart/logo-chrome.png"
+       xlink:href="clipart/logo-chrome.png"
+       width="4.3456011"
+       height="4.3456011"
+       preserveAspectRatio="none"
+       id="image1008-0"
+       x="24.486267"
+       y="21.875809" />
+  </g>
+</svg>

@@ -1,0 +1,702 @@
+#+TITLE: Controling Software Environment
+#+AUTHOR:  
+# @@latex:{\large Arnaud Legrand} \\ \vspace{0.2cm}Grenoble Alpes University and CNRS\\ \vspace{0.2cm} \texttt{arnaud.legrand@imag.fr}@@
+#+DATE:  
+#+OPTIONS: H:2 tags:nil toc:nil
+#+LANGUAGE: en
+#+EXCLUDE_TAGS: noexport
+#+SELECT_TAGS: export
+#+TAGS: noexport(n) ignore(i) 
+#+LATEX_COMPILER: lualatex
+#+LATEX_CLASS_OPTIONS: [presentation,xcolor={usenames,dvipsnames,svgnames,table}]
+# ### LATEX_CLASS_OPTIONS: ,bigger
+#+LATEX_CLASS: beamer
+#+STARTUP: beamer
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
+#+STARTUP: indent
+#+PROPERTY: header-args :eval no-export
+
+
+#+LATEX_HEADER: \usepackage[normalem]{ulem}
+
+
+#+LATEX_HEADER: \usepackage[francais]{babel}
+#+LATEX_HEADER: \usepackage{tikzsymbols}
+#+LATEX_HEADER: \def\smiley{\Smiley[1][green!80!white]}
+#+LATEX_HEADER: \def\frowny{\Sadey[1][red!80!white]}
+#+LATEX_HEADER: \def\scared{\Sey[1][blue!20!white]}
+#+LATEX_HEADER: \def\winkey{\Winkey[1][yellow]}
+#+LATEX_HEADER: \def\cooley{\Cooley[1][yellow]}
+#+LATEX_HEADER:  \usepackage{soul}
+#+LATEX_HEADER:  \definecolor{lightorange}{rgb}{1,.9,.7}
+#+LATEX_HEADER:  \definecolor{lightblue}{rgb}{.7,.9,1}
+#+LATEX_HEADER:  \definecolor{lightgreen}{rgb}{.7,1,.7}
+#+LATEX_HEADER: \usepackage{relsize}
+
+#+LATEX_HEADER: \newcommand{\muuline}[1]{\SoulColor\hl{#1}}
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \newcommand\SoulColor[1]{\sethlcolor{#1}%
+#+LATEX_HEADER:   \let\set@color\beamerorig@set@color
+#+LATEX_HEADER:   \let\reset@color\beamerorig@reset@color}
+#+LATEX_HEADER: \makeatother
+#+LATEX_HEADER: \let\hrefold=\href
+#+LATEX_HEADER: \renewcommand{\href}[2]{\hrefold{#1}{\SoulColor{lightorange}\hl{#2}}}
+#+LATEX_HEADER: \let\textttold=\texttt
+#+LATEX_HEADER: \renewcommand{\texttt}[1]{{\SoulColor{lightgreen}\textttold{\smaller\hl{#1}}}}
+
+#+LATEX_HEADER: \makeatletter\newcommand{\verbatimfont}[1]{\renewcommand{\verbatim@font}{\ttfamily#1}}\makeatother
+#+LATEX_HEADER: \verbatimfont{\scriptsize}%
+#+LATEX_HEADER: \let\oldendminted=\endminted
+#+LATEX_HEADER: \def\endminted{\oldendminted\vspace{-2em}}
+
+#+LATEX_HEADER:\usepackage[strict=true,french=guillemets]{csquotes}
+
+#+LATEX_HEADER: \usedescriptionitemofwidthas{}
+#+LATEX_HEADER: \setbeamertemplate{itemize items}{$\bullet$}
+#+LATEX_HEADER: \usecolortheme[named=BrickRed]{structure}
+#+LATEX_HEADER: %\useinnertheme{circles}
+
+#+LATEX_HEADER: \let\maketitlesave=\maketitle
+#+LATEX_HEADER: \def\maketitle{}
+#+BEAMER_HEADER: \setbeamercovered{invisible}
+#+BEAMER_HEADER: \beamertemplatenavigationsymbolsempty
+
+#+LaTeX: \let\alert=\textbf
+
+#+LaTeX: \def\mytitle{Controling Software Environment}
+#+LaTeX: \def\tocframe{\begin{frame}\frametitle{}\centerline{\LARGE \textcolor{BrickRed}{\mytitle}}\vspace{1cm}\tableofcontents\end{frame}}
+#+LaTeX: \def\tocframec{\begin{frame}\frametitle{}\centerline{\LARGE \textcolor{BrickRed}{\mytitle}}\vspace{1cm}\tableofcontents[currentsection]\end{frame}}
+#+LaTeX: \newsavebox{\temp}
+
+\tocframe
+* On the Importance of Software Environment
+#+LaTeX: \AtBeginSection[]{\tocframec}
+** Test                                                           :noexport:
+:PROPERTIES:
+:BEAMER_opt: shrink=10
+:BEAMER_opt: fragile
+:BEAMER_eng: fullframe
+:END:
+https://github.com/fniessen/refcard-org-beamer/blob/master/README.pdf
+*** Foo
+:PROPERTIES:
+:BEAMER_env: definition
+:END:
+Bar!
+*** Proof :B_proof:
+:PROPERTIES:
+:BEAMER_env: proof
+:BEAMER_act: <2->
+:END:
+QED
+*** Col A                                                           :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .3
+:BEAMER_act: <3->
+:BEAMER_opt: t
+:END:
+A
+*** Col B                                                           :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .3
+:BEAMER_act: <4->
+:BEAMER_opt: t
+:END:
+B
+*** Col C                                                           :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .3
+:BEAMER_act: <5->
+:END:
+C
+*** Back to normal                                 :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:BEAMER_act: <6->
+:END:
+Test
+*** :B_beamercolorbox:
+:PROPERTIES:
+:BEAMER_env: beamercolorbox
+:BEAMER_opt: shadow=false,rounded=true
+:END:
+*** Code :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+name: sum_cars
+#+begin_src R :results output :session *R* :exports both
+summary(cars)
+#+end_src
+*** Results                                                  :B_alertblock:
+:PROPERTIES:
+:BEAMER_env: alertblock
+:END:
+
+#+RESULTS: sum_cars
+:      speed           dist       
+:  Min.   : 4.0   Min.   :  2.00  
+:  1st Qu.:12.0   1st Qu.: 26.00  
+:  Median :15.0   Median : 36.00  
+:  Mean   :15.4   Mean   : 42.98  
+:  3rd Qu.:19.0   3rd Qu.: 56.00  
+:  Max.   :25.0   Max.   :120.00
+
+** Argh... damned computers
+\small
+#+ATTR_BEAMER: :overlay <+->
+
+- Alice: "/I got 3.123123/" \qquad Bob: "/I got segfault/"\pause
+- "/Damned! It used to work!!! Whenever I upgrade my computer, things
+  break so I try to stay away from this/" $\frowny$
+- "/Anyway, I don't have the root password/"\qquad "/The what?.../"\pause
+- "/Whenever trying the code of my colleague, I had to install Foo but
+  I broke everything and now neither his code nor mine works!/" $\frowny$ \pause
+- "/But hey! Here is my code, feel free to play with it! I'm doing open
+  science $\winkey$/"\medskip
+   #+BEGIN_CENTER
+    Seriously ? \quad How come all this is so painful ?
+  #+END_CENTER
+** Backwards compatibility
+*** Examples                                                        :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .6
+:END:
+\small
+#+ATTR_BEAMER: :overlay <+->
+- Software environment evolution
+- Software evolution and OS heterogeneity
+- Impact of the compiler
+#+LaTeX: \vspace{-.6cm}
+****                                          :B_exampleblock:
+:PROPERTIES:
+:BEAMER_env: exampleblock
+:END:
+#+LaTeX: \begin{overlayarea}{\linewidth}{5cm}\scriptsize
+  #+LaTeX: \only<1>{\vspace{-2cm}
+    #+ATTR_LATEX: :height 2.35cm :center nil
+    file:img/plot_1.5.3.png
+    #+ATTR_LATEX: :height 2.35cm :center nil
+    file:img/plot_2.1.1.png
+  #+LaTeX: }%
+  #+LaTeX: \only<2>{
+    The Effects of FreeSurfer Version, Workstation Type, and Macintosh
+    Operating System Version on Anatomical Volume and Cortical Thickness
+    Measurements (PLOS ONE, 2012)
+  
+    #+BEGIN_QUOTE
+    Significant differences in volume and cortical thickness were
+    revealed *across FreeSurfer versions*. In addition, less pronounced
+    differences were found *between* the *Mac* and *HP workstations* and
+    *between Mac OSX 10.5 and OSX 10.6*.
+    #+END_QUOTE
+  #+LaTeX: }%
+  #+LaTeX: \only<3->{
+    Assessing Reproducibility: An Astrophysical Example of
+    Computational Uncertainty in the HPC Context (ResCuE-HPC, 2018)
+
+      #+LaTeX: \null\hbox{\hspace{-.4cm}\scalebox{.87}{
+      #+ATTR_LATEX: :center nil
+      | Compiler     | Optim. | Largest Halo |          | Walltime |
+      |              |        |    Avg Mass. | Std. Err |          |
+      |--------------+--------+--------------+----------+----------|
+      | gcc@6.2.0    | None   |     2.273E46 | 1.069E44 | 22h      |
+      | gcc@6.2.0    | Normal |     2.266E46 | 1.218E44 | 10h      |
+      | gcc@6.2.0    | High   |     2.275E46 | 1.199E44 | 9h       |
+      |--------------+--------+--------------+----------+----------|
+      | intel@16.0.3 | None   |     2.271E45 | 1.587E44 | 39h      |
+      | intel@16.0.3 | Normal |    *4.330(45)* | 1.248E44 | 7h       |
+      | intel@16.0.3 | High   |     2.268E46 | 1.414E44 | 6h       |
+      |--------------+--------+--------------+----------+----------|
+      | cce@8.5.5    | Low    |    *4.311(45)* | 1.353E44 | 16h      |
+      | cce@8.5.5    | Normal |     2.271E46 | 1.261E44 | 6h       |
+      | cce@8.5.5    | High   |     2.272E46 | 1.341E44 | 5h       |
+      # |--------------+--------+--------------+----------+----------|
+      # | pgi@16.9.0   | Normal |     2.272E46 | 1.326E44 | 13h      |
+      # | pgi@16.9.0   | High   |     2.271E46 | 1.191E44 | 10h      |
+      #+LaTeX: }}
+    #+LaTeX: }
+#+LaTeX: \end{overlayarea}
+*** Reproducibility Challenge                                       :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .4
+:BEAMER_act: <4->
+:END:
+
+#+LaTeX: \begin{overlayarea}{\linewidth}{0cm}\vspace{3cm}
+#+LaTeX: \includegraphics<3>[width=\linewidth]{img/rescueHPC_gal1.png}%
+#+LaTeX: \includegraphics<4>[width=\linewidth]{img/rescueHPC_gal2.png}%
+#+LaTeX: \end{overlayarea}
+
+#+LaTeX: \uncover<5->{
+#+ATTR_LaTeX: :width \linewidth
+file:img/ten-years-challenge.png
+
+#+LaTeX: \resizebox{\linewidth}{!}{
+[[http://rescience.github.io/ten-years/][http://rescience.github.io/ten-years/]]
+#+LaTeX: }
+#+LaTeX: }
+
+** Complex ecosystems
+
+#+begin_src python :results output :exports both
+import matplotlib
+print(matplotlib.__version__) 
+#+end_src
+
+#+RESULTS:
+: 3.1.2
+
+\pause
+#+name: python3_apt
+#+begin_src shell :results output :exports both
+apt show python3-matplotlib
+#+end_src
+
+#+RESULTS: python3_apt
+#+begin_example
+Package: python3-matplotlib
+Version: 3.1.2-2
+Priority: optional
+Section: python
+Source: matplotlib
+Maintainer: Sandro Tosi <morph@debian.org>
+Installed-Size: 15.3 MB
+Depends: python3-dateutil, python-matplotlib-data (>= 3.1.2-2), python3-pyparsing (>= 1.5.6), python3-six (>= 1.4), libjs-jquery, libjs-jquery-ui, python3-numpy (>= 1:1.16.0~rc1), python3-numpy-abi9, python3 (<< 3.9), python3 (>= 3.7~), python3-cycler (>= 0.10.0), python3-kiwisolver, python3:any, libc6 (>= 2.29), libfreetype6 (>= 2.2.1), libgcc-s1 (>= 3.0), libpng16-16 (>= 1.6.2-1), libstdc++6 (>= 5.2)
+Recommends: python3-pil, python3-tk
+Suggests: dvipng, ffmpeg, gir1.2-gtk-3.0, ghostscript, inkscape, ipython3, librsvg2-common, python-matplotlib-doc, python3-cairocffi, python3-gi, python3-gi-cairo, python3-gobject, python3-nose, python3-pyqt5, python3-scipy, python3-sip, python3-tornado, texlive-extra-utils, texlive-latex-extra, ttf-staypuft
+Enhances: ipython3
+Homepage: http://matplotlib.org/
+Download-Size: 5387 kB
+APT-Manual-Installed: no
+APT-Sources: http://ftp.fr.debian.org/debian testing/main amd64 Packages
+Description: Python based plotting system in a style similar to Matlab (Python 3)
+ Matplotlib is a pure Python plotting library designed to bring
+ publication quality plotting to Python with a syntax familiar to
+ Matlab users. All of the plotting commands in the pylab interface can
+ be accessed either via a functional interface familiar to Matlab
+ users or an object oriented interface familiar to Python users.
+ .
+ This package contains the Python 3 version of matplotlib.
+#+end_example
+
+#+BEGIN_EXPORT latex
+\begin{overlayarea}{\linewidth}{5cm}
+  \pause\vspace{-10.5cm}\includegraphics<+>[width=1.15\linewidth]{img/python3-matplotlib.png}%
+\end{overlayarea}
+#+END_EXPORT
+** Non standard ecosystems :B_frame:
+:PROPERTIES:
+:BEAMER_env: frame
+:BEAMER_opt: shrink=8
+:END:
+
+- No standard ::  
+  - Linux (=apt=, =rpm=, =yum=), MacOS X (=brew=, =McPorts=, =Fink=), Windows (?)
+  - Neither for installation nor for retrieving the information... $\frowny$
+
+#+LaTeX: \vspace{-1.5em}
+*** Python                                                          :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .45
+:BEAMER_opt: t
+:END:
+
+#+name: python_version
+#+begin_src python :results output :exports both
+import sys
+print(sys.version)
+import matplotlib
+print(matplotlib.__version__)
+import pandas as pd
+print(pd.__version__)
+#+end_src
+
+#+LaTeX:\begin{lrbox}{\temp}\begin{minipage}{2\linewidth}
+#+RESULTS: python_version
+: 3.7.6 (default, Jan 19 2020, 22:34:52) 
+: [GCC 9.2.1 20200117]
+: 3.1.2
+: 0.25.3
+#+LaTeX: \end{minipage}\end{lrbox}\vspace{.6em}\scalebox{.8}{\usebox{\temp}}  
+*** R                                                               :BMCOL:
+:PROPERTIES:
+:BEAMER_col: .55
+:BEAMER_opt: t
+:END:
+#+begin_src R :results output :session *R* :exports both
+library(ggplot2)
+sessionInfo()
+#+end_src
+
+#+LaTeX:\begin{lrbox}{\temp}\begin{minipage}{2\linewidth}
+#+RESULTS:
+#+begin_example
+R version 3.6.3 RC (2020-02-21 r77847)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Debian GNU/Linux bullseye/sid
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/atlas/libblas.so.3.10.3
+LAPACK: /usr/lib/x86_64-linux-gnu/atlas/liblapack.so.3.10.3
+
+locale:
+[1] C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] ggplot2_3.2.1
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.3       withr_2.1.2      crayon_1.3.4     dplyr_0.8.4     
+ [5] assertthat_0.2.1 grid_3.6.3       R6_2.4.1         lifecycle_0.1.0 
+ [9] gtable_0.3.0     magrittr_1.5     scales_1.1.0     pillar_1.4.3    
+[13] rlang_0.4.4      lazyeval_0.2.2   glue_1.3.1       purrr_0.3.3     
+[17] munsell_0.5.0    compiler_3.6.3   pkgconfig_2.0.3  colorspace_1.4-1
+[21] tidyselect_1.0.0 tibble_2.1.3
+#+end_example
+#+LaTeX: \end{minipage}\end{lrbox}\vspace{.6em}\scalebox{.8}{\usebox{\temp}}  
+** Argh... damned computers
+\small
+- "/Whenever I upgrade my computer, things break so I try to stay away
+  from this/"  $\frowny$
+- "/Whenever trying the code of my colleague, I had to install Foo but
+  I broke everything and now neither his code nor mine works!/" $\frowny$
+- "/But hey! Here is my code, feel free to play with it! I'm doing open
+  science $\winkey$/"\bigskip
+  \pause
+
+  Are you really aware of your dependencies ?
+  - No one will ever run/use your code if it isn't easy to install
+  - No one will ever manage to run your code if you don't document how
+    to run it
+  - Others (even you) are unlikely to get the same results unless you
+    automate the execution
+** Solutions we will cover
+1. Work in an isolated environment
+2. Automate the construction of this environment
+3. Use reliable package sources
+4. Share this environment
+5. Check whether your code runs on an other machine
+* Package Management
+** Installing software from sources
+- =configure= (or =cmake= or whatever)
+  - detect and check dependencies
+  - test _features_ (not versions)!
+  - generates header files and makefiles\pause
+- =make=
+  - compile and link
+  - create shared libraries and executables\pause
+- =make install= (as root)
+  - copy shared libraries, headers and executables\pause
+
+This is often:
+1. tedious, time consuming, error prone, frustrating, ...
+2. incoherent
+   - Filename conflicts during =install=?
+   - Will =my_super_code= still work after upgrading =libexotic.so=?
+** Installing binary packages (as root)
+#+begin_src shell :results output :exports both
+dpkg -i rstudio_last_version.deb
+#+end_src
+- No need to recompile
+- =dpkg= will ensure version coherency, warn about conflicts\scriptsize
+  #+BEGIN_EXAMPLE
+  Depends: libedit2, libssl1.0.0 | libssl1.0.2 | libssl1.1, libclang-dev, libc6 (>= 2.7)
+  #+END_EXAMPLE
+\pause
+#+begin_src shell :results output :exports both
+apt install r-cran-tidyverse
+#+end_src
+- Will download from trusted sources all the =.deb= packages you need\medskip
+\pause
+# https://wiki.debian.org/DependencyHell
+The *Debian* package manager:
+- distinguishes between *build* and *binary* dependencies
+- applies patches to make correct compiling/installation
+- handles dependencies, conflicts, alternatives, ...
+- handles potential security and quality issues
+** Debian installation essentials
+#+begin_src shell :results output :exports both
+apt update  # Update the package list
+apt search neuroscience # or apt-cache
+apt show <package_name>
+apt install <package_name>
+apt upgrade # Upgrade all your packages
+apt clean   # Delete all the .deb you've dowloaded
+apt remove --purge <package_name>
+#+end_src
+** Any drawback with binary installation ?
+\small
+#+ATTR_BEAMER: :overlay <+->
+- +Not specifically optimized for your machine+ (GenToo)
+- Binary package and compiling may incur "fake" dependencies\vspace{-.3em}
+  #+ATTR_BEAMER: :overlay <.->
+  - ~Depends:  libc6 (>= 2.7)~ How do you know the future?
+  - Some requirements may be too strong
+- Code comes in "bulk" (latex compiler, documentation, etc.)
+- =apt= or other similar tools\vspace{-.3em}
+  #+ATTR_BEAMER: :overlay <.->
+  - easy installation of "some package" at a given date
+  - installing a specific version or combination is hard
+- /What if my distribution is not up-to-date ?/\vspace{-.3em}
+  #+ATTR_BEAMER: :overlay <.->
+  - Ubuntu LTS or Debian stable $\cooley$ vs. testing/unstable $\scared$
+- /What if a given software is not packaged ?/\vspace{-.3em}
+  #+ATTR_BEAMER: :overlay <.->
+  - Use python/R/specific installation mechanism
+  - Use additional alternative distribution (e.g., condas)
+  Be prepared to mess everything up! $\frowny$
+** Using ad hoc installation procedures
+:PROPERTIES:
+:BEAMER_env: frame
+:BEAMER_opt: shrink=8
+:END:
+- R :: =install.packages("ggplot2")=
+  - Linux/Mac: builds from sources
+    - hence requires a compiler and all the right libraries...
+  - Windows: downloads binary image\pause
+  - =This version requires a more recent R= $\frowny$
+    1. Upgrade R.
+    2. (Try to) reinstall through R all the packages you had
+       previously installed! $\frowny$ \pause
+- Python ::  
+  - =pip install numpy= does not check for conflict with
+    previously installed packages!!!\pause
+  - =condas=: python and R distribution for scientific computing on
+    Windows, MacOS X, Linux
+    - =conda list --export > requirements.txt=
+    - =conda create --name <envname> --file requirements.txt= or =conda install pandas=0.13.1=
+    - [[https://stackoverflow.com/questions/23974217/how-do-i-revert-to-a-previous-package-in-anaconda][Recreating an old installation is not so simple]] $\frowny$ \pause
+#+BEGIN_CENTER
+*Mixing distributions is generally a terrible idea!*
+#+END_CENTER
+** Why are you focusing on Debian ?
+:PROPERTIES:
+:BEAMER_env: frame
+:BEAMER_opt: shrink=5
+:END:
+*** Three good reasons
+  #+ATTR_BEAMER: :overlay <+->
+  1. It is an open source leader (GNU/Linux)\vspace{-.3em}
+     #+ATTR_BEAMER: :overlay <.->
+     - Reproducibility on Mac OS X or Windows is almost impossible
+     - =main= is 100% free, =non-free= packages are optional
+     - Initial release: 1993!
+  2. [[https://wiki.debian.org/ReproducibleBuilds][Debian reproducible builds]]\vspace{-.3em}
+     #+ATTR_BEAMER: :overlay <.->
+     - Most packages built in sid today are reproducible under a fixed
+       build-path and environment.
+     - CI builds and immediately rebuilds packages to detect problems
+       related to timestamps, file ordering, CPU usage,
+       (pseudo-)randomness, etc.
+  3. The [[https://snapshot.debian.org/][snapshot archive]] is a wayback machine\vspace{-.5em}\scriptsize
+
+     #+LaTeX:\begin{lrbox}{\temp}\begin{minipage}{2\linewidth}
+     #+begin_example
+     deb     https://snapshot.debian.org/archive/debian/20091004T111800Z/ lenny main
+     deb-src https://snapshot.debian.org/archive/debian/20091004T111800Z/ lenny main
+     #+end_example
+     #+LaTeX: \end{minipage}\end{lrbox}\vspace{1em}\hbox{\hspace{-.6cm}\scalebox{.9}{\usebox{\temp}}}\vspace{-.5em}
+
+*** Drawback :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_ACT: <+->
+:END:
+- Not as +up-to-date+ diverse as anaconda
+- Mixing versions is less flexible
+* Fundamentals of Operating System Architecture
+** Figures                                                        :noexport:
+#+begin_src shell :results output :exports both
+/usr/share/texmf/scripts/latex-make/gensubfig.py -s img/archi_basics.subfig -p '/usr/share/texmf/scripts/latex-make/svgdepth.py  < $< > $@' img/archi_basics.svg > archi_basics.mk
+/usr/share/texmf/scripts/latex-make/gensubfig.py -s img/archi_process.subfig -p '/usr/share/texmf/scripts/latex-make/svgdepth.py  < $< > $@' img/archi_process.svg > archi_process.mk
+/usr/share/texmf/scripts/latex-make/gensubfig.py -s img/archi_chroot.subfig -p '/usr/share/texmf/scripts/latex-make/svgdepth.py  < $< > $@' img/archi_chroot.svg > archi_chroot.mk
+make all img/archi_VM.pdf
+#+end_src
+
+#+RESULTS:
+#+begin_example
+/usr/share/texmf/scripts/latex-make/svgdepth.py  < img/archi_chroot.svg > img/archi_chroot_1.svg machine files environment cloud kernel process
+inkscape -A img/archi_chroot_1.pdf img/archi_chroot_1.svg
+/usr/share/texmf/scripts/latex-make/svgdepth.py  < img/archi_chroot.svg > img/archi_chroot_2.svg machine files environment cloud kernel process chroot_dir
+inkscape -A img/archi_chroot_2.pdf img/archi_chroot_2.svg
+/usr/share/texmf/scripts/latex-make/svgdepth.py  < img/archi_chroot.svg > img/archi_chroot_3.svg machine files environment cloud kernel process chroot_dir chroot_arch
+inkscape -A img/archi_chroot_3.pdf img/archi_chroot_3.svg
+/usr/share/texmf/scripts/latex-make/svgdepth.py  < img/archi_chroot.svg > img/archi_chroot_4.svg machine files environment cloud kernel process chroot_dir chroot_arch namespace
+inkscape -A img/archi_chroot_4.pdf img/archi_chroot_4.svg
+/usr/share/texmf/scripts/latex-make/svgdepth.py  < img/archi_chroot.svg > img/archi_chroot_5.svg machine files environment cloud kernel process chroot_dir chroot_arch namespace cgroups
+inkscape -A img/archi_chroot_5.pdf img/archi_chroot_5.svg
+make: 'img/archi_VM.pdf' is up to date.
+#+end_example
+
+** Foreword
+#+BEGIN_CENTER
+\textcolor{structure}{Open Science $\Rightarrow$ Open Source $\Rightarrow$ Linux}
+#+END_CENTER
+
+Using other OS (Mac, Windows) *is* possible but will generally be more
+tedious\bigskip
+
+Beyond /Ideology/, let's explain why from a technical point of view
+
+** What does a program need ?
+*** Images                                                :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+LaTeX: \begin{overlayarea}{\linewidth}{6cm}
+#+LaTeX: %\includegraphics<+>[scale=.5]{img/archi_basics_1.pdf}%
+#+LaTeX: \includegraphics<+>[scale=.5]{img/archi_basics_2.pdf}%
+#+LaTeX: \includegraphics<+>[scale=.5]{img/archi_basics_3.pdf}%
+#+LaTeX: \includegraphics<+>[scale=.5]{img/archi_basics_4.pdf}%
+#+LaTeX: \includegraphics<+>[scale=.5]{img/archi_basics_5.pdf}%
+#+LaTeX: \includegraphics<+>[scale=.5]{img/archi_basics_6.pdf}%
+#+LaTeX: \end{overlayarea}
+*** Text :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+*Program = code + \dots* 
+
+\vspace{3cm}
+** What's the kernel ?
+*** Images                                                :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+LaTeX: \begin{overlayarea}{\linewidth}{5cm}
+#+LaTeX: \includegraphics<+>[scale=.5]{img/archi_process_1.pdf}%
+#+LaTeX: \includegraphics<+>[scale=.5]{img/archi_process_2.pdf}%
+#+LaTeX: \includegraphics<+->[scale=.5]{img/archi_process_3.pdf}%
+#+LaTeX: \end{overlayarea}
+
+*** The kernel :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_act: <.>
+:END:
+Mediates the access to physical resources through *system calls*
+- I want to =read/write= some data in a file
+- I need more memory (=brk=), virtual address translation
+- I run until I'm preempted
+Everything is shared, including the software environment
+#+LaTeX: \vspace{5cm}
+* Containers
+** Virtual Machines
+*** Images :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+LaTeX: \begin{overlayarea}{\linewidth}{5cm}
+#+LaTeX: \includegraphics[scale=.5]{img/archi_VM.pdf}%
+#+LaTeX: \end{overlayarea}
+*** Text :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+- A virtual machine emulates a whole system
+  - Slow
+  - Large $\leadsto$ difficult to share
+- Communication with the guest system ? Through the "network"
+#+LaTeX: \vspace{5cm}
+** Chroot, Namespaces, and Control groups
+*** Images :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+LaTeX: \begin{overlayarea}{\linewidth}{5cm}
+#+LaTeX: \includegraphics<+>[scale=.5]{img/archi_chroot_1.pdf}%
+#+LaTeX: \includegraphics<+>[scale=.5]{img/archi_chroot_2.pdf}%
+#+LaTeX: \includegraphics<+>[scale=.5]{img/archi_chroot_3.pdf}%
+#+LaTeX: \includegraphics<+>[scale=.5]{img/archi_chroot_4.pdf}%
+#+LaTeX: \includegraphics<+>[scale=.5]{img/archi_chroot_5.pdf}%
+#+LaTeX: \end{overlayarea}
+*** Text :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+- =chroot=: tweak the root filesystem
+#+ATTR_BEAMER: :overlay <4->
+- =namespaces=: isolate process from each others
+#+ATTR_BEAMER: :overlay <5->
+- =cgroups=: limits, accounts for, and isolates resource usage
+#+LaTeX: \vspace{5cm}
+** Containers
+#+BEGIN_CENTER
+*Containers* = =chroot= + =namespaces= + =cgroups= + ... made easy
+#+END_CENTER
+
+- Images only comprise the useful code (+kernel, drivers+)
+- Process keep using syscalls as usual $\leadsto$ very lightweight\pause
+- Communication with the guest system: through the file system
+  - Software environment in the image (as small as possible)
+  - Data (input and output) in the guest OS\bigskip\pause
+
+#+LaTeX: \uline{
+Docker containers 
+#+LaTeX: \includegraphics[height=6mm]{img/clipart/logo-docker.png}:}
+- Running as easy as =docker run <img> <cmd>=
+- Building images: =docker build -f <Dockerfile>=
+- Sharing through the [[https://hub.docker.com/][Docker Hub]]: =docker pull/push <img>=
+** Alternatives to containers
+- Python :: =virtualenv=, =pipenv=, =conda environments=, ...
+  - install python packages in specific directories
+  - =freeze= is possible but:
+    - permeable \hspace{3em} (what about other scripts, codes, ... ?)
+    - python-only \hspace{2.4em} (what about =libblas=?)\medskip\pause
+- GUIX/NiX :: Full-fledged /functional/ package manager 
+  - Native support for environment (/à la git/)
+  - Isolation through =--pure=
+  - Recompile from source (cache recommended)
+    - $\leadsto$ more flexibility for combination and customization
+  - Limited set of packages compared to Debian or Anacondas
+** Limitations and potential issues
+- Linux through docker over Mac or Windows
+  - Incompatible syscalls $\leadsto$ Docker in a VM $\Rightarrow$ Sloooow I/O
+  - Windows10 (Windows Subsystem for Linux): compatible syscalls...\pause
+- Old linux over recent linux
+  - What if the syscall changed ?!?
+    - Very stable but may require ~vsyscall=emulate~
+  - Bootstraping: use old =.deb= files with a recent =dpkg=
+  - Networking: old gpg keys, format compatibility, https, ...\bigskip\pause
+
+Not perfect but (if Linux-only) Docker is:
+- Easy to use and set up
+- Lightweight
+- Robust
+* Docker Tutorial
+** Goals of the tutorial
+[[https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module5/ressources/docker_tutorial_fr.org]]
+\bigskip
+
+1. Getting familiar with Docker
+   - First steps
+   - Configuration for a daily usage
+2. Building, automating and sharing your own environment
+3. Using Docker in a Continuous Integration context
+4. Try doing the same with GUIX (for the braves $\winkey$)
+
+** Docker Tips
+- Build / copy (checkpoint in the Dockerfile)
+- Freeze sources with debian.snapshots
+- Clean build-dependencies before sharing your image
+- Avoid running =apt-get= in CI images
+* Emacs Setup                                                      :noexport:
+This document has local variables in its postembule, which should
+allow Org-mode (9) to work seamlessly without any setup. If you're
+uncomfortable using such variables, you can safely ignore them at
+startup. Exporting may require that you copy them in your .emacs.
+
+# ###############################
+# Local Variables:
+# eval: (setq my-utils-file "ox-extra.el")
+# eval: (load-file (expand-file-name my-utils-file (file-name-directory (buffer-file-name))))
+# eval: (ox-extras-activate '(ignore-headlines))
+# eval: (add-to-list 'org-latex-packages-alist '("" "minted"))
+# eval: (setq org-latex-listings 'minted)
+# eval: (setq org-latex-minted-options '(("style" "Tango") ("bgcolor" "Moccasin") ("frame" "lines") ("linenos" "true") ("fontsize" "\\scriptsize")))
+# End:
+

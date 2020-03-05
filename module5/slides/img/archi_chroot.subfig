@@ -1,0 +1,6 @@
+machine files environment cloud kernel process
+machine files environment cloud kernel process chroot_dir
+machine files environment cloud kernel process chroot_dir chroot_arch
+machine files environment cloud kernel process chroot_dir chroot_arch namespace
+machine files environment cloud kernel process chroot_dir chroot_arch namespace cgroups
+
