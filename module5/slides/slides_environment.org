@@ -292,7 +292,7 @@ Description: Python based plotting system in a style similar to Matlab (Python 3
 :END:
 
 - No standard ::  
-  - Linux (=apt=, =rpm=, =yum=), MacOS X (=brew=, =McPorts=, =Fink=), Windows (?)
+  - Linux (=apt=, =rpm=, =yum=), MacOS X (=brew=, =MacPorts=, =Fink=), Windows (?)
   - Neither for installation nor for retrieving the information... $\frowny$
 
 #+LaTeX: \vspace{-1.5em}
@@ -447,7 +447,7 @@ apt remove --purge <package_name>
 - /What if a given software is not packaged ?/\vspace{-.3em}
   #+ATTR_BEAMER: :overlay <.->
   - Use python/R/specific installation mechanism
-  - Use additional alternative distribution (e.g., condas)
+  - Use additional alternative distribution (e.g., conda)
   Be prepared to mess everything up! $\frowny$
 ** Using ad hoc installation procedures
 :PROPERTIES:
@@ -465,7 +465,7 @@ apt remove --purge <package_name>
 - Python ::  
   - =pip install numpy= does not check for conflict with
     previously installed packages!!!\pause
-  - =condas=: python and R distribution for scientific computing on
+  - =[Ana|Mini]conda=: python and R distribution for scientific computing on
     Windows, MacOS X, Linux
     - =conda list --export > requirements.txt=
     - =conda create --name <envname> --file requirements.txt= or =conda install pandas=0.13.1=
@@ -473,6 +473,7 @@ apt remove --purge <package_name>
 #+BEGIN_CENTER
 *Mixing distributions is generally a terrible idea!*
 #+END_CENTER
+# https://github.com/r-darwish/topgrade
 ** Why are you focusing on Debian ?
 :PROPERTIES:
 :BEAMER_env: frame
@@ -506,7 +507,7 @@ apt remove --purge <package_name>
 :BEAMER_env: block
 :BEAMER_ACT: <+->
 :END:
-- Not as +up-to-date+ diverse as anaconda
+- Not as +up-to-date+ diverse as Anaconda
 - Mixing versions is less flexible
 * Fundamentals of Operating System Architecture
 ** Figures                                                        :noexport:
@@ -652,7 +653,7 @@ Docker containers
   - Isolation through =--pure=
   - Recompile from source (cache recommended)
     - $\leadsto$ more flexibility for combination and customization
-  - Limited set of packages compared to Debian or Anacondas
+  - Limited set of packages compared to Debian ([[https://repology.org/][not really]]) or Anaconda
 ** Limitations and potential issues
 - Linux through docker over Mac or Windows
   - Incompatible syscalls $\leadsto$ Docker in a VM $\Rightarrow$ Sloooow I/O
