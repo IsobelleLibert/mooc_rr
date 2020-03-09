@@ -30,7 +30,7 @@ women in the initial survey who smoked but have since quit
 (18). Survival at 20 years was determined for all women of the first survey.
 
 All these data are available in this [file
-CSV](file:https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/raw/master/module3/Practical_session/Subject6_smoking.csv). You will find on each line if the
+CSV](https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/blob/master/module3/Practical_session/Subject6_smoking.csv). You will find on each line if the
 person smokes or not, whether alive or dead at the time of the
 second study, and his age at the time of the first survey. 
 
