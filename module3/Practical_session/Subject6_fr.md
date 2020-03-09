@@ -33,7 +33,7 @@ femmes dans le sondage initial ayant fumé mais ayant arrêté depuis
 du premier sondage.
 
 L'ensemble de ces données est disponible dans ce [fichier
-CSV](file:Subject6_smoking.csv). Vous trouverez sur chaque ligne si la
+CSV](file:https://gitlab.inria.fr/learninglab/mooc-rr/mooc-rr-ressources/raw/master/module3/Practical_session/Subject6_smoking.csv). Vous trouverez sur chaque ligne si la
 personne fume ou non, si elle est vivante ou décédée au moment de la
 seconde étude, et son âge lors du premier sondage. 
 
