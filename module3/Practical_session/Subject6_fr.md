@@ -23,9 +23,9 @@ un sondage d'un sixième des électeurs a été effectué afin d'éclairer
 des travaux sur les maladies thyroïdiennes et cardiaques (Tunbridge et
 al. 1977). Une suite de cette étude a été menée vingt ans plus tard
 (Vanderpump et al. 1995). Certains des résultats avaient trait au
-tabagisme et à si les individus étaient toujours en vie lors de la
-seconde étude. Par simplicité, nous nous restreindrons au femmes et
-parmi celles-ci aux 1,314 qui ont été catégorisées comme "fumant
+tabagisme et à savoir si les individus étaient toujours en vie lors de la
+seconde étude. Par simplicité, nous nous restreindrons aux femmes et
+parmi celles-ci aux 1314 qui ont été catégorisées comme "fumant
 actuellement" ou "n'ayant jamais fumé". Il y avait relativement peu de
 femmes dans le sondage initial ayant fumé mais ayant arrêté depuis
 (162) et très peu pour lesquelles l'information n'était pas disponible
@@ -34,7 +34,7 @@ du premier sondage.
 
 L'ensemble de ces données est disponible dans ce [fichier
 CSV](file:Subject6_smoking.csv). Vous trouverez sur chaque ligne si la
-personne fume ou pas, si elle est vivante ou décédée au moment de la
+personne fume ou non, si elle est vivante ou décédée au moment de la
 seconde étude, et son âge lors du premier sondage. 
 
 Cet exercice peut être réalisé indifféremment en R ou en Python.
@@ -43,7 +43,7 @@ __Votre mission si vous l'acceptez__ :
 
 1. Représentez dans un tableau le nombre total de femmes vivantes et
    décédées sur la période en fonction de leur habitude de
-   tabagisme. Calculez dans chaque groupe (fumeuse/ non fumeuse) le
+   tabagisme. Calculez dans chaque groupe (fumeuses/ non fumeuses) le
    taux de mortalité (le rapport entre le nombre de femmes décédées
    dans un groupe avec le nombre total de femmes dans ce groupe). Vous
    pourrez proposer une représentation graphique de ces données et
@@ -64,7 +64,7 @@ __Votre mission si vous l'acceptez__ :
    durant la période de 20 ans, on peut étudier le modèle `Death ~
    Age` pour étudier la probabilité de décès en fonction de l'âge
    selon que l'on considère le groupe des fumeuses ou des non
-   fumeuses. Ces régressions vous permettent elles de conclure ou pas
+   fumeuses. Ces régressions vous permettent de conclure ou pas
    sur la nocivité du tabagisme ?  Vous pourrez proposer une
    représentation graphique de ces régressions (en n'omettant pas les
    régions de confiance).
