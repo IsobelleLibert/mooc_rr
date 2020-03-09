@@ -1,6 +1,6 @@
 # Subject 6: Around Simpson's Paradox
 
- __Prérequis__ : Averaging and ratio calculation, simple graphical presentation techniques, possibly logistic regression
+ __Prerequisites__ : Averaging and ratio calculation, simple graphical presentation techniques, possibly logistic regression
 
 <!-- In 1972-1974 a one-in-six survey of the electoral roll, largely -->
 <!-- concerned with thyroid disease and heart disease, was carried out in -->
