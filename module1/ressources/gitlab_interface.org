@@ -43,7 +43,7 @@ button "*Accéder à Gitlab / Access to Gitlab*".
     #+END_CENTER
 
 ** Recover your password
-To recover a predefined password you must use [[https://app-learninglab.inria.fr/jupyterhub/services/password][Gitlab
+To recover a predefined password you must use [[https://app-learninglab.inria.fr/moocrr/jupyter/services/password][Gitlab
   credentials retrieval tool]]. One gets then the login and password.
 
   #+BEGIN_CENTER

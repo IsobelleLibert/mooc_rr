@@ -43,7 +43,7 @@ plateforme FUN après avoir cliqué sur le bouton "*Accéder à GitLab / Access 
     #+END_CENTER
 
 ** Récupérer son mot de passe
-Pour récupérer le mot de passe prédéfini, il faut utiliser le [[https://app-learninglab.inria.fr/jupyterhub/services/password][GitLab
+Pour récupérer le mot de passe prédéfini, il faut utiliser le [[https://app-learninglab.inria.fr/moocrr/jupyter/services/password][GitLab
   credentials retrieval tool]]. On retrouve alors le login et le mot de
   passe.
 
