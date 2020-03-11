@@ -1,4 +1,4 @@
-#+TITLE: Controling Software Environment
+#+TITLE: Controlling Software Environment
 #+AUTHOR:  
 # @@latex:{\large Arnaud Legrand} \\ \vspace{0.2cm}Grenoble Alpes University and CNRS\\ \vspace{0.2cm} \texttt{arnaud.legrand@imag.fr}@@
 #+DATE:  
@@ -69,7 +69,7 @@
 #+LaTeX: \newsavebox{\temp}
 
 \tocframe
-* On the Importance of Software Environment
+* On the Importance of Software Environments
 #+LaTeX: \AtBeginSection[]{\tocframec}
 ** Test                                                           :noexport:
 :PROPERTIES:
@@ -431,7 +431,7 @@ apt remove --purge <package_name>
 ** Any drawback with binary installation ?
 \small
 #+ATTR_BEAMER: :overlay <+->
-- +Not specifically optimized for your machine+ (GenToo)
+- +Not specifically optimized for your machine+ (Gentoo)
 - Binary package and compiling may incur "fake" dependencies\vspace{-.3em}
   #+ATTR_BEAMER: :overlay <.->
   - ~Depends:  libc6 (>= 2.7)~ How do you know the future?
@@ -678,7 +678,7 @@ Not perfect but (if Linux-only) Docker is:
    - Configuration for a daily usage
 2. Building, automating and sharing your own environment
 3. Using Docker in a Continuous Integration context
-4. Try doing the same with GUIX (for the braves $\winkey$)
+4. Try doing the same with GUIX (for the brave $\winkey$)
 
 ** Docker Tips
 - Build / copy (checkpoint in the Dockerfile)
