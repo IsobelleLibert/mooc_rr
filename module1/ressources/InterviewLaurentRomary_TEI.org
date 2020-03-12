@@ -21,8 +21,7 @@ for Standardization]]) and the TEI consortium
    :CUSTOM_ID: interview
    :END:
 
-*** How can the question of reproducibility be translated into the
-humanities and human sciences?
+*** How can the question of reproducibility be translated into the humanities and human sciences?
     :PROPERTIES:
     :CUSTOM_ID: how-can-the-question-of-reproducibility-and-transparency-be-translated-into-the-humanities-and-human-sciences-much-is-said-about-the-difficulty-of-reproducing-statistical-results-from-experiments.
     :END:
@@ -64,8 +63,7 @@ as shown by the work carried out by Andrew Dunning at the Bodleian
 Library[fn:2], which proposes a specific framework for representing
 medieval manuscripts.
 
-*** Where does your research stand in relation to the issue of
-reproducibility and transparency?
+*** Where does your research stand in relation to the issue of reproducibility and transparency?
     :PROPERTIES:
     :CUSTOM_ID: where-does-your-research-stand-in-relation-to-the-issue-of-reproducibility-and-transparency
     :END:
@@ -103,8 +101,7 @@ decipher. The fruit of their research and the analysis drawn from it can
 be shared transparently and read by other colleagues sharing *the same
 conceptual framework*[fn:5].
 
-*** What are the benefits of putting a text in TEI format as opposed to
-epub format, for example?
+*** What are the benefits of putting a text in TEI format as opposed to epub format, for example?
     :PROPERTIES:
     :CUSTOM_ID: what-are-the-benefits-of-putting-a-text-in-tei-format-as-opposed-to-epub-format-for-example
     :END:
@@ -139,8 +136,7 @@ or the annotation of a document is put in the context of its exact
 description. In this way, we are able to confirm the authenticity of a
 source and its transformation into a reusable digital object.
 
-*** Is this not very complicated for novices? What IT skills are needed?
-Do I need to know XML for example?
+*** Is this not very complicated for novices? What IT skills are needed? Do I need to know XML for example?
     :PROPERTIES:
     :CUSTOM_ID: is-this-not-very-complicated-for-novices-what-it-skills-are-needed-do-I-need-to-know-xml-for-example-what-are-the-prerequisites
     :END:
@@ -157,8 +153,7 @@ understood straight away. *No prior knowledge of advanced computing or
 programming is necessary. You just need to know how to use a text editor
 and a certain amount of common sense*.
 
-*** How can the quality of the encoding be ensured? What is considered
-best practice, particularly when working as part of a group?
+*** How can the quality of the encoding be ensured? What is considered best practice, particularly when working as part of a group?
     :PROPERTIES:
     :CUSTOM_ID: how-can-the-quality-of-the-encoding-be-ensured-what-is-considered-best-practice-particularly-when-working-as-part-of-a-group
     :END:
@@ -186,8 +181,7 @@ that the sources being studied have been understood in the same way. *In
 the end, this concept of common understanding is why the TEI directives
 are often seen as the expression of a shared culture*.
 
-*** Are these encoding techniques only relevant when data is being
-shared or are they also useful when I'm working on my own?
+*** Are these encoding techniques only relevant when data is being shared or are they also useful when I'm working on my own?
     :PROPERTIES:
     :CUSTOM_ID: are-these-encoding-techniques-only-relevant-when-data-is-being-shared-or-are-they-also-useful-when-im-working-on-my-own
     :END:
@@ -204,8 +198,7 @@ time* linked to the era, the location or the exact phenomenon
 particular theme or themes. The TEI thus makes it possible to build a
 stable digital heritage over time*.
 
-*** From a practical point of view, what do I need to do TEI? What
-technical solutions are required?
+*** From a practical point of view, what do I need to do TEI? What technical solutions are required?
     :PROPERTIES:
     :CUSTOM_ID: from-a-practical-point-of-view-what-do-i-need-to-do-tei-what-technical-solutions-are-required
     :END:
@@ -225,8 +218,7 @@ Ortolang]] or [[https://www.nakala.fr/][Nakala]], an environment
 dedicated to the TEI such as [[https://tapasproject.org/][TAPAS]], or
 you can develop your own sharing platform.
 
-*** Could you give us an example of a research question that the TEI
-helped bring about?
+*** Could you give us an example of a research question that the TEI helped bring about?
     :PROPERTIES:
     :CUSTOM_ID: could-you-give-us-an-example-of-a-research-question-that-the-tei-helped-bring-about-show-that-the-tei-goes-further-than-markup-that-it-is-useful-for-exploratory-analysis-for-example.
     :END:
