@@ -1,0 +1,92 @@
+\documentclass{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{crane}
+
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{textpos}
+\usepackage{multirow}
+\usepackage{graphicx}
+
+\definecolor{darkgreen}{rgb}{0.0, 0.3, 0.13}
+
+\newcommand{\bluehref}[2]{\href{#1}{\textcolor{blue}{#2}}}
+
+\definecolor{emph}{RGB}{10,150,10}
+\definecolor{contrast}{RGB}{0,0,120}
+\definecolor{problem}{RGB}{120,0,0}
+\definecolor{nice}{RGB}{10,150,10}
+
+\usepackage{listings,bera}
+\definecolor{sourcecode}{RGB}{0,0,100}
+\definecolor{keywords}{RGB}{200,90,0}
+\definecolor{comments}{RGB}{60,179,113}
+
+
+\title{Automating computations: an introduction to workflows}
+\author[Konrad HINSEN]{Konrad HINSEN}
+\institute[CBM/SOLEIL]
+          {Centre de Biophysique Moléculaire, Orléans, France\\
+           and\\
+           Synchrotron SOLEIL, Saint Aubin, France}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Automation matters}
+
+  \begin{itemize}
+  \item Interactive work is great for exploration, but rarely reproducible.
+  \item Even if you write down everything you do, you will make mistakes.
+  \item And even if you don't make mistakes, you are never \textit{sure}
+        there are no mistakes.
+  \item \textbf{You know exactly what you did only if you can re-run your computation.}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Programs, scripts, notebooks, workflows}
+
+  \begin{itemize}
+  \item Variants of the same idea: automation of computations
+  \item Different terms and tools at different levels of organization
+  \item Program: complex algorithms and/or data structures
+  \item Script: short program, simple algorithms, no data abstraction
+  \item Notebook: script with comments and output
+  \item Workflow: coordination of multiple programs, multiple computers, multiple datasets
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Overview}
+
+  \begin{enumerate}
+  \item What are workflows, and what are they used for?
+  \item Workflow managers: a diverse family of tools
+  \item How to choose a workflow manager?
+  \item The descendants of \texttt{Make}
+  \item Snakemake: Make for scientific computing
+  \item Case study: the incidence of influenza-like illness revisited
+  \end{enumerate}
+
+\end{frame}
+
+\begin{frame}{}
+
+\end{frame}
+
+\begin{frame}{}
+
+\end{frame}
+
+\begin{frame}{}
+
+\end{frame}
+
+
+\end{document}
