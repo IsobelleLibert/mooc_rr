@@ -1,241 +1,305 @@
-#+TITLE: Interview croisée de Valérie Orozco et Christophe Bontemps
+#+TITLE: Cross interview with Valérie Orozco and Christophe Bontemps
 #+Date: <déc 2019>
 #+Author: Valérie Orozco et Christophe Bontemps
-#+Language: fr
+#+Language: en
+** Biography
+   :PROPERTIES:
+   :CUSTOM_ID: biography
+   :END:
 
-** Biographie
-*Valérie Orozco* est ingénieure en statistique/économétrie à l’INRAE
-depuis 2004 et membre du groupe Industrial Organization de TSE
-(Toulouse School of Economics à Toulouse).  Elle participe principalement aux 
-travaux de recherche sur l’économie des firmes agro-alimentaires, et les 
-relations alimentation et santé.
+*Valérie Orozco* has been an engineer in statistics/econometrics at the
+INRAE since 2004, in addition to being a member of the Industrial
+Organization group at the TSE (Toulouse School of Economics). She is
+chiefly involved in research into the economy of agribusiness firms and
+the links between diet and health.
 
-*Christophe Bontemps* est ingénieur économètre à l’INRAE et membre du
-groupe Food Economics and Policy dans TSE
-(Toulouse School of Economics à Toulouse). Il participe aux travaux de
-recherche sur l’économie des firmes agro-alimentaires, l’environnement
-et les relations alimentation et santé.
+*Christophe Bontemps* is an engineer in econometrics at the INRAE and a
+member of the Food Economics and Policy group at the TSE (Toulouse
+School of Economics). He is involved in research into the economy of
+agribusiness firms, the environment and the links between diet and
+health.
 
 ** Interview
-*** Pourriez-vous vous présenter : votre identité, votre domaine de recherche et vos centres d’intérêts scientifiques hors discipline (ex. R, Python, etc.) ?
-Nous travaillons à la croisée de deux mondes : celui des *mathématiques (statistique)* 
-et celui de l'*économie*, en particulier l’économie de l’alimentation et de 
-l’environnement.  
+   :PROPERTIES:
+   :CUSTOM_ID: interview
+   :END:
 
-En tant qu’ingénieurs-économètres, nous sommes appelés à collaborer sur des 
-projets scientifiques, et agissons comme des interfaces entre ces deux mondes. 
-Nous devons donc interpréter les notions économiques très formalisées pour les 
-tester en pratique sur des jeux de données. 
+*** Tell us a bit about yourselves: your identity, your field of research and your scientific interests outside of your discipline (e.g. R, Python, etc.).
+    :PROPERTIES:
+    :CUSTOM_ID: tell-us-a-bit-about-yourselves-your-identity-your-field-of-research-and-your-scientific-interests-outside-of-your-discipline-e.g.r-python-etc..
+    :END:
 
-Nous utilisons donc les outils des deux mondes, nous privilégions l’écriture 
-d’articles en LaTeX et l’utilisation de R, mais nous utilisons également Stata, 
-logiciel propriétaire incontournable en économétrie.     
+We work at the crossroads between two worlds: the world of *mathematics
+(statistics)* and the world of the *economy*, particularly in relation
+to food and the environment.
 
-*** Comment se traduit la question de la reproductibilité et de la transparence dans votre domaine de recherche ? 
-Les recherches auxquelles nous participons comportent de *fortes parties empiriques*. 
-Le plus souvent, un problème est observé et soulève des questions. Les 
-comportements des acteurs (entreprises, consommateurs, décideurs) sont modélisés 
-à l’aide de la théorie économique, puis une hypothèse est émise qui viendrait 
-expliquer le phénomène observé. 
+As econometrists-engineers, we collaborate on scientific projects,
+acting as an interface between these two worlds. Part of this involves
+interpreting highly formalised economic concepts in order to test them
+in practical situations on datasets, and so we use tools from both
+worlds. We tend to favour articles written in LaTeX and the use of R,
+but we also use Stata, which is proprietary software that is absolutely
+essential in econometrics.
 
-Cette hypothèse est ensuite confrontée aux données. Si l’hypothèse est vérifiée 
-sur un jeu de données pertinent, des recommandations peuvent être émises et il 
-s’agit là d’un résultat. Les « résultats » correspondent donc pour nous à 
-l’ensemble des éléments illustrant la réponse à la question de recherche et ils 
-s’appuient souvent sur des résultats (au sens outputs) empiriques (statistiques 
-descriptives, estimations de modèles économétriques). 
+*** How do you handle the issue of reproducibility and transparency in your field of research?
+    :PROPERTIES:
+    :CUSTOM_ID: how-do-you-handle-the-issue-of-reproducibility-and-transparency-in-your-field-of-research
+    :END:
 
-Contrairement à d’autres disciplines, *nous ne construisons pas d’expérience 
-pour collecter les données ou répliquer un phénomène*. Nous utilisons des 
-*données observées* (par exemple les achats par des ménages) sur lesquelles 
-*nous testons des hypothèses* et *estimons les paramètres du modèle économique* 
-(par exemple une élasticité-prix). 
+The research we are involved in has *a great deal of empiricism**. Most
+often, a problem is observed and raises questions. The behaviour of
+agents (companies, consumers, decision-makers) is modelled based on
+economic theory, and then a hypothesis is put forward to explain the
+observed phenomenon.
 
-La reproductibilité des résultats peut s’exprimer soit comme la capacité à 
-reproduire tous les résultats depuis les données originales, soit comme la 
-possibilité de retrouver le même type de résultats sur un autre jeu de données. 
+This hypothesis is then confronted with the data. If the hypothesis can
+be verified on a relevant dataset, then recommendations can be made and
+we get a result. For us, "results" correspond to all of the elements
+forming the response to the research question and are often based on
+empirical results (in the sense of outputs): descriptive statistics,
+estimates of economic models
 
-Dans le premier cas, la chaîne de traitements assure que le résultat est 
-reproductible dans la lignée d’une démarche qualité, dans le second que le 
-résultat est transposable et généralisable à d’autres situations. 
+Unlike other disciplines, *we don't put together experiments for
+collecting data or for replicating phenomena*. We use *observed data*
+(household purchases, for example) on which *we test hypotheses* and
+*estimate the parameters of the economic model* (e.g. price elasticity).
 
-Le terme « robuste » renvoie plutôt à ce 2e cas. D’ailleurs, souvent, pour une 
-question de recherche donnée, on teste la robustesse des résultats obtenus soit 
-en testant le modèle sur un autre jeu de données, soit en modifiant une 
-hypothèse du modèle.
+The reproducibility of results can be expressed either as the capacity
+to reproduce all of the results based on the original data, or as the
+possibility of finding the same type of results on another dataset.
 
-*** Quelles sont vos pratiques de recherche pour qu'elles soient plus reproductibles et plus transparentes ? (quand vous travaillez seul, quand vous travaillez en groupe)
-Le plus important, pour nous, est de *maîtriser l'enchaînement des tâches et 
-des programmes (le workflow)*. Évidemment, cela est plus simple lorsque nous 
-sommes seuls en charge du code et des données (cela signifie que nous 
-collaborons avec d’autres chercheurs, mais que nous sommes « responsables » 
-des codes et données). 
+In the first instance, the processing chain ensures that the result is
+reproducible, in the sense of quality control; in the second it ensures
+that the result is transposable and generalisable to other situations.
 
-Nous utilisons alors des outils simples et une organisation structurée en 
-scripts maîtres et sous-programmes. Nous utilisons aussi des makefile et des 
-outils de représentation du workflow comme Graphviz. Évidemment, si le projet 
-et le chercheur s’y prêtent, nous utilisons R (et les notebooks/Markdown) et 
-git. Pour l’écriture d’articles, nous privilégions Overleaf pour une écriture 
-collaborative et Zotero (ou bibTex/JabRef) pour le partage de bibliographies.  
+The term "robust" refers more to this second instance. Furthermore, for
+a given research question, we often test the robustness of the results
+obtained, either by testing the model on another dataset, or by
+modifying one of the model's hypotheses.
 
-*** Quels outils utilisez-vous ? 
-Même si nous pouvons mettre en avant les atouts d’un logiciel libre auprès de 
-nos chercheurs, nous ne pouvons pas changer brutalement leurs pratiques. 
+*** Which research practices do you employ in order to boost reproducibility and transparency? (when working alone, when working as part of a group)
+    :PROPERTIES:
+    :CUSTOM_ID: which-research-practices-do-you-employ-in-order-to-boost-reproducibility-and-transparency-when-working-alone-when-working-as-part-of-a-group
+    :END:
 
-*En économie, nombreux sont ceux qui utilisent des logiciels propriétaires* 
-(Stata, SAS, Matlab, Mathematica, Gams…) même si l’utilisation de R se répand. 
+The most important thing for us is *understanding the sequence of tasks
+and programs (the workflow)*. Obviously, this is easier when we are
+fully in charge of the code and the data (meaning that, even when we are
+collaborating with other researchers, we are "responsible" for the code
+and the data).
 
-*Nous pensons que l’utilisation de ces logiciels, même si elle freine la réutilisation par quelqu’un 
-d’autre, n’empêche pas de mener une recherche reproductible, à condition d’utiliser de bonnes pratiques*. 
+We use simple tools and a structure involving master scripts and
+sub-programs. We also use makefiles and workflow representation tools
+such as Graphviz. Obviously, if the project and the researcher lend
+themselves to it, we use R (and notebooks/Markdown) and git. For writing
+articles, we favour Overleaf for collaborative writing and Zotero (or
+bibTex/JabRef) for sharing bibliographies.
 
-Lorsque nous utilisons le logiciel Stata, rien ne nous empêche de diffuser un 
-code lisible, et structuré permettant de retrouver toutes les étapes et tous 
-les résultats ! Certes, il faudra une licence Stata pour réutiliser ce code, 
-mais ce n’est pas forcément très compliqué à comprendre ni à lire puisque le 
-code est en format texte.    
+*** Which tools do you use?
+    :PROPERTIES:
+    :CUSTOM_ID: which-tools-do-you-use
+    :END:
 
-*** Utilisez-vous des cahiers de notes, des outils de balisage ? 
-Nous essayons de *documenter le plus possible nos projets* (données, choix de 
-modélisation, pistes abandonnées, hypothèses prises…) et d’améliorer nos 
-pratiques d’échanges d’informations (notamment éviter les mails relatifs aux 
-avancées des projets). 
+Although we point out the benefits of free software to our researchers,
+we can't change their practices out of the blue.
 
-Nous utilisons par exemple des *outils de TMS (Tasks Management System)* comme 
-Trello. 
+*In economics, there are many who use proprietary software* (Stata, SAS,
+Matlab, Mathematica, Gams, etc.), although the use of R is becoming more
+widespread.
 
-Concernant Markdown, il s’est clairement imposé dans nos pratiques surtout pour 
-générer des documents reproductibles automatiquement à partir du code (dans R 
-bien sûr, dans Stata également), mais aussi pour les notebooks Jupyter que nous 
-avons testés. 
+*Even though they hinder reuse by someone else, we don't feel that using
+these programs stands in the way of carrying out reproducible research,
+provided best practice is followed*.
 
-*** Quels sont workflows, comment articulez-vous les différents outils que vous utilisez au quotidien ? Quelles étapes de préparation des données (codage, documentation) suivez-vous ? 
-*** Quelles bonnes pratiques de modélisation (packages, fonctions, etc.) avez-vous appris à mettre en œuvre ? Comment assurez-vous le suivi des versions de vos scripts, de votre code, de vos textes, etc. ?
-Il faudrait un article entier pour décrire tout cela et d’ailleurs nous en avons
-co-écrit un à paraître bientôt ! *Les données sont souvent des tables*, que l’on
-appariera parfois, mais la structure des données est souvent simple chez nous. 
+When we use a program such as Stata, there is nothing stopping us from
+distributing a readable, structured code in which all of the stages and
+all of the results can be found. Naturally, a Stata license would be
+needed in order to use this code, but it is not necessarily overly
+complicated to understand or to read since the code is in text format.
 
-On a pris l'habitude d’une *structure de répertoires* bien claire, séparant 
-données originales, programmes, données de travail, et documentation. Nous 
-avons aussi des *conventions de nomenclature pour les fichiers et les variables*, 
-ce qui simplifie la vie. 
+*** Do you use notebooks or markup tools?
+    :PROPERTIES:
+    :CUSTOM_ID: do-you-use-notebooks-or-markup-tools
+    :END:
 
-Ensuite, pour être franc, *cela commence souvent par un programme un peu 
-brouillon qui devient trop long pour s’y retrouver*. Alors on prend *un bout de 
-papier sur lequel on écrit un début de workflow, avec des flèches*. Puis on 
-réécrit le programme plus proprement en utilisant des fonctions et des 
-sous-programmes. À la suite on modifie le workflow à mesure que le projet avance 
-et on le dessine sous Graphviz. 
+We try to *document our projects as much as possible* (data, modelling
+choices, ideas we've given up on, hypotheses made, etc.) and to improve
+the practices we use for exchanging information (in particular, avoiding
+emails for communicating about the progress of a project).
 
-*Si on a la chance d’être sous R, on utilise git/GitHub pour le suivi des 
-versions des programmes*, sinon, c’est *gestion des versions à la main* 
-(conventions de nommage, documentations au sein des programmes et des données), 
-même si l’on peut aussi se servir de git/Github pour des programmes Stata.  
+We use *TMS (Task Management System) tools*, such as Trello, for
+example.
 
-On est tout le temps en train de « penser automatique » notamment pour exporter 
-directement toutes les sorties générées (tables, graphiques) automatiquement et 
-pour insertion directe dans le papier final. 
+With regard to Markdown, it quickly established itself in our habits,
+particularly when it comes to generating reproducible documents
+automatically from code (in R but also in Stata), but also for Jupyter
+notebooks, which we have tested.
 
-Concernant le partage de l’écriture du papier, Overleaf permet un suivi des 
-versions (version payante). *Au final, c’est beaucoup de bon sens, un peu 
-d’organisation et quelques bons outils* que l’on trouve en restant ouverts à de 
-nouvelles pratiques - et fermés à des outils de type tableurs, MS-Word, etc. 
-qui sont encore très utilisés en économie. 
+*** What are your workflows? How do you connect the different tools that you use on a daily basis? What data preparation steps (coding, documentation) do you follow?
+    :PROPERTIES:
+    :CUSTOM_ID: what-are-your-workflows-how-do-you-connect-the-different-tools-that-you-use-on-a-daily-basis-what-data-preparation-steps-coding-documentation-do-you-follow
+    :END:
 
-*** Qu'est-ce que ça a changé dans votre pratique de la publication ?
-Cela a surtout changé *notre façon de travailler avec les chercheurs*. À force 
-de montrer des exemples - et des contre-exemples dramatiques - certains 
-chercheurs nous ont laissé la maîtrise des travaux empiriques.  
+*** Which best practice in relation to modelling (packages, functions, etc.) have you learned to implement? How are you able to track the different versions of your scripts, your code, your text, etc.?
+   :PROPERTIES:
+   :CUSTOM_ID: which-best-practice-in-relation-to-modelling-packages-functions-etc.-have-you-learned-to-implement-how-are-you-able-to-track-the-different-versions-of-your-scripts-your-code-your-text-etc.
+   :END:
 
-Quel bonheur que de lancer un programme et de voir l’écran clignoter, des 
-graphiques s'afficher furtivement, des lignes défiler dans la console pour 
-enfin retrouver l'ensemble des outputs bien rangés dans leurs dossiers !  
+It would take a whole article to describe all of that, and in fact,
+we've actually written one, which will be published soon. *Data often
+comes in the form of tables*, which we sometimes pair up, but the
+structure of the data we use tends to be simple.
 
-Nos pratiques ont évolué au fur et à mesure, en utilisant de nouveaux outils et
-en maîtrisant l'ensemble du workflow. Après, ce ne sont que des expériences sur 
-des outils de plus en plus performants et utiles, du bon sens et l’envie 
-permanente d’améliorer nos pratiques.
+We have grown accustomed to a clear *folder structure*, separating
+original data, programs, work data and documentation. We also have
+*naming conventions for files and variables*, which make life easier for
+us.
 
-*** À quel moment vous avez été sensible à cette question ? Quels conseils donneriez-vous aux jeunes étudiants ? (Et aux moins jeunes ?) 
-*** Quels seraient vos conseils en termes de formation et d’accompagnement des chercheurs pour une recherche plus transparente ? Quels sont les défis actuels dans votre domaine ?
-Assez tôt (2005) puisque nous manipulons des données que nous achetons 
-régulièrement (une fois par an) pour lesquelles de nouvelles versions peuvent 
-nous être envoyées. *Il a donc été nécessaire de penser automatisation très vite*. 
-Travaillant à 2 ingénieurs sur ces données, il a été nécessaire de penser 
-reproductibilité sur nos 2 PCs puis sur n’importe quel autre. 
+Then, to be frank, *we often start with a program that is a bit muddled
+and which has become too long*. We then take *a piece of paper and write
+the start of a workflow, with arrows*. We then re-write the program,
+making it cleaner by using functions and sub-programs. After that, we
+modify the workflow as the project advances, drawing it in Graphviz.
 
-Bref, ça a été progressif et le partage de nos pratiques, la confrontation de 
-nos idées et l’évolution des outils ont été de vrais moteurs. L’arrivée de 
-Sweave en 2008, très prôné par J. Racine en visite dans notre laboratoire, a 
-été un nouveau déclencheur. 
+*If we're fortunate enough to be using R, git/GitHub is used to track
+the different versions of programs* - if not, *versions are managed by
+hand* (naming conventions, documentation within programs and data) even
+if git/GitHub can also be used for Stata programs.
 
-Côté formations, il serait nécessaire de mieux former les chercheurs - les 
-jeunes surtout - si possible pendant leur formation. Évidemment, aujourd’hui 
-on peut citer le MOOC ainsi que plusieurs papiers (Gentzkow et Shapiro 2014, 
-Stodden 2013…). 
+We are always trying to "think automation", particularly when it comes
+to directly exporting all of the outputs generated (tables, graphs,
+etc.) automatically for insertion into the final paper.
 
-Les journaux ont aussi un rôle à jouer en montant en exigences concernant la 
-vérification de la reproductibilité à partir des données et codes fournis (avec 
-un referee spécialiste ou en sollicitant des tiers comme CASCAD), et aussi en 
-donnant les moyens de progresser (en proposant un repository interne à la revue ou 
-en en suggérant un externe). 
+With regard to collective paper writing, Overleaf can be used to track
+the different versions (payed version). *In the end, we rely on a lot of
+common sense, some organisation and a few useful tools* which we find by
+keeping our minds open to new practices - and closed to spreadsheet type
+tools, MS-Word, etc., which are still used widely in economics.
 
-Évidemment, le point crucial reste celui des données confidentielles, mais avec 
-de bonnes métadonnées, un DOI et l’arrivée récente de CASCAD, une 
-[[https://www.cascad.tech/][plateforme de certification de la reproductibilité]], 
-la reproductibilité avance là aussi.
+*** What has that changed in terms of how you publish?
+   :PROPERTIES:
+   :CUSTOM_ID: what-has-that-changed-in-terms-of-how-you-publish
+   :END:
 
-*** Pourriez-vous décrire une histoire d'horreur ? i.e. un gros raté (ex. : données non disponibles ; impossibilité de reproduire une figure en obtenant le même résultat, impossibilité de fournir des données à un referee, etc.)
-*Nous vivons dans un film d’horreur !* “Nos” chercheurs, à de rares exceptions 
-près, ne sont pas des programmeurs et n’ont pas (encore) de trop fortes 
-incitations à publier et diffuser leurs programmes. 
+More than anything else, it has changed *how we work with researchers*.
+By repeatedly showing us examples - and dramatic counterexamples - some
+researchers have left us in charge of the empirical work.
 
-En outre, nos données étant très souvent confidentielles, les revues, à de très 
-rares exceptions près, ne demandent pas à tester les programmes même sur des 
-données fictives. 
+What a joy it is to launch a program and to see the screen flickering,
+to see graphics gradually begin to appear and lines start to pass across
+the console, before eventually finding all of the outputs properly
+arranged in their folders!
 
-C’est donc parfois l’horreur absolue lorsqu’un referee demande à refaire une 
-estimation et que le chercheur ne retrouve pas le même résultat et n’est pas 
-complètement sûr des programmes utilisés ! 
+Our practices have evolved over time, through our use of new tools and
+through developing an understanding of the entire workflow. In the end,
+it's experiments with tools of increasing performance and utility, plus
+common sense and a constant desire to improve.
 
-Il faut dire aussi, que *les estimations économétriques reposent souvent sur 
-la maximisation d’une vraisemblance*, une fonction souvent complexe à maximiser 
-et il arrive qu’un changement de version de logiciel (Stata par exemple, mais 
-une mise à jour d’un package R ou un package R obsolète peuvent aussi réserver 
-de belles surprises) vienne perturber la délicate mécanique mise au point.
+*** When did you develop an interest in this issue? What advice would you give to young students? (and those not so young)
+    :PROPERTIES:
+    :CUSTOM_ID: when-did-you-develop-an-interest-in-this-issue-what-advice-would-you-give-to-young-students-and-those-not-so-young
+    :END:
 
-*** Pourriez-vous donner des cas concrets où des pratiques visant à rendre votre recherche reproductible et transparente vous ont aidé  à résoudre un problème ?
-*Nous avons probablement fait de la recherche reproductible sans le savoir, à 
-nos débuts, en 2003*. Pour un programme de recherche sur l'essor des marques de 
-distributeurs (MDD), nous avons été amenés à répliquer une analyse économétrique
-effectuée sur une catégorie de produit (les yaourts), sur quelques autres. 
+*** What advice would you give in terms of training and support for researchers interested in making their research more transparent? What challenges are currently facing your field?
+    :PROPERTIES:
+    :CUSTOM_ID: what-advice-would-you-give-in-terms-of-training-and-support-for-researchers-interested-in-making-their-research-more-transparent-what-challenges-are-currently-facing-your-field
+    :END:
 
-Nous avons donc commencé à mettre en place un workflow, puis des sorties 
-automatiques en LaTeX et finalement avons construit une “moulinette” qui prenait 
-n’importe quel produit alimentaire et produisait automatiquement un document pdf 
-(via LaTeX) avec l’analyse économétrique complète. Le tout était programmé sous 
-Stata, une prouesse !  
+Relatively early, in 2005. We were using data which we bought regularly
+(once a year), for which new versions could be sent to us. *This meant
+it was necessary to think automation straight away*. Working as 2
+engineers on this data, we had to think about reproducibility on our 2
+PCs and then on any other.
 
-Ce processus nous a permis d’envisager l’écriture d’un premier article, suivi 
-d’un second, plus complexe et portant sur plus d’une centaine de produits et de 
-montrer l’impact de l’introduction des MDD sur les prix des marques nationales.
-Un projet très sympa qui a forgé notre façon de travailler par la suite.
+It was a gradual process. Sharing our practices, comparing our ideas,
+and the evolution of tools were all real driving forces. The arrival of
+Sweave in 2008, strongly advocated by J. Racine during a visit he made
+to our laboratory, was another trigger.
 
-Un autre exemple très positif est celui récent d’un papier à paraître : 
-*avoir anticipé la demande de la revue de fournir les codes et données et d’avoir ainsi été capable de les fournir en 2 jours (codes 
-propres et commentés, données, workflow documenté, un seul programme à lancer générant une page web avec toutes les sorties du papier)*.
+The training given to researchers has to be improved - particularly for
+young people - if possible during their studies. Obviously, we can now
+cite the MOOC, as well as a number of papers (Gentzkrow and Shapiro
+2014, Stodden 2013, etc.).
 
-*** Quelle question souhaiteriez-vous ajouter à cette interview ? Qu’auriez-vous envie d’évoquer ?
-Il n’est *jamais trop tard pour changer ses pratiques* et *s’organiser différemment*. 
-On nous reproche souvent de vouloir compliquer une organisation bien établie qui 
-a fait ses preuves (de non-reproductibilité). 
+Journals also have a vital role to play, by increasing the requirements
+with regard to verification and reproducibility on the basis of the data
+and code provided (with expert reviewers or by calling on third parties
+such as CASCAD), and by providing the resources needed for making
+progress (proposing an repository specific to the journal or suggesting
+an external one).
 
-*Pour reprendre des notions économiques, pour certains, les coûts semblent 
-nettement supérieurs aux bénéfices. Cela ne nous semble pas vrai.* Certes tout 
-changement à un coût, surtout à court terme, mais nous restons persuadés que 
-*les bénéfices individuels et collectifs sont grands et que ce coût peut être minime*. 
+Obviously, confidentiality data remains a critical issue, but with good
+metadata, a DOI and the recent arrival of CASCAD, a
+[[https://www.cascad.tech/][reproducibility certification platform]],
+reproducibility is improving for this case as well.
 
-Il y a espoir que ce discours soit donc entendu par des économistes… par 
-contre pour que cela fonctionne, il nous semble important *d’inciter chaque
-amélioration et de ne pas chercher à modifier toutes les pratiques en même temps*. 
-Certains outils sont plus simples que d’autres et tout dépend du point de départ
-de chacun.
+*** Could you tell us about any horror stories you've had? i.e. a blown opportunity (e.g. data not available; not being able to reproduce a figure and obtain the same result, not being able to supply a referee with data, etc.)
+    :PROPERTIES:
+    :CUSTOM_ID: could-you-tell-us-about-any-horror-stories-youve-had-i.e.a-blown-opportunity-e.g.data-not-available-not-being-able-to-reproduce-a-figure-and-obtain-the-same-result-not-being-able-to-supply-a-referee-with-data-etc.
+    :END:
+
+*We're living in a horror movie!* With some rare exceptions, "our"
+researchers are not programmers, and don't (yet) have much encouragement
+to publish and distribute their programs.
+
+Furthermore, given that our data is very often confidential, journals,
+with some very rare exceptions, don't ask to test programs, not even on
+fictitious data.
+
+It can be an absolute nightmare when a referee asks for an estimate to
+be redone and the researcher is unable to obtain the same result and is
+not entirely sure of the programs used.
+
+It is also worth noting that *econometric estimates are often made by
+maximising a likelihood*, a function that is often complex to maximise,
+and it can happen that a software version change (Stata, for example,
+but an update to an R package or an obsolete R package can also have
+some surprises in store) disturbs the delicate mechanism that has been
+developed.
+
+*** Could you give us some concrete examples of practices aimed at making your research reproducible and transparent which have helped you to solve a problem?
+    :PROPERTIES:
+    :CUSTOM_ID: could-you-give-us-some-concrete-examples-of-practices-aimed-at-making-your-research-reproducible-and-transparent-which-have-helped-you-to-solve-a-problem
+    :END:
+
+*We were probably doing reproducible research without knowing it when we
+first started out in 2003*. For a research program on the growth of
+private labels, we had to replicate an econometric analysis carried out
+on one category of product (yoghurts) on several others.
+
+We began by setting up a workflow, then automatic outputs in LaTeX,
+before finally building a "mixer" which would take any food product and
+automatically produce a PDF document (via LaTeX) with the full
+econometric analysis. The whole thing was programmed using Stata - it
+was a real achievement!
+
+This process enabled us to consider writing a first article, followed by
+a second one that was more complex, relating to more than a hundred
+products and designed to demonstrate the impact of the introduction of
+private labels on the prices of national brands. This was a really
+enjoyable project, which helped establish our way of working from then
+on.
+
+Another very positive example comes in the form of a recent paper to be
+published: *to have anticipated the journal's request to supply the code and data and to thus have been capable of providing them in 2 days (clean, annotated codes, data, a documented workflow, one single program
+to launch generating a webpage with all of the paper's outputs)*.
+
+*** If you could add a question to this interview, what would it be? What would you like to talk about?
+    :PROPERTIES:
+    :CUSTOM_ID: if-you-could-add-a-question-to-this-interview-what-would-it-be-what-would-you-like-to-talk-about
+    :END:
+
+It is *never too late to change your practices* and *to organise
+yourself differently*. We are often criticised for trying to complicate
+a well-established, proven structure (non-reproducibility).
+
+*To speak in economic terms, there are some for whom the costs seem to
+vastly outweigh the benefits. We don't feel that to be true.* Obviously,
+every change comes at a cost, particularly short-term, but we remain
+convinced that *both the individual and collective benefits are
+substantial and that this cost can be minimal*.
+
+Hopefully economists will pick up on what I'm saying... However, in
+order for that to work, we feel it is important *to encourage each improvement and to not try to modify all of the practices at the same
+time*. Some tools are simpler than others - everything depends on where
+you're starting from.
