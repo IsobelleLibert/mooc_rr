@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+# -*- mode: org -*-
+
+#+TITLE:       Bibliographical references, another vector of transparency
+#+AUTHOR:      Sabrina Granger
+#+STARTUP: overview indent inlineimages logdrawer
+#+LANGUAGE:    en
+
 The following text was written by *Sabrina Granger*, library curator at
 the Urfist (Unité régionale de formation à l'information scientifique et
 technique - Regional Unit for Scientific and Technical Education) in
@@ -35,8 +43,7 @@ qualitative methods are being used.
 *What this means is that not all reproducibility techniques will have
 the same importance, depending on the disciplines and methods used*.
 
-** Here are a few examples of practices that will help produce
-reproducible research.
+** Here are a few examples of practices that will help produce reproducible research.
    :PROPERTIES:
    :CUSTOM_ID: here-are-a-few-examples-of-practices-that-will-help-produce-reproducible-research.
    :END:
@@ -61,16 +68,14 @@ order to make a clearer distinction between postdiction and prediction.
 In other words, one of the purposes of /preregistration/ is to protect
 researchers against bias and the use of wrong methods.
 
-Let's bear in mind, however, that ** *preregistration is at best an aid*
-and is not a foolproof way of tackling fraud. What's more, *it is in no
-way a substitute for a thorough understanding of statistical methods and
-concepts**.
+Let's bear in mind, however, that */preregistration/ is at best an aid*
+and is not a foolproof way of tackling fraud. What's more, *it is in no way a substitute for a thorough understanding of statistical methods
+and concepts*.
 
 There are also many cases where none of these techniques are applicable
 (data which can't be shared, no computational aspect, etc.).
 
-** In such cases, other responses are needed: transparency, a central
-concept in reproducible research. But what is transparency?
+** In such cases, other responses are needed: transparency, a central concept in reproducible research. But what is transparency?
    :PROPERTIES:
    :CUSTOM_ID: in-such-cases-other-responses-are-needed-transparency-a-central-concept-in-reproducible-research.-but-what-is-transparency
    :END:
@@ -155,10 +160,8 @@ automated processing in seeking transparent research?* As far as
 possible, the use of */Open Source/ software* is a first step in this
 direction: the source code for commercial software remains inaccessible.
 Following on from that, gradually acquiring a set of technical skills
-will enable you to understand the general workings of a program. *This
-does not necessarily imply having a comprehensive understanding of the
-configuration, but simply knowing enough to understand what is obtained
-as an output and to judge its credibility*. Data scientists and
+will enable you to understand the general workings of a program. *This does not necessarily imply having a comprehensive understanding of the
+configuration, but simply knowing enough to understand what is obtained as an output and to judge its credibility*. Data scientists and
 statisticians working in research teams can help you understand these
 aspects, which can be cultural as well as technical, given that software
 is created in a specific epistemological environment.
