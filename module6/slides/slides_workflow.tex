@@ -45,7 +45,7 @@
   \item Even if you write down everything you do, you will make mistakes.
   \item And even if you don't make mistakes, you are never \textit{sure}
         there are no mistakes.
-  \item \textbf{You know exactly what you did only if you can re-run your computation.}
+  \item \textbf{You know exactly what you have done only if you can re-run your computation.}
   \end{itemize}
 
 \end{frame}
@@ -66,7 +66,7 @@
 \begin{frame}{Overview}
 
   \begin{enumerate}
-  \item What are workflows, and what are they used for?
+  \item Why workflows?
   \item Workflow managers: a diverse family of tools
   \item How to choose a workflow manager?
   \item The descendants of \texttt{Make}
@@ -76,13 +76,90 @@
 
 \end{frame}
 
+\section*{Why workflows?}
+
+\begin{frame}{}
+
+  \begin{center}
+  \Large Why workflows?
+  \end{center}
+
+\end{frame}
+
+\begin{frame}{The limits of scripts and notebooks}
+
+  \begin{itemize}
+  \item Linear control flow: hard to read when too long
+  \item Not well adapted to parameter scans and other loops
+  \item Linear list of results: hard to inspect when too numerous
+  \item All or nothing: no minimal update after change of an input
+  \item Parallelization opportunities difficult to exploit
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Tasks: the building blocks of workflows}
+
+  \begin{itemize}
+  \item Task = step in a computation
+  \item Code + input data $\rightarrow$ output data
+  \item Often implemented as a short script (bash, Python, R, ...)
+  \item Input and output data stored in files
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Workflows: execution plans for tasks}
+
+  \begin{itemize}
+  \item One task's output is another task's input
+  \item Simple control structures, e.g. parameter scans
+  \end{itemize}
+
+  TODO: image of a workflow graph
+
+\end{frame}
+
+\begin{frame}{Workflow execution}
+
+  \begin{itemize}
+  \item Run tasks one by one or in parallel ...
+  \item ... on one computer or distributed among several ...
+  \item ... respecting the constraints of the workflow:
+    \begin{itemize}
+    \item Never run a task before its input data is ready
+    \item Avoid running a task if its output is already available
+    \end{itemize}
+  \item Deal with failures (machine crash, broken network connection, ...)
+  \end{itemize}
+
+\end{frame}
+
+\section*{Workflow managers: a diverse family of tools}
+
 \begin{frame}{}
 
 \end{frame}
 
+\section*{How to choose a workflow manager?}
+
 \begin{frame}{}
 
 \end{frame}
+
+\section*{The descendants of \texttt{Make}}
+
+\begin{frame}{}
+
+\end{frame}
+
+\section*{Snakemake: Make for scientific computing}
+
+\begin{frame}{}
+
+\end{frame}
+
+\section*{Case study: the incidence of influenza-like illness revisited}
 
 \begin{frame}{}
 
