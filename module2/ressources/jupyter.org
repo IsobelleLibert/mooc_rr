@@ -21,7 +21,7 @@ jupyter notebook
   - [[#improving-notebook-readability][Improving notebook readability]]
 - [[#installing-and-configuring-jupyter-on-your-computer][Installing and configuring Jupyter on your computer]]
   - [[#installing-jupyter-and-python-r-][Installing Jupyter (and Python, R, ...)]]
-  - [[#latex-for-pdf-export][LaTeX for PDF export]]
+  - [[#latex-for-generating-pdf-files][LaTeX for generating PDF files]]
   - [[#jupyterlab][JupyterLab]]
   - [[#interacting-with-gitlab-and-git][Interacting with GitLab and Git]]
 
@@ -243,7 +243,8 @@ jupyter notebook
 #+end_src
 and work with our examples and exercises.
 ** LaTeX for generating PDF files
-For exporting your notebooks as PDF files, you must also install LaTeX on your system. We describe this process in a [[file:latex.org][separate resource]].
+For exporting your notebooks as PDF files, you must also install LaTeX
+on your system. We describe this process in a [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/19c2b1de7766484bae73f3ab133463c6][separate resource]].
 ** Interacting with GitLab and git
 To ease your experience, we added pull/push buttons that allow
 you to commit and sync with GitLab. This development was specific to
