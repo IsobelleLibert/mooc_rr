@@ -19,3 +19,6 @@ There are many ways to install LaTeX. Worse, there are good reasons for there be
 We recommend one of two distributions that have stood the test of time: [[https://www.tug.org/mactex/][MacTeX]] or [[https://miktex.org/][MiKTeX]].
 ** Windows
 We recommend one of two distributions that have stood the test of time: [[https://tug.org/texlive/][TeX Live]] or [[https://miktex.org/][MiKTeX]].
+* On TinyTex
+
+Yihui Xie, author of the great "bookdown" =R= package, has developed a "light LaTeX" version: TinyTex ("[[https://yihui.name/tinytex/][A lightweight, cross-platform, portable, and easy-to-maintain LaTeX distribution based on TeX Live]]").

@@ -30,4 +30,8 @@ des versions de LaTeX. Le nom exact du ou des paquets à installer varie hélas 
 ** MacOS
 Nous vous conseillons une des deux distributions qui existent depuis longtemps: [[https://www.tug.org/mactex/][MacTeX]] ou [[https://miktex.org/][MiKTeX]].
 ** Windows
-Nous vous conseillons une des deux distributions qui existent depuis longtemps: [[https://tug.org/texlive/][TeX Live]] ou [[https://miktex.org/][MiKTeX]].
+Nous vous conseillons une des deux distributions qui existent depuis
+longtemps: [[https://tug.org/texlive/][TeX Live]] ou
+[[https://miktex.org/][MiKTeX]].
+* À propos de TinyTex
+Yihui Xie, auteur du remarquable package R "bookdown", a mis au point une version allégée de LaTeX, TinyTex ("[[https://yihui.name/tinytex/][A lightweight, cross-platform, portable, and easy-to-maintain LaTeX distribution based on TeX Live]]").
