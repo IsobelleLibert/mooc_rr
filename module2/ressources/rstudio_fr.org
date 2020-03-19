@@ -130,7 +130,7 @@ Ouvrir RStudio et procéder comme suit :
   [[file:rstudio_images/clone.png]]
   #+END_CENTER
 - Si vous êtes derrière un proxy, il faut le définir dans Git (voir le
-  paragraphe "Gérer les proxy" de la page sur [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85][Git et Gitlab]]).
+  paragraphe "Gérer les proxy" de la page sur [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/d86ab5b2b3054b179582da125131e2a5#gérer-les-proxy][Git et Gitlab]]).
 - Git se connecte à Gitlab et récupère une copie complète du dépôt.
 - RStudio redémarre dans un mode lié à Git :
   #+BEGIN_CENTER
@@ -167,4 +167,4 @@ Ouvrir RStudio et procéder comme suit :
   [[file:rstudio_images/push4.png]]
   #+END_CENTER
 - Il faut d’abord récupérer ces modifications distantes sur votre
-  machine locale. Pour ce faire cliquer sur =pull=. 
+  machine locale. Pour ce faire cliquer sur =pull=. La vidéo [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/c20f53a4c00241589b00799fa909771e#git_2][Démystifions Git, Github, Gitlab/Travailler à plusieurs]] explique comment gérer un conflit avec git.
