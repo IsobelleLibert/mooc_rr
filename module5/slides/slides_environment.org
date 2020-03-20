@@ -661,6 +661,9 @@ Docker containers
 - Old linux over recent linux
   - What if the syscall changed ?!?
     - Very stable but may require ~vsyscall=emulate~
+# C'est une ABI qui a été retirée par défaut pour raisons de sécurité
+# et son émulation n'est pas activée par défaut, cf le bas de la page
+# https://einsteinathome.org/content/vsyscall-now-disabled-latest-linux-distros
   - Bootstraping: use old =.deb= files with a recent =dpkg=
   - Networking: old gpg keys, format compatibility, https, ...\bigskip\pause
 
@@ -685,6 +688,13 @@ Not perfect but (if Linux-only) Docker is:
 - Freeze sources with debian.snapshots
 - Clean build-dependencies before sharing your image
 - Avoid running =apt-get= in CI images
+
+
+** CI                                                             :noexport:
+
+ https://twitter.com/khinsen/status/1230173435927638016
+
+- https://github.com/AlexsLemonade/OpenPBTA-analysis ?
 * Emacs Setup                                                      :noexport:
 This document has local variables in its postembule, which should
 allow Org-mode (9) to work seamlessly without any setup. If you're

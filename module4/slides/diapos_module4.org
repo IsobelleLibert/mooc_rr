@@ -107,17 +107,67 @@
   - http://phdcomics.com/comics/archive.php?comicid=1948:
     http://phdcomics.com/comics/archive/phd051017s.gif
 ** Graphe syndrome grippal:
-  #+begin_src shell :results output raw :exports both
-  debtree python3-matplotlib > img/python3-matplotlib.dot
-  sed -i -e 's/rankdir=LR/rankdir=RL/g' \
-         -e 's/node \[shape=box\]/node [shape=box, color=black, fillcolor=gray, fontcolor=black, style=filled]/g' \
+  #+begin_src shell :results output raw :exports both :dir /tmp/img/
+  debtree python3-matplotlib > python3-matplotlib.dot
+  echo "subgraph cluster_python_dep {
+		 style=filled
+		color=lightgrey;" > nodes-python.txt
+  grep python python3-matplotlib.dot | grep -- '->' | sed 's/ -> .*/;/' | sort | uniq >> nodes-python.txt
+  echo "}" >> nodes-python.txt;
+  echo "subgraph cluster_debian_useless {
+		 style=filled
+		color=red;" > nodes-debian.txt
+  grep -e debconf -e dpkg -e adduser -e passwd -e gcrypt -e gpg -e uuid1 -e systemd0 python3-matplotlib.dot | grep -- '->' | sed 's/ -> .*/;/' | sort | uniq >> nodes-debian.txt
+  grep -e debconf -e dpkg -e adduser -e passwd -e gcrypt -e gpg -e uuid1 -e systemd0 python3-matplotlib.dot | grep -- '->' | sed -e 's/.* -> //' -e 's/\(.\)".*/\1"/' | sort | uniq >> nodes-debian.txt
+  echo "}" >> nodes-debian.txt;
+  sed -i -e 's/rankdir=LR/rankdir=TB/g' \
+         -e 's/node \[shape=box\]/node [shape=box, color=black, fillcolor=gray, fontcolor=black, style=filled]\ncluster_python\ncluster_debian/g' \
+         -e '/cluster_python/r nodes-python.txt' \
+         -e '/cluster_debian/r nodes-debian.txt' \
        python3-matplotlib.dot
-  dot -Tpng img/python3-matplotlib.dot > img/python3-matplotlib.png
-  echo file:img/python3-matplotlib.png
+  
+  dot -Tpng python3-matplotlib.dot > python3-matplotlib.png
+  echo file:/tmp/img/python3-matplotlib.png
   #+end_src
 
   #+RESULTS:
-  file:img/python3-matplotlib.png
+  file:/tmp/img/python3-matplotlib.png
+  file:/tmp/img/python3-matplotlib.png
+
+  #+begin_src shell :results output raw :exports both :dir /tmp/img/
+  debtree python3-matplotlib > python3-matplotlib.dot
+  echo "subgraph CCcluster_python_dep {" > nodes-python.txt
+  grep python python3-matplotlib.dot | grep -- '->' | sed 's/ -> .*/ [fillcolor=lightgreen,style=filled];/' | sort | uniq >> nodes-python.txt
+  echo "}" >> nodes-python.txt;
+  echo "subgraph CCcluster_debian_useless {" > nodes-debian.txt
+  grep -e debconf -e dpkg -e adduser -e passwd -e gcrypt -e gpg -e uuid1 -e systemd0 python3-matplotlib.dot | grep -v python | grep -- '->' | sed 's/ -> .*/[fillcolor=red2,style=filled];/' | sort | uniq >> nodes-debian.txt
+  grep -e debconf -e dpkg -e adduser -e passwd -e gcrypt -e gpg -e uuid1 -e systemd0 python3-matplotlib.dot | grep -- '->' | sed -e 's/.* -> //' -e 's/\(.\)".*/\1" [fillcolor=red2,style=filled];/' | sort | uniq >> nodes-debian.txt
+  echo "}" >> nodes-debian.txt;
+  sed -i -e 's/rankdir=LR/rankdir=TB/g' \
+         -e 's/node \[shape=box\]/node [shape=box, color=black, fillcolor=gray, fontcolor=black, style=filled]\ncluster_python\ncluster_debian/g' \
+         -e '/cluster_python/r nodes-python.txt' \
+         -e '/cluster_debian/r nodes-debian.txt' \
+       python3-matplotlib.dot
+  
+  dot -Tpng python3-matplotlib.dot > python3-matplotlib2.png
+  echo file:/tmp/img/python3-matplotlib2.png
+  #+end_src
+
+  #+RESULTS:
+  file:/tmp/img/python3-matplotlib2.png
+  file:/tmp/img/python3-matplotlib2.png
+  file:/tmp/img/python3-matplotlib.png
+  file:/tmp/img/python3-matplotlib.png
+  file:/tmp/img/python3-matplotlib.png
+  file:/tmp/img/python3-matplotlib.png
+  file:/tmp/img/python3-matplotlib.png
+  file:/tmp/img/python3-matplotlib.png
+  file:/tmp/img/python3-matplotlib.png
+  file:/tmp/img/python3-matplotlib.png
+  file:/tmp/img/python3-matplotlib.png
+  file:/tmp/img/python3-matplotlib.png
+  file:/tmp/img/python3-matplotlib.png
+
 
 * M4-S0: Vers une étude reproductible : la réalité du terrain
 ** L'enfer de la Recherche Reproductible
