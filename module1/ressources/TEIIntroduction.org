@@ -13,36 +13,36 @@ Bordeaux.
    :CUSTOM_ID: introduction
    :END:
 
-The issue of reproducibility, whether for yourself or for others, also
-raises the issue of the durability of scientific information. However,
-data produced using proprietary software and/or in formats specific to
-one tool provides fewer guarantees in terms of long-term accessibility.
-The Text Encoding Initiative (TEI) is an example of a standard markup
-format.
+The question of reproducibility, whether for yourself or for others,
+also raises the issue of the longevity of scientific information. Data
+produced using proprietary software and/or in formats specific to a
+single tool provide fewer guarantees in terms of long-term
+accessibility. The Text Encoding Initiative (TEI) is an example of a
+standard markup format.
 
 ** What the TEI provides in textual analysis
    :PROPERTIES:
    :CUSTOM_ID: what-the-tei-provides-in-textual-analysis
    :END:
 
-If you use texts (whether literary, legislative, archives, /etc./),
-there is a data markup technique enabling you to go one step further
-than a rough breakdown of occurrences: the Text Encoding Initiative
-(TEI). Lou Burnard, one of the founders of the TEI, uses the example of
-the word "Paris": does this refer to the town in Texas, the capital of
-France or the first name of an American socialite? Although it is
-possible to separate the wheat from the chaff manually - but not without
-the risk of error - with small /corpora/, it becomes significantly more
-complicated when working on *larger and/or more heterogeneous masses of
+If you work with texts (literary, legislative, archives, /etc./), there
+is a data markup technique that may enable you to go one step beyond
+plain counting of occurrences: the Text Encoding Initiative (TEI). Lou
+Burnard, one of the founders of the TEI, uses the example of the word
+"Paris": does it refer to the town in Texas, the capital of France, or
+the first name of an American socialite? Although it is possible to
+separate the wheat from the chaff manually - but not without the risk of
+error - with small /corpora/, it becomes significantly more complicated
+when working on *larger and/or more heterogeneous collections of
 documents*. The TEI provides a way of solving this problem.
 
-/What/ about relatively small /corpora/? *The markup in TEI enables your
-textual data to be made "smart"*: it is possible to *mark up
-individuals, quotation languages, grammatical categories, crossed-out
-passages*, /etc./ As the saying goes, "he who can do more can do less":
-while there are more than 500 elements which can be combined with each
-other, it is possible to work with a reduced set of markers. In order to
-process a novel, 5 or 6 markers may be enough.
+What about relatively small /corpora/? *The markup in TEI enables your
+textual data to be made "smart"*: it is possible to *mark up people,
+languages of quotations, grammatical categories, crossed-out passages*,
+/etc./ As the saying goes, "he who can do more can do less": while there
+are more than 500 elements which can be combined with each other, it is
+possible to work with a reduced set of tags. In order to process a
+novel, 5 or 6 tags may be enough.
 
 ** A solution that is not software-dependent
    :PROPERTIES:
@@ -50,21 +50,22 @@ process a novel, 5 or 6 markers may be enough.
    :END:
 
 Data encoding in TEI makes it possible to design /corpora/ with
-significant added value. This then raises questions regarding who is
-able to *access” *keep** and *share* this added value. While the use of
-certain software programs with data encoding tools is handy, using them
-long-term can prove detrimental to the reproducibility of your research.
-Indeed, one of the advantages of the TEI is that it offers *standard
-coding, thus freeing its users from software dependency*.
+significant added value. This then raises the questions of *accessing*,
+*preserving*, and *sharing* this added value. While the use of certain
+software programs with data encoding tools is convenient, their use can
+prove detrimental to the reproducibility of your research in the long
+term. One of the advantages of the TEI is that it offers a *standard
+encoding, freeing its users from software dependencies*.
 
-While some software programs incorporate TEI coding, others are based on
-their own specific types of coding (e.g. Alceste, Lexico3, /etc./),
-something which Burnard is keen to stress: “If you want to share textual
-resources that you have created with other people (or with yourself
-several decades down the line), you must bear in mind that many IT
-systems apply their own way of storing information (Burnard 2014).
+While some software programs incorporate TEI encoding, others are based
+on their own specific types of encoding (e.g. Alceste, Lexico3, /etc./),
+as which Burnard is keen to stress: "If you want to share the textual
+resources you create with other people (or with yourself a few decades
+hence) you should also be concerned about the tendency of many computer
+systems to enforce their own idiosyncratic ways of storing information."
+(Burnard 2014).
 
-*Standardisation does not mean being closed off*: one of the challenges
+*Standardisation does not mean being closed*: one of the challenges
 facing the TEI is to offer an upscaleable markup system through its
 extensibility.
 
@@ -74,8 +75,8 @@ extensibility.
    :END:
 
 Bernard and Bohet define the TEI as follows (Bernard and Bohet 2017):
-"It is a type of markup based on XML language, and can be thought of as
-a dictionary of markers covering practically all situations". The
+"It is a type of markup based on the XML language, and can be thought of
+as a dictionary of tags covering practically all situations". The
 concept is to enable a machine to read this data.
 
 The TEI lets you *introduce information into the text, going way beyond
@@ -87,7 +88,7 @@ on the other, where it is possible to add information on characters and
 the versification of elements.
 
 The work is carried out on digital data; if the data is taken from a
-digitisation process, it must first be processed using optical character
+scanning process, it must first be processed using optical character
 recognition (OCR) software (Humanum 2015).
 
 There are *editors* such as
@@ -98,13 +99,11 @@ Some programs include a *converter*; these include:
   program TXM]]
 - the
   [[http://obvil.sorbonne-universite.site/developpements/odette][software
-  program Odette]] can be used to switch from a text processing document
-  to
-
-XML/TEI data
+  program Odette]] can be used to transition from a text processing
+  document to XML/TEI data
 
 An example of encoded text: Oscar Wilde. /The Importance of Being
-Earnest/ [available on the TEI website, for example]
+Earnest/ [available on the Web site "TEI by example"]
 (https://teibyexample.org/examples/TBED05v00.htm?target=wilde)
 
 ** Sources
