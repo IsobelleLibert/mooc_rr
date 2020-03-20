@@ -8,7 +8,8 @@
 The following text was written by *Sabrina Granger*, library curator at
 the Urfist (Unité régionale de formation à l'information scientifique et
 technique - Regional Unit for Scientific and Technical Education) in
-Bordeaux. Introduction ------------
+Bordeaux. 
+** Introduction
 
 It is not a question here of dealing with issues regarding standards for
 bibliographic presentation: each discipline and each review, even, has
