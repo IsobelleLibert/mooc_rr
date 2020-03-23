@@ -31,7 +31,7 @@ which you must respect to make sure that the following steps work correctly.
 *Important:* You should then run all the following commands through the
 conda shell. As explained in the [[https://docs.anaconda.com/anaconda/install/verify-install/][Anaconda documentation]], to open the Anaconda prompt:
 - Windows: Click Start, search, or select Anaconda Prompt from the menu.
-  file:Conda_images/win-anaconda-prompt.png
+  [[[[file:Conda_images/win-anaconda-prompt.png]]]]
 - macOS: Cmd+Space to open Spotlight Search and type “Anaconda” to open the program.
 - Linux–CentOS: Open Applications - System Tools - terminal.
 - Linux–Ubuntu: Open the Dash by clicking the upper left Ubuntu icon, then type “terminal”.

@@ -257,7 +257,7 @@ qu'il faut absolument suivre pour que la suite se passe bien.
 dans le shell conda. Comme expliqué dans la [[https://docs.anaconda.com/anaconda/install/verify-install/][documentation Anaconda]],
 pour ouvrir ce shell
 - Windows: Click Start, search, ou bien sélectionnez Anaconda Prompt dans le menu.
-  file:Conda_images/win-anaconda-prompt.png
+  [[file:Conda_images/win-anaconda-prompt.png]]
 - macOS: Cmd+Space pour ouvrir Spotlight Search et tapez “Anaconda”
   pour ouvrir le shell.
 - Linux–CentOS: Open Applications - System Tools - terminal.
