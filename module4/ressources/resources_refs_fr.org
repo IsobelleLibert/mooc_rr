@@ -1,6 +1,6 @@
 # -*- mode: org -*-
 #+TITLE:     Références complémentaires
-#+DATE: June, 2018
+#+DATE: Mars 2020
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
@@ -102,6 +102,21 @@ est stocké de manière sécurisée afin de pouvoir y accéder de manière
 pérenne, peut être assez délicat. Si vous n'avez jamais vu la
 [[https://github.com/alegrand/RR_webinars/blob/master/5_archiving_software_and_data/index.org][présentation du projet Software Heritage par Roberto Di Cosmo]], c'est à
 voir absolument. [[https://www.softwareheritage.org/][https://www.softwareheritage.org/]]
+
+Si vous voulez archiver votre propre code dans Software Heritage, il y
+a deux façons de s'y prendre:
+
+1. Vous mettez votre code dans un dépôt public sur http://github.com,
+   http://gitlab.com, ou http://bitbucket.org. Puis vous attendez que
+   Software Heritage le récupère.  Le seul inconvient est le temps
+   d'attente (quelques mois) avant de pouvoir être sûr de l'archivage
+   et de pouvoir citer le code par un identifiant du type SWH.
+
+2. Mettez votre code dans un dépôt public géré avec Git, Mercurial, ou
+   Subversion.  Puis rentrez son URL sur la page
+   https://archive.softwareheritage.org/save/ Le temps d'attente est
+   typiquement de quelques heures, et vous pouvez surveiller l'état de
+   votre requête à tout moment.
 
 Pour les données, nous vous recommandons vivement d’utiliser
 [[https://www.zenodo.org/][https://www.zenodo.org/]] lorsque les données ne sont pas sensibles. 

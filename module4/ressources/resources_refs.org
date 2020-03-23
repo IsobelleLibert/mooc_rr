@@ -1,6 +1,6 @@
 # -*- mode: org -*-
 #+TITLE:     Additional references
-#+DATE: June, 2018
+#+DATE: March 2020
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
@@ -83,6 +83,21 @@ Ensuring software is properly archived, i.e, is safely stored so that
 it can be accessed in a perennial way, can be quite tricky. If you
 have never seen [[https://github.com/alegrand/RR_webinars/blob/master/5_archiving_software_and_data/index.org][Roberto Di Cosmo presenting the Software Heritage
 project]], this is a must see. [[https://www.softwareheritage.org/][https://www.softwareheritage.org/]]
+
+If you want to archive your own code via Software Heritage, there are
+two ways to proceed:
+
+1. You put your code into a public repository at http://github.com,
+   http://gitlab.com, or http://bitbucket.org. And then you simply
+   wait for Software Heritage to pick it up. The only downside is the
+   delay (up to several months) before you can be sure that your code
+   is archived and before you can cite it via a SWH identifier.
+
+2. Put your code into a public repository managed using Git,
+   Mercurial, or Subversion. Enter its URL at
+   https://archive.softwareheritage.org/save/.  The delay is typically
+   a few hours, and you can watch the status of your request at any
+   time.
 
 For regular data, we highly recommend using [[https://www.zenodo.org/][https://www.zenodo.org/]]
 whenever the data is not sensitive.
