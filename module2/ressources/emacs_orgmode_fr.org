@@ -69,7 +69,7 @@ dans le shell conda. Comme expliqué dans la [[https://docs.anaconda.com/anacond
 pour ouvrir ce shell
 - Windows: Click Start, search, ou bien sélectionnez Anaconda Prompt dans le menu.
   [[file:Conda_images/win-anaconda-prompt.png]]
-- macOS: Cmd+Space pour ouvrir Spotlight Search et tapez “Anaconda”
+- macOS: Cmd+Space pour ouvrir Spotlight Search et tapez “terminal”
   pour ouvrir le shell.
 - Linux–CentOS: Open Applications - System Tools - terminal.
 - Linux–Ubuntu: Open the Dash by clicking the upper left Ubuntu icon, then type “terminal”.
