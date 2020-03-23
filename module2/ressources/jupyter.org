@@ -20,10 +20,9 @@ jupyter notebook
   - [[#other-languages][Other languages]]
   - [[#improving-notebook-readability][Improving notebook readability]]
 - [[#installing-and-configuring-jupyter-on-your-computer][Installing and configuring Jupyter on your computer]]
-  - [[#installing-jupyter-and-python-r-][Installing Jupyter (and Python, R, ...)]]
+  - [[#installing-jupyter-plus-python-r-][Installing Jupyter (plus Python, R, ...)]]
   - [[#latex-for-generating-pdf-files][LaTeX for generating PDF files]]
-  - [[#jupyterlab][JupyterLab]]
-  - [[#interacting-with-gitlab-and-git][Interacting with GitLab and Git]]
+  - [[#interacting-with-gitlab-and-git][Interacting with GitLab and git]]
 
 * Jupyter tips and tricks
 The following [[https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/][webpage]] lists several Jupyter tricks (in particular, it
@@ -199,7 +198,7 @@ First, download the [[https://conda.io/miniconda.html][most recent version of Mi
 
 On our server, we use version =4.5.4= of Miniconda and versio =3.6= of Python. In theory, you could download [[https://gist.github.com/brospars/4671d9013f0d99e1c961482dab533c57][the environment file =mooc_rr=]] and reproduce an identical environment on your own computer. Unfortunately, our server was set up in 2018, and =conda= has changed quite a bit since then. Reconstructing this environment is therefore no longer possible. We will show you in the following how to get an equivalent environment but using more recent versions of all the software.
 
-Install Miniconda following the supplied instructions. When the installer asks you the question
+Install Miniconda following the supplied instructions. Whenever (it it not systematic) the installer asks you the question
 #+begin_quote
 Do you wish the installer to initialize Miniconda3
 by running conda init? [yes|no]
@@ -208,7 +207,17 @@ answer =yes=. You will then see the advice
 #+begin_quote
 ==> For changes to take effect, close and re-open your current shell. <==
 #+end_quote
-which you must respect to make sure that the following steps work correctly. The first command to run next is
+which you must respect to make sure that the following steps work correctly. 
+
+*Important:* You should then run all the following commands through the
+conda shell. As explained in the [[https://docs.anaconda.com/anaconda/install/verify-install/][Anaconda documentation]], to open the Anaconda prompt:
+- Windows: Click Start, search, or select Anaconda Prompt from the menu.
+  file:Conda_images/win-anaconda-prompt.png
+- macOS: Cmd+Space to open Spotlight Search and type “Anaconda” to open the program.
+- Linux–CentOS: Open Applications - System Tools - terminal.
+- Linux–Ubuntu: Open the Dash by clicking the upper left Ubuntu icon, then type “terminal”.
+
+The first command to run next is
 #+begin_src shell :results output :exports both
 conda update -n base -c defaults conda
 #+end_src

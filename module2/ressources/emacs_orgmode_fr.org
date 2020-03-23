@@ -21,7 +21,7 @@ regarder la vidéo [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-
 * Table des matières                                           :TOC:
 - [[#installation-demacs-python-et-r][Installation d'Emacs, Python et R]]
 - [[#latex-pour-la-génération-de-pdf][LaTeX pour la génération de PDF]]
-- [[#Une-configuration-emacs-adaptée-à-la-recherche-reproductible][Une configuration Emacs adaptée à la "recherche reproductible"]]
+- [[#une-configuration-emacs-adaptée-à-la-recherche-reproductible][Une configuration Emacs adaptée à la "recherche reproductible"]]
   - [[#etape-0--sauvegarder-et-supprimer-votre-configuration-précédente][Etape 0 : Sauvegarder et supprimer votre configuration précédente]]
   - [[#etape-1--télécharger-notre-configuration][Etape 1 : Télécharger notre configuration]]
   - [[#étape-2--préparez-votre-journal][Étape 2 : Préparez votre journal]]
@@ -52,8 +52,8 @@ une version légère d'Anaconda, une suite logicielle incluant Python,
 Jupyter, R ainsi que les bibliothèques les plus couramment utilisées
 en calcul scientifique et en science des données.
 
-Installez Miniconda en suivant les instructions fournies. Quand le
-logiciel d'installation vous pose la question
+Installez Miniconda en suivant les instructions fournies. Si le
+logiciel d'installation (ce n'est pas systématique) vous pose la question
 #+begin_quote
 Do you wish the installer to initialize Miniconda3
 by running conda init? [yes|no]
@@ -62,7 +62,19 @@ acceptez avec =yes=. Puis vous verrez le conseil
 #+begin_quote
 ==> For changes to take effect, close and re-open your current shell. <==
 #+end_quote
-qu'il faut absolument suivre pour que la suite se passe bien. La première commande à lancer est
+qu'il faut absolument suivre pour que la suite se passe bien. 
+
+*Important:* il vous faudra lancer les commandes suivantes 
+dans le shell conda. Comme expliqué dans la [[https://docs.anaconda.com/anaconda/install/verify-install/][documentation Anaconda]],
+pour ouvrir ce shell
+- Windows: Click Start, search, ou bien sélectionnez Anaconda Prompt dans le menu.
+  file:Conda_images/win-anaconda-prompt.png
+- macOS: Cmd+Space pour ouvrir Spotlight Search et tapez “Anaconda”
+  pour ouvrir le shell.
+- Linux–CentOS: Open Applications - System Tools - terminal.
+- Linux–Ubuntu: Open the Dash by clicking the upper left Ubuntu icon, then type “terminal”.
+
+La première commande à lancer est
 #+begin_src shell :results output :exports both
 conda update -n base -c defaults conda
 #+end_src
