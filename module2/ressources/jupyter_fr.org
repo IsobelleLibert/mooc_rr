@@ -7,8 +7,7 @@
 #+PROPERTY: header-args :eval never-export
 
 Quand vous aurez suivi les instructions suivantes, vous
-pourrez ouvrir des notebooks jupyter en tapant une commande shell/DOS
-command:
+pourrez ouvrir des notebooks Jupyter en tapant une commande shell/DOS :
 #+begin_src shell :results output :exports both
 jupyter notebook
 #+end_src
@@ -28,7 +27,7 @@ jupyter notebook
 * Jupyter : Trucs et astuces
 Cette [[https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/][page web]] (en anglais) recense un certain nombre d'astuces
 relatives à l'utilisation de Jupyter (et en particulier des
-illustrations des nombreuses commandes magiques =IPython magic=) et
+illustrations des nombreuses commandes magiques =IPython magic=)
 susceptibles d'améliorer votre efficacité (notez bien que ce billet a
 plus de deux ans que Jupyter évoluant très rapidement, certaines de
 ces astuces ou de ces modules complémentaires font maintenant partie
@@ -37,7 +36,7 @@ du comportement par défaut des versions les plus récentes de Jupyter).
 L'environnement Jupyter que nous avons déployé dans le cadre de ce
 MOOC vous permettra d'accéder très simplement à tout fichier (et en
 particulier les notebooks des différents exercices que nous avons
-créés pour vous) de votre projet gitlab par défaut. Il y a néanmoins
+créés pour vous) de votre projet Gitlab par défaut. Il y a néanmoins
 des situations où vous pouvez vouloir utiliser d'autres notebooks que
 ceux du MOOC.
 - Créer un notebook tout neuf dans un répertoire donné :: 
@@ -62,7 +61,7 @@ ceux du MOOC.
      [[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][autre notebook]] 
      rédigé par quelqu'un d'autre, procédez de la façon suivante :
   1. Téléchargez le fichier sur votre répertoire. Pour ce [[https://app-learninglab.inria.fr/gitlab/moocrr-session2/moocrr-reproducibility-study/blob/master/src/Python3/challenger.ipynb][Notebook
-     hébergé sur un gitLab]], cliquez sur =Open raw= (l'icone avec
+     hébergé sur un GitLab]], cliquez sur =Open raw= (l'icône avec
      un petit =</>= ) et sauvegardez (=Ctrl-S= sur la plupart des
      navigateurs) son contenu (un long fichier texte au format JSON).
   2. Ouvrez le gestionnaire de fichiers de Jupyter via le menu =File -> Open=
@@ -145,7 +144,7 @@ exemple) se révélera très certainement précieux.
   python -m pip install saspy
   #+end_src
 - Sous Windows, il vous faudra probablement modifier le fichier 
-  =C:\Program Files\Python\Python37\Lib\site-packages\saspy\sascfg_sav.py= 
+  =C:\Program Files\Python\Python37\Lib\site-packages\saspy\sascfg.py= 
   et l'adapter à votre propre système. Dans les deux captures d'écran
   suivantes, la fenêtre de gauche correspond à la version originale du
   fichier et celle de droite à la version modifiée :
@@ -253,17 +252,18 @@ acceptez avec =yes=. Puis vous verrez le conseil
 #+end_quote
 qu'il faut absolument suivre pour que la suite se passe bien. 
 
-*Important:* il vous faudra lancer les commandes suivantes 
-dans le shell conda. Comme expliqué dans la [[https://docs.anaconda.com/anaconda/install/verify-install/][documentation Anaconda]],
-pour ouvrir ce shell
-- Windows: Click Start, search, ou bien sélectionnez Anaconda Prompt dans le menu.
-  [[file:Conda_images/win-anaconda-prompt.png]]
-- macOS: Cmd+Space pour ouvrir Spotlight Search et tapez “terminal”
-  pour ouvrir le shell.
-- Linux–CentOS: Open Applications - System Tools - terminal.
-- Linux–Ubuntu: Open the Dash by clicking the upper left Ubuntu icon, then type “terminal”.
+*Important :* il vous faudra exécuter plusieurs commandes dans le shell conda.
 
-La première commande à lancer est
+Voici d'abord comment ouvrir ce shell (comme expliqué dans la 
+[[https://docs.anaconda.com/anaconda/install/verify-install/][documentation Anaconda]]) :
+- Windows : Click Start, search, ou bien sélectionnez Anaconda Prompt dans le menu.
+  [[file:Conda_images/win-anaconda-prompt.png]]
+- macOS : Cmd+Space pour ouvrir Spotlight Search et tapez “terminal”
+  pour ouvrir le shell.
+- Linux–CentOS : Open Applications - System Tools - terminal.
+- Linux–Ubuntu : Open the Dash by clicking the upper left Ubuntu icon, then type “terminal”.
+
+La première commande à exécuter dans le shell est
 #+begin_src shell :results output :exports both
 conda update -n base -c defaults conda
 #+end_src
@@ -280,15 +280,15 @@ conda activate mooc-rr-jupyter
 #+end_src
 Il n'est pas strictement nécessaire d'activer un environnement pour
 s'en servir, mais c'est la façon la plus facile qui suscite le moins
-d'erreurs. *Vous devez répéter cette activation chaque fois que vous ouvrez un nouveau terminal, avant de pouvoir utiliser cet
-environnement.*
+d'erreurs. *Vous devez répéter cette activation chaque fois que vous ouvrez un 
+nouveau terminal, avant de pouvoir utiliser cet environnement.*
 
 Le prochain pas est l'installation de tous les logiciels dont nous
 avons besoin et qui font partie de la distribution Miniconda :
 #+begin_src shell :results output :exports both
 conda install jupyter python numpy matplotlib pandas r r-irkernel rpy2 tzlocal simplegeneric
 #+end_src
-Il restent deux paquets que ne font pas partie de Miniconda. Nous
+Il reste deux paquets que ne font pas partie de Miniconda. Nous
 récupérons le premier de la source indépendante [[https://conda-forge.org/][conda-forge]] :
 #+begin_src shell :results output :exports both
 conda install -c conda-forge r-parsedate
