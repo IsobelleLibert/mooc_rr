@@ -1,4 +1,4 @@
-# Ressources du futur Mooc Recherche reproductible II / Resources of the Future Mooc Reproducible Research
+# Ressources du futur Mooc "Recherche reproductible II" / Resources of the future Mooc "Reproducible Research II"
 
 [English version below]
 
