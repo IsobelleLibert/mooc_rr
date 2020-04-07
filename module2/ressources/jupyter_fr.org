@@ -188,7 +188,8 @@ exemple) se révélera très certainement précieux.
 
 ** Améliorer la lisibilité d'un notebook
 Lorsque les notebooks s'allongent, ils deviennent vite difficiles à
-lire. Voici quelques extensions qui peuvent vous faciliter un peu la
+lire. Voici quelques extensions (la liste officielle de ces extensions
+est [[https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions.html][ici]]) qui peuvent vous faciliter un peu la
 vie :
 - Il est possible [[https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook][plier/déplier votre code]] :
   #+begin_src shell :results output :exports both
@@ -220,6 +221,8 @@ vie :
   N.B. : Dans la première édition de ce MOOC, certains participants nous
   ont rapporté avoir eu des difficultés à faire fonctionner cette
   extension sous Windows.
+- Table des matières: L'extention [[https://jupyter-contrib-nbextensions.readthedocs.io/en/latest/nbextensions/toc2/README.html][toc(2)]] améliore également beaucoup la navigation et la capacité à avoir une vue d'ensemble du notebook.
+
 * Installation et configuration de Jupyter sur votre ordinateur
 Dans cette section, nous expliquons comment installer, sur votre
 ordinateur, un environnement Jupyter similaire à celui que nous avons
@@ -351,9 +354,8 @@ votre usage, que cela s'avère peu pratique du point de vue du suivi de
 version. Certaines personnes ont donc développé des 
 [[https://gist.github.com/pbugnion/ea2797393033b54674af][git hooks spécifiques]] 
 permettant d'ignorer ces numéros lorsque l'on commite des
-notebooks Jupyter. Il y eu une longue discussion à ce sujet sur
-[[https://stackoverflow.com/questions/18734739/using-ipython-notebooks-under-version-control][StackOverflow]] 
-qui détaille différentes options.
+notebooks Jupyter. Il y eu de longues discussions à ce sujet sur
+[[https://stackoverflow.com/questions/18734739/using-ipython-notebooks-under-version-control][StackOverflow]], [[https://discourse.jupyter.org/t/how-to-version-control-jupyter-notebooks/566/14][the Jupyter Forum]], et [[https://nextjournal.com/schmudde/how-to-version-control-jupyter][NextJournal]], qui détaillent différentes options.
 
 Enfin, pour ceux qui utilisent [[https://blog.jupyter.org/jupyterlab-is-ready-for-users-5a6f039b8906][JupyterLab]] plutôt que le Jupyter de
 base, un [[https://github.com/jupyterlab/jupyterlab-git][plugin Git pour JupyterLab]] a été développé et offre des
