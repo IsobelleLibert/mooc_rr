@@ -31,7 +31,7 @@ button "*Accéder à Gitlab / Access to Gitlab*".
   #+END_CENTER
 - Click on **Authorize*.
   #+BEGIN_CENTER
-  [[file:gitlab_images/projects.png]]
+  [[file:gitlab_images/GitlabProject.png]]
   #+END_CENTER
 
   The long string replaced here by =xxx= is the login you will have to
