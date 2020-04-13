@@ -119,7 +119,7 @@ $$\sum_{i=1}^n X_i$$
 In the rest of this section we present a brief selection of common
 symbols and commands.  Actually, almost any classical LaTeX command
 can used as such in Markdown, provided it is surrounded by a =$=. For
-more complete examples, please have a look at these ces [[http://www.statpower.net/Content/310/R%2520Stuff/SampleMarkdown.html][examples by
+more complete examples, please have a look at these ces [[http://www.statpower.net/Content/310/R%20Stuff/SampleMarkdown.html][examples by
 James H. Steiger]].
 ** Greek Letters
  | Symbol | Command |

@@ -121,7 +121,7 @@ Nous vous présentons par la suite une sélection de symboles et de
 commandes courants. En fait, à peu près tout ce qui est classique
 dans le langage LaTeX peut être utilisé pourvu que vous délimitiez
 bien avec un =$=. Pour d'autres exemples plus complets jetez un coup
-d'œil à ces [[http://www.statpower.net/Content/310/R%2520Stuff/SampleMarkdown.html][exemples de James H. Steiger]].
+d'œil à ces [[http://www.statpower.net/Content/310/R%20Stuff/SampleMarkdown.html][exemples de James H. Steiger]].
 ** Lettres grecques
  | Symbole | Commande |
  |---------+----------|
