@@ -30,7 +30,7 @@ Open RStudio and do the following steps:
   #+END_CENTER
 - Get the URL from your GitLab repository:
   #+BEGIN_CENTER
-  [[file:rstudio_images/adresse_depot2.png]]
+  [[file:rstudio_images/adresse_depot_v2.png]]
   #+END_CENTER
 - Indicate this URL in the "Repository URL" field (/you may want to
   prefix this URL with =xxx@= where =xxx= is/ /your Gitlab id to avoid
