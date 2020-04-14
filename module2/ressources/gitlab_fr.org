@@ -116,7 +116,7 @@ nous avons déployés pour le MOOC. Vous devrez effectuer l’étape
 supplémentaire de modification de votre =~/.git-credentials= dans
 l’environnement Jupyter (éventuellement plusieurs fois).  
 
-1. Récupérer votre mot de passe par défaut en utilisant l'outil [[https://app-learninglab.inria.fr/jupyterhub/services/password][Gitlab
+1. Récupérer votre mot de passe par défaut en utilisant l'outil [[https://app-learninglab.inria.fr/moocrr/jupyter/services/password][Gitlab
    credentials retrieval]] comme décrit dans la [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85][ressource correspondante]].
    #+BEGIN_CENTER
    [[file:gitlab_images/password_retrieval.png]]
