@@ -240,7 +240,7 @@ Here are other ways to learn Git through the command line:
 Now, let's start!
 1. Obtain the repository URL
    #+BEGIN_CENTER
-   [[file:rstudio_images/adresse_depot.png]]
+   [[file:rstudio_images/adresse_depot_v2.png]]
    #+END_CENTER
 2. Cloning the repository
    #+begin_src shell :results output :exports both
