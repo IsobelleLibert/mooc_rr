@@ -32,7 +32,7 @@ Ouvrir RStudio et procéder comme suit :
   #+END_CENTER
 - Récupérer l'URL du dépôt Gitlab
   #+BEGIN_CENTER
-  [[file:rstudio_images/adresse_depot.png]]
+  [[file:rstudio_images/adresse_depot_v2.png]]
   #+END_CENTER
 - Indiquez cette URL dans le champ "Repository URL" /(vous voudrez/
   /peut-être préfixer cette URL avec =xxx@= où =xxx= est votre identifiant/
