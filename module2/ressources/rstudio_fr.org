@@ -9,8 +9,6 @@
   - [[#latex-pour-la-génération-de-pdf][LaTeX pour la génération de PDF]]
 - [[#documentation-rstudio][Documentation RStudio]]
 - [[#utiliser-git-avec-rstudio][Utiliser Git avec RStudio]]
-  - [[#cloner-un-dépôt][Cloner un dépôt]]
-  - [[#modifier-un-fichier][Modifier un fichier]]
 
 * Installer RStudio et R
 Il y a beaucoup de façons différentes pour installer R et RStudio sur
