@@ -107,7 +107,7 @@ prevent you from committing in Jupyter. You will have to do the extra
 step of changing your =~/.git-credentials= in the Jupyter environment
 (possibly several times).
 
-1. Get your default password using the [[https://app-learninglab.inria.fr/jupyterhub/services/password][Gitlab credentials retrieval
+1. Get your default password using the [[https://app-learninglab.inria.fr/moocrr/jupyter/services/password][Gitlab credentials retrieval
    tool]] as described on the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85][corresponding resource]].
    #+BEGIN_CENTER
    [[file:gitlab_images/password_retrieval.png]]
