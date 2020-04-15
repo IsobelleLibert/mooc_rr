@@ -8,6 +8,10 @@
 
 Voici un document qui recense quelques documents computationnels
 "remarquables" dans toutes les disciplines et tous les domaines.
+Nous les avons choisis pour la qualité de l'exposition, ou pour
+leur bon usage des possibilités de la technologie mise en oeuvre.
+Il est pourtant possible que le contenu ne soit pas à la hauteur
+de l'état de l'art des domaines concernés.
 
 * Table of Contents                                                     :TOC:
 - [[#notebooks-jupyter][Notebooks Jupyter]]
