@@ -54,6 +54,7 @@ apt-get update ; apt-get install git
 #+end_src
 ** Mac OSX et Windows
 - Télécharger et installer Git depuis le [[https://git-scm.com/downloads][site Git]].
+- /Pour Windows :/ Ajouter le chemin de =Git= dans la variable =PATH= de Windows. La façon de procéder est très bien expliquée [[http://sametmax.com/ajouter-un-chemin-a-la-variable-denvironnement-path-sous-windows/][ici]].
 - Clients Git optionnels (ne devraient pas être nécessaires si vous
   travaillez dans RStudio) : 
   - [[https://www.sourcetreeapp.com/][SourceTree]]
