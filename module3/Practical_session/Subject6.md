@@ -43,4 +43,4 @@ __Your mission, should you choose to accept it:__
 
    Why is this result surprising? Can you explain this paradox? Similarly, you may wish to provide a graphical representation of the data to support your explanations.
 3. In order to avoid a bias induced by arbitrary and non-regular age groupings, it is possible to try to perform a logistic regression. If we introduce a `Death` variable of `1` or `0` to indicate whether the individual died during the 20-year period, we can study the `Death ~ Age` model to study the probability of death as a function of age according to whether one considers the group of smokers or non-smokers. Do these regressions allow you to conclude or not on the harmfulness of smoking?  You will be able to propose a graphical representation of these regressions (without omitting the regions of confidence).
-4. DépoSubmit your work in FUN
+4. Submit your work in FUN
