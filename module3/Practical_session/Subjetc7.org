@@ -1,0 +1,71 @@
+
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: timestamp:t title:t toc:t todo:t |:t
+#+title: The SARS-CoV-2 (Covid-19) epidemic
+#+date: <2020-04-10 ven.>
+#+author: Christophe Pouzat
+#+email: christophe.pouzat@parisdescartes.fr
+#+language: fr
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 26.3 (Org mode 9.3.6)
+#+creator: Emacs 26.3 (Org mode 9.3.6)
+#+LaTeX_CLASS: koma-report-fr
+#+LaTeX_HEADER: \renewenvironment{verbatim}{\begin{alltt} \scriptsize \color{Bittersweet} \vspace{0.2cm} }{\vspace{0.2cm} \end{alltt} \normalsize \color{black}}
+#+LaTeX_HEADER: \definecolor{lightcolor}{gray}{.55}
+#+LaTeX_HEADER: \definecolor{shadecolor}{gray}{.95}
+#+PROPERTY: header-args :eval no-export
+
+#+STARTUP: indent
+
+* Prerequisites
+Data visualization techniques. This exercise can be done in either R or Python.
+
+* Subject
+
+The goal is to produce plots similar to the one of the [[https://www.scmp.com/][South
+China Morning Post]] (/SCMP/), on [[https://www.scmp.com/coronavirus?src=homepage_covid_widget][The Coronavirus Pandemic]] page, which
+shows for different countries the cumulative number (i.e. the total number since the beginning of the pandemic) of people with [[https://en.wikipedia.org/wiki/Coronavirus_disease_2019][coronavirus 2019 disease]].
+
+The data we are going to use in a first step are compiled by the [[https://systems.jhu.edu/][Johns
+Hopkins University Center for Systems Science and Engineering (JHU CSSE)]] and are freely available on [[https://github.com/CSSEGISandData/COVID-19][GitHub]]. We will focus specifically on the dataset
+=time_series_covid19_confirmed_global.csv= (time series in [[https://en.wikipedia.org/wiki/Comma-separated_values][csv]] format), which
+you can find at the address:
+[[https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv]].
+
+Firstly, download the data to make a graph showing the
+evolution of the cumulative number of cases over time for: Belgium,
+China (all provinces except Hong Kong), China, Hong-Kong, France
+except Dom/Tom, Germany, Iran, Italy, Japan, Korea South, Netherlands
+without the colonies, Portugal, Spain, United Kingdom without the colonies, US.
+
+The data from China are organized by provinces and we have separated
+Hong-Kong, not in order the take a side in the tensions between the
+province and the Chinese state, but because this is how the data
+appear on the SCMP website. Overseas territories and other "colonial
+residues" are excluded from the data from France, the Netherlands, and the United Kingdom.    
+
+Next, make a graph with the date on the x-axis and the
+cumulative number of cases at this date on the y-axis. We suggest you to make two versions of this graph, one with a linear scale and another with a logarithmic scale.
+  
+* Another question to work on when this “mess” is over
+
+You can use the death datas
+([[https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv][time_series_covid19_deaths_global.csv]]) and do the same graphs, but
+again, be careful with the interpretation. This curves, even though they
+look disastrous,  have to be compared to the “normal” mortality. For
+France, this data are available on the INSEE website : [[https://www.insee.fr/fr/information/4470857]],
+as well as in “daily reviews” published by [[https://www.santepubliquefrance.fr/][Santé publique France]],
+for example the one for [[https://www.santepubliquefrance.fr/content/download/237529/document_file/bulletin_national_mortalite_578_170320.pdf][week 12]] (this website is badly designed for anyone
+looking for a specific information, the easiest way to do that is to use a
+general search engine...).
+
+To attenuate the effects of counting procedures, etc., you can, once
+the pandemic is over, take the total number of deaths and normalize per
+1000 inhabitants of the studied country. Then search for data
+on the number of hospital beds per 1000 inhabitants on the website
+of the [[https://data.oecd.org/healtheqt/hospital-beds.htm][OECD]] and correlate both (i.e. make a graph
+with the number of beds on the x-axis and of the number of deaths on the y-axis)... 

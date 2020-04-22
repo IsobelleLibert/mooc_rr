@@ -1,0 +1,82 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: timestamp:t title:t toc:t todo:t |:t
+#+title: Autour du SARS-CoV-2 (Covid-19)
+#+date: <2020-04-10 ven.>
+#+author: Christophe Pouzat
+#+email: christophe.pouzat@parisdescartes.fr
+#+language: fr
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 26.3 (Org mode 9.3.6)
+#+creator: Emacs 26.3 (Org mode 9.3.6)
+#+LaTeX_CLASS: koma-report-fr
+#+LaTeX_HEADER: \renewenvironment{verbatim}{\begin{alltt} \scriptsize \color{Bittersweet} \vspace{0.2cm} }{\vspace{0.2cm} \end{alltt} \normalsize \color{black}}
+#+LaTeX_HEADER: \definecolor{lightcolor}{gray}{.55}
+#+LaTeX_HEADER: \definecolor{shadecolor}{gray}{.95}
+#+PROPERTY: header-args :eval no-export
+
+#+STARTUP: indent
+
+* Prérequis
+Techniques de présentation graphique. Cet exercice peut être réalisé indifféremment en R ou en Python.
+
+* Sujet
+
+Le but est ici de reproduire des graphes semblables à ceux du [[https://www.scmp.com/][South
+China Morning Post]] (/SCMP/), sur la page [[https://www.scmp.com/coronavirus?src=homepage_covid_widget][The Coronavirus Pandemic]] et qui
+montrent pour différents pays le nombre cumulé (c'est-à-dire le nombre
+total de cas depuis le début de l'épidémie) de personnes atteintes de
+la [[https://fr.wikipedia.org/wiki/Maladie_%C3%A0_coronavirus_2019][maladie à coronavirus 2019]].
+
+Les données que nous utiliserons dans un premier temps sont compilées
+par le [[https://systems.jhu.edu/][Johns Hopkins University Center for Systems Science and
+Engineering (JHU CSSE)]] et sont mises à disposition sur [[https://github.com/CSSEGISandData/COVID-19][GitHub]]. C'est
+plus particulièrement sur les données
+=time_series_covid19_confirmed_global.csv= (des suites chronologiques au
+format [[https://fr.wikipedia.org/wiki/Comma-separated_values][csv]]) disponibles à l'adresse :
+[[https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv]],
+que nous allons nous concentrer.
+
+Vous commencerez par télécharger les données pour créer un graphe
+montrant l’évolution du nombre de cas cumulé au cours du temps pour
+les pays suivants : la Belgique (/Belgium/), la Chine - toutes les
+provinces sauf Hong-Kong (/China/), Hong Kong (/China, Hong-Kong/), la
+France métropolitaine (/France/), l’Allemagne (/Germany/), l’Iran (/Iran/),
+l’Italie (/Italy/), le Japon (/Japan/), la Corée du Sud (/Korea, South/), la
+Hollande sans les colonies (/Netherlands/), le Portugal (/Portugal/),
+l’Espagne (/Spain/), le Royaume-Unis sans les colonies (/United Kingdom/), les États-Unis (/US/).
+
+Le nom entre parenthèses est le nom du « pays » tel qu’il apparaît
+dans le fichier =time_series_covid19_confirmed_global.csv=. Les données
+de la Chine apparaissent par province et nous
+avons séparé Hong-Kong, non pour prendre parti dans les différences
+entre cette province et l'état chinois, mais parce que c'est ainsi
+qu'apparaissent les données sur le site du SCMP. Les données pour la
+France, la Hollande et le Royaume-Uni excluent les territoires d'outre-mer et autres « résidus coloniaux ».       
+
+Ensuite vous ferez un graphe avec la date en abscisse et le nombre
+cumulé de cas à cette date en ordonnée. Nous vous proposons de faire deux
+versions de ce graphe, une avec une échelle linéaire et une avec une échelle logarithmique.
+  
+* Question subsidiaire à faire quand on sera sorti du « merdier »
+
+Vous pourrez également utiliser les données de décès
+([[https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv][time_series_covid19_deaths_global.csv]]) et refaire les courbes, mais
+là encore, faites attention lors de l'interprétation. Ces courbes,
+même si elles paraissent effrayantes, doivent être comparées à la
+mortalité « normale ». Pour la France des données sont disponibles sur
+le site de l'INSEE : [[https://www.insee.fr/fr/information/4470857]],
+ainsi que dans les « Points hebdomadaires » de surveillance de la
+mortalité diffusés par [[https://www.santepubliquefrance.fr/][Santé publique France]], comme celui de la
+[[https://www.santepubliquefrance.fr/content/download/237529/document_file/bulletin_national_mortalite_578_170320.pdf][semaine 12]] (le site étant très mal conçu pour quiconque souhaite une information spécifique, le plus simple est de passer par un moteur de recherche généraliste...).
+
+Pour atténuer les effets dus aux méthodes de comptage, etc., vous
+pourrez, une fois l'épidémie terminée, prendre les données du nombre
+total de décès et les normaliser pour 1000 habitants du pays
+concerné. Vous irez ensuite chercher les données sur le nombre de lits
+d'hôpital pour 1000 habitants sur le site de l'[[https://www.oecd-ilibrary.org/sites/5f5b6833-fr/1/2/9/3/index.html?itemId=/content/publication/5f5b6833-fr&_csp_=65ac94c7f4b2dbbf68a7eef9e558ed12&itemIGO=oecd&itemContentType=book][OCDE]] et vous pourrez
+corréler les deux (c'est-à-dire, faire un graphe avec le nombre de
+lits en abscisse et le nombre de décès en ordonnée)... 
