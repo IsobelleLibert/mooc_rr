@@ -54,6 +54,7 @@ apt-get update ; apt-get install git
 #+end_src
 ** Mac OSX et Windows
 - Télécharger et installer Git depuis le [[https://git-scm.com/downloads][site Git]].
+- /Pour Windows :/ Ajouter le chemin de =Git= dans la variable =PATH= de Windows. La façon de procéder est très bien expliquée [[http://sametmax.com/ajouter-un-chemin-a-la-variable-denvironnement-path-sous-windows/][ici]].
 - Clients Git optionnels (ne devraient pas être nécessaires si vous
   travaillez dans RStudio) : 
   - [[https://www.sourcetreeapp.com/][SourceTree]]
@@ -116,7 +117,7 @@ nous avons déployés pour le MOOC. Vous devrez effectuer l’étape
 supplémentaire de modification de votre =~/.git-credentials= dans
 l’environnement Jupyter (éventuellement plusieurs fois).  
 
-1. Récupérer votre mot de passe par défaut en utilisant l'outil [[https://app-learninglab.inria.fr/jupyterhub/services/password][Gitlab
+1. Récupérer votre mot de passe par défaut en utilisant l'outil [[https://app-learninglab.inria.fr/moocrr/jupyter/services/password][Gitlab
    credentials retrieval]] comme décrit dans la [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85][ressource correspondante]].
    #+BEGIN_CENTER
    [[file:gitlab_images/password_retrieval.png]]
@@ -266,7 +267,7 @@ Voici d'autres moyens d'apprendre Git par lignes de commandes :
 Maintenant, commençons !
 1. Récupérer l'URL du dépôt
    #+BEGIN_CENTER
-      [[file:rstudio_images/adresse_depot.png]]
+      [[file:rstudio_images/adresse_depot_v2.png]]
    #+END_CENTER
 2. Cloner le dépôt
    #+begin_src shell :results output :exports both

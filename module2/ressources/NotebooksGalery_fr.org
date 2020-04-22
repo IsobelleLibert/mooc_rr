@@ -8,6 +8,10 @@
 
 Voici un document qui recense quelques documents computationnels
 "remarquables" dans toutes les disciplines et tous les domaines.
+Nous les avons choisis pour la qualité de l'exposition, ou pour
+leur bon usage des possibilités de la technologie mise en oeuvre.
+Il est pourtant possible que le contenu ne soit pas à la hauteur
+de l'état de l'art des domaines concernés.
 
 * Table of Contents                                                     :TOC:
 - [[#notebooks-jupyter][Notebooks Jupyter]]
@@ -25,6 +29,7 @@ Voici un document qui recense quelques documents computationnels
 - [[https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks][A gallery of interesting Jupyter Notebooks]] :
   un entrepôt GitHub qui regroupe de nombreux notebooks Jupyter tous domaines
 - [[https://github.com/christophe-pouzat/ENP2015][Fluorescence Imaging Analysis: The Case of Calcium Transients]] a =GitHub= depository with an actual analysis preented as a Jupyter notebook in file =Pouzat-ENP-2015.ipynb= (github @c_pouzat).
+- [[https://github.com/k-sys/covid-19/blob/master/Realtime%20R0.ipynb][Estimating COVID-19's Rt in Real-Time]], Kevin Systrom (GitHub ~@k-sys~)
 
 * Notebooks RStudio
 - [[file:NotebooksGalery_images/CouponCollector.pdf][Devoir sur le /Coupon Collector/]] ([[file:NotebooksGalery_images/CouponCollector.Rmd][sources Rmd]]) Arnaud Legrand

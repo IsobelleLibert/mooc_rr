@@ -30,7 +30,7 @@ Open RStudio and do the following steps:
   #+END_CENTER
 - Get the URL from your GitLab repository:
   #+BEGIN_CENTER
-  [[file:rstudio_images/adresse_depot.png]]
+  [[file:rstudio_images/adresse_depot_v2.png]]
   #+END_CENTER
 - Indicate this URL in the "Repository URL" field (/you may want to
   prefix this URL with =xxx@= where =xxx= is/ /your Gitlab id to avoid
@@ -39,7 +39,8 @@ Open RStudio and do the following steps:
   [[file:rstudio_images/clone.png]]
   #+END_CENTER
 - If you're behind a proxy, git should be configured
-  accordingly. Check the [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/7508aece244548349424dfd61ee3ba85]["Dealing with proxies" section]].
+  accordingly. Check the 
+  [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/d86ab5b2b3054b179582da125131e2a5#dealing-with-proxies]["Dealing with proxies" section]].
 - Git will then connect to Gitlab and fetch a whole copy of the
   repository.
 - RStudio should restart in a mode related to Git:
@@ -77,3 +78,6 @@ Open RStudio and do the following steps:
   [[file:rstudio_images/push4.png]]
 - You should first merge these remote modifications locally. Click on
   =pull= to get these modifications on your machine.
+  
+  The video [[https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/jump_to_id/c20f53a4c00241589b00799fa909771e#git_2][Let's demystify Git, Github, Gitlab/Working together]] 
+  explains how to handle conflict with Git.
