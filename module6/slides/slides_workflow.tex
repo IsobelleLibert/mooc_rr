@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
 
 \usetheme{Madrid}
 \usecolortheme{crane}
@@ -24,12 +24,12 @@
 \definecolor{comments}{RGB}{60,179,113}
 
 
-\title{Automating computations: an introduction to workflows}
-\author[Konrad HINSEN]{Konrad HINSEN}
-\institute[CBM/SOLEIL]
-          {Centre de Biophysique Moléculaire, Orléans, France\\
-           and\\
-           Synchrotron SOLEIL, Saint Aubin, France}
+\title{Automating computations:\\ an introduction to workflows}
+% \author[Konrad HINSEN]{Konrad HINSEN}
+% \institute[CBM/SOLEIL]
+%           {Centre de Biophysique Moléculaire, Orléans, France\\
+%            and\\
+%            Synchrotron SOLEIL, Saint Aubin, France}
 \date{}
 
 \begin{document}
@@ -38,14 +38,13 @@
 \titlepage
 \end{frame}
 
-\begin{frame}{Automation matters}
+\begin{frame}{Automation is the key to reproducibility}
 
   \begin{itemize}
-  \item Interactive work is great for exploration, but rarely reproducible.
-  \item Even if you write down everything you do, you will make mistakes.
-  \item And even if you don't make mistakes, you are never \textit{sure}
-        there are no mistakes.
-  \item \textbf{You know exactly what you have done only if you can re-run your computation.}
+  \item \textbf{Interactive work is not reproducible.}
+  \item Even if you take notes carefully, you will make mistakes.
+  \item Even if you don't make mistakes, you can't be \textit{sure} of it.
+  \item \textbf{You know exactly what you did \\ only if you can re-run your computation.}
   \end{itemize}
 
 \end{frame}
@@ -53,17 +52,18 @@
 \begin{frame}{Programs, scripts, notebooks, workflows}
 
   \begin{itemize}
-  \item Variants of the same idea: automation of computations
+  \item Variants of the same idea: \textbf{automation of computations}
   \item Different terms and tools at different levels of organization
-  \item Program: complex algorithms and/or data structures
-  \item Script: short program, simple algorithms, no data abstraction
-  \item Notebook: script with comments and output
-  \item Workflow: coordination of multiple programs, multiple computers, multiple datasets
+  \item \textbf{Program:} data structures, complex algorithms
+  \item \textbf{Script:} simple algorithms, no data abstractions
+  \item \textbf{Notebook:} script with comments and output
+  \item \textbf{Workflow:} coordination of multiple programs/scripts, \\
+                           multiple computers, multiple datasets
   \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Overview}
+\begin{frame}{Overview of this module}
 
   \begin{enumerate}
   \item Why workflows?
@@ -71,6 +71,7 @@
   \item The descendants of \texttt{Make}
   \item Snakemake: Make for scientific computing
   \item Case study: the incidence of influenza-like illness revisited
+  \item Continuous integration testing: a special kind of workflow
   \end{enumerate}
 
 \end{frame}
