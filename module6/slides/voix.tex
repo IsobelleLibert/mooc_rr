@@ -1,0 +1,295 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[paperwidth=20cm,paperheight=10cm,margin=5mm]{geometry}
+
+\pagestyle{empty}
+\setlength{\parindent}{0mm}
+\setlength{\parskip}{1em}
+
+\begin{document}
+
+\section*{Séquence 1 (2'15'')}
+
+Bonjour à tous, et bienvenu dans le module sur l'automatisation des
+calculs avec les workflows.
+
+\newpage
+
+L'automatisation est la clé de la reproductibilité.
+
+Un travail interactif n'est jamais reproductible.
+
+Vous pouvez bien sûr tenter de prendre des notes soigneusement, mais
+vous allez faire des erreurs.
+
+Et même si vous ne faites pas d'erreur, vous ne pouvez jamais être sûr
+de ne pas avoir fait d'erreur.
+
+Vous savez exactement ce que vous avez fait seulement si vous pouvez
+refaire complètement votre calcul, d'un bout à l'autre.
+
+\newpage
+
+L'automatisation des calculs est un des rôles principaux des ordinateurs.
+
+On peut l'appliquer à plusieurs niveaux, et traditionnellement on
+utilise des noms différents pour les logiciels qui s'appliquent à
+chaque niveau.
+
+Un programme est un logiciel qui définit des structures de données et
+applique des algorithmes complexes de façon réutilisable.
+
+Un script implémente des algorithmes simples pour résoudre un problème
+spécifique, et n'introduit pas d'abstraction de données.
+
+Le notebook, que nous avons présenté dans notre MOOC d'introduction,
+est une variante du script qui rajoute des commentaires et des
+résultats.
+
+Enfin, le workflow, qui est le sujet de ce module, sert à coordonner
+des programmes ou scripts multiples, exécutés sur des ordinateurs
+multiples, pour traiter des jeux de données multiples.
+
+\newpage
+
+Dans ce module, je présente d'abord les situations dans lesquelles
+les workflows se montrent utiles.
+
+Par la suite, j'évoque les critères de choix d'un gestionnaire de
+workflow, parce qu'il y en a un très grand nombre.
+
+Je décrirai après la plus grande famille de gestionnaires de workflow,
+dont l'ancêtre commun est un logiciel des années 1970s qui s'appelle
+``make''.
+
+Dans cette famille, il y a notamment ``snakemake'', qui est
+particulièrement adapté au calcul scientifique.
+
+J'appliquerai snakemake à l'analyse de l'incidence du syndrome
+grippal, que nous avons déjà utilisé comme exemple dans notre premier
+MOOC.
+
+Enfin, je vais parler de l'intégration continue, qui est une forme
+spécial de wirkflow pour tester un logiciel tout au long de son
+évolution.
+
+\newpage
+
+\section*{Séquence 2 (2'35'')}
+
+Dans cette séquence, je vous explique pourquoi les workflows ont été
+inventés, et en quoi ils se distinguent des scripts et notebooks que
+vous connaissez déjà.
+
+\newpage
+
+La difficulté qui se pose avec les scripts et notebooks et le passage
+à l'échelle.
+
+Quand un script devient trop long, il devient difficile à lire ou à
+modifier, à cause de sa structure linéaire. Il faut sans cesse avancer
+et reculer dans le code en cours de lecture.
+
+Un workflow permet de découper le calcul en tâches plus petites, dont
+chacune est implémentée dans un script de taille gérable.
+
+\newpage
+
+Une autre limite des scripts et notebooks est la durée d'exécution,
+car il faut toujours les exécuter en entier. Prenons l'exemple d'un
+calcul paramétrique qu'on applique à 100 valeurs pour le paramètre.
+Puis on veut rajouter une 101ème valeur. Avec une boucle dans un
+script, il faut refaire les 100 calculs déjà faits.
+
+La même boucle dans un workflow est executée de façon plus intelligente :
+quand le résultat pour une valeur donée du paramètre est déjà disponible,
+le calcul n'est pas fait une deuxième fois.
+
+\newpage
+
+Les briques de calcul dans un workflow sont appelés des
+``tâches''. Chaque tâche est un mini-calcul: un bout de code est
+appliqué à des données d'entrée et produit des données de sortie. Une
+tâche est typiquement réalisée par un script, et les données d'entrée
+et sortie sont le plus souvent stockées dans des fichiers.
+
+\newpage
+
+Le workflow est alors le plan d'exécution des tâches, qui tient compte
+du fait que l'entrée d'une tâche est la sortie d'une autre.
+
+Un workflow ne permet que des structures de contrôle simples, par exemple
+des boucles.
+
+Un workflow peut être défini par un langage de programmation dédié,
+mais aussi construit de façon interactive comme un graphe reliant des tâches.
+
+\newpage
+
+Voici un exemple d'un graphe, qui correspond au workflow que je
+présenterai en détail plus tard. Ce workflow est définit par un langage,
+le graphe ne sert que pour la visualisation.
+
+Chaque boîte est une tâche, chaque ligne représente une dépendence
+entre deux tâches. Le graphe montre bien la présence d'une boucle,
+dont chaque itération est indépendente des autres, ce qui permet une
+exécution en parallèle.
+
+\newpage
+
+Le gestionnaire de workflow qui est chargé de l'exécution du plan
+commence par une analyse des dépendences, pour assurer qu'aucune tâche
+n'est exécutée avant que ses données d'entrée ne soient disponibles.
+
+Il décide quelles tâches doivent être exécutées, et dans quel ordre.
+
+Il évite aussi d'exécuter des tâches dont le résultat est déjà disponible.
+
+Il exécute les tâches en parallèle autant que possible, en fonction
+de la disponibilité de moyens de calcul.
+
+Enfin, il gère les erreurs de toute sorte qui peuvent se produire: une
+panne de matériel, une coupure d'électricité, etc.
+
+\newpage
+\section*{Séquence 3 (5'00'')}
+
+Dans cette séquence, je fais le tour des caractéristiques qui font la
+différence entre les nombreux gestionnaires de workflow, afin de vous
+aider à faire un bon choix.
+
+\newpage
+
+L'univers des workflows est en effet un peu bordélique. Il y a des
+dizaines de gestionnaires populaires, et des centaines qui le sont
+moins.
+
+L'idée a été découverte de nombreuses fois, et beaucoup de gens ont
+écrit leur gestionnaire personnel, spécifiquement adapté à leurs
+besoins qui sont très variables d'un usage à l'autre.
+
+Comme j'ai déjà dit, il n'y a aucune compatibilité de worklows entre
+deux gestionnaires différents. Pour cette raison, vous n'avez
+peut-être aucun choix vous-mêmes : si vous travaillez en équipe, vous
+héritez souvent du choix de quelqu'un d'autre, parce que vous devez
+travailler avec ses workflows.
+
+Il y a une norme en cours de développement, le Common Workflow
+Language, mais pour l'instant elle n'est pas très répandue.
+
+\newpage
+
+Un premier critère important dans le choix d'un gestionnaire
+de workflows est la nature des ressource de calcul que vous
+voulez mettre en oeuvre.
+
+Si vos calculs peuvent tourner sur votre ordinateur personnel,
+vous avez peu de contraintes car tous les gestionnaires proposent
+ce mode de fonctionnement.
+
+Mais si vous utilisez des ordinateurs à distance, par exemple dans
+votre laboratoire, ou des ordinateurs dans une grille
+ou dans le cloud, faites bien attention à ce que votre gestionnaire
+sait parler à ces machines.
+
+\newpage
+
+Une question liée concerne l'ordinateur sur lequel tourne le
+gestionnaire avec son interface utilisateur. C'est souvent votre
+ordinateur personnel, mais quelques gestionnaires présentent une
+interface Web et sont pilotés à partir d'un simple navigateur.
+
+Ce choix vous facilite la gestion des ressources, parce qu'elle
+devient le travail de quelqu'un d'autre, mais il pose aussi des
+contraintes dans le choix des logiciels auxquels vous avec accès dans
+vos workflows.
+
+\newpage
+
+La troisième question liées aux ressources porte sur le stockage des
+données.
+
+Pour des données de faible volume, ce n'est pas critique car vous
+pouvez les copier là où il faut.
+
+Par contre, le traitement de grands volumes de données nécessite
+l'organisation des calculs autour du stockage des données, car le
+transfert de données peut devenir plus couteux que le calcul lui-même.
+
+En ce cas, vous avez besoin d'un gestionnaire de workflows qui sait
+gérer les ressources dont vous disposez: des fichiers sur votre
+ordinateur personnel ou sur un ordinateur de laboratoire, un dépôt
+dans le cloud, genre AWS, ou des bases de données publiques
+accessibles par le Web.
+
+\newpage
+
+Passons à une autre catégorie de critères: la description des calculs.
+
+Une tâche est un petit calcul, qui correspond à l'exécution d'un
+programme ou d'un script.
+
+Les gestionnaires de workflows n'imposent pas eux-mêmes des
+contraintes quant aux logiciels utilisés par effectuer les tâches,
+mais c'est à vous d'assurer la disponibilités de ces logiciels et de
+leurs dépendances sur les ordinateurs qui exécutent les tâches.
+
+Certains gestionnaires vous aident dans cette gestion, par exemple en
+gerant des conteneurs pour les environnements de calcul.
+
+Pour la reproductibilité, cette gestion de l'environnement logiciel
+de vos workflows est très importante.
+
+Il y a aussi des gestionnaires de workflows qui acceptent des services
+Web dans la définition d'une tâche, ce qui peut être un critère de
+choix aussi.
+
+Mais faites attention à la reproductibilité. Un service Web peut
+disparaître d'un jour à l'autre, ou donner des résultats différents
+pour les mêmes données d'entrée. En fait, le serveur qui propose le
+service devient un élément de votre environnement logiciel!
+
+\newpage
+
+Quant à la définition du workflow lui-même, il y a trois façon de s'y
+prendre.
+
+La première est un langage spécifiquement fait pour décrire les workflows.
+C'est le cas de snakemake, que j'utiliserai plus tard pour mon exemple,
+vous verrez donc en détail ce mode de fonctionnement.
+
+Une autre approche est l'utilisation d'un langage de programmation
+généraliste, comme par exemple Python. Le gestionnaire de workflows
+est alors une bibliothèque qui gère essentiellement les ressources de
+calcul. Un langage généraliste donne plus de flexibilité, mais les
+workflows deviennent plus longs et moins lisibles, et on fait plus
+facilement des erreurs.
+
+Enfin, les gestionnaires graphiques vous laissent dessiner directement
+le graphe des dépendances entre les tâches. Comme souvent, une telle
+approche visuelle facilite le démarrage, mais se montre plus
+contraignante à terme. C'est notamment le cas dans un contexte collaboratif
+qui nécessite une gestion de versions collaborative. Pour le moment,
+cette technologie est bien développée uniquement pour les données
+textuelles.
+
+\newpage
+
+Enfin, un critère plus technique est la flexibilité qu'un gestionnaire
+de workflows vous donne pour définir l'algorithme global qui coordonne
+vos tâches.
+
+La gestion automatique des dépendances entre les tâches est un
+minumum, tous les gestionnaires l'assurent.
+
+Les boucles sur les valeurs d'un paramètre sont aussi presque
+universellement disponibles.
+
+Une fonctionnalité plus rare est la modification dynamique du graphe
+des tâches. Ceci veut dire que vous pouvez rajouter ou supprimer une
+tâche en fonction du résultat d'une tâche précédente. Je vous
+montrerai plus tard dans mon exemple à quoi ça peut servir.
+
+\end{document}

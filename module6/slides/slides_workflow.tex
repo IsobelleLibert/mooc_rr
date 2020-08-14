@@ -54,8 +54,8 @@
   \begin{itemize}
   \item Variants of the same idea: \textbf{automation of computations}
   \item Different terms and tools at different levels of organization
-  \item \textbf{Program:} data structures, complex algorithms
-  \item \textbf{Script:} simple algorithms, no data abstractions
+  \item \textbf{Program:} data structures, complex algorithms, reusable
+  \item \textbf{Script:} simple algorithms, no data abstractions, situated
   \item \textbf{Notebook:} script with comments and output
   \item \textbf{Workflow:} coordination of multiple programs/scripts, \\
                            multiple computers, multiple datasets
@@ -86,15 +86,27 @@
 
 \end{frame}
 
-\begin{frame}{The limits of scripts and notebooks}
+\begin{frame}{Scripts and notebooks don't scale}
 
-  \begin{itemize}
-  \item Linear control flow: hard to read when too long
-  \item Not well adapted to parameter scans and other loops
-  \item Linear list of results: hard to inspect when too numerous
-  \item All or nothing: no minimal update after change of an input
-  \item Parallelization opportunities difficult to exploit
-  \end{itemize}
+  \begin{block}{Code size}
+    \begin{itemize}
+    \item Linear structure: Hard to read/edit when too long
+    \item Solution: decompose into smaller scripts\\
+          that are run from a workflow
+    \end{itemize}
+  \end{block}
+
+  \pause
+
+  \begin{block}{Execution time}
+    \begin{itemize}
+    \item Example: parameter scan over 100 values
+    \item Now add one more value... and run everything again!
+    \item Solution: write script for one value,\\
+          do the parameter scan in a workflow \\
+          where no script is run twice with the same input.
+    \end{itemize}
+  \end{block}
 
 \end{frame}
 
@@ -103,7 +115,7 @@
   \begin{itemize}
   \item Task = step in a computation
   \item Code + input data $\rightarrow$ output data
-  \item Often implemented as a short script (bash, Python, R, ...)
+  \item Often implemented as a script (bash, Python, R, ...)
   \item Input and output data stored in files
   \end{itemize}
 
@@ -114,33 +126,42 @@
   \begin{itemize}
   \item One task's output is another task's input
   \item Simple control structures, e.g. parameter scans
+  \item Defined in a text file (``workflow language'')
+        or visually as a graph
   \end{itemize}
 
-  TODO: image of a workflow graph
+  \pause
+  \vspace{1cm}
+
+  \includegraphics[width=15cm]{workflow-graph.png}
 
 \end{frame}
 
-\begin{frame}{Workflow execution}
+\begin{frame}{Workflow manager}
 
-  \begin{itemize}
-  \item Run tasks one by one or in parallel ...
-  \item ... on one computer or distributed among several ...
-  \item ... respecting the constraints of the workflow:
-    \begin{itemize}
-    \item Never run a task before its input data is ready
-    \item Avoid running a task if its output is already available
-    \end{itemize}
-  \item Deal with failures (machine crash, broken network connection, ...)
-  \end{itemize}
+  Software that orchestrates the execution of a workflow:
+  \begin{enumerate}
+  \item Analyze the workflow for data dependencies; \\
+        never run a task before its input is available
+  \item Decide which tasks must be run, in which order.
+  \item Avoid running a task whose output already exists
+  \item Run tasks in parallel if possible; \\
+        optimize for available computing resources
+  \item Deal with failures (crash, power outage ...)
+  \end{enumerate}
+
+  \vspace{2mm}
+  \textcolor{problem}{There are many different workflow managers,
+             and workflows are not portable between them!}
 
 \end{frame}
 
-\section*{How to choose a workflow manager?}
+\section*{How to choose a workflow manager}
 
 \begin{frame}{}
 
   \begin{center}
-  \Large How to choose a workflow manager?
+  \Large How to choose a workflow manager
   \end{center}
 
 \end{frame}
@@ -150,8 +171,10 @@
   \begin{itemize}
   \item Dozens of widely used workflow managers
   \item Hundreds of lesser used ones
-  \item Cover widely varying needs
   \item The idea has been rediscovered independently many times
+  \item Cover widely varying needs
+  \item Workflows are not portable between workflow managers\\
+        but standards might emerge (e.g. Common Workflow Language)
   \end{itemize}
 
 \end{frame}
@@ -225,18 +248,6 @@
   \item Provenance tracking for results
   \item Provenance tracking for input data
   \end{itemize}
-
-\end{frame}
-
-\begin{frame}{Example: Taverna}
-
-TODO
-
-\end{frame}
-
-\begin{frame}{Example: nextflow}
-
-TODO
 
 \end{frame}
 
