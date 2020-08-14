@@ -292,4 +292,108 @@ des tâches. Ceci veut dire que vous pouvez rajouter ou supprimer une
 tâche en fonction du résultat d'une tâche précédente. Je vous
 montrerai plus tard dans mon exemple à quoi ça peut servir.
 
+\newpage
+\section*{Séquence 4 (4'40'')}
+
+Dans cette séquence, j'explique le fonctionnement de la plus ancienne
+famille de gestionnaire de workflows, dont j'utiliserai un
+représentant moderne plus tard dans mon exemple.
+
+\newpage
+
+Dans les années 1970, la taille et la complexité des logiciels
+commençait à augmenter. Préparer un logiciel prêt à l'usage à partir
+de ses ingrédients devenait un processus long et compliqué à gérer.
+Il fallait compiler chaque fichier de code source, en tenant
+compte des spécificités de la plate-forme cible. Puis il fallait
+combiner les résultats des compilations avec des bibliothèques
+pour créer un logiciel exécutable.
+
+Au départ, chaque étape était lancée à la main, ce qui a causé des
+nombreuses erreurs. L'erreur la plus courante était d'oublier de
+recompiler un fichier de code source après une modification. C'est
+très embêtant quand on cherche à corriger un logiciel: si la
+correction n'arrive pas dans l'exécutable, on peut perdre beaucoup de
+temps à comprendre ce qui se passe.
+
+Une solution aurait été d'utiliser un script pour re-exécuter toutes
+les étapes à chaque modification. Mais le processus entier prenait
+typiquement entre 10 minutes et plusieurs heures.
+
+L'idée est donc venue d'automatiser ce processus de façon
+optimisée. Aux Bells Labs aux Etats-Unis, Stuart Feldman, un des
+développeurs du système Unix, a crée le logiciel ``make'',
+probablement le premier gestionnaire de workflows. Il a été publié en
+1976, et reste un outil couramment utilisé dans le monde du
+développement logiciel.
+
+\newpage
+
+Avec ``make'', un workflow est un fichier texte, dont le nom par
+défaut est ``Makefile''. En voici un exemple basique avec une seule
+tâche.
+
+La première ligne définit le résultat de la tâche (le fichier
+``program'') suivi par les dépendances après les deux-points (les
+fichiers ``module-1.c'' et  ``module-2.c''). En fait, pour Make,
+toutes les données à l'entrée et à la sortie des tâches sont des
+fichiers. Make ne s'intéresse jamais à leur contenu.
+
+La deuxième ligne, indentée, définit la commande à exécuter pour
+la tâche. Ici c'est la compilation d'un programme en langage C
+consistant de deux modules.
+
+Jusqu'ici, notre ``Makefile'' est presque équivalent à un script qui
+contient sa deuxième ligne. La différence est que la commande est
+exécutée seulement si l'un ou l'autre des fichiers en langage C a une
+date de modification ultérieure à celle du résultat, le fichier
+``program''.
+
+\newpage
+
+Voici la même opération globale, mais découpée en trois tâches:
+compiler ``module-1'', compiler ``module-2'', et assembler
+l'exécutable à partir des deux modules déjà compilés.
+
+Par rapport à la version basique, l'avantage est que la vérification
+de la nécessité d'exécution s'applique tâche par tâche. Si vous
+modifiez ``module-1'', ``make'' ne va pas recompiler ``module-2'' qui
+n'a pas changé. Mais il va bien relancer l'assemblage de ``program'',
+car suite à la récompilation de ``module-1'', le fichier
+``module-1.o'' a une date de modification ultérieure à ``program''.
+
+\newpage
+
+Enfin, voici une version avancée du même workflow. Les deux règles de
+compilaton ont été remplacée par une seule règle qui couvre toute
+compilation d'un module en langage C. Je ne vais pas expliquer le sens
+precis des symboles ici, mais la règle dit que s'il vous faut
+un fichier dont le nom se termine en ``.o'' et vous avez un fichier
+avec le même nom sauf que l'extension est ``.c'', vous pouvez effectuer
+la transformation par un appel à ``gcc''.
+
+\newpage
+
+Comme j'ai déjà dit, ``make'' est encore très populaire en
+développement logiciel, mais il y a d'autres outils qui cherchent à le
+remplacer ou compléter. Voici une petite liste que vous pouvez
+explorer si le sujet vous intéresse.
+
+\newpage
+
+Comme vous avez vu, ``make'' n'est pas du tout spécialisé pour le
+développement logiciel.
+
+Il gère un graphe de dépendences et exécute des commandes en fonction
+des dates de modification des fichiers.
+
+A la place de ``gcc'', vous pouvez très bien mettre un simulateur de
+protéines. Beaucoup de chercheurs travaillent comme ça.
+
+Il y a pourtant des limites. ``Make'' est fait pour un seul ordinateur,
+tous les logiciels et toutes les données doivent y être rassemblés.
+
+``Make'' ne gère pas non plus les environnement logiciel. C'était
+en fait un concept inconnu à son époque.
+
 \end{document}

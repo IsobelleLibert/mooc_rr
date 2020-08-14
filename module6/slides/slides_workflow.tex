@@ -253,25 +253,69 @@
 
 \section*{The descendants of \texttt{Make}}
 
+\begin{frame}{}
+
+  \begin{center}
+  \Large The descendants of \texttt{Make}
+  \end{center}
+
+\end{frame}
+
 \begin{frame}{Make: workflows for building software}
 
   \begin{itemize}
-  \item Published in 1976 for accelerating software builds
-  \item Still widely used for software development
-  \item Typical tasks: preprocess, compile, link
-  \item Main goal: avoid unnecessary compiler runs
-  \item Principle: run a task only if
+  \item Use case: automating software builds:
     \begin{itemize}
-    \item its output file does not exist OR
-    \item its input file(s) are more recent than the output file
+    \item more reliable
+    \item faster
     \end{itemize}
+  \item Typical tasks: preprocess, compile, link
+  \item Developed as part of Unix
+  \item Published in 1976
+  \item Still widely used for software development
   \end{itemize}
 
 \end{frame}
 
-\begin{frame}{Example of a Makefile}
+\begin{frame}[fragile]{Makefiles}
 
-TODO
+  \begin{block}{Basic}
+    \begin{lstlisting}
+    program: module-1.c module-2.c
+            gcc -o program module1.c module2.c
+    \end{lstlisting}
+  \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Makefiles}
+
+  \begin{block}{Standard}
+    \begin{lstlisting}
+      program: module-1.o module-2.o
+              gcc -o program module-1.o module-2.o
+
+      module-1.o: module-1.c
+              gcc module-1.c
+
+      module-2.o: module-2.c
+              gcc module-2.c
+    \end{lstlisting}
+  \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Makefiles}
+
+  \begin{block}{Advanced}
+    \begin{lstlisting}
+      program: module-1.o module-2.o
+              gcc -o program module-1.o module-2.o
+
+      %.o: %.c
+              gcc $*.c
+    \end{lstlisting}
+  \end{block}
 
 \end{frame}
 
@@ -298,7 +342,7 @@ TODO
     \item data in local files
     \item tasks implemented by command line tools
     \end{itemize}
-  \item No support for reproducibility
+  \item No management of software environments
   \end{itemize}
 
 \end{frame}
