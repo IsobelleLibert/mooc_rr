@@ -293,7 +293,7 @@ tâche en fonction du résultat d'une tâche précédente. Je vous
 montrerai plus tard dans mon exemple à quoi ça peut servir.
 
 \newpage
-\section*{Séquence 4 (4'40'')}
+\section*{Séquence 4 (5'40'')}
 
 Dans cette séquence, j'explique le fonctionnement de la plus ancienne
 famille de gestionnaire de workflows, dont j'utiliserai un
@@ -395,5 +395,29 @@ tous les logiciels et toutes les données doivent y être rassemblés.
 
 ``Make'' ne gère pas non plus les environnement logiciel. C'était
 en fait un concept inconnu à son époque.
+
+\newpage
+
+Le gestionnnaire de workflow que j'utiliserai par la suite pour mon
+exemple est ``Snakemake''. Il s'agit d'un autre membre de la grande
+famille des descendants de ``make'', qui a été développé
+spécifiquement pour le calcul scientifique.
+
+``Snakemake'' est basé sur les mêmes principes que ``make''. Il y a
+des règles qui appliquent des commandes pour transformer des données,
+qui sont stockées dans des fichiers et surveillées par leurs dates de
+modification.
+
+``Snakemake'' utilise également un langage dédié pour ses
+workflows. Il s'inspire de Python et est plus explicite que le langage
+de ``make'' dans la désignation des ingrédients du workflow.
+
+Côté fonctionnalité, ``Snakemake'' gère des environnements logiciel
+archivés, par exemple des conteneurs, et facilite l'usage de scripts
+en Python ou R pour implémenter les tâches.
+
+``Snakemake'' peut exécuter plusieurs tâches en parallèle, y compris
+sur les clusters, les grilles, et dans le cloud. L'accès aux données
+stockées dans le cloud est également possible.
 
 \end{document}
