@@ -132,14 +132,21 @@ environment control will certainly help anyway.
   [[file:jupyter_images/sascfg2.png]]
   #+END_CENTER
 - Here is a [[file:../../documents/notebooks/notebook_Jupyter_Python_SAS.ipynb][example of Python/SAS notebook]].
-- NB : Some people from the first edition of the MOOC reported us that
-  the pdf export did not not seem to work for SAS notebooks. However,
-  they could obtain pdf files through pandoc. E.g., export in HTML (or
-  markdown) in jupyter and then run:
+- NB: Exporting from HTML (and therefore SAS) to PDF format via LaTeX does not work 
+   ([[file:../../documents/notebooks/notebook_html_export_pdf_via_latex.pdf][notebook_html_export_pdf_via_latex.pdf]]).
+   Until now it was possible to export from Pandoc. One way to do this was to export 
+   the notebook as HTML (or Markdown) in Jupyter and then run the following command:
   #+begin_src shell :results output :exports both
   pandoc --variable=geometry:a4paper --variable=geometry:margin=1in notebook_sas.html -o  notebook_sas.pdf  
   #+end_src
-- Useful link: https://sassoftware.github.io/saspy/
+  The [[https://pypi.org/project/notebook-as-pdf/][notebook-as-pdf]] extension now allows 
+  direct export from HTML format to PDF format
+  ([[file:../../documents/notebooks/notebook_html_export_pdf_via_html.pdf][notebook_html_export_pdf_via_html.pdf]])
+  and therefore the export of SAS notebooks in PDF format
+  ([[file:../../documents/notebooks/notebook_Jupyter_SAS.pdf][notebook_Jupyter_SAS.pdf]]). 
+  (Choose download PDF via HTML.)
+
+- Useful link: [[https://sassoftware.github.io/saspy/]]
 
 *[[https://sassoftware.github.io/sas_kernel/install.html][SASKernel]]*
 
