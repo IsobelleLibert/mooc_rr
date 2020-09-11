@@ -1,6 +1,6 @@
 # -*- mode: org -*-
 #+TITLE: Contrôler un environnement logiciel avec Guix
-#+DATE: Février 2020
+#+DATE: Septembre 2020
 #+STARTUP: overview indent
 #+OPTIONS: num:nil toc:t
 #+PROPERTY: header-args :eval never-export
@@ -30,6 +30,25 @@ Guix fonctionne autrement : il place tous les fichiers sous =/gnu/store=, où c
 Sur cette base, Guix introduit des /profils/, qui remplacent la collection conventionnelle des répertoires comme =/bin=, =/lib=, =/etc=, etc. À l'intérieur d'un profil, vous retrouvez ces répertoires, mais leur contenu ne consiste que de liens symboliques vers les paquets sous =/gnu/store=. Chaque utilisateur a son profil personnel, sous =$HOME/.guix-profile=. C'est comme ça que chaque utilisateur peut gérer sa propre collection de logiciels, sans dépendre d'un administrateur pour les installer ou mettre à jour. Et comme les profils sont légers, on peut en définir d'autres à volonté (mais je n'en parle pas dans ce tutoriel). On peut aussi travailler avec des profils éphémères qui s'appellent "environnements". C'est cette approche que j'ai choisi pour ce tutoriel.
 
 * Séquence 2 : Créer son propre environnement, automatiser sa construction et le partage
+
+** Préparation
+Avant de lancer =org-babel-tangle=, il faut créer tous les répertoires qui vont accueillir les fichiers, après en avoir supprimé des versions anciennes :
+#+begin_src sh :results output :exports both
+directory=moocrr_guix_jupyter
+rm -rf $directory
+mkdir $directory
+#+end_src
+
+#+RESULTS:
+
+Puis :
+#+begin_src emacs-lisp
+(org-babel-tangle)
+#+end_src
+
+#+RESULTS:
+| moocrr_guix_jupyter/manifest-with-pandas-1.0.4.scm | moocrr_guix_jupyter/pandas.scm | moocrr_guix_jupyter/all-dependencies.scm | moocrr_guix_jupyter/installed-dependencies.scm | moocrr_guix_jupyter/manifest.scm |
+
 ** 2.2 Installer tous les paquets dont on a besoin
 Une installation Guix de base ne contient même pas Python,
 il va donc falloir l'installer ainsi que Jupyter et différents paquets
@@ -39,73 +58,42 @@ faire pour trouver le nom du paquet Guix qui contient ce qui vous intéresse ?
 Avec la commande =guix search <un truc lié au nom de ce que vous cherchez>=.
 
 D'abord, je cherche tout ce qui a trait à Jupyter :
-#+begin_src shell :session *docker* :results output :exports both 
+#+begin_src sh :results output :exports both 
 guix search jupyter
 #+end_src
 
 #+RESULTS:
 #+begin_example
-
 name: jupyter
 version: 1.0.0
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python-ipykernel@5.1.3 python-ipywidgets@5.2.2
-+ python-jupyter-console@6.0.0 python-nbconvert@5.0.0b1 python-notebook@5.7.4
+dependencies: python-ipykernel@5.1.3 python-ipywidgets@7.5.1
++ python-jupyter-console@6.1.0 python-nbconvert@5.0.0b1 python-notebook@5.7.4
 + python-qtconsole@4.4.3
-location: gnu/packages/python-xyz.scm:8070:2
+location: gnu/packages/python-xyz.scm:9946:2
 homepage: https://jupyter.org
 license: Modified BSD
 synopsis: Web application for interactive documents  
-description: The Jupyter Notebook is a web application that allows you
-+ to create and share documents that contain live code, equations,
-+ visualizations and explanatory text.  Uses include: data cleaning and
-+ transformation, numerical simulation, statistical modeling, machine
-+ learning and much more.
-relevance: 22
-
-hint: Run `guix search ... | less' to view all the results.
-#+end_example
-
-C'est déjà prometteur, mais voyons comme proposé la totalité des résultats. Dans Emacs, nous remplaçons =less= par =cat=:
-
-#+begin_src sh :results output :exports both
-guix search jupyter | cat
-#+end_src
-
-#+RESULTS:
-#+begin_example
-name: jupyter
-version: 1.0.0
-outputs: out
-systems: x86_64-linux i686-linux
-dependencies: python-ipykernel@5.1.3 python-ipywidgets@5.2.2
-+ python-jupyter-console@6.0.0 python-nbconvert@5.0.0b1 python-notebook@5.7.4
-+ python-qtconsole@4.4.3
-location: gnu/packages/python-xyz.scm:8070:2
-homepage: https://jupyter.org
-license: Modified BSD
-synopsis: Web application for interactive documents  
-description: The Jupyter Notebook is a web application that allows you
-+ to create and share documents that contain live code, equations,
-+ visualizations and explanatory text.  Uses include: data cleaning and
-+ transformation, numerical simulation, statistical modeling, machine
-+ learning and much more.
+description: The Jupyter Notebook is a web application that allows you to
++ create and share documents that contain live code, equations, visualizations
++ and explanatory text.  Uses include: data cleaning and transformation,
++ numerical simulation, statistical modeling, machine learning and much more.
 relevance: 22
 
 name: python-jupyter-kernel-test
 version: 0.3
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python-jsonschema@3.0.1 python-jupyter-kernel-mgmt@0.4.0
+dependencies: python-jsonschema@3.2.0 python-jupyter-kernel-mgmt@0.4.0
 + python-jupyter-protocol@0.1.1
 location: gnu/packages/jupyter.scm:98:2
 homepage: https://github.com/jupyter/jupyter_kernel_test
 license: Modified BSD
 synopsis: Test Jupyter kernels  
-description: `jupyter_kernel_test' is a tool for testing Jupyter
-+ kernels.  It tests kernels for successful code execution and conformance
-+ with the Jupyter Messaging Protocol
+description: `jupyter_kernel_test' is a tool for testing Jupyter kernels.  It
++ tests kernels for successful code execution and conformance with the Jupyter
++ Messaging Protocol
 + (https://jupyter-client.readthedocs.io/en/latest/messaging.html).
 relevance: 20
 
@@ -113,109 +101,106 @@ name: xeus
 version: 0.23.2
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: cppzmq@4.2.2-0.d9f0f01 googletest@1.10.0 json-modern-cxx@3.7.3
-+ openssl@1.1.1c pkg-config@0.29.2 python-jupyter-client@5.2.4
-+ python-jupyter-kernel-test@0.3 python-pytest@4.4.2 python@3.7.4
-+ util-linux@2.34 xtl@0.6.8 zeromq@4.3.2
+dependencies: cppzmq@4.6.0 googletest@1.10.0 json-modern-cxx@3.9.1
++ openssl@1.1.1f pkg-config@0.29.2 python-jupyter-client@5.2.4
++ python-jupyter-kernel-test@0.3 python-pytest@5.3.5 python@3.8.2
++ util-linux@2.35.1 xtl@0.6.18 zeromq@4.3.2
 location: gnu/packages/jupyter.scm:142:2
 homepage: https://quantstack.net/xeus
 license: Modified BSD
 synopsis: C++ implementation of the Jupyter Kernel protocol  
-description: `xeus' is a library meant to facilitate the implementation
-+ of kernels for Jupyter.  It takes the burden of implementing the Jupyter
-+ Kernel protocol so developers can focus on implementing the interpreter
-+ part of the kernel.
+description: `xeus' is a library meant to facilitate the implementation of
++ kernels for Jupyter.  It takes the burden of implementing the Jupyter Kernel
++ protocol so developers can focus on implementing the interpreter part of the
++ kernel.
 + 
-+ Several Jupyter kernels are built upon `xeus', such as `xeus-cling', a
-+ kernel for the C++ programming language, and `xeus-python', an
-+ alternative Python kernel for Jupyter.
++ Several Jupyter kernels are built upon `xeus', such as `xeus-cling', a kernel
++ for the C++ programming language, and `xeus-python', an alternative Python
++ kernel for Jupyter.
 relevance: 16
 
 name: python-jupyter-protocol
 version: 0.1.1
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python-dateutil@2.8.0 python-ipykernel@5.1.3
-+ python-ipython@7.9.0 python-jupyter-core@4.4.0 python-mock@2.0.0
-+ python-pytest@4.4.2 python-pyzmq@17.1.2 python-traitlets@4.3.3
+dependencies: python-dateutil@2.8.1 python-ipykernel@5.1.3
++ python-ipython@7.9.0 python-jupyter-core@4.4.0 python-mock@3.0.5
++ python-pytest@5.3.5 python-pyzmq@17.1.2 python-traitlets@4.3.3
 location: gnu/packages/jupyter.scm:37:2
 homepage: https://jupyter.org
 license: Modified BSD
 synopsis: Jupyter protocol implementation  
-description: This Python library is an experimental implementation of
-+ the Jupyter protocol
-+ (https://jupyter-client.readthedocs.io/en/latest/messaging.html) to be
-+ used by both clients and kernels.
+description: This Python library is an experimental implementation of the
++ Jupyter protocol
++ (https://jupyter-client.readthedocs.io/en/latest/messaging.html) to be used by
++ both clients and kernels.
 relevance: 16
 
 name: python2-jupyter-client
 version: 5.2.4
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: iproute2@5.5.0 python2-jupyter-core@4.4.0 python2-pyzmq@17.1.2
+dependencies: iproute2@5.8.0 python2-jupyter-core@4.4.0 python2-pyzmq@17.1.2
 + python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:5302:2
+location: gnu/packages/python-xyz.scm:6612:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter protocol implementation and client libraries  
 description: The `jupyter_client' package contains the reference
-+ implementation of the Jupyter protocol.  It also provides client and
-+ kernel management APIs for working with kernels, and the `jupyter
-+ kernelspec' entrypoint for installing `kernelspec's for use with Jupyter
-+ frontends.
++ implementation of the Jupyter protocol.  It also provides client and kernel
++ management APIs for working with kernels, and the `jupyter kernelspec'
++ entrypoint for installing `kernelspec's for use with Jupyter frontends.
 relevance: 15
 
 name: python-jupyter-client
 version: 5.2.4
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: iproute2@5.5.0 python-jupyter-core@4.4.0 python-pyzmq@17.1.2
+dependencies: iproute2@5.8.0 python-jupyter-core@4.4.0 python-pyzmq@17.1.2
 + python-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:5302:2
+location: gnu/packages/python-xyz.scm:6612:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter protocol implementation and client libraries  
 description: The `jupyter_client' package contains the reference
-+ implementation of the Jupyter protocol.  It also provides client and
-+ kernel management APIs for working with kernels, and the `jupyter
-+ kernelspec' entrypoint for installing `kernelspec's for use with Jupyter
-+ frontends.
++ implementation of the Jupyter protocol.  It also provides client and kernel
++ management APIs for working with kernels, and the `jupyter kernelspec'
++ entrypoint for installing `kernelspec's for use with Jupyter frontends.
 relevance: 15
 
 name: python-jupyter-kernel-mgmt
 version: 0.4.0
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python-dateutil@2.8.0 python-entrypoints@0.3
+dependencies: python-dateutil@2.8.1 python-entrypoints@0.3
 + python-ipykernel@5.1.3 python-ipython@7.9.0 python-jupyter-core@4.4.0
-+ python-jupyter-protocol@0.1.1 python-mock@2.0.0 python-pytest@4.4.2
++ python-jupyter-protocol@0.1.1 python-mock@3.0.5 python-pytest@5.3.5
 + python-pyzmq@17.1.2 python-traitlets@4.3.3
 location: gnu/packages/jupyter.scm:67:2
 homepage: https://jupyter.org
 license: Modified BSD
 synopsis: Discover, launch, and communicate with Jupyter kernels  
-description: This package is an experimental refactoring of the
-+ machinery for launching and using Jupyter kernels.
+description: This package is an experimental refactoring of the machinery for
++ launching and using Jupyter kernels.
 relevance: 14
 
 name: guix-jupyter
 version: 0.1.0
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: autoconf@2.69 automake@1.16.1 guile-gcrypt@0.2.1
-+ guile-json@3.2.0 guile-simple-zmq@0.0.0-3.68bedb6 guile@2.2.6
-+ guix@1.0.1-13.50299ad jupyter@1.0.0 pkg-config@0.29.2 python-ipykernel@5.1.3
+dependencies: autoconf@2.69 automake@1.16.2 guile-gcrypt@0.3.0
++ guile-json@4.3.2 guile-simple-zmq@0.0.0-3.68bedb6 guile@3.0.4
++ guix@1.1.0-25.44c6e6f jupyter@1.0.0 pkg-config@0.29.2 python-ipykernel@5.1.3
 + python-ipython@7.9.0
-location: gnu/packages/package-management.scm:820:2
+location: gnu/packages/package-management.scm:985:2
 homepage: https://gitlab.inria.fr/guix-hpc/guix-kernel
 license: GPL 3+
 synopsis: Guix kernel for Jupyter  
-description: Guix-Jupyter is a Jupyter kernel.  It allows you to
-+ annotate notebooks with information about their software dependencies,
-+ such that code is executed in the right software environment.
-+ Guix-Jupyter spawns the actual kernels such as `python-ipykernel' on
-+ behalf of the notebook user and runs them in an isolated environment, in
-+ separate namespaces.
+description: Guix-Jupyter is a Jupyter kernel.  It allows you to annotate
++ notebooks with information about their software dependencies, such that code
++ is executed in the right software environment.  Guix-Jupyter spawns the actual
++ kernels such as `python-ipykernel' on behalf of the notebook user and runs
++ them in an isolated environment, in separate namespaces.
 relevance: 13
 
 name: python2-jupyter-core
@@ -223,27 +208,26 @@ version: 4.4.0
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:5277:2
+location: gnu/packages/python-xyz.scm:6587:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter base package  
-description: Jupyter core is the base package on which Jupyter projects
-+ rely.
+description: Jupyter core is the base package on which Jupyter projects rely.
 relevance: 11
 
 name: python2-jupyter-console
 version: 5.2.0
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python2-ipykernel@5.1.0 python2-jupyter-client@5.2.4
+dependencies: python2-ipykernel@4.10.1 python2-jupyter-client@5.2.4
 + python2-nose@1.3.7 python2-prompt-toolkit@1.0.15 python2-pygments@2.5.2
-location: gnu/packages/python-xyz.scm:7941:2
+location: gnu/packages/python-xyz.scm:9816:2
 homepage: https://jupyter.org
 license: Modified BSD
 synopsis: Jupyter terminal console  
 description: This package provides a terminal-based console frontend for
-+ Jupyter kernels.  It also allows for console-based interaction with
-+ non-Python Jupyter kernels such as IJulia and IRKernel.
++ Jupyter kernels.  It also allows for console-based interaction with non-Python
++ Jupyter kernels such as IJulia and IRKernel.
 relevance: 11
 
 name: python-jupyter-core
@@ -251,50 +235,48 @@ version: 4.4.0
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:5277:2
+location: gnu/packages/python-xyz.scm:6587:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter base package  
-description: Jupyter core is the base package on which Jupyter projects
-+ rely.
+description: Jupyter core is the base package on which Jupyter projects rely.
 relevance: 11
 
 name: python-jupyter-console
-version: 6.0.0
+version: 6.1.0
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-ipykernel@5.1.3 python-jupyter-client@5.2.4
 + python-nose@1.3.7 python-prompt-toolkit@2.0.7 python-pygments@2.5.2
-location: gnu/packages/python-xyz.scm:7915:2
+location: gnu/packages/python-xyz.scm:9789:2
 homepage: https://jupyter.org
 license: Modified BSD
 synopsis: Jupyter terminal console  
 description: This package provides a terminal-based console frontend for
-+ Jupyter kernels.  It also allows for console-based interaction with
-+ non-Python Jupyter kernels such as IJulia and IRKernel.
++ Jupyter kernels.  It also allows for console-based interaction with non-Python
++ Jupyter kernels such as IJulia and IRKernel.
 relevance: 11
 
 name: jupyter-guile-kernel
-version: 0.0.0-1.a7db924
+version: 0.0.0-2.f25fb90
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: guile-json@1.2.0 guile-simple-zmq@0.0.0-3.68bedb6 guile@2.2.6
-+ openssl@1.1.1c
-location: gnu/packages/guile-xyz.scm:859:4
+dependencies: guile-json@3.5.0 guile-simple-zmq@0.0.0-3.68bedb6 guile@3.0.2
++ openssl@1.1.1f
+location: gnu/packages/guile-xyz.scm:976:4
 homepage: https://github.com/jerry40/guile-kernel
 license: GPL 3+
 synopsis: Guile kernel for the Jupyter Notebook  
 description: This package provides a Guile 2.x kernel for the Jupyter
-+ Notebook.  It allows users to interact with the Guile REPL through
-+ Jupyter.
++ Notebook.  It allows users to interact with the Guile REPL through Jupyter.
 relevance: 11
 
 name: python-pari-jupyter
 version: 1.3.2
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: pari-gp@2.11.2 python-ipykernel@5.1.3 readline@8.0
-location: gnu/packages/python-xyz.scm:5423:2
+dependencies: pari-gp@2.11.4 python-ipykernel@5.1.3 readline@8.0.4
+location: gnu/packages/python-xyz.scm:6731:2
 homepage: https://github.com/jdemeyer/pari_jupyter
 license: GPL 3+
 synopsis: A Jupyter kernel for PARI/GP  
@@ -302,33 +284,33 @@ description: The package provides a PARI/GP kernel for Jupyter.
 relevance: 9
 
 name: r-irkernel
-version: 1.1
+version: 1.1.1
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: jupyter@1.0.0 r-crayon@1.3.4 r-digest@0.6.23 r-evaluate@0.14
-+ r-irdisplay@0.7.0 r-jsonlite@1.6 r-minimal@3.6.2 r-pbdzmq@0.3-3 r-repr@1.0.2
-+ r-uuid@0.1-2
-location: gnu/packages/cran.scm:12543:2
+dependencies: jupyter@1.0.0 r-crayon@1.3.4 r-digest@0.6.25 r-evaluate@0.14
++ r-irdisplay@0.7.0 r-jsonlite@1.7.0 r-minimal@4.0.2 r-pbdzmq@0.3-3 r-repr@1.1.0
++ r-uuid@0.1-4
+location: gnu/packages/cran.scm:13147:2
 homepage: https://cran.r-project.org/web/packages/IRkernel/
 license: Expat
 synopsis: Native R kernel for Jupyter  
-description: The R kernel for the Jupyter environment executes R code
-+ which the front-end (Jupyter Notebook or other front-ends) submits to
-+ the kernel via the network.
+description: The R kernel for the Jupyter environment executes R code which
++ the front-end (Jupyter Notebook or other front-ends) submits to the kernel via
++ the network.
 relevance: 7
 
 name: r-irdisplay
 version: 0.7.0
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: r-repr@1.0.2
-location: gnu/packages/cran.scm:12520:2
+dependencies: r-repr@1.1.0
+location: gnu/packages/cran.scm:13124:2
 homepage: https://cran.r-project.org/web/packages/IRdisplay/
 license: Expat
 synopsis: Jupyter display machinery  
 description: This package provides an interface to the rich display
-+ capabilities of Jupyter front-ends (e.g.  Jupyter Notebook).  It is
-+ designed to be used from a running IRkernel session.
++ capabilities of Jupyter front-ends (e.g.  Jupyter Notebook).  It is designed
++ to be used from a running IRkernel session.
 relevance: 7
 
 name: ruby-iruby
@@ -337,22 +319,37 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-ipython@7.9.0 ruby-bond@0.5.1 ruby-cztop@0.12.2
 + ruby-data_uri@0.1.0 ruby-mimemagic@0.3.3 ruby-multi-json@1.13.1
-+ ruby-pry@0.11.3
-location: gnu/packages/ruby.scm:397:2
++ ruby-pry@0.13.1
+location: gnu/packages/ruby.scm:473:2
 homepage: https://github.com/SciRuby/iruby
 license: Expat
 synopsis: Ruby kernel for Jupyter/IPython  
-description: This package provides a Ruby kernel for Jupyter/IPython
-+ frontends (e.g.  notebook).
+description: This package provides a Ruby kernel for Jupyter/IPython frontends
++ (e.g.  notebook).
+relevance: 5
+
+name: r-nbconvertr
+version: 1.3.2
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: pandoc@2.7.3 python-nbconvert@5.0.0b1
+location: gnu/packages/cran.scm:21907:2
+homepage: https://cran.r-project.org/web/packages/nbconvertR/
+license: GPL 3
+synopsis: Vignette engine wrapping Jupyter notebooks  
+description: This package calls the Jupyter script `nbconvert' to create
++ vignettes from notebooks.  Those notebooks (`.ipynb' files) are files
++ containing rich text, code, and its output.  Code cells can be edited and
++ evaluated interactively.
 relevance: 5
 
 name: python2-widgetsnbextension
-version: 3.4.2
+version: 3.5.1
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python2-certifi@2019.3.9 python2-ipykernel@5.1.3
+dependencies: python2-certifi@2020.4.5.1 python2-ipykernel@4.10.1
 + python2-nose@1.3.7 python2-notebook@5.7.4
-location: gnu/packages/python-xyz.scm:7858:2
+location: gnu/packages/python-xyz.scm:9732:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
@@ -364,25 +361,25 @@ name: python2-nbformat
 version: 4.4.0
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python2-ipython-genutils@0.1.0 python2-jsonschema@3.0.1
+dependencies: python2-ipython-genutils@0.1.0 python2-jsonschema@3.2.0
 + python2-jupyter-core@4.4.0 python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:7648:2
+location: gnu/packages/python-xyz.scm:9440:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Jupyter Notebook format  
-description: This package provides the reference implementation of the
-+ Jupyter Notebook format and Python APIs for working with notebooks.
+description: This package provides the reference implementation of the Jupyter
++ Notebook format and Python APIs for working with notebooks.
 relevance: 5
 
 name: python2-nbconvert
 version: 5.0.0b1
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python2-bleach@3.1.0 python2-entrypoints@0.3
-+ python2-jinja2@2.10.1 python2-jupyter-core@4.4.0 python2-mistune@0.8.4
-+ python2-nbformat@4.4.0 python2-pygments@2.5.2 python2-pytest@4.4.2
+dependencies: python2-bleach@3.1.5 python2-entrypoints@0.3
++ python2-jinja2@2.11.2 python2-jupyter-core@4.4.0 python2-mistune@0.8.4
++ python2-nbformat@4.4.0 python2-pygments@2.5.2 python2-pytest@4.6.9
 + python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:7739:2
+location: gnu/packages/python-xyz.scm:9613:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Converting Jupyter Notebooks  
@@ -390,28 +387,28 @@ description: The `nbconvert' tool, {jupyter nbconvert
 relevance: 5
 
 name: python2-ipywidgets
-version: 5.2.2
+version: 7.5.1
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python2-ipython@7.9.0 python2-nose@1.3.7 python2-pytest@4.4.2
-+ python2-traitlets@4.3.3 python2-widgetsnbextension@3.4.2
-location: gnu/packages/python-xyz.scm:7885:2
+dependencies: python2-ipython@5.8.0 python2-nose@1.3.7 python2-pytest@4.6.9
++ python2-traitlets@4.3.3 python2-widgetsnbextension@3.5.1
+location: gnu/packages/python-xyz.scm:9759:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
-description: Ipywidgets are interactive HTML widgets for Jupyter
-+ notebooks and the IPython kernel.  Notebooks come alive when interactive
-+ widgets are used.  Users gain control of their data and can visualize
-+ changes in the data.
+description: Ipywidgets are interactive HTML widgets for Jupyter notebooks and
++ the IPython kernel.  Notebooks come alive when interactive widgets are used.
++ Users gain control of their data and can visualize changes in the data.
 relevance: 5
 
 name: python2-ipykernel
-version: 5.1.0
+version: 4.10.1
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python2-ipython@5.8.0 python2-jupyter-client@5.2.4
-+ python2-nose@1.3.7 python2-pytest@4.4.2
-location: gnu/packages/python-xyz.scm:5390:2
++ python2-mock@3.0.5 python2-nose@1.3.7 python2-pytest-cov@2.8.1
++ python2-pytest@4.6.9 python2-tornado@5.1.1 python2-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:6701:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython Kernel for Jupyter  
@@ -419,12 +416,12 @@ description: This package provides the IPython kernel for Jupyter.
 relevance: 5
 
 name: python-widgetsnbextension
-version: 3.4.2
+version: 3.5.1
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python-certifi@2019.3.9 python-ipykernel@5.1.3 python-nose@1.3.7
-+ python-notebook@5.7.4
-location: gnu/packages/python-xyz.scm:7858:2
+dependencies: python-certifi@2020.4.5.1 python-ipykernel@5.1.3
++ python-nose@1.3.7 python-notebook@5.7.4
+location: gnu/packages/python-xyz.scm:9732:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
@@ -436,56 +433,73 @@ name: python-slurm-magic
 version: 0.0-0.73dd1a2
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python-ipython@7.9.0 python-pandas@0.25.2 slurm@19.05.3-2
-location: gnu/packages/parallel.scm:222:4
+dependencies: python-ipython@7.9.0 python-pandas@1.0.5 slurm@19.05.3-2
+location: gnu/packages/parallel.scm:225:4
 homepage: https://github.com/NERSC/slurm-magic
 license: Modified BSD
 synopsis: Control the SLURM batch scheduler from Jupyter Notebook  
 description: This package implements Jupyter/IPython magic commands
 + (http://ipython.readthedocs.io/en/stable/interactive/magics.html) for
 + interacting with the SLURM workload manager.  SLURM magic simply wraps
-+ command-line executables and the commands themselves should look like
-+ their command-line counterparts.  Commands are spawned via `subprocess'
-+ and output captured in the notebook.  Whatever arguments are accepted by
-+ a SLURM command line executable are also accepted by the corresponding
-+ magic command---e.g., `%salloc', `%sbatch', etc.
++ command-line executables and the commands themselves should look like their
++ command-line counterparts.  Commands are spawned via `subprocess' and output
++ captured in the notebook.  Whatever arguments are accepted by a SLURM command
++ line executable are also accepted by the corresponding magic command---e.g.,
++ `%salloc', `%sbatch', etc.
 relevance: 5
 
 name: python-qtconsole
 version: 4.4.3
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python-ipykernel@5.1.3 python-ipython@7.9.0 python-pytest@4.4.2
-location: gnu/packages/python-xyz.scm:7995:2
+dependencies: python-ipykernel@5.1.3 python-ipython@7.9.0 python-pytest@5.3.5
+location: gnu/packages/python-xyz.scm:9871:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Jupyter Qt console  
-description: This package provides a Qt-based console for Jupyter with
-+ support for rich media output.
+description: This package provides a Qt-based console for Jupyter with support
++ for rich media output.
+relevance: 5
+
+name: python-nbval
+version: 0.9.6
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-ipykernel@5.1.3 python-jupyter-client@5.2.4
++ python-nbformat@4.4.0 python-pytest-cov@2.8.1 python-pytest@5.3.5
++ python-six@1.14.0 python-sympy@1.1.1
+location: gnu/packages/python-check.scm:766:2
+homepage: https://github.com/computationalmodelling/nbval
+license: Modified BSD
+synopsis: Pytest plugin to validate Jupyter notebooks  
+description: This plugin adds functionality to Pytest to recognise and collect
++ Jupyter notebooks.  The intended purpose of the tests is to determine whether
++ execution of the stored inputs match the stored outputs of the `.ipynb' file.
++ Whilst also ensuring that the notebooks are running without errors.
 relevance: 5
 
 name: python-nbformat
 version: 4.4.0
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python-ipython-genutils@0.1.0 python-jsonschema@3.0.1
+dependencies: python-ipython-genutils@0.1.0 python-jsonschema@3.2.0
 + python-jupyter-core@4.4.0 python-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:7648:2
+location: gnu/packages/python-xyz.scm:9440:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Jupyter Notebook format  
-description: This package provides the reference implementation of the
-+ Jupyter Notebook format and Python APIs for working with notebooks.
+description: This package provides the reference implementation of the Jupyter
++ Notebook format and Python APIs for working with notebooks.
 relevance: 5
 
 name: python-nbconvert
 version: 5.0.0b1
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python-bleach@3.1.0 python-entrypoints@0.3 python-jinja2@2.10.1
+dependencies: python-bleach@3.1.5 python-entrypoints@0.3 python-jinja2@2.11.2
 + python-jupyter-core@4.4.0 python-mistune@0.8.4 python-nbformat@4.4.0
-+ python-pygments@2.5.2 python-pytest@4.4.2 python-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:7739:2
++ python-pygments@2.5.2 python-pytest@5.3.5 python-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:9613:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Converting Jupyter Notebooks  
@@ -493,19 +507,18 @@ description: The `nbconvert' tool, {jupyter nbconvert
 relevance: 5
 
 name: python-ipywidgets
-version: 5.2.2
+version: 7.5.1
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python-ipython@7.9.0 python-nose@1.3.7 python-pytest@4.4.2
-+ python-traitlets@4.3.3 python-widgetsnbextension@3.4.2
-location: gnu/packages/python-xyz.scm:7885:2
+dependencies: python-ipython@7.9.0 python-nose@1.3.7 python-pytest@5.3.5
++ python-traitlets@4.3.3 python-widgetsnbextension@3.5.1
+location: gnu/packages/python-xyz.scm:9759:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
-description: Ipywidgets are interactive HTML widgets for Jupyter
-+ notebooks and the IPython kernel.  Notebooks come alive when interactive
-+ widgets are used.  Users gain control of their data and can visualize
-+ changes in the data.
+description: Ipywidgets are interactive HTML widgets for Jupyter notebooks and
++ the IPython kernel.  Notebooks come alive when interactive widgets are used.
++ Users gain control of their data and can visualize changes in the data.
 relevance: 5
 
 name: python-ipykernel
@@ -513,8 +526,8 @@ version: 5.1.3
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-flaky@3.5.3 python-ipython@7.9.0
-+ python-jupyter-client@5.2.4 python-nose@1.3.7 python-pytest@4.4.2
-location: gnu/packages/python-xyz.scm:5346:2
++ python-jupyter-client@5.2.4 python-nose@1.3.7 python-pytest@5.3.5
+location: gnu/packages/python-xyz.scm:6656:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython Kernel for Jupyter  
@@ -529,13 +542,13 @@ dependencies: ghc-aeson-diff@1.1.0.7 ghc-aeson@1.4.5.0
 + ghc-base64-bytestring@1.0.0.2 ghc-microlens-aeson@2.3.0.4 ghc-microlens@0.4.10
 + ghc-semigroups@0.18.5 ghc-tasty-hunit@0.10.0.2 ghc-tasty@1.2.3
 + ghc-unordered-containers@0.2.10.0 ghc-vector@0.12.0.3
-location: gnu/packages/haskell-xyz.scm:6170:2
+location: gnu/packages/haskell-xyz.scm:6474:2
 homepage: https://hackage.haskell.org/package/ipynb
 license: Modified BSD
 synopsis: Data structure for working with Jupyter notebooks  
-description: This library defines a data structure for representing
-+ Jupyter notebooks, along with `ToJSON' and `FromJSON' instances for
-+ conversion to and from JSON .ipynb files.
+description: This library defines a data structure for representing Jupyter
++ notebooks, along with `ToJSON' and `FromJSON' instances for conversion to and
++ from JSON .ipynb files.
 relevance: 5
 
 name: python2-ipython-genutils
@@ -543,17 +556,16 @@ version: 0.1.0
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: 
-location: gnu/packages/python-xyz.scm:5209:2
+location: gnu/packages/python-xyz.scm:6413:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: Vestigial utilities from IPython  
 description: This package provides retired utilities from IPython.  No
 + packages outside IPython/Jupyter should depend on it.
 + 
-+ This package shouldn't exist.  It contains some common utilities shared
-+ by Jupyter and IPython projects during The Big Split.  As soon as
-+ possible, those packages will remove their dependency on this, and this
-+ package will go away.
++ This package shouldn't exist.  It contains some common utilities shared by
++ Jupyter and IPython projects during The Big Split.  As soon as possible, those
++ packages will remove their dependency on this, and this package will go away.
 relevance: 4
 
 name: python-ipython-genutils
@@ -561,33 +573,57 @@ version: 0.1.0
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: 
-location: gnu/packages/python-xyz.scm:5209:2
+location: gnu/packages/python-xyz.scm:6413:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: Vestigial utilities from IPython  
 description: This package provides retired utilities from IPython.  No
 + packages outside IPython/Jupyter should depend on it.
 + 
-+ This package shouldn't exist.  It contains some common utilities shared
-+ by Jupyter and IPython projects during The Big Split.  As soon as
-+ possible, those packages will remove their dependency on this, and this
-+ package will go away.
++ This package shouldn't exist.  It contains some common utilities shared by
++ Jupyter and IPython projects during The Big Split.  As soon as possible, those
++ packages will remove their dependency on this, and this package will go away.
 relevance: 4
 
 name: python2-notebook
 version: 5.7.4
 outputs: out
 systems: x86_64-linux i686-linux
-dependencies: python2-jupyter-core@4.4.0 python2-mock@2.0.0
+dependencies: python2-jupyter-core@4.4.0 python2-mock@3.0.5
 + python2-nbconvert@5.0.0b1 python2-nbformat@4.4.0 python2-nose@1.3.7
-+ python2-prometheus-client@0.5.0 python2-requests@2.22.0
++ python2-prometheus-client@0.7.1 python2-requests@2.23.0
 + python2-send2trash@1.5.0 python2-sphinx@1.7.7 python2-terminado@0.8.1
-location: gnu/packages/python-xyz.scm:7840:4
+location: gnu/packages/python-xyz.scm:9714:4
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Web-based notebook environment for interactive computing  
-description: The Jupyter HTML notebook is a web-based notebook
-+ environment for interactive computing.
+description: The Jupyter HTML notebook is a web-based notebook environment for
++ interactive computing.
+relevance: 2
+
+name: python2-ipyparallel
+version: 6.2.4
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python2-dateutil@2.8.1 python2-decorator@4.3.0
++ python2-futures@3.2.0 python2-ipykernel@4.10.1 python2-ipython-genutils@0.1.0
++ python2-ipython@5.8.0 python2-jupyter-client@5.2.4 python2-mock@3.0.5
++ python2-nose@1.3.7 python2-pytest-cov@2.8.1 python2-pytest@4.6.9
++ python2-pyzmq@17.1.2 python2-testpath@0.2 python2-tornado@5.1.1
++ python2-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:6491:4
+homepage: https://ipython.org/
+license: Modified BSD
+synopsis: Interactive Parallel Computing with IPython  
+description: `ipyparallel' is a Python package and collection of CLI scripts
++ for controlling clusters for Jupyter.  `ipyparallel' contains the following
++ CLI scripts:
++ 
++   1. ipcluster - start/stop a cluster
++ 
++   2. ipcontroller - start a scheduler
++ 
++   3. ipengine - start an engine
 relevance: 2
 
 name: python-notebook
@@ -595,15 +631,651 @@ version: 5.7.4
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-jupyter-core@4.4.0 python-nbconvert@5.0.0b1
-+ python-nbformat@4.4.0 python-nose@1.3.7 python-prometheus-client@0.5.0
-+ python-requests@2.22.0 python-send2trash@1.5.0 python-sphinx@2.3.1
++ python-nbformat@4.4.0 python-nose@1.3.7 python-prometheus-client@0.7.1
++ python-requests@2.23.0 python-send2trash@1.5.0 python-sphinx@2.3.1
 + python-terminado@0.8.1
-location: gnu/packages/python-xyz.scm:7793:2
+location: gnu/packages/python-xyz.scm:9667:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Web-based notebook environment for interactive computing  
-description: The Jupyter HTML notebook is a web-based notebook
-+ environment for interactive computing.
+description: The Jupyter HTML notebook is a web-based notebook environment for
++ interactive computing.
+relevance: 2
+
+name: python-ipyparallel
+version: 6.2.4
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-dateutil@2.8.1 python-decorator@4.3.0
++ python-ipykernel@5.1.3 python-ipython-genutils@0.1.0 python-ipython@7.9.0
++ python-jupyter-client@5.2.4 python-mock@3.0.5 python-nose@1.3.7
++ python-pytest-cov@2.8.1 python-pytest@5.3.5 python-pyzmq@17.1.2
++ python-testpath@0.2 python-tornado@5.1.1 python-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:6440:2
+homepage: https://ipython.org/
+license: Modified BSD
+synopsis: Interactive Parallel Computing with IPython  
+description: `ipyparallel' is a Python package and collection of CLI scripts
++ for controlling clusters for Jupyter.  `ipyparallel' contains the following
++ CLI scripts:
++ 
++   1. ipcluster - start/stop a cluster
++ 
++   2. ipcontroller - start a scheduler
++ 
++   3. ipengine - start an engine
+relevance: 2
+
+#+end_example
+
+C'est déjà prometteur, mais voyons comme proposé la totalité des résultats. Dans Emacs, nous remplaçons =less= par =cat=:
+
+#+begin_src sh :results output :exports both
+guix search jupyter | cat
+#+end_src
+
+#+RESULTS:
+#+begin_example
+name: jupyter
+version: 1.0.0
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-ipykernel@5.1.3 python-ipywidgets@7.5.1
++ python-jupyter-console@6.1.0 python-nbconvert@5.0.0b1 python-notebook@5.7.4
++ python-qtconsole@4.4.3
+location: gnu/packages/python-xyz.scm:9946:2
+homepage: https://jupyter.org
+license: Modified BSD
+synopsis: Web application for interactive documents  
+description: The Jupyter Notebook is a web application that allows you to
++ create and share documents that contain live code, equations, visualizations
++ and explanatory text.  Uses include: data cleaning and transformation,
++ numerical simulation, statistical modeling, machine learning and much more.
+relevance: 22
+
+name: python-jupyter-kernel-test
+version: 0.3
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-jsonschema@3.2.0 python-jupyter-kernel-mgmt@0.4.0
++ python-jupyter-protocol@0.1.1
+location: gnu/packages/jupyter.scm:98:2
+homepage: https://github.com/jupyter/jupyter_kernel_test
+license: Modified BSD
+synopsis: Test Jupyter kernels  
+description: `jupyter_kernel_test' is a tool for testing Jupyter kernels.  It
++ tests kernels for successful code execution and conformance with the Jupyter
++ Messaging Protocol
++ (https://jupyter-client.readthedocs.io/en/latest/messaging.html).
+relevance: 20
+
+name: xeus
+version: 0.23.2
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: cppzmq@4.6.0 googletest@1.10.0 json-modern-cxx@3.9.1
++ openssl@1.1.1f pkg-config@0.29.2 python-jupyter-client@5.2.4
++ python-jupyter-kernel-test@0.3 python-pytest@5.3.5 python@3.8.2
++ util-linux@2.35.1 xtl@0.6.18 zeromq@4.3.2
+location: gnu/packages/jupyter.scm:142:2
+homepage: https://quantstack.net/xeus
+license: Modified BSD
+synopsis: C++ implementation of the Jupyter Kernel protocol  
+description: `xeus' is a library meant to facilitate the implementation of
++ kernels for Jupyter.  It takes the burden of implementing the Jupyter Kernel
++ protocol so developers can focus on implementing the interpreter part of the
++ kernel.
++ 
++ Several Jupyter kernels are built upon `xeus', such as `xeus-cling', a kernel
++ for the C++ programming language, and `xeus-python', an alternative Python
++ kernel for Jupyter.
+relevance: 16
+
+name: python-jupyter-protocol
+version: 0.1.1
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-dateutil@2.8.1 python-ipykernel@5.1.3
++ python-ipython@7.9.0 python-jupyter-core@4.4.0 python-mock@3.0.5
++ python-pytest@5.3.5 python-pyzmq@17.1.2 python-traitlets@4.3.3
+location: gnu/packages/jupyter.scm:37:2
+homepage: https://jupyter.org
+license: Modified BSD
+synopsis: Jupyter protocol implementation  
+description: This Python library is an experimental implementation of the
++ Jupyter protocol
++ (https://jupyter-client.readthedocs.io/en/latest/messaging.html) to be used by
++ both clients and kernels.
+relevance: 16
+
+name: python2-jupyter-client
+version: 5.2.4
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: iproute2@5.8.0 python2-jupyter-core@4.4.0 python2-pyzmq@17.1.2
++ python2-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:6612:2
+homepage: http://jupyter.org/
+license: Modified BSD
+synopsis: Jupyter protocol implementation and client libraries  
+description: The `jupyter_client' package contains the reference
++ implementation of the Jupyter protocol.  It also provides client and kernel
++ management APIs for working with kernels, and the `jupyter kernelspec'
++ entrypoint for installing `kernelspec's for use with Jupyter frontends.
+relevance: 15
+
+name: python-jupyter-client
+version: 5.2.4
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: iproute2@5.8.0 python-jupyter-core@4.4.0 python-pyzmq@17.1.2
++ python-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:6612:2
+homepage: http://jupyter.org/
+license: Modified BSD
+synopsis: Jupyter protocol implementation and client libraries  
+description: The `jupyter_client' package contains the reference
++ implementation of the Jupyter protocol.  It also provides client and kernel
++ management APIs for working with kernels, and the `jupyter kernelspec'
++ entrypoint for installing `kernelspec's for use with Jupyter frontends.
+relevance: 15
+
+name: python-jupyter-kernel-mgmt
+version: 0.4.0
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-dateutil@2.8.1 python-entrypoints@0.3
++ python-ipykernel@5.1.3 python-ipython@7.9.0 python-jupyter-core@4.4.0
++ python-jupyter-protocol@0.1.1 python-mock@3.0.5 python-pytest@5.3.5
++ python-pyzmq@17.1.2 python-traitlets@4.3.3
+location: gnu/packages/jupyter.scm:67:2
+homepage: https://jupyter.org
+license: Modified BSD
+synopsis: Discover, launch, and communicate with Jupyter kernels  
+description: This package is an experimental refactoring of the machinery for
++ launching and using Jupyter kernels.
+relevance: 14
+
+name: guix-jupyter
+version: 0.1.0
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: autoconf@2.69 automake@1.16.2 guile-gcrypt@0.3.0
++ guile-json@4.3.2 guile-simple-zmq@0.0.0-3.68bedb6 guile@3.0.4
++ guix@1.1.0-25.44c6e6f jupyter@1.0.0 pkg-config@0.29.2 python-ipykernel@5.1.3
++ python-ipython@7.9.0
+location: gnu/packages/package-management.scm:985:2
+homepage: https://gitlab.inria.fr/guix-hpc/guix-kernel
+license: GPL 3+
+synopsis: Guix kernel for Jupyter  
+description: Guix-Jupyter is a Jupyter kernel.  It allows you to annotate
++ notebooks with information about their software dependencies, such that code
++ is executed in the right software environment.  Guix-Jupyter spawns the actual
++ kernels such as `python-ipykernel' on behalf of the notebook user and runs
++ them in an isolated environment, in separate namespaces.
+relevance: 13
+
+name: python2-jupyter-core
+version: 4.4.0
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python2-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:6587:2
+homepage: http://jupyter.org/
+license: Modified BSD
+synopsis: Jupyter base package  
+description: Jupyter core is the base package on which Jupyter projects rely.
+relevance: 11
+
+name: python2-jupyter-console
+version: 5.2.0
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python2-ipykernel@4.10.1 python2-jupyter-client@5.2.4
++ python2-nose@1.3.7 python2-prompt-toolkit@1.0.15 python2-pygments@2.5.2
+location: gnu/packages/python-xyz.scm:9816:2
+homepage: https://jupyter.org
+license: Modified BSD
+synopsis: Jupyter terminal console  
+description: This package provides a terminal-based console frontend for
++ Jupyter kernels.  It also allows for console-based interaction with non-Python
++ Jupyter kernels such as IJulia and IRKernel.
+relevance: 11
+
+name: python-jupyter-core
+version: 4.4.0
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:6587:2
+homepage: http://jupyter.org/
+license: Modified BSD
+synopsis: Jupyter base package  
+description: Jupyter core is the base package on which Jupyter projects rely.
+relevance: 11
+
+name: python-jupyter-console
+version: 6.1.0
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-ipykernel@5.1.3 python-jupyter-client@5.2.4
++ python-nose@1.3.7 python-prompt-toolkit@2.0.7 python-pygments@2.5.2
+location: gnu/packages/python-xyz.scm:9789:2
+homepage: https://jupyter.org
+license: Modified BSD
+synopsis: Jupyter terminal console  
+description: This package provides a terminal-based console frontend for
++ Jupyter kernels.  It also allows for console-based interaction with non-Python
++ Jupyter kernels such as IJulia and IRKernel.
+relevance: 11
+
+name: jupyter-guile-kernel
+version: 0.0.0-2.f25fb90
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: guile-json@3.5.0 guile-simple-zmq@0.0.0-3.68bedb6 guile@3.0.2
++ openssl@1.1.1f
+location: gnu/packages/guile-xyz.scm:976:4
+homepage: https://github.com/jerry40/guile-kernel
+license: GPL 3+
+synopsis: Guile kernel for the Jupyter Notebook  
+description: This package provides a Guile 2.x kernel for the Jupyter
++ Notebook.  It allows users to interact with the Guile REPL through Jupyter.
+relevance: 11
+
+name: python-pari-jupyter
+version: 1.3.2
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: pari-gp@2.11.4 python-ipykernel@5.1.3 readline@8.0.4
+location: gnu/packages/python-xyz.scm:6731:2
+homepage: https://github.com/jdemeyer/pari_jupyter
+license: GPL 3+
+synopsis: A Jupyter kernel for PARI/GP  
+description: The package provides a PARI/GP kernel for Jupyter.
+relevance: 9
+
+name: r-irkernel
+version: 1.1.1
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: jupyter@1.0.0 r-crayon@1.3.4 r-digest@0.6.25 r-evaluate@0.14
++ r-irdisplay@0.7.0 r-jsonlite@1.7.0 r-minimal@4.0.2 r-pbdzmq@0.3-3 r-repr@1.1.0
++ r-uuid@0.1-4
+location: gnu/packages/cran.scm:13147:2
+homepage: https://cran.r-project.org/web/packages/IRkernel/
+license: Expat
+synopsis: Native R kernel for Jupyter  
+description: The R kernel for the Jupyter environment executes R code which
++ the front-end (Jupyter Notebook or other front-ends) submits to the kernel via
++ the network.
+relevance: 7
+
+name: r-irdisplay
+version: 0.7.0
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: r-repr@1.1.0
+location: gnu/packages/cran.scm:13124:2
+homepage: https://cran.r-project.org/web/packages/IRdisplay/
+license: Expat
+synopsis: Jupyter display machinery  
+description: This package provides an interface to the rich display
++ capabilities of Jupyter front-ends (e.g.  Jupyter Notebook).  It is designed
++ to be used from a running IRkernel session.
+relevance: 7
+
+name: ruby-iruby
+version: 0.3
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-ipython@7.9.0 ruby-bond@0.5.1 ruby-cztop@0.12.2
++ ruby-data_uri@0.1.0 ruby-mimemagic@0.3.3 ruby-multi-json@1.13.1
++ ruby-pry@0.13.1
+location: gnu/packages/ruby.scm:473:2
+homepage: https://github.com/SciRuby/iruby
+license: Expat
+synopsis: Ruby kernel for Jupyter/IPython  
+description: This package provides a Ruby kernel for Jupyter/IPython frontends
++ (e.g.  notebook).
+relevance: 5
+
+name: r-nbconvertr
+version: 1.3.2
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: pandoc@2.7.3 python-nbconvert@5.0.0b1
+location: gnu/packages/cran.scm:21907:2
+homepage: https://cran.r-project.org/web/packages/nbconvertR/
+license: GPL 3
+synopsis: Vignette engine wrapping Jupyter notebooks  
+description: This package calls the Jupyter script `nbconvert' to create
++ vignettes from notebooks.  Those notebooks (`.ipynb' files) are files
++ containing rich text, code, and its output.  Code cells can be edited and
++ evaluated interactively.
+relevance: 5
+
+name: python2-widgetsnbextension
+version: 3.5.1
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python2-certifi@2020.4.5.1 python2-ipykernel@4.10.1
++ python2-nose@1.3.7 python2-notebook@5.7.4
+location: gnu/packages/python-xyz.scm:9732:2
+homepage: https://ipython.org
+license: Modified BSD
+synopsis: IPython HTML widgets for Jupyter  
+description: This package provides interactive HTML widgets for Jupyter
++ notebooks.
+relevance: 5
+
+name: python2-nbformat
+version: 4.4.0
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python2-ipython-genutils@0.1.0 python2-jsonschema@3.2.0
++ python2-jupyter-core@4.4.0 python2-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:9440:2
+homepage: http://jupyter.org
+license: Modified BSD
+synopsis: Jupyter Notebook format  
+description: This package provides the reference implementation of the Jupyter
++ Notebook format and Python APIs for working with notebooks.
+relevance: 5
+
+name: python2-nbconvert
+version: 5.0.0b1
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python2-bleach@3.1.5 python2-entrypoints@0.3
++ python2-jinja2@2.11.2 python2-jupyter-core@4.4.0 python2-mistune@0.8.4
++ python2-nbformat@4.4.0 python2-pygments@2.5.2 python2-pytest@4.6.9
++ python2-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:9613:2
+homepage: http://jupyter.org
+license: Modified BSD
+synopsis: Converting Jupyter Notebooks  
+description: The `nbconvert' tool, {jupyter nbconvert
+relevance: 5
+
+name: python2-ipywidgets
+version: 7.5.1
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python2-ipython@5.8.0 python2-nose@1.3.7 python2-pytest@4.6.9
++ python2-traitlets@4.3.3 python2-widgetsnbextension@3.5.1
+location: gnu/packages/python-xyz.scm:9759:2
+homepage: https://ipython.org
+license: Modified BSD
+synopsis: IPython HTML widgets for Jupyter  
+description: Ipywidgets are interactive HTML widgets for Jupyter notebooks and
++ the IPython kernel.  Notebooks come alive when interactive widgets are used.
++ Users gain control of their data and can visualize changes in the data.
+relevance: 5
+
+name: python2-ipykernel
+version: 4.10.1
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python2-ipython@5.8.0 python2-jupyter-client@5.2.4
++ python2-mock@3.0.5 python2-nose@1.3.7 python2-pytest-cov@2.8.1
++ python2-pytest@4.6.9 python2-tornado@5.1.1 python2-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:6701:2
+homepage: https://ipython.org
+license: Modified BSD
+synopsis: IPython Kernel for Jupyter  
+description: This package provides the IPython kernel for Jupyter.
+relevance: 5
+
+name: python-widgetsnbextension
+version: 3.5.1
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-certifi@2020.4.5.1 python-ipykernel@5.1.3
++ python-nose@1.3.7 python-notebook@5.7.4
+location: gnu/packages/python-xyz.scm:9732:2
+homepage: https://ipython.org
+license: Modified BSD
+synopsis: IPython HTML widgets for Jupyter  
+description: This package provides interactive HTML widgets for Jupyter
++ notebooks.
+relevance: 5
+
+name: python-slurm-magic
+version: 0.0-0.73dd1a2
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-ipython@7.9.0 python-pandas@1.0.5 slurm@19.05.3-2
+location: gnu/packages/parallel.scm:225:4
+homepage: https://github.com/NERSC/slurm-magic
+license: Modified BSD
+synopsis: Control the SLURM batch scheduler from Jupyter Notebook  
+description: This package implements Jupyter/IPython magic commands
++ (http://ipython.readthedocs.io/en/stable/interactive/magics.html) for
++ interacting with the SLURM workload manager.  SLURM magic simply wraps
++ command-line executables and the commands themselves should look like their
++ command-line counterparts.  Commands are spawned via `subprocess' and output
++ captured in the notebook.  Whatever arguments are accepted by a SLURM command
++ line executable are also accepted by the corresponding magic command---e.g.,
++ `%salloc', `%sbatch', etc.
+relevance: 5
+
+name: python-qtconsole
+version: 4.4.3
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-ipykernel@5.1.3 python-ipython@7.9.0 python-pytest@5.3.5
+location: gnu/packages/python-xyz.scm:9871:2
+homepage: http://jupyter.org
+license: Modified BSD
+synopsis: Jupyter Qt console  
+description: This package provides a Qt-based console for Jupyter with support
++ for rich media output.
+relevance: 5
+
+name: python-nbval
+version: 0.9.6
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-ipykernel@5.1.3 python-jupyter-client@5.2.4
++ python-nbformat@4.4.0 python-pytest-cov@2.8.1 python-pytest@5.3.5
++ python-six@1.14.0 python-sympy@1.1.1
+location: gnu/packages/python-check.scm:766:2
+homepage: https://github.com/computationalmodelling/nbval
+license: Modified BSD
+synopsis: Pytest plugin to validate Jupyter notebooks  
+description: This plugin adds functionality to Pytest to recognise and collect
++ Jupyter notebooks.  The intended purpose of the tests is to determine whether
++ execution of the stored inputs match the stored outputs of the `.ipynb' file.
++ Whilst also ensuring that the notebooks are running without errors.
+relevance: 5
+
+name: python-nbformat
+version: 4.4.0
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-ipython-genutils@0.1.0 python-jsonschema@3.2.0
++ python-jupyter-core@4.4.0 python-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:9440:2
+homepage: http://jupyter.org
+license: Modified BSD
+synopsis: Jupyter Notebook format  
+description: This package provides the reference implementation of the Jupyter
++ Notebook format and Python APIs for working with notebooks.
+relevance: 5
+
+name: python-nbconvert
+version: 5.0.0b1
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-bleach@3.1.5 python-entrypoints@0.3 python-jinja2@2.11.2
++ python-jupyter-core@4.4.0 python-mistune@0.8.4 python-nbformat@4.4.0
++ python-pygments@2.5.2 python-pytest@5.3.5 python-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:9613:2
+homepage: http://jupyter.org
+license: Modified BSD
+synopsis: Converting Jupyter Notebooks  
+description: The `nbconvert' tool, {jupyter nbconvert
+relevance: 5
+
+name: python-ipywidgets
+version: 7.5.1
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-ipython@7.9.0 python-nose@1.3.7 python-pytest@5.3.5
++ python-traitlets@4.3.3 python-widgetsnbextension@3.5.1
+location: gnu/packages/python-xyz.scm:9759:2
+homepage: https://ipython.org
+license: Modified BSD
+synopsis: IPython HTML widgets for Jupyter  
+description: Ipywidgets are interactive HTML widgets for Jupyter notebooks and
++ the IPython kernel.  Notebooks come alive when interactive widgets are used.
++ Users gain control of their data and can visualize changes in the data.
+relevance: 5
+
+name: python-ipykernel
+version: 5.1.3
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-flaky@3.5.3 python-ipython@7.9.0
++ python-jupyter-client@5.2.4 python-nose@1.3.7 python-pytest@5.3.5
+location: gnu/packages/python-xyz.scm:6656:2
+homepage: https://ipython.org
+license: Modified BSD
+synopsis: IPython Kernel for Jupyter  
+description: This package provides the IPython kernel for Jupyter.
+relevance: 5
+
+name: ghc-ipynb
+version: 0.1
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: ghc-aeson-diff@1.1.0.7 ghc-aeson@1.4.5.0
++ ghc-base64-bytestring@1.0.0.2 ghc-microlens-aeson@2.3.0.4 ghc-microlens@0.4.10
++ ghc-semigroups@0.18.5 ghc-tasty-hunit@0.10.0.2 ghc-tasty@1.2.3
++ ghc-unordered-containers@0.2.10.0 ghc-vector@0.12.0.3
+location: gnu/packages/haskell-xyz.scm:6474:2
+homepage: https://hackage.haskell.org/package/ipynb
+license: Modified BSD
+synopsis: Data structure for working with Jupyter notebooks  
+description: This library defines a data structure for representing Jupyter
++ notebooks, along with `ToJSON' and `FromJSON' instances for conversion to and
++ from JSON .ipynb files.
+relevance: 5
+
+name: python2-ipython-genutils
+version: 0.1.0
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: 
+location: gnu/packages/python-xyz.scm:6413:2
+homepage: https://ipython.org
+license: Modified BSD
+synopsis: Vestigial utilities from IPython  
+description: This package provides retired utilities from IPython.  No
++ packages outside IPython/Jupyter should depend on it.
++ 
++ This package shouldn't exist.  It contains some common utilities shared by
++ Jupyter and IPython projects during The Big Split.  As soon as possible, those
++ packages will remove their dependency on this, and this package will go away.
+relevance: 4
+
+name: python-ipython-genutils
+version: 0.1.0
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: 
+location: gnu/packages/python-xyz.scm:6413:2
+homepage: https://ipython.org
+license: Modified BSD
+synopsis: Vestigial utilities from IPython  
+description: This package provides retired utilities from IPython.  No
++ packages outside IPython/Jupyter should depend on it.
++ 
++ This package shouldn't exist.  It contains some common utilities shared by
++ Jupyter and IPython projects during The Big Split.  As soon as possible, those
++ packages will remove their dependency on this, and this package will go away.
+relevance: 4
+
+name: python2-notebook
+version: 5.7.4
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python2-jupyter-core@4.4.0 python2-mock@3.0.5
++ python2-nbconvert@5.0.0b1 python2-nbformat@4.4.0 python2-nose@1.3.7
++ python2-prometheus-client@0.7.1 python2-requests@2.23.0
++ python2-send2trash@1.5.0 python2-sphinx@1.7.7 python2-terminado@0.8.1
+location: gnu/packages/python-xyz.scm:9714:4
+homepage: http://jupyter.org/
+license: Modified BSD
+synopsis: Web-based notebook environment for interactive computing  
+description: The Jupyter HTML notebook is a web-based notebook environment for
++ interactive computing.
+relevance: 2
+
+name: python2-ipyparallel
+version: 6.2.4
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python2-dateutil@2.8.1 python2-decorator@4.3.0
++ python2-futures@3.2.0 python2-ipykernel@4.10.1 python2-ipython-genutils@0.1.0
++ python2-ipython@5.8.0 python2-jupyter-client@5.2.4 python2-mock@3.0.5
++ python2-nose@1.3.7 python2-pytest-cov@2.8.1 python2-pytest@4.6.9
++ python2-pyzmq@17.1.2 python2-testpath@0.2 python2-tornado@5.1.1
++ python2-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:6491:4
+homepage: https://ipython.org/
+license: Modified BSD
+synopsis: Interactive Parallel Computing with IPython  
+description: `ipyparallel' is a Python package and collection of CLI scripts
++ for controlling clusters for Jupyter.  `ipyparallel' contains the following
++ CLI scripts:
++ 
++   1. ipcluster - start/stop a cluster
++ 
++   2. ipcontroller - start a scheduler
++ 
++   3. ipengine - start an engine
+relevance: 2
+
+name: python-notebook
+version: 5.7.4
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-jupyter-core@4.4.0 python-nbconvert@5.0.0b1
++ python-nbformat@4.4.0 python-nose@1.3.7 python-prometheus-client@0.7.1
++ python-requests@2.23.0 python-send2trash@1.5.0 python-sphinx@2.3.1
++ python-terminado@0.8.1
+location: gnu/packages/python-xyz.scm:9667:2
+homepage: http://jupyter.org/
+license: Modified BSD
+synopsis: Web-based notebook environment for interactive computing  
+description: The Jupyter HTML notebook is a web-based notebook environment for
++ interactive computing.
+relevance: 2
+
+name: python-ipyparallel
+version: 6.2.4
+outputs: out
+systems: x86_64-linux i686-linux
+dependencies: python-dateutil@2.8.1 python-decorator@4.3.0
++ python-ipykernel@5.1.3 python-ipython-genutils@0.1.0 python-ipython@7.9.0
++ python-jupyter-client@5.2.4 python-mock@3.0.5 python-nose@1.3.7
++ python-pytest-cov@2.8.1 python-pytest@5.3.5 python-pyzmq@17.1.2
++ python-testpath@0.2 python-tornado@5.1.1 python-traitlets@4.3.3
+location: gnu/packages/python-xyz.scm:6440:2
+homepage: https://ipython.org/
+license: Modified BSD
+synopsis: Interactive Parallel Computing with IPython  
+description: `ipyparallel' is a Python package and collection of CLI scripts
++ for controlling clusters for Jupyter.  `ipyparallel' contains the following
++ CLI scripts:
++ 
++   1. ipcluster - start/stop a cluster
++ 
++   2. ipcontroller - start a scheduler
++ 
++   3. ipengine - start an engine
 relevance: 2
 
 #+end_example
@@ -617,7 +1289,6 @@ guix install jupyter
 #+end_src
 
 #+RESULTS:
-: 84 packages in profile
 
 Ceux qui ont l'habitude d'une distribution classique étaient peut-être tentés de rajouter =sudo= devant la commande, parce que l'installation d'un logiciel, ça relève des privilèges d'un administrateur. Ce n'est pas le cas avec Guix. Sous Guix, chaque utilisateur gère ses logiciels de façon autonome. Le =jupyter= que je viens d'installer n'est accessible que pour moi. En fait, l'annonce des "84 paquets dans mon profil" veut dire qu'il y a 84 paquets installés à mon nom, un "profil" étant une collection de paquets installés (et on peut même en avoir plusieurs, mais ça dépasse le cadre de ce tutoriel).
 
@@ -634,7 +1305,6 @@ guix install python-matplotlib python-numpy python-pandas python-statsmodels
 #+end_src
 
 #+RESULTS:
-: 88 packages in profile
 
 Je rajoute le paquet =python-nbconvert= qui permet de
 convertir les notebooks en ligne de commande sans passer par
@@ -644,7 +1314,6 @@ guix install python-nbconvert
 #+end_src
 
 #+RESULTS:
-: 89 packages in profile
 
 
 ** 2.4 Automatiser la construction de son environnement
@@ -659,53 +1328,41 @@ va réaliser la préparation de l'environnement automatiquement à l'aide
 de la commande =guix environment=. Un =manifest= est une spécification
 complète d'un environnement de calcul. Voyons à quoi ça ressemble.
 
-#+begin_src shell :results output :exports none
-mkdir -p moocrr_guix_jupyter
-#+end_src
-
-#+RESULTS:
+g#+RESULTS:
 
 Je crée un fichier [[file:moocrr_guix_jupyter/manifest.scm][moocrr_guix_jupyter/manifest.scm]] dont voici
 le contenu.
 
-#+begin_src sh :results output :exports both
-cat moocrr_guix_jupyter/manifest.scm
+#+begin_src guile :exports both :tangle moocrr_guix_jupyter/manifest.scm :eval no
+(specifications->manifest
+ '("jupyter"
+   "python-matplotlib"
+   "python-numpy"
+   "python-pandas"
+   "python-statsmodels"
+   "python-nbconvert"))
 #+end_src
-
-#+RESULTS:
-: (specifications->manifest
-:  '("jupyter"
-:    "python-matplotlib"
-:    "python-numpy"
-:    "python-pandas"
-:    "python-statsmodels"
-:    "python-nbconvert"))
-: 
 
 C'est essentiellement la liste des paquets que j'ai installés à la main auparavant, mais dans un format un peu particulier qu'il faut respecter scrupuleusement. En fait, ce format n'est rien d'autre que le langage de programmation [[https://fr.wikipedia.org/wiki/Scheme][Scheme]]. Guix est écrit en Scheme, et exprimer une liste de paquets en Scheme a le grand avantage qu'on peut utiliser des fonctionnalités avancées de Guix pour définir son environnement. Par exemple, je pourrais demander que tous mes paquets, en commençant par Python, soient compilés avec =gcc 7= plutôt qu'avec le compilateur par défaut de Guix, qui est actuellement =gcc 5=.
 
 Je peux alors créer un environnement contenant ces paquets avec :
-#+begin_src sh :session *jupyter-env* :results output :exports both
+#+begin_src sh :session *jupyter-env* :results output :exports both :eval no
 guix environment --pure -m ./moocrr_guix_jupyter/manifest.scm
 #+end_src
 
-#+RESULTS:
-
 Ceci me lance une shell (=bash=, plus précisément) de laquelle Jupyter est accessible et configuré avec tous les modules Python demandés :
-#+begin_src sh :session *jupyter-env* :results output :exports both
+#+begin_src sh :session *jupyter-env* :results output :exports both :eval no
 jupyter notebook
 #+end_src
 
-#+RESULTS:
-
 Mais il est encore plus pratique de lancer directement Jupyter plutôt de passer par une shell :
-#+begin_src sh :results output :exports both
+#+begin_src sh :results output :exports both :eval no
 guix environment -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebook
 #+end_src
 
 Pour faire encore mieux, rajoutons l'option =–pure= :
-#+begin_src sh :results output :exports both
-guix environment –pure -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebook
+#+begin_src sh :results output :exports both :eval no
+guix environment --pure -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebook
 #+end_src
 
 Un environnement "pur" ne contient que les paquets définis dans le manifeste, pendant qu'un environnement "standard" contient aussi tout ce qui est disponible par défaut par la ligne de commande, donc des utilitaires comme =ls=, =cp=, etc. Avec un environnement pur, on est sûr de ne pas utiliser une commande qui n'est pas listée dans le manifeste, même pas par erreur.
@@ -726,12 +1383,12 @@ guix package -p $GUIX_ENVIRONMENT -I
 #+end_src
 
 #+RESULTS:
-| python-nbconvert   | 5.0.0b1 | out | /gnu/store/5m8mdhj6wpgsxll5c45bc7ha2sl8n1gf-python-nbconvert-5.0.0b1 |
-| python-statsmodels |   0.9.0 | out | /gnu/store/zl3p1kzbg0fgdys4vk420g5q0vb4fa5q-python-statsmodels-0.9.0 |
-| python-pandas      |  0.25.2 | out | /gnu/store/wxq7g1mfn66xhf9iz8sgccnp4bb1bsi0-python-pandas-0.25.2     |
-| python-numpy       |  1.17.3 | out | /gnu/store/h7g276fj8n0ns1r2lz4rjzxbkp9wnrnr-python-numpy-1.17.3      |
-| python-matplotlib  |   3.1.2 | out | /gnu/store/n8x2rygfi70g594yc02r7ww6hxady5vb-python-matplotlib-3.1.2  |
-| jupyter            |   1.0.0 | out | /gnu/store/kwf1gzgk7f0l1sz84d0frrfvlqysnbz7-jupyter-1.0.0            |
+: python-nbconvert	5.0.0b1	out	/gnu/store/1xb4jz8bi42w0jm0znxa1cq8jrmdpwgb-python-nbconvert-5.0.0b1
+: python-statsmodels	0.11.1	out	/gnu/store/wwk3vf4cfsdn9bzw15sv9aysgc35f2sw-python-statsmodels-0.11.1
+: python-pandas	1.0.5	out	/gnu/store/54bg8qnb943npwpw9k0ry0wgx06471b2-python-pandas-1.0.5
+: python-numpy	1.17.3	out	/gnu/store/3j2d23kldb7cdzamj9cvg0j7j3fhhari-python-numpy-1.17.3
+: python-matplotlib	3.1.2	out	/gnu/store/gsjhzr1xy96hz8wvaa8mblvv2niqnkwy-python-matplotlib-3.1.2
+: jupyter	1.0.0	out	/gnu/store/sh1k32zgqddz0n86v13w6kdd61h7634g-jupyter-1.0.0
 
 
 La dernière colonne montre les répertoires où se trouvent les paquets. Ceci est utile par exemple pour regarder les modules Python qui en font partie.
@@ -741,7 +1398,7 @@ Reste à comprendre à quoi sert l'argument =-p $GUIX_ENVIRONMENT=. Normalement,
 Ma petite liste ci-dessus contient seulement les paquets que j'ai installés explicitement. Chaque paquet dans cette liste a des dépendances, que Guix a rajoutées automatiquement. Leurs versions comptent tout autant, car elles peuvent influencer les résultats de mes calculs. Pour ne citer qu'un exemple, =python-statsmodels= dépend de =python-patsy=, qui fournit le cadre pour définir des modèles statistiques. Une erreur dans =python-patsy= peut donc fausser mes résultats. Il faudrait alors idéalement connaître les versions de toutes les dépendances, directes et indirectes.
 
 À ma connaissance, Guix ne propose pas de commande pour récupérer cette liste. Je vais la récupérer par un petit script en langage Guile, le langage de Guix. Je vous le montre sans explications :
-#+begin_src guile :exports both :tangle moocrr_guix_jupyter/installed-dependencies.scm
+#+begin_src guile :exports both :tangle moocrr_guix_jupyter/installed-dependencies.scm :eval no
 (use-modules (guix profiles)
              (gnu packages)
              (srfi srfi-1))
@@ -777,136 +1434,12 @@ Ma petite liste ci-dessus contient seulement les paquets que j'ai installés exp
 
 Et le résultat est...
 #+begin_src sh :results output :exports both
-guile -s moocrr_guix_jupyter/installed-dependencies.scm
+guix repl moocrr_guix_jupyter/installed-dependencies.scm
 #+end_src
-
-#+RESULTS:
-#+begin_example
-119 packages:
-cairo@1.16.0
-expat@2.2.7
-fontconfig@2.13.1
-freetype@2.10.1
-glib@2.60.6
-gobject-introspection@1.60.2
-jupyter@1.0.0
-libffi@3.2.1
-libpng@1.6.37
-libpthread-stubs@0.4
-libselinux@2.7
-libsepol@2.7
-libx11@1.6.8
-libxau@1.0.9
-libxcb@1.13
-libxdmcp@1.1.3
-libxext@1.3.4
-libxrender@0.9.10
-pcre@8.43
-pixman@0.38.4
-python-asn1crypto@0.24.0
-python-attrs@19.1.0
-python-automat@0.7.0
-python-babel@2.7.0
-python-backcall@0.1.0
-python-bleach@3.1.0
-python-cairocffi@0.9.0
-python-certifi@2019.3.9
-python-cffi@1.11.5
-python-chardet@3.0.4
-python-constantly@15.1.0
-python-cryptography@2.7
-python-cycler@0.10.0
-python-dateutil@2.8.0
-python-decorator@4.3.0
-python-docutils@0.14
-python-entrypoints@0.3
-python-et-xmlfile@1.0.1
-python-hyperlink@19.0.0
-python-idna@2.8
-python-imagesize@1.1.0
-python-incremental@17.5.0
-python-ipaddress@1.0.22
-python-ipykernel@5.1.3
-python-ipython-genutils@0.1.0
-python-ipython@7.9.0
-python-ipywidgets@5.2.2
-python-iso8601@0.1.12
-python-jdcal@1.4
-python-jedi@0.15.1
-python-jinja2@2.10.1
-python-jsonschema@3.0.1
-python-jupyter-client@5.2.4
-python-jupyter-console@6.0.0
-python-jupyter-core@4.4.0
-python-kiwisolver@1.0.1
-python-markupsafe@1.1.1
-python-matplotlib@3.1.2
-python-mistune@0.8.4
-python-nbconvert@5.0.0b1
-python-nbformat@4.4.0
-python-notebook@5.7.4
-python-numpy@1.17.3
-python-numpydoc@0.8.0
-python-olefile@0.46
-python-openpyxl@2.6.2
-python-packaging@20.0
-python-pandas@0.25.2
-python-parso@0.5.1
-python-patsy@0.5.1
-python-pexpect@4.6.0
-python-pickleshare@0.7.5
-python-pillow@6.2.1
-python-prometheus-client@0.5.0
-python-prompt-toolkit@2.0.7
-python-ptyprocess@0.5.2
-python-pycairo@1.17.1
-python-pycparser@2.19
-python-pygments@2.4.2
-python-pygobject@3.28.3
-python-pyhamcrest@1.9.0-0.25fdc5f
-python-pyopenssl@19.0.0
-python-pyparsing@2.3.1
-python-pyrsistent@0.14.11
-python-pysocks@1.7.0
-python-pytz@2019.1
-python-pyzmq@17.1.2
-python-qtconsole@4.4.3
-python-requests@2.22.0
-python-scipy@1.3.2
-python-send2trash@1.5.0
-python-simplegeneric@0.8.1
-python-six@1.12.0
-python-snowballstemmer@1.2.1
-python-sphinx-alabaster-theme@0.7.12
-python-sphinx@2.3.1
-python-sphinxcontrib-applehelp@1.0.1
-python-sphinxcontrib-devhelp@1.0.1
-python-sphinxcontrib-htmlhelp@1.0.2
-python-sphinxcontrib-jsmath@1.0.1
-python-sphinxcontrib-qthelp@1.0.2
-python-sphinxcontrib-serializinghtml@1.1.3
-python-statsmodels@0.9.0
-python-terminado@0.8.1
-python-tornado@5.1.1
-python-traitlets@4.3.3
-python-twisted@19.7.0
-python-urllib3@1.25.3
-python-wcwidth@0.1.8
-python-webencodings@0.5.1
-python-widgetsnbextension@3.4.2
-python-xcffib@0.6.0
-python-xlrd@1.2.0
-python-zope-interface@4.6.0
-python@3.7.4
-util-linux@2.34
-util-macros@1.19.2
-xorgproto@2019.1
-zlib@1.2.11
-#+end_example
 
 Il faut donc 119 paquets au total pour construire mon environnement ! Et ce sont seulement les paquets qui doivent être en mémoire pour utiliser l'environnement. D'autres paquets ont été déployés pour construire ces 118 paquets. Par exemple, pour construire le paquet =python= il a fallu un compilateur C. Une erreur dans ce compilateur peut aussi fausser mes résultats, donc je devrais le rajouter à ma liste de paquets dont il faut noter les versions. Alors... encore un petit script pour faire la liste complète !
 
-#+begin_src guile :exports both :tangle moocrr_guix_jupyter/all-dependencies.scm
+#+begin_src guile :exports both :tangle moocrr_guix_jupyter/all-dependencies.scm :eval no
 (use-modules (guix profiles)
              (guix packages)
              (gnu packages)
@@ -951,583 +1484,8 @@ Il faut donc 119 paquets au total pour construire mon environnement ! Et ce son
 
 Et le résultat est...
 #+begin_src sh :results output :exports both
-guile -s moocrr_guix_jupyter/all-dependencies.scm
+guix repl moocrr_guix_jupyter/all-dependencies.scm
 #+end_src
-
-#+RESULTS:
-#+begin_example
-570 packages:
-acl@2.2.53
-aspell@0.60.6.1
-at-spi2-atk@2.34.1
-at-spi2-core@2.34.0
-atk@2.34.1
-atkmm@2.28.0
-attr@2.4.48
-autoconf-wrapper@2.69
-autoconf@2.69
-automake@1.16.1
-avahi@0.7
-bash-minimal@5.0.7
-bash-static@5.0.7
-bash@5.0.7
-bc@1.07.1
-bdb@5.3.28
-bdb@6.2.32
-binutils-cross-boot0@2.32
-binutils-mesboot0@2.20.1a
-binutils-mesboot@2.20.1a
-binutils@2.32
-bison@3.4.1
-boost@1.70.0
-bootstrap-binaries@0
-bootstrap-mes@0
-bootstrap-mescc-tools@0.5.2
-bzip2@1.0.6
-c-ares@1.15.0
-cairo@1.16.0
-cairomm@1.12.2
-cmake-minimal@3.15.1
-coreutils@8.31
-cunit@2.1-3
-cups-filters@1.25.13
-cups-minimal@2.3.0
-cups@2.3.0
-curl@7.65.3
-cyrus-sasl@2.1.27
-dblatex@0.3.10
-dbus@1.12.16
-diffutils-boot0@3.7
-diffutils-mesboot@2.7
-diffutils@3.7
-docbook-xml@4.2
-docbook-xml@4.3
-docbook-xml@4.4
-docbook-xml@4.5
-docbook-xsl@1.79.1
-doxygen@1.8.15
-ed@1.15
-elfutils@0.176
-eudev@3.2.9
-expat@2.2.7
-fftw@3.3.8
-file-boot0@5.33
-file@5.33
-findutils-boot0@4.6.0
-findutils@4.6.0
-flex@2.6.4
-font-dejavu@2.37
-fontconfig@2.13.1
-fontforge@20190801
-freeglut@3.0.0
-freetype@2.10.1
-fribidi@1.0.5
-gawk@5.0.1
-gcc-core-mesboot@2.95.3
-gcc-cross-boot0-wrapped@7.4.0
-gcc-cross-boot0@7.4.0
-gcc-mesboot-wrapper@4.9.4
-gcc-mesboot0@2.95.3
-gcc-mesboot1-wrapper@4.7.4
-gcc-mesboot1@4.7.4
-gcc-mesboot@4.9.4
-gcc@7.4.0
-gd@2.2.5
-gdbm@1.18.1
-gdk-pixbuf+svg@2.40.0
-gdk-pixbuf@2.40.0
-gettext-boot0@0.19.8.1
-gettext-minimal@0.20.1
-gfortran@7.4.0
-ghostscript-with-cups@9.27
-ghostscript@9.27
-giflib@5.1.4
-glib@2.60.6
-glibc-headers-mesboot@2.16.0
-glibc-intermediate@2.29
-glibc-mesboot0@2.2.5
-glibc-mesboot@2.16.0
-glibc-utf8-locales@2.29
-glibc@2.29
-glibmm@2.60.0
-glslang@7.11.3214
-glu@9.0.1
-gmp@6.1.2
-gnutls@3.6.9
-gobject-introspection@1.60.2
-gperf@3.1
-graphite2@1.3.13
-graphviz@2.40.1
-grep@3.3
-groff-minimal@1.22.4
-groff@1.22.4
-gs-fonts@8.11
-gsl@2.5
-gtk+@2.24.32
-gtk+@3.24.13
-gtk-doc@1.28
-gtkmm@2.24.5
-gts@0.7.6
-guile-bootstrap@2.0
-guile@2.0.14
-guile@2.2.6
-gzip@1.10
-harfbuzz@2.5.3
-help2man@1.47.10
-icu4c@64.2
-ijs@9.27
-imagemagick@6.9.10-78
-inkscape@0.92.4
-intltool@0.51.0
-iproute2@5.3.0
-iptables@1.8.4
-isl@0.21
-itstool@2.0.6
-jansson@2.12
-jbig2dec@0.16
-jemalloc@5.2.0
-json-glib@1.4.4
-jupyter@1.0.0
-kmod@26
-lapack@3.9.0
-lcms@2.9
-ld-wrapper-boot0@0
-ld-wrapper-boot3@0
-ld-wrapper@0
-less@551
-libarchive@3.4.0
-libatomic-ops@7.6.10
-libbsd@0.9.1
-libcap@2.27
-libcroco@0.6.13
-libdaemon@0.14
-libdmx@1.1.4
-libdrm@2.4.100
-libelf@0.8.13
-libepoxy@1.5.4
-libev@4.25
-libffi@3.2.1
-libfontenc@1.1.4
-libgc@7.6.12
-libgcrypt@1.8.4
-libgpg-error@1.36
-libgsf@1.14.46
-libice@1.0.10
-libidn2@2.2.0
-libidn@1.35
-libjpeg-turbo@2.0.2
-libjpeg@9c
-libltdl@2.4.6
-libmnl@1.0.4
-libnftnl@1.1.5
-libpaper@1.1.24
-libpciaccess@0.16
-libpipeline@1.5.1
-libpng@1.6.37
-libpthread-stubs@0.4
-librsvg@2.40.20
-libselinux@2.7
-libsepol@2.7
-libsigc++@2.10.2
-libsigsegv@2.12
-libsm@1.2.3
-libspectre@0.2.8
-libspiro@0.5.20150702
-libstdc++-boot0@4.9.4
-libstdc++@7.4.0
-libtasn1@4.14
-libtiff@4.0.10
-libtool@2.4.6
-libungif@4.1.4
-libuninameslist@20190701
-libunistring@0.9.10
-libuv@1.30.1
-libva-without-mesa@2.5.0
-libvdpau@1.3
-libwebp@1.0.3
-libx11@1.6.8
-libxau@1.0.9
-libxaw@1.0.13
-libxcb@1.13
-libxcomposite@0.4.5
-libxcursor@1.2.0
-libxdamage@1.1.5
-libxdmcp@1.1.3
-libxext@1.3.4
-libxfixes@5.0.3
-libxfont@2.0.4
-libxft@2.3.3
-libxi@1.7.10
-libxinerama@1.1.4
-libxkbcommon@0.9.1
-libxkbfile@1.1.0
-libxml2@2.9.9
-libxmu@1.1.3
-libxpm@3.5.12
-libxrandr@1.5.2
-libxrender@0.9.10
-libxres@1.2.0
-libxshmfence@1.3
-libxslt@1.1.33
-libxt@1.2.0
-libxtst@1.2.3
-libxv@1.0.11
-libxvmc@1.0.12
-libxxf86vm@1.1.4
-linux-libre-headers-bootstrap@0
-linux-libre-headers@4.19.56
-llvm@8.0.0
-lzip@1.21
-lzo@2.10
-m4@1.4.18
-make-boot0@4.2.1
-make-mesboot0@3.80
-make-mesboot@3.82
-make@4.2.1
-makedepend@1.0.6
-man-db@2.9.0
-mes-boot@0.19
-mesa@19.2.7
-mesboot-headers@0.19
-meson-for-build@0.50.1
-mit-krb5@1.17
-mpc@1.1.0
-mpfr@4.0.2
-nasm@2.14.02
-ncurses@6.1-20190609
-net-base@5.3
-net-tools@1.60-0.479bb4a
-nettle@3.5.1
-nghttp2@1.39.1
-ninja@1.9.0
-openblas@0.3.7
-openjpeg@2.3.1
-openldap@2.4.47
-openssl@1.1.1c
-pango@1.42.4
-pangomm@2.42.0
-patch@2.7.6
-pciutils@3.6.2
-pcre@8.43
-perl-boot0@5.30.0
-perl-xml-parser@2.44
-perl@5.30.0
-pixman@0.38.4
-pkg-config@0.29.2
-poppler@0.79.0
-popt@1.16
-potrace@1.15
-psutils@17
-python-asn1crypto@0.24.0
-python-atomicwrites@1.3.0
-python-attrs-bootstrap@19.1.0
-python-attrs@19.1.0
-python-automat@0.7.0
-python-babel@2.7.0
-python-backcall@0.1.0
-python-beautifulsoup4@4.7.1
-python-bleach@3.1.0
-python-cairocffi@0.9.0
-python-certifi@2019.3.9
-python-cffi@1.11.5
-python-chardet@3.0.4
-python-constantly@15.1.0
-python-coverage@4.5.3
-python-cryptography-vectors@2.7
-python-cryptography@2.7
-python-cycler@0.10.0
-python-cython@0.29.13
-python-dateutil@2.8.0
-python-decorator@4.3.0
-python-docopt@0.6.2
-python-docutils@0.14
-python-entrypoints@0.3
-python-et-xmlfile@1.0.1
-python-flake8@3.7.7
-python-flaky@3.5.3
-python-fonttools@3.38.0
-python-freezegun@0.3.12
-python-graphviz@0.13.2
-python-html5lib@1.0.1
-python-hyperlink@19.0.0
-python-hypothesis@4.18.3
-python-idna@2.8
-python-imagesize@1.1.0
-python-incremental@17.5.0
-python-ipaddress@1.0.22
-python-ipykernel@5.1.3
-python-ipython-genutils@0.1.0
-python-ipython@7.9.0
-python-ipywidgets@5.2.2
-python-iso8601@0.1.12
-python-jdcal@1.4
-python-jedi@0.15.1
-python-jinja2@2.10.1
-python-jsonschema@3.0.1
-python-jupyter-client@5.2.4
-python-jupyter-console@6.0.0
-python-jupyter-core@4.4.0
-python-kiwisolver@1.0.1
-python-libxml2@2.9.9
-python-linecache2@1.0.0
-python-lxml@4.4.2
-python-m2r@0.2.1
-python-mako@1.1.0
-python-markupsafe@1.1.1
-python-matplotlib@3.1.2
-python-mccabe@0.6.1
-python-minimal-wrapper@3.7.4
-python-minimal@3.5.7
-python-minimal@3.7.4
-python-mistune@0.8.4
-python-mock@2.0.0
-python-more-itertools@7.1.0
-python-nbconvert@5.0.0b1
-python-nbformat@4.4.0
-python-nose@1.3.7
-python-notebook@5.7.4
-python-numpy@1.17.3
-python-numpydoc@0.8.0
-python-olefile@0.46
-python-openpyxl@2.6.2
-python-packaging@20.0
-python-pandas@0.25.2
-python-parso@0.5.1
-python-patsy@0.5.1
-python-pbr-minimal@3.0.1
-python-pexpect@4.6.0
-python-pickleshare@0.7.5
-python-pillow@6.2.1
-python-pluggy@0.11.0
-python-pretend@1.0.9
-python-prometheus-client@0.5.0
-python-prompt-toolkit@2.0.7
-python-ptyprocess@0.5.2
-python-py@1.8.0
-python-pycairo@1.17.1
-python-pycodestyle@2.5.0
-python-pycparser@2.19
-python-pyflakes@2.1.1
-python-pygments@2.4.2
-python-pygobject@3.28.3
-python-pyhamcrest@1.9.0-0.25fdc5f
-python-pympler@0.7
-python-pyopenssl@19.0.0
-python-pyparsing@2.3.1
-python-pyrsistent@0.14.11
-python-pysocks@1.7.0
-python-pytest-bootstrap@4.4.2
-python-pytest-cov@2.6.1
-python-pytest-mock@1.10.1
-python-pytest-runner@2.12.2
-python-pytest-runner@4.4
-python-pytest@4.4.2
-python-pytz@2019.1
-python-pyzmq@17.1.2
-python-qtconsole@4.4.3
-python-requests@2.22.0
-python-scipy@1.3.2
-python-send2trash@1.5.0
-python-setuptools-scm@3.2.0
-python-simplegeneric@0.8.1
-python-six-bootstrap@1.12.0
-python-six@1.12.0
-python-snowballstemmer@1.2.1
-python-soupsieve@1.9.5
-python-sphinx-alabaster-theme@0.7.12
-python-sphinx@2.3.1
-python-sphinxcontrib-applehelp@1.0.1
-python-sphinxcontrib-devhelp@1.0.1
-python-sphinxcontrib-htmlhelp@1.0.2
-python-sphinxcontrib-jsmath@1.0.1
-python-sphinxcontrib-qthelp@1.0.2
-python-sphinxcontrib-serializinghtml@1.1.3
-python-statsmodels@0.9.0
-python-terminado@0.8.1
-python-testpath@0.2
-python-tornado@5.1.1
-python-traceback2@1.4.0
-python-traitlets@4.3.3
-python-twisted@19.7.0
-python-unittest2@1.1.0
-python-urllib3@1.25.3
-python-wcwidth@0.1.8
-python-webencodings@0.5.1
-python-widgetsnbextension@3.4.2
-python-wrapper@3.7.4
-python-xcffib@0.6.0
-python-xlrd@1.2.0
-python-zope-event@4.4
-python-zope-interface@4.6.0
-python2@2.7.16
-python@3.7.4
-qpdf@9.1.0
-readline@8.0
-rhash@1.3.8
-ruby@2.5.3
-sed@4.7
-shared-mime-info@1.10
-source-highlight@3.1.8
-sqlite@3.28.0
-swig@3.0.12
-tar@1.32
-tcc-boot0@0.9.26-6.c004e9a
-tcc-boot@0.9.27
-tcl@8.6.9
-tcsh@6.20.00
-teckit@2.5.9
-texinfo@6.6
-texlive-amsfonts@49435
-texlive-bin@20180414
-texlive-cm@49435
-texlive-dehyph-exptl@49435
-texlive-docstrip@49435
-texlive-dvips@49435
-texlive-etex@49435
-texlive-fontname@49435
-texlive-fonts-ec@49435
-texlive-fonts-knuth-lib@49435
-texlive-fonts-latex@49435
-texlive-fonts-rsfs@49435
-texlive-fonts-stmaryrd@49435
-texlive-generic-babel-english@49435
-texlive-generic-ifxetex@49435
-texlive-graphics-cfg@49435
-texlive-graphics-def@49435
-texlive-hyph-utf8@49435
-texlive-hyphen-afrikaans@49435
-texlive-hyphen-ancientgreek@49435
-texlive-hyphen-armenian@49435
-texlive-hyphen-base@49435
-texlive-hyphen-basque@49435
-texlive-hyphen-belarusian@49435
-texlive-hyphen-bulgarian@49435
-texlive-hyphen-catalan@49435
-texlive-hyphen-chinese@49435
-texlive-hyphen-churchslavonic@49435
-texlive-hyphen-coptic@49435
-texlive-hyphen-croatian@49435
-texlive-hyphen-czech@49435
-texlive-hyphen-danish@49435
-texlive-hyphen-dutch@49435
-texlive-hyphen-english@49435
-texlive-hyphen-esperanto@49435
-texlive-hyphen-estonian@49435
-texlive-hyphen-ethiopic@49435
-texlive-hyphen-finnish@49435
-texlive-hyphen-french@49435
-texlive-hyphen-friulan@49435
-texlive-hyphen-galician@49435
-texlive-hyphen-georgian@49435
-texlive-hyphen-german@49435
-texlive-hyphen-greek@49435
-texlive-hyphen-hungarian@49435
-texlive-hyphen-icelandic@49435
-texlive-hyphen-indic@49435
-texlive-hyphen-indonesian@49435
-texlive-hyphen-interlingua@49435
-texlive-hyphen-irish@49435
-texlive-hyphen-italian@49435
-texlive-hyphen-kurmanji@49435
-texlive-hyphen-latin@49435
-texlive-hyphen-latvian@49435
-texlive-hyphen-lithuanian@49435
-texlive-hyphen-mongolian@49435
-texlive-hyphen-norwegian@49435
-texlive-hyphen-occitan@49435
-texlive-hyphen-piedmontese@49435
-texlive-hyphen-polish@49435
-texlive-hyphen-portuguese@49435
-texlive-hyphen-romanian@49435
-texlive-hyphen-romansh@49435
-texlive-hyphen-russian@49435
-texlive-hyphen-sanskrit@49435
-texlive-hyphen-serbian@49435
-texlive-hyphen-slovak@49435
-texlive-hyphen-slovenian@49435
-texlive-hyphen-spanish@49435
-texlive-hyphen-swedish@49435
-texlive-hyphen-thai@49435
-texlive-hyphen-turkish@49435
-texlive-hyphen-turkmen@49435
-texlive-hyphen-ukrainian@49435
-texlive-hyphen-uppersorbian@49435
-texlive-hyphen-welsh@49435
-texlive-kpathsea@49435
-texlive-latex-amscls@49435
-texlive-latex-amsmath@49435
-texlive-latex-anysize@49435
-texlive-latex-appendix@49435
-texlive-latex-babel@49435
-texlive-latex-base@49435
-texlive-latex-changebar@49435
-texlive-latex-colortbl@49435
-texlive-latex-cyrillic@49435
-texlive-latex-eepic@49435
-texlive-latex-eso-pic@49435
-texlive-latex-fancybox@49435
-texlive-latex-fancyhdr@49435
-texlive-latex-fancyvrb@49435
-texlive-latex-filecontents@49435
-texlive-latex-float@49435
-texlive-latex-footmisc@49435
-texlive-latex-graphics@49435
-texlive-latex-hyperref@6.84a2
-texlive-latex-jknapltx@49435
-texlive-latex-listings@49435
-texlive-latex-multirow@49435
-texlive-latex-oberdiek@49435
-texlive-latex-overpic@49435
-texlive-latex-pdfpages@49435
-texlive-latex-psnfss@49435
-texlive-latex-subfigure@49435
-texlive-latex-titlesec@49435
-texlive-latex-tools@49435
-texlive-latex-url@49435
-texlive-latex-wasysym@49435
-texlive-latexconfig@49435
-texlive-metafont-base@49435
-texlive-mkpattern@49435
-texlive-ruhyphen@49435
-texlive-tetex@49435
-texlive-tex-fontinst-base@49435
-texlive-tex-ini-files@49435
-texlive-tex-plain@49435
-texlive-ukrhyph@49435
-texlive-unicode-data@49435
-texlive-union@49435
-tk@8.6.9.1
-tzdata@2019b
-unzip@6.0
-util-linux@2.34
-util-macros@1.19.2
-vala@0.44.5
-wayland-protocols@1.18
-wayland@1.17.0
-which@2.21
-xcb-proto@1.13
-xcb-util-image@0.4.0
-xcb-util-keysyms@0.4.0
-xcb-util-renderutil@0.3.9
-xcb-util-wm@0.4.1
-xcb-util@0.4.0
-xinput@1.6.2
-xkbcomp-intermediate@1.4.2
-xkbcomp@1.4.2
-xkeyboard-config@2.27
-xmlto@0.0.28
-xorg-server@1.20.5
-xorgproto@2019.1
-xtrans@1.4.0
-xz@5.2.4
-yelp-tools@3.28.0
-yelp-xsl@3.32.1
-zeromq@4.3.2
-zip@3.0
-zlib@1.2.11
-zstd@1.4.2
-zziplib@0.13.69
-#+end_example
 
 ** 2.6 Mettre son environnement à disposition
 L'environnement étant défini par le manifeste, il suffit de mettre ce petit fichier à disposition de ses collègues pour leur permettre de travailler dans un environnement identique. Sauf que... les versions qu'ils auront ne sont peut-être pas les mêmes ! Peu après la publication d'une nouvelle version de Jupyter, Guix adoptera cette nouvelle version, et l'environnement créé par mon manifeste ne sera plus le même. Ceci est d'ailleurs voulu : souvent on veut tout juste avoir la dernière version de tout. Mais pour la reproductibilité, on veut tout à l'identique.
@@ -1536,13 +1494,6 @@ L'information qu'il faut rajouter, c'est la version de Guix à laquelle le manif
 #+begin_src sh :results output :exports both
 guix describe
 #+end_src
-
-#+RESULTS:
-: Generation 20	Feb 10 2020 10:21:15	(current)
-:   guix df931ac
-:     repository URL: https://git.savannah.gnu.org/git/guix.git
-:     branch: master
-:     commit: df931ac39c40ac8a702e37cb434d9a1016606ed7
 
 Ceci me dit d'abord que je suis dans la génération 20 de Guix, ce qui veut dire que j'ai mis à jour Guix 19 fois depuis la première installation. Guix garde une trace de mes mises à jour et me permet de revenir en arrière si je le souhaite. Mais ce qui nous intéresse maintenant, c'est la suite. La version de Guix que j'utilise, c'est la =df931ac=. En tant qu'habitués de =Git=, vous devinez peut-être ce que c'est, et vous avez raison : c'est bien un commit, et vous le voyez dans sa totalité dans la dernière ligne. Guix est développé sous Git, et on peut donc identifier une version précise par son identifiant de commit. Les trois dernières lignes donnent un peu plus de précisions, dont notamment l'URL où on peut récupérer le dépôt.
 
@@ -1568,27 +1519,16 @@ Il reste un problème que vous pouvez rencontrer : vos collègues n'utilisent p
 guix pack -f docker -m ./moocrr_guix_jupyter/manifest.scm
 #+end_src
 
-#+RESULTS:
-: /gnu/store/hgd89l0r46liqwlz4idhwaymsngrm255-docker-pack.tar.gz
-
 La commande nous affiche le nom du fichier qui contient l'image Docker. Il peut paraître un peu bizarre, tout comme le répertoire =/gnu/store= dans lequel le fichier se trouve. Quand on comprend le fonctionnement de Guix un peu mieux, tout ça s'explique facilement mais pour ce tutoriel, je vais me contenter de le copier ailleurs avec un nom plus parlant :
 
 #+begin_src sh :results output :exports both
 cp /gnu/store/hgd89l0r46liqwlz4idhwaymsngrm255-docker-pack.tar.gz moocrr-jupyter-docker.tar.gz
 #+end_src
 
-#+RESULTS:
-
 Sur une machine avec Docker installé, l'image est chargée avec :
 #+begin_src sh :results output :exports both
 docker load -i moocrr-jupyter-docker.tar.gz
 #+end_src
-
-#+RESULTS:
-#+begin_example
-850f4083e529: Loading layer   1.64GB/1.64GB
-Loaded image: jupyter-python-matplotlib-python-numpy:latest
-#+end_example
 
 puis Jupyter est exécuté avec :
 #+begin_src sh :results output :exports both
@@ -1610,7 +1550,7 @@ vous utilisez les versions indiquées dans la toute dernière version de Guix. M
 
 Avant de passer à l'acte, il faut bien comprendre que ce genre de modifications est risqué. Rien ne promet que la combinaison de versions que vous envisagez est installable, et encore moins qu'elle fonctionne. Vous pouvez rencontrer un grand nombre de problèmes sur votre chemin, et c'est à vous de trouver une solution. Dans la vaste majorité des "petites" modifications, où on remplace une version relativement stable d'un logiciel par une version proche dans l'historique, la procédure que je vais montrer fonctionne sans difficulté, mais on n'est jamais à l'abri de mauvaises surprises !
 
-Guix propose plusieurs façons d'introduire des modifications. Il n'est pas facile d'en choisir la meilleure sans avoir une certaine expérience de Guix. Je vous en montre une qui me paraît bien adaptée à la situation : définir un nouveau paquet, localement sur votre ordinateur, qui hérite de la plupart des caractéristiques d'un paquet existant. Comme exemple, je vais remplacer la version 0.25.2 de Pandas par la version 0.25.1.
+Guix propose plusieurs façons d'introduire des modifications. Il n'est pas facile d'en choisir la meilleure sans avoir une certaine expérience de Guix. Je vous en montre une qui me paraît bien adaptée à la situation : définir un nouveau paquet, localement sur votre ordinateur, qui hérite de la plupart des caractéristiques d'un paquet existant. Comme exemple, je vais remplacer la version 1.0.5 de Pandas par la version 1.0.4.
 
 Je commence en regardant la définition du paquet =python-pandas= dans Guix :
 #+begin_src sh :results none :exports code
@@ -1620,27 +1560,24 @@ Ceci ouvre le fichier =python-science.scm= dans un éditeur de texte avec le cur
 #+begin_src guile :exports code :eval no
 (package
  (inherit python-pandas)
- (version "0.25.1")
+ (version "1.0.4")
  (source
   (origin
    (method url-fetch)
    (uri (pypi-uri "pandas" version))
    (sha256
     (base32
-     "1xm9dmbngsq46vj836csnb5j0bs88b1d713b0b5vx1q6gdxijbnb")))))
+     "09j13y1ydwb4pryazchicxw9zjm1031j49p5h8gbb9xsh9964pdk")))))
 #+end_src
-Comme annoncé, j'ai modifié la version. Et dans le champ =source=, j'ai changé la somme de contrôle =sha256= qui doit correspondre au fichier téléchargé pour la version 0.25.1. Pour trouver la bonne somme de contrôle, Guix m'a aidé :
+Comme annoncé, j'ai modifié la version. Et dans le champ =source=, j'ai changé la somme de contrôle =sha256= qui doit correspondre au fichier téléchargé pour la version 1.0.4. Pour trouver la bonne somme de contrôle, Guix m'a aidé :
 #+begin_src sh :results output :exports both
-guix download https://files.pythonhosted.org/packages/source/p/pandas/pandas-0.25.1.tar.gz
+guix download https://files.pythonhosted.org/packages/source/p/pandas/pandas-1.0.4.tar.gz
 #+end_src
+
 mais vous êtes libre de faire appel à toute technique à laquelle vous faites confiance. Le but est d'être sûr que vous récupérez le code source d'un serveur fiable !
 
-#+RESULTS:
-: /gnu/store/52yc31ykwidx0fbmds7r0nz13rvkw2vf-pandas-0.25.1.tar.gz
-: 1xm9dmbngsq46vj836csnb5j0bs88b1d713b0b5vx1q6gdxijbnb
-
 Pour compléter la définition du paquet, qui est en fait du code en langage Guile (comme avant pour le manifeste), il faut importer quelques modules :
-#+begin_src guile :exports both :tangle moocrr_guix_jupyter/pandas.scm
+#+begin_src guile :exports both :tangle moocrr_guix_jupyter/pandas.scm  :eval no
 (use-modules (guix packages)
              (guix download)
              (guix build-system python)
@@ -1648,14 +1585,14 @@ Pour compléter la définition du paquet, qui est en fait du code en langage Gui
 
 (package
  (inherit python-pandas)
- (version "0.25.1")
+ (version "1.0.4")
  (source
   (origin
    (method url-fetch)
    (uri (pypi-uri "pandas" version))
    (sha256
     (base32
-     "1xm9dmbngsq46vj836csnb5j0bs88b1d713b0b5vx1q6gdxijbnb")))))
+     "09j13y1ydwb4pryazchicxw9zjm1031j49p5h8gbb9xsh9964pdk")))))
 #+end_src
 Comment savoir quels modules importer ? Le plus simple est =(gnu packages python-science)=, parce que c'est là qu'on a trouvé la définition de =python-pandas=. Sinon, il faut toujours =(guix packages)= et =(guix download)=. Pour finir, pour un paquet Python il faut toujours =(guix build-system python)=. Mais si vous oubliez un paquet, il y a une bonne chance que Guix vous indique le module manquant.
 
@@ -1665,11 +1602,11 @@ guix build -f moocrr_guix_jupyter/pandas.scm
 #+end_src
 Attention, c'est long, et ça produit plus de 60 000 lignes de texte diagnostic que je ne vais pas reproduire ici. Les deux dernières lignes sont :
 #+begin_example
-successfully built /gnu/store/ab6i60xyinj47wqxd99sc0ih16d0a22p-python-pandas-0.25.1.drv
-/gnu/store/9gswclr3gk7pdgxddznpw3lvgj8yywhl-python-pandas-0.25.1
+successfully built /gnu/store/dy0g3q6n07s7qz201ii2ib3iva9pmzp5-python-pandas-1.0.4.drv
+/gnu/store/00xc4s45m68lhwl28mqd5l90pkjdxrf6-python-pandas-1.0.4
 #+end_example
 et la toute dernière indique le répertoire où se trouve le nouveau paquet. Reste la question de savoir comment l'intégrer dans mon environnement. La réponse n'est pas difficile sur le principe ("il faut modifier le manifeste"), mais les détails techniques sont un peu laborieux - une lecture du manuel de Guix s'impose. Voici le manifeste final :
-#+begin_src guile :exports both :tangle moocrr_guix_jupyter/manifest-with-pandas-0.25.1.scm
+#+begin_src guile :exports both :tangle moocrr_guix_jupyter/manifest-with-pandas-1.0.4.scm :eval no
 (use-modules (guix packages)
              (guix download)
              (guix build-system python)
@@ -1678,14 +1615,14 @@ et la toute dernière indique le répertoire où se trouve le nouveau paquet. Re
 (define modified-python-pandas
   (package
    (inherit python-pandas)
-   (version "0.25.1")
+   (version "1.0.4")
    (source
     (origin
      (method url-fetch)
      (uri (pypi-uri "pandas" version))
      (sha256
       (base32
-       "1xm9dmbngsq46vj836csnb5j0bs88b1d713b0b5vx1q6gdxijbnb"))))))
+       "09j13y1ydwb4pryazchicxw9zjm1031j49p5h8gbb9xsh9964pdk"))))))
 
 (define standard-packages
   (map (compose list specification->package+output)
@@ -1693,7 +1630,6 @@ et la toute dernière indique le répertoire où se trouve le nouveau paquet. Re
          "python"
          "python-matplotlib"
          "python-numpy"
-         "python-pandas"
          "python-statsmodels"
          "python-nbconvert")))
 
@@ -1705,10 +1641,8 @@ et la toute dernière indique le répertoire où se trouve le nouveau paquet. Re
 
 Et voici la preuve que ça marche - on demande à Python d'imprimer le numéro de version de Pandas :
 #+begin_src sh :results output :exports both
-guix environment --pure -m ./moocrr_guix_jupyter/manifest-with-pandas-0.25.1.scm -- python3 -c 'import pandas; print(pandas.__version__)'
+guix environment --pure -m 
+./moocrr_guix_jupyter/manifest-with-pandas-1.0.4.scm -- python3 -c 'import pandas; print(pandas.__version__)'
 #+end_src
-
-#+RESULTS:
-: 0.25.1
 
 En fait, si vous comparez bien mon nouveau manifeste avec celui d'origine, vous remarquez que j'ai rajouté =python= qui n'y était pas avant. C'est juste pour pouvoir apporter cette preuve de réussite de l'opération !
