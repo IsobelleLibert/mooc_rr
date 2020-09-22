@@ -32,6 +32,18 @@ Sur cette base, Guix introduit des /profils/, qui remplacent la collection conve
 * Séquence 2 : Créer son propre environnement, automatiser sa construction et le partage
 
 ** Préparation
+Tout d'abord, gardons une trace de la version de Guix utilisée ici :
+#+begin_src sh :results output :exports both
+guix describe
+#+end_src
+
+#+RESULTS:
+: Generation 30	Sep 22 2020 06:42:05	(current)
+:   guix 92951bf
+:     repository URL: https://git.savannah.gnu.org/git/guix.git
+:     branch: master
+:     commit: 92951bf46c42021f6f6521839c9c4ff2f88b8386
+
 Avant de lancer =org-babel-tangle=, il faut créer tous les répertoires qui vont accueillir les fichiers, après en avoir supprimé des versions anciennes :
 #+begin_src sh :results output :exports both
 directory=moocrr_guix_jupyter
@@ -71,7 +83,7 @@ systems: x86_64-linux i686-linux
 dependencies: python-ipykernel@5.1.3 python-ipywidgets@7.5.1
 + python-jupyter-console@6.1.0 python-nbconvert@5.0.0b1 python-notebook@5.7.4
 + python-qtconsole@4.4.3
-location: gnu/packages/python-xyz.scm:9946:2
+location: gnu/packages/python-xyz.scm:9996:2
 homepage: https://jupyter.org
 license: Modified BSD
 synopsis: Web application for interactive documents  
@@ -142,7 +154,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: iproute2@5.8.0 python2-jupyter-core@4.4.0 python2-pyzmq@17.1.2
 + python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:6612:2
+location: gnu/packages/python-xyz.scm:6661:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter protocol implementation and client libraries  
@@ -158,7 +170,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: iproute2@5.8.0 python-jupyter-core@4.4.0 python-pyzmq@17.1.2
 + python-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:6612:2
+location: gnu/packages/python-xyz.scm:6661:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter protocol implementation and client libraries  
@@ -190,7 +202,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: autoconf@2.69 automake@1.16.2 guile-gcrypt@0.3.0
 + guile-json@4.3.2 guile-simple-zmq@0.0.0-3.68bedb6 guile@3.0.4
-+ guix@1.1.0-25.44c6e6f jupyter@1.0.0 pkg-config@0.29.2 python-ipykernel@5.1.3
++ guix@1.1.0-27.1c21468 jupyter@1.0.0 pkg-config@0.29.2 python-ipykernel@5.1.3
 + python-ipython@7.9.0
 location: gnu/packages/package-management.scm:985:2
 homepage: https://gitlab.inria.fr/guix-hpc/guix-kernel
@@ -208,7 +220,7 @@ version: 4.4.0
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:6587:2
+location: gnu/packages/python-xyz.scm:6636:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter base package  
@@ -221,7 +233,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python2-ipykernel@4.10.1 python2-jupyter-client@5.2.4
 + python2-nose@1.3.7 python2-prompt-toolkit@1.0.15 python2-pygments@2.5.2
-location: gnu/packages/python-xyz.scm:9816:2
+location: gnu/packages/python-xyz.scm:9866:2
 homepage: https://jupyter.org
 license: Modified BSD
 synopsis: Jupyter terminal console  
@@ -235,7 +247,7 @@ version: 4.4.0
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:6587:2
+location: gnu/packages/python-xyz.scm:6636:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter base package  
@@ -248,7 +260,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-ipykernel@5.1.3 python-jupyter-client@5.2.4
 + python-nose@1.3.7 python-prompt-toolkit@2.0.7 python-pygments@2.5.2
-location: gnu/packages/python-xyz.scm:9789:2
+location: gnu/packages/python-xyz.scm:9839:2
 homepage: https://jupyter.org
 license: Modified BSD
 synopsis: Jupyter terminal console  
@@ -276,7 +288,7 @@ version: 1.3.2
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: pari-gp@2.11.4 python-ipykernel@5.1.3 readline@8.0.4
-location: gnu/packages/python-xyz.scm:6731:2
+location: gnu/packages/python-xyz.scm:6780:2
 homepage: https://github.com/jdemeyer/pari_jupyter
 license: GPL 3+
 synopsis: A Jupyter kernel for PARI/GP  
@@ -288,9 +300,9 @@ version: 1.1.1
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: jupyter@1.0.0 r-crayon@1.3.4 r-digest@0.6.25 r-evaluate@0.14
-+ r-irdisplay@0.7.0 r-jsonlite@1.7.0 r-minimal@4.0.2 r-pbdzmq@0.3-3 r-repr@1.1.0
++ r-irdisplay@0.7.0 r-jsonlite@1.7.1 r-minimal@4.0.2 r-pbdzmq@0.3-3 r-repr@1.1.0
 + r-uuid@0.1-4
-location: gnu/packages/cran.scm:13147:2
+location: gnu/packages/cran.scm:13308:2
 homepage: https://cran.r-project.org/web/packages/IRkernel/
 license: Expat
 synopsis: Native R kernel for Jupyter  
@@ -304,7 +316,7 @@ version: 0.7.0
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: r-repr@1.1.0
-location: gnu/packages/cran.scm:13124:2
+location: gnu/packages/cran.scm:13285:2
 homepage: https://cran.r-project.org/web/packages/IRdisplay/
 license: Expat
 synopsis: Jupyter display machinery  
@@ -333,7 +345,7 @@ version: 1.3.2
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: pandoc@2.7.3 python-nbconvert@5.0.0b1
-location: gnu/packages/cran.scm:21907:2
+location: gnu/packages/cran.scm:22030:2
 homepage: https://cran.r-project.org/web/packages/nbconvertR/
 license: GPL 3
 synopsis: Vignette engine wrapping Jupyter notebooks  
@@ -349,7 +361,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python2-certifi@2020.4.5.1 python2-ipykernel@4.10.1
 + python2-nose@1.3.7 python2-notebook@5.7.4
-location: gnu/packages/python-xyz.scm:9732:2
+location: gnu/packages/python-xyz.scm:9782:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
@@ -363,7 +375,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python2-ipython-genutils@0.1.0 python2-jsonschema@3.2.0
 + python2-jupyter-core@4.4.0 python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:9440:2
+location: gnu/packages/python-xyz.scm:9490:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Jupyter Notebook format  
@@ -379,7 +391,7 @@ dependencies: python2-bleach@3.1.5 python2-entrypoints@0.3
 + python2-jinja2@2.11.2 python2-jupyter-core@4.4.0 python2-mistune@0.8.4
 + python2-nbformat@4.4.0 python2-pygments@2.5.2 python2-pytest@4.6.9
 + python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:9613:2
+location: gnu/packages/python-xyz.scm:9663:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Converting Jupyter Notebooks  
@@ -392,7 +404,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python2-ipython@5.8.0 python2-nose@1.3.7 python2-pytest@4.6.9
 + python2-traitlets@4.3.3 python2-widgetsnbextension@3.5.1
-location: gnu/packages/python-xyz.scm:9759:2
+location: gnu/packages/python-xyz.scm:9809:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
@@ -408,7 +420,7 @@ systems: x86_64-linux i686-linux
 dependencies: python2-ipython@5.8.0 python2-jupyter-client@5.2.4
 + python2-mock@3.0.5 python2-nose@1.3.7 python2-pytest-cov@2.8.1
 + python2-pytest@4.6.9 python2-tornado@5.1.1 python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:6701:2
+location: gnu/packages/python-xyz.scm:6750:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython Kernel for Jupyter  
@@ -421,7 +433,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-certifi@2020.4.5.1 python-ipykernel@5.1.3
 + python-nose@1.3.7 python-notebook@5.7.4
-location: gnu/packages/python-xyz.scm:9732:2
+location: gnu/packages/python-xyz.scm:9782:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
@@ -453,7 +465,7 @@ version: 4.4.3
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-ipykernel@5.1.3 python-ipython@7.9.0 python-pytest@5.3.5
-location: gnu/packages/python-xyz.scm:9871:2
+location: gnu/packages/python-xyz.scm:9921:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Jupyter Qt console  
@@ -484,7 +496,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-ipython-genutils@0.1.0 python-jsonschema@3.2.0
 + python-jupyter-core@4.4.0 python-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:9440:2
+location: gnu/packages/python-xyz.scm:9490:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Jupyter Notebook format  
@@ -499,7 +511,7 @@ systems: x86_64-linux i686-linux
 dependencies: python-bleach@3.1.5 python-entrypoints@0.3 python-jinja2@2.11.2
 + python-jupyter-core@4.4.0 python-mistune@0.8.4 python-nbformat@4.4.0
 + python-pygments@2.5.2 python-pytest@5.3.5 python-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:9613:2
+location: gnu/packages/python-xyz.scm:9663:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Converting Jupyter Notebooks  
@@ -512,7 +524,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-ipython@7.9.0 python-nose@1.3.7 python-pytest@5.3.5
 + python-traitlets@4.3.3 python-widgetsnbextension@3.5.1
-location: gnu/packages/python-xyz.scm:9759:2
+location: gnu/packages/python-xyz.scm:9809:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
@@ -527,7 +539,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-flaky@3.5.3 python-ipython@7.9.0
 + python-jupyter-client@5.2.4 python-nose@1.3.7 python-pytest@5.3.5
-location: gnu/packages/python-xyz.scm:6656:2
+location: gnu/packages/python-xyz.scm:6705:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython Kernel for Jupyter  
@@ -556,7 +568,7 @@ version: 0.1.0
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: 
-location: gnu/packages/python-xyz.scm:6413:2
+location: gnu/packages/python-xyz.scm:6462:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: Vestigial utilities from IPython  
@@ -573,7 +585,7 @@ version: 0.1.0
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: 
-location: gnu/packages/python-xyz.scm:6413:2
+location: gnu/packages/python-xyz.scm:6462:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: Vestigial utilities from IPython  
@@ -593,7 +605,7 @@ dependencies: python2-jupyter-core@4.4.0 python2-mock@3.0.5
 + python2-nbconvert@5.0.0b1 python2-nbformat@4.4.0 python2-nose@1.3.7
 + python2-prometheus-client@0.7.1 python2-requests@2.23.0
 + python2-send2trash@1.5.0 python2-sphinx@1.7.7 python2-terminado@0.8.1
-location: gnu/packages/python-xyz.scm:9714:4
+location: gnu/packages/python-xyz.scm:9764:4
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Web-based notebook environment for interactive computing  
@@ -611,7 +623,7 @@ dependencies: python2-dateutil@2.8.1 python2-decorator@4.3.0
 + python2-nose@1.3.7 python2-pytest-cov@2.8.1 python2-pytest@4.6.9
 + python2-pyzmq@17.1.2 python2-testpath@0.2 python2-tornado@5.1.1
 + python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:6491:4
+location: gnu/packages/python-xyz.scm:6540:4
 homepage: https://ipython.org/
 license: Modified BSD
 synopsis: Interactive Parallel Computing with IPython  
@@ -634,7 +646,7 @@ dependencies: python-jupyter-core@4.4.0 python-nbconvert@5.0.0b1
 + python-nbformat@4.4.0 python-nose@1.3.7 python-prometheus-client@0.7.1
 + python-requests@2.23.0 python-send2trash@1.5.0 python-sphinx@2.3.1
 + python-terminado@0.8.1
-location: gnu/packages/python-xyz.scm:9667:2
+location: gnu/packages/python-xyz.scm:9717:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Web-based notebook environment for interactive computing  
@@ -651,7 +663,7 @@ dependencies: python-dateutil@2.8.1 python-decorator@4.3.0
 + python-jupyter-client@5.2.4 python-mock@3.0.5 python-nose@1.3.7
 + python-pytest-cov@2.8.1 python-pytest@5.3.5 python-pyzmq@17.1.2
 + python-testpath@0.2 python-tornado@5.1.1 python-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:6440:2
+location: gnu/packages/python-xyz.scm:6489:2
 homepage: https://ipython.org/
 license: Modified BSD
 synopsis: Interactive Parallel Computing with IPython  
@@ -683,7 +695,7 @@ systems: x86_64-linux i686-linux
 dependencies: python-ipykernel@5.1.3 python-ipywidgets@7.5.1
 + python-jupyter-console@6.1.0 python-nbconvert@5.0.0b1 python-notebook@5.7.4
 + python-qtconsole@4.4.3
-location: gnu/packages/python-xyz.scm:9946:2
+location: gnu/packages/python-xyz.scm:9996:2
 homepage: https://jupyter.org
 license: Modified BSD
 synopsis: Web application for interactive documents  
@@ -754,7 +766,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: iproute2@5.8.0 python2-jupyter-core@4.4.0 python2-pyzmq@17.1.2
 + python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:6612:2
+location: gnu/packages/python-xyz.scm:6661:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter protocol implementation and client libraries  
@@ -770,7 +782,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: iproute2@5.8.0 python-jupyter-core@4.4.0 python-pyzmq@17.1.2
 + python-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:6612:2
+location: gnu/packages/python-xyz.scm:6661:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter protocol implementation and client libraries  
@@ -802,7 +814,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: autoconf@2.69 automake@1.16.2 guile-gcrypt@0.3.0
 + guile-json@4.3.2 guile-simple-zmq@0.0.0-3.68bedb6 guile@3.0.4
-+ guix@1.1.0-25.44c6e6f jupyter@1.0.0 pkg-config@0.29.2 python-ipykernel@5.1.3
++ guix@1.1.0-27.1c21468 jupyter@1.0.0 pkg-config@0.29.2 python-ipykernel@5.1.3
 + python-ipython@7.9.0
 location: gnu/packages/package-management.scm:985:2
 homepage: https://gitlab.inria.fr/guix-hpc/guix-kernel
@@ -820,7 +832,7 @@ version: 4.4.0
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:6587:2
+location: gnu/packages/python-xyz.scm:6636:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter base package  
@@ -833,7 +845,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python2-ipykernel@4.10.1 python2-jupyter-client@5.2.4
 + python2-nose@1.3.7 python2-prompt-toolkit@1.0.15 python2-pygments@2.5.2
-location: gnu/packages/python-xyz.scm:9816:2
+location: gnu/packages/python-xyz.scm:9866:2
 homepage: https://jupyter.org
 license: Modified BSD
 synopsis: Jupyter terminal console  
@@ -847,7 +859,7 @@ version: 4.4.0
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:6587:2
+location: gnu/packages/python-xyz.scm:6636:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Jupyter base package  
@@ -860,7 +872,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-ipykernel@5.1.3 python-jupyter-client@5.2.4
 + python-nose@1.3.7 python-prompt-toolkit@2.0.7 python-pygments@2.5.2
-location: gnu/packages/python-xyz.scm:9789:2
+location: gnu/packages/python-xyz.scm:9839:2
 homepage: https://jupyter.org
 license: Modified BSD
 synopsis: Jupyter terminal console  
@@ -888,7 +900,7 @@ version: 1.3.2
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: pari-gp@2.11.4 python-ipykernel@5.1.3 readline@8.0.4
-location: gnu/packages/python-xyz.scm:6731:2
+location: gnu/packages/python-xyz.scm:6780:2
 homepage: https://github.com/jdemeyer/pari_jupyter
 license: GPL 3+
 synopsis: A Jupyter kernel for PARI/GP  
@@ -900,9 +912,9 @@ version: 1.1.1
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: jupyter@1.0.0 r-crayon@1.3.4 r-digest@0.6.25 r-evaluate@0.14
-+ r-irdisplay@0.7.0 r-jsonlite@1.7.0 r-minimal@4.0.2 r-pbdzmq@0.3-3 r-repr@1.1.0
++ r-irdisplay@0.7.0 r-jsonlite@1.7.1 r-minimal@4.0.2 r-pbdzmq@0.3-3 r-repr@1.1.0
 + r-uuid@0.1-4
-location: gnu/packages/cran.scm:13147:2
+location: gnu/packages/cran.scm:13308:2
 homepage: https://cran.r-project.org/web/packages/IRkernel/
 license: Expat
 synopsis: Native R kernel for Jupyter  
@@ -916,7 +928,7 @@ version: 0.7.0
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: r-repr@1.1.0
-location: gnu/packages/cran.scm:13124:2
+location: gnu/packages/cran.scm:13285:2
 homepage: https://cran.r-project.org/web/packages/IRdisplay/
 license: Expat
 synopsis: Jupyter display machinery  
@@ -945,7 +957,7 @@ version: 1.3.2
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: pandoc@2.7.3 python-nbconvert@5.0.0b1
-location: gnu/packages/cran.scm:21907:2
+location: gnu/packages/cran.scm:22030:2
 homepage: https://cran.r-project.org/web/packages/nbconvertR/
 license: GPL 3
 synopsis: Vignette engine wrapping Jupyter notebooks  
@@ -961,7 +973,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python2-certifi@2020.4.5.1 python2-ipykernel@4.10.1
 + python2-nose@1.3.7 python2-notebook@5.7.4
-location: gnu/packages/python-xyz.scm:9732:2
+location: gnu/packages/python-xyz.scm:9782:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
@@ -975,7 +987,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python2-ipython-genutils@0.1.0 python2-jsonschema@3.2.0
 + python2-jupyter-core@4.4.0 python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:9440:2
+location: gnu/packages/python-xyz.scm:9490:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Jupyter Notebook format  
@@ -991,7 +1003,7 @@ dependencies: python2-bleach@3.1.5 python2-entrypoints@0.3
 + python2-jinja2@2.11.2 python2-jupyter-core@4.4.0 python2-mistune@0.8.4
 + python2-nbformat@4.4.0 python2-pygments@2.5.2 python2-pytest@4.6.9
 + python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:9613:2
+location: gnu/packages/python-xyz.scm:9663:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Converting Jupyter Notebooks  
@@ -1004,7 +1016,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python2-ipython@5.8.0 python2-nose@1.3.7 python2-pytest@4.6.9
 + python2-traitlets@4.3.3 python2-widgetsnbextension@3.5.1
-location: gnu/packages/python-xyz.scm:9759:2
+location: gnu/packages/python-xyz.scm:9809:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
@@ -1020,7 +1032,7 @@ systems: x86_64-linux i686-linux
 dependencies: python2-ipython@5.8.0 python2-jupyter-client@5.2.4
 + python2-mock@3.0.5 python2-nose@1.3.7 python2-pytest-cov@2.8.1
 + python2-pytest@4.6.9 python2-tornado@5.1.1 python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:6701:2
+location: gnu/packages/python-xyz.scm:6750:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython Kernel for Jupyter  
@@ -1033,7 +1045,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-certifi@2020.4.5.1 python-ipykernel@5.1.3
 + python-nose@1.3.7 python-notebook@5.7.4
-location: gnu/packages/python-xyz.scm:9732:2
+location: gnu/packages/python-xyz.scm:9782:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
@@ -1065,7 +1077,7 @@ version: 4.4.3
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-ipykernel@5.1.3 python-ipython@7.9.0 python-pytest@5.3.5
-location: gnu/packages/python-xyz.scm:9871:2
+location: gnu/packages/python-xyz.scm:9921:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Jupyter Qt console  
@@ -1096,7 +1108,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-ipython-genutils@0.1.0 python-jsonschema@3.2.0
 + python-jupyter-core@4.4.0 python-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:9440:2
+location: gnu/packages/python-xyz.scm:9490:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Jupyter Notebook format  
@@ -1111,7 +1123,7 @@ systems: x86_64-linux i686-linux
 dependencies: python-bleach@3.1.5 python-entrypoints@0.3 python-jinja2@2.11.2
 + python-jupyter-core@4.4.0 python-mistune@0.8.4 python-nbformat@4.4.0
 + python-pygments@2.5.2 python-pytest@5.3.5 python-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:9613:2
+location: gnu/packages/python-xyz.scm:9663:2
 homepage: http://jupyter.org
 license: Modified BSD
 synopsis: Converting Jupyter Notebooks  
@@ -1124,7 +1136,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-ipython@7.9.0 python-nose@1.3.7 python-pytest@5.3.5
 + python-traitlets@4.3.3 python-widgetsnbextension@3.5.1
-location: gnu/packages/python-xyz.scm:9759:2
+location: gnu/packages/python-xyz.scm:9809:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython HTML widgets for Jupyter  
@@ -1139,7 +1151,7 @@ outputs: out
 systems: x86_64-linux i686-linux
 dependencies: python-flaky@3.5.3 python-ipython@7.9.0
 + python-jupyter-client@5.2.4 python-nose@1.3.7 python-pytest@5.3.5
-location: gnu/packages/python-xyz.scm:6656:2
+location: gnu/packages/python-xyz.scm:6705:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: IPython Kernel for Jupyter  
@@ -1168,7 +1180,7 @@ version: 0.1.0
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: 
-location: gnu/packages/python-xyz.scm:6413:2
+location: gnu/packages/python-xyz.scm:6462:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: Vestigial utilities from IPython  
@@ -1185,7 +1197,7 @@ version: 0.1.0
 outputs: out
 systems: x86_64-linux i686-linux
 dependencies: 
-location: gnu/packages/python-xyz.scm:6413:2
+location: gnu/packages/python-xyz.scm:6462:2
 homepage: https://ipython.org
 license: Modified BSD
 synopsis: Vestigial utilities from IPython  
@@ -1205,7 +1217,7 @@ dependencies: python2-jupyter-core@4.4.0 python2-mock@3.0.5
 + python2-nbconvert@5.0.0b1 python2-nbformat@4.4.0 python2-nose@1.3.7
 + python2-prometheus-client@0.7.1 python2-requests@2.23.0
 + python2-send2trash@1.5.0 python2-sphinx@1.7.7 python2-terminado@0.8.1
-location: gnu/packages/python-xyz.scm:9714:4
+location: gnu/packages/python-xyz.scm:9764:4
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Web-based notebook environment for interactive computing  
@@ -1223,7 +1235,7 @@ dependencies: python2-dateutil@2.8.1 python2-decorator@4.3.0
 + python2-nose@1.3.7 python2-pytest-cov@2.8.1 python2-pytest@4.6.9
 + python2-pyzmq@17.1.2 python2-testpath@0.2 python2-tornado@5.1.1
 + python2-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:6491:4
+location: gnu/packages/python-xyz.scm:6540:4
 homepage: https://ipython.org/
 license: Modified BSD
 synopsis: Interactive Parallel Computing with IPython  
@@ -1246,7 +1258,7 @@ dependencies: python-jupyter-core@4.4.0 python-nbconvert@5.0.0b1
 + python-nbformat@4.4.0 python-nose@1.3.7 python-prometheus-client@0.7.1
 + python-requests@2.23.0 python-send2trash@1.5.0 python-sphinx@2.3.1
 + python-terminado@0.8.1
-location: gnu/packages/python-xyz.scm:9667:2
+location: gnu/packages/python-xyz.scm:9717:2
 homepage: http://jupyter.org/
 license: Modified BSD
 synopsis: Web-based notebook environment for interactive computing  
@@ -1263,7 +1275,7 @@ dependencies: python-dateutil@2.8.1 python-decorator@4.3.0
 + python-jupyter-client@5.2.4 python-mock@3.0.5 python-nose@1.3.7
 + python-pytest-cov@2.8.1 python-pytest@5.3.5 python-pyzmq@17.1.2
 + python-testpath@0.2 python-tornado@5.1.1 python-traitlets@4.3.3
-location: gnu/packages/python-xyz.scm:6440:2
+location: gnu/packages/python-xyz.scm:6489:2
 homepage: https://ipython.org/
 license: Modified BSD
 synopsis: Interactive Parallel Computing with IPython  
@@ -1293,7 +1305,7 @@ guix install jupyter
 Ceux qui ont l'habitude d'une distribution classique étaient peut-être tentés de rajouter =sudo= devant la commande, parce que l'installation d'un logiciel, ça relève des privilèges d'un administrateur. Ce n'est pas le cas avec Guix. Sous Guix, chaque utilisateur gère ses logiciels de façon autonome. Le =jupyter= que je viens d'installer n'est accessible que pour moi. En fait, l'annonce des "84 paquets dans mon profil" veut dire qu'il y a 84 paquets installés à mon nom, un "profil" étant une collection de paquets installés (et on peut même en avoir plusieurs, mais ça dépasse le cadre de ce tutoriel).
 
 Pour tester, lançons =jupyter=:
-#+begin_src sh :results none :exports code
+#+begin_src sh :results none :exports code :eval no
 jupyter notebook
 #+end_src
 Un essai rapide confirme que tout est là pour créer un notebook en langage Python 3, donc tout va bien.
@@ -1327,8 +1339,6 @@ Je vais donc maintenant introduire alors la notion du =manifest= qui
 va réaliser la préparation de l'environnement automatiquement à l'aide
 de la commande =guix environment=. Un =manifest= est une spécification
 complète d'un environnement de calcul. Voyons à quoi ça ressemble.
-
-g#+RESULTS:
 
 Je crée un fichier [[file:moocrr_guix_jupyter/manifest.scm][moocrr_guix_jupyter/manifest.scm]] dont voici
 le contenu.
@@ -1383,10 +1393,10 @@ guix package -p $GUIX_ENVIRONMENT -I
 #+end_src
 
 #+RESULTS:
-: python-nbconvert	5.0.0b1	out	/gnu/store/1xb4jz8bi42w0jm0znxa1cq8jrmdpwgb-python-nbconvert-5.0.0b1
+: python-nbconvert	5.0.0b1	out	/gnu/store/gr3lxqkkkywp9jn8i6dj7ibxc1sxl4dk-python-nbconvert-5.0.0b1
 : python-statsmodels	0.11.1	out	/gnu/store/wwk3vf4cfsdn9bzw15sv9aysgc35f2sw-python-statsmodels-0.11.1
 : python-pandas	1.0.5	out	/gnu/store/54bg8qnb943npwpw9k0ry0wgx06471b2-python-pandas-1.0.5
-: python-numpy	1.17.3	out	/gnu/store/3j2d23kldb7cdzamj9cvg0j7j3fhhari-python-numpy-1.17.3
+: python-numpy	1.17.3	out	/gnu/store/aawl4k64qq5mwczi2ndaap3pgbqlb1pd-python-numpy-1.17.3
 : python-matplotlib	3.1.2	out	/gnu/store/gsjhzr1xy96hz8wvaa8mblvv2niqnkwy-python-matplotlib-3.1.2
 : jupyter	1.0.0	out	/gnu/store/sh1k32zgqddz0n86v13w6kdd61h7634g-jupyter-1.0.0
 
@@ -1436,6 +1446,133 @@ Et le résultat est...
 #+begin_src sh :results output :exports both
 guix repl moocrr_guix_jupyter/installed-dependencies.scm
 #+end_src
+
+#+RESULTS:
+#+begin_example
+122 packages:
+cairo@1.16.0
+expat@2.2.9
+fontconfig@2.13.1
+freetype@2.10.1
+glib@2.62.6
+gobject-introspection@1.62.0
+jupyter@1.0.0
+libffi@3.3
+libpng@1.6.37
+libpthread-stubs@0.4
+libselinux@3.0
+libsepol@3.0
+libx11@1.6.9
+libxau@1.0.9
+libxcb@1.14
+libxdmcp@1.1.3
+libxext@1.3.4
+libxrender@0.9.10
+pcre@8.44
+pixman@0.38.4
+python-asn1crypto@0.24.0
+python-attrs@19.3.0
+python-automat@20.2.0
+python-babel@2.8.0
+python-backcall@0.1.0
+python-bleach@3.1.5
+python-cairocffi@0.9.0
+python-certifi@2020.4.5.1
+python-cffi@1.14.0
+python-chardet@3.0.4
+python-constantly@15.1.0
+python-cryptography@2.9.2
+python-cycler@0.10.0
+python-dateutil@2.8.1
+python-decorator@4.3.0
+python-docutils@0.16
+python-entrypoints@0.3
+python-et-xmlfile@1.0.1
+python-hyperlink@19.0.0
+python-idna@2.9
+python-imagesize@1.2.0
+python-importlib-metadata@1.5.0
+python-incremental@17.5.0
+python-ipaddress@1.0.22
+python-ipykernel@5.1.3
+python-ipython-genutils@0.1.0
+python-ipython@7.9.0
+python-ipywidgets@7.5.1
+python-iso8601@0.1.12
+python-jdcal@1.4
+python-jedi@0.17.2
+python-jinja2@2.11.2
+python-jsonschema@3.2.0
+python-jupyter-client@5.2.4
+python-jupyter-console@6.1.0
+python-jupyter-core@4.4.0
+python-kiwisolver@1.0.1
+python-markupsafe@1.1.1
+python-matplotlib@3.1.2
+python-mistune@0.8.4
+python-more-itertools@8.2.0
+python-nbconvert@5.0.0b1
+python-nbformat@4.4.0
+python-notebook@5.7.4
+python-numpy@1.17.3
+python-numpydoc@0.8.0
+python-olefile@0.46
+python-openpyxl@2.6.2
+python-packaging@20.0
+python-pandas@1.0.5
+python-parso@0.7.1
+python-patsy@0.5.1
+python-pexpect@4.8.0
+python-pickleshare@0.7.5
+python-pillow@6.2.1
+python-prometheus-client@0.7.1
+python-prompt-toolkit@2.0.7
+python-ptyprocess@0.5.2
+python-pycairo@1.19.1
+python-pycparser@2.20
+python-pygments@2.5.2
+python-pygobject@3.34.0
+python-pyhamcrest@1.9.0-0.25fdc5f
+python-pyopenssl@19.1.0
+python-pyparsing@2.4.6
+python-pyrsistent@0.16.0
+python-pysocks@1.7.0
+python-pytz@2019.1
+python-pyzmq@17.1.2
+python-qtconsole@4.4.3
+python-requests@2.23.0
+python-scipy@1.3.2
+python-send2trash@1.5.0
+python-simplegeneric@0.8.1
+python-six@1.14.0
+python-snowballstemmer@2.0.0
+python-sphinx-alabaster-theme@0.7.12
+python-sphinx@2.3.1
+python-sphinxcontrib-applehelp@1.0.2
+python-sphinxcontrib-devhelp@1.0.2
+python-sphinxcontrib-htmlhelp@1.0.3
+python-sphinxcontrib-jsmath@1.0.1
+python-sphinxcontrib-qthelp@1.0.3
+python-sphinxcontrib-serializinghtml@1.1.4
+python-statsmodels@0.11.1
+python-terminado@0.8.1
+python-tornado@5.1.1
+python-traitlets@4.3.3
+python-twisted@19.7.0
+python-urllib3@1.25.9
+python-wcwidth@0.1.8
+python-webencodings@0.5.1
+python-widgetsnbextension@3.5.1
+python-xcffib@0.6.0
+python-xlrd@1.2.0
+python-zipp@1.0.0
+python-zope-interface@5.1.0
+python@3.8.2
+util-linux@2.35.1
+util-macros@1.19.2
+xorgproto@2019.2
+zlib@1.2.11
+#+end_example
 
 Il faut donc 119 paquets au total pour construire mon environnement ! Et ce sont seulement les paquets qui doivent être en mémoire pour utiliser l'environnement. D'autres paquets ont été déployés pour construire ces 118 paquets. Par exemple, pour construire le paquet =python= il a fallu un compilateur C. Une erreur dans ce compilateur peut aussi fausser mes résultats, donc je devrais le rajouter à ma liste de paquets dont il faut noter les versions. Alors... encore un petit script pour faire la liste complète !
 
@@ -1487,6 +1624,625 @@ Et le résultat est...
 guix repl moocrr_guix_jupyter/all-dependencies.scm
 #+end_src
 
+#+RESULTS:
+#+begin_example
+614 packages:
+acl@2.2.53
+aspell@0.60.8
+at-spi2-atk@2.34.1
+at-spi2-core@2.34.0
+atk@2.34.1
+atkmm@2.28.0
+attr@2.4.48
+autoconf-wrapper@2.69
+autoconf@2.69
+automake@1.16.2
+avahi@0.8
+bash-mesboot0@2.05b
+bash-mesboot@4.4
+bash-minimal@5.0.16
+bash-static@5.0.16
+bash@5.0.16
+bc@1.07.1
+bdb@5.3.28
+bdb@6.2.32
+binutils-cross-boot0@2.34
+binutils-mesboot0@2.14
+binutils-mesboot1@2.14
+binutils-mesboot@2.20.1a
+binutils@2.34
+bison-boot0@3.5.3
+bison@3.5.3
+boost@1.72.0
+bootar@1a
+bootstrap-mes-rewired@0.19
+bootstrap-mes@0
+bootstrap-mescc-tools@0.5.2
+bzip2-boot0@1.0.8
+bzip2-mesboot@1.0.8
+bzip2@1.0.8
+c-ares@1.16.0
+cairo@1.16.0
+cairomm@1.12.2
+cmake-bootstrap@3.16.5
+cmake-minimal@3.16.5
+coreutils-boot0@8.32
+coreutils-mesboot0@5.0
+coreutils-mesboot@8.32
+coreutils@8.32
+cunit@2.1-3
+cups-filters@1.27.4
+cups-minimal@2.3.3
+cups@2.3.3
+curl-minimal@7.69.1
+curl@7.69.1
+cyrus-sasl@2.1.27
+datefudge@1.23
+dblatex@0.3.11
+dbus@1.12.16
+diffutils-boot0@3.7
+diffutils-mesboot@2.7
+diffutils@3.7
+docbook-xml@4.2
+docbook-xml@4.3
+docbook-xml@4.4
+docbook-xml@4.5
+docbook-xsl@1.79.1
+doxygen@1.8.17
+ed@1.16
+elfutils@0.176
+eudev@3.2.9
+expat@2.2.9
+fftw@3.3.8
+file-boot0@5.38
+file@5.38
+findutils-boot0@4.7.0
+findutils@4.7.0
+flex@2.6.4
+font-dejavu@2.37
+fontconfig@2.13.1
+fontforge@20200314
+freeglut@3.2.1
+freetype@2.10.1
+fribidi@1.0.9
+gash-boot@0.2.0
+gash-utils-boot@0.1.0
+gawk-boot0@2.7.6
+gawk-mesboot0@3.0.0
+gawk-mesboot@3.1.8
+gawk@5.0.1
+gcc-core-mesboot0@2.95.3
+gcc-cross-boot0-wrapped@7.5.0
+gcc-cross-boot0@7.5.0
+gcc-mesboot-wrapper@4.9.4
+gcc-mesboot0@2.95.3
+gcc-mesboot1-wrapper@4.6.4
+gcc-mesboot1@4.6.4
+gcc-mesboot@4.9.4
+gcc@7.5.0
+gd@2.3.0
+gdbm@1.18.1
+gdk-pixbuf+svg@2.40.0
+gdk-pixbuf@2.40.0
+gettext-boot0@0.19.8.1
+gettext-minimal@0.20.1
+gfortran@7.5.0
+ghostscript-with-cups@9.52
+ghostscript@9.52
+giflib@5.2.1
+glib@2.62.6
+glibc-headers-mesboot@2.16.0
+glibc-intermediate@2.31
+glibc-mesboot0@2.2.5
+glibc-mesboot@2.16.0
+glibc-utf8-locales@2.31
+glibc@2.31
+glibmm@2.62.0
+glslang@8.13.3743
+glu@9.0.1
+gmp@6.2.0
+gnutls@3.6.12
+gobject-introspection@1.62.0
+gperf@3.1
+graphite2@1.3.13
+graphviz@2.42.3
+grep-mesboot@2.0
+grep@3.4
+groff-minimal@1.22.4
+groff@1.22.4
+gs-fonts@8.11
+gsl@2.6
+gtk+@2.24.32
+gtk+@3.24.20
+gtk-doc@1.28
+gtkmm@2.24.5
+gts@0.7.6
+guile-bootstrap@2.0
+guile@2.0.14
+guile@3.0.2
+gzip-mesboot@1.2.4
+gzip@1.10
+harfbuzz@2.6.4
+help2man@1.47.13
+icu4c@66.1
+ijs@9.52
+imagemagick@6.9.11-11
+inkscape@0.92.4
+intltool@0.51.0
+iproute2@5.8.0
+iptables@1.8.5
+isl@0.22.1
+itstool@2.0.6
+jansson@2.12
+jbig2dec@0.18
+jemalloc@5.2.1
+json-glib@1.4.4
+jsoncpp@1.9.2
+jupyter@1.0.0
+kmod@27
+lapack@3.9.0
+lcms@2.9
+ld-wrapper-boot0@0
+ld-wrapper-boot3@0
+ld-wrapper@0
+less@551
+libarchive@3.4.2
+libbsd@0.10.0
+libcap@2.31
+libcroco@0.6.13
+libdaemon@0.14
+libdmx@1.1.4
+libdrm@2.4.101
+libelf@0.8.13
+libepoxy@1.5.4
+libev@4.31
+libevent@2.1.11
+libfaketime@0.9.8
+libffi@3.3
+libfontenc@1.1.4
+libgc@8.0.4
+libgcrypt@1.8.5
+libgpg-error@1.37
+libgsf@1.14.47
+libice@1.0.10
+libidn2@2.3.0
+libidn@1.35
+libjpeg-turbo@2.0.4
+libltdl@2.4.6
+libmnl@1.0.4
+libnftnl@1.1.7
+libpaper@1.1.24
+libpciaccess@0.16
+libpipeline@1.5.3
+libpng@1.6.37
+libpthread-stubs@0.4
+librsvg@2.40.21
+libselinux@3.0
+libsepol@3.0
+libsigc++@2.10.3
+libsigsegv@2.12
+libsm@1.2.3
+libspectre@0.2.8
+libspiro@20190731
+libstdc++-boot0@4.9.4
+libstdc++@7.5.0
+libtasn1@4.16.0
+libtiff@4.1.0
+libtool@2.4.6
+libungif@4.1.4
+libuninameslist@20200313
+libunistring@0.9.10
+libuv@1.35.0
+libva-without-mesa@2.7.1
+libvdpau@1.3
+libwebp@1.1.0
+libx11@1.6.9
+libxau@1.0.9
+libxaw@1.0.13
+libxcb@1.14
+libxcomposite@0.4.5
+libxcursor@1.2.0
+libxdamage@1.1.5
+libxdmcp@1.1.3
+libxext@1.3.4
+libxfixes@5.0.3
+libxfont@2.0.4
+libxft@2.3.3
+libxi@1.7.10
+libxinerama@1.1.4
+libxkbcommon@0.10.0
+libxkbfile@1.1.0
+libxml2@2.9.10
+libxmu@1.1.3
+libxpm@3.5.13
+libxrandr@1.5.2
+libxrender@0.9.10
+libxres@1.2.0
+libxshmfence@1.3
+libxslt@1.1.34
+libxt@1.2.0
+libxtst@1.2.3
+libxv@1.0.11
+libxvmc@1.0.12
+libxxf86vm@1.1.4
+linux-libre-headers-bootstrap@0
+linux-libre-headers@5.4.20
+llvm@10.0.0
+lzip@1.21
+lzo@2.10
+m4-boot0@1.4.18
+m4@1.4.18
+make-boot0@4.3
+make-mesboot0@3.80
+make-mesboot@3.82
+make@4.3
+man-db@2.9.3
+mes-boot@0.22
+mesa@20.0.7
+mesboot-headers@0.22
+meson-for-build@0.53.2
+mit-krb5@1.18
+mpc@1.1.0
+mpfr@4.0.2
+nasm@2.14.02
+ncurses@6.2
+net-base@5.3
+net-tools@1.60-0.479bb4a
+nettle@3.5.1
+nghttp2@1.40.0
+ninja@1.10.0
+openblas@0.3.9
+openjpeg@2.3.1
+openldap@2.4.49
+openssl@1.1.1f
+pango@1.42.4
+pango@1.44.7
+pangomm@2.42.0
+patch-boot0@2.7.6
+patch-mesboot@2.5.9
+patch@2.7.6
+pciutils@3.6.4
+pcre@8.44
+perl-boot0@5.30.2
+perl-xml-parser@2.46
+perl@5.30.2
+pixman@0.38.4
+pkg-config@0.29.2
+poppler@0.86.1
+popt@1.16
+potrace@1.16
+psutils@17
+python-appdirs@1.4.3
+python-asn1crypto@0.24.0
+python-atomicwrites@1.3.0
+python-attrs-bootstrap@19.3.0
+python-attrs@19.3.0
+python-automat@20.2.0
+python-babel@2.8.0
+python-backcall@0.1.0
+python-beautifulsoup4@4.9.1
+python-bleach@3.1.5
+python-cairocffi@0.9.0
+python-certifi@2020.4.5.1
+python-cffi@1.14.0
+python-chardet@3.0.4
+python-constantly@15.1.0
+python-coverage@5.0.3
+python-cryptography-vectors@2.9.2
+python-cryptography@2.9.2
+python-cycler@0.10.0
+python-cython@0.29.17
+python-dateutil@2.8.1
+python-datrie@0.8.2
+python-decorator@4.3.0
+python-distlib@0.3.0
+python-docopt@0.6.2
+python-docutils@0.16
+python-elementpath@1.4.0
+python-entrypoints@0.3
+python-et-xmlfile@1.0.1
+python-filelock@3.0.12
+python-flaky@3.5.3
+python-fonttools@4.6.0
+python-freezegun@0.3.14
+python-genshi@0.7.3
+python-graphviz@0.13.2
+python-html5lib@1.0.1
+python-hyperlink@19.0.0
+python-hypothesis@5.4.1
+python-idna@2.9
+python-imagesize@1.2.0
+python-importlib-metadata@1.5.0
+python-incremental@17.5.0
+python-ipaddress@1.0.22
+python-ipykernel@5.1.3
+python-ipython-genutils@0.1.0
+python-ipython@7.9.0
+python-ipywidgets@7.5.1
+python-iso8601@0.1.12
+python-jdcal@1.4
+python-jedi@0.17.2
+python-jinja2@2.11.2
+python-jsonschema@3.2.0
+python-jupyter-client@5.2.4
+python-jupyter-console@6.1.0
+python-jupyter-core@4.4.0
+python-kiwisolver@1.0.1
+python-libxml2@2.9.10
+python-lxml@4.4.2
+python-m2r@0.2.1
+python-mako@1.1.2
+python-markupsafe@1.1.1
+python-matplotlib@3.1.2
+python-minimal-wrapper@3.8.2
+python-minimal@3.5.9
+python-minimal@3.8.2
+python-mistune@0.8.4
+python-mock@3.0.5
+python-more-itertools@8.2.0
+python-nbconvert@5.0.0b1
+python-nbformat@4.4.0
+python-nose@1.3.7
+python-notebook@5.7.4
+python-numpy@1.17.3
+python-numpydoc@0.8.0
+python-olefile@0.46
+python-openpyxl@2.6.2
+python-packaging-bootstrap@20.0
+python-packaging@20.0
+python-pandas@1.0.5
+python-parso@0.7.1
+python-patsy@0.5.1
+python-pexpect@4.8.0
+python-pickleshare@0.7.5
+python-pillow@6.2.1
+python-pluggy@0.13.1
+python-pretend@1.0.9
+python-prometheus-client@0.7.1
+python-prompt-toolkit@2.0.7
+python-ptyprocess@0.5.2
+python-py@1.8.1
+python-pycairo@1.19.1
+python-pycparser@2.20
+python-pyfakefs@3.7.1
+python-pygments@2.5.2
+python-pygobject@3.34.0
+python-pyhamcrest@1.9.0-0.25fdc5f
+python-pympler@0.8
+python-pyopenssl@19.1.0
+python-pyparsing@2.4.6
+python-pyrsistent@0.16.0
+python-pysocks@1.7.0
+python-pytest-bootstrap@5.3.5
+python-pytest-cov@2.8.1
+python-pytest-mock@1.10.1
+python-pytest-runner@5.2
+python-pytest@5.3.5
+python-pytz@2019.1
+python-pyzmq@17.1.2
+python-qtconsole@4.4.3
+python-requests@2.23.0
+python-scipy@1.3.2
+python-send2trash@1.5.0
+python-setuptools-scm@3.4.3
+python-simplegeneric@0.8.1
+python-six-bootstrap@1.14.0
+python-six@1.14.0
+python-snowballstemmer@2.0.0
+python-sortedcontainers@2.1.0
+python-soupsieve@2.0.1
+python-sphinx-alabaster-theme@0.7.12
+python-sphinx@2.3.1
+python-sphinxcontrib-applehelp@1.0.2
+python-sphinxcontrib-devhelp@1.0.2
+python-sphinxcontrib-htmlhelp@1.0.3
+python-sphinxcontrib-jsmath@1.0.1
+python-sphinxcontrib-qthelp@1.0.3
+python-sphinxcontrib-serializinghtml@1.1.4
+python-statsmodels@0.11.1
+python-terminado@0.8.1
+python-testpath@0.2
+python-tornado@5.1.1
+python-traitlets@4.3.3
+python-twisted@19.7.0
+python-urllib3@1.25.9
+python-wcwidth@0.1.8
+python-webencodings@0.5.1
+python-widgetsnbextension@3.5.1
+python-wrapper@3.8.2
+python-xcffib@0.6.0
+python-xlrd@1.2.0
+python-xmlschema@1.1.2
+python-zipp@1.0.0
+python-zope-event@4.4
+python-zope-interface@5.1.0
+python-zope-testing@4.7
+python2@2.7.17
+python@3.8.2
+qpdf@10.0.1
+readline@8.0.4
+rhash@1.3.9
+rsync@3.1.3
+ruby-byebug@9.0.6
+ruby-diff-lcs@1.3
+ruby-hydra@0.0-0.5abfa37
+ruby-rspec-core@3.8.0
+ruby-rspec-expectations@3.8.2
+ruby-rspec-mocks@3.8.0
+ruby-rspec-support@3.8.0
+ruby-rspec@3.8.0
+ruby@2.6.5
+sed-boot0@4.8
+sed-mesboot0@1.18
+sed-mesboot@4.0.6
+sed@4.8
+shared-mime-info@1.15
+source-highlight@3.1.9
+sqlite@3.31.1
+swig@4.0.1
+tar-boot0@1.32
+tar-mesboot@1.22
+tar@1.32
+tcc-boot0@0.9.26-1103-g6e62e0e
+tcc-boot@0.9.27
+tcl@8.6.10
+tcsh@6.22.02
+teckit@2.5.9
+texinfo@6.7
+texlive-amsfonts@51265
+texlive-bin@20190410
+texlive-cm@51265
+texlive-dehyph-exptl@51265
+texlive-docstrip@51265
+texlive-dvips@51265
+texlive-etex@51265
+texlive-fontname@51265
+texlive-fonts-ec@51265
+texlive-fonts-knuth-lib@51265
+texlive-fonts-latex@51265
+texlive-fonts-rsfs@51265
+texlive-fonts-stmaryrd@51265
+texlive-generic-babel-english@51265
+texlive-generic-ifxetex@51265
+texlive-graphics-cfg@51265
+texlive-graphics-def@51265
+texlive-hyph-utf8@51265
+texlive-hyphen-afrikaans@51265
+texlive-hyphen-ancientgreek@51265
+texlive-hyphen-armenian@51265
+texlive-hyphen-base@51265
+texlive-hyphen-basque@51265
+texlive-hyphen-belarusian@51265
+texlive-hyphen-bulgarian@51265
+texlive-hyphen-catalan@51265
+texlive-hyphen-chinese@51265
+texlive-hyphen-churchslavonic@51265
+texlive-hyphen-coptic@51265
+texlive-hyphen-croatian@51265
+texlive-hyphen-czech@51265
+texlive-hyphen-danish@51265
+texlive-hyphen-dutch@51265
+texlive-hyphen-english@51265
+texlive-hyphen-esperanto@51265
+texlive-hyphen-estonian@51265
+texlive-hyphen-ethiopic@51265
+texlive-hyphen-finnish@51265
+texlive-hyphen-french@51265
+texlive-hyphen-friulan@51265
+texlive-hyphen-galician@51265
+texlive-hyphen-georgian@51265
+texlive-hyphen-german@51265
+texlive-hyphen-greek@51265
+texlive-hyphen-hungarian@51265
+texlive-hyphen-icelandic@51265
+texlive-hyphen-indic@51265
+texlive-hyphen-indonesian@51265
+texlive-hyphen-interlingua@51265
+texlive-hyphen-irish@51265
+texlive-hyphen-italian@51265
+texlive-hyphen-kurmanji@51265
+texlive-hyphen-latin@51265
+texlive-hyphen-latvian@51265
+texlive-hyphen-lithuanian@51265
+texlive-hyphen-mongolian@51265
+texlive-hyphen-norwegian@51265
+texlive-hyphen-occitan@51265
+texlive-hyphen-pali@51265
+texlive-hyphen-piedmontese@51265
+texlive-hyphen-polish@51265
+texlive-hyphen-portuguese@51265
+texlive-hyphen-romanian@51265
+texlive-hyphen-romansh@51265
+texlive-hyphen-russian@51265
+texlive-hyphen-sanskrit@51265
+texlive-hyphen-serbian@51265
+texlive-hyphen-slovak@51265
+texlive-hyphen-slovenian@51265
+texlive-hyphen-spanish@51265
+texlive-hyphen-swedish@51265
+texlive-hyphen-thai@51265
+texlive-hyphen-turkish@51265
+texlive-hyphen-turkmen@51265
+texlive-hyphen-ukrainian@51265
+texlive-hyphen-uppersorbian@51265
+texlive-hyphen-welsh@51265
+texlive-kpathsea@51265
+texlive-latex-amscls@51265
+texlive-latex-amsmath@51265
+texlive-latex-anysize@51265
+texlive-latex-appendix@51265
+texlive-latex-babel@51265
+texlive-latex-base@51265
+texlive-latex-changebar@51265
+texlive-latex-colortbl@51265
+texlive-latex-cyrillic@51265
+texlive-latex-eepic@51265
+texlive-latex-eso-pic@51265
+texlive-latex-fancybox@51265
+texlive-latex-fancyhdr@51265
+texlive-latex-fancyvrb@51265
+texlive-latex-filecontents@51265
+texlive-latex-float@51265
+texlive-latex-footmisc@51265
+texlive-latex-graphics@51265
+texlive-latex-hyperref@6.84a2
+texlive-latex-jknapltx@51265
+texlive-latex-listings@51265
+texlive-latex-multirow@51265
+texlive-latex-oberdiek@51265
+texlive-latex-overpic@51265
+texlive-latex-pdfpages@51265
+texlive-latex-psnfss@51265
+texlive-latex-subfigure@51265
+texlive-latex-titlesec@51265
+texlive-latex-tools@51265
+texlive-latex-url@51265
+texlive-latex-wasysym@51265
+texlive-latexconfig@51265
+texlive-metafont-base@51265
+texlive-ruhyphen@51265
+texlive-tetex@51265
+texlive-tex-fontinst-base@51265
+texlive-tex-ini-files@51265
+texlive-tex-plain@51265
+texlive-ukrhyph@51265
+texlive-unicode-data@51265
+texlive-union@51265
+tk@8.6.10
+tzdata@2019c
+unzip@6.0
+util-linux@2.35.1
+util-macros@1.19.2
+vala@0.46.5
+wayland-protocols@1.18
+wayland@1.17.0
+which@2.21
+xcb-proto@1.14
+xcb-util-image@0.4.0
+xcb-util-keysyms@0.4.0
+xcb-util-renderutil@0.3.9
+xcb-util-wm@0.4.1
+xcb-util@0.4.0
+xclip@0.13
+xkbcomp-intermediate@1.4.3
+xkbcomp@1.4.3
+xkeyboard-config@2.29
+xmlto@0.0.28
+xorg-server@1.20.7
+xorgproto@2019.2
+xsel@1.2.0
+xtrans@1.4.0
+xz-mesboot@5.0.0
+xz@5.2.4
+yelp-tools@3.32.2
+yelp-xsl@3.34.2
+zeromq@4.3.2
+zip@3.0
+zlib@1.2.11
+zstd@1.4.4
+zziplib@0.13.69
+#+end_example
+
 ** 2.6 Mettre son environnement à disposition
 L'environnement étant défini par le manifeste, il suffit de mettre ce petit fichier à disposition de ses collègues pour leur permettre de travailler dans un environnement identique. Sauf que... les versions qu'ils auront ne sont peut-être pas les mêmes ! Peu après la publication d'une nouvelle version de Jupyter, Guix adoptera cette nouvelle version, et l'environnement créé par mon manifeste ne sera plus le même. Ceci est d'ailleurs voulu : souvent on veut tout juste avoir la dernière version de tout. Mais pour la reproductibilité, on veut tout à l'identique.
 
@@ -1494,6 +2250,13 @@ L'information qu'il faut rajouter, c'est la version de Guix à laquelle le manif
 #+begin_src sh :results output :exports both
 guix describe
 #+end_src
+
+#+RESULTS:
+: Generation 30	Sep 22 2020 06:42:05	(current)
+:   guix 92951bf
+:     repository URL: https://git.savannah.gnu.org/git/guix.git
+:     branch: master
+:     commit: 92951bf46c42021f6f6521839c9c4ff2f88b8386
 
 Ceci me dit d'abord que je suis dans la génération 20 de Guix, ce qui veut dire que j'ai mis à jour Guix 19 fois depuis la première installation. Guix garde une trace de mes mises à jour et me permet de revenir en arrière si je le souhaite. Mais ce qui nous intéresse maintenant, c'est la suite. La version de Guix que j'utilise, c'est la =df931ac=. En tant qu'habitués de =Git=, vous devinez peut-être ce que c'est, et vous avez raison : c'est bien un commit, et vous le voyez dans sa totalité dans la dernière ligne. Guix est développé sous Git, et on peut donc identifier une version précise par son identifiant de commit. Les trois dernières lignes donnent un peu plus de précisions, dont notamment l'URL où on peut récupérer le dépôt.
 
@@ -1505,7 +2268,7 @@ La réponse est simple : je fais appel à la machine à voyager dans le temps. 
 guix environment --pure -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebook
 #+end_src
 Pour faire exactement la même chose plus tard, quand Guix aura avancé, je demande simplement à Guix de se placer sur le commit de sa version antérieure qui m'intéresse :
-#+begin_src sh :session *time-machine* :results output :exports both
+#+begin_src sh :session *time-machine* :results output :exports both :eval no
 guix time-machine --commit=df931ac39c40ac8a702e37cb434d9a1016606ed7 -- environment --pure -m ./moocrr_guix_jupyter/manifest.scm -- jupyter notebook
 #+end_src
 
@@ -1519,21 +2282,30 @@ Il reste un problème que vous pouvez rencontrer : vos collègues n'utilisent p
 guix pack -f docker -m ./moocrr_guix_jupyter/manifest.scm
 #+end_src
 
+#+RESULTS:
+: /gnu/store/gpysssp2a34nidhx8hwwh7cmvabqspmc-docker-pack.tar.gz
+
 La commande nous affiche le nom du fichier qui contient l'image Docker. Il peut paraître un peu bizarre, tout comme le répertoire =/gnu/store= dans lequel le fichier se trouve. Quand on comprend le fonctionnement de Guix un peu mieux, tout ça s'explique facilement mais pour ce tutoriel, je vais me contenter de le copier ailleurs avec un nom plus parlant :
 
 #+begin_src sh :results output :exports both
 cp /gnu/store/hgd89l0r46liqwlz4idhwaymsngrm255-docker-pack.tar.gz moocrr-jupyter-docker.tar.gz
 #+end_src
 
+#+RESULTS:
+
 Sur une machine avec Docker installé, l'image est chargée avec :
 #+begin_src sh :results output :exports both
 docker load -i moocrr-jupyter-docker.tar.gz
 #+end_src
 
+#+RESULTS:
+
 puis Jupyter est exécuté avec :
 #+begin_src sh :results output :exports both
 docker run -it -p 8888:8888 jupyter-python-matplotlib-python-numpy:latest jupyter notebook --ip=127.0.0.1 --allow-root
 #+end_src
+
+#+RESULTS:
 
 ** 2.9 Modifier son environnement
 Je vous ai montré comment vous pouvez installer des logiciels avec Guix avec toutes leurs dépendances, et comment archiver et reconstruire un tel environnement. Ceci couvre une grande partie des opérations nécessaires pour pratiquer la recherche reproductible. Mais comment faire si vous voulez (ou devez) modifier un environnement donné, que ce soit le vôtre ou un environnement récupéré sous forme d'un manifeste ?
@@ -1573,6 +2345,10 @@ Comme annoncé, j'ai modifié la version. Et dans le champ =source=, j'ai chang�
 #+begin_src sh :results output :exports both
 guix download https://files.pythonhosted.org/packages/source/p/pandas/pandas-1.0.4.tar.gz
 #+end_src
+
+#+RESULTS:
+: /gnu/store/hv2py5b6fa121p97nmkziz0iw4apskgp-pandas-1.0.4.tar.gz
+: 09j13y1ydwb4pryazchicxw9zjm1031j49p5h8gbb9xsh9964pdk
 
 mais vous êtes libre de faire appel à toute technique à laquelle vous faites confiance. Le but est d'être sûr que vous récupérez le code source d'un serveur fiable !
 
@@ -1644,5 +2420,7 @@ Et voici la preuve que ça marche - on demande à Python d'imprimer le numéro d
 guix environment --pure -m 
 ./moocrr_guix_jupyter/manifest-with-pandas-1.0.4.scm -- python3 -c 'import pandas; print(pandas.__version__)'
 #+end_src
+
+#+RESULTS:
 
 En fait, si vous comparez bien mon nouveau manifeste avec celui d'origine, vous remarquez que j'ai rajouté =python= qui n'y était pas avant. C'est juste pour pouvoir apporter cette preuve de réussite de l'opération !
