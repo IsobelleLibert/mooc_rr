@@ -301,7 +301,7 @@ then prompt you for the path of your local clone of the git repository
 [[file:emacs_orgmode_images/git1.png]]
 
 If you do not rely on our "/reproducible research/" emacs configuration,
-you should have a look at [[https://magit.vc/manual/magit/Installing-from-an-Elpa-Archive.html][how to install magit from an ELPA archive]].
+you should have a look at [[https://magit.vc/manual/magit/Installing-from-Melpa.html#Installing-from-Melpa][how to install magit from the MELPA archive]].
 
 The following method has been tested with Windows and worked like a charm:
 - Add the following piece of text in your =.emacs.d/init.el= file:

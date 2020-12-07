@@ -319,7 +319,7 @@ vous pouvez facilement invoquer magit en utilisant ~C-x g~. Si vous n'êtes pas 
 (le chemin vers mooc-rr dans le contexte de ce MOOC).
 [[file:emacs_orgmode_images/git1.png]]
 
-Si vous n'utilisez pas notre configuration, vous devriez jeter un coup d'œil à [[https://magit.vc/manual/magit/Installing-from-an-Elpa-Archive.html][comment installer magit à partir d'une archive ELPA]].
+Si vous n'utilisez pas notre configuration, vous devriez jeter un coup d'œil à [[https://magit.vc/manual/magit/Installing-from-Melpa.html#Installing-from-Melpa][comment installer magit à partir de l'archive MELPA]].
 
 La méthode suivante a été testée avec Windows et a fonctionné sans encombre :
 - Ajoutez le texte suivant dans votre fichier =.emacs.d/init.el= :
