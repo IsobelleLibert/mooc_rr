@@ -80,7 +80,7 @@ conda install python numpy matplotlib r r-ggplot2 r-dplyr r-hmisc
 #+end_src
 We also need one package that is not in Miniconda, so we request it from the independent package source [[https://conda-forge.org/][conda-forge]]:
 #+begin_src shell :results output :exports both
-conda install -c conda-forge r-parsedate
+conda install -c conda-forge emacs r-parsedate
 #+end_src
 
 You can now start Emacs directly from the command line:
