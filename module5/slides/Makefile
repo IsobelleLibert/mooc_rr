@@ -4,4 +4,4 @@ all: slides_environment.pdf
 	lualatex -shell-escape $^
 
 %.tex: %.org
-	emacs -q -batch $^ --funcall org-beamer-export-to-latex
+	emacs -q -batch --eval="(setq enable-local-eval t)" --eval="(setq enable-local-variables t)" $^ --funcall org-beamer-export-to-latex
