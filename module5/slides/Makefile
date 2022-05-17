@@ -1,3 +1,6 @@
+# Compilation sous Guix:
+# guix shell --pure texlive make emacs python python-pygments bash coreutils which -- make
+
 all: slides_environment.pdf
 
 %.pdf: %.tex
