@@ -159,7 +159,8 @@ This last technique (pasting when making an anthology) was systematically used b
 
 * Constructing a notebook index the John Locke way
 
-We will now learn about an index construction technique due to [[https://en.wikipedia.org/wiki/John_Locke][John Locke]] (1632-1704), the grand-father of liberalism and a major investor in the /Royal African Company/, the largest company in the [[https://en.wikipedia.org/wiki/John_Locke#Constitution_of_Carolina][slave-trade]] business at that time...
+We will now learn about an index construction technique due to [[https://en.wikipedia.org/wiki/John_Locke][John Locke]] (1632-1704)---the grand-father of liberalism and a major investor in the /Royal African Company/, the largest company in the [[https://en.wikipedia.org/wiki/John_Locke#Constitution_of_Carolina][slave-trade]] business at that time---; a detailed account of this method can be found in /Indexing commonplace books: John Locke’s method/ by Alan Walker, [[https://www.liverpooluniversitypress.co.uk/doi/epdf/10.3828/indexer.2001.22.3.2][The Indexer]], vol. 22, p. 114-118, 2001.
+
 
 The indexing method is here illustrated using my own notebook. The two pages that are displayed describe the structure of a dataset in the [[https://www.hdfgroup.org/][HDF5]] format on the left side and the corresponding structure (designed to map the former one) of a =data frame= object of the [[https://www.r-project.org/][R]] language. This dataset contain *calcium* concentration measurements made in *neurons*. This notes were taken while writing some computer *code* to analyze the data.
 

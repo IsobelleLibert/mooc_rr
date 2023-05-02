@@ -81,7 +81,7 @@ Ce dernier procédé était très couramment employé par les humanistes et les 
 
 Sur l'origine de l'index, on pourra lire l'article de Jean Berger : [[https://www.theindexer.org/files/25-2-berger.pdf][Indexation, Memoire, pouvoir et representations au seuil du XIIe siecle : La redecouverte des feuillets de tables du Liber De Honoribus, premier cartulaire de la collegiale Saint-Julien de Brioude]], /The Indexer/.
 
-La méthode de John Lock est expliquée dans l'article /Indexing commonplace books: John Locke’s method/ d'Alan Walker, [[https://www.theindexer.org/issues/query.php?vol=22&iss=3][The Indexer]], vol. 22, p. 114-118, 2001.
+La méthode de John Lock est expliquée dans l'article /Indexing commonplace books: John Locke’s method/ d'Alan Walker, [[https://www.liverpooluniversitypress.co.uk/doi/epdf/10.3828/indexer.2001.22.3.2][The Indexer]], vol. 22, p. 114-118, 2001.
 
 Une précision manque dans mes propos de la vidéo : la deuxième lettre (la voyelle) qui constitue l’entrée d’un mot clé dans l’index est la première voyelle qui suit la première lettre. Le mot clé « Analyse » trouverait donc sa place à la ligne « Aa » de l’index.
 
