@@ -8,16 +8,16 @@
 **Max participants** : 5000 (no max, it's a Mooc)  
 **Priority public**: None  
 **Public concerned** : All doctoral students  
-**Proposed by**: Inria Learning Lab  
+**Proposed by**: Inria Learning Lab
 
 ## Description
 
 - **Place** : online - FUN platform
-- **Observations**: This online course is available for free on the FUN platform. All the contents of the MOOC are accessible from the start. Certificates of attendance are issued every 3 months: you can follow the MOOC at your own pace and according to your needs! The estimated time to follow the course and do the exercises is 24 hours. All contents are bilingual French / English.
+- **Observations**: This online course is available for free on the FUN platform. All the contents of the MOOC are accessible from the start : you can follow the MOOC at your own pace and according to your needs! An Open Badge is issued on request to learners who obtain an overall score of 50% correct answers in all the quizzes and learning activities.
 - **Beginning of the module**: March 20, 2020
-- **Last registration**: March 20, 2021
-- **Registration modalities**: you must register yourself online on the FUN platform https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/about
-- **Keywords** : Reproducible Search, Open Science, git, GitLab, Notebooks, Markdown, Org-mode, Jupyter, Rtudio, Python
+- **Last registration**: 11 December 2024 (and probably late 2025)
+- **Registration modalities**: you must register yourself online on the FUN platform https://www.fun-mooc.fr/en/courses/reproducible-research-methodological-principles-transparent-scie/ 
+- **Keywords** : Reproducible Research, Open Science, git, GitLab, Notebooks, Markdown, Org-mode, Jupyter, Rtudio, Python
 
 ## Objectives: 
 You take notes and you want to find your way around them? You do calculations on the computer and your results change from one day to the next? You Would like to share your data analysis and your latest work with your colleagues so that they can reuse it? This MOOC is for you, whatever your field.
@@ -39,6 +39,7 @@ We propose in this MOOC three different paths using diffeent Notebook technology
 - The first path is based on **Jupyter** and the Python language. It does not require any installation on your computer.
 - The second path is based on **RStudio** and the R language.
 - The third path is based on **Emacs/Org-Mode** and the Python and R languages.
+
 We will also explain the importance and difficulties of reproducible research.  To illustrate and explore in depth certain concepts, we propose interviews with many researchers from different fields.
 
 ## Course Outline :
@@ -73,4 +74,4 @@ In addition, to encourage the collaborative aspects of the training, a publicly 
 At the end of the training, you will have to download the certificate of achievement on your personal ADUM space for us to take into account these training hours. 
 
 **Web site**:
-https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/about
+https://www.fun-mooc.fr/en/courses/reproducible-research-methodological-principles-transparent-scie/

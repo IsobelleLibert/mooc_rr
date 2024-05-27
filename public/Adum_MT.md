@@ -8,15 +8,15 @@
 **Max participants** : 5000 (pas de max, c'est un Mooc)  
 **Public prioritaire** : Aucun  
 **Public concerné** : Tout doctorant(e)s  
-**Proposé par** : Inria Learning Lab  
+**Proposé par** : Inria Learning Lab
 
 ## Fiche Description
 
 - **Lieu** : en ligne - plateforme FUN
-- **Observations** : Ce cours en ligne est accessible gratuitement sur la plateforme de Mooc FUN. L‘ensemble des contenus du Mooc est disponible dès le lancement avec une délivrance d’attestations de suivi tous les 3 mois : vous pouvez ainsi suivre le Mooc à votre rythme et selon vos besoins ! Le temps estimé pour suivre ce cours et faire les exercices est de 24h. Tous les contenus sont bilingues français / anglais.
+- **Observations** : Ce cours en ligne est accessible gratuitement sur la plateforme de Mooc FUN. L‘ensemble des contenus du Mooc est disponible dès le lancement : vous pouvez ainsi suivre le Mooc à votre rythme et selon vos besoins ! Un Open Badge de suivi avec succès est généré à la demande aux apprenants ayant obtenu un score global de 50% de bonnes réponses à l'ensemble des quiz et des activités pédagogiques.
 - **Début du module** : 20 mars 2020
-- **Date limite d'inscription** : 20 mars 2021
-- **Modalités d'inscription** : vous devez vous même procéder à votre inscription en ligne sur la plateforme FUN https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/about
+- **Date limite d'inscription** : 11 décembre 2024 (et sûrement fin 2025)
+- **Modalités d'inscription** : vous devez vous même procéder à votre inscription en ligne sur la plateforme FUN https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/
 - **Mots-clés** : Recherche Reproductible, Science ouverte, git, GitLab, Notebooks, Markdown, Org-mode, Jupyter, Rtudio, Python
 
 ## Objectifs : 
@@ -32,14 +32,16 @@ Vous vous formerez à des environnements de rédaction et de publication ainsi q
 - **Markdown** pour la prise de note structurée : ce langage fonctionne avec peu de balises et permet d'automatiser la production de documents de recherche notamment grâce à ses nombreux formats de sortie (PDF, HTML, Word, ...)
 - des **outils d'indexation** (DocFetcher et ExifTool)
 - **GitLab** pour le suivi de version et le travail collaboratif. Cet outil n'est pas réservé aux développeurs. Il facilite la révision de textes rédigés à plusieurs voire seul et au long cours : on peut par exemple connaitre les raisons qui ont poussé à apporter tel changement ou encore consulter une version antérieure du document. Dans la 3e session du Mooc, vous trouverez des vidéos sur git/GitLab pour les débutants.
-- **Notebooks**  pour combiner efficacement calcul, représentation et analyse des données
+- **Notebooks** pour combiner efficacement calcul, représentation et analyse des données
 
 Nous proposons dans ce MOOC trois parcours différents utilisant chacun une technologie de Notebook :
 
 - Le premier parcours repose sur **Jupyter** et le langage Python (ou R). Il ne nécessite aucune installation de votre part sur votre ordinateur.
 - Le deuxième parcours repose sur **RStudio** et le langage R.
 - Le troisième parcours repose sur **Emacs/Org-Mode** et les langages Python et R.
-Nous vous présenterons également les enjeux et les difficultés de la recherche reproductible.    Pour illustrer et approfondir certaines notions, vous pourrez écouter ou lire des interviews de nombreux chercheurs de domaines différents.
+Nous vous présenterons également les enjeux et les difficultés de la recherche reproductible.   
+
+Pour illustrer et approfondir certaines notions, vous pourrez écouter ou lire des interviews de nombreux chercheurs de domaines différents.
 
 ## Plan du cours :
 - Posons le décor : La reproductibilité, en crise ? Reproductibilité et transparence
@@ -74,4 +76,4 @@ De plus, pour favoriser les aspects collaboratifs de la formation, un espace per
 À la fin de la formation, vous devrez télécharger l'attestation de réussite sur votre espace personnel ADUM pour que nous prenions en compte ces heures de formation. 
 
 **Site web** :
-https://www.fun-mooc.fr/courses/course-v1:inria+41016+self-paced/about
+https://www.fun-mooc.fr/fr/cours/recherche-reproductible-principes-methodologiques-pour-une-science-transparente/
