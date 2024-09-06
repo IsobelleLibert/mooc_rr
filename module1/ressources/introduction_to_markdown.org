@@ -178,7 +178,7 @@ James H. Steiger]].
  
 * About =markdown= 
 First of all, to know more about =markdown= and its extensions, you may want to read:
-- The « [[https://enacit1.epfl.ch/markdown-pandoc/][Élaboration et conversion de documents avec Markdown et Pandoc]] » tutorial by Jean-Daniel Bonjour (EPFL). A must-read in French...
+- The « [[https://www.jdbonjour.ch/cours/markdown-pandoc/][Élaboration et conversion de documents avec Markdown et Pandoc]] » tutorial by Jean-Daniel Bonjour (EPFL). A must-read in French...
 - The wikipedia article on [[https://en.wikipedia.org/wiki/Markdown#Example][Markdown]] provides a good overview of the =markdown= syntax.
 - Github proposes a short and efficient introduction: [[https://guides.github.com/features/mastering-markdown/][Mastering Markdown]].
 

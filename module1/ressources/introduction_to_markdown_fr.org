@@ -179,7 +179,7 @@ d'œil à ces [[http://www.statpower.net/Content/310/R%20Stuff/SampleMarkdown.ht
  
 * Autour de =Markdown= 
 Tout d'abord, pour aller plus loin avec =Markdown= et ses extensions / ramifications :
-- Le didacticiel « [[https://enacit1.epfl.ch/markdown-pandoc/][Élaboration et conversion de documents avec Markdown et Pandoc]] » de Jean-Daniel Bonjour (EPFL), précis, complet, concis, en français ; un vrai bonheur !
+- Le didacticiel « [[https://www.jdbonjour.ch/cours/markdown-pandoc/][Élaboration et conversion de documents avec Markdown et Pandoc]] » de Jean-Daniel Bonjour (EPFL), précis, complet, concis, en français ; un vrai bonheur !
 - L'article [[https://en.wikipedia.org/wiki/Markdown#Example][Markdown]] de wikipedia en anglais contient un bon pense-bête sur la syntaxe =Markdown=.
 - GitHub propose un court et efficace didacticiel (en anglais) : [[https://guides.github.com/features/mastering-markdown/][Mastering Markdown]].
 
