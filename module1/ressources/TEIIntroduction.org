@@ -103,9 +103,7 @@ Some programs include a *converter*; these include:
   document to XML/TEI data
 
 An example of encoded text: Oscar Wilde. /The Importance of Being
-Earnest/ [available on the Web site "TEI by example"]
-(https://teibyexample.org/examples/TBED05v00.htm?target=wilde)
-
+Earnest/ [[https://www.teibyexample.org/exist/examples/TBED02v00.htm?target=wilde][available on the Web site "TEI by example"]]
 ** Sources
    :PROPERTIES:
    :CUSTOM_ID: sources

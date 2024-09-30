@@ -89,8 +89,7 @@ Certains logiciels incluent un *convertisseur* ; on peut citer :
 données en XML/TEI
 
 Exemple de texte encodé : Oscar Wilde. /The Importance of Being Earnest/
-[[https://teibyexample.org/examples/TBED05v00.htm?target=wilde][disponible
-sur le site web TEI by example]]
+[[https://www.teibyexample.org/exist/examples/TBED02v00.htm?target=wilde][disponible sur le site web TEI by example]]
 
 ** Sources
 
