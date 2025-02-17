@@ -56,7 +56,7 @@ This is the documentation of the data from [[https://ns.sentiweb.fr/incidence/cs
 The first line of the CSV file is a comment, which we ignore with ~skip=1~.
 
 #+BEGIN_SRC R :session :results silent :var url=data-url  :exports both
-data = read.csv(trimws(url), skip=1)
+data = read.csv(trimws(url), skip=1, na.strings=c("-"))
 #+END_SRC
 
 Let's see what we got!
